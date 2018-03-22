@@ -4,9 +4,7 @@
     <modules>
       <module fileurl="file://C:\Users\user\Documents\studio\ExchangeFx\Exchange 1.0.iml" filepath="C:\Users\user\Documents\studio\ExchangeFx\Exchange 1.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/ExchangeFx.iml" filepath="$PROJECT_DIR$/ExchangeFx.iml" />
-      <module fileurl="file://C:\Users\user\Desktop\New folder\ExchangeFx\ExchangeFx.iml" filepath="C:\Users\user\Desktop\New folder\ExchangeFx\ExchangeFx.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\user\Desktop\New folder\ExchangeFx\app\app.iml" filepath="C:\Users\user\Desktop\New folder\ExchangeFx\app\app.iml" />
     </modules>
   </component>
 </project>

@@ -74,7 +74,8 @@
         <activity android:name=".Selected_symbols" />
         <activity android:name=".Add_symbol" />
         <activity android:name=".M_delete" />
-        <activity android:name=".OneClickTrading"></activity>
+        <activity android:name=".OneClickTrading" />
+        <activity android:name=".Login"></activity>
     </application>
 
 </manifest>
