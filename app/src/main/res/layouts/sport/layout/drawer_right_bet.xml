@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -168,3 +169,175 @@
         android:layout_marginTop="10dp"
         android:text="One Click Betting"/>
 </LinearLayout>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:gravity="center_vertical"
+       android:layout_margin="2dp">
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_margin="5dp"
+           android:textSize="18sp"
+           android:text="BACK"
+           android:textStyle="bold"
+           android:padding="5dp"
+           android:background="@color/colorBlueBet"/>
+
+       <TextView
+           android:id="@+id/textView"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textColor="@color/colorBlack"
+           android:textSize="18sp"
+           android:layout_margin="5dp"
+           android:text="South Africa" />
+   </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/colorGreay"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="1dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="@color/colorBlack"
+        android:text="STACK"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:background="@color/colorReddishGreay"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3.0"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:background="@color/colorReddishGreay"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:background="@color/colorReddishGreay"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="@color/colorBlack"
+        android:text="ODD"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:background="@color/colorReddishGreay"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7.6"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:background="@color/colorReddishGreay"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:textColor="@color/colorWhite"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:background="@color/colorReddishGreay"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorGreen"
+        android:layout_margin="10dp"
+        android:text="Profit CHIPS 19.80"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:background="@color/colorGreen"
+        android:textColor="@color/colorWhite"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Bet"/>
+
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="13dp"
+        android:textColor="@color/colorBlack"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:text="One Click Betting"/>
+</LinearLayout>
+>>>>>>> Fx Files
