@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DTS</string>
+    <string name="app_name">DTS245</string>
 
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -219,6 +219,9 @@
 
 
     </string-array>
+
+    <string name="title_activity_tab">TabActivity</string>
+    <string name="Setting_switch">One Click Betting</string>
 
 
 </resources>

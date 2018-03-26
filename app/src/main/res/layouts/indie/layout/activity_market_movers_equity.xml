@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.affwl.exchange.indie.MarketMoversEquityActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="@android:color/white" />
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawerLayoutIndieMMEquity"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginBottom="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TableRow
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Scrip Name"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="LTP"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="CHNG(%)"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="CHNG($)"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="QTY"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:textStyle="bold"/>
+
+
+                    </TableRow>
+
+                    <TableRow
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="UPL"
+                                android:gravity="center"
+                                android:textSize="12sp"
+                                android:padding="3dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="NES 15:29:29"
+                                android:textSize="10sp"
+                                android:gravity="center"
+                                android:padding="3dp" />
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="200.89"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="3.3%"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="26.89"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="26.55LK"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            />
+                    </TableRow>
+                </TableLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/navViewIndieMMEquity"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="100dp"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:menu="@menu/indie_drawer_menu" />
+
+    </android.support.v4.widget.DrawerLayout>
+
+    <fragment
+        android:id="@+id/fragmentBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:name="com.affwl.exchange.indie.BottomFragment"/>
+
+</RelativeLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.affwl.exchange.Tab1">
+
+    <TableRow>
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_column="1"
+            android:text="Profit :"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+
+            android:padding="3dip" />
+
+        <TextView
+            android:layout_width="175dp"
+            android:gravity="right"
+            android:padding="3dip"
+            android:text="0.00"
+            android:textStyle="bold"
+            android:textColor="#3D5AFE"
+            android:textSize="18sp" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="138dp"
+            android:layout_column="1"
+            android:padding="3dip"
+            android:text="Deposit :"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="197dp"
+            android:gravity="right"
+            android:padding="3dip"
+            android:text="0.00"
+            android:textColor="#3D5AFE"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Balance :"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:padding="3dip" />
+        <TextView
+            android:text="0.00"
+            android:textSize="18sp"
+            android:textColor="#3D5AFE"
+            android:gravity="right"
+            android:textStyle="bold"
+
+            android:padding="3dip" />
+    </TableRow>
+
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
+
+
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Balance"
+            android:textSize="18sp"
+            android:padding="3dip"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+        <TextView
+            android:text="0.00"
+            android:textSize="20sp"
+            android:gravity="right"
+            android:textStyle="bold"
+            android:textColor="#3D5AFE"
+            android:padding="3dip" />
+    </TableRow>
+</TableLayout>

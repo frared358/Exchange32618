@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.affwl.exchange.indie.MarketCurrencyActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:titleTextColor="@android:color/white" />
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawerLayoutMarketCurrency"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginBottom="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp">
+
+                <TextView
+                    android:id="@+id/txtVTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EURINR"
+                    android:textStyle="bold"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txtVValue"
+                    android:layout_below="@+id/txtVTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10000.89 ↑ +20.28(+0.28%)"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:id="@+id/llInCash"
+                    android:layout_below="@+id/txtVValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/txtVInCash"
+                        android:layout_below="@+id/txtVValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="In Cash"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/txtVInCashValue"
+                        android:layout_below="@+id/txtVValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" 10000.89 ↑ +20.28(+0.28%)"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtVTime"
+                    android:layout_below="@+id/llInCash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="As om 23 Oct 2017, 16:01:01"
+                    android:textSize="12sp" />
+
+                <TableLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true">
+                    <TableRow>
+                        <TextView
+                            android:id="@+id/txtVnes"
+                            android:layout_below="@+id/txtVInCashValue"
+                            android:layout_width="wrap_content"
+                            android:background="@drawable/border_orange"
+                            android:layout_height="wrap_content"
+                            android:text="NSE"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/txtVbes"
+                            android:layout_below="@+id/txtVInCashValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MSEI"
+                            android:background="@drawable/border_black"
+                            android:layout_marginLeft="2dp"
+                            android:textSize="12sp" />
+                    </TableRow>
+
+                    <TableRow>
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/t"
+                            android:layout_margin="2dp"
+                            android:layout_alignParentRight="true"/>
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/plus_round"
+                            android:layout_margin="2dp"
+                            android:layout_alignParentRight="true"/>
+                    </TableRow>
+                </TableLayout>
+            </RelativeLayout>
+
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabLayoutMarketCurrency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/toolbar"
+                android:background="#125688"
+                android:minHeight="?attr/actionBarSize"
+                style="@style/MyTabLayout"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPagerMarketCurrency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/navViewMarketCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="100dp"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:menu="@menu/indie_drawer_menu" />
+
+    </android.support.v4.widget.DrawerLayout>
+
+    <fragment
+        android:id="@+id/fragmentBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:name="com.affwl.exchange.indie.BottomFragment"/>
+</RelativeLayout>

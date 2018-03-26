@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#424242"
+    tools:context="com.affwl.exchange.binary.Sec60Activity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="@string/product"
+        app:titleTextColor="@android:color/white" />
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawerLayoutBinary"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginBottom="50dp"
+        android:background="#313131"
+        android:layout_height="match_parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:id="@+id/rl60Sec"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_simple"
+                    android:backgroundTint="@color/colorReddishGreay"
+                    android:elevation="18dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgVB60Sec"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="5dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/sec60" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imgVB60Sec"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:text="@string/sec_60"
+                        android:textSize="15sp"
+                        android:textColor="@android:color/white"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rlBinaryOption"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_simple"
+                    android:backgroundTint="@color/colorReddishGreay"
+                    android:elevation="18dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgVBBinary"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:src="@drawable/binary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imgVBBinary"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:text="@string/binary_n_option"
+                        android:textColor="@android:color/white"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:id="@+id/rlLongTerm"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_simple"
+                    android:backgroundTint="@color/colorReddishGreay"
+                    android:elevation="18dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgVBLongTerm"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/long_term" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imgVBLongTerm"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:text="@string/long_n_term"
+                        android:textSize="15sp"
+                        android:textColor="@android:color/white"/> />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rlPairs"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/button_simple"
+                    android:backgroundTint="@color/colorReddishGreay"
+                    android:elevation="18dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgVBPairs"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/pairs"
+                        android:contentDescription="" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/imgVBPairs"
+                        android:layout_margin="5dp"
+                        android:gravity="center"
+                        android:text="@string/pairs"
+                        android:textSize="15sp"
+                        android:textColor="@android:color/white"/>
+                </RelativeLayout>
+
+            </TableRow>
+
+        </TableLayout>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/navViewBinary"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="100dp"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:menu="@menu/binary_drawer_menu" />
+
+    </android.support.v4.widget.DrawerLayout>
+
+    <fragment
+        android:id="@+id/fragmentBBottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:name="com.affwl.exchange.binary.BinaryBottomFragment"
+        android:layout_alignParentBottom="true"
+        tools:layout="@layout/fragment_b_bottom" />
+
+
+</RelativeLayout>

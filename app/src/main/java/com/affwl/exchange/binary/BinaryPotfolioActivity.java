@@ -16,15 +16,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.affwl.exchange.IndieActivity;
-import com.affwl.exchange.IndieMarketFragment;
-import com.affwl.exchange.IndieMarketMoversFragment;
-import com.affwl.exchange.IndieMarketWatchFragment;
-import com.affwl.exchange.IndiePortfolioFragment;
 import com.affwl.exchange.MainActivity;
 import com.affwl.exchange.R;
-
-import java.util.NavigableMap;
 
 public class BinaryPotfolioActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 

@@ -7,7 +7,7 @@
     <color name="colorPrimary1">#3F51B5</color>
     <color name="colorPrimaryDark1">#303F9F</color>
     <color name="colorAccent1">#FF4081</color>
-    <color name="colorGreen">#424242</color>
+    <color name="colorReddishGreay">#424242</color>
     <color name="colorRed">#de3a38</color>
     <color name="colorBlue">#09b5ff</color>
     <color name="colorCyan">#54ffee</color>
@@ -26,6 +26,7 @@
     <color name="colorPrimaryDarkBlue">#303F9F</color>
     <color name="colorGreenLightFlip">#6962ff00</color>
     <color name="colorGreenLightF">#9263ff02</color>
+    <color name="colorGreen">#408f0e</color>
     <color name="colorToolbar">#009990</color>
     <color name="colorLightGreen">#00ff15</color>
     <color name="colorPinkA40">#F50057</color>
@@ -52,4 +53,21 @@
     <color name="colorRollingArrowGrey">#565B5E</color>
     <color name="colorLogoOrange">#F15F23</color>
     <color name="colorLogoOrangeDark">#c23900</color>
+
+    <color name="colorBlueBet">#72BBEF</color>
+    <color name="colorRedBet">#FAA9BA</color>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </resources>

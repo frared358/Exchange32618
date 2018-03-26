@@ -21,38 +21,38 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".IndieActivity" />
+        <activity android:name=".indie.IndieActivity" />
         <activity
-            android:name=".PivotActivity"
+            android:name=".indie.PivotActivity"
             android:label="@string/pivot"
-            android:parentActivityName=".IndieActivity" />
+            android:parentActivityName=".indie.IndieActivity" />
         <activity
-            android:name=".LiveTipsActivity"
+            android:name=".indie.LiveTipsActivity"
             android:label="@string/live_tips"
-            android:parentActivityName=".IndieActivity" />
+            android:parentActivityName=".indie.IndieActivity" />
         <activity
-            android:name=".NewHiloActivity"
+            android:name=".indie.NewHiloActivity"
             android:label="New High Low" />
         <activity
-            android:name=".MarketMoversEquityActivity"
+            android:name=".indie.MarketMoversEquityActivity"
             android:label="Market Movers" />
         <activity
-            android:name=".MarketWatchActivity"
+            android:name=".indie.MarketWatchActivity"
             android:label="Market Watch" />
         <activity
-            android:name=".MarketIndicesActivity"
+            android:name=".indie.MarketIndicesActivity"
             android:label="Market" />
         <activity
-            android:name=".MarketDerivativesActivity"
+            android:name=".indie.MarketDerivativesActivity"
             android:label="Market" />
         <activity
-            android:name=".MarketCurrencyActivity"
+            android:name=".indie.MarketCurrencyActivity"
             android:label="Market" />
         <activity
-            android:name=".ScripSearchActivity"
+            android:name=".indie.ScripSearchActivity"
             android:label="Scrip Search" />
         <activity
-            android:name=".NewsActivity"
+            android:name=".indie.NewsActivity"
             android:label="News" />
         <activity
             android:name=".binary.Sec60Activity"
@@ -63,8 +63,9 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".binary.AssetListActivity" />
         <activity android:name=".binary.TradeActivity" />
+        <activity android:name=".binary.BinaryPotfolioActivity" />
         <activity android:name=".DrawerActivity" />
-        <activity android:name=".FxActivity" />
+        <activity android:name=".fx.FxActivity" />
         <activity android:name=".CustomSpinner" />
         <activity android:name=".Problem_Description" />
         <activity android:name=".Certificates" />
@@ -75,7 +76,29 @@
         <activity android:name=".Add_symbol" />
         <activity android:name=".M_delete" />
         <activity android:name=".OneClickTrading" />
-        <activity android:name=".Login"></activity>
+        <activity android:name=".Login"/>
+
+        <activity
+            android:name=".sport.SportActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+/        <activity
+            android:name=".sport.BetActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".sport.UnmatchMatchTabActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".sport.SettingsActivity" />
+
+        <activity
+            android:name=".sport.DemoActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".sport.StackActivity"/>
     </application>
 
 </manifest>

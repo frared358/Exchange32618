@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/colorPrimary"
+    android:gravity="center"
+    android:padding="2dp"
+    tools:context=".indie.BottomFragment">
+
+    <TextView
+        android:id="@+id/txtVHome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="15sp"
+        android:text="@string/home"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/txtVMarketWatch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="15sp"
+        android:text="@string/market_watch"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/txtVTradeQuote"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="15sp"
+        android:text="@string/trade_n_quote"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/txtVNews"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="15sp"
+        android:text="@string/news"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_weight="1"/>
+</LinearLayout>

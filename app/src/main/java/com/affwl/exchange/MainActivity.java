@@ -8,6 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.affwl.exchange.binary.Sec60Activity;
+import com.affwl.exchange.fx.FxActivity;
+import com.affwl.exchange.indie.IndieActivity;
+import com.affwl.exchange.sport.SportActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         txtVsports=(TextView)findViewById(R.id.txtVsports);
         imgVsports=(ImageView)findViewById(R.id.imgVsports);
-
 
         fx=(TextView)findViewById(R.id.fx);
         imgfx=(ImageView)findViewById(R.id.imgfx);
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.txtV60Sec:case R.id.imgV60Sec:
                 startActivity(new Intent(this,Sec60Activity.class)); break;
             case R.id.txtVsports:case R.id.imgVsports:
-                startActivity(new Intent(this,DrawerActivity.class)); break;
+                startActivity(new Intent(this,SportActivity.class)); break;
             case R.id.fx:case R.id.imgfx:
                 startActivity(new Intent(this,FxActivity.class)); break;
 

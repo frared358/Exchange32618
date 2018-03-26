@@ -22,6 +22,10 @@
             android:id="@+id/nav_history"
             android:icon="@drawable/history"
             android:title="History" />
+        <item
+            android:id="@+id/nav_news"
+            android:icon="@drawable/news"
+            android:title="News" />
     </group>
 
     <item android:title="Communicate">
@@ -30,10 +34,7 @@
                 android:id="@+id/nav_mailbox"
                 android:icon="@drawable/mailbox"
                 android:title="Mailbox" />
-            <item
-                android:id="@+id/nav_news"
-                android:icon="@drawable/news"
-                android:title="News" />
+
             <item
                 android:id="@+id/nav_message"
                 android:icon="@drawable/message"
