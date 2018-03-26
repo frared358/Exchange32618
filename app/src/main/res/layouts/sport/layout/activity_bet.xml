@@ -130,7 +130,7 @@
                     android:id="@+id/llrefresh"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/txtVchips"
+                    android:layout_alignRight="@+id/txtVchips"
                     android:gravity="center"
                     android:layout_alignParentTop="true">
 
