@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    tools:context=".sport.SettingFragment">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bet Persistence"
+        android:textSize="18dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtVNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Normal"
+            android:textSize="18dp"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:background="@color/colorGreayDark"
+            android:textColor="@color/colorBlack"/>
+
+        <TextView
+            android:id="@+id/txtVKeepBet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Keep Bet"
+            android:textSize="18dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:background="@drawable/border_greay_small"
+            android:textColor="@color/colorBlack"/>
+    </LinearLayout>
+
+
+    <Switch
+        android:id="@+id/simpleSwitch"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Setting_switch"
+        android:checked="true"
+        android:gravity="left"
+        android:layout_margin="5dp"
+        android:textSize="18dp"/>
+</LinearLayout>
