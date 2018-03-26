@@ -143,4 +143,8 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
 
         dialog.show();
     }
+
+    void signalrData(){
+
+    }
 }
