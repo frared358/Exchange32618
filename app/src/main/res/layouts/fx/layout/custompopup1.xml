@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -89,95 +88,7 @@
 <!--<Button-->
 
 <!--android:layout_width="wrap_content"-->
-<!--android:layout_height="wrap_content"-->
-<!--android:text="OK"-->
-<!--android:textColor="#000"-->
-<!--android:layout_marginTop="25dp"-->
-=======
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="300dp"
-    android:layout_height="205dp"
-    android:padding="5dp"
-    android:layout_gravity="center">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:text="DTS ID"
-            android:textSize="18dp"
-            android:textColor="#03A9F4"
-            android:textStyle="bold" />
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:padding="3dp"
-        android:background="#03A9F4"/>
-    <LinearLayout
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
 
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="100dp">
-            <TextView
-                android:textColor="#000"
-                android:padding="5dp"
-                android:textSize="18dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="My ID:E87AA008"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="100dp"
-                android:padding="10dp"
-                android:text="Use this ID to send message to this device via notify services."
-                android:textColor="#000"
-                android:textSize="18dp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#E0E0E0"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btnfollow"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:text="Copy"
-            android:gravity="center"
-            />
-        <Button
-            android:id="@+id/btnfollow1"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:text="OK"
-            />
-    </LinearLayout>
-
-
-
-
-
-</LinearLayout>
 
 
 
@@ -188,5 +99,5 @@
 <!--android:text="OK"-->
 <!--android:textColor="#000"-->
 <!--android:layout_marginTop="25dp"-->
->>>>>>> github/initial
+
 <!--android:layout_gravity="center_horizontal"/>-->
