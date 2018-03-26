@@ -115,6 +115,7 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
             this.ctx=ctx;
 
            // imageView=itemView.findViewById(R.id.iv1);
+            // imageView=itemView.findViewById(R.id.iv1);
             /** recycler view item click*/
 //            itemView.setOnClickListener (this);
 
