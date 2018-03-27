@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Rohit1234567</string>
+    <string name="app_name">Ravikant</string>
 
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -33,7 +33,7 @@
     <string name="hold_value">Hold Value</string>
     <string name="market_value">Market Value</string>
     <string name="home">Home</string>
-    <string name="trade_n_quote">Trade / Quote</string>
+    <string name="trade_n_quote">Trade /Quote</string>
     <string name="news">News</string>
     <string name="trade">Trade</string>
     <string name="profile">Profile</string>

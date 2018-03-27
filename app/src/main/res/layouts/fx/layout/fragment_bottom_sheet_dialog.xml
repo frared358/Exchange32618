@@ -10,21 +10,16 @@
     instead of nested layouts -->
 
     <LinearLayout
+        android:id="@+id/llCurrency"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal"
         android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:paddingLeft="25dp">
 
-        android:paddingTop="8dp">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginRight="32dp"
-
-            android:tint="#737373" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,26 +27,22 @@
             android:layout_gravity="center_vertical"
             android:text="EURUSD"
             android:textColor="#737373"
-            android:textSize="16sp" />
+            android:textSize="16sp"/>
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llNewOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal"
         android:paddingBottom="8dp"
-
+        android:paddingLeft="25dp"
         android:paddingTop="8dp">
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginRight="32dp"
 
-            android:tint="#737373" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -64,21 +55,17 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llChart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal"
         android:paddingBottom="8dp"
-
+        android:paddingLeft="25dp"
         android:paddingTop="8dp">
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginRight="32dp"
 
-            android:tint="#737373" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -91,22 +78,17 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llProperties"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal"
         android:paddingBottom="8dp"
-
-
+        android:paddingLeft="25dp"
         android:paddingTop="8dp">
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginRight="32dp"
 
-            android:tint="#737373" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -119,21 +101,15 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llDOM"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal"
         android:paddingBottom="8dp"
-
+        android:paddingLeft="25dp"
         android:paddingTop="8dp">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginRight="32dp"
-
-            android:tint="#737373" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -145,21 +121,16 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llMarketStatistics"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal"
         android:paddingBottom="8dp"
-
-        android:paddingTop="8dp">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginRight="32dp"
-
-            android:tint="#737373" />
+        android:paddingTop="8dp"
+        android:paddingLeft="25dp"
+        >
 
         <TextView
             android:layout_width="wrap_content"
@@ -169,22 +140,17 @@
             android:textColor="#737373"
             android:textSize="16sp" />
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/llAVW"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal"
         android:paddingBottom="8dp"
-
+        android:paddingLeft="25dp"
         android:paddingTop="8dp">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginRight="32dp"
-
-            android:tint="#737373" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -197,76 +163,3 @@
 </LinearLayout>
 
 
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:background="#efefef"-->
-    <!--tools:context="com.example.user.bottomsheet.MainActivity">-->
-
-    <!--<android.support.design.widget.AppBarLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:theme="@style/AppTheme.AppBarOverlay">-->
-
-        <!--<android.support.v7.widget.Toolbar-->
-            <!--android:id="@+id/toolbar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?attr/actionBarSize"-->
-            <!--android:background="?attr/colorPrimary"-->
-            <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
-
-    <!--</android.support.design.widget.AppBarLayout>-->
-
-    <!--<include layout="@layout/content_main" />-->
-
-    <!--&lt;!&ndash; Adding bottom sheet after main content &ndash;&gt;-->
-    <!--<include layout="@layout/bottom_sheet" />-->
-
-<!--</android.support.design.widget.CoordinatorLayout>-->
-
-
-
-
-
-
-
-
-
-
-
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--tools:context="com.example.user.bottomsheet.MainActivity">-->
-
-    <!--<android.support.design.widget.AppBarLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:theme="@style/AppTheme.AppBarOverlay">-->
-
-        <!--<android.support.v7.widget.Toolbar-->
-            <!--android:id="@+id/toolbar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?attr/actionBarSize"-->
-            <!--android:background="?attr/colorPrimary"-->
-            <!--app:popupTheme="@style/AppTheme.PopupOverlay" />-->
-
-    <!--</android.support.design.widget.AppBarLayout>-->
-
-    <!--<include layout="@layout/content_main" />-->
-
-    <!--<android.support.design.widget.FloatingActionButton-->
-        <!--android:id="@+id/fab"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="bottom|end"-->
-        <!--android:layout_margin="@dimen/fab_margin"-->
-        <!--app:srcCompat="@android:drawable/ic_dialog_email" />-->
-
-<!--</android.support.design.widget.CoordinatorLayout>-->
