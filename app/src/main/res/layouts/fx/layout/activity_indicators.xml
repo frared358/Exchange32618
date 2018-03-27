@@ -47,16 +47,15 @@
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/textView16"
             android:layout_marginEnd="53dp"
             android:layout_marginRight="53dp"
-
-            android:background="#0091EA"
-            app:srcCompat="@drawable/f" />
+            android:src="@drawable/ic_add_indicator"
+             />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -109,13 +108,12 @@
 
         <ImageButton
             android:id="@+id/imageButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_alignLeft="@+id/imageButton"
             android:layout_alignStart="@+id/imageButton"
             android:layout_alignTop="@+id/textView18"
-            android:background="#0091EA"
-            app:srcCompat="@drawable/f" />
+            android:src="@drawable/ic_add_indicator" />
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

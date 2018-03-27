@@ -9,7 +9,7 @@
     <!--android:title="@string/action_settings"-->
     <!--app:showAsAction="ifRoo   m" />-->
     <item
-        android:icon="@drawable/send"
+        android:icon="@drawable/ic_send_mail_wide_normal"
         android:id="@+id/send"
         android:title="Dollar"
         app:showAsAction="always"/>
