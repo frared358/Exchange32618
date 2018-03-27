@@ -39,7 +39,7 @@ public class CustomSpinner extends AppCompatActivity {
         activity = this;
 
         Spinner SpinnerExample = (Spinner) findViewById(R.id.spinner);
-        output = (TextView) findViewById(R.id.output);
+        //output = (TextView) findViewById(R.id.output);
 
         setListData();
 
@@ -55,10 +55,10 @@ public class CustomSpinner extends AppCompatActivity {
                 String Company = ((TextView) v.findViewById(R.id.company)).getText().toString();
                 String CompanyUrl = ((TextView) v.findViewById(R.id.sub)).getText().toString();
 
-                String OutputMsg = "\n\n" + Company ;
-                output.setText(OutputMsg);
-
-                Toast.makeText(getApplicationContext(), OutputMsg, Toast.LENGTH_LONG).show();
+//                String OutputMsg = "\n\n" + Company ;
+//                output.setText(OutputMsg);
+//
+               Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_LONG).show();
             }
 
             @Override
