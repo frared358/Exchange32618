@@ -178,7 +178,7 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                             fragmentTransaction1.replace (R.id.xzz,currentFragment);
                             fragmentTransaction1.commit();
                             layout.setVisibility(View.VISIBLE);
-                            ((FxActivity)viewdialog.getContext ()).invalidateOptionsMenu();
+//                            ((FxActivity)viewdialog.getContext ()).invalidateOptionsMenu();
                             ((FxActivity)viewdialog.getContext ()).setTitle("");
 
                             dialog.dismiss();
@@ -188,7 +188,7 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                     llNewOrder.setOnClickListener (new View.OnClickListener () {
                         @Override
                         public void onClick(View v) {
-                            viewdialog.getContext ().startActivity (new Intent (viewdialog.getContext (),Fx_NewOrder_Activity.class));
+//                            viewdialog.getContext ().startActivity (new Intent (viewdialog.getContext (),Fx_NewOrder_Activity.class));
 
                             Toast.makeText (viewdialog.getContext (), "New Order", Toast.LENGTH_SHORT).show ();
                         }
