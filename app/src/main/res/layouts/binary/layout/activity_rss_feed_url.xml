@@ -43,17 +43,22 @@
         android:textStyle="italic"
         android:text="(Maximum 5 URL allowed)"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="350dp">
+
     <ListView
         android:id="@+id/display_url_list"
         android:layout_width="match_parent"
         android:layout_height="300dp">
 
     </ListView>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_gravity="end"
         android:layout_margin="10dp">
 
         <Button

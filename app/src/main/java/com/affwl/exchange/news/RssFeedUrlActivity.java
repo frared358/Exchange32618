@@ -26,7 +26,7 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
     EditText edit_add_url;
     ImageView img_add_url;
     ListView display_url_list;
-    Button submit_urlList;
+    Button submit_urlList,cancel_urlList;
     ArrayList<String> urlArray=new ArrayList<String>();
     ArrayAdapter<String> itemsAdapter;
     ArrayList<String> myList=new ArrayList<String>();
@@ -40,9 +40,12 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
         img_add_url=findViewById(R.id.img_add_url);
         display_url_list=findViewById(R.id.display_url_list);
         submit_urlList=findViewById(R.id.submit_urlList);
+        cancel_urlList=findViewById(R.id.cancel_urlList);
 
         submit_urlList.setOnClickListener(this);
+        cancel_urlList.setOnClickListener(this);
         img_add_url.setOnClickListener(this);
+
 
         display_url_list.setOnItemClickListener(this);
 
@@ -82,13 +85,17 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
 
             case R.id.submit_urlList:
 
-                Intent intent=new Intent(RssFeedUrlActivity.this,RssFeedListActivity.class);
+                Intent intent=new Intent(RssFeedUrlActivity.this,NewsActivity.class);
                 intent.putExtra("urlArray",urlArray);
 
-                Intent selfIntent=new Intent(RssFeedUrlActivity.this,NewsActivity.class);
-                selfIntent.putExtra("urlArray",urlArray);
+               /* Intent selfIntent=new Intent(RssFeedUrlActivity.this,NewsActivity.class);
+                selfIntent.putExtra("urlArray",urlArray);*/
 
                 startActivity(intent);
+                break;
+
+            case R.id.cancel_urlList:
+                finish();
                 break;
 
         }

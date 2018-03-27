@@ -26,7 +26,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorBackground"
             android:orientation="vertical">
 
 
@@ -41,178 +40,13 @@
             <!--android:textStyle="bold"-->
             <!--android:textColor="@color/colorText" />-->
 
-
-            <LinearLayout
+            <ListView
+                android:id="@+id/list_rss"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@color/colorBackground"
-                android:layout_margin="10dp"
-                android:id="@+id/news_checkbox_layout"
-                android:layout_gravity="center"
-                >
+                android:layout_height="wrap_content">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#434445"/>
+            </ListView>
 
-                <LinearLayout
-                    android:id="@+id/sports_checkbox_layout"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sports"
-                        android:textColor="@color/colorWhite"
-                        android:padding="10dp"
-                        android:layout_weight="1"
-                        android:textSize="20sp"/>
-                    <CheckBox
-                        android:id="@+id/sportsCheckBox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="false"
-                        android:padding="10dp"
-                        android:layout_gravity="center_vertical"
-                        android:buttonTint="@color/colorPinkWhite" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#434445"/>
-
-
-                <LinearLayout
-                    android:id="@+id/crypto_checkbox_layout"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/crypto"
-                        android:textColor="@color/colorWhite"
-                        android:padding="10dp"
-                        android:layout_weight="1"
-                        android:textSize="20sp"/>
-
-                    <CheckBox
-                        android:id="@+id/cryptoCheckBox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="false"
-                        android:padding="10dp"
-                        android:layout_gravity="center_vertical"
-                        android:buttonTint="@color/colorPinkWhite"/>
-                </LinearLayout>
-
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#434445"/>
-
-                <LinearLayout
-                    android:id="@+id/indie_checkbox_layout"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/indie"
-                        android:textColor="@color/colorWhite"
-                        android:padding="10dp"
-                        android:layout_weight="1"
-                        android:textSize="20sp"/>
-
-                    <CheckBox
-                        android:id="@+id/indieCheckBox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="false"
-                        android:padding="10dp"
-                        android:layout_gravity="center_vertical"
-                        android:buttonTint="@color/colorPinkWhite"/>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#434445"/>
-
-                <LinearLayout
-                    android:id="@+id/binary_checkbox_layout"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/binary"
-                        android:textColor="@color/colorWhite"
-                        android:padding="10dp"
-                        android:layout_weight="1"
-                        android:textSize="20sp"/>
-
-
-                    <CheckBox
-                        android:id="@+id/binaryCheckBox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="false"
-                        android:padding="10dp"
-                        android:layout_gravity="center_vertical"
-                        android:buttonTint="@color/colorPinkWhite"
-                        />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#434445"/>
-
-                <LinearLayout
-                    android:id="@+id/fx_checkbox_layout"
-                    android:layout_width="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/fx"
-                        android:textColor="@color/colorWhite"
-                        android:padding="10dp"
-                        android:layout_weight="1"
-                        android:textSize="20sp"/>
-
-                    <CheckBox
-                        android:id="@+id/fxCheckBox"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="false"
-                        android:padding="10dp"
-                        android:layout_gravity="center_vertical"
-                        android:buttonTint="@color/colorPinkWhite"/>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#434445"/>
-
-
-            </LinearLayout>
 
             <!-- <LinearLayout
                  android:layout_width="match_parent"

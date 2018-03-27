@@ -1,14 +1,21 @@
 package com.affwl.exchange.news;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.affwl.exchange.R;
 
@@ -23,115 +30,188 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RssFeedListActivity  extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    List headlines;
-    List links;
-    ProgressDialog progressDialog;
-    ListView list_rss;
+public class RssFeedListActivity  extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
+    CheckBox sportsCheckBox,cryptoCheckBox,indieCheckBox,binaryCheckBox,fxCheckBox;
+    LinearLayout news_checkbox_layout,sports_checkbox_layout,crypto_checkbox_layout,indie_checkbox_layout,binary_checkbox_layout,fx_checkbox_layout;
+    private ArrayList<String> myList;
+
+    private int integer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rss_feed_list);
 
-        list_rss=findViewById(R.id.list_rss);
+        initNewsComponent();
+    }
 
-        list_rss.setOnItemClickListener(this);
+    private void initNewsComponent() {
 
-        new MyAsyncTask().execute();
+        sportsCheckBox=findViewById(R.id.sportsCheckBox);
+        cryptoCheckBox=findViewById(R.id.cryptoCheckBox);
+        indieCheckBox=findViewById(R.id.indieCheckBox);
+        binaryCheckBox=findViewById(R.id.binaryCheckBox);
+        fxCheckBox=findViewById(R.id.fxCheckBox);
+
+
+        sports_checkbox_layout=findViewById(R.id.sports_checkbox_layout);
+        crypto_checkbox_layout=findViewById(R.id.crypto_checkbox_layout);
+        indie_checkbox_layout=findViewById(R.id.indie_checkbox_layout);
+        binary_checkbox_layout=findViewById(R.id.binary_checkbox_layout);
+        fx_checkbox_layout=findViewById(R.id.fx_checkbox_layout);
+
+
+        sportsCheckBox.setOnClickListener(this);
+        cryptoCheckBox.setOnClickListener(this);
+        indieCheckBox.setOnClickListener(this);
+        binaryCheckBox.setOnClickListener(this);
+        fxCheckBox.setOnClickListener(this);
+
+        sports_checkbox_layout.setOnLongClickListener(this);
+        crypto_checkbox_layout.setOnLongClickListener(this);
+        indie_checkbox_layout.setOnLongClickListener(this);
+        binary_checkbox_layout.setOnLongClickListener(this);
+        fx_checkbox_layout.setOnLongClickListener(this);
+
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.sportsCheckBox:
+                if (sportsCheckBox.isChecked()) {
+                    Toast.makeText(getApplicationContext(), "selected Sports", Toast.LENGTH_LONG).show();
+                }
+                break;
+
+            case R.id.cryptoCheckBox:
+                if(cryptoCheckBox.isChecked())
+                {
+                    Toast.makeText(this, "Selected Crypto", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case R.id.indieCheckBox:
+                if(indieCheckBox.isChecked())
+                {
+                    Toast.makeText(this, "Selected Indie", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case R.id.binaryCheckBox:
+                if(binaryCheckBox.isChecked())
+                {
+                    Toast.makeText(this, "Selected Binary", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case R.id.fxCheckBox:
+                if(fxCheckBox.isChecked())
+                {
+                    Toast.makeText(this, "Selected FX", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-            Bundle bundle = new Bundle();
-            bundle.putString("urLink", links.get(position).toString());
-            Intent i = new Intent(RssFeedListActivity.this, WebActivity.class);
-            i.putExtras(bundle);
-            startActivity(i);
+    public boolean onLongClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.sports_checkbox_layout: case R.id.crypto_checkbox_layout:  case R.id.indie_checkbox_layout:  case R.id.binary_checkbox_layout: case R.id.fx_checkbox_layout:
+            displayPopup();
+            break;
         }
-
-    class MyAsyncTask extends AsyncTask<Object, Void, ArrayAdapter> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            progressDialog=new ProgressDialog(RssFeedListActivity.this);
-            progressDialog.setTitle("Fetching the RSS");
-            progressDialog.setMessage("Please Wait ... ");
-            progressDialog.setCancelable(false);
-            progressDialog.setCanceledOnTouchOutside(false);
-            progressDialog.show();
-        }
-
-        @Override
-        protected ArrayAdapter doInBackground(Object[] params) {
-            headlines = new ArrayList();
-            links = new ArrayList();
-            try {
-//             URL url=new URL("https://judeochristianclarion.com/feed/rss.xml");
-//             URL url=new URL("https://economictimes.indiatimes.com/industry/auto/rssfeeds/13359412.cms");
-//             URL url = new URL("http://cmhett.tk/rss.xml");
-
-                ArrayList<String> myList = (ArrayList<String>) getIntent().getSerializableExtra("urlArray");
-                for(int i=0;i<myList.size();i++) {
-                    URL url = new URL(myList.get(i));
-                    XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-                    factory.setNamespaceAware(false);
-                    XmlPullParser xpp = factory.newPullParser();
-
-                    // We will get the XML from an input stream
-                    xpp.setInput(getInputStream(url), "UTF_8");
-                    boolean insideItem = false;
-
-                    // Returns the type of current event: START_TAG, END_TAG, etc..
-                    int eventType = xpp.getEventType();
-                    while (eventType != XmlPullParser.END_DOCUMENT) {
-                        if (eventType == XmlPullParser.START_TAG) {
-                            if (xpp.getName().equalsIgnoreCase("item")) {
-                                insideItem = true;
-                            } else if (xpp.getName().equalsIgnoreCase("title")) {
-                                if (insideItem)
-                                    headlines.add(xpp.nextText()); //extract the headline
-                            } else if (xpp.getName().equalsIgnoreCase("link")) {
-                                if (insideItem)
-                                    links.add(xpp.nextText()); //extract the link of article
-                            }
-                        } else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")) {
-                            insideItem = false;
-                        }
-                        eventType = xpp.next(); //move to next element
-                    }
-                }
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (XmlPullParserException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        protected void onPostExecute(ArrayAdapter adapter) {
-            adapter = new ArrayAdapter(RssFeedListActivity.this, android.R.layout.simple_list_item_1, headlines);
-            list_rss.setAdapter(adapter);
-
-            if(progressDialog!=null)
-            {
-                progressDialog.dismiss();
-            }
-        }
+        return false;
     }
 
+    private void displayPopup() {
+        TextView setMinutes,pasteUrl,deleteUrl;
+        final LinearLayout news_option_layout,minutes_layout,new_url_layout;
+        final ImageView img_minus_minutes,img_plus_minutes;
+        final TextView text_minutes;
+
+        final Dialog myDialog = new Dialog(RssFeedListActivity.this);
+        myDialog.setContentView(R.layout.news_options);
+        news_option_layout=myDialog.findViewById(R.id.news_option_layout);
+        minutes_layout=myDialog.findViewById(R.id.minutes_layout);
+
+        setMinutes = myDialog.findViewById(R.id.setMinutes);
+        pasteUrl=myDialog.findViewById(R.id.pasteUrl);
+        deleteUrl=myDialog.findViewById(R.id.deleteUrl);
+        text_minutes=myDialog.findViewById(R.id.text_minutes);
 
 
-    public InputStream getInputStream(URL url) {
-        try {
-            return url.openConnection().getInputStream();
-        } catch (IOException e) {
-            return null;
-        }
+        img_plus_minutes=myDialog.findViewById(R.id.img_plus_minutes);
+        img_minus_minutes=myDialog.findViewById(R.id.img_minus_minutes);
+
+
+        setMinutes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                news_option_layout.setVisibility(View.GONE);
+                minutes_layout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        pasteUrl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RssFeedListActivity.this,RssFeedUrlActivity.class));
+            }
+        });
+
+        deleteUrl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myList = (ArrayList<String>) getIntent().getSerializableExtra("urlArray");
+                if(myList!=null) {
+                    Intent intent=new Intent(RssFeedListActivity.this, RssFeedUrlActivity.class);
+                    intent.putExtra("urlArray",myList);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        img_plus_minutes.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                String value = text_minutes.getText().toString();
+                Log.i("value",""+value);
+                integer = Integer.parseInt(value);
+                Log.i("integer",""+integer);
+                if (integer >= 5) {
+                    integer = integer + 1;
+                    String str = String.valueOf(integer);
+                    text_minutes.setText(str);
+                }
+            }
+
+        });
+
+        img_minus_minutes.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                String value = text_minutes.getText().toString();
+                Log.i("value",""+value);
+                integer = Integer.parseInt(value);
+                Log.i("integer",""+integer);
+                if (integer > 5) {
+                    integer = integer - 1;
+                    String str = String.valueOf(integer);
+                    text_minutes.setText(str);
+                }
+            }
+
+        });
+
+        myDialog.show();
     }
 }

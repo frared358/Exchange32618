@@ -12,6 +12,8 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -27,6 +29,7 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
 
     //Create Constructor after implementing method
     private  String[] data;
+    View viewdialog;
     Context ctx; /** for recyclerview click handler*/
 
     private static final String TAG = "MainFragment";
@@ -101,7 +104,6 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
 
 
 
-
     /**create nested class and inherit ViewHolder */                       /** set click on recyclerView item */
     public class ProgramingViewHolder extends RecyclerView.ViewHolder  {   //ALT+Enter
         TextView textView1,textView2,textView3;
@@ -133,7 +135,7 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                 @Override
                 public void onClick(final View v) {
                     LayoutInflater inflater = LayoutInflater.from (ctx);
-                    final View viewdialog =  inflater.inflate(R.layout.fragment_bottom_sheet_dialog, null);
+                    viewdialog =  inflater.inflate(R.layout.fragment_bottom_sheet_dialog, null);
 
                     llCurrency=viewdialog.findViewById (R.id.llCurrency);
                     llChart=viewdialog.findViewById (R.id.llChart);
@@ -169,7 +171,6 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                         private Fx_Chart_Fragment currentFragment;
                         FrameLayout layout = (FrameLayout)((FxActivity)viewdialog.getContext ()).findViewById(R.id.xzz);
 
-
                         @Override
                         public void onClick(View v) {
                             ((FxActivity)viewdialog.getContext ()).navigationView.getMenu().getItem(1).setChecked(true);
@@ -178,8 +179,8 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                             fragmentTransaction1.replace (R.id.xzz,currentFragment);
                             fragmentTransaction1.commit();
                             layout.setVisibility(View.VISIBLE);
-                            ((FxActivity)viewdialog.getContext ()).invalidateOptionsMenu();
                             ((FxActivity)viewdialog.getContext ()).setTitle("");
+                            ((FxActivity)viewdialog.getContext ()).invalidateOptionsMenu();
 
                             dialog.dismiss();
                         }
@@ -270,6 +271,8 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
 
 
     }
+
+
 
 //    class Getfragment extends AppCompatActivity{
 //
