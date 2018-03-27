@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/colorAccent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:id="@+id/news_option_layout"
+        android:layout_width="match_parent"
+        android:background="@color/colorAccent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set Minutes"
+        android:textSize="20sp"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:textColor="@color/colorWhite"
+
+        android:id="@+id/setMinutes"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#434445" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Paste XML URL"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        android:textSize="20sp"
+        android:paddingLeft="10dp"
+        android:textColor="@color/colorWhite"
+        android:id="@+id/pasteUrl"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#434445" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete URL"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        android:textSize="20sp"
+        android:paddingLeft="10dp"
+        android:textColor="#E0E0E0"
+        android:id="@+id/deleteUrl"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#434445" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/minutes_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Refreshing Time"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"/>
+
+        <ImageView
+            android:id="@+id/img_plus_minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/add_circular_button"/>
+
+        <TextView
+            android:id="@+id/text_minutes"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:textSize="24dp"
+            android:layout_weight="0"
+            android:text="5"/>
+
+        <ImageView
+            android:id="@+id/img_minus_minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/minus_circular_button"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/edit_url_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtMessage"/>
+
+        <EditText
+            android:id="@+id/edit_url_entered"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_delete_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Delete" />
+
+            <Button
+                android:id="@+id/btn_edit_url"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Apply" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

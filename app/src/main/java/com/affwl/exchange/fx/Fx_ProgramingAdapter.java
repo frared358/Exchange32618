@@ -4,11 +4,13 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -141,8 +143,19 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                     llMarketStatistics=viewdialog.findViewById (R.id.llMarketStatistics);
                     llAVW=viewdialog.findViewById (R.id.llAVW);
 
-                    final BottomSheetDialog dialog = new BottomSheetDialog(ctx);
+                    LinearLayout time_spread_layout= ((FxActivity)viewdialog.getContext ()).findViewById(R.id.time_spread_layout);
+                    TextView text_view_mode=viewdialog.findViewById(R.id.text_view_mode);
 
+                    if(time_spread_layout.getVisibility()== View.GONE)
+                    {
+                        text_view_mode.setText("Advanced view mode");
+                    }
+                    else
+                    {
+                        text_view_mode.setText("Simple view mode");
+                    }
+
+                    final BottomSheetDialog dialog = new BottomSheetDialog(ctx);
 
                     llCurrency.setOnClickListener (new View.OnClickListener () {
                         @Override
@@ -208,12 +221,32 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                         }
                     });
 
+
                     llAVW.setOnClickListener (new View.OnClickListener () {
+                     LinearLayout time_spread_layout= ((FxActivity)viewdialog.getContext ()).findViewById(R.id.time_spread_layout);
+                     LinearLayout low_layout=((FxActivity)viewdialog.getContext ()).findViewById(R.id.low_layout);
+                     LinearLayout high_layout=((FxActivity)viewdialog.getContext ()).findViewById(R.id.high_layout);
+
                         @Override
                         public void onClick(View v) {
-                            viewdialog.getContext ().startActivity (new Intent (viewdialog.getContext (),Fx_AVW_Activity.class));
 
-                            Toast.makeText (viewdialog.getContext (), "Advanced view mode", Toast.LENGTH_SHORT).show ();
+                            if(time_spread_layout.getVisibility()== View.GONE) {
+
+                               time_spread_layout.setVisibility(View.VISIBLE);
+                               low_layout.setVisibility(View.VISIBLE);
+                               high_layout.setVisibility(View.VISIBLE);
+                           }
+                           else
+                           {
+                               time_spread_layout.setVisibility(View.GONE);
+                               low_layout.setVisibility(View.GONE);
+                               high_layout.setVisibility(View.GONE);
+                           }
+
+                            dialog.dismiss();
+//                            viewdialog.getContext ().startActivity (new Intent (viewdialog.getContext (),FxActivity.class));
+
+//                            Toast.makeText (viewdialog.getContext (), "Advanced view mode", Toast.LENGTH_SHORT).show ();
                         }
                     });
 
