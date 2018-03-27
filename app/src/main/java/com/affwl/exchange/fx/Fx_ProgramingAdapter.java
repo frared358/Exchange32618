@@ -188,7 +188,7 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                     llNewOrder.setOnClickListener (new View.OnClickListener () {
                         @Override
                         public void onClick(View v) {
-//                            viewdialog.getContext ().startActivity (new Intent (viewdialog.getContext (),Fx_NewOrder_Activity.class));
+                            viewdialog.getContext ().startActivity (new Intent (viewdialog.getContext (),CustomSpinner.class));
 
                             Toast.makeText (viewdialog.getContext (), "Order", Toast.LENGTH_SHORT).show ();
                         }
