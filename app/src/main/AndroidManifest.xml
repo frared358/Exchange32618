@@ -103,6 +103,10 @@
         <activity android:name=".fx.Fx_NewOrder_Activity"></activity>
         <activity android:name=".fx.Fx_Properties_Activity"></activity>
 
+        <activity android:name=".news.RssFeedUrlActivity" />
+        <activity android:name=".news.WebActivity" />
+        <activity android:name=".news.RssFeedListActivity"></activity>
+        <activity android:name=".news.NewsActivity"/>
     </application>
 
 </manifest>

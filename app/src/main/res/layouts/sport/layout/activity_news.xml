@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.affwl.exchange.NewsActivity">
+    tools:context="com.affwl.exchange.news.NewsActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -31,15 +31,15 @@
 
 
             <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="News Categories"-->
-                <!--android:paddingBottom="25dp"-->
-                <!--android:paddingTop="25dp"-->
-                <!--android:textSize="25sp"-->
-                <!--android:gravity="center"-->
-                <!--android:textStyle="bold"-->
-                <!--android:textColor="@color/colorText" />-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="News Categories"-->
+            <!--android:paddingBottom="25dp"-->
+            <!--android:paddingTop="25dp"-->
+            <!--android:textSize="25sp"-->
+            <!--android:gravity="center"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textColor="@color/colorText" />-->
 
 
             <LinearLayout
@@ -63,21 +63,21 @@
                     android:orientation="vertical"
                     android:layout_height="wrap_content"
                     >
-                <CheckBox
-                    android:id="@+id/sportsCheckBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:padding="10dp"
-                    android:text="@string/sports"
-                    android:textSize="20sp"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/colorWhite"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_gravity="center"
-                    android:button="@null"
-                    android:drawableRight="?android:attr/listChoiceIndicatorMultiple"/>
+                    <CheckBox
+                        android:id="@+id/sportsCheckBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:padding="10dp"
+                        android:text="@string/sports"
+                        android:textSize="20sp"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_gravity="center"
+                        android:button="@null"
+                        android:drawableRight="?android:attr/listChoiceIndicatorMultiple"/>
                 </LinearLayout>
 
                 <View
@@ -92,21 +92,21 @@
                     android:orientation="vertical"
                     android:layout_height="wrap_content">
 
-                <CheckBox
-                    android:id="@+id/cryptoCheckBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:padding="10dp"
-                    android:text="@string/crypto"
-                    android:textSize="20sp"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/colorWhite"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_gravity="center"
-                    android:button="@null"
-                    android:drawableRight="?android:attr/listChoiceIndicatorMultiple"/>
+                    <CheckBox
+                        android:id="@+id/cryptoCheckBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:padding="10dp"
+                        android:text="@string/crypto"
+                        android:textSize="20sp"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_gravity="center"
+                        android:button="@null"
+                        android:drawableRight="?android:attr/listChoiceIndicatorMultiple"/>
                 </LinearLayout>
 
 
@@ -150,22 +150,22 @@
                     android:layout_width="match_parent"
                     android:orientation="vertical"
                     android:layout_height="wrap_content">
-                <CheckBox
-                    android:id="@+id/binaryCheckBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:padding="10dp"
-                    android:text="@string/binary"
-                    android:textColor="@color/colorWhite"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:textSize="20sp"
-                    android:gravity="center_vertical"
-                    android:layout_gravity="center"
-                    android:button="@null"
-                    android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
-                   />
+                    <CheckBox
+                        android:id="@+id/binaryCheckBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:padding="10dp"
+                        android:text="@string/binary"
+                        android:textColor="@color/colorWhite"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginLeft="30dp"
+                        android:textSize="20sp"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center"
+                        android:button="@null"
+                        android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                        />
                 </LinearLayout>
 
                 <View
@@ -204,62 +204,62 @@
 
             </LinearLayout>
 
-           <!-- <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:id="@+id/edit_rssFeed"
-                android:hint="Enter RSS Feed Source" />
+            <!-- <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal">
+             <EditText
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textSize="20sp"
+                 android:layout_margin="5dp"
+                 android:layout_weight="1"
+                 android:id="@+id/edit_rssFeed"
+                 android:hint="Enter RSS Feed Source" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:src="@drawable/search"
-                android:layout_weight="0"
-                android:layout_margin="5dp"
-                android:id="@+id/search_rssFeed"
-                android:background="@color/colorBlue"/>
-            </LinearLayout>
-
-
-                <TextView
-                    android:id="@+id/tv_feedTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Feed Title: " />
-
-                <TextView
-                    android:id="@+id/tv_feedDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Feed Description: " />
-
-                <TextView
-                    android:id="@+id/tv_feedLink"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Feed Link: " />
-
-                <android.support.v4.widget.SwipeRefreshLayout
-                    android:id="@+id/news_swipe_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/news_recycler_view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-
-                </android.support.v4.widget.SwipeRefreshLayout>
+             <ImageView
+                 android:layout_width="wrap_content"
+                 android:layout_height="40dp"
+                 android:src="@drawable/search"
+                 android:layout_weight="0"
+                 android:layout_margin="5dp"
+                 android:id="@+id/search_rssFeed"
+                 android:background="@color/colorBlue"/>
+             </LinearLayout>
 
 
--->
+                 <TextView
+                     android:id="@+id/tv_feedTitle"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:text="Feed Title: " />
+
+                 <TextView
+                     android:id="@+id/tv_feedDescription"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:text="Feed Description: " />
+
+                 <TextView
+                     android:id="@+id/tv_feedLink"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:text="Feed Link: " />
+
+                 <android.support.v4.widget.SwipeRefreshLayout
+                     android:id="@+id/news_swipe_layout"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent">
+
+                     <android.support.v7.widget.RecyclerView
+                         android:id="@+id/news_recycler_view"
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"/>
+
+                 </android.support.v4.widget.SwipeRefreshLayout>
+
+
+ -->
         </LinearLayout>
         <android.support.design.widget.NavigationView
             android:id="@+id/navViewIndieNews"
@@ -277,6 +277,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:name="layout.BottomFragment"/>
+        android:name="com.affwl.exchange.indie.BottomFragment"/>
 
 </RelativeLayout>
