@@ -9,7 +9,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.affwl.exchange.R;
-import com.affwl.exchange.RowItem1;
 
 import java.util.List;
 

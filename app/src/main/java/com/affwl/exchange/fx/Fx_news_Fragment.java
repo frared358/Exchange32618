@@ -11,7 +11,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.affwl.exchange.R;
-import com.affwl.exchange.RowItem1;
 
 import java.util.ArrayList;
 import java.util.List;

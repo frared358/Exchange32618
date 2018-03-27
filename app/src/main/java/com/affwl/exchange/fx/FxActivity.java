@@ -30,15 +30,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.affwl.exchange.Add_symbol;
-import com.affwl.exchange.Certificates;
-import com.affwl.exchange.CustomSpinner;
-import com.affwl.exchange.Indicators;
-import com.affwl.exchange.Mailbox1;
-import com.affwl.exchange.New_Account;
-import com.affwl.exchange.Problem_Description;
 import com.affwl.exchange.R;
-import com.affwl.exchange.Selected_symbols;
 
 import butterknife.OnClick;
 

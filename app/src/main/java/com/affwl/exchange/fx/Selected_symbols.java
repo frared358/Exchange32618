@@ -1,16 +1,18 @@
-package com.affwl.exchange;
+package com.affwl.exchange.fx;
 
 import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.DragEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.affwl.exchange.R;
+import com.affwl.exchange.fx.CustomAdapter5;
+import com.affwl.exchange.fx.RowItem5;
 
 import java.util.ArrayList;
 import java.util.List;

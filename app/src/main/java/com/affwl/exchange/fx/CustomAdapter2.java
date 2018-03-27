@@ -1,4 +1,4 @@
-package com.affwl.exchange;
+package com.affwl.exchange.fx;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.affwl.exchange.R;
+import com.affwl.exchange.fx.RowItem2;
 
 import java.util.List;
 

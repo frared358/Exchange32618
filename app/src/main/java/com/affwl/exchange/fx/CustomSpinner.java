@@ -1,4 +1,4 @@
-package com.affwl.exchange;
+package com.affwl.exchange.fx;
 
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.affwl.exchange.R;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.affwl.exchange;
+package com.affwl.exchange.fx;
 
 public class RowItem5 {
 

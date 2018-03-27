@@ -68,6 +68,11 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'com.nbsp:library:1.8'
-
+    //api
+    implementation 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
+    //signalr
+    implementation 'com.google.code.gson:gson:2.3.1'
+    implementation files('libs/signalr-client-sdk.jar')
+    implementation files('libs/signalr-client-sdk-android.jar')
 
 }

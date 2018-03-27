@@ -11,14 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.affwl.exchange.R;
-import com.affwl.exchange.RowItem;
 
 import java.util.List;
 
 public class CustomAdapter extends BaseAdapter {
 
 	Context context;
-	List<com.affwl.exchange.RowItem> rowItems;
+	List<RowItem> rowItems;
 
 	CustomAdapter(Context context, List<RowItem> rowItems) {
 		this.context = context;

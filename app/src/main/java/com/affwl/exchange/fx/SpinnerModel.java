@@ -1,4 +1,4 @@
-package com.affwl.exchange;
+package com.affwl.exchange.fx;
 
 /**
  * Created by user on 2/27/2018.

@@ -1,4 +1,4 @@
-package com.affwl.exchange;
+package com.affwl.exchange.fx;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

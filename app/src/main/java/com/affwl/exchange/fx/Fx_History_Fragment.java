@@ -19,9 +19,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.affwl.exchange.R;
-import com.affwl.exchange.Tab1;
-import com.affwl.exchange.Tab2;
-import com.affwl.exchange.Tab3;
 
 public class Fx_History_Fragment extends Fragment {
 

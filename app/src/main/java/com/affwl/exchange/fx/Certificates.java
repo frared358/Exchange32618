@@ -1,9 +1,11 @@
-package com.affwl.exchange;
+package com.affwl.exchange.fx;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.Toolbar;
+
+import com.affwl.exchange.R;
 
 public class Certificates extends AppCompatActivity {
 

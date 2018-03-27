@@ -4,6 +4,7 @@ package com.affwl.exchange.sport;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,6 +20,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.affwl.exchange.R;
+import com.google.gson.JsonElement;
+
+import java.util.concurrent.ExecutionException;
+
+import microsoft.aspnet.signalr.client.MessageReceivedHandler;
+import microsoft.aspnet.signalr.client.Platform;
+import microsoft.aspnet.signalr.client.SignalRFuture;
+import microsoft.aspnet.signalr.client.http.android.AndroidPlatformComponent;
+import microsoft.aspnet.signalr.client.hubs.HubConnection;
+import microsoft.aspnet.signalr.client.hubs.HubProxy;
+
 //Bet
 public class BetActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -27,6 +40,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
     LinearLayout pink1,pink2,pink3,blue1,blue2,blue3;
     TextView txtVChipsStake;
     ImageView imgVFav;
+    Handler handler;
     int vchscv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +84,8 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
 
         navigationView2 = (NavigationView) findViewById(R.id.nav_view2);
         navigationView2.setNavigationItemSelectedListener(this);
+
+        handler = new Handler();
 
     }
 
@@ -144,7 +160,54 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         dialog.show();
     }
 
-    void signalrData(){
+    HubConnection _connection;
+    HubProxy _hub;
+    SignalRFuture<Void> awaitConnection;
 
+    public void displaySignalRData(final String call){
+
+        Platform.loadPlatformComponent( new AndroidPlatformComponent() );
+        _connection=new HubConnection("http://185.2.101.78:9094");
+        _hub=_connection.createHubProxy("FOREXHub");
+
+        try {
+            awaitConnection = _connection.start();
+            awaitConnection.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            //Log.i("graph","InterruptedException");
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            //Log.i("graph", "ExecutionException");
+        }
+
+        _hub.invoke("SubscribeSymbol",call);
+
+        try{
+            _connection.received(new MessageReceivedHandler() {
+                @Override
+                public void onMessageReceived(JsonElement json) {
+
+                    Log.i("Signalr",""+json);
+                    String[] arrToken = json.toString().replaceAll(",",":").split(":");
+//                    final Double Ask = Double.valueOf(arrToken[8]);
+//                    final Double Bid = Double.valueOf(arrToken[12]);
+//                    final Double calc =  (Ask+Bid)/2;
+
+
+
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                        }
+                    },1000);
+                }
+            });
+
+        }catch (Exception e){
+            e.printStackTrace();
+            //Log.i("graph",e.toString());}
+        }
     }
 }
