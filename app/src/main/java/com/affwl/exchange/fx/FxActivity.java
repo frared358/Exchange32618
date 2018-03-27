@@ -369,6 +369,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         }
 
 
+
         if (currentFragment != null && currentFragment instanceof Fx_Fragment_Quotes) {
             switch (item.getItemId()) {
                 case R.id.edit:
