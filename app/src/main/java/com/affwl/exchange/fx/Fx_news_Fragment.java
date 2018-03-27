@@ -18,9 +18,7 @@ import java.util.List;
 /**
  * Created by user on 1/24/2018.
  */
-/**
- * Created by user on 1/24/2018.
- */
+
 
 public class Fx_news_Fragment extends Fragment {
 
