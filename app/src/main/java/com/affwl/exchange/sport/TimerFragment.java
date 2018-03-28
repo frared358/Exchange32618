@@ -76,12 +76,12 @@ public class TimerFragment extends Fragment {
         @Override
         public Fragment getItem(int position) {
             if (position ==0) {
-                return new FragmentAllSport();
+                return new FragmentBlankSport();
             }else if(position ==1) {
-                return new FragmentAllSport();
+                return new FragmentBlankSport();
             }
             else {
-                return new FragmentAllSport();
+                return new FragmentBlankSport();
             }
         }
 

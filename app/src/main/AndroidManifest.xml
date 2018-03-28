@@ -82,7 +82,7 @@
             android:name=".sport.SportActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
-        /
+
         <activity
             android:name=".sport.BetActivity"
             android:label="@string/app_name"
@@ -98,7 +98,9 @@
         <activity android:name=".sport.StackActivity" />
         <activity android:name=".fx.Fx_Currency_Activity"></activity>
         <activity android:name=".fx.Fx_AVW_Activity"></activity>
-        <activity android:name=".fx.Fx_DOM_Activity"></activity>
+        <activity android:name=".fx.Fx_DOM_Activity"/>
+
+
         <activity android:name=".fx.Fx_MarketStatistics_Activity"></activity>
         <activity android:name=".fx.Fx_Properties_Activity"></activity>
 
