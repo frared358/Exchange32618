@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.affwl.exchange.R;
 
-public class Tab2 extends Fragment {
+public class Tab2_order extends Fragment {
 
     @Nullable
     @Override

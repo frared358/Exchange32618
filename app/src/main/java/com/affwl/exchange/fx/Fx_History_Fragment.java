@@ -143,14 +143,14 @@ public class Fx_History_Fragment extends Fragment {
             switch (position)
             {
                 case 0:
-                    Tab1 tab1= new Tab1();
+                    Tab1_history tab1= new Tab1_history();
 
                     return  tab1;
                 case 1:
-                    Tab2 tab2 = new Tab2();
+                    Tab2_order tab2 = new Tab2_order();
                     return  tab2;
                 case 2:
-                    Tab3 tab3= new Tab3();
+                    Tab3_deals tab3= new Tab3_deals();
                     return  tab3;
             }
 

@@ -62,8 +62,9 @@
             android:gravity="right"
             android:padding="3dip"
             android:text="5"
+            android:layout_marginRight="5dp"
             android:textColor="#000000"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
     </TableRow>
     <TableRow
@@ -84,9 +85,10 @@
             android:layout_width="135dp"
             android:gravity="right"
             android:padding="3dip"
+            android:layout_marginRight="10dp"
             android:text="100000"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_height="wrap_content" />
 
     </TableRow>
@@ -109,8 +111,9 @@
             android:gravity="right"
             android:padding="3dip"
             android:text="Floating"
+            android:layout_marginRight="10dp"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_height="wrap_content" />
 
     </TableRow>
@@ -135,7 +138,8 @@
             android:text="0"
             android:textColor="#000000"
             android:textSize="18sp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"/>
 
     </TableRow>
     <TableRow
@@ -157,8 +161,9 @@
             android:gravity="right"
             android:padding="3dip"
             android:text="USD"
+            android:layout_marginRight="10dp"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_height="wrap_content" />
 
     </TableRow>
@@ -181,8 +186,9 @@
             android:gravity="right"
             android:padding="3dip"
             android:text="CHF"
+            android:layout_marginRight="10dp"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_height="wrap_content" />
 
     </TableRow>
@@ -205,8 +211,9 @@
             android:gravity="right"
             android:padding="3dip"
             android:text="Forex"
+            android:layout_marginRight="10dp"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_height="wrap_content" />
 
     </TableRow><TableRow
@@ -229,7 +236,8 @@
         android:padding="3dip"
         android:text="100000.00"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        android:layout_marginRight="10dp"
         android:layout_height="wrap_content" />
 
 </TableRow><TableRow
@@ -252,7 +260,8 @@
         android:padding="3dip"
         android:text="Full access"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        android:layout_marginRight="10dp"
         android:layout_height="wrap_content" />
 
 </TableRow><TableRow
@@ -275,7 +284,8 @@
         android:padding="3dip"
         android:text="Instant Exceution"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        android:layout_marginRight="10dp"
         android:layout_height="wrap_content" />
 
 </TableRow><TableRow
@@ -298,7 +308,8 @@
         android:padding="3dip"
         android:text="Good till cancelled"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        android:layout_marginRight="10dp"
         android:layout_height="wrap_content" />
 
 </TableRow><TableRow
@@ -308,7 +319,7 @@
         <TextView
             android:id="@+id/Ptv12"
             android:layout_width="169dp"
-            android:layout_height="wrap_content"
+            android:layout_height="38dp"
             android:layout_column="1"
             android:padding="3dip"
             android:text="Fill policy"
@@ -321,7 +332,8 @@
         android:padding="3dip"
         android:text="Immediate or Cancel"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        android:layout_marginRight="10dp"
         android:layout_height="wrap_content" />
 
 </TableRow><TableRow
@@ -343,8 +355,9 @@
         android:gravity="right"
         android:padding="3dip"
         android:text="All"
+        android:layout_marginRight="10dp"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:layout_height="wrap_content" />
 
 </TableRow><TableRow
@@ -367,7 +380,8 @@
         android:padding="3dip"
         android:text="All"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="16sp"
+        android:layout_marginRight="10dp"
         android:layout_height="wrap_content" />
 
 </TableRow>
@@ -392,6 +406,7 @@
                 android:text="0.01"
                 android:textColor="#000000"
                 android:textSize="18sp"
+                android:layout_marginRight="10dp"
                 android:layout_height="wrap_content" />
 
         </TableRow>
@@ -415,7 +430,8 @@
                 android:padding="3dip"
                 android:text="500.00"
                 android:textColor="#000000"
-                android:textSize="18sp"
+                android:textSize="16sp"
+                android:layout_marginRight="10dp"
                 android:layout_height="wrap_content" />
 
         </TableRow>
@@ -438,8 +454,9 @@
                 android:gravity="right"
                 android:padding="3dip"
                 android:text="0.01"
+                android:layout_marginRight="10dp"
                 android:textColor="#000000"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_height="wrap_content" />
 
         </TableRow>
@@ -463,7 +480,8 @@
                 android:padding="3dip"
                 android:text="In  points"
                 android:textColor="#000000"
-                android:textSize="18sp"
+                android:textSize="16sp"
+                android:layout_marginRight="10dp"
                 android:layout_height="wrap_content" />
 
         </TableRow>
@@ -487,7 +505,8 @@
                 android:padding="3dip"
                 android:text="-0.700000"
                 android:textColor="#000000"
-                android:textSize="18sp"
+                android:textSize="16sp"
+                android:layout_marginRight="10dp"
                 android:layout_height="wrap_content" />
 
         </TableRow>
@@ -511,7 +530,7 @@
                 android:padding="3dip"
                 android:text="-1.000000"
                 android:textColor="#000000"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_height="wrap_content" />
 
         </TableRow>
@@ -535,7 +554,8 @@
                 android:padding="3dip"
                 android:text="Wednesday"
                 android:textColor="#000000"
-                android:textSize="18sp"
+                android:textSize="16sp"
+                android:layout_marginRight="10dp"
                 android:layout_height="wrap_content" />
 
         </TableRow>
@@ -548,7 +568,7 @@
                 android:paddingTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:textColor="#000"
                 android:textStyle="bold"
                 android:text="MARGIN RATE: INITIAL/MAINTENANCE"/>
@@ -581,8 +601,9 @@
                         android:gravity="right"
                         android:padding="3dip"
                         android:text="1.0/0.0"
+                        android:layout_marginRight="10dp"
                         android:textColor="#000000"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                 </TableRow>
                 <TableRow
@@ -605,7 +626,8 @@
                         android:padding="3dip"
                         android:text="1.0/0.0"
                         android:textColor="#000000"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
+                        android:layout_marginRight="10dp"
                         android:layout_height="wrap_content" />
 
                 </TableRow>
@@ -629,7 +651,8 @@
                         android:padding="3dip"
                         android:text="0.0/0.0"
                         android:textColor="#000000"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
+                        android:layout_marginRight="10dp"
                         android:layout_height="wrap_content" />
 
                 </TableRow>
@@ -652,8 +675,9 @@
                         android:gravity="right"
                         android:padding="3dip"
                         android:text="0.0/0.0"
+                        android:layout_marginRight="10dp"
                         android:textColor="#000000"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:layout_height="wrap_content" />
 
                 </TableRow>
@@ -676,8 +700,9 @@
                         android:gravity="right"
                         android:padding="3dip"
                         android:text="0.0/0.0"
+                        android:layout_marginRight="10dp"
                         android:textColor="#000000"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:layout_height="wrap_content" />
 
                 </TableRow>
@@ -700,8 +725,9 @@
                         android:gravity="right"
                         android:padding="3dip"
                         android:text="0.0/0.0"
+                        android:layout_marginRight="10dp"
                         android:textColor="#000000"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:layout_height="wrap_content" />
 
                 </TableRow>
@@ -724,8 +750,9 @@
                         android:gravity="right"
                         android:padding="3dip"
                         android:text="0.0/0.0"
+                        android:layout_marginRight="10dp"
                         android:textColor="#000000"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:layout_height="wrap_content" />
 
                 </TableRow><TableRow
@@ -748,7 +775,8 @@
                     android:padding="3dip"
                     android:text="0.0/0.0"
                     android:textColor="#000000"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
+                    android:layout_marginRight="10dp"
                     android:layout_height="wrap_content" />
 
             </TableRow>
@@ -762,7 +790,7 @@
                     android:paddingTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18dp"
+                    android:textSize="16dp"
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:text="QUOTES SESSIONS"/>
@@ -810,9 +838,10 @@
                             android:layout_height="wrap_content"
                             android:gravity="right"
                             android:padding="3dip"
+                            android:layout_marginRight="10dp"
                             android:text="00:00-24:00"
                             android:textColor="#000000"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                     </TableRow>
                     <TableRow
@@ -835,7 +864,8 @@
                             android:padding="3dip"
                             android:text="00:00-24:00"
                             android:textColor="#000000"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
+                            android:layout_marginRight="10dp"
                             android:layout_height="wrap_content" />
 
                     </TableRow>
@@ -859,8 +889,9 @@
                             android:gravity="right"
                             android:padding="3dip"
                             android:text="00:00-24:00"
+                            android:layout_marginRight="10dp"
                             android:textColor="#000000"
-                            android:textSize="18sp" />
+                            android:textSize="16sp" />
 
                     </TableRow>
                     <TableRow
@@ -883,7 +914,8 @@
                             android:padding="3dip"
                             android:text="00:00-24:00"
                             android:textColor="#000000"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
+                            android:layout_marginRight="10dp"
                             android:layout_height="wrap_content" />
 
                     </TableRow>
@@ -907,7 +939,8 @@
                             android:padding="3dip"
                             android:text="00:00-24:00"
                             android:textColor="#000000"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
+                            android:layout_marginRight="10dp"
                             android:layout_height="wrap_content" />
 
                     </TableRow>
@@ -936,7 +969,7 @@
                         android:paddingTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="18dp"
+                        android:textSize="16dp"
                         android:textColor="#000"
                         android:textStyle="bold"
                         android:text="TRADES SESSIONS"/>
@@ -986,8 +1019,9 @@
                                 android:gravity="right"
                                 android:padding="3dip"
                                 android:text="00:00-24:00"
+                                android:layout_marginRight="10dp"
                                 android:textColor="#000000"
-                                android:textSize="18sp" />
+                                android:textSize="16sp" />
 
                         </TableRow>
                         <TableRow
@@ -1010,8 +1044,9 @@
                                 android:gravity="right"
                                 android:padding="3dip"
                                 android:text="00:00-24:00"
+                                android:layout_marginRight="10dp"
                                 android:textColor="#000000"
-                                android:textSize="18sp" />
+                                android:textSize="16sp" />
 
                         </TableRow>
                         <TableRow
@@ -1034,7 +1069,8 @@
                                 android:padding="3dip"
                                 android:text="00:00-24:00"
                                 android:textColor="#000000"
-                                android:textSize="18sp"
+                                android:textSize="16sp"
+                                android:layout_marginRight="10dp"
                                 android:layout_height="wrap_content" />
 
                         </TableRow>
@@ -1058,8 +1094,9 @@
                                 android:gravity="right"
                                 android:padding="3dip"
                                 android:text="00:00-24:00"
+                                android:layout_marginRight="10dp"
                                 android:textColor="#000000"
-                                android:textSize="18sp" />
+                                android:textSize="16sp" />
 
                         </TableRow>
                         <TableRow
@@ -1082,7 +1119,8 @@
                                 android:padding="3dip"
                                 android:text="00:00-24:00"
                                 android:textColor="#000000"
-                                android:textSize="18sp"
+                                android:textSize="16sp"
+                                android:layout_marginRight="10dp"
                                 android:layout_height="wrap_content" />
 
                         </TableRow>

@@ -109,7 +109,6 @@
     <!-- Status -->
     <string-array name="statues">
         <item>Welcome! Thank you for choosing<br> DTS.Use your ID to get notification fromMQL5 Community and Expert Advisors</br></item>
-
     </string-array>
 
     <!-- contact type -->
@@ -223,5 +222,10 @@
     <string name="title_activity_tab">TabActivity</string>
     <string name="Setting_switch">One Click Betting</string>
 
-
+    <string-array name="array_name">
+        <item>1 pixcel</item>
+        <item>2 pixcel</item>
+        <item>3 pixcel</item>
+        <item>4 pixcel</item>
+    </string-array>
 </resources>

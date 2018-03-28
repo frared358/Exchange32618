@@ -17,9 +17,9 @@ import java.util.List;
 public class CustomAdapter extends BaseAdapter {
 
 	Context context;
-	List<RowItem> rowItems;
+	List<RowItem_news> rowItems;
 
-	CustomAdapter(Context context, List<RowItem> rowItems) {
+	CustomAdapter(Context context, List<RowItem_news> rowItems) {
 		this.context = context;
 		this.rowItems = rowItems;
 	}
@@ -61,9 +61,9 @@ public class CustomAdapter extends BaseAdapter {
 			holder.member_name = (TextView) convertView.findViewById(R.id.member_name);
 			holder.profile_pic = (ImageView) convertView.findViewById(R.id.profile_pic);
 			holder.status = (TextView) convertView.findViewById(R.id.status);
-			holder.contactType = (TextView) convertView.findViewById(R.id.contact_type);
+			holder.contactType = (TextView) convertView.findViewById(R.id.contactType);
 
-			RowItem row_pos = rowItems.get(position);
+			RowItem_news row_pos = rowItems.get(position);
 
 			//holder.profile_pic.setBackground(R.drawable.circle);
 			holder.profile_pic.setBackground(ContextCompat.getDrawable(context, R.drawable.circle));

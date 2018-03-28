@@ -46,7 +46,7 @@ public class Fx_news_Fragment extends Fragment {
         }
 
         mylistview = (ListView) v.findViewById(R.id.list2);
-        CustomAdapter1 adapter = new com.affwl.exchange.fx.CustomAdapter1(getContext(), rowItems1);
+        CustomAdapter1_news adapter = new CustomAdapter1_news(getContext(), rowItems1);
         mylistview.setAdapter(adapter);
 
         mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

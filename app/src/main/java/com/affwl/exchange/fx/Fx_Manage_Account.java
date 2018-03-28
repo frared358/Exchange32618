@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,7 +19,7 @@ import com.affwl.exchange.R;
 public class Fx_Manage_Account extends Fragment implements View.OnClickListener{
     Dialog myDialog;
 LinearLayout linearLayout;
-Button btnShowPopupAccount;
+ImageView btnShowPopupAccount,btnShowPopupAccount1;
 
 
       @Nullable
@@ -41,7 +42,7 @@ Button btnShowPopupAccount;
         TextView txtclose;
         Button btnFollow;
 
-        myDialog.setContentView(R.layout.custompopup);
+        myDialog.setContentView(R.layout.custompopup_acc);
         txtclose = myDialog.findViewById(R.id.btnfollow);
 
         txtclose.setText("OK");

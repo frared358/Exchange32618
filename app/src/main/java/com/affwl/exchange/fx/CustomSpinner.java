@@ -27,7 +27,7 @@ public class CustomSpinner extends AppCompatActivity {
 
     public ArrayList<SpinnerModel> CustomListViewValuesArr = new ArrayList<SpinnerModel>();
     TextView output = null;
-    CustomAdapter4 adapter;
+    CustomAdapter4_customspinner adapter;
     CustomSpinner activity = null;
 
     @Override
@@ -44,7 +44,7 @@ public class CustomSpinner extends AppCompatActivity {
         setListData();
 
         Resources res = getResources();
-        adapter = new CustomAdapter4(activity, R.layout.spinner_rows, CustomListViewValuesArr, res);
+        adapter = new CustomAdapter4_customspinner(activity, R.layout.spinner_rows, CustomListViewValuesArr, res);
         SpinnerExample.setAdapter(adapter);
 
         SpinnerExample.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
