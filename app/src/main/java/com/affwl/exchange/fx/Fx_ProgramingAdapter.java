@@ -190,7 +190,7 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                         public void onClick(View v) {
                             viewdialog.getContext ().startActivity (new Intent (viewdialog.getContext (),CustomSpinner.class));
 
-                            Toast.makeText (viewdialog.getContext (), "New Order", Toast.LENGTH_SHORT).show ();
+                            Toast.makeText (viewdialog.getContext (), "Order", Toast.LENGTH_SHORT).show ();
                         }
                     });
 

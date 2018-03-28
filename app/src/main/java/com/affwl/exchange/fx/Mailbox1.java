@@ -52,16 +52,6 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
     if (requestCode == 1 && resultCode == RESULT_OK) {
         String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
-
-//        filePath = data.getData();
-////        try {
-//           bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-//            imageView.setImageBitmap(bitmap);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-        // Do anything with file
     }
 }
 
