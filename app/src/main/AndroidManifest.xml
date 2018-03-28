@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
@@ -15,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"/>
+
+
         <activity android:name=".indie.IndieActivity" />
         <activity
             android:name=".indie.PivotActivity"
@@ -55,7 +56,7 @@
         <activity
             android:name=".binary.AssetNameActivity"
             android:parentActivityName=".binary.Sec60Activity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -81,7 +82,7 @@
             android:name=".sport.SportActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
-        /
+
         <activity
             android:name=".sport.BetActivity"
             android:label="@string/app_name"
@@ -95,19 +96,18 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".sport.StackActivity" />
-        <activity android:name=".fx.Fx_Currency_Activity" />
-        <activity android:name=".fx.Fx_AVW_Activity" />
-        <activity android:name=".fx.Fx_DOM_Activity" />
-        <activity android:name=".fx.Fx_MarketStatistics_Activity" />
-        <activity android:name=".fx.Fx_Properties_Activity" />
+        <activity android:name=".fx.Fx_Currency_Activity"></activity>
+        <activity android:name=".fx.Fx_AVW_Activity"></activity>
+        <activity android:name=".fx.Fx_DOM_Activity"/>
+
+
+        <activity android:name=".fx.Fx_MarketStatistics_Activity"></activity>
+        <activity android:name=".fx.Fx_Properties_Activity"></activity>
+
         <activity android:name=".news.RssFeedUrlActivity" />
         <activity android:name=".news.WebActivity" />
-        <activity android:name=".news.RssFeedListActivity" />
-        <activity android:name=".news.NewsActivity" />
-        <activity android:name=".fx.FX_indicator_f_add_Activity" />
-        <activity android:name=".fx.FX_indicator_f1_add_Activity" />
-        <activity android:name=".fx.Fx_msg_chat_Regi_activity" />
-        <activity android:name=".fx.activity_fx_msg_chat__login_activity"></activity>
+        <activity android:name=".news.RssFeedListActivity"></activity>
+        <activity android:name=".news.NewsActivity"/>
     </application>
 
 </manifest>

@@ -103,7 +103,11 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
         if(i.getStringExtra("KEY_SELECT")!= null){
             if(i.getStringExtra("KEY_SELECT").toString().equals("true")){
                 viewPagerSport.setCurrentItem(2);
+            }else {
+                tabLayoutSport.getTabAt(0).setIcon(iconWhite[0]);
             }
+        }else {
+            tabLayoutSport.getTabAt(0).setIcon(iconWhite[0]);
         }
 
     }
