@@ -10,12 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.affwl.exchange.fx.Login;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -44,53 +47,37 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
             case R.id.btnLogin:
                 new HttpAsyncTask().execute("http://5.189.140.198/Prince99/Prince.svc/Login");
-                startActivity(new Intent(this,MainActivity.class));
                 break;
         }
     }
 
     public String  loginApi(String url){
-
         InputStream inputStream = null;
-
         String result = "";
         try {
-            Log.e("Check","Setgs");
 
             HttpClient httpclient = new DefaultHttpClient();
-
-            HttpPost HttpPost = new HttpPost(url);
-            Log.e("Check","aew4hgwreeth");
+            HttpPost httpPost = new HttpPost(url);
 
             String json = "";
-            Log.e("Check","aewg");
-
             JSONObject jsonObject = new JSONObject();
             jsonObject.accumulate("context","mobile");
             jsonObject.accumulate("pwd","123456");
-            jsonObject.accumulate("username","test");
-
+            jsonObject.accumulate("username","ashishcl");
 
             json = jsonObject.toString();
-
             StringEntity se = new StringEntity(json);
             se.setContentType("application/json");
 
-            HttpPost.setEntity(new StringEntity(json));
-
-            HttpPost.setHeader("Accept", "application/json");
-            HttpPost.setHeader("Content-type", "application/json");
-
-            HttpResponse httpResponse = httpclient.execute(HttpPost);
-            Log.e("Check","tjhttjj");
-
+            httpPost.setEntity(new StringEntity(json));
+            httpPost.setHeader("Accept", "application/json");
+            httpPost.setHeader("Content-type", "application/json");
+            HttpResponse httpResponse = httpclient.execute(httpPost);
             inputStream = httpResponse.getEntity().getContent();
 
             if(inputStream != null){
                 try {
                     result = convertInputStreamToString(inputStream);
-                    Log.e("Check","hey");
-
                 }
                 catch (Exception e){
                     Log.e("Check",""+e);
@@ -100,10 +87,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 result = "Did not work!";
             Log.e("Check","how "+result);
 
-
-
         } catch (Exception e) {
-
             Log.d("InputStream", ""+e);
         }
 
@@ -136,6 +120,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         protected void onPostExecute(String result) {
             Toast.makeText(getApplicationContext(), ""+result, Toast.LENGTH_SHORT).show();
             Log.i("Check",""+result);
+            try {
+                JSONObject jsonObjMain = new JSONObject(result.toString());
+
+                String description = jsonObjMain.getString("description");
+                String response = jsonObjMain.getString("response");
+
+                JSONObject jsonObjRes = new JSONObject(response.toString());
+                JSONObject jsonObjDes = new JSONObject(description.toString());
+                DataHolder.LOGIN_TOKEN = jsonObjRes.getString("AuthToken");
+                String status = jsonObjDes.getString("result");
+
+                if(status.equals("Login Successful")){
+                    startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                }
+                else if (status.equals("Login Successful")){
+                    Toast.makeText(LoginActivity.this,"Invalid Username",Toast.LENGTH_SHORT).show();
+
+                }else if (status.equals("Login Successful")){
+                    Toast.makeText(LoginActivity.this,"Invalid Password",Toast.LENGTH_SHORT).show();
+                }
+
+                Log.i("result","result "+DataHolder.LOGIN_TOKEN+" Status "+status);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 

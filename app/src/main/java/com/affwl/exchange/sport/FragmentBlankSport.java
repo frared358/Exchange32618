@@ -14,8 +14,6 @@ import com.affwl.exchange.R;
 public class FragmentBlankSport extends Fragment {
 
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
