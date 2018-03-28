@@ -4,25 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="10dp"
+    android:padding="20dp"
     android:orientation="vertical"
+    android:background="@color/colorBackground"
     tools:context="com.affwl.exchange.news.RssFeedUrlActivity">
 
     <LinearLayout
         android:id="@+id/enter_url_layout"
         android:layout_width="match_parent"
-        android:paddingLeft="-5dp"
-        android:paddingTop="25dp"
+        android:padding="5dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <EditText
             android:id="@+id/edit_add_url"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textCursorDrawable="@null"
             android:hint="Enter RSS Feed Url"
+            android:textColorHint="@color/colorWhite"
+            android:textColor="@color/colorWhite"
             android:layout_weight="1"
             android:layout_margin="10sp"
+            android:backgroundTint="@color/colorRedBlood"
             android:textSize="20sp"/>
+
 
         <ImageView
             android:id="@+id/img_add_url"
@@ -37,31 +42,38 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="15dp"
         android:padding="10dp"
         android:textSize="15sp"
+        android:textColor="@color/colorWhite"
         android:textStyle="italic"
         android:text="(Maximum 5 URL allowed)"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="350dp">
 
     <ListView
         android:id="@+id/display_url_list"
         android:layout_width="match_parent"
+        android:background="@color/colorRedLight"
         android:layout_height="300dp">
 
     </ListView>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_margin="10dp">
+        android:layout_gravity="end">
 
         <Button
             android:id="@+id/submit_urlList"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_margin="10dp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorBlack"
             android:layout_weight="1"
             android:text="Submit" />
 
@@ -70,7 +82,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorBlack"
             android:layout_weight="1"
             android:text="Cancel" />
 
