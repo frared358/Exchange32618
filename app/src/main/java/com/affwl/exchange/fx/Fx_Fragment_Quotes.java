@@ -24,24 +24,6 @@ public class Fx_Fragment_Quotes extends BottomSheetDialogFragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_fx_quotes, container, false);
     }
-//    @Nullable
-//    @Override   /** Right click - Generate - Override Method - slect onCreateView */
-//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        return inflater.inflate (R.layout.fragment_fx_quotes,null);
-//    }
-//    /** Right click - Generate - Override Method - slect onViewCreate */
-//    @Override
-//    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-//        super.onViewCreated (view, savedInstanceState);
-//
-//        /** since it is a fragment we use view.findViewById */
-//        view.findViewById (R.id.btn).setOnClickListener (new View.OnClickListener () {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText (getActivity (),"button clicked",Toast.LENGTH_SHORT).show ();
-//            }
-//        });
-//    }
 
 
 }

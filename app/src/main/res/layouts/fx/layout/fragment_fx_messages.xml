@@ -18,82 +18,11 @@
             android:layout_height="wrap_content">
         </ListView>
     </LinearLayout>
-        <!--<LinearLayout-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:layout_marginTop="390dp"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:id="@+id/linearLayout">-->
-
-            <!--<Button-->
-                <!--android:id="@+id/btn_regi"-->
-                <!--android:layout_width="111dp"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="#FFC107"-->
-                <!--android:text="REGISTER" />-->
-
-            <!--<Button-->
-                <!--android:id="@+id/btn_si"-->
-                <!--android:layout_width="129dp"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_gravity="right"-->
-                <!--android:text="SIGN IN"-->
-                <!--android:textColor="#0000ff" />-->
-        <!--</LinearLayout>-->
-
-
-        <!--<ImageView-->
-            <!--android:id="@+id/profile_pic"-->
-            <!--android:layout_width="90dp"-->
-            <!--android:layout_height="90dp"-->
-            <!--android:layout_alignParentLeft="true"-->
-            <!--android:layout_alignParentStart="true"-->
-            <!--android:layout_alignTop="@+id/member_name"-->
-            <!--android:layout_marginLeft="14dp"-->
-            <!--android:layout_marginStart="14dp"-->
-            <!--android:contentDescription="desc"-->
-            <!--android:paddingLeft="10dp"-->
-            <!--android:paddingRight="10dp" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/member_name"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:layout_toRightOf="@+id/profile_pic"-->
-            <!--android:paddingBottom="10dp"-->
-            <!--android:text="txt"-->
-            <!--android:textSize="20sp"-->
-            <!--android:textStyle="bold" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/status"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_below="@+id/member_name"-->
-            <!--android:layout_toEndOf="@+id/profile_pic"-->
-            <!--android:layout_toRightOf="@+id/profile_pic"-->
-            <!--android:text="txt"-->
-            <!--android:textSize="16sp" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/contact_type"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignBaseline="@+id/member_name"-->
-            <!--android:layout_alignBottom="@+id/member_name"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:text="txt"-->
-            <!--android:textSize="14sp" />-->
-
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="12dp"
         android:layout_marginTop="383dp"
        android:layout_marginBottom="80dp"
         android:background="#FAFAFA"

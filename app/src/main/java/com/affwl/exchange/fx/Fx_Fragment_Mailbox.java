@@ -28,7 +28,7 @@ public class Fx_Fragment_Mailbox extends Fragment{
     String[] statues1;
     String[] contactType1;
 
-    List<RowItem> rowItems;
+    List<RowItem_news> rowItems;
     ListView mylistview;
 
     @Nullable
@@ -40,7 +40,7 @@ public class Fx_Fragment_Mailbox extends Fragment{
 //                .setActionBarTitle("Your title");
 
 
-        rowItems = new ArrayList<RowItem>();
+        rowItems = new ArrayList<RowItem_news>();
 
         member_names1 = getResources().getStringArray(R.array.Member_names1);
 
@@ -51,7 +51,7 @@ public class Fx_Fragment_Mailbox extends Fragment{
         contactType1 = getResources().getStringArray(R.array.contactType1);
 
         for (int i = 0; i < member_names1.length; i++) {
-            RowItem item = new RowItem(member_names1[i], profile_pics1.getResourceId(i, -1), statues1[i], contactType1[i]);
+            RowItem_news item = new RowItem_news(member_names1[i], profile_pics1.getResourceId(i, -1), statues1[i], contactType1[i]);
             rowItems.add(item);
         }
 

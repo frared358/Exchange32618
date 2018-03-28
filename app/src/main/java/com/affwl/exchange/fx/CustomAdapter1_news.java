@@ -12,13 +12,13 @@ import com.affwl.exchange.R;
 
 import java.util.List;
 
-public class CustomAdapter1 extends BaseAdapter {
+public class CustomAdapter1_news extends BaseAdapter {
 
 	Context context;
 	List<RowItem1> rowItems;
 
 
-	CustomAdapter1(Context context, List<RowItem1> rowItems) {
+	CustomAdapter1_news(Context context, List<RowItem1> rowItems) {
 		this.context = context;
 		this.rowItems = rowItems;
 

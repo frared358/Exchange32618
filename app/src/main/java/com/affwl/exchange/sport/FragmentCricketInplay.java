@@ -1,10 +1,8 @@
 package com.affwl.exchange.sport;
 
-import android.content.Intent;
+
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,19 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.affwl.exchange.DataHolder;
-import com.affwl.exchange.MainActivity;
 import com.affwl.exchange.R;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,29 +31,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FragmentAllSport extends Fragment{
+public class FragmentCricketInplay extends Fragment {
 
-
-    RecyclerView recycleViewHighlights;
+    RecyclerView recycleViewCricketInplay;
     private List<HighlightsData> HighlightsList= new ArrayList<>();
-    HighlightsAdapter highlightsAdapter;
+    HighlightsAdapter inplayAdapter;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_all_sport, container, false);
 
-        recycleViewHighlights = view.findViewById(R.id.recycleViewHighlights);
+        View view = inflater.inflate(R.layout.fragment_cricket_inplay, container, false);
+        recycleViewCricketInplay = view.findViewById(R.id.recycleViewCricketInplay);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
 
-        recycleViewHighlights.setLayoutManager(mLayoutManager);
-        recycleViewHighlights.setItemAnimator(new DefaultItemAnimator());
+        recycleViewCricketInplay.setLayoutManager(mLayoutManager);
+        recycleViewCricketInplay.setItemAnimator(new DefaultItemAnimator());
 
-        highlightsAdapter = new HighlightsAdapter(FragmentAllSport.this.getActivity(),HighlightsList);
-
-        new HighlightsAsyncTask().execute("http://5.189.140.198/Prince99/Prince.svc/Data/Highlights?sid=4");
+        inplayAdapter = new HighlightsAdapter(FragmentCricketInplay.this.getActivity(),HighlightsList);
+        new CricketInplayAsyncTask().execute("http://5.189.140.198/Prince99/Prince.svc/Data/Inplay");
         return view;
     }
-
 
     public String  HighligthsApi(String url){
         InputStream inputStream = null;
@@ -109,7 +99,8 @@ public class FragmentAllSport extends Fragment{
         return result;
     }
 
-    private class HighlightsAsyncTask extends AsyncTask<String, Void, String> {
+    private class CricketInplayAsyncTask extends AsyncTask<String, Void, String> {
+
 
         @Override
         protected String doInBackground(String... urls) {
@@ -121,7 +112,7 @@ public class FragmentAllSport extends Fragment{
             Log.i("Check",""+result);
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
-                String strData = jsonObjMain.getString("data");
+                String strData = jsonObjMain.getString("fancyList");
                 JSONArray arrayData = new JSONArray(strData);
                 int length = arrayData.length();
                 for(int i =0 ; i<length;i++){
@@ -129,13 +120,14 @@ public class FragmentAllSport extends Fragment{
                     String matchName = key.getString("matchName");
                     Log.i("TAG",""+matchName);
                     HighlightsList.add(new HighlightsData(matchName));
-                    highlightsAdapter.notifyDataSetChanged();
+                    inplayAdapter.notifyDataSetChanged();
                 }
-                recycleViewHighlights.setAdapter(highlightsAdapter);
+                recycleViewCricketInplay.setAdapter(inplayAdapter);
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
     }
+
 }

@@ -54,7 +54,7 @@ TextView tv3;
         Button btnFollow;
         Button btnFollow1;
 
-        myDialog.setContentView(R.layout.custompopup1);
+        myDialog.setContentView(R.layout.custompopup1_msg_dts_id);
 
 
         txtclose = myDialog.findViewById(R.id.btnfollow);

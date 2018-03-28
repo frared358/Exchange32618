@@ -1,5 +1,6 @@
 package com.affwl.exchange.fx;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.affwl.exchange.R;
 
@@ -22,12 +25,15 @@ import java.util.List;
 
 public class Fx_Messages_Fragment extends Fragment {
 
+    Button btn_regi;
+    Button btn_si;
+
     String[] member_names;
     TypedArray profile_pics;
     String[] statues;
     String[] contactType;
 
-    List<RowItem> rowItems;
+    List<RowItem_news> rowItems;
     ListView mylistview;
 
     @Nullable
@@ -36,7 +42,26 @@ public class Fx_Messages_Fragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_fx_messages, null);
 
 
-        rowItems = new ArrayList<RowItem>();
+
+        btn_regi=(Button)v.findViewById(R.id.btn_regi);
+        btn_regi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), Fx_msg_chat_Regi_activity.class);
+                startActivity(i);
+
+            }
+        });
+        btn_si=(Button)v.findViewById(R.id.btn_si);
+        btn_si.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), activity_fx_msg_chat__login_activity.class);
+                startActivity(i);
+
+            }
+        });
+        rowItems = new ArrayList<RowItem_news>();
 
         member_names = getResources().getStringArray(R.array.Member_names);
 
@@ -47,7 +72,7 @@ public class Fx_Messages_Fragment extends Fragment {
         contactType = getResources().getStringArray(R.array.contactType);
 
         for (int i = 0; i < member_names.length; i++) {
-            RowItem item = new RowItem(member_names[i], profile_pics.getResourceId(i, -1), statues[i], contactType[i]);
+            RowItem_news item = new RowItem_news(member_names[i], profile_pics.getResourceId(i, -1), statues[i], contactType[i]);
             rowItems.add(item);
         }
 
@@ -67,38 +92,5 @@ public class Fx_Messages_Fragment extends Fragment {
     }
 }
 
-//    @Override
-//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//        String member_name = rowItems.get(position).getMember_name();
-//        Toast.makeText(getApplicationContext(), "" + member_name, Toast.LENGTH_SHORT).show();
-//    }
-
-
-
-//    @Nullable
-//    @Override   /** Right click - Generate - Override Method - slect onCreateView */
-//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        return inflater.inflate (R.layout.fragment_fx_messages,null);
-//
-//
-//    }
-//
-//    private void findViewId() {
-//    }
-//
-//    /** Right click - Generate - Override Method - slect onViewCreate */
-//    @Override
-//    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-//        super.onViewCreated (view, savedInstanceState);
-//
-//        /** since it is a fragment we use view.findViewById */
-////        view.findViewById (R.id.btn).setOnClickListener (new View.OnClickListener () {
-////            @Override
-////            public void onClick(View v) {
-////                Toast.makeText (getActivity (),"button clicked",Toast.LENGTH_SHORT).show ();
-////            }
-////        });
-//    }
 
 

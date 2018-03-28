@@ -11,16 +11,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.affwl.exchange.R;
-import com.affwl.exchange.fx.RowItem5;
 
 import java.util.List;
 
-public class CustomAdapter5 extends BaseAdapter {
+public class CustomAdapter5_quotes extends BaseAdapter {
 
 	Context context;
-	List<RowItem5> rowItems5;
+	List<RowItem5_quotes> rowItems5;
 
-	CustomAdapter5(Context context, List<RowItem5> rowItems5) {
+	CustomAdapter5_quotes(Context context, List<RowItem5_quotes> rowItems5) {
 		this.context = context;
 		this.rowItems5 = rowItems5;
 	}
@@ -64,7 +63,7 @@ public class CustomAdapter5 extends BaseAdapter {
 			holder.status5 = (TextView) convertView.findViewById(R.id.status5);
 
 
-			RowItem5 row_pos = rowItems5.get(position);
+			RowItem5_quotes row_pos = rowItems5.get(position);
 
 			//holder.profile_pic.setBackground(R.drawable.circle);
 			holder.profile_pic5.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_view_headline_blue_grey_200_18dp));

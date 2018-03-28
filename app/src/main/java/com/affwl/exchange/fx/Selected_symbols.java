@@ -11,8 +11,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.affwl.exchange.R;
-import com.affwl.exchange.fx.CustomAdapter5;
-import com.affwl.exchange.fx.RowItem5;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +22,7 @@ public class Selected_symbols extends AppCompatActivity {
     String[] statues5;
 
 
-    List<RowItem5> rowItems5;
+    List<RowItem5_quotes> rowItems5;
     ListView mylistview;
 
 
@@ -36,7 +34,7 @@ public class Selected_symbols extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        rowItems5 = new ArrayList<RowItem5>();
+        rowItems5 = new ArrayList<RowItem5_quotes>();
 
         member_names5 = getResources().getStringArray(R.array.Member_names5);
 
@@ -46,12 +44,12 @@ public class Selected_symbols extends AppCompatActivity {
 
 
         for (int i = 0; i < member_names5.length; i++) {
-            RowItem5 item = new RowItem5(member_names5[i], profile_pics5.getResourceId(i, -1), statues5[i]);
+            RowItem5_quotes item = new RowItem5_quotes(member_names5[i], profile_pics5.getResourceId(i, -1), statues5[i]);
             rowItems5.add(item);
         }
 
         mylistview = (ListView)findViewById(R.id.list5);
-        CustomAdapter5 adapter = new CustomAdapter5(getApplicationContext(), rowItems5);
+        CustomAdapter5_quotes adapter = new CustomAdapter5_quotes(getApplicationContext(), rowItems5);
         mylistview.setAdapter(adapter);
 
         mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * Created by user on 2/27/2018.
  */
 
-public class CustomAdapter4 extends ArrayAdapter<String> {
+public class CustomAdapter4_customspinner extends ArrayAdapter<String> {
 
     private Activity activity;
     private ArrayList data;
@@ -26,7 +26,7 @@ public class CustomAdapter4 extends ArrayAdapter<String> {
     LayoutInflater inflater;
 
     /*************  CustomAdapter Constructor *****************/
-    public CustomAdapter4(
+    public CustomAdapter4_customspinner(
             CustomSpinner activitySpinner,
             int textViewResourceId,
             ArrayList objects,

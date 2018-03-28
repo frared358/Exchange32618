@@ -81,7 +81,7 @@ public class TimerFragment extends Fragment {
                 return new FragmentBlankSport();
             }
             else {
-                return new FragmentBlankSport();
+                return new FragmentCricketInplay();
             }
         }
 

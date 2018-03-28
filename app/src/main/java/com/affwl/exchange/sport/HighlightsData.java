@@ -7,6 +7,7 @@ package com.affwl.exchange.sport;
 public class HighlightsData {
     public String txtVMatchName;
 
+
     public HighlightsData(String txtVMatchName){
         this.txtVMatchName = txtVMatchName;
     }

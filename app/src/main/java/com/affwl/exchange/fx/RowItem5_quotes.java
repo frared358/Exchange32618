@@ -1,13 +1,13 @@
 package com.affwl.exchange.fx;
 
-public class RowItem5 {
+public class RowItem5_quotes {
 
 	private String member_name5;
 	private int profile_pic_id5;
 	private String status5;
 
 
-	public RowItem5(String member_name5, int profile_pic_id5, String status5) {
+	public RowItem5_quotes(String member_name5, int profile_pic_id5, String status5) {
 
 		this.member_name5 = member_name5;
 		this.profile_pic_id5 = profile_pic_id5;
