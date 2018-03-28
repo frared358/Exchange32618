@@ -4,15 +4,14 @@
     <modules>
       <module fileurl="file://C:\Users\user\Documents\studio\ExchangeFx\Exchange 1.0.iml" filepath="C:\Users\user\Documents\studio\ExchangeFx\Exchange 1.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Exchange32618.iml" filepath="$PROJECT_DIR$/.idea/Exchange32618.iml" />
-      <module fileurl="file://E:\ExchangeFx\.idea\Exchange32618.iml" filepath="E:\ExchangeFx\.idea\Exchange32618.iml" />
       <module fileurl="file://C:\Users\user\Desktop\NewProject\Exchange32618\Exchange32618.iml" filepath="C:\Users\user\Desktop\NewProject\Exchange32618\Exchange32618.iml" />
       <module fileurl="file://E:\ExchangeFx\Exchange32618.iml" filepath="E:\ExchangeFx\Exchange32618.iml" />
-      <module fileurl="file://C:\Users\user\Desktop\Exchange32618\ExchangeFx.iml" filepath="C:\Users\user\Desktop\Exchange32618\ExchangeFx.iml" />
+      <module fileurl="file://E:\ExchangeFx\.idea\Exchange32618.iml" filepath="E:\ExchangeFx\.idea\Exchange32618.iml" />
       <module fileurl="file://E:\Git\Exchange32618\ExchangeFx.iml" filepath="E:\Git\Exchange32618\ExchangeFx.iml" />
+      <module fileurl="file://C:\Users\user\Desktop\Exchange32618\ExchangeFx.iml" filepath="C:\Users\user\Desktop\Exchange32618\ExchangeFx.iml" />
       <module fileurl="file://C:\Users\user\Desktop\New folder\Exchange32618\ExchangeFx.iml" filepath="C:\Users\user\Desktop\New folder\Exchange32618\ExchangeFx.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://E:\Git\Exchange32618\app\app.iml" filepath="E:\Git\Exchange32618\app\app.iml" />
-      <module fileurl="file://C:\Users\user\Desktop\NewProject\Exchange32618\app\app.iml" filepath="C:\Users\user\Desktop\NewProject\Exchange32618\app\app.iml" />
     </modules>
   </component>
 </project>

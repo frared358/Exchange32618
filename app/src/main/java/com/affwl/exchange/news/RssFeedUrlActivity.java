@@ -111,6 +111,7 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
 
     private void showInputBox(String oldItem, final int index) {
         final Dialog dialog=new Dialog(RssFeedUrlActivity.this);
+        dialog.setCanceledOnTouchOutside(false);
         dialog.setTitle("Input Box");
         dialog.setContentView(R.layout.news_options);
         TextView txtMessage=dialog.findViewById(R.id.txtMessage);
@@ -121,13 +122,21 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
         Button btn_edit_url=dialog.findViewById(R.id.btn_edit_url);
         Button btn_delete_url=dialog.findViewById(R.id.btn_delete_url);
 
-       LinearLayout minutes_layout=dialog.findViewById(R.id.minutes_layout);
         LinearLayout news_option_layout=dialog.findViewById(R.id.news_option_layout);
+        LinearLayout minutes_layout=dialog.findViewById(R.id.minutes_layout);
         LinearLayout edit_url_layout=dialog.findViewById(R.id.edit_url_layout);
+        ImageView close_news_option=dialog.findViewById(R.id.close_news_option);
 
         news_option_layout.setVisibility(View.GONE);
         minutes_layout.setVisibility(View.GONE);
         edit_url_layout.setVisibility(View.VISIBLE);
+
+        close_news_option.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
 
         btn_delete_url.setOnClickListener(new View.OnClickListener() {
             @Override

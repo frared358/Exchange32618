@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -131,10 +132,12 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
     private void displayPopup() {
         TextView setMinutes,pasteUrl,deleteUrl;
         final LinearLayout news_option_layout,minutes_layout,new_url_layout;
-        final ImageView img_minus_minutes,img_plus_minutes;
+        final ImageView img_minus_minutes,img_plus_minutes,close_news_option;
         final TextView text_minutes;
 
         final Dialog myDialog = new Dialog(RssFeedListActivity.this);
+        myDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        myDialog.setCanceledOnTouchOutside(false);
         myDialog.setContentView(R.layout.news_options);
         news_option_layout=myDialog.findViewById(R.id.news_option_layout);
         minutes_layout=myDialog.findViewById(R.id.minutes_layout);
@@ -143,10 +146,18 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
         pasteUrl=myDialog.findViewById(R.id.pasteUrl);
         deleteUrl=myDialog.findViewById(R.id.deleteUrl);
         text_minutes=myDialog.findViewById(R.id.text_minutes);
+        close_news_option=myDialog.findViewById(R.id.close_news_option);
 
 
         img_plus_minutes=myDialog.findViewById(R.id.img_plus_minutes);
         img_minus_minutes=myDialog.findViewById(R.id.img_minus_minutes);
+
+        close_news_option.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
 
 
         setMinutes.setOnClickListener(new View.OnClickListener() {
