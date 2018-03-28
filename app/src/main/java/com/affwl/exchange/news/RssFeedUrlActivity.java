@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -112,11 +113,13 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
     private void showInputBox(String oldItem, final int index) {
         final Dialog dialog=new Dialog(RssFeedUrlActivity.this);
         dialog.setCanceledOnTouchOutside(false);
-        dialog.setTitle("Input Box");
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        dialog.setTitle("Input Box");
         dialog.setContentView(R.layout.news_options);
         TextView txtMessage=dialog.findViewById(R.id.txtMessage);
         txtMessage.setText("Update item");
-        txtMessage.setTextColor(Color.parseColor("#fff000"));
+        TextView text_view_option=dialog.findViewById(R.id.text_view_option);
+        text_view_option.setText("Input Box");
         final EditText edit_url_entered=dialog.findViewById(R.id.edit_url_entered);
         edit_url_entered.setText(oldItem);
         Button btn_edit_url=dialog.findViewById(R.id.btn_edit_url);

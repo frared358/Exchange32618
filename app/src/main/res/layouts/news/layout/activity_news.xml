@@ -28,7 +28,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
             <!--<TextView-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
@@ -42,7 +41,9 @@
 
             <ListView
                 android:id="@+id/list_rss"
+                android:background="@color/colorRedLight"
                 android:layout_width="match_parent"
+                android:padding="5dp"
                 android:layout_height="wrap_content">
 
             </ListView>

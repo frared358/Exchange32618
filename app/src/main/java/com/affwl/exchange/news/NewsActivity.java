@@ -66,10 +66,12 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
     private ArrayList<String> selectedCategory=new ArrayList<>();
 
 
-    List headlines;
+    List headlines,newsDateTimes;
+    List<NewsItemDetails> newsItemDetailsList;
     List links;
     ProgressDialog progressDialog;
     ListView list_rss;
+    ArrayList<String> myList;
 
 
     @Override
@@ -83,8 +85,7 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayoutIndieNews = findViewById(R.id.drawerLayoutIndieNews);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayoutIndieNews, toolbar,
-                R.string.open, R.string.close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayoutIndieNews, toolbar, R.string.open, R.string.close);
         drawerLayoutIndieNews.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -101,7 +102,8 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
 
         list_rss.setOnItemClickListener(NewsActivity.this);
 
-        new MyAsyncTask().execute();
+            new MyAsyncTask().execute();
+
     }
 
     @Override
@@ -187,7 +189,7 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
         startActivity(i);
     }
 
-    class MyAsyncTask extends AsyncTask<Object, Void, ArrayAdapter> {
+    class MyAsyncTask extends AsyncTask<Object, Void, NewsAdapter> {
 
         @Override
         protected void onPreExecute() {
@@ -202,15 +204,17 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
         }
 
         @Override
-        protected ArrayAdapter doInBackground(Object[] params) {
+        protected NewsAdapter doInBackground(Object[] params) {
             headlines = new ArrayList();
+            newsDateTimes=new ArrayList();
+            newsItemDetailsList=new ArrayList<>();
+
             links = new ArrayList();
             try {
 //             URL url=new URL("https://judeochristianclarion.com/feed/rss.xml");
 //             URL url=new URL("https://economictimes.indiatimes.com/industry/auto/rssfeeds/13359412.cms");
 //             URL url = new URL("http://cmhett.tk/rss.xml");
-
-                ArrayList<String> myList = (ArrayList<String>) getIntent().getSerializableExtra("urlArray");
+                myList = (ArrayList<String>) getIntent().getSerializableExtra("urlArray");
                 if(myList!=null) {
                     for (int i = 0; i < myList.size(); i++) {
                         URL url = new URL(myList.get(i));
@@ -224,13 +228,24 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
 
                         // Returns the type of current event: START_TAG, END_TAG, etc..
                         int eventType = xpp.getEventType();
+
+                     /*   Log.i("Channel"," "+xpp.getName());
+                        if(xpp.getName().equalsIgnoreCase("title"))
+                        {
+                            Log.i("String Article"," "+xpp.nextText());
+                        }*/
+
                         while (eventType != XmlPullParser.END_DOCUMENT) {
                             if (eventType == XmlPullParser.START_TAG) {
                                 if (xpp.getName().equalsIgnoreCase("item")) {
                                     insideItem = true;
                                 } else if (xpp.getName().equalsIgnoreCase("title")) {
                                     if (insideItem)
-                                        headlines.add(xpp.nextText()); //extract the headline
+                                        headlines.add(xpp.nextText());
+                                    //extract the headline
+                                } else if (xpp.getName().equalsIgnoreCase("pubDate")) {
+                                    if (insideItem)
+                                        newsDateTimes.add(xpp.nextText()); //extract the link of article
                                 } else if (xpp.getName().equalsIgnoreCase("link")) {
                                     if (insideItem)
                                         links.add(xpp.nextText()); //extract the link of article
@@ -243,6 +258,11 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
                     }
                 }
 
+                    for(int i=0;i<headlines.size();i++) {
+                        NewsItemDetails newsItem = new NewsItemDetails(headlines.get(i).toString(), newsDateTimes.get(i).toString(), "aritcle");
+                        newsItemDetailsList.add(newsItem);
+                    }
+
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (XmlPullParserException e) {
@@ -253,8 +273,8 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
             return null;
         }
 
-        protected void onPostExecute(ArrayAdapter adapter) {
-            adapter = new ArrayAdapter(NewsActivity.this, android.R.layout.simple_list_item_1, headlines);
+        protected void onPostExecute(NewsAdapter adapter) {
+            adapter = new NewsAdapter(NewsActivity.this, newsItemDetailsList);
             list_rss.setAdapter(adapter);
 
             if(progressDialog!=null)

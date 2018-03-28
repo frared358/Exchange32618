@@ -25,7 +25,7 @@
             android:textColor="@color/colorWhite"
             android:layout_weight="1"
             android:layout_margin="10sp"
-            android:backgroundTint="@color/colorRedBlood"
+            android:backgroundTint="@color/colorWhite"
             android:textSize="20sp"/>
 
 
@@ -48,19 +48,19 @@
         android:textStyle="italic"
         android:text="(Maximum 5 URL allowed)"/>
 
-    <ScrollView
+    <!--<ScrollView
         android:layout_width="match_parent"
         android:layout_height="350dp">
-
+-->
     <ListView
         android:id="@+id/display_url_list"
         android:layout_width="match_parent"
         android:background="@color/colorRedLight"
-        android:layout_height="300dp">
+        android:layout_height="350dp">
 
     </ListView>
-    </ScrollView>
-
+ <!--   </ScrollView>
+-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
             android:layout_gravity="end"
             android:layout_marginRight="5dp"
             android:textColor="@color/colorWhite"
-            android:background="@color/colorBlack"
+            android:background="@color/colorBlackTransperDialog"
             android:layout_weight="1"
             android:text="Submit" />
 
@@ -84,7 +84,7 @@
             android:layout_gravity="end"
             android:layout_marginLeft="5dp"
             android:textColor="@color/colorWhite"
-            android:background="@color/colorBlack"
+            android:background="@color/colorBlackTransperDialog"
             android:layout_weight="1"
             android:text="Cancel" />
 
