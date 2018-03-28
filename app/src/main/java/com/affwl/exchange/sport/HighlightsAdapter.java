@@ -22,6 +22,7 @@ public class HighlightsAdapter extends RecyclerView.Adapter<HighlightsAdapter.My
     private List<HighlightsData> dataList;
     private Context context;
 
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         public TextView txtVMatchName;
