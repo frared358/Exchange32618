@@ -57,7 +57,11 @@
             android:name=".binary.AssetNameActivity"
             android:parentActivityName=".binary.Sec60Activity" />
         <activity android:name=".LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".binary.AssetListActivity" />
         <activity android:name=".binary.TradeActivity" />
@@ -94,13 +98,9 @@
         <activity android:name=".sport.StackActivity" />
         <activity android:name=".fx.Fx_Currency_Activity"></activity>
         <activity android:name=".fx.Fx_AVW_Activity"></activity>
-        <activity android:name=".fx.Fx_DOM_Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".fx.Fx_DOM_Activity"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
         <activity android:name=".fx.Fx_MarketStatistics_Activity"></activity>
         <activity android:name=".fx.Fx_Properties_Activity"></activity>
 
