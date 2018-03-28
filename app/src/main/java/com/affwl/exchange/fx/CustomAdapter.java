@@ -39,7 +39,7 @@ public class CustomAdapter extends BaseAdapter {
 		return rowItems.indexOf(getItem(position));
 	}
 
-	/* private view holder class */
+	/* private view holder class class */
 	private class ViewHolder {
 		ImageView profile_pic;
 		TextView member_name;
