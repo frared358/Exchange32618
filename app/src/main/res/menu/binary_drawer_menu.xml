@@ -7,40 +7,25 @@
         android:id="@+id/mHome"
         android:title="@string/home_page" />
 
-    <item android:title="Other Pages">
-        <menu>
-            <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/mProduct"
-                    android:title="@string/product" />
+    <item
+        android:id="@+id/mProduct"
+        android:title="@string/product" />
 
-                <item
-                    android:id="@+id/mAsset"
-                    android:title="@string/asset" />
+    <item
+        android:id="@+id/mAsset"
+        android:title="@string/asset" />
 
-                <item
-                    android:id="@+id/mTrade"
-                    android:title="@string/trade" />
+    <item
+        android:id="@+id/mTrade"
+        android:title="@string/trade" />
 
-                <item
-                    android:id="@+id/mAccount"
-                    android:title="@string/account" />
+    <item
+        android:id="@+id/mAccount"
+        android:title="@string/account" />
 
-                <item
-                    android:id="@+id/mPortfolio"
-                    android:title="@string/portfolio" />
-
-            </group>
-        </menu>
-    </item>
-
-    <item android:title="Close App">
-        <menu>
-            <item
-                android:id="@+id/mExit"
-                android:title="@string/exit" />
-        </menu>
-    </item>
+    <item
+        android:id="@+id/mPortfolio"
+        android:title="@string/portfolio" />
 
 
 </menu>
