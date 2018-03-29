@@ -70,8 +70,6 @@ public class PivotActivity extends AppCompatActivity implements NavigationView.O
 
         } else if (id == R.id.dataQuery) {
 
-        } else if (id == R.id.logout) {
-            finish();
         }
 
         drawerLayoutIndiePivot.closeDrawer(GravityCompat.START);

@@ -70,8 +70,6 @@ public class NewHiloActivity extends AppCompatActivity implements NavigationView
 
         } else if (id == R.id.dataQuery) {
 
-        } else if (id == R.id.logout) {
-            finish();
         }
 
         drawerLayoutIndieNewHilo.closeDrawer(GravityCompat.START);

@@ -113,10 +113,7 @@ public class IndieActivity extends AppCompatActivity implements NavigationView.O
 
         } else if (id == R.id.dataQuery) {
 
-        } else if (id == R.id.logout) {
-            finish();
         }
-
         drawerLayoutIndie.closeDrawer(GravityCompat.START);
         return true;
     }

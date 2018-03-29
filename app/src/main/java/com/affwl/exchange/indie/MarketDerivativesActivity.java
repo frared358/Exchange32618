@@ -112,8 +112,6 @@ public class MarketDerivativesActivity extends AppCompatActivity implements Navi
 
         } else if (id == R.id.dataQuery) {
 
-        } else if (id == R.id.logout) {
-            finish();
         }
 
         drawerLayoutMarketDerivative.closeDrawer(GravityCompat.START);
