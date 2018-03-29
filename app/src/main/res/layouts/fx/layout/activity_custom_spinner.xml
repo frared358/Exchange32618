@@ -267,27 +267,29 @@
         android:layout_marginLeft="20dp"
         android:background="#FF909090" />
 
-    <LinearLayout
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginLeft="-20dp"
+    >
+
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chartNewOrder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="80dp"
-        >
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:text="Chart comes here"/>
-
-    </LinearLayout>
-
-
-
+        android:layout_height="245sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:paddingRight="10dp"/>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="5dp">
 
         <Button
@@ -309,62 +311,15 @@
             android:text="BUY" />
     </RelativeLayout>
 
+</LinearLayout>
+
+
 
 </LinearLayout>
 
 
 
-<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:orientation="vertical"-->
-    <!--android:layout_width="fill_parent"-->
-    <!--android:layout_height="fill_parent"-->
-    <!--tools:context="com.example.user.afinal.CustomSpinner">-->
 
-
-
-    <!--<Spinner-->
-        <!--android:id="@+id/spinner"-->
-        <!--android:drawSelectorOnTop="true"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:textAlignment="center"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-
-        <!--/>-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/output"-->
-        <!--android:layout_width="419dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:paddingLeft="20dip"-->
-        <!--android:paddingTop="20dip"-->
-        <!--android:textAlignment="center" />-->
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:orientation="horizontal">-->
-
-        <!--<Button-->
-            <!--android:id="@+id/btn_regi"-->
-            <!--android:layout_width="194dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:textColor="#DD2C00"-->
-            <!--android:text="SELL" />-->
-
-        <!--<Button-->
-            <!--android:id="@+id/btn_si"-->
-            <!--android:layout_width="199dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_gravity="right"-->
-            <!--android:text="BUY"-->
-            <!--android:textColor="#0000ff" />-->
-    <!--</LinearLayout>-->
 
 
 
