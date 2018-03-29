@@ -14,8 +14,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
 
         <activity android:name=".indie.IndieActivity" />
         <activity
@@ -94,13 +99,7 @@
         <activity android:name=".sport.StackActivity" />
         <activity android:name=".fx.Fx_Currency_Activity"></activity>
         <activity android:name=".fx.Fx_AVW_Activity"></activity>
-        <activity android:name=".fx.Fx_DOM_Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".fx.Fx_DOM_Activity"/>
         <activity android:name=".fx.Fx_MarketStatistics_Activity"></activity>
         <activity android:name=".fx.Fx_Properties_Activity"></activity>
 

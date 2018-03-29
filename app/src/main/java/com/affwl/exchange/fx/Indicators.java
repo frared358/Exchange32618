@@ -25,8 +25,8 @@ public class Indicators extends AppCompatActivity  {
         imageButton_fadd1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), FX_indicator_f_add_Activity.class);
-                startActivity(i);
+             /*   Intent i = new Intent(v.getContext(), FX_indicator_f_add_Activity.class);
+                startActivity(i);*/
             }
         });
 
