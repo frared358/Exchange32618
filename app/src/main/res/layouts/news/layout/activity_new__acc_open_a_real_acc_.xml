@@ -80,7 +80,7 @@
         android:layout_marginBottom="154dp"
         android:gravity="center"
 
-        android:text="      There are 445 servers available use search to find a broker by company name or server name"
+        android:text="There are 445 servers available use search to find a broker by company name or server name"
         android:textSize="16dp" />
 
     <Button
