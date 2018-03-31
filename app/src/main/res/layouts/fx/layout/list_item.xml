@@ -4,7 +4,9 @@
     android:layout_height="wrap_content"
     android:padding="10dp">
 
+
     <LinearLayout
+        android:layout_below="@id/toolbar2"
         android:id="@+id/llMsg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,6 +40,12 @@
                 android:layout_weight="1"
                 android:text="txt"
                 android:textSize="16sp" />
+            <CheckBox
+                android:id="@+id/cb_mailbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                />
 
         </LinearLayout>
     </LinearLayout>
