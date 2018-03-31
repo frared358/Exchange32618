@@ -54,10 +54,11 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlue"
             android:text="-0.01"/>
-        <TextView
+        <EditText
             android:layout_weight="1"
             android:textAlignment="center"
             android:layout_width="wrap_content"
+            android:background="@color/transparent"
             android:textStyle="bold"
             android:layout_height="wrap_content"
             android:textColor="@color/colorBlack"
@@ -122,6 +123,62 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:paddingLeft="20dp"
+                    android:src="@drawable/ic_blue_minus" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@color/transparent"
+                    android:hint="SL"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:text="72769"
+                    android:textColor="@color/colorBlack" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:paddingRight="10dp"
+                    android:src="@drawable/ic_blue_plus" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="20dp"
+                android:background="#FF909090" />
+
+        </LinearLayout>
+
+
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+   >
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
                 android:layout_width="wrap_content"
@@ -129,43 +186,10 @@
                 android:paddingLeft="20dp"
                 android:layout_marginTop="4dp"
                 android:src="@drawable/ic_blue_minus"/>
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingLeft="30dp"
-                android:paddingRight="30dp"
-                android:textColor="@color/colorBlack"
-                android:layout_weight="1"
-                android:hint="SL"
-                android:text="72769"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="30dp"
-                android:layout_marginTop="4dp"
-                android:src="@drawable/ic_blue_plus"/>
-        </LinearLayout>
-
-
-
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="0dp">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:layout_marginTop="4dp"
-                android:src="@drawable/ic_blue_minus"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:background="@color/transparent"
                 android:gravity="center"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
@@ -180,6 +204,13 @@
                 android:layout_marginTop="4dp"
                 android:src="@drawable/ic_blue_plus"/>
         </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="#FF909090" />
+</LinearLayout>
 
 
     </LinearLayout>
@@ -208,7 +239,7 @@
             android:layout_weight="1"
             android:hint="Deviation"/>
 
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
@@ -216,7 +247,8 @@
             android:textColor="@color/colorBlack"
             android:layout_weight="1"
             android:textColorHint="@color/colorBlack"
-            android:hint="4"
+            android:hint="0"
+            android:background="@color/transparent"
             />
         <ImageView
             android:layout_width="wrap_content"
@@ -235,27 +267,29 @@
         android:layout_marginLeft="20dp"
         android:background="#FF909090" />
 
-    <LinearLayout
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginLeft="-20dp"
+    >
+
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chartNewOrder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="80dp"
-        >
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:text="Chart comes here"/>
-
-    </LinearLayout>
-
-
-
+        android:layout_height="245sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:paddingRight="10dp"/>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="5dp">
 
         <Button
@@ -277,62 +311,15 @@
             android:text="BUY" />
     </RelativeLayout>
 
+</LinearLayout>
+
+
 
 </LinearLayout>
 
 
 
-<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:orientation="vertical"-->
-    <!--android:layout_width="fill_parent"-->
-    <!--android:layout_height="fill_parent"-->
-    <!--tools:context="com.example.user.afinal.CustomSpinner">-->
 
-
-
-    <!--<Spinner-->
-        <!--android:id="@+id/spinner"-->
-        <!--android:drawSelectorOnTop="true"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:textAlignment="center"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="wrap_content"-->
-
-        <!--/>-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/output"-->
-        <!--android:layout_width="419dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:paddingLeft="20dip"-->
-        <!--android:paddingTop="20dip"-->
-        <!--android:textAlignment="center" />-->
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:orientation="horizontal">-->
-
-        <!--<Button-->
-            <!--android:id="@+id/btn_regi"-->
-            <!--android:layout_width="194dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:textColor="#DD2C00"-->
-            <!--android:text="SELL" />-->
-
-        <!--<Button-->
-            <!--android:id="@+id/btn_si"-->
-            <!--android:layout_width="199dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_gravity="right"-->
-            <!--android:text="BUY"-->
-            <!--android:textColor="#0000ff" />-->
-    <!--</LinearLayout>-->
 
 
 

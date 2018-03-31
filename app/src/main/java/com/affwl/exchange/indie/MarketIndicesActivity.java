@@ -111,8 +111,6 @@ public class MarketIndicesActivity extends AppCompatActivity implements Navigati
 
         } else if (id == R.id.dataQuery) {
 
-        } else if (id == R.id.logout) {
-            finish();
         }
 
         drawerLayoutMarketIndices.closeDrawer(GravityCompat.START);

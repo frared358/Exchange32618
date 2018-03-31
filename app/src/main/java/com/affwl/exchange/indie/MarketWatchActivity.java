@@ -71,8 +71,6 @@ public class MarketWatchActivity extends AppCompatActivity implements Navigation
 
         } else if (id == R.id.dataQuery) {
 
-        } else if (id == R.id.logout) {
-            finish();
         }
 
         drawerLayoutIndieMarketWatch.closeDrawer(GravityCompat.START);

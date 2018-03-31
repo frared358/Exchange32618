@@ -64,8 +64,6 @@ public class AssetNameActivity extends AppCompatActivity implements View.OnClick
             startActivity(new Intent(this,BinaryPotfolioActivity.class));
         } else if (id == R.id.mHome) {
             startActivity(new Intent(this,MainActivity.class));
-        } else if (id == R.id.mExit) {
-            System.exit(0);
         }
 
         drawerLayoutBinaryAsset.closeDrawer(GravityCompat.START);

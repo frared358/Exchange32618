@@ -111,8 +111,6 @@ public class MarketCurrencyActivity extends AppCompatActivity implements Navigat
 
         } else if (id == R.id.dataQuery) {
 
-        } else if (id == R.id.logout) {
-            finish();
         }
 
         drawerLayoutMarketCurrency.closeDrawer(GravityCompat.START);

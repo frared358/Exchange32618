@@ -43,7 +43,7 @@
                 android:checked="false"
                 android:padding="10dp"
                 android:layout_gravity="center_vertical"
-                android:buttonTint="@color/colorPinkWhite" />
+                android:buttonTint="@color/colorWhite" />
         </LinearLayout>
 
         <View
@@ -74,7 +74,7 @@
                 android:checked="false"
                 android:padding="10dp"
                 android:layout_gravity="center_vertical"
-                android:buttonTint="@color/colorPinkWhite"/>
+                android:buttonTint="@color/colorWhite"/>
         </LinearLayout>
 
 
@@ -106,7 +106,7 @@
                 android:checked="false"
                 android:padding="10dp"
                 android:layout_gravity="center_vertical"
-                android:buttonTint="@color/colorPinkWhite"/>
+                android:buttonTint="@color/colorWhite"/>
         </LinearLayout>
 
         <View
@@ -137,7 +137,7 @@
                 android:checked="false"
                 android:padding="10dp"
                 android:layout_gravity="center_vertical"
-                android:buttonTint="@color/colorPinkWhite"
+                android:buttonTint="@color/colorWhite"
                 />
         </LinearLayout>
 
@@ -168,7 +168,7 @@
                 android:checked="false"
                 android:padding="10dp"
                 android:layout_gravity="center_vertical"
-                android:buttonTint="@color/colorPinkWhite"/>
+                android:buttonTint="@color/colorWhite"/>
         </LinearLayout>
 
         <View

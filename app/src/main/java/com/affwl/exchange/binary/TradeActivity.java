@@ -57,8 +57,6 @@ public class TradeActivity extends AppCompatActivity implements View.OnClickList
             startActivity(new Intent(this,BinaryPotfolioActivity.class));
         } else if (id == R.id.mHome) {
             startActivity(new Intent(this,MainActivity.class));
-        } else if (id == R.id.mExit) {
-            System.exit(0);
         }
 
         drawerLayoutBinaryTrade.closeDrawer(GravityCompat.START);

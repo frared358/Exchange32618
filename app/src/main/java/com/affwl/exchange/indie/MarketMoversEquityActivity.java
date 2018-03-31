@@ -69,8 +69,6 @@ public class MarketMoversEquityActivity extends AppCompatActivity implements Nav
 
         } else if (id == R.id.dataQuery) {
 
-        } else if (id == R.id.logout) {
-            finish();
         }
 
         drawerLayoutIndieMMEquity.closeDrawer(GravityCompat.START);

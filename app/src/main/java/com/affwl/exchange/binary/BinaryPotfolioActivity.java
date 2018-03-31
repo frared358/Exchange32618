@@ -94,8 +94,6 @@ public class BinaryPotfolioActivity extends AppCompatActivity implements Navigat
 
         } else if (id == R.id.mHome) {
             startActivity(new Intent(this,MainActivity.class));
-        } else if (id == R.id.mExit) {
-            System.exit(0);
         }
 
         drawerLayoutBinaryPortfolio.closeDrawer(GravityCompat.START);

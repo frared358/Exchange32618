@@ -70,8 +70,6 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.dataQuery) {
 
-        } else if (id == R.id.logout) {
-            finish();
         }
 
         drawerLayoutIndieNews.closeDrawer(GravityCompat.START);

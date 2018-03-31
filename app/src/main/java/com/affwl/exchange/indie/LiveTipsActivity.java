@@ -70,8 +70,6 @@ public class LiveTipsActivity extends AppCompatActivity implements NavigationVie
 
         } else if (id == R.id.dataQuery) {
 
-        } else if (id == R.id.logout) {
-            finish();
         }
 
         drawerLayoutIndieLiveTips.closeDrawer(GravityCompat.START);
