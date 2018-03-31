@@ -131,13 +131,16 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/decRed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:paddingLeft="20dp"
+                    android:onClick="decrementRed"
                     android:src="@drawable/ic_blue_minus" />
 
                 <EditText
+                    android:id="@+id/redValue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -150,11 +153,12 @@
                     android:textColor="@color/colorBlack" />
 
                 <ImageView
+                    android:id="@+id/imgVIncrementRed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:paddingRight="10dp"
-                    android:src="@drawable/ic_blue_plus" />
+                    android:src="@drawable/ic_blue_plus"/>
             </LinearLayout>
 
             <View
@@ -162,7 +166,7 @@
                 android:layout_height="1dip"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="20dp"
-                android:background="#FF909090" />
+                android:background="@color/colorRed" />
 
         </LinearLayout>
 
@@ -181,6 +185,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
+                android:id="@+id/decGreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="20dp"
@@ -198,6 +203,7 @@
                 android:hint="TP"
                 android:text="72779"/>
             <ImageView
+                android:id="@+id/incGreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="30dp"
@@ -209,7 +215,7 @@
         android:layout_height="1dip"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:background="#FF909090" />
+        android:background="@color/colorGreen" />
 </LinearLayout>
 
 
