@@ -93,10 +93,10 @@ ImageView btnShowPopupAccount,btnShowPopupAccount1;
             case R.id.btnShowPopupAccount1 :
                 ShowPopup();
                 break;
-            case R.id.l1:
+     /*       case R.id.l1:
                 Intent i = new Intent(v.getContext(), Login.class);
                 startActivity(i);
-                break;
+                break;*/
         }
     }
 }
