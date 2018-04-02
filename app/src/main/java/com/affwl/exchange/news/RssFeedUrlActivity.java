@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -31,7 +32,6 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
     ListView display_url_list;
     Button submit_urlList,cancel_urlList;
     List<RssUrlDetails> rssUrlDetailsList=new ArrayList<>();
-    ArrayList<String> urlArray=new ArrayList<String>();
     RssUrlAdapter rssUrlAdapter;
     ArrayAdapter itemsAdapter;
     ArrayList<String> myList=new ArrayList<String>();
@@ -74,12 +74,11 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
             case R.id.img_add_url:
                 String url = edit_add_url.getText().toString();
                 if(!url.equalsIgnoreCase("") && url!=null) {
-                    if (urlArray.size() < 5) {
+                    if (rssUrlDetailsList.size() < 5) {
 
                         RssUrlDetails rssUrl=new RssUrlDetails(url, 0);
                         rssUrlDetailsList.add(rssUrl);
 
-                       urlArray.add(url);
                         rssUrlAdapter = new RssUrlAdapter(RssFeedUrlActivity.this,rssUrlDetailsList);
                         display_url_list.setAdapter(rssUrlAdapter);
 
@@ -98,26 +97,18 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
                 break;
 
             case R.id.delete_url_img:
-
-                            for(int i = (rssUrlDetailsList.size() - 1); i >= 0; i--) {
-                            Log.i("Size",""+rssUrlDetailsList.size());
-                            Log.i("List"," "+rssUrlDetailsList.get(i).getRssUrl()+" "+rssUrlDetailsList.get(i).getIntCheck());
-                            if(rssUrlDetailsList.get(i).getIntCheck()==1)
-                            {
-                                Toast.makeText(this, ""+i, Toast.LENGTH_SHORT).show();
-                                rssUrlDetailsList.remove(i);
-
-                            }
-                        }
-                rssUrlAdapter = new RssUrlAdapter(RssFeedUrlActivity.this,rssUrlDetailsList);
-                display_url_list.setAdapter(rssUrlAdapter);
+                        diplayAlert();
                 break;
 
 
             case R.id.submit_urlList:
 
+                for(int i=0;i<rssUrlDetailsList.size();i++)
+                {
+                    myList.add(rssUrlDetailsList.get(i).getRssUrl());
+                }
                 Intent intent=new Intent(RssFeedUrlActivity.this,NewsActivity.class);
-                intent.putExtra("urlArray",urlArray);
+                intent.putExtra("urlArray", myList);
 
                 startActivity(intent);
                 break;
@@ -128,6 +119,81 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
 
         }
 
+    }
+
+    private void diplayAlert() {
+        
+            TextView alert_title,alertMessage;
+            final ImageView close_alert;
+            Button ok_alert,cancel_alert;
+
+            final Dialog myAlertDialog = new Dialog(RssFeedUrlActivity.this);
+            myAlertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            myAlertDialog.setCanceledOnTouchOutside(false);
+            myAlertDialog.setContentView(R.layout.alert_message_dts);
+
+        alert_title = myAlertDialog.findViewById(R.id.alert_title);
+        alertMessage=myAlertDialog.findViewById(R.id.alertMessage);
+        close_alert=myAlertDialog.findViewById(R.id.close_alert);
+        ok_alert=myAlertDialog.findViewById(R.id.ok_alert);
+        cancel_alert=myAlertDialog.findViewById(R.id.cancel_alert);
+
+        for(int i = (rssUrlDetailsList.size() - 1); i >= 0; i--) {
+            Log.i("List", " " + rssUrlDetailsList.get(i).getRssUrl() + " " + rssUrlDetailsList.get(i).getIntCheck());
+            if (rssUrlDetailsList.get(i).getIntCheck() == 1) {
+                String url=rssUrlDetailsList.get(i).getRssUrl();
+                String stringUrl = null;
+                String extension = null;
+                int leng=url.length();
+                if(leng>20)
+                {
+                    stringUrl =url.substring(0, leng/2) + "...";
+                    extension = url.substring(url.lastIndexOf(".") + 1);
+                    Toast.makeText(this, " "+stringUrl+" "+extension, Toast.LENGTH_SHORT).show();
+                }
+                alertMessage.append(stringUrl+extension+" , ");
+
+                Log.i("Size", "" + rssUrlDetailsList.size());
+            }
+        }
+
+
+        cancel_alert.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    myAlertDialog.dismiss();
+                }
+            });
+
+        close_alert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myAlertDialog.dismiss();
+            }
+        });
+
+
+        ok_alert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for(int i = (rssUrlDetailsList.size() - 1); i >= 0; i--) {
+                    Log.i("Size",""+rssUrlDetailsList.size());
+                    Log.i("List"," "+rssUrlDetailsList.get(i).getRssUrl()+" "+rssUrlDetailsList.get(i).getIntCheck());
+                    if(rssUrlDetailsList.get(i).getIntCheck()==1)
+                    {
+                        Toast.makeText(RssFeedUrlActivity.this, ""+i, Toast.LENGTH_SHORT).show();
+                        rssUrlDetailsList.remove(i);
+
+                    }
+                }
+                rssUrlAdapter = new RssUrlAdapter(RssFeedUrlActivity.this,rssUrlDetailsList);
+                display_url_list.setAdapter(rssUrlAdapter);
+
+                myAlertDialog.dismiss();
+            }
+        });
+            myAlertDialog.show();
+        
     }
 
     @Override
@@ -195,7 +261,7 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
-        Toast.makeText(this, " "+urlArray.get(position), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, " "+rssUrlDetailsList.get(position).getRssUrl(), Toast.LENGTH_SHORT).show();
         return true;
     }
 }

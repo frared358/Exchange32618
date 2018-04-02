@@ -51,20 +51,9 @@ import java.util.List;
 public class NewsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
 
     private DrawerLayout drawerLayoutIndieNews;
-    EditText edit_rssFeed;
-    ImageView search_rssFeed;
-    RecyclerView news_recycler_view;
-    SwipeRefreshLayout news_swipe_layout;
-    TextView tv_feedTitle,tv_feedDescription,tv_feedLink;
-    String strFeedLink,strFeedTitle,strFeedDescription;
-    XmlPullParserFactory xmlFactoryObject;
 
-    String title,link,description,name;
-    boolean isItem = false;
-    private ArrayList<CheckBox> categoryCheckbox=new ArrayList<>();
-    private CheckBox checkboxCategories;
-    private ArrayList<String> selectedCategory=new ArrayList<>();
-
+    String title;
+    String link;
 
     List headlines,newsDateTimes;
     List<NewsItemDetails> newsItemDetailsList;
@@ -226,12 +215,6 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
 
                         // Returns the type of current event: START_TAG, END_TAG, etc..
                         int eventType = xpp.getEventType();
-
-                     /*   Log.i("Channel"," "+xpp.getName());
-                        if(xpp.getName().equalsIgnoreCase("title"))
-                        {
-                            Log.i("String Article"," "+xpp.nextText());
-                        }*/
 
                         while (eventType != XmlPullParser.END_DOCUMENT) {
                             if (eventType == XmlPullParser.START_TAG) {
