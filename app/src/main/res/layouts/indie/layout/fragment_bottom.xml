@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="40dp"
     android:background="@color/colorPrimary"
     android:gravity="center"
     android:padding="2dp"
@@ -16,8 +16,12 @@
         android:textColor="@color/colorWhite"
         android:textStyle="bold"
         android:gravity="center"
-        android:padding="4dp"
         android:layout_weight="1"/>
+
+    <View
+        android:layout_width="1dp"
+        android:background="@color/colorBlackTransperDialog"
+        android:layout_height="40dp"/>
 
     <TextView
         android:id="@+id/txtVMarketWatch"
@@ -27,9 +31,13 @@
         android:text="@string/market_watch"
         android:textColor="@color/colorWhite"
         android:textStyle="bold"
-        android:padding="4dp"
         android:gravity="center"
         android:layout_weight="1"/>
+
+    <View
+        android:layout_width="1dp"
+        android:background="@color/colorBlackTransperDialog"
+        android:layout_height="40dp"/>
 
     <TextView
         android:id="@+id/txtVTradeQuote"
@@ -38,7 +46,6 @@
         android:textSize="15sp"
         android:text="@string/trade_n_quote"
         android:textColor="@color/colorWhite"
-        android:padding="4dp"
         android:textStyle="bold"
         android:gravity="center"
         android:layout_weight="1"/>

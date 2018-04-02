@@ -41,9 +41,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         news_layout=findViewById(R.id.news_layout);
 
-
-
-
         txtVIndie.setOnClickListener(this);
         imgVIndie.setOnClickListener(this);
         txtV60Sec.setOnClickListener(this);
@@ -61,13 +58,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.txtVIndie:case R.id.imgVIndie:
-                startActivity(new Intent(this,IndieActivity.class)); break;
+                startActivity(new Intent(this,IndieActivity.class));
+                break;
             case R.id.txtV60Sec:case R.id.imgV60Sec:
-                startActivity(new Intent(this,Sec60Activity.class)); break;
+                startActivity(new Intent(this,Sec60Activity.class));
+                break;
             case R.id.txtVsports:case R.id.imgVsports:
-                startActivity(new Intent(this,SportActivity.class)); break;
+                startActivity(new Intent(this,SportActivity.class));
+                break;
             case R.id.fx:case R.id.imgfx:
-                startActivity(new Intent(this,FxActivity.class)); break;
+                startActivity(new Intent(this,FxActivity.class));
+                break;
 
             case R.id.news_layout:
                 startActivity(new Intent(this,NewsActivity.class));

@@ -1,85 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_centerInParent="true"
-    tools:context="com.affwl.exchange.LoginActivity">
+    android:padding="20dp"
+    android:gravity="center"
+    tools:context="com.affwl.exchange.LoginActivity"
+    android:background="@color/colorBackground"
+    android:orientation="vertical">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@drawable/dts_logo" />
 
-    <RelativeLayout
+    <EditText
+        android:id="@+id/editUserEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="50dp"
-        android:layout_centerInParent="true">
-
-        <TextView
-            android:id="@+id/txtVLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:text="Login" />
+        android:ems="20"
+        android:layout_margin="5dp"
+        android:focusable="true"
+        android:textSize="20sp"
+        android:hint="Email Id"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:backgroundTint="@color/colorWhite"
+        android:textCursorDrawable="@null"
+        />
 
 
-        <EditText
-            android:id="@+id/editEmailId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:hint="Email Id"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_below="@+id/txtVLogin" />
+    <EditText
+        android:id="@+id/editPassDTS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:ems="20"
+        android:hint="Password"
+        android:textSize="20sp"
+        android:textCursorDrawable="@null"
+        android:backgroundTint="@color/colorWhite"
+        android:textColorHint="@color/colorWhite"
+        android:textColor="@color/colorWhite"
+        android:inputType="textPassword" />
 
-        <EditText
-            android:id="@+id/editPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:hint="Password"
-            android:layout_marginBottom="5dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_below="@+id/editEmailId" />
+    <CheckBox
+        android:id="@+id/rememberCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:layout_margin="5dp"
+        android:text="Remember me "
+        android:textSize="15sp"
+        android:textColor="@color/colorWhite"
+        android:layout_gravity="center_vertical"
+        android:buttonTint="@color/colorWhite" />
 
-        <TextView
-            android:id="@+id/txtVForgotPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:layout_below="@+id/editPassword"
-            android:textStyle="bold"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:text="Forgot Password ?" />
+    <Button
+        android:id="@+id/loginNow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:layout_margin="10dp"
+        android:background="@color/colorBlackTransperDialog"
+        android:text="Login" />
 
-
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:text="Login"
-            android:textSize="20dp"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/colorWhite"
-            android:layout_below="@+id/txtVForgotPassword" />
-    </RelativeLayout>
-
-
-</RelativeLayout>
+</LinearLayout>

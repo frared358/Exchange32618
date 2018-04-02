@@ -8,8 +8,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.affwl.exchange.R;
 
@@ -17,6 +20,7 @@ public class IndieMarketFragment extends Fragment {
 
 
     TabLayout tabLayoutIndieMarket;
+    LinearLayout ll_fragment_indie_market;
     ViewPager viewPagerIndieMarket;
     private String[] pageTitle = {"Indices", "Derivatives", "Currency"};
     @Override
@@ -28,6 +32,14 @@ public class IndieMarketFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        ll_fragment_indie_market=view.findViewById(R.id.ll_fragment_indie_market);
+        ll_fragment_indie_market.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Toast.makeText(v.getContext(), "Fragment ", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
         tabLayoutIndieMarket = (TabLayout)view.findViewById(R.id.tabLayoutIndieMarket);
         viewPagerIndieMarket = (ViewPager)view.findViewById(R.id.viewPagerIndieMarket);
 
