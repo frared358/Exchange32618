@@ -54,8 +54,11 @@
     <color name="colorLogoOrange">#F15F23</color>
     <color name="colorLogoOrangeDark">#c23900</color>
 
-    <color name="colorBlueBet">#72BBEF</color>
-    <color name="colorRedBet">#FAA9BA</color>
+    <color name="colorBlueBet">#a0d0f2</color>
+    <color name="colorRedBet">#f5afbe</color>
+
+    <color name="colorBlueBetTrasparent">#eba0d0f2</color>
+    <color name="colorRedBetTrasparent">#ebfca2b5</color>
 
 
 

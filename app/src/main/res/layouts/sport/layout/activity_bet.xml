@@ -88,7 +88,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="13dp"
+                    android:textSize="12sp"
                     android:textStyle="bold"
                     android:layout_gravity="center"
                     android:padding="5dp"
@@ -130,7 +130,7 @@
                     android:id="@+id/llrefresh"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/txtVchips"
+                    android:layout_alignRight="@+id/txtVchips"
                     android:gravity="center"
                     android:layout_alignParentTop="true">
 
@@ -176,7 +176,7 @@
                 android:textStyle="bold"
                 android:textSize="13dp"
                 android:background="@color/colorGreayDark"
-                android:text="CHIPS 3.00"/>
+                android:text="CHIPS 0.0"/>
 
             <ImageView
                 android:id="@+id/imgVCheck"
@@ -214,7 +214,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <!--<LinearLayout
             android:id="@+id/llbet1"
             android:layout_below="@+id/llBackLay"
             android:layout_width="match_parent"
@@ -237,6 +237,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CHIPS 0.00"
+                    android:visibility="gone"
                     android:layout_weight="1"/>
 
             </LinearLayout>
@@ -252,6 +253,7 @@
                 android:layout_weight="1">
 
                 <TextView
+                    android:id="@+id/txtVBack1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
@@ -313,6 +315,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CHIPS 0.00"
+                    android:visibility="gone"
                     android:layout_weight="1"/>
 
             </LinearLayout>
@@ -388,6 +391,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CHIPS 0.00"
+                    android:visibility="gone"
                     android:layout_weight="1"/>
 
             </LinearLayout>
@@ -439,7 +443,13 @@
 
             </LinearLayout>
 
-        </LinearLayout>
+        </LinearLayout>-->
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycleViewMarketData"
+            android:layout_below="@+id/llBackLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </RelativeLayout>
 

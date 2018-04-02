@@ -7,4 +7,5 @@ package com.affwl.exchange;
 public class DataHolder {
     public static int navigationForTab=0;
     public static String LOGIN_TOKEN;
+    public static Double STACK_VALUE;
 }
