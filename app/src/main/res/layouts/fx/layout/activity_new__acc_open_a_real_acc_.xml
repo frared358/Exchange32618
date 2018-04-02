@@ -16,6 +16,8 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="Open a real account"
+        app:subtitle="Choose Trading Server"
+        app:subtitleTextColor="@color/colorWhite"
         android:gravity="center"
         android:id="@+id/toolbar2" />
 
@@ -49,7 +51,7 @@
         android:text="DTS-Demo"
         android:textColor="#000"
         android:textSize="16dp"
-        android:textStyle="bold" />
+      />
 
     <TextView
         android:id="@+id/textView46"

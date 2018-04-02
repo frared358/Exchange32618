@@ -17,12 +17,19 @@ import com.affwl.exchange.R;
  * Created by user on 1/25/2018.
  */
 
-public class Fx_Fragment_Settings extends Fragment {
+public class Fx_Fragment_Settings extends Fragment  {
 
     @Nullable
     @Override
     /** Right click - Generate - Override Method - slect onCreateView */ public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_fx_settings, null);
+
         return v;
     }
+
 }
+
+
+
+
+

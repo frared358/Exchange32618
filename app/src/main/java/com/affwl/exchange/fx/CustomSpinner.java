@@ -78,6 +78,7 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
         imgVIncrementRed.setOnClickListener (new View.OnClickListener (){
             @Override
             public void onClick(View v) {
+
                 incrementRed();
             }
         });
