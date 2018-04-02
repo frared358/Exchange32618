@@ -3,7 +3,6 @@ package com.affwl.exchange.fx;
 
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,11 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by user on 1/24/2018.
+ * A simple {@link Fragment} subclass.
  */
-
-public class Fx_Fragment_Mailbox extends Fragment{
-
+public class DeleteFragment extends Fragment {
     String[] member_names1;
     TypedArray profile_pics1;
     String[] statues1;
@@ -31,15 +28,15 @@ public class Fx_Fragment_Mailbox extends Fragment{
     List<RowItem_news> rowItems;
     ListView mylistview;
 
-    @Nullable
+    public DeleteFragment() {
+        // Required empty public constructor
+    }
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v= inflater.inflate (R.layout.fragment_fx_mailbox,null);
-
-//        ((Fx_Fragment_Mailbox) getActivity())
-//                .setActionBarTitle("Your title");
-
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View v= inflater.inflate(R.layout.fragment_delete2, container, false);
         rowItems = new ArrayList<RowItem_news>();
 
         member_names1 = getResources().getStringArray(R.array.Member_names1);

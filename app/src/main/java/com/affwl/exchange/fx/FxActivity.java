@@ -19,11 +19,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -58,54 +60,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
 
         myDialog = new Dialog(this);
         myDialog1 = new Dialog(this);
-//spinner on mailbox icon
-//        Spinner spinner=findViewById(R.id.spinner2);
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spinners, R.layout.activity_mailbox1);
-//        adapter.setDropDownViewResource(R.layout.activity_mailbox1);
-//        spinner.setAdapter(adapter);
-//        spinner.setOnItemSelectedListener(this);
 
-        //ButterKnife.bind(this);
-
-//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-//        return inflater.inflate(R.layout.fragment_fx_chart,container,false);
-
-
-//         mchart = (LineChart) findViewById(R.id.linechart);
-////         mchart.setOnChartGestureListener(FxActivity.this);
-////         mchart.setOnChartValueSelectedListener(FxActivity.this);
-//         mchart.setDragEnabled(true);
-//         mchart.setScaleEnabled(false);
-//        ArrayList<Entry> yValues =new ArrayList<>();
-//        yValues.add(new Entry(0,60f));
-//        yValues.add(new Entry(1,50f));
-//        yValues.add(new Entry(2,30f));
-//        yValues.add(new Entry(3,70f));
-//        yValues.add(new Entry(4,30f));
-//        yValues.add(new Entry(5,10f));
-//
-//
-//
-//        LineDataSet set1= new LineDataSet(yValues, "Data set1");
-//        set1.setFillAlpha(110);
-//        set1.setColor(Color.RED);
-//        set1.setLineWidth(3f);
-//        set1.setValueTextColor(Color.GREEN);
-//
-//        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-//        dataSets.add(set1);
-//        LineData data= new LineData(dataSets);
-//        mchart.setData(data);
-
-
-        //  demo = findViewById(R.id.demo);
-
-
-       /* ActionBar actionBar = getActionBar();
-
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
-        getActionBar().setTitle("Deep");*/
 
         /**Bottom navigation*/
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -154,64 +109,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         View view = findViewById(R.id.xzz);
-        //sheetBehavior = BottomSheetBehavior.from(view);
 
-        /**
-         * bottom sheet state change listener
-         * we are changing button text when sheet changed state
-         * */
-//        sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-//            @Override
-//            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-//                switch (newState) {
-//                    case BottomSheetBehavior.STATE_HIDDEN:
-//                        break;
-//                    case BottomSheetBehavior.STATE_EXPANDED: {
-//                        //btnBottomSheet.setText("Close Sheet");
-//                    }
-//                    break;
-//                    case BottomSheetBehavior.STATE_COLLAPSED: {
-//
-//                    }
-//                    break;
-//                    case BottomSheetBehavior.STATE_DRAGGING:
-//                        break;
-//                    case BottomSheetBehavior.STATE_SETTLING:
-//                        break;
-//                }
-//            }
-//
-//            @Override
-//            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-//
-//            }
-//        });
-
-
-        /**
-         * manually opening / closing bottom sheet on button click
-         */
-//    @OnClick(R.id.btn_bottom_sheet)
-//    public void toggleBottomSheet() {
-//        if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
-//            sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-//            btnBottomSheet.setText("Close sheet");
-//        } else {
-//            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-//            btnBottomSheet.setText("Expand sheet");
-//        }
-//    }
-
-
-        /**FloatingActionButton*/
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -293,6 +191,8 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         }
         if (currentFragment != null && currentFragment instanceof Fx_Fragment_Mailbox) {
             getMenuInflater().inflate(R.menu.mailbox_menu, menu);
+
+
         }
         if (currentFragment != null && currentFragment instanceof Fx_news_Fragment) {
             navigation.setSelectedItemId (R.id.nav_news1);
@@ -397,9 +297,14 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                     Intent addacci = new Intent(this, New_Account.class);
                     this.startActivity(addacci);
                     return true;
+                case R.id.changepass:
+                    Intent i1 = new Intent(this, Change_password_Activity.class);
+                    this.startActivity(i1);
+                    getMenuInflater();
+                    return true;
                 case R.id.clearspass:
                     ShowPopup1();
-break;
+                     break;
                 case R.id.delacc:
                     ShowPopup2();
                     break;
@@ -415,6 +320,16 @@ break;
                         Intent i = new Intent(this, Mailbox1.class);
                         this.startActivity(i);
                         return true;
+
+                    case R.id.del1:
+                        CheckBox cb_mailbox;
+                        Toolbar toolbar2;
+                                cb_mailbox=(CheckBox)findViewById(R.id.cb_mailbox);
+                              cb_mailbox.setVisibility(View.VISIBLE);
+
+                        toolbar2=(Toolbar)findViewById(R.id.toolbar2);
+                        toolbar2.setVisibility(View.VISIBLE);
+                            return true;
                     default:
                         return super.onOptionsItemSelected(item);
                 }
@@ -480,9 +395,9 @@ break;
             ft.replace (R.id.xzz ,currentFragment);    //content_fx
             ft.commit ();
             invalidateOptionsMenu();
-        } else if (id == R.id.nav_mailbox) {
+        }
+        else if (id == R.id.nav_mailbox) {
             setTitle("Mailbox");
-
             layout.setVisibility(View.VISIBLE);
             currentFragment=new Fx_Fragment_Mailbox ();
             FragmentManager fragmentManager=getSupportFragmentManager ();

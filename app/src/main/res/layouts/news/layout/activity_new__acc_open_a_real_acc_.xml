@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.affwl.exchange.fx.new_Acc_open_a_real_acc_Activity">
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:navigationContentDescription="@string/abc_action_bar_up_description"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="Open a real account"
+        android:gravity="center"
+        android:id="@+id/toolbar2" />
+
+<RelativeLayout
+    android:layout_margin="10dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/toolbar2"
+   android:id="@+id/RL">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="12dp"
+        android:src="@drawable/star_small"
+        android:id="@+id/imageView11" />
+
+    <TextView
+        android:id="@+id/textView47"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView46"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/textView46"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:text="DTS-Demo"
+        android:textColor="#000"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView46"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageView11"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
+        android:layout_toEndOf="@+id/imageView11"
+        android:layout_toRightOf="@+id/imageView11"
+        android:text="DTS Software Corp." />
+</RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:padding="2dp"
+        android:layout_marginTop="140dp"
+        android:background="#B0BEC5"
+        android:layout_marginLeft="15dp"
+        android:id="@+id/view3" />
+
+    <TextView
+        android:id="@+id/textView48"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="154dp"
+        android:gravity="center"
+
+        android:text="There are 445 servers available use search to find a broker by company name or server name"
+        android:textSize="16dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Can't find your broker?" />
+
+
+</RelativeLayout>
