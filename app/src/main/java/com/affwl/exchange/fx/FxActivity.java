@@ -177,33 +177,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
             getMenuInflater().inflate(R.menu.charts, menu);
 
         }
-        if (currentFragment != null && currentFragment instanceof Fx_History_Fragment) {
-            navigation.setSelectedItemId (R.id.nav_history1);
-            getMenuInflater().inflate(R.menu.menu_main, menu);
 
-        }
-
-        if (currentFragment != null && currentFragment instanceof Fx_Trade_Fragment) {
-            navigation.setSelectedItemId (R.id.nav_trade1);
-            getMenuInflater().inflate(R.menu.trade_main, menu);
-
-
-        }
-        if (currentFragment != null && currentFragment instanceof Fx_Fragment_Mailbox) {
-            getMenuInflater().inflate(R.menu.mailbox_menu, menu);
-
-
-        }
-        if (currentFragment != null && currentFragment instanceof Fx_news_Fragment) {
-            navigation.setSelectedItemId (R.id.nav_news1);
-            getMenuInflater().inflate(R.menu.news_menu, menu);
-        }
-        if (currentFragment != null && currentFragment instanceof Fx_Journal_Fragment) {
-            getMenuInflater().inflate(R.menu.journal_menu, menu);
-        }
-        if (currentFragment != null && currentFragment instanceof Fx_Messages_Fragment) {
-            getMenuInflater().inflate(R.menu.msg, menu);
-        }
         //quotesmenuicon
         if (currentFragment != null && currentFragment instanceof Fx_Fragment_Quotes) {
             getMenuInflater().inflate(R.menu.quotes_menu, menu);
@@ -245,28 +219,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                     return super.onOptionsItemSelected(item);
             }
         }
-        if (currentFragment != null && currentFragment instanceof Fx_Trade_Fragment) {
-            switch (item.getItemId()) {
-                case R.id.itemp:
-                    Intent i = new Intent(this, CustomSpinner.class);
-                    this.startActivity(i);
-                    return true;
-                default:
-                    return super.onOptionsItemSelected(item);
-            }
 
-        }
-        if (currentFragment != null && currentFragment instanceof Fx_Journal_Fragment) {
-            switch (item.getItemId()) {
-                case R.id.send:
-                    Intent i = new Intent(this, Problem_Description.class);
-                    this.startActivity(i);
-                    return true;
-                default:
-                    return super.onOptionsItemSelected(item);
-            }
-
-        }
 
 
 
@@ -314,27 +267,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         }
 
 
-            if (currentFragment != null && currentFragment instanceof Fx_Fragment_Mailbox) {
-                switch (item.getItemId()) {
-                    case R.id.m1:
-                        Intent i = new Intent(this, Mailbox1.class);
-                        this.startActivity(i);
-                        return true;
 
-                    case R.id.del1:
-                        CheckBox cb_mailbox;
-                        Toolbar toolbar2;
-                                cb_mailbox=(CheckBox)findViewById(R.id.cb_mailbox);
-                              cb_mailbox.setVisibility(View.VISIBLE);
-
-                        toolbar2=(Toolbar)findViewById(R.id.toolbar2);
-                        toolbar2.setVisibility(View.VISIBLE);
-                            return true;
-                    default:
-                        return super.onOptionsItemSelected(item);
-                }
-
-            }
             return super.onOptionsItemSelected(item);
 
     }
@@ -377,75 +310,11 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
             ft.commit ();
 
             invalidateOptionsMenu();
-        } else if (id == R.id.nav_trade) {
-            setTitle("Trade");
-            layout.setVisibility(View.VISIBLE);
-            currentFragment=new Fx_Trade_Fragment ();
-            FragmentManager fragmentManager=getSupportFragmentManager ();
-            FragmentTransaction ft=fragmentManager.beginTransaction ();
-            ft.replace (R.id.xzz ,currentFragment);    //content_fx
-            ft.commit ();
-            invalidateOptionsMenu();
-        } else if (id == R.id.nav_history) {
-            setTitle("History");
-            layout.setVisibility(View.VISIBLE);
-            currentFragment=new Fx_History_Fragment();
-            FragmentManager fragmentManager=getSupportFragmentManager ();
-            FragmentTransaction ft=fragmentManager.beginTransaction ();
-            ft.replace (R.id.xzz ,currentFragment);    //content_fx
-            ft.commit ();
-            invalidateOptionsMenu();
         }
-        else if (id == R.id.nav_mailbox) {
-            setTitle("Mailbox");
-            layout.setVisibility(View.VISIBLE);
-            currentFragment=new Fx_Fragment_Mailbox ();
-            FragmentManager fragmentManager=getSupportFragmentManager ();
-            FragmentTransaction ft=fragmentManager.beginTransaction ();
-            ft.replace (R.id.xzz ,currentFragment);
-            //content_fx
-            ft.commit ();
-            invalidateOptionsMenu();
-        } else if (id == R.id.nav_news) {
-            setTitle("News");
-            layout.setVisibility(View.VISIBLE);
-            currentFragment=new Fx_news_Fragment ();
-            FragmentManager fragmentManager=getSupportFragmentManager ();
-            FragmentTransaction ft=fragmentManager.beginTransaction ();
-            ft.replace (R.id.xzz ,currentFragment);    //content_fx
-            ft.commit ();
-            invalidateOptionsMenu();
-        } else if (id == R.id.nav_message) {
-            setTitle("Chat");
-            layout.setVisibility(View.VISIBLE);
-            currentFragment=new Fx_Messages_Fragment ();
-            FragmentManager fragmentManager=getSupportFragmentManager ();
-            FragmentTransaction ft=fragmentManager.beginTransaction ();
-            ft.replace (R.id.xzz ,currentFragment);    //content_fx
-            ft.commit ();
-            invalidateOptionsMenu();
-        } else if (id == R.id.nav_settings) {
+       else if (id == R.id.nav_settings) {
             setTitle("Settings");
             layout.setVisibility(View.VISIBLE);
             currentFragment=new Fx_Fragment_Settings();
-            FragmentManager fragmentManager=getSupportFragmentManager ();
-            FragmentTransaction ft=fragmentManager.beginTransaction ();
-            ft.replace (R.id.xzz ,currentFragment);    //content_fx
-            ft.commit ();
-            invalidateOptionsMenu();
-        } else if (id == R.id.nav_journal) {
-            setTitle("Journal");
-            layout.setVisibility(View.VISIBLE);
-            currentFragment=new Fx_Journal_Fragment ();
-            FragmentManager fragmentManager=getSupportFragmentManager ();
-            FragmentTransaction ft=fragmentManager.beginTransaction ();
-            ft.replace (R.id.xzz ,currentFragment);    //content_fx
-            ft.commit ();
-            invalidateOptionsMenu();
-        } else if (id == R.id.nav_about) {
-            setTitle("About");
-            layout.setVisibility(View.VISIBLE);
-            currentFragment=new Fx_About_Fragment();
             FragmentManager fragmentManager=getSupportFragmentManager ();
             FragmentTransaction ft=fragmentManager.beginTransaction ();
             ft.replace (R.id.xzz ,currentFragment);    //content_fx
@@ -513,38 +382,6 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                     setTitle("");
                     return  true;
 
-                case R.id.nav_trade1:
-                    navigationView.getMenu().getItem(2).setChecked(true);
-                    currentFragment=new Fx_Trade_Fragment ();
-                    FragmentTransaction fragmentTransaction2=getSupportFragmentManager ().beginTransaction ();
-                    fragmentTransaction2.replace (R.id.xzz,currentFragment);
-                    fragmentTransaction2.commit();
-                    Log.i (TAG,"nav_quotes clicked"+ id);
-                    layout.setVisibility(View.VISIBLE);
-                    setTitle("Trade");
-                    invalidateOptionsMenu();
-                    return  true;
-                case  R.id.nav_history1:
-                    navigationView.getMenu().getItem(3).setChecked(true);
-                    currentFragment=new Fx_History_Fragment ();
-                    FragmentTransaction fragmentTransaction3=getSupportFragmentManager ().beginTransaction ();
-                    fragmentTransaction3.replace (R.id.xzz,currentFragment);
-                    fragmentTransaction3.commit();
-                    setTitle("History");
-                    invalidateOptionsMenu();
-                    Log.i (TAG,"nav_quotes clicked"+ id);
-                    layout.setVisibility(View.VISIBLE);
-                    return  true;
-                case R.id.nav_news1:
-                    navigationView.getMenu().getItem(4).setChecked(true);
-                    currentFragment=new Fx_news_Fragment ();
-                    FragmentTransaction fragmentTransaction4=getSupportFragmentManager ().beginTransaction ();
-                    fragmentTransaction4.replace (R.id.xzz,currentFragment);
-                    fragmentTransaction4.commit();
-                    setTitle("News");
-                    invalidateOptionsMenu();
-                    layout.setVisibility(View.VISIBLE);
-                    return  true;
             }
             //FragmentTransaction fragmentTransaction=getSupportFragmentManager ().beginTransaction ();
             //fragmentTransaction.replace (R.id.xzz,fragment1,"");

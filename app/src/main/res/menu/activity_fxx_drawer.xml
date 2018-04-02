@@ -4,54 +4,18 @@
     xmlns:include="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/nav_quotes"
+        android:icon="@drawable/quotes36dp"
+        android:title="Quotes" />
+    <item
+        android:id="@+id/nav_charts"
+        android:icon="@drawable/charts"
+        android:title="Charts" />
 
-        <item
-            android:id="@+id/nav_quotes"
-            android:icon="@drawable/quotes36dp"
-            android:title="Quotes" />
-        <item
-            android:id="@+id/nav_charts"
-            android:icon="@drawable/charts"
-            android:title="Charts" />
-        <item
-            android:id="@+id/nav_trade"
-            android:icon="@drawable/ic_trending_up_black_36dp"
-            android:title="Trade" />
-        <item
-            android:id="@+id/nav_history"
-            android:icon="@drawable/history"
-            android:title="History" />
-        <item
-            android:id="@+id/nav_news"
-            android:icon="@drawable/news"
-            android:title="News" />
-    </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_mailbox"
-                android:icon="@drawable/mailbox"
-                android:title="Mailbox" />
-
-            <item
-                android:id="@+id/nav_message"
-                android:icon="@drawable/message"
-                android:title="Messages" />
-            <item
-                android:id="@+id/nav_settings"
-                android:icon="@drawable/ic_menu_manage"
-                android:title="Settings" />
-            <item
-                android:id="@+id/nav_journal"
-                android:icon="@drawable/journal"
-                android:title="Journal" />
-            <item
-                android:id="@+id/nav_about"
-                android:icon="@drawable/about"
-                android:title="About" />
-        </menu>
-    </item>
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_menu_manage"
+        android:title="Settings" />
 
 </menu>

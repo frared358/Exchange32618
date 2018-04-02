@@ -130,7 +130,7 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
             textView3=itemView.findViewById(R.id.tv3);
 
             demo_card.setOnClickListener (new View.OnClickListener () {
-                public LinearLayout llCurrency,llChart,llNewOrder,llProperties,llDOM,llMarketStatistics,llAVW;
+                public LinearLayout llCurrency,llChart,llNewOrder,llProperties,llMarketStatistics,llAVW;
 
                 @Override
                 public void onClick(final View v) {
@@ -141,7 +141,6 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                     llChart=viewdialog.findViewById (R.id.llChart);
                     llNewOrder=viewdialog.findViewById (R.id.llNewOrder);
                     llProperties=viewdialog.findViewById (R.id.llProperties);
-                    llDOM=viewdialog.findViewById (R.id.llDOM);
                     llMarketStatistics=viewdialog.findViewById (R.id.llMarketStatistics);
                     llAVW=viewdialog.findViewById (R.id.llAVW);
 
@@ -201,15 +200,6 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                             viewdialog.getContext ().startActivity (new Intent (viewdialog.getContext (),Fx_Properties_Activity.class));
 
                             Toast.makeText (viewdialog.getContext (), "Properties", Toast.LENGTH_SHORT).show ();
-                        }
-                    });
-
-                    llDOM.setOnClickListener (new View.OnClickListener () {
-                        @Override
-                        public void onClick(View v) {
-                            viewdialog.getContext ().startActivity (new Intent (viewdialog.getContext (),Fx_DOM_Activity.class));
-
-                            Toast.makeText (viewdialog.getContext (), "Depth of Market", Toast.LENGTH_SHORT).show ();
                         }
                     });
 

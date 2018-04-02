@@ -11,19 +11,4 @@
         android:icon="@drawable/charts"
         android:title="Charts" />
 
-    <item
-        android:id="@+id/nav_trade1"
-        android:icon="@drawable/ic_trending_up_black_36dp"
-        android:title="Trade" />
-
-    <item
-        android:id="@+id/nav_history1"
-        android:icon="@drawable/history"
-        android:title="History" />
-
-    <item
-        android:id="@+id/nav_news1"
-        android:icon="@drawable/news"
-        android:title="News" />
-
 </menu>

@@ -322,7 +322,7 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
 
     public void setListData()
     {
-        String coy[] = {"Instant Excecution", "Buy Limit", "Sell Limit", "Buy Stop", "Sell Stop", "Buy Stop Limit", "Sell Stop Limit"};
+        String coy[] = {"Instant Excecution","Request Execution", "Buy Limit", "Sell Limit", "Buy Stop", "Sell Stop", "Buy Stop Limit", "Sell Stop Limit"};
         for (int i = 0; i < coy.length; i++) {
 
             final SpinnerModel sched = new SpinnerModel();
