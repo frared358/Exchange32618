@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.affwl.exchange.DataHolder;
 import com.affwl.exchange.R;
@@ -34,9 +35,9 @@ import java.util.List;
 public class FragmentCricketInplay extends Fragment {
 
     RecyclerView recycleViewCricketInplay;
-    private List<HighlightsData> HighlightsList= new ArrayList<>();
-    HighlightsAdapter inplayAdapter;
-
+    private List<SportsData> HighlightsList= new ArrayList<>();
+    SportsNameAdapter inplayAdapter;
+    TextView txtVNoData;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -48,8 +49,10 @@ public class FragmentCricketInplay extends Fragment {
         recycleViewCricketInplay.setLayoutManager(mLayoutManager);
         recycleViewCricketInplay.setItemAnimator(new DefaultItemAnimator());
 
-        inplayAdapter = new HighlightsAdapter(FragmentCricketInplay.this.getActivity(),HighlightsList);
+        inplayAdapter = new SportsNameAdapter(FragmentCricketInplay.this.getActivity(),HighlightsList);
         new CricketInplayAsyncTask().execute("http://5.189.140.198/Prince99/Prince.svc/Data/Inplay");
+
+        txtVNoData = view.findViewById(R.id.txtVNoData);
         return view;
     }
 
@@ -112,14 +115,17 @@ public class FragmentCricketInplay extends Fragment {
             Log.i("Check",""+result);
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
-                String strData = jsonObjMain.getString("fancyList");
+                String strData = jsonObjMain.getString("data");
                 JSONArray arrayData = new JSONArray(strData);
                 int length = arrayData.length();
+                if(length == 0){
+                    txtVNoData.setVisibility(View.VISIBLE);
+                }
                 for(int i =0 ; i<length;i++){
                     JSONObject key = arrayData.getJSONObject(i);
                     String matchName = key.getString("matchName");
                     Log.i("TAG",""+matchName);
-                    HighlightsList.add(new HighlightsData(matchName));
+                    HighlightsList.add(new SportsData(matchName));
                     inplayAdapter.notifyDataSetChanged();
                 }
                 recycleViewCricketInplay.setAdapter(inplayAdapter);

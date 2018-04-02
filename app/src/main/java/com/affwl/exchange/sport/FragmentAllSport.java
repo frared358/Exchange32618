@@ -1,10 +1,7 @@
 package com.affwl.exchange.sport;
 
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,19 +10,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.affwl.exchange.DataHolder;
-import com.affwl.exchange.MainActivity;
 import com.affwl.exchange.R;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,12 +37,15 @@ public class FragmentAllSport extends Fragment{
 
 
     RecyclerView recycleViewHighlights;
-    private List<HighlightsData> HighlightsList= new ArrayList<>();
-    HighlightsAdapter highlightsAdapter;
+    private List<SportsData> HighlightsList= new ArrayList<>();
+    SportsNameAdapter sportsNameAdapter;
+    TextView txtVNoData;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_all_sport, container, false);
+
+        txtVNoData = view.findViewById(R.id.txtVNoData);
 
         recycleViewHighlights = view.findViewById(R.id.recycleViewHighlights);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -56,9 +53,24 @@ public class FragmentAllSport extends Fragment{
         recycleViewHighlights.setLayoutManager(mLayoutManager);
         recycleViewHighlights.setItemAnimator(new DefaultItemAnimator());
 
-        highlightsAdapter = new HighlightsAdapter(FragmentAllSport.this.getActivity(),HighlightsList);
+        sportsNameAdapter = new SportsNameAdapter(FragmentAllSport.this.getActivity(),HighlightsList);
 
+//        recycleViewHighlights.addOnItemTouchListener(
+//                new SportNameRecycleItemClickListener(getActivity(), new SportNameRecycleItemClickListener.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(View view, int position) {
+//                        try {
+//                            sportsNameAdapter.setSelected(position);
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                })
+//        );
+
+        //new HighlightsAsyncTask().execute("http://5.189.140.198/Prince99/Prince.svc/Navigation/SportsList");
         new HighlightsAsyncTask().execute("http://5.189.140.198/Prince99/Prince.svc/Data/Highlights?sid=4");
+
         return view;
     }
 
@@ -124,14 +136,45 @@ public class FragmentAllSport extends Fragment{
                 String strData = jsonObjMain.getString("data");
                 JSONArray arrayData = new JSONArray(strData);
                 int length = arrayData.length();
+
+                if(length == 0){
+                    txtVNoData.setVisibility(View.VISIBLE);
+                }
+
                 for(int i =0 ; i<length;i++){
+
                     JSONObject key = arrayData.getJSONObject(i);
                     String matchName = key.getString("matchName");
+                    String matchDate = key.getString("matchDate");
+                    String bfId = key.getString("bfId");
+                    int marketId = key.getInt("marketId");
+                    int matchId = key.getInt("matchId");
+
                     Log.i("TAG",""+matchName);
-                    HighlightsList.add(new HighlightsData(matchName));
-                    highlightsAdapter.notifyDataSetChanged();
+                    HighlightsList.add(new SportsData(matchName,matchDate,bfId,matchId,marketId));
+
+                    sportsNameAdapter.notifyDataSetChanged();
+
+//                    JSONObject key = arrayData.getJSONObject(i);
+//                    String sportName = key.getString("name");
+//                    int sportId = key.getInt("id");
+//                    Log.i("TAG",""+sportName);
+//                    HighlightsList.add(new SportsData(sportName,sportId));
+//                    /*,matchNamemarketId
+//                            , matchDate
+//                            , matchId
+//                            , runner1Back
+//                            , runner1Lay
+//                            , runner1Name
+//                            , runner2Back
+//                            , runner2Lay
+//                            , runner2Name
+//                            , runner3Back
+//                            , runner3Lay
+//                            , runner3Name*/
+//                    sportsNameAdapter.notifyDataSetChanged();
                 }
-                recycleViewHighlights.setAdapter(highlightsAdapter);
+                recycleViewHighlights.setAdapter(sportsNameAdapter);
 
             } catch (JSONException e) {
                 e.printStackTrace();

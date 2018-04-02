@@ -3,6 +3,7 @@ package com.affwl.exchange.sport;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -11,17 +12,37 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.affwl.exchange.DataHolder;
 import com.affwl.exchange.R;
 import com.google.gson.JsonElement;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import microsoft.aspnet.signalr.client.MessageReceivedHandler;
@@ -34,14 +55,21 @@ import microsoft.aspnet.signalr.client.hubs.HubProxy;
 //Bet
 public class BetActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
+    String matchName,matchDate,bfId;
+    int marketId,matchId;
     ImageView imgVCheck,imgRightDrawer;
     DrawerLayout drawerBet;
     NavigationView navigationView1,navigationView2;
-    LinearLayout pink1,pink2,pink3,blue1,blue2,blue3;
+    //LinearLayout pink1,pink2,pink3,blue1,blue2,blue3;
     TextView txtVChipsStake;
     ImageView imgVFav;
     Handler handler;
-    int vchscv;
+
+    RecyclerView recycleViewMarketData;
+    private List<MarketData> MarketDataList = new ArrayList<>();
+    MarketDataAdapter marketDataAdapter;
+
+    Handler handlerMarketData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,19 +82,28 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         imgVCheck.setOnClickListener(this);
         imgRightDrawer = findViewById(R.id.imgRightDrawer);
         imgRightDrawer.setOnClickListener(this);
-        pink1 = findViewById(R.id.pink1);
-        pink1.setOnClickListener(this);
-        pink2 = findViewById(R.id.pink2);
-        pink2.setOnClickListener(this);
-        pink3 = findViewById(R.id.pink3);
-        pink3.setOnClickListener(this);
 
-        blue1 = findViewById(R.id.blue1);
-        blue1.setOnClickListener(this);
-        blue2 = findViewById(R.id.blue2);
-        blue2.setOnClickListener(this);
-        blue3 = findViewById(R.id.blue3);
-        blue3.setOnClickListener(this);
+        recycleViewMarketData = findViewById(R.id.recycleViewMarketData);
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+
+        recycleViewMarketData.setLayoutManager(mLayoutManager);
+        recycleViewMarketData.setItemAnimator(new DefaultItemAnimator());
+        marketDataAdapter = new MarketDataAdapter(this,MarketDataList);
+
+//        pink1 = findViewById(R.id.pink1);
+//        pink1.setOnClickListener(this);
+//        pink2 = findViewById(R.id.pink2);
+//        pink2.setOnClickListener(this);
+//        pink3 = findViewById(R.id.pink3);
+//        pink3.setOnClickListener(this);
+//
+//        blue1 = findViewById(R.id.blue1);
+//        blue1.setOnClickListener(this);
+//        blue2 = findViewById(R.id.blue2);
+//        blue2.setOnClickListener(this);
+//        blue3 = findViewById(R.id.blue3);
+//        blue3.setOnClickListener(this);
 
         txtVChipsStake = findViewById(R.id.txtVChipsStake);
         txtVChipsStake.setOnClickListener(this);
@@ -85,7 +122,35 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         navigationView2 = (NavigationView) findViewById(R.id.nav_view2);
         navigationView2.setNavigationItemSelectedListener(this);
 
+
+        Intent i = getIntent();
+        marketId = getIntent().getIntExtra("marketId",0);
+        matchName = getIntent().getStringExtra("matchName");
+        matchDate = getIntent().getStringExtra("matchDate");
+        matchId = getIntent().getIntExtra("matchId",0);
+        bfId = getIntent().getStringExtra("bfId");
+
+        Log.i("TAG",matchName+" "+marketId+" "+matchId);
+
+
         handler = new Handler();
+
+        handlerMarketData = new Handler();
+        handlerMarketData.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                new getMartketDataAsyncTask().execute("http://5.189.140.198/Prince99/Prince.svc/Data/MktData?mtid="+matchId+"&mktid="+marketId);
+            }
+        },2000);
+
+
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new getStackAsyncTask().execute("http://5.189.140.198/Prince99/Prince.svc/Settings/GetBetStakeSetting");
 
     }
 
@@ -98,9 +163,9 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
             case R.id.imgRightDrawer:
                 drawerBet.openDrawer(navigationView1);
                 break;
-            case R.id.blue1: case R.id.blue2: case R.id.blue3: case R.id.pink1: case R.id.pink2: case R.id.pink3:
-                drawerBet.openDrawer(navigationView2);
-                break;
+//            case R.id.blue1: case R.id.blue2: case R.id.blue3: case R.id.pink1: case R.id.pink2: case R.id.pink3:
+//                drawerBet.openDrawer(navigationView2);
+//                break;
             case R.id.txtVChipsStake:
                 dialogStack();
                 break;
@@ -109,7 +174,20 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                 intent.putExtra("KEY_SELECT","true");
                 startActivity(intent);
                 break;
+            case R.id.txtVStackValue1:
+                stackInput(txtVStackValue1);
+                break;
+            case R.id.txtVStackValue2:
+                stackInput(txtVStackValue2);
+                break;
+            case R.id.txtVStackValue3:
+                stackInput(txtVStackValue3);
+                break;
         }
+    }
+
+    public void stackInput(TextView stackTextView){
+        editStackValue.setText(stackTextView.getText().toString().replace("CHIPS ",""));
     }
 
     @Override
@@ -126,14 +204,32 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+    TextView txtVOK,txtVStackValue1,txtVStackValue2,txtVStackValue3;
+    TextView txtVCancel;
+    TextView txtVStackEdit;
+    EditText editStackValue;
     void dialogStack(){
 // custom dialog
+
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_stack);
+        dialog.setTitle("Stack");
+        txtVOK =  dialog.findViewById(R.id.txtVOK);
+        txtVCancel =  dialog.findViewById(R.id.txtVCancel);
+        txtVStackEdit = dialog.findViewById(R.id.txtVStackEdit);
 
-        TextView txtVOK =  dialog.findViewById(R.id.txtVOK);
-        TextView txtVCancel =  dialog.findViewById(R.id.txtVCancel);
-        TextView txtVStackEdit = dialog.findViewById(R.id.txtVStackEdit);
+        editStackValue = dialog.findViewById(R.id.editStackValue);
+        txtVStackValue1 =  dialog.findViewById(R.id.txtVStackValue1);
+        txtVStackValue2 =  dialog.findViewById(R.id.txtVStackValue2);
+        txtVStackValue3 =  dialog.findViewById(R.id.txtVStackValue3);
+
+        txtVStackValue1.setOnClickListener(this);
+        txtVStackValue2.setOnClickListener(this);
+        txtVStackValue3.setOnClickListener(this);
+
+        txtVStackValue1.setText("CHIPS "+StackValue1);
+        txtVStackValue2.setText("CHIPS "+StackValue2);
+        txtVStackValue3.setText("CHIPS "+StackValue3);
 
         txtVOK.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,4 +306,157 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
             //Log.i("graph",e.toString());}
         }
     }
+
+    public String  getStackApi(String url){
+        InputStream inputStream = null;
+        String result = "";
+        try {
+
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpGet Httpget = new HttpGet(url);
+
+            Httpget.setHeader("Accept", "application/json");
+            Httpget.setHeader("Content-type", "application/json");
+            Httpget.setHeader("Token", DataHolder.LOGIN_TOKEN);
+
+            HttpResponse httpResponse = httpclient.execute(Httpget);
+            inputStream = httpResponse.getEntity().getContent();
+
+            if(inputStream != null){
+                try {
+                    result = convertInputStreamToString(inputStream);
+                }
+                catch (Exception e){
+                    Log.e("Check",""+e);
+                }
+            }
+            else
+                result = "Did not work!";
+            Log.e("Check","how "+result);
+
+        } catch (Exception e) {
+            Log.d("InputStream", ""+e);
+        }
+        return result;
+    }
+
+    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+        while((line = bufferedReader.readLine()) != null){
+            result += line;
+            Log.e("Line",result);
+        }
+
+        inputStream.close();
+        return result;
+    }
+
+    String StackValue1,StackValue2,StackValue3;
+
+    private class getStackAsyncTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            return getStackApi(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.i("Check",""+result);
+            try {
+                JSONObject jsonObjMain = new JSONObject(result.toString());
+                String strData = jsonObjMain.getString("data");
+                Log.i("TAG",""+strData);
+
+                JSONObject jsonObj = new JSONObject(jsonObjMain.getString("data"));
+
+                StackValue1 = jsonObj.getString("stake1");
+                StackValue2 = jsonObj.getString("stake2");
+                StackValue3 = jsonObj.getString("stake3");
+                txtVChipsStake.setText("CHIPS "+StackValue1);
+                DataHolder.STACK_VALUE = Double.valueOf(StackValue1);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public String  getMartketDataApi(String url){
+        InputStream inputStream = null;
+        String result = "";
+        try {
+
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpGet Httpget = new HttpGet(url);
+
+            Httpget.setHeader("Accept", "application/json");
+            Httpget.setHeader("Content-type", "application/json");
+            Httpget.setHeader("Token", DataHolder.LOGIN_TOKEN);
+
+            HttpResponse httpResponse = httpclient.execute(Httpget);
+            inputStream = httpResponse.getEntity().getContent();
+
+            if(inputStream != null){
+                try {
+                    result = convertInputStreamToString(inputStream);
+                }
+                catch (Exception e){
+                    Log.e("Check",""+e);
+                }
+            }
+            else
+                result = "Did not work!";
+            Log.e("Check","how "+result);
+
+        } catch (Exception e) {
+            Log.d("InputStream", ""+e);
+        }
+        return result;
+    }
+
+    private class getMartketDataAsyncTask extends AsyncTask<String, Void, String> {
+
+
+        @Override
+        protected String doInBackground(final String... urls) {
+
+
+            return getMartketDataApi(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.i("Check",""+result);
+            try {
+                JSONObject jsonObjMain = new JSONObject(result.toString());
+                JSONObject jsonObjData = new JSONObject(jsonObjMain.getString("data"));
+                String runnerData = jsonObjData.getString("runnerData");
+                Log.i("TAG",""+runnerData);
+                JSONArray arrayData = new JSONArray(runnerData);
+                int length = arrayData.length();
+
+                for(int i =0 ; i<length;i++){
+                    JSONObject key = arrayData.getJSONObject(i);
+                    String back1 = key.getString("back1");
+                    String lay1 = key.getString("lay1");
+                    String backSize1 = key.getString("backSize1");
+                    String laySize1 = key.getString("laySize1");
+                    String runnerName = key.getString("runnerName");
+
+                    MarketDataList.add(new MarketData(runnerName,back1,lay1,backSize1,laySize1));
+
+                    marketDataAdapter.notifyDataSetChanged();
+
+                }
+                recycleViewMarketData.setAdapter(marketDataAdapter);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 }

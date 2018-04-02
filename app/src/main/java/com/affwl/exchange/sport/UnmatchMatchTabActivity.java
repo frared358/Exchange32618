@@ -64,9 +64,9 @@ public class UnmatchMatchTabActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             if (position ==0) {
-                return new UnmatchFragment();
-            } else if (position == 1) {
                 return new MatchFragment();
+            } else if (position == 1) {
+                return new UnmatchFragment();
             } else {
                 return new SettingFragment();
             }

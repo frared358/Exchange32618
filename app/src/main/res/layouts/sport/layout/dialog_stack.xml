@@ -4,21 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="5dp"
-    android:layout_margin="30dp">
+    android:padding="1dp"
+    android:layout_margin="10dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Stake"
-        android:textSize="18dp"
-        android:textColor="@color/colorBlack"
-        android:gravity="center"/>
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Stake"-->
+        <!--android:textSize="18dp"-->
+        <!--android:textColor="@color/colorBlack"-->
+        <!--android:gravity="center"/>-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/txtVStackValue1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorGreay"
@@ -31,6 +32,7 @@
             android:layout_weight="1"/>
 
         <TextView
+            android:id="@+id/txtVStackValue2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorGreay"
@@ -43,6 +45,7 @@
             android:layout_weight="1"/>
 
         <TextView
+            android:id="@+id/txtVStackValue3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorGreay"
@@ -87,12 +90,14 @@
             android:textSize="15dp" />
 
         <EditText
+            android:id="@+id/editStackValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:padding="5dp"
             android:textStyle="bold"
+            android:inputType="number"
             android:background="@drawable/border_greay_small"
             android:textSize="15dp" />
 
