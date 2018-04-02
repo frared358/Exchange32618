@@ -31,6 +31,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Initiating components of Login Activity
         initComponent();
     }
 
