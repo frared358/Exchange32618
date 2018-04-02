@@ -75,8 +75,10 @@
         <activity android:name=".fx.Indicators" />
         <activity android:name=".fx.Mailbox1" />
         <activity android:name=".fx.Selected_symbols" />
-        <activity android:name=".fx.Add_symbol" />
+       <activity android:name=".fx.Add_symbol"/>
+        <activity android:name=".fx.Add_symbol_Forex"/>
         <activity android:name=".fx.M_delete" />
+
         <activity android:name=".fx.OneClickTrading" />
         <activity
             android:name=".sport.SportActivity"

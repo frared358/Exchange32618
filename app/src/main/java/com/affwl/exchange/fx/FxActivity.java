@@ -222,7 +222,6 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
 
 
 
-
         if (currentFragment != null && currentFragment instanceof Fx_Fragment_Quotes) {
             switch (item.getItemId()) {
                 case R.id.edit:
@@ -292,7 +291,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
 //            FragmentTransaction ft=fragmentManager.beginTransaction ();
 //            ft.replace (R.id.xzz ,currentFragment);    //content_fx
 //            ft.commit ();
-//            invalidateOptionsMenu();
+           invalidateOptionsMenu();
 
             /** hide frame layout */
             //FrameLayout layout = (FrameLayout)findViewById(R.id.xzz);
@@ -308,10 +307,9 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
             FragmentTransaction ft=fragmentManager.beginTransaction ();
             ft.replace (R.id.xzz ,currentFragment);    //content_fx
             ft.commit ();
-
             invalidateOptionsMenu();
         }
-       else if (id == R.id.nav_settings) {
+      else if (id == R.id.nav_settings) {
             setTitle("Settings");
             layout.setVisibility(View.VISIBLE);
             currentFragment=new Fx_Fragment_Settings();
