@@ -291,7 +291,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
 //            FragmentTransaction ft=fragmentManager.beginTransaction ();
 //            ft.replace (R.id.xzz ,currentFragment);    //content_fx
 //            ft.commit ();
-//            invalidateOptionsMenu();
+           invalidateOptionsMenu();
 
             /** hide frame layout */
             //FrameLayout layout = (FrameLayout)findViewById(R.id.xzz);
