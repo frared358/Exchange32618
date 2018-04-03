@@ -161,7 +161,8 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
                 ODDVALUE = String.format("%.2f",inc);
                 editTxtVOddValue.setText(ODDVALUE);
 
-
+                PROFITVALUE = String.format("Profit CHIPS %.2f", profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
+                txtVProfitValue.setText(PROFITVALUE);
             }
         } );
 
@@ -179,6 +180,9 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
                 double dec = decrement(oddVal);
                 ODDVALUE = String.format("%.2f",dec);
                 editTxtVOddValue.setText(ODDVALUE);
+
+                PROFITVALUE = String.format("Profit CHIPS %.2f", profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
+                txtVProfitValue.setText(PROFITVALUE);
             }
         });
 
@@ -197,6 +201,9 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
                 Log.i("TAG",dec+"");
                 STACKVALUE = String.format("%.2f",dec);
                 editTxtStackValue.setText(STACKVALUE);
+
+                PROFITVALUE = String.format("Profit CHIPS %.2f", profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
+                txtVProfitValue.setText(PROFITVALUE);
             }
         });
 
@@ -213,6 +220,9 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
                 double inc = increment(stackVal);
                 STACKVALUE = String.format("%.2f",inc);
                 editTxtStackValue.setText(STACKVALUE);
+
+                PROFITVALUE = String.format("Profit CHIPS %.2f", profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
+                txtVProfitValue.setText(PROFITVALUE);
             }
         });
 
