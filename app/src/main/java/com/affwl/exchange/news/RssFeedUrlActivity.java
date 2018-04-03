@@ -138,24 +138,32 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
         ok_alert=myAlertDialog.findViewById(R.id.ok_alert);
         cancel_alert=myAlertDialog.findViewById(R.id.cancel_alert);
 
-        for(int i = (rssUrlDetailsList.size() - 1); i >= 0; i--) {
-            Log.i("List", " " + rssUrlDetailsList.get(i).getRssUrl() + " " + rssUrlDetailsList.get(i).getIntCheck());
-            if (rssUrlDetailsList.get(i).getIntCheck() == 1) {
-                String url=rssUrlDetailsList.get(i).getRssUrl();
-                String stringUrl = null;
-                String extension = null;
-                int leng=url.length();
-                if(leng>20)
-                {
-                    stringUrl =url.substring(0, leng/2) + "...";
-                    extension = url.substring(url.lastIndexOf(".") + 1);
-                    Toast.makeText(this, " "+stringUrl+" "+extension, Toast.LENGTH_SHORT).show();
-                }
-                alertMessage.append(stringUrl+extension+" , ");
+        String stringUrl = "";
+        String extension = "";
 
-                Log.i("Size", "" + rssUrlDetailsList.size());
+        for(int i=0;i<rssUrlDetailsList.size();i++){
+            if (rssUrlDetailsList.get(i).getIntCheck() == 1) {
+                myList.add(rssUrlDetailsList.get(i).getRssUrl());
             }
-        }
+
+            if(myList.size()>1) {
+                alertMessage.append(myList.size()+"");
+                Log.i("Alert check"," "+alertMessage.getText().toString());
+            }
+           else {
+                String url=myList.get(i);
+                int leng=url.length();
+
+                    if (leng > 20) {
+                        stringUrl = url.substring(0, leng / 2) + "...";
+                        extension = url.substring(url.lastIndexOf(".") + 1);
+//                        alertMessage.append(stringUrl + extension + " , ");
+                        Log.i("Alert check"," "+alertMessage.getText().toString());
+
+                    }
+                }
+                }
+                myList.clear();
 
 
         cancel_alert.setOnClickListener(new View.OnClickListener() {
@@ -177,11 +185,8 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onClick(View v) {
                 for(int i = (rssUrlDetailsList.size() - 1); i >= 0; i--) {
-                    Log.i("Size",""+rssUrlDetailsList.size());
-                    Log.i("List"," "+rssUrlDetailsList.get(i).getRssUrl()+" "+rssUrlDetailsList.get(i).getIntCheck());
                     if(rssUrlDetailsList.get(i).getIntCheck()==1)
                     {
-                        Toast.makeText(RssFeedUrlActivity.this, ""+i, Toast.LENGTH_SHORT).show();
                         rssUrlDetailsList.remove(i);
 
                     }
@@ -235,7 +240,10 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onClick(View v) {
                 rssUrlDetailsList.remove(index);
-                rssUrlAdapter.notifyDataSetChanged();
+
+                rssUrlAdapter = new RssUrlAdapter(RssFeedUrlActivity.this,rssUrlDetailsList);
+                display_url_list.setAdapter(rssUrlAdapter);
+
                 dialog.dismiss();
 
             }
@@ -260,7 +268,6 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
         Toast.makeText(this, " "+rssUrlDetailsList.get(position).getRssUrl(), Toast.LENGTH_SHORT).show();
         return true;
     }

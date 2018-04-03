@@ -12,13 +12,14 @@ import com.affwl.exchange.binary.Sec60Activity;
 import com.affwl.exchange.fx.FxActivity;
 import com.affwl.exchange.indie.IndieActivity;
 import com.affwl.exchange.news.NewsActivity;
+import com.affwl.exchange.settings.SettingsMainActivity;
 import com.affwl.exchange.sport.SportActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView txtVIndie,txtV60Sec,txtVsports,fx;
     ImageView imgVIndie,imgV60Sec,imgVsports,imgVsportsCup,imgfx;
-    LinearLayout news_layout;
+    LinearLayout news_layout,settings_layout;
 
 
     @Override
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imgfx=(ImageView)findViewById(R.id.imgfx);
 
         news_layout=findViewById(R.id.news_layout);
+        settings_layout=findViewById(R.id.settings_layout);
 
         txtVIndie.setOnClickListener(this);
         imgVIndie.setOnClickListener(this);
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imgfx.setOnClickListener(this);
 
         news_layout.setOnClickListener(this);
+        settings_layout.setOnClickListener(this);
 
     }
 
@@ -72,6 +75,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.news_layout:
                 startActivity(new Intent(this,NewsActivity.class));
+                break;
+
+            case R.id.settings_layout:
+                startActivity(new Intent(this, SettingsMainActivity.class));
                 break;
 
         }

@@ -205,4 +205,26 @@
         <item>3 pixcel</item>
         <item>4 pixcel</item>
     </string-array>
+
+    <!-- Settings -->
+    <string name="language_english">English</string>
+    <string name="language_hindi">हिंदी</string>
+    <string name="language_gujarati">ગુજરાતી</string>
+    <string name="language_marathi">मराठी</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="Indie_Data_Streaming_spinner">
+        <item>1 Sec</item>
+        <item>5 Sec</item>
+        <item>Manual</item>
+    </string-array>
+    <string-array name="Indie_Default_view_spinner">
+        <item>Home</item>
+        <item>Market Watch</item>
+        <item>Market Movers</item>
+    </string-array>
+    <string-array name="Indie_Theme_spinner">
+        <item>White Theme</item>
+        <item>Black Theme</item>
+    </string-array>
 </resources>

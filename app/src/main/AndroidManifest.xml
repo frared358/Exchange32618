@@ -109,6 +109,8 @@
         <activity android:name=".news.WebActivity" />
         <activity android:name=".news.RssFeedListActivity"></activity>
         <activity android:name=".news.NewsActivity"/>
+
+        <activity android:name=".settings.SettingsMainActivity"/>
     </application>
 
 </manifest>
