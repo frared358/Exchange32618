@@ -49,7 +49,7 @@ public class MatchFragment extends Fragment {
         recycleViewMatchData.setLayoutManager(mLayoutManager);
         recycleViewMatchData.setItemAnimator(new DefaultItemAnimator());
         matchAdapter = new MatchAdapter(MatchFragment.this.getActivity(),MatchList);
-        new MatchAsyncTask().execute("http://5.189.140.198/Prince99/Prince.svc/Reports/GetCurrentBets");
+        new MatchAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Reports/GetCurrentBets");
 
 
         return view;

@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,6 +17,19 @@ import android.widget.Toast;
 
 import com.affwl.exchange.MainActivity;
 import com.affwl.exchange.R;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class LoginActivity extends Activity implements View.OnClickListener{
 
@@ -31,7 +46,6 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //Initiating components of Login Activity
         initComponent();
     }
 
@@ -75,6 +89,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                         Toast.makeText(this, ""+editUser+" "+editPass, Toast.LENGTH_SHORT).show();
                         saveLoginDetails(editUser,editPass);
                     }
+                    new HttpAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Login");
                     startActivity(new Intent(this, MainActivity.class));
                     finish();
                 }
@@ -92,5 +107,105 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         editor.putString("Email", email);
         editor.putString("Password", password);
         editor.commit();
+    }
+
+
+
+    public String  loginApi(String url){
+        InputStream inputStream = null;
+        String result = "";
+        try {
+
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost(url);
+
+            String json = "";
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.accumulate("context","mobile");
+            jsonObject.accumulate("pwd","123456");
+            jsonObject.accumulate("username","francis");
+
+            json = jsonObject.toString();
+            StringEntity se = new StringEntity(json);
+            se.setContentType("application/json");
+
+            httpPost.setEntity(new StringEntity(json));
+            httpPost.setHeader("Accept", "application/json");
+            httpPost.setHeader("Content-type", "application/json");
+            HttpResponse httpResponse = httpclient.execute(httpPost);
+            inputStream = httpResponse.getEntity().getContent();
+
+            if(inputStream != null){
+                try {
+                    result = convertInputStreamToString(inputStream);
+                }
+                catch (Exception e){
+                    Log.e("Check",""+e);
+                }
+            }
+            else
+                result = "Did not work!";
+            Log.e("Check","how "+result);
+
+        } catch (Exception e) {
+            Log.d("InputStream", ""+e);
+        }
+
+        Log.e("result",result+"");
+        //Toast.makeText(MainActivity.this, ""+result, Toast.LENGTH_SHORT).show();
+        return result;
+    }
+
+    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+        while((line = bufferedReader.readLine()) != null){
+            result += line;
+            Log.e("Line",result);
+        }
+
+        inputStream.close();
+        return result;
+    }
+
+    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            return loginApi(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            Log.i("Check",""+result);
+            try {
+                JSONObject jsonObjMain = new JSONObject(result.toString());
+
+                String description = jsonObjMain.getString("description");
+                String response = jsonObjMain.getString("response");
+
+                JSONObject jsonObjRes = new JSONObject(response.toString());
+                JSONObject jsonObjDes = new JSONObject(description.toString());
+                DataHolder.LOGIN_TOKEN = jsonObjRes.getString("AuthToken");
+                String status = jsonObjDes.getString("result");
+
+                if(status.equals("Login Successful")){
+                    Toast.makeText(getApplicationContext(), ""+result, Toast.LENGTH_SHORT).show();
+                }
+                else if (status.equals("Login Successful")){
+                    Toast.makeText(LoginActivity.this,"Invalid Username",Toast.LENGTH_SHORT).show();
+
+                }else if (status.equals("Login Successful")){
+                    Toast.makeText(LoginActivity.this,"Invalid Password",Toast.LENGTH_SHORT).show();
+                }
+
+                Log.i("result","result "+DataHolder.LOGIN_TOKEN+" Status "+status);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
