@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.affwl.exchange.news.NewsActivity">
 
     <android.support.v7.widget.Toolbar
@@ -18,28 +19,10 @@
         app:titleTextColor="@android:color/white" />
 
 
-    <android.support.v4.widget.DrawerLayout
-        android:id="@+id/drawerLayoutIndieNews"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/toolbar"
-        android:layout_marginBottom="40dp"
-        android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="News Categories"-->
-            <!--android:paddingBottom="25dp"-->
-            <!--android:paddingTop="25dp"-->
-            <!--android:textSize="25sp"-->
-            <!--android:gravity="center"-->
-            <!--android:textStyle="bold"-->
-            <!--android:textColor="@color/colorText" />-->
 
             <ListView
                 android:id="@+id/list_rss"
@@ -51,22 +34,5 @@
             </ListView>
 
         </LinearLayout>
-        <android.support.design.widget.NavigationView
-            android:id="@+id/navViewIndieNews"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginRight="100dp"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            app:menu="@menu/indie_drawer_menu" />
 
-    </android.support.v4.widget.DrawerLayout>
-
-    <fragment
-        android:id="@+id/fragmentBottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:name="com.affwl.exchange.indie.BottomFragment"/>
-
-</RelativeLayout>
+</LinearLayout>

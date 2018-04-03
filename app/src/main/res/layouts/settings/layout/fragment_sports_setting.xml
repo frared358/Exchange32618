@@ -7,6 +7,7 @@
 
     <!-- TODO: Update blank fragment layout -->
     <ScrollView
+        android:background="@color/colorBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <LinearLayout
@@ -21,7 +22,9 @@
             android:layout_margin="10dp"
             android:checked="true"
             android:gravity="left"
+            android:textStyle="bold"
             android:padding="3dp"
+            android:textColor="@color/colorWhite"
             android:text="@string/Setting_switch"
             android:textSize="15sp" />
 
@@ -39,6 +42,8 @@
             android:layout_margin="10dp"
             android:checked="true"
             android:gravity="left"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
             android:padding="3dp"
             android:text="Cancel unmatched bets with Trade button"
             android:textSize="15sp" />
@@ -57,6 +62,8 @@
             android:layout_margin="10dp"
             android:checked="true"
             android:gravity="left"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
             android:padding="3dp"
             android:text="Show Account Balance"
             android:textSize="15sp" />
@@ -75,7 +82,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:checked="true"
+            android:textColor="@color/colorWhite"
             android:gravity="left"
+            android:textStyle="bold"
             android:padding="3dp"
             android:text="Show Notifications"
             android:textSize="15sp" />
@@ -93,6 +102,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:checked="true"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
             android:gravity="left"
             android:padding="3dp"
             android:text="Show Menus Overlapped"

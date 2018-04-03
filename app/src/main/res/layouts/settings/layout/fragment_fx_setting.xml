@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.affwl.exchange.settings.FXSettingFragment"
-    android:layout_marginLeft="10dp">
+    android:background="@color/colorBackground"
+    tools:context="com.affwl.exchange.settings.FXSettingFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="QUOTES"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:textStyle="bold"
                 android:layout_marginTop="20sp"/>
 
@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:text="Advanced mode"
                     android:textStyle="bold"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -56,6 +56,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_adv_mode"
                         android:layout_weight="1"
+                        android:textColor="@color/colorWhite"
                         android:text="In the advanced mode,the quotes windows constains spreads,time data,as well as High and Low prices." />
 
                     <CheckBox
@@ -63,6 +64,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:buttonTint="@color/colorWhite"
                         android:checked="false"
                         android:padding="10dp" />
 
@@ -86,7 +88,7 @@
                     android:text="One Click Trading"
                     android:textStyle="bold"
                     android:id="@+id/tv11"
-                    android:textColor="@color/colorBlack" />
+                    android:textColor="@color/colorWhite" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -98,6 +100,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_one_click_trdng"
                         android:layout_weight="1"
+                        android:textColor="@color/colorWhite"
                         android:text="Allows performing trade operations with a single tap without additional confirmation from the trader"/>
 
                     <CheckBox
@@ -105,6 +108,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:checked="false"
+                        android:buttonTint="@color/colorWhite"
                         android:padding="10dp" />
 
                 </LinearLayout>

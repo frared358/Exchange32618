@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorBackground"
     tools:context="com.affwl.exchange.settings.GeneralSettingFragment">
 
 <ScrollView
@@ -14,9 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Language"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp" />
 
         <View
@@ -56,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Choose Language"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp"
             android:layout_weight="1"/>
 
@@ -171,7 +169,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Push Notification"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp" />
 
         <View
@@ -188,7 +186,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Choose your prefered options"
-                android:textColor="@color/colorBlack"
+                android:textColor="@color/colorWhite"
                 android:textSize="20sp"
                 android:layout_weight="1"/>
 
@@ -291,7 +289,7 @@
             android:layout_height="wrap_content"
             android:text="Privacy &amp; Legal"
             android:padding="10dp"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp"/>
 
         <View
@@ -305,7 +303,7 @@
             android:layout_height="wrap_content"
             android:text="Disclaimer"
             android:padding="10dp"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp"/>
 
         <View
@@ -319,7 +317,7 @@
             android:layout_height="wrap_content"
             android:text="Help &amp; Support"
             android:padding="10dp"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp"/>
 
         <View
@@ -333,7 +331,7 @@
             android:layout_height="wrap_content"
             android:text="About us"
             android:padding="10dp"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp"/>
 
         <View
@@ -347,7 +345,7 @@
             android:layout_height="wrap_content"
             android:text="Tutorial"
             android:padding="10dp"
-            android:textColor="@color/colorBlack"
+            android:textColor="@color/colorWhite"
             android:textSize="20sp"/>
 
         <View
@@ -376,7 +374,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Account"
-                    android:textColor="@color/colorBlack"
+                    android:textColor="@color/colorWhite"
                     android:textSize="20sp" />
 
                 <View
@@ -399,6 +397,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Logout"
+                        android:textColor="@color/colorWhite"
                         android:layout_marginLeft="10sp"
                         android:textSize="20sp" />
 

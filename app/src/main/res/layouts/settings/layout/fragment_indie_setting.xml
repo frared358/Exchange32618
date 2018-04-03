@@ -20,6 +20,7 @@
 
         android:id="@+id/viewPagerIndie"
         android:layout_width="match_parent"
+        android:background="@color/colorGreay"
         android:layout_height="wrap_content" />
 
 
