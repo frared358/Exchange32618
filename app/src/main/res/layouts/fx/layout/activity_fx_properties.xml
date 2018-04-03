@@ -15,16 +15,19 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="EURUSD"
+        app:subtitle="US Dollar vs Sweden Kronor"
+        app:subtitleTextColor="@color/colorWhite"
         android:gravity="center"
         android:id="@+id/toolbar2" />
  <ScrollView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <LinearLayout
-
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+
+        >
     <TextView
         android:paddingTop="5dp"
         android:layout_width="wrap_content"
@@ -36,39 +39,40 @@
 
     <View
         android:layout_width="wrap_content"
-        android:layout_height="2dip"
+        android:layout_height="1.5dip"
         android:background="#FF909090" />
 
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/Ptv1"
+                android:layout_width="158dp"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:padding="3dip"
+                android:text="Digits"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="168dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:gravity="right"
+                android:padding="3dip"
+                android:text="5"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+        </TableRow>
     <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/Ptv1"
-            android:layout_width="167dp"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:padding="3dip"
-            android:text="Digits"
-            android:textColor="#000000"
-            android:textSize="16sp" />
-
-        <TextView
-            android:layout_width="175dp"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:padding="3dip"
-            android:text="5"
-            android:layout_marginRight="5dp"
-            android:textColor="#000000"
-            android:textSize="16sp" />
-
-    </TableRow>
-    <TableRow
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
@@ -93,7 +97,7 @@
 
     </TableRow>
     <TableRow
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
@@ -118,7 +122,7 @@
 
     </TableRow>
     <TableRow
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
@@ -143,7 +147,7 @@
 
     </TableRow>
     <TableRow
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
@@ -168,7 +172,7 @@
 
     </TableRow>
     <TableRow
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
@@ -193,7 +197,7 @@
 
     </TableRow>
     <TableRow
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView

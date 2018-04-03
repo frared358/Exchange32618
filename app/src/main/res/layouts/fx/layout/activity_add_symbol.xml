@@ -26,7 +26,8 @@
     android:layout_height="wrap_content"
     android:layout_below="@+id/toolbar2">
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="30dp"
+        android:layout_marginLeft="15dp"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_folder"/>
 
@@ -35,18 +36,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/colorAccent"
         android:text="Forex"
-        android:textStyle="bold"
+
         android:textSize="16dp"/>
 
 </LinearLayout>
     <View
         android:id="@+id/viewf"
         android:layout_width="match_parent"
-        android:layout_height="0.2dp"
-        android:layout_margin="10dp"
+        android:layout_height="0.1dp"
         android:layout_below="@+id/ll_add_symbol"
-        android:background="@color/colorBlack"
+        android:background="@color/colorGreay"
         android:visibility="visible" />
     <LinearLayout
 
@@ -56,7 +58,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_add_symbol">
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
+            android:layout_marginLeft="15dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_folder"/>
 
@@ -64,17 +67,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorAccent"
             android:text="CFD"
-            android:textStyle="bold"
             android:textSize="16dp"/>
 
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.2dp"
-        android:layout_margin="10dp"
+        android:layout_height="0.1dp"
         android:layout_below="@+id/ll_add_symbol1"
-        android:background="@color/colorBlack"
+        android:background="@color/colorGreay"
         android:visibility="visible" />
 
     <LinearLayout
@@ -84,7 +87,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_add_symbol1">
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
+            android:layout_marginLeft="15dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_folder"/>
 
@@ -92,17 +96,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorAccent"
             android:text="Metals"
-            android:textStyle="bold"
             android:textSize="16dp"/>
 
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.2dp"
-        android:layout_margin="10dp"
+        android:layout_height="0.1dp"
         android:layout_below="@+id/ll_add_symbol2"
-        android:background="@color/colorBlack"
+        android:background="@color/colorGreay"
         android:visibility="visible" />
 
     <LinearLayout
@@ -112,7 +116,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_add_symbol2">
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
+            android:layout_marginLeft="15dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_folder"/>
 
@@ -120,17 +125,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorAccent"
             android:text="MOEX\\FORTS"
-            android:textStyle="bold"
             android:textSize="16dp"/>
 
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.2dp"
-        android:layout_margin="10dp"
+        android:layout_height="0.1dp"
         android:layout_below="@+id/ll_add_symbol3"
-        android:background="@color/colorBlack"
+        android:background="@color/colorGreay"
         android:visibility="visible" />
     <LinearLayout
         android:layout_marginTop="10dp"
@@ -139,7 +144,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_add_symbol3">
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
+            android:layout_marginLeft="15dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_folder"/>
 
@@ -147,18 +153,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorAccent"
             android:text="MOEX\\FX"
-            android:textStyle="bold"
             android:textSize="16dp"/>
 
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.2dp"
-        android:layout_margin="10dp"
+        android:layout_height="0.1dp"
 
         android:layout_below="@+id/ll_add_symbol4"
-        android:background="@color/colorBlack"
+        android:background="@color/colorGreay"
         android:visibility="visible" />
     <LinearLayout
         android:layout_marginTop="10dp"
@@ -167,7 +173,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_add_symbol4">
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
+            android:layout_marginLeft="15dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_folder"/>
 
@@ -175,18 +182,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorAccent"
             android:text="MOEX\\EQuity  Bond..t\\T+Shares and DRs"
             android:textSize="16dp"/>
 
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.2dp"
-        android:layout_margin="10dp"
-        android:textStyle="bold"
+        android:layout_height="0.1dp"
         android:layout_below="@+id/ll_add_symbol5"
-        android:background="@color/colorBlack"
+        android:background="@color/colorGreay"
         android:visibility="visible" />
 
     <LinearLayout
@@ -196,7 +202,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_add_symbol5">
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
+            android:layout_marginLeft="15dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_folder"/>
 
@@ -205,18 +212,18 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:id="@+id/ll_add_symbol6"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorAccent"
             android:text="Crypto"
-            android:textStyle="bold"
             android:textSize="16dp"/>
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.2dp"
-        android:layout_margin="10dp"
+        android:layout_height="0.1dp"
         android:layout_below="@+id/ll_forex"
-        android:background="@color/colorBlack"
+        android:background="@color/colorGreay"
         android:visibility="visible" />
 
 
