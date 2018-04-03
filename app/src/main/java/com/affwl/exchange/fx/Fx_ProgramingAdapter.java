@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,7 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
 
         return new ProgramingViewHolder(view,ctx,data);  /**ctx and data for click handling*/
     }
+
 
 
     @Override
@@ -178,9 +180,9 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                             fragmentTransaction1.replace (R.id.xzz,currentFragment);
                             fragmentTransaction1.commit();
                             layout.setVisibility(View.VISIBLE);
-                            ((FxActivity)viewdialog.getContext ()).setTitle("");
-                            ((FxActivity)viewdialog.getContext ()).invalidateOptionsMenu();
-
+                            ((FxActivity)viewdialog.getContext ()).setTitle("abc");
+                           ((FxActivity)viewdialog.getContext ()).invalidateOptionsMenu();
+                            //MenuInflater inflater = getActivity().getMenuInflater();
                             dialog.dismiss();
                         }
                     });
@@ -248,28 +250,18 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
 
         }
 
-//        @Override
-//        public void onClick(View v) {
-//            /**  Set on recycler view Item Click */
-//
-//            int position=getAdapterPosition ();
-//            Toast.makeText (this.ctx,"Clicked " +position,Toast.LENGTH_LONG).show ();
-//            Log.i(TAG,"Item clicked " +position);
-//            Getfragment f = new Getfragment();
-//        }
 
+//        @Override
+//        public boolean OnCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//            inflater.inflate(R.menu.forecastfragment, menu);
+//            return true;
+//        }
 
 
     }
 
 
 
-//    class Getfragment extends AppCompatActivity{
-//
-//        public  Getfragment(){
-//            BottomSheetFragment bottomSheetFragment = new BottomSheetFragment();
-//            bottomSheetFragment.show(getSupportFragmentManager(),bottomSheetFragment.getTag());
-//        }
-//    }
+
 
 }

@@ -175,6 +175,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         if (currentFragment != null && currentFragment instanceof Fx_Chart_Fragment) {
             //navigation.setSelectedItemId (R.id.nav_charts1);
             getMenuInflater().inflate(R.menu.charts, menu);
+            Toast.makeText(FxActivity.this, "click", Toast.LENGTH_SHORT).show();
 
         }
 
@@ -282,15 +283,15 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
 
         if (id == R.id.nav_quotes) {
             // Handle the quotes action
-            Intent resultIntent = new Intent(this, FxActivity.class);
-            startActivity (resultIntent);
+//            Intent resultIntent = new Intent(this, FxActivity.class);
+//            startActivity (resultIntent);
             layout.setVisibility(View.VISIBLE);
             setTitle("Quotes");
-//            currentFragment=new Fx_Fragment_Quotes ();
-//            FragmentManager fragmentManager=getSupportFragmentManager ();
-//            FragmentTransaction ft=fragmentManager.beginTransaction ();
-//            ft.replace (R.id.xzz ,currentFragment);    //content_fx
-//            ft.commit ();
+            currentFragment=new Fx_Fragment_Quotes ();
+            FragmentManager fragmentManager=getSupportFragmentManager ();
+            FragmentTransaction ft=fragmentManager.beginTransaction ();
+            ft.replace (R.id.xzz ,currentFragment);    //content_fx
+            ft.commit ();
            invalidateOptionsMenu();
 
             /** hide frame layout */

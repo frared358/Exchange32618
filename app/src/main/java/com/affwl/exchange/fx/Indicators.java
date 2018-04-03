@@ -14,6 +14,7 @@ import com.affwl.exchange.R;
 public class Indicators extends AppCompatActivity  {
     ImageButton imageButton_fadd1;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,11 +26,10 @@ public class Indicators extends AppCompatActivity  {
         imageButton_fadd1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Intent i = new Intent(v.getContext(), FX_indicator_f_add_Activity.class);
-                //startActivity(i);
+                Intent i = new Intent(v.getContext(), FX_indicator_f_add_Activity.class);
+                startActivity(i);
             }
         });
-
 
     }
 
