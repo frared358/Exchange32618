@@ -50,7 +50,7 @@ public class FragmentCricketInplay extends Fragment {
         recycleViewCricketInplay.setItemAnimator(new DefaultItemAnimator());
 
         inplayAdapter = new SportsNameAdapter(FragmentCricketInplay.this.getActivity(),HighlightsList);
-        new CricketInplayAsyncTask().execute("http://5.189.140.198/Prince99/Prince.svc/Data/Inplay");
+        new CricketInplayAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/Inplay");
 
         txtVNoData = view.findViewById(R.id.txtVNoData);
         return view;

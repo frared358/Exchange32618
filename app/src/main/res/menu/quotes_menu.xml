@@ -16,7 +16,6 @@
         android:id="@+id/add"
         app:showAsAction="always">
 
-
     </item>
     <item
         android:id="@+id/edit"

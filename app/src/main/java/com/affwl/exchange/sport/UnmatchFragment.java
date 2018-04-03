@@ -48,7 +48,7 @@ public class UnmatchFragment extends Fragment {
         recycleViewUnMatchData.setLayoutManager(mLayoutManager);
         recycleViewUnMatchData.setItemAnimator(new DefaultItemAnimator());
         unMatchAdapter = new MatchAdapter(UnmatchFragment.this.getActivity(),UnMatchList);
-        new UnMatchAsyncTask().execute("http://5.189.140.198/Prince99/Prince.svc/Reports/GetCurrentBets");
+        new UnMatchAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Reports/GetCurrentBets");
 
         return view;
     }

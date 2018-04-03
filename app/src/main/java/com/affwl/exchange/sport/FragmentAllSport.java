@@ -69,7 +69,7 @@ public class FragmentAllSport extends Fragment{
 //        );
 
         //new HighlightsAsyncTask().execute("http://5.189.140.198/Prince99/Prince.svc/Navigation/SportsList");
-        new HighlightsAsyncTask().execute("http://5.189.140.198/Prince99/Prince.svc/Data/Highlights?sid=4");
+        new HighlightsAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/Highlights?sid=4");
 
         return view;
     }
