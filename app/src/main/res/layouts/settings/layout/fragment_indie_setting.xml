@@ -6,8 +6,6 @@
     tools:context="com.affwl.exchange.settings.IndieSettingFragment"
     android:orientation="vertical">
 
-
-
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_layout_Indie"
             android:layout_width="match_parent"
