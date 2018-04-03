@@ -53,8 +53,8 @@
             android:layout_margin="5dp"
             android:background="@color/colorReddishGreay"/>
 
-        <TextView
-            android:id="@+id/txtVStackValue"
+        <EditText
+            android:id="@+id/editTxtStackValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3.0"
@@ -65,6 +65,7 @@
             android:textStyle="bold"
             android:padding="5dp"
             android:layout_margin="5dp"
+            android:inputType="number"
             android:background="@color/colorReddishGreay"/>
 
         <TextView
@@ -112,8 +113,8 @@
             android:padding="5dp"
             android:background="@color/colorReddishGreay"/>
 
-        <TextView
-            android:id="@+id/txtVOddValue"
+        <EditText
+            android:id="@+id/editTxtVOddValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="7.6"
@@ -124,6 +125,7 @@
             android:textStyle="bold"
             android:padding="5dp"
             android:layout_margin="5dp"
+            android:inputType="number"
             android:background="@color/colorReddishGreay"/>
 
         <TextView

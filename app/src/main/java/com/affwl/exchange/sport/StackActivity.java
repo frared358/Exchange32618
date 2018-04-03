@@ -42,7 +42,7 @@ public class StackActivity extends AppCompatActivity implements View.OnClickList
         btnStackSave = findViewById(R.id.btnStackSave);
         btnStackSave.setOnClickListener(this);
 
-        new getStackAsyncTask().execute("http://5.189.140.198/Prince99/Prince.svc/Settings/GetBetStakeSetting");
+        new getStackAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Settings/GetBetStakeSetting");
 
     }
 
@@ -195,7 +195,7 @@ public class StackActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnStackSave:
-                new setStackAsyncTask().execute("http://5.189.140.198/Prince99/Prince.svc/Settings/SaveBetStakeSetting");
+                new setStackAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Settings/SaveBetStakeSetting");
                 break;
         }
 

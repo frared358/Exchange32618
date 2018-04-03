@@ -135,23 +135,23 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
 
         handler = new Handler();
 
-        handlerMarketData = new Handler();
-        handlerMarketData.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new getMartketDataAsyncTask().execute("http://5.189.140.198/Prince99/Prince.svc/Data/MktData?mtid="+matchId+"&mktid="+marketId);
-            }
-        },2000);
-
-
+//        handlerMarketData = new Handler();
+//        handlerMarketData.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        },2000);
+        new getMartketDataAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/MktData?mtid="+matchId+"&mktid="+marketId);
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        new getStackAsyncTask().execute("http://5.189.140.198/Prince99/Prince.svc/Settings/GetBetStakeSetting");
-
+//        _connection.start();
+        new getStackAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Settings/GetBetStakeSetting");
+        //displaySignalRData(bfId);
     }
 
     @Override
@@ -260,11 +260,19 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
     HubProxy _hub;
     SignalRFuture<Void> awaitConnection;
 
-    public void displaySignalRData(final String call){
+    /*// $scope.connection = $.hubConnection(hubAddress);
+ $scope.connection=$.hubConnection("http://178.238.236.221:10800");
+
+ //Creating Proxy
+ // $scope.proxy = $scope.connection.createHubProxy('RunnersHub');
+ $scope.proxy=$scope.connection.createHubProxy('BetAngelHub');
+*/
+
+    public void displaySignalRData(final String bfid){
 
         Platform.loadPlatformComponent( new AndroidPlatformComponent() );
-        _connection=new HubConnection("http://185.2.101.78:9094");
-        _hub=_connection.createHubProxy("FOREXHub");
+        _connection=new HubConnection("http://178.238.236.221:10800");
+        _hub=_connection.createHubProxy("BetAngelHub");
 
         try {
             awaitConnection = _connection.start();
@@ -277,27 +285,48 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
             //Log.i("graph", "ExecutionException");
         }
 
-        _hub.invoke("SubscribeSymbol",call);
+        _hub.invoke("SubscribeMarket",bfid);
 
         try{
             _connection.received(new MessageReceivedHandler() {
                 @Override
                 public void onMessageReceived(JsonElement json) {
 
-                    Log.i("Signalr",""+json);
-                    String[] arrToken = json.toString().replaceAll(",",":").split(":");
-//                    final Double Ask = Double.valueOf(arrToken[8]);
-//                    final Double Bid = Double.valueOf(arrToken[12]);
-//                    final Double calc =  (Ask+Bid)/2;
+                    //Log.i("Signalr",""+json);
+                    String runnerValue,layValue,backValue;
+                    try {
+                        JSONObject jsonMain = new JSONObject(json.toString());
+                        String jsonData = jsonMain.getString("A");
+                        JSONArray jsonArray = new JSONArray(jsonData);
+                        final JSONObject key = jsonArray.getJSONObject(0);
+                        Log.i("TAG",key.getString("runner")+" "+key.getString("back1")+" "+key.getString("lay1")+" "+key.getString("backSize1")+" "+key.getString("laySize1"));
+
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    MarketDataList.add(new MarketData(key.getString("runner"),key.getString("back1"),key.getString("lay1"),key.getString("backSize1"),key.getString("laySize1"),bfId));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                                marketDataAdapter.notifyDataSetChanged();
+                                recycleViewMarketData.setAdapter(marketDataAdapter);
+                            }
+                        },2000);
 
 
-
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    //Toast.makeText(BetActivity.this, ""+json, Toast.LENGTH_SHORT).show();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-
+                            //MarketDataList.add(new MarketData(key.getString("runner"),back1,lay1,backSize1,laySize1,bfId));
                         }
                     },1000);
+
                 }
             });
 
@@ -305,6 +334,13 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
             e.printStackTrace();
             //Log.i("graph",e.toString());}
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        _connection.stop();
+
     }
 
     public String  getStackApi(String url){
@@ -445,13 +481,14 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                     String laySize1 = key.getString("laySize1");
                     String runnerName = key.getString("runnerName");
 
-                    MarketDataList.add(new MarketData(runnerName,back1,lay1,backSize1,laySize1));
+                    MarketDataList.add(new MarketData(runnerName,back1,lay1,backSize1,laySize1,bfId));
 
                     marketDataAdapter.notifyDataSetChanged();
 
                 }
                 recycleViewMarketData.setAdapter(marketDataAdapter);
 
+                displaySignalRData(bfId);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
