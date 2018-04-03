@@ -55,42 +55,42 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
 }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mailbox1);
-        android.support.v7.widget.Toolbar toolbar=findViewById(R.id.toolbar2);
-        setSupportActionBar(toolbar);
-
-
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED){
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1001);
-
-
-        }
-
-     //   menuItem=(MenuItem)findViewById(R.id.plus1);
-
-      //  imgbtn = (ImageButton) findViewById(R.id.imageButton3);
-
-//        imgbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                new MaterialFilePicker()
-//                        .withActivity(Mailbox1.this)
-//                        .withRequestCode(1000)
-//                        .withHiddenFiles(true) // Show hidden files and folders
-//                        .start();
-//            }
-//        });
-
-        Spinner spinner=findViewById(R.id.spinner2);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.spinners, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
-    }
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_mailbox1);
+//        android.support.v7.widget.Toolbar toolbar=findViewById(R.id.toolbar2);
+//        setSupportActionBar(toolbar);
+//
+//
+//        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                != PackageManager.PERMISSION_GRANTED){
+//            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1001);
+//
+//
+//        }
+//
+//     //   menuItem=(MenuItem)findViewById(R.id.plus1);
+//
+//      //  imgbtn = (ImageButton) findViewById(R.id.imageButton3);
+//
+////        imgbtn.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View v) {
+////                new MaterialFilePicker()
+////                        .withActivity(Mailbox1.this)
+////                        .withRequestCode(1000)
+////                        .withHiddenFiles(true) // Show hidden files and folders
+////                        .start();
+////            }
+////        });
+//
+//        Spinner spinner=findViewById(R.id.spinner2);
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.spinners, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
+//        spinner.setOnItemSelectedListener(this);
+//    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

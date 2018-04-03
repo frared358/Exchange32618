@@ -119,32 +119,9 @@
 
     <!-- Names Mailbox -->
 
-    <string-array name="Member_names1">
-        <item>DTS Software Corp.</item>
-        <item>DTS Software Corp.</item>
 
-    </string-array>
 
-    <!-- Pictures -->
-    <array name="profile_pics1">
-        <item>@drawable/main</item>
-        <item>@drawable/main</item>
 
-    </array>
-
-    <!-- Status -->
-    <string-array name="statues1">
-        <item>The Built-in Virtual - Roborts and Signals Now Working 24/7</item>
-        <item>Order Trading Robots from Freelancers-It IS Fast and Efficient</item>
-
-    </string-array>
-
-    <!-- contact type -->
-    <string-array name="contactType1">
-        <item>26 Feb 2018</item>
-        <item>26 Feb 2018</item>
-
-    </string-array>
 
 
     <!-- Names News -->
