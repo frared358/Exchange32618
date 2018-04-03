@@ -117,7 +117,7 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
     LinearLayout llDialogBetPlace;
     String ODDVALUE,STACKVALUE,PROFITVALUE;
 
-    public void dialogBetPlace(String RunnerTitle,int color,final double oddValue,double profit){
+    public void dialogBetPlace(String RunnerTitle,int color,final double oddValue,double market){
 
         final Dialog dialog = new Dialog(contextMarket,R.style.Dialog);
         dialog.setContentView(R.layout.dialog_bet_place);
@@ -141,8 +141,8 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
         editTxtStackValue.setText(STACKVALUE);
         ODDVALUE = String.valueOf(oddValue);
         editTxtVOddValue.setText(ODDVALUE);
-        profit = (oddValue-1)*DataHolder.STACK_VALUE;
-        PROFITVALUE = String.format("Profit CHIPS %.2f", profit);
+
+        PROFITVALUE = String.format("Profit CHIPS %.2f", profit(oddValue,DataHolder.STACK_VALUE));
         txtVProfitValue.setText(PROFITVALUE);
 
 
@@ -160,6 +160,8 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
                 double inc = increment(oddVal);
                 ODDVALUE = String.format("%.2f",inc);
                 editTxtVOddValue.setText(ODDVALUE);
+
+
             }
         } );
 
@@ -262,6 +264,10 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
             val = 0;
         }
         return val;
+    }
+
+    private double profit(double odd,double stack){
+        return (odd-1)*stack;
     }
 
     HubConnection _connection;

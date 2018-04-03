@@ -447,6 +447,7 @@
 
         </LinearLayout>-->
 
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycleViewMarketData"
             android:layout_below="@+id/llBackLay"
