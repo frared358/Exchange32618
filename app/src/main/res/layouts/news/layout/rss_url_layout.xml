@@ -12,8 +12,10 @@
         android:text="Text"
         android:id="@+id/tv_rss_url"
         android:padding="10dp"
+        android:singleLine="true"
         android:layout_weight="1"
         android:textSize="20sp"/>
+
     <CheckBox
         android:id="@+id/rssFeedCheckBox"
         android:layout_width="wrap_content"

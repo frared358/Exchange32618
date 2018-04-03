@@ -9,7 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,12 +41,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Advanced mode"
+                    android:textStyle="bold"
                     android:textColor="@color/colorBlack" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
 
                     <TextView
                         android:id="@+id/tv_adv_mode_des"
@@ -81,6 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="One Click Trading"
+                    android:textStyle="bold"
                     android:id="@+id/tv11"
                     android:textColor="@color/colorBlack" />
 
@@ -126,6 +130,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="10sp"
                 android:text="DTS ID"
+                android:textStyle="bold"
                 android:id="@+id/tv1"
                 android:textColor="@color/colorBlack" />
 
@@ -144,6 +149,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="10sp"
+                android:textStyle="bold"
                 android:text="Content auto-download"
                 android:textColor="@color/colorBlack" />
 

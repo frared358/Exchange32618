@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -5,11 +6,135 @@
     tools:context="com.affwl.exchange.settings.SportsSettingFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Sports Setting Page"
-        android:gravity="center"
-        android:textSize="40dp" />
+        android:orientation="vertical">
+
+        <Switch
+            android:id="@+id/oneclickswitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:checked="true"
+            android:gravity="left"
+            android:padding="3dp"
+            android:text="@string/Setting_switch"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorBlack"
+            android:visibility="visible" />
+
+        <Switch
+            android:id="@+id/CancelSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:checked="true"
+            android:gravity="left"
+            android:padding="3dp"
+            android:text="Cancel unmatched bets with Trade button"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorBlack"
+            android:visibility="visible" />
+
+        <Switch
+            android:id="@+id/ShowACSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:checked="true"
+            android:gravity="left"
+            android:padding="3dp"
+            android:text="Show Account Balance"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorBlack"
+            android:visibility="visible" />
+
+        <Switch
+            android:id="@+id/WarningSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:checked="true"
+            android:gravity="left"
+            android:padding="3dp"
+            android:text="Activate Warning Sounds"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorBlack"
+            android:visibility="visible" />
+
+        <Switch
+            android:id="@+id/NotifySwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:checked="true"
+            android:gravity="left"
+            android:padding="3dp"
+            android:text="Show Notifications"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorBlack"
+            android:visibility="visible" />
+
+        <Switch
+            android:id="@+id/MenuOverSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:checked="true"
+            android:gravity="left"
+            android:padding="3dp"
+            android:text="Show Menus Overlapped"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorBlack"
+            android:visibility="visible" />
+
+        <Switch
+            android:id="@+id/CashoutSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:checked="true"
+            android:gravity="left"
+            android:padding="3dp"
+            android:text="Enable Cashout"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+    </ScrollView>
+
 
 </FrameLayout>

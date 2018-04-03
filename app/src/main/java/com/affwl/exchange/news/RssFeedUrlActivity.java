@@ -146,6 +146,7 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
                 myList.add(rssUrlDetailsList.get(i).getRssUrl());
             }
 
+
             if(myList.size()>1) {
                 alertMessage.append(myList.size()+"");
                 Log.i("Alert check"," "+alertMessage.getText().toString());
