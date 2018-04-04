@@ -179,7 +179,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
 
         //quotesmenuicon
         if (currentFragment != null && currentFragment instanceof Fx_Fragment_Quotes) {
-            navigation.setSelectedItemId (R.id.nav_quotes1);
+//            navigation.setSelectedItemId (R.id.nav_quotes1);
             getMenuInflater().inflate(R.menu.quotes_menu, menu);
         }
         if (currentFragment != null && currentFragment instanceof Fx_Manage_Fragment) {
@@ -385,7 +385,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                     fragmentTransaction1.commit();
                     layout.setVisibility(View.VISIBLE);
                     invalidateOptionsMenu();
-                    setTitle("Charts");
+                    setTitle("");
                     return  true;
 
             }

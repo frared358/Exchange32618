@@ -6,7 +6,7 @@
 
 
     <item
-        android:id="@+id/plus"
+        android:id="@+id/plus1"
         android:title="Calender"
         android:icon="@drawable/plus"
         app:showAsAction="always" >

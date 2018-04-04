@@ -1,12 +1,18 @@
 package com.affwl.exchange.fx;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
+import android.opengl.Visibility;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.DragEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -17,6 +23,8 @@ import java.util.List;
 
 public class Selected_symbols extends AppCompatActivity {
 
+    MenuItem delete;
+    CheckBox checkBox;
     String[] member_names5;
     TypedArray profile_pics5;
     String[] statues5;
@@ -30,6 +38,7 @@ public class Selected_symbols extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_symbols);
+
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
 
@@ -48,7 +57,7 @@ public class Selected_symbols extends AppCompatActivity {
             rowItems5.add(item);
         }
 
-        mylistview = (ListView)findViewById(R.id.list5);
+        mylistview = (ListView) findViewById(R.id.list5);
         CustomAdapter5_quotes adapter = new CustomAdapter5_quotes(getApplicationContext(), rowItems5);
         mylistview.setAdapter(adapter);
 
@@ -62,7 +71,7 @@ public class Selected_symbols extends AppCompatActivity {
         mylistview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-             //   view.startDrag();
+                //   view.startDrag();
                 return false;
             }
         });
@@ -77,32 +86,49 @@ public class Selected_symbols extends AppCompatActivity {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        listView=(ListView)findViewById(R.id.listview);
-//        ArrayAdapter adapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1,listSources);
-//
-//   listView.setAdapter(adapter);
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.quotes_menu1, menu);
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.plus) {
+
+            Intent i = new Intent(Selected_symbols.this, Add_symbol.class);
+            startActivity(i);
+        }
+        //checkbox
+        if (item.getItemId() == R.id.delete) {
+
+            //          mylistview.getItemAtPosition()
+
+//
+//            if (checkBox.isChecked())
+//        {
+//            rowItems5.remove(position);
+//            notifyDataSetChanged();
+//        }
+
+//
+//           // checkBox=(CheckBox) findViewById(R.id.checkBox);
+//            if(checkBox.getVisibility()==View.GONE) {
+//                checkBox.setVisibility(View.VISIBLE);
+//            }
+//            else if(checkBox.getVisibility()==View.VISIBLE)
+//            {
+//                if(checkBox.isChecked())
+//                {
+//
+   //          }
+          }
+
+            return super.onOptionsItemSelected(item);
+        }
+
+
 }
