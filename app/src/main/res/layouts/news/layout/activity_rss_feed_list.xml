@@ -7,15 +7,24 @@
     android:orientation="vertical"
     tools:context="com.affwl.exchange.news.RssFeedListActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:title="News Category"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="@android:color/white" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/colorBackground"
-        android:layout_margin="10dp"
         android:id="@+id/news_checkbox_layout"
-        android:layout_gravity="center"
-        >
+        android:layout_gravity="center">
 
         <View
             android:layout_width="match_parent"

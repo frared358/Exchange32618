@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.affwl.exchange.settings.IndieSettingFragment"
+    android:orientation="vertical">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout_Indie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:background="#000000"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:tabMode="fixed" />
+
+    <android.support.v4.view.ViewPager
+
+        android:id="@+id/viewPagerIndie"
+        android:layout_width="match_parent"
+        android:background="@color/colorGreay"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>
