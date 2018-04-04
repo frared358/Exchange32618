@@ -257,11 +257,11 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                     Intent addacci = new Intent(this, New_Account.class);
                     this.startActivity(addacci);
                     return true;
-                case R.id.changepass:
+/*                case R.id.changepass:
                     Intent i1 = new Intent(this, Change_password_Activity.class);
                     this.startActivity(i1);
                     getMenuInflater();
-                    return true;
+                    return true;*/
                 case R.id.clearspass:
                     ShowPopup1();
                      break;

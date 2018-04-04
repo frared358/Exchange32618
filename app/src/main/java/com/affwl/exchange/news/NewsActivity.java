@@ -48,23 +48,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
+public class NewsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private DrawerLayout drawerLayoutIndieNews;
-    EditText edit_rssFeed;
-    ImageView search_rssFeed;
-    RecyclerView news_recycler_view;
-    SwipeRefreshLayout news_swipe_layout;
-    TextView tv_feedTitle,tv_feedDescription,tv_feedLink;
-    String strFeedLink,strFeedTitle,strFeedDescription;
-    XmlPullParserFactory xmlFactoryObject;
 
-    String title,link,description,name;
-    boolean isItem = false;
-    private ArrayList<CheckBox> categoryCheckbox=new ArrayList<>();
-    private CheckBox checkboxCategories;
-    private ArrayList<String> selectedCategory=new ArrayList<>();
-
+    String title;
+    String link;
 
     List headlines,newsDateTimes;
     List<NewsItemDetails> newsItemDetailsList;
@@ -81,17 +70,6 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        drawerLayoutIndieNews = findViewById(R.id.drawerLayoutIndieNews);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayoutIndieNews, toolbar, R.string.open, R.string.close);
-        drawerLayoutIndieNews.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.navViewIndieNews);
-        assert navigationView != null;
-        navigationView.setNavigationItemSelectedListener(this);
 
        initiateComponent();
 
@@ -131,52 +109,6 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.tabMarket) {
-            DataHolder.navigationForTab = 0;
-            startActivity(new Intent(this,IndieActivity.class));
-        } else if (id == R.id.tabMarketWatch) {
-            DataHolder.navigationForTab = 1;
-            startActivity(new Intent(this,IndieActivity.class));
-        } else if (id == R.id.tabMarketMovers) {
-            DataHolder.navigationForTab = 2;
-            startActivity(new Intent(this,IndieActivity.class));
-        } else if (id == R.id.tabPortfolio) {
-            DataHolder.navigationForTab = 3;
-            startActivity(new Intent(this,IndieActivity.class));
-        } else if (id == R.id.home) {
-            startActivity(new Intent(this,MainActivity.class));
-        } else if (id == R.id.pivot) {
-            startActivity(new Intent(this,PivotActivity.class));
-        } else if (id == R.id.liveTips) {
-            startActivity(new Intent(this,LiveTipsActivity.class));
-        } else if (id == R.id.charts) {
-
-        } else if (id == R.id.newHilo) {
-            startActivity(new Intent(this,NewHiloActivity.class));
-        } else if (id == R.id.scanner) {
-
-        } else if (id == R.id.dataQuery) {
-
-        }
-
-        drawerLayoutIndieNews.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    @Override
-    public void onBackPressed() {
-        assert drawerLayoutIndieNews != null;
-        if (drawerLayoutIndieNews.isDrawerOpen(GravityCompat.START)) {
-            drawerLayoutIndieNews.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-
-        }
-    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
@@ -226,12 +158,6 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
 
                         // Returns the type of current event: START_TAG, END_TAG, etc..
                         int eventType = xpp.getEventType();
-
-                     /*   Log.i("Channel"," "+xpp.getName());
-                        if(xpp.getName().equalsIgnoreCase("title"))
-                        {
-                            Log.i("String Article"," "+xpp.nextText());
-                        }*/
 
                         while (eventType != XmlPullParser.END_DOCUMENT) {
                             if (eventType == XmlPullParser.START_TAG) {

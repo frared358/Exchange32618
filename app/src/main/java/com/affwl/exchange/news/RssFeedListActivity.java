@@ -178,8 +178,7 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
         deleteUrl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                   myDialog.dismiss();
-                   finish();
+                startActivity(new Intent(RssFeedListActivity.this,RssFeedUrlActivity.class));
             }
         });
 

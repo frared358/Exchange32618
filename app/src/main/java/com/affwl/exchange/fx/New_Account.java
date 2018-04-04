@@ -21,8 +21,8 @@ RelativeLayout relativeLayout;
         relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), New_acc_start_without_regi.class);
-                startActivity(i);
+               /* Intent i = new Intent(v.getContext(), New_acc_start_without_regi.class);
+                startActivity(i);*/
             }
         });
 

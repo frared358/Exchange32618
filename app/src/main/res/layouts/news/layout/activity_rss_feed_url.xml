@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
-    android:orientation="vertical"
-    android:background="@color/colorBackground"
     tools:context="com.affwl.exchange.news.RssFeedUrlActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/edit_layout"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/enter_url_layout"
@@ -21,6 +25,7 @@
             android:layout_height="wrap_content"
             android:textCursorDrawable="@null"
             android:hint="Enter RSS Feed Url"
+            android:singleLine="true"
             android:textColorHint="@color/colorWhite"
             android:textColor="@color/colorWhite"
             android:layout_weight="1"
@@ -63,23 +68,22 @@
 
     </LinearLayout>
 
-    <!--<ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="350dp">
--->
+
     <ListView
         android:id="@+id/display_url_list"
         android:layout_width="match_parent"
         android:background="@color/colorRedLight"
-        android:layout_height="250dp">
+        android:layout_height="350dp">
 
     </ListView>
- <!--   </ScrollView>
--->
+
+</LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end">
+        android:layout_below="@+id/edit_layout"
+        android:layout_alignParentBottom="true">
 
         <Button
             android:id="@+id/submit_urlList"
@@ -106,4 +110,4 @@
     </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

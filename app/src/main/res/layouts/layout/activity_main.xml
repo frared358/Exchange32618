@@ -327,6 +327,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:id="@+id/settings_layout"
                 android:orientation="vertical">
 
                 <ImageView
