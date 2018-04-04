@@ -1,5 +1,6 @@
 package com.affwl.exchange.fx;
 
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,19 +20,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.affwl.exchange.R;
 
 import butterknife.OnClick;
@@ -145,7 +143,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
     //bootomsheet
     //@OnClick(R.id.demo)
     public void showBottomSheetDialog() {
-        Toast.makeText(FxActivity.this, "click", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(FxActivity.this, "click", Toast.LENGTH_SHORT).show();
         View view = getLayoutInflater().inflate(R.layout.fragment_fx_quotes, null);
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         dialog.setContentView(view);
@@ -173,14 +171,15 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         // Inflate the menu; this adds items to the action bar if it is present.
 
         if (currentFragment != null && currentFragment instanceof Fx_Chart_Fragment) {
-            //navigation.setSelectedItemId (R.id.nav_charts1);
+           // navigation.setSelectedItemId (R.id.nav_charts1);  /** Chart moving constantaly */
             getMenuInflater().inflate(R.menu.charts, menu);
-            Toast.makeText(FxActivity.this, "click", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(FxActivity.this, "click r", Toast.LENGTH_SHORT).show();
 
         }
 
         //quotesmenuicon
         if (currentFragment != null && currentFragment instanceof Fx_Fragment_Quotes) {
+            navigation.setSelectedItemId (R.id.nav_quotes1);
             getMenuInflater().inflate(R.menu.quotes_menu, menu);
         }
         if (currentFragment != null && currentFragment instanceof Fx_Manage_Fragment) {
@@ -208,6 +207,14 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         int id = item.getItemId();
         if (currentFragment != null && currentFragment instanceof Fx_Chart_Fragment) {
             switch (item.getItemId()) {
+                case R.id.idHighLight:
+                    FragmentManager fm = getSupportFragmentManager();
+
+                    //if you added fragment via layout xml
+                    Fx_Chart_Fragment fragment = (Fx_Chart_Fragment)fm.findFragmentById(R.id.xzz);
+                    fragment.showHighLight();
+
+                    return true;
                 case R.id.itemp1:
                     Intent i = new Intent(this, CustomSpinner.class); //add CustomSpinner
                     this.startActivity(i);
@@ -378,7 +385,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                     fragmentTransaction1.commit();
                     layout.setVisibility(View.VISIBLE);
                     invalidateOptionsMenu();
-                    setTitle("");
+                    setTitle("Charts");
                     return  true;
 
             }
