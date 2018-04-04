@@ -43,6 +43,8 @@ public class Fx_Fragment_Quotes extends BottomSheetDialogFragment {
         programingList.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
             public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+//                Toast.makeText (getContext (),"dd",Toast.LENGTH_SHORT).show ();
+//                return  true;
                 return false;
             }
 

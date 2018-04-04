@@ -10,6 +10,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.SuperscriptSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -108,7 +112,7 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
 
     /**create nested class and inherit ViewHolder */                       /** set click on recyclerView item */
     public class ProgramingViewHolder extends RecyclerView.ViewHolder  {   //ALT+Enter
-        TextView textView1,textView2,textView3;
+        TextView textView1,tvCurrencyLow,tvCurrencyHigh,tvAdvCurrencyLow,tvAdvCurrencyHigh;
         CardView demo_card;
         //ImageView imageView;
         String data[];
@@ -128,8 +132,10 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
             demo_card=itemView.findViewById (R.id.demo_card);
 
             textView1=itemView.findViewById(R.id.tv1);
-            textView2=itemView.findViewById(R.id.tv2);
-            textView3=itemView.findViewById(R.id.tv3);
+            tvCurrencyLow=itemView.findViewById(R.id.tvCurrencyLow);
+            tvAdvCurrencyHigh=itemView.findViewById (R.id.tvAdvCurrencyHigh);
+            tvAdvCurrencyLow=itemView.findViewById (R.id.tvAdvCurrencyLow);
+            tvCurrencyHigh=itemView.findViewById(R.id.tvCurrencyHigh);
 
             demo_card.setOnClickListener (new View.OnClickListener () {
                 public LinearLayout llCurrency,llChart,llNewOrder,llProperties,llMarketStatistics,llAVW;
@@ -228,12 +234,42 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                                time_spread_layout.setVisibility(View.VISIBLE);
                                low_layout.setVisibility(View.VISIBLE);
                                high_layout.setVisibility(View.VISIBLE);
+
+
+                                /**Subscript and superscript start*/
+                                Log.i("Check Now",tvCurrencyLow.getText ().toString ());
+                                SpannableStringBuilder cs = new SpannableStringBuilder( "1.40785");      //"X3 + X2"
+                                cs.setSpan(new RelativeSizeSpan (0.65f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                cs.setSpan(new SuperscriptSpan (), 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                cs.setSpan(new RelativeSizeSpan(0.45f), 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                tvAdvCurrencyLow.setText(cs);
+
+                                SpannableStringBuilder cs1 = new SpannableStringBuilder("1.40785");      //"X3 + X2"
+                                cs1.setSpan(new RelativeSizeSpan (0.65f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                cs1.setSpan(new SuperscriptSpan (), 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                cs1.setSpan(new RelativeSizeSpan(0.45f), 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                tvAdvCurrencyHigh.setText(cs1);
+
+                                /**Subscript and superscript end*/
+
+                               if (textView1.getText ()=="INR"){
+                               tvCurrencyHigh.setVisibility (View.GONE);
+                               tvCurrencyLow.setVisibility (View.GONE);
+                               //tvAdvCurrencyLow.setVisibility (View.VISIBLE);
+                               //tvAdvCurrencyHigh.setVisibility (View.VISIBLE);
+                               }
+
+
                            }
                            else
                            {
                                time_spread_layout.setVisibility(View.GONE);
                                low_layout.setVisibility(View.GONE);
                                high_layout.setVisibility(View.GONE);
+                               //tvAdvCurrencyHigh.setVisibility (View.GONE);
+                               //tvAdvCurrencyLow.setVisibility (View.GONE);
+                               tvCurrencyHigh.setVisibility (View.VISIBLE);
+                               tvCurrencyLow.setVisibility (View.VISIBLE);
                            }
 
                             dialog.dismiss();
