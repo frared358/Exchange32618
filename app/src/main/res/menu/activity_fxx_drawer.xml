@@ -4,18 +4,19 @@
     xmlns:include="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
-    <item
-        android:id="@+id/nav_quotes"
-        android:icon="@drawable/quotes36dp"
-        android:title="Quotes" />
-    <item
-        android:id="@+id/nav_charts"
-        android:icon="@drawable/charts"
-        android:title="Charts" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_quotes"
+            android:icon="@drawable/quotes36dp"
+            android:title="Quotes" />
+        <item
+            android:id="@+id/nav_charts"
+            android:icon="@drawable/charts"
+            android:title="Charts" />
 
-    <item
-        android:id="@+id/nav_settings"
-        android:icon="@drawable/ic_menu_manage"
-        android:title="Settings" />
-
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Settings" />
+    </group>
 </menu>
