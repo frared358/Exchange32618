@@ -133,11 +133,3 @@ public class Selected_symbols extends AppCompatActivity {
     }
 }
 
-/*Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show();
-        for (int i = 0; i < member_names5.length; i++) {
-        RowItem5_quotes itemdel = new RowItem5_quotes(member_names5[i], profile_pics5.getResourceId(i, -1), statues5[i],0);
-        rowItems5.add(itemdel);
-        }
-
-        DeleteNow adapter = new DeleteNow(getApplicationContext(), rowItems5);
-        mylistview.setAdapter(adapter);*/
