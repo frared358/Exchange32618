@@ -5,6 +5,7 @@ public class RowItem5_quotes {
 	private String member_name5;
 	private int profile_pic_id5;
 	private String status5;
+	int intCheck;
 
 
 	public RowItem5_quotes(String member_name5, int profile_pic_id5, String status5) {
@@ -13,6 +14,24 @@ public class RowItem5_quotes {
 		this.profile_pic_id5 = profile_pic_id5;
 		this.status5 = status5;
 
+	}
+
+	public RowItem5_quotes(String member_name5, int profile_pic_id5, String status5,int intCheck) {
+
+		this.member_name5 = member_name5;
+		this.profile_pic_id5 = profile_pic_id5;
+		this.status5 = status5;
+		this.intCheck=intCheck;
+
+	}
+
+
+	public int getIntCheck() {
+		return intCheck;
+	}
+
+	public void setIntCheck(int intCheck) {
+		this.intCheck = intCheck;
 	}
 
 	public String getMember_name5() {
