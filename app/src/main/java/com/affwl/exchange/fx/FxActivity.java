@@ -285,6 +285,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
             // Handle the quotes action
 //            Intent resultIntent = new Intent(this, FxActivity.class);
 //            startActivity (resultIntent);
+            navigation.getMenu().findItem(R.id.nav_quotes1).setChecked(true);
             layout.setVisibility(View.VISIBLE);
             setTitle("Quotes");
             currentFragment=new Fx_Fragment_Quotes ();
@@ -301,6 +302,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
             //currentFragment=new Fx_Fragment_Quotes ();
 
         } else if (id == R.id.nav_charts) {
+            navigation.getMenu().findItem(R.id.nav_charts1).setChecked(true);
             setTitle("");
             layout.setVisibility(View.VISIBLE);
             currentFragment=new Fx_Chart_Fragment ();

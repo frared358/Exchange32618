@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
@@ -80,7 +81,7 @@
         <activity android:name=".fx.FX_indicator_f_add_Activity"/>
         <activity android:name=".fx.FX_indicator_f1_add_Activity"/>
         <activity android:name=".fx.new_Acc_open_a_real_acc_Activity"/>
-        <activity android:name=".fx.New_acc_start_without_regi"/>
+     <!--   <activity android:name=".fx.New_acc_start_without_regi"/>-->
 
         <activity android:name=".fx.New_acc_Open_a_real_acc_pI"/>
         <activity android:name=".fx.M_delete" />
@@ -115,8 +116,10 @@
         <activity android:name=".news.WebActivity" />
         <activity android:name=".news.RssFeedListActivity"></activity>
         <activity android:name=".news.NewsActivity"/>
+        <activity android:name=".news.RssFeedDeleteActivity"/>
 
         <activity android:name=".settings.SettingsMainActivity"/>
+        <activity android:name=".alerts.AlertsActivity"/>
     </application>
 
 </manifest>
