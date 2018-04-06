@@ -79,7 +79,7 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
 
             new MyAsyncTask().execute();
 
-        SQLiteDatabase db = mDBHelper.getReadableDatabase();
+  /*      SQLiteDatabase db = mDBHelper.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM selected_category WHERE user_id=?",  new String[] {String.valueOf(1234) });
         if (c.moveToFirst()) {
 
@@ -87,14 +87,14 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
                 Log.i("TagCategory",""+c.getInt(c.getColumnIndex("category_id")));
                 Log.i("TagRefresh",""+c.getInt(c.getColumnIndex("refresh_time")));
                 timeNow=c.getInt(c.getColumnIndex("refresh_time"));
-                reloadNews(timeNow);
+//                reloadNews(timeNow);
 
             } while (c.moveToNext());
-        }
+        }*/
 
     }
 
-    private void reloadNews(final int timeNow) {
+  /*  private void reloadNews(final int timeNow) {
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -103,7 +103,7 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
                 reloadNews(timeNow);
             }
         }, TimeUnit.MINUTES.toMillis(timeNow));
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

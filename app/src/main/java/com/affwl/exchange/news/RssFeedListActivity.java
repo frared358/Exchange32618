@@ -153,11 +153,11 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
                     }
                     Toast.makeText(getApplicationContext(), "selected Sports", Toast.LENGTH_LONG).show();
                 }
-                else if(!sportsCheckBox.isChecked()){
+                else {
                     //delete now
                     SQLiteDatabase db = mDBHelper.getWritableDatabase();
-                    db.delete("selected_category", "user_name = ? AND category_id = ? ",
-                            new String[] { "kavari", String.valueOf(1)});
+                    db.delete("selected_category", "user_id = ? AND category_id = ? ",
+                            new String[] {String.valueOf(1234), String.valueOf(1)});
                 }
                 break;
 
@@ -180,10 +180,10 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
                     }
                     Toast.makeText(this, "Selected Crypto", Toast.LENGTH_SHORT).show();
                 }
-                else if(!sportsCheckBox.isChecked()){
+                else {
                     SQLiteDatabase db = mDBHelper.getWritableDatabase();
-                    db.delete("selected_category", "user_name = ? AND category_id = ? ",
-                            new String[] { "kavari", String.valueOf(2)});
+                    db.delete("selected_category", "user_id = ? AND category_id = ? ",
+                            new String[] {String.valueOf(1234), String.valueOf(2)});
                 }
                 break;
 
@@ -206,10 +206,10 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
                     }
                     Toast.makeText(this, "Selected Indie", Toast.LENGTH_SHORT).show();
                 }
-                else if(!sportsCheckBox.isChecked()){
+                else {
                     SQLiteDatabase db = mDBHelper.getWritableDatabase();
-                    db.delete("selected_category", "user_name = ? AND category_id = ? ",
-                            new String[] { "kavari", String.valueOf(3)});
+                    db.delete("selected_category", "user_id = ? AND category_id = ? ",
+                            new String[] {String.valueOf(1234), String.valueOf(3)});
                 }
                 break;
 
@@ -232,10 +232,10 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
                     }
                     Toast.makeText(this, "Selected Binary", Toast.LENGTH_SHORT).show();
                 }
-                else if(!sportsCheckBox.isChecked()){
+                else {
                     SQLiteDatabase db = mDBHelper.getWritableDatabase();
-                    db.delete("selected_category", "user_name = ? AND category_id = ? ",
-                            new String[] { "kavari", String.valueOf(4)});
+                    db.delete("selected_category", "user_id = ? AND category_id = ? ",
+                            new String[] {String.valueOf(1234), String.valueOf(4)});
                 }
                 break;
 
@@ -258,10 +258,10 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
                     }
                     Toast.makeText(this, "Selected FX", Toast.LENGTH_SHORT).show();
                 }
-                else if(!sportsCheckBox.isChecked()){
+                else {
                     SQLiteDatabase db = mDBHelper.getWritableDatabase();
-                    db.delete("selected_category", "user_name = ? AND category_id = ? ",
-                            new String[] { "kavari", String.valueOf(5)});
+                    db.delete("selected_category", "user_id = ? AND category_id = ? ",
+                            new String[] {String.valueOf(1234), String.valueOf(5)});
                 }
                 break;
         }
