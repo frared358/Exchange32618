@@ -1,15 +1,14 @@
 package com.affwl.exchange.sport;
 
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +18,6 @@ import com.affwl.exchange.R;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,50 +30,40 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+public class TournamentActivity extends AppCompatActivity {
 
-public class FragmentAllSport extends Fragment{
-
-
-    RecyclerView recycleViewHighlights;
-    private List<SportsData> HighlightsList= new ArrayList<>();
-    SportsNameAdapter sportsNameAdapter;
-    TextView txtVNoData;
+    TextView txtVAllSportT,txtVSportNameT;
+    RecyclerView recycleViewTournament;
+    private List<SportsData> TournamentList= new ArrayList<>();
+    TournamentAdapter tournamentAdapter;
+    int sportId;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_all_sport, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tournament);
 
-        txtVNoData = view.findViewById(R.id.txtVNoData);
+        txtVAllSportT = findViewById(R.id.txtVAllSportT);
+        txtVSportNameT = findViewById(R.id.txtVSportNameT);
 
-        recycleViewHighlights = view.findViewById(R.id.recycleViewHighlights);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        Intent intent = getIntent();
+        txtVSportNameT.setText(intent.getStringExtra("SportName")+" > ");
 
-        recycleViewHighlights.setLayoutManager(mLayoutManager);
-        recycleViewHighlights.setItemAnimator(new DefaultItemAnimator());
+        recycleViewTournament = findViewById(R.id.recycleViewTournament);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
 
-        sportsNameAdapter = new SportsNameAdapter(FragmentAllSport.this.getActivity(),HighlightsList);
+        recycleViewTournament.setLayoutManager(mLayoutManager);
+        recycleViewTournament.setItemAnimator(new DefaultItemAnimator());
 
-//        recycleViewHighlights.addOnItemTouchListener(
-//                new SportNameRecycleItemClickListener(getActivity(), new SportNameRecycleItemClickListener.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(View view, int position) {
-//                        try {
-//                            sportsNameAdapter.setSelected(position);
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                })
-//        );
+        tournamentAdapter = new TournamentAdapter(this,TournamentList);
+        sportId = intent.getIntExtra("SportId",0);
+        Log.i("TAG",""+sportId);
 
-        new HighlightsAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Navigation/SportsList");
-        //new HighlightsAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/Highlights?sid=4");
-
-        return view;
+        DataHolder.SPORT_NAME = intent.getStringExtra("SportName");
+        new TournamentAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Navigation/TournamentList?id="+sportId);
     }
 
-
-    public String  HighligthsApi(String url){
+    public String  TournamentApi(String url){
         InputStream inputStream = null;
         String result = "";
         try {
@@ -121,11 +109,11 @@ public class FragmentAllSport extends Fragment{
         return result;
     }
 
-    private class HighlightsAsyncTask extends AsyncTask<String, Void, String> {
+    private class TournamentAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
-            return HighligthsApi(urls[0]);
+            return TournamentApi(urls[0]);
         }
 
         @Override
@@ -137,9 +125,9 @@ public class FragmentAllSport extends Fragment{
                 JSONArray arrayData = new JSONArray(strData);
                 int length = arrayData.length();
 
-                if(length == 0){
-                    txtVNoData.setVisibility(View.VISIBLE);
-                }
+//                if(length == 0){
+//                    txtVNoData.setVisibility(View.VISIBLE);
+//                }
 
                 for(int i =0 ; i<length;i++){
 
@@ -149,15 +137,14 @@ public class FragmentAllSport extends Fragment{
 //                    String bfId = key.getString("bfId");
 //                    int marketId = key.getInt("marketId");
 //                    int matchId = key.getInt("matchId");
-
-
                     String name = key.getString("name");
-                    int matchId = key.getInt("id");
+                    int Id = key.getInt("id");
 
                     //Log.i("TAG",""+matchName);
                     //HighlightsList.add(new SportsData(matchName,matchDate,bfId,matchId,marketId));
-                    HighlightsList.add(new SportsData(name,matchId));
-                    sportsNameAdapter.notifyDataSetChanged();
+
+                    TournamentList.add(new SportsData(name,Id,sportId));
+                    tournamentAdapter.notifyDataSetChanged();
 
 //                    JSONObject key = arrayData.getJSONObject(i);
 //                    String sportName = key.getString("name");
@@ -178,7 +165,7 @@ public class FragmentAllSport extends Fragment{
 //                            , runner3Name*/
 //                    sportsNameAdapter.notifyDataSetChanged();
                 }
-                recycleViewHighlights.setAdapter(sportsNameAdapter);
+                recycleViewTournament.setAdapter(tournamentAdapter);
 
             } catch (JSONException e) {
                 e.printStackTrace();

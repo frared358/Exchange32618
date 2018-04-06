@@ -51,6 +51,7 @@ import microsoft.aspnet.signalr.client.SignalRFuture;
 import microsoft.aspnet.signalr.client.http.android.AndroidPlatformComponent;
 import microsoft.aspnet.signalr.client.hubs.HubConnection;
 import microsoft.aspnet.signalr.client.hubs.HubProxy;
+import microsoft.aspnet.signalr.client.hubs.SubscriptionHandler1;
 
 
 public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.MyViewHolder> {
@@ -429,7 +430,6 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
     String back1,lay1,runner;
 
     public void displaySignalRData(final String bfid,final TextView backData,final TextView layData,MarketData market){
-        //market = dataList.get(position);
         marketData = market;
 
         Platform.loadPlatformComponent( new AndroidPlatformComponent() );
@@ -441,10 +441,8 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
             awaitConnection.get();
         } catch (InterruptedException e) {
             e.printStackTrace();
-            //Log.i("graph","InterruptedException");
         } catch (ExecutionException e) {
             e.printStackTrace();
-            //Log.i("graph", "ExecutionException");
         }
 
         _hub.invoke("SubscribeMarket",bfid);
@@ -481,11 +479,11 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
                         e.printStackTrace();
                     }
                     //Toast.makeText(BetActivity.this, ""+json, Toast.LENGTH_SHORT).show();
-                    for(int i=0;i<DataHolder.MarketDataArray.size();i++) {
+                    for(int i=0;i<BetActivity.MarketDataArray.size();i++) {
                         marketData = dataList.get(i);
-                        if (DataHolder.MarketDataArray.get(i).equalsIgnoreCase(runner)) {
+                        if (BetActivity.MarketDataArray.get(i).equalsIgnoreCase(runner)) {
                             marketData = dataList.get(i);
-                            Log.i("TAG1234", DataHolder.MarketDataArray.get(i) + " " + runner +" "+marketData.RunnerName);
+                            Log.i("TAG1234", BetActivity.MarketDataArray.get(i) + " " + runner +" "+marketData.RunnerName);
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {

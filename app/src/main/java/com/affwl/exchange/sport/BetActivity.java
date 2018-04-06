@@ -3,6 +3,7 @@ package com.affwl.exchange.sport;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -52,6 +53,8 @@ import microsoft.aspnet.signalr.client.http.android.AndroidPlatformComponent;
 import microsoft.aspnet.signalr.client.hubs.HubConnection;
 import microsoft.aspnet.signalr.client.hubs.HubProxy;
 
+import static com.affwl.exchange.DataHolder._connection;
+import static com.affwl.exchange.DataHolder._hub;
 //Bet
 public class BetActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -64,12 +67,18 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
     TextView txtVChipsStake;
     ImageView imgVFav;
     Handler handler;
+    Runnable runnable;
 
     RecyclerView recycleViewMarketData;
     private List<MarketData> MarketDataList = new ArrayList<>();
     MarketDataAdapter marketDataAdapter;
 
     Handler handlerMarketData;
+
+
+    SignalRFuture<Void> awaitConnection;
+
+    public static ArrayList<String> MarketDataArray = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,14 +141,15 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         Log.i("TAG456",matchName+" "+marketId+" "+matchId);
 
         handler = new Handler();
+        new getStackAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Settings/GetBetStakeSetting");
+        new getMartketDataAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/MktData?mtid="+matchId+"&mktid="+marketId);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-        new getMartketDataAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/MktData?mtid="+matchId+"&mktid="+marketId);
-        new getStackAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Settings/GetBetStakeSetting");
+        txtVChipsStake.setText("CHIPS "+DataHolder.getSTACK(this,"StackValue1"));
+        DataHolder.STACK_VALUE = Double.valueOf(DataHolder.getSTACK(this,"StackValue1"));
     }
 
     @Override
@@ -215,9 +225,9 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         txtVStackValue2.setOnClickListener(this);
         txtVStackValue3.setOnClickListener(this);
 
-        txtVStackValue1.setText("CHIPS "+StackValue1);
-        txtVStackValue2.setText("CHIPS "+StackValue2);
-        txtVStackValue3.setText("CHIPS "+StackValue3);
+        txtVStackValue1.setText("CHIPS "+DataHolder.getSTACK(this,"StackValue1"));
+        txtVStackValue2.setText("CHIPS "+DataHolder.getSTACK(this,"StackValue2"));
+        txtVStackValue3.setText("CHIPS "+DataHolder.getSTACK(this,"StackValue3"));
 
         txtVOK.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -243,10 +253,6 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
 
         dialog.show();
     }
-
-    HubConnection _connection;
-    HubProxy _hub;
-    SignalRFuture<Void> awaitConnection;
 
 
     String back1,lay1,runner,backSize1,laySize1;
@@ -278,7 +284,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
 
                     //Toast.makeText(BetActivity.this, ""+json, Toast.LENGTH_SHORT).show();
 
-                    handler.postDelayed(new Runnable() {
+                    handler.postDelayed(runnable = new Runnable() {
                         @Override
                         public void run() {
                             try {
@@ -298,13 +304,13 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                                 e.printStackTrace();
                             }
 
-                            for(index=0;index<DataHolder.MarketDataArray.size();index++) {
+                            for(index=0;index<MarketDataArray.size();index++) {
 
-                                if (DataHolder.MarketDataArray.get(index).equalsIgnoreCase(runner)) {
+                                if (MarketDataArray.get(index).equalsIgnoreCase(runner)) {
 
-                                    if(index<DataHolder.MarketDataArray.size()){
+                                    if(index<MarketDataArray.size()){
 
-                                        Log.i("TAG1234", DataHolder.MarketDataArray.get(index) + " " + runner +" "+runner+ " " +back1+ " " +lay1+ " " +backSize1+ " " +laySize1+ " " +bfId);
+                                        Log.i("TAG1234", MarketDataArray.get(index) + " " + runner +" "+runner+ " " +back1+ " " +lay1+ " " +backSize1+ " " +laySize1+ " " +bfId);
 
                                         MarketDataList.remove(index);
 //                                        recycleViewMarketData.removeViewAt(index);
@@ -328,6 +334,8 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                 }
             });
 
+
+
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -342,9 +350,25 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        _hub = null;
-        _connection.stop();
-        DataHolder.MarketDataArray.clear();
+        MarketDataArray.clear();
+
+        handler.removeCallbacks(runnable);
+        handler.removeCallbacksAndMessages(null);
+
+        try {
+            if (runnable != null ) {
+                Log.i("TAG14552",runnable.toString());
+                _connection.closed(runnable);
+                _hub = null;
+                _connection.disconnect();
+                _hub.invoke("UnsubscirbeSymbol",bfId);
+                _connection.stop();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public String  getStackApi(String url){
@@ -417,6 +441,12 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                 StackValue3 = jsonObj.getString("stake3");
                 txtVChipsStake.setText("CHIPS "+StackValue1);
                 DataHolder.STACK_VALUE = Double.valueOf(StackValue1);
+
+                DataHolder.setSTACK(BetActivity.this,"StackValue1",StackValue1);
+                DataHolder.setSTACK(BetActivity.this,"StackValue2",StackValue2);
+                DataHolder.setSTACK(BetActivity.this,"StackValue3",StackValue3);
+
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -468,6 +498,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         @Override
         protected void onPostExecute(String result) {
             Log.i("Check",""+result);
+            Toast.makeText(BetActivity.this, ""+result, Toast.LENGTH_SHORT).show();
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
                 JSONObject jsonObjData = new JSONObject(jsonObjMain.getString("data"));
@@ -484,7 +515,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                     String laySize1 = key.getString("laySize1");
                     String runnerName = key.getString("runnerName");
 
-                    DataHolder.MarketDataArray.add(key.getString("runnerName"));
+                    MarketDataArray.add(key.getString("runnerName"));
 
                     MarketDataList.add(new MarketData(runnerName,back1,lay1,backSize1,laySize1,bfId,matchId,marketId));
 
