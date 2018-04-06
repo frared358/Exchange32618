@@ -37,7 +37,7 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
 
     @Nullable
     @Override
-    /** Right click - Generate - Override Method - slect onCreateView */
+    /** Right click - Generate - Override Method - slect onCreateView*/
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate (R.layout.fragment_fx_chart, null);
 
