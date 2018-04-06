@@ -1,6 +1,7 @@
 
 package com.affwl.exchange.sport;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -42,8 +43,15 @@ public class StackActivity extends AppCompatActivity implements View.OnClickList
         btnStackSave = findViewById(R.id.btnStackSave);
         btnStackSave.setOnClickListener(this);
 
-        new getStackAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Settings/GetBetStakeSetting");
+        //new getStackAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Settings/GetBetStakeSetting");
+        /*SharedPreferences prefs = getSharedPreferences("PREF_STACK", MODE_PRIVATE);
+        String StackValue1 = prefs.getString("StackValue1", "0");
+        String StackValue2 = prefs.getString("StackValue2", "0");
+        String StackValue3 = prefs.getString("StackValue3", "0");*/
 
+        editTxtStackValue1.setText(DataHolder.getSTACK(StackActivity.this,"StackValue1"));
+        editTxtStackValue2.setText(DataHolder.getSTACK(StackActivity.this,"StackValue2"));
+        editTxtStackValue3.setText(DataHolder.getSTACK(StackActivity.this,"StackValue3"));
     }
 
     public String  setStackApi(String url){
@@ -118,7 +126,11 @@ public class StackActivity extends AppCompatActivity implements View.OnClickList
                 JSONObject jsonObjMain = new JSONObject(result.toString());
                 String strData = jsonObjMain.getString("status");
                 Log.i("TAG",""+strData);
-
+                if (strData.trim().equalsIgnoreCase("Success")){
+                    DataHolder.setSTACK(StackActivity.this,"StackValue1",editTxtStackValue1.getText().toString());
+                    DataHolder.setSTACK(StackActivity.this,"StackValue2",editTxtStackValue2.getText().toString());
+                    DataHolder.setSTACK(StackActivity.this,"StackValue3",editTxtStackValue3.getText().toString());
+                }
                 Toast.makeText(StackActivity.this, ""+strData, Toast.LENGTH_SHORT).show();
 
 
@@ -198,6 +210,5 @@ public class StackActivity extends AppCompatActivity implements View.OnClickList
                 new setStackAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Settings/SaveBetStakeSetting");
                 break;
         }
-
     }
 }

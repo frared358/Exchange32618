@@ -10,6 +10,7 @@
         <!--app:showAsAction="ifRoo   m" />-->
 
     <item
+        android:id="@+id/idHighLight"
         android:title="cd"
         app:showAsAction="always"
         android:icon="@drawable/plus"/>
@@ -69,30 +70,48 @@
         android:icon="@drawable/copy"
         android:title="Charts"
         app:showAsAction="always">
+
         <menu>
 
             <item
-                android:id="@+id/it8"
+                android:id="@+id/mnNewWindow"
                 android:title="New Window"
                 android:icon="@drawable/ic_add_black_24dp"
-
                 app:showAsAction="always" />
 
+
+
             <item
-                android:id="@+id/it9"
+                android:id="@+id/mnChartWindow1"
                android:checked="true"
                 android:checkable="true"
                 android:title="USDCNH, M1"
                 app:showAsAction="always" />
 
+            <item
+                android:id="@+id/mnChartWindow2"
+                android:checked="false"
+                android:checkable="true"
+                android:title="EURUSD, H1"
+                android:visible="false"
+                app:showAsAction="always" />
 
+            <!--<CheckBox-->
+                <!--android:id="@+id/cb"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Check box"/>-->
 
-            <CheckBox
+            <item
+                android:id="@+id/mnTileHorizontal"
+                android:title="TileHorizontal"
+                app:showAsAction="always" />
 
-                android:id="@+id/cb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Check box"/>
+            <item
+                android:id="@+id/mnTileVertically"
+                android:title="TileVertically"
+                app:showAsAction="always" />
+
 
 
         </menu>
@@ -102,8 +121,5 @@
         android:title="Calender"
         android:icon="@drawable/addicon"
         app:showAsAction="always" >
-
-
-
     </item>
 </menu>
