@@ -154,6 +154,7 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
                     Toast.makeText(getApplicationContext(), "selected Sports", Toast.LENGTH_LONG).show();
                 }
                 else if(!sportsCheckBox.isChecked()){
+                    //delete now
                     SQLiteDatabase db = mDBHelper.getWritableDatabase();
                     db.delete("selected_category", "user_name = ? AND category_id = ? ",
                             new String[] { "kavari", String.valueOf(1)});
