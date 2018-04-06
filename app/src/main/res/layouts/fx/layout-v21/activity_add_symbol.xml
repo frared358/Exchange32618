@@ -269,7 +269,6 @@ android:id="@+id/autotv"
         android:layout_marginLeft="19dp"
         android:layout_marginStart="19dp"
         android:layout_marginTop="11dp"
-        app:srcCompat="?android:attr/actionModeWebSearchDrawable"
-        tools:ignore="NewApi" />
+        app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
 
 </RelativeLayout>

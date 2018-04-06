@@ -1,5 +1,6 @@
 package com.affwl.exchange.fx;
 
+import android.content.Context;
 import android.content.Intent;
 import android.opengl.Visibility;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,9 @@ import android.widget.Toolbar;
 
 import com.affwl.exchange.R;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class Add_symbol_Forex extends AppCompatActivity {
    LinearLayout ll_add_symbol;
     ImageView imageView8;
@@ -23,10 +27,18 @@ public class Add_symbol_Forex extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf")
+                .setFontAttrId(R.attr.fontPath).build());
         setContentView(R.layout.activity_add_symbol__forex);
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     @Override
