@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sounds"
+        android:id="@+id/teenpatti_sounds"
         android:textSize="20sp"
         android:padding="10dp"
         android:textColor="@color/colorWhite" />

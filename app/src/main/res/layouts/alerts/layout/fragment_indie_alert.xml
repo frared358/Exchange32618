@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sounds"
+        android:id="@+id/indie_sounds"
         android:padding="10dp"
         android:textSize="20sp"
         android:textColor="@color/colorWhite" />
