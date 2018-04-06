@@ -258,8 +258,6 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                                //tvAdvCurrencyLow.setVisibility (View.VISIBLE);
                                //tvAdvCurrencyHigh.setVisibility (View.VISIBLE);
                                }
-
-
                            }
                            else
                            {
@@ -270,6 +268,11 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                                //tvAdvCurrencyLow.setVisibility (View.GONE);
                                tvCurrencyHigh.setVisibility (View.VISIBLE);
                                tvCurrencyLow.setVisibility (View.VISIBLE);
+                               if (textView1.getText ()=="INR") {
+                                   tvCurrencyHigh.setVisibility (View.VISIBLE);
+                                   tvCurrencyLow.setVisibility (View.VISIBLE);
+
+                               }
                            }
 
                             dialog.dismiss();

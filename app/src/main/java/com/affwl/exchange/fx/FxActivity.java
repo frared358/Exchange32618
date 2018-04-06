@@ -170,7 +170,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
 
         if (currentFragment != null && currentFragment instanceof Fx_Chart_Fragment) {
             //navigation.setSelectedItemId (R.id.nav_charts1);  /** Chart moving constantaly */
-            getMenuInflater().inflate(R.menu.charts, menu);
+            getMenuInflater().inflate(R.menu.charts, menu);  /**Added chart navigation menu on fragment */
             //Toast.makeText(FxActivity.this, "click r", Toast.LENGTH_SHORT).show();
 
         }
