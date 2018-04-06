@@ -111,6 +111,7 @@ public class Selected_symbols extends AppCompatActivity {
         }
         else if(item.getItemId()==R.id.action_delete)
         {
+            //delete multiple
             Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show();
         for (int i = 0; i < member_names5.length; i++) {
         RowItem5_quotes itemdel = new RowItem5_quotes(member_names5[i], profile_pics5.getResourceId(i, -1), statues5[i],0);
