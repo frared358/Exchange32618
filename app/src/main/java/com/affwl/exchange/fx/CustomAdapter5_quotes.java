@@ -45,7 +45,7 @@ public class CustomAdapter5_quotes extends BaseAdapter {
 		ImageView profile_pic5;
 		TextView member_name5;
 		TextView status5;
-		CheckBox checkBox;
+
 
 	}
 
@@ -64,7 +64,7 @@ public class CustomAdapter5_quotes extends BaseAdapter {
 			holder.profile_pic5 = (ImageView) convertView.findViewById(R.id.profile_pic5);
 			holder.status5 = (TextView) convertView.findViewById(R.id.status5);
 
-			holder.checkBox=(CheckBox)convertView.findViewById(R.id.checkbox) ;
+
 
 			RowItem5_quotes row_pos = rowItems5.get(position);
 
@@ -72,12 +72,6 @@ public class CustomAdapter5_quotes extends BaseAdapter {
 			holder.profile_pic5.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_view_headline_blue_grey_200_18dp));
 			holder.member_name5.setText(row_pos.getMember_name5());
 			holder.status5.setText(row_pos.getStatus5());
-			holder.checkBox.setTag(position);
-
-
-
-
-		;
 
 			convertView.setTag(holder);
 		} else {
