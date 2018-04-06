@@ -11,17 +11,10 @@
         android:layout_height="wrap_content"
         android:background="@color/colorGreay"
         android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="3dp"
+        android:padding="2dp"
         android:orientation="horizontal"
         android:gravity="center_vertical">
-
-        <ImageView
-            android:id="@+id/imgVTournamentIcon"
-            android:layout_width="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/plus_round_corner"
-            android:layout_weight="0" />
 
         <TextView
             android:id="@+id/txtVTournamentName"
@@ -31,14 +24,17 @@
             android:textStyle="bold"
             android:layout_weight="1"
             android:layout_margin="5dp"
-            android:text="Data" />
+            android:text="" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_weight="0"
+            android:layout_margin="5dp"
+            android:text=" > " />
 
     </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:visibility="gone"
-        android:id="@+id/recycleViewMatchList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
 </LinearLayout>

@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.affwl.exchange.alerts.AlertsActivity;
 import com.affwl.exchange.binary.Sec60Activity;
 import com.affwl.exchange.fx.FxActivity;
 import com.affwl.exchange.indie.IndieActivity;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     TextView txtVIndie,txtV60Sec,txtVsports,fx;
     ImageView imgVIndie,imgV60Sec,imgVsports,imgVsportsCup,imgfx;
-    LinearLayout news_layout,settings_layout;
+    LinearLayout news_layout,settings_layout,alerts_layout;
 
 
     @Override
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         news_layout=findViewById(R.id.news_layout);
         settings_layout=findViewById(R.id.settings_layout);
+        alerts_layout=findViewById(R.id.alerts_layout);
 
         txtVIndie.setOnClickListener(this);
         imgVIndie.setOnClickListener(this);
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         news_layout.setOnClickListener(this);
         settings_layout.setOnClickListener(this);
+        alerts_layout.setOnClickListener(this);
 
     }
 
@@ -75,6 +78,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.news_layout:
                 startActivity(new Intent(this,NewsActivity.class));
+                break;
+
+            case R.id.alerts_layout:
+                startActivity(new Intent(this, AlertsActivity.class));
                 break;
 
             case R.id.settings_layout:

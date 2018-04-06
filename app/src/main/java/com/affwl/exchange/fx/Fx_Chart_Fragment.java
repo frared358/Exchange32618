@@ -37,7 +37,7 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
 
     @Nullable
     @Override
-    /** Right click - Generate - Override Method - slect onCreateView */
+    /** Right click - Generate - Override Method - slect onCreateView*/
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate (R.layout.fragment_fx_chart, null);
 
@@ -47,17 +47,14 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
 
         mSeekBarX = (SeekBar) view.findViewById (R.id.seekBar1);
         mSeekBarX.setOnSeekBarChangeListener (this);
-//        mSeekBarX.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener) Fx_Chart_Fragment.this.getActivity());
 
         mSeekBarY = (SeekBar) view.findViewById (R.id.seekBar2);
         mSeekBarY.setOnSeekBarChangeListener (this);
-//        mSeekBarY.setOnSeekBarChangeListener((SeekBar.OnSeekBarChangeListener) Fx_Chart_Fragment.this.getActivity());
 
         mChart = (CandleStickChart) view.findViewById (R.id.chart1);
         mChart.setBackgroundColor (Color.WHITE);
 
         mChart.getDescription ().setEnabled (false);
-
         // if more than 60 entries are displayed in the chart, no values will be
         // drawn
         mChart.setMaxVisibleValueCount (60);
@@ -214,71 +211,3 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
 
 
 
- /**   public  void  lineChart(){
-
-    mchart =(CandleStickChart)view.findViewById(R.id.linechart);
-//         mchart.setOnChartGestureListener(FxActivity.this);
-//         mchart.setOnChartValueSelectedListener(FxActivity.this);
-        mchart.setDragEnabled(true);
-        mchart.setScaleEnabled(false);
-
-    LimitLine upper_limit = new LimitLine (65f, "Danger");
-        upper_limit.setLineWidth(4f);
-        upper_limit.enableDashedLine(10f,10f,0f);
-        upper_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-upper_limit.setTextSize(15f);
-
-
-       mchart.getAxisLeft().
-
-    setEnabled(false);
-
-
-    LimitLine lower_limit = new LimitLine (35f, "Too Low");
-        upper_limit.setLineWidth(4f);
-        upper_limit.enableDashedLine(10f,10f,0f);
-        upper_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-        upper_limit.setTextSize(15f);
-    ArrayList<CandleEntry> yValues = new ArrayList<> ();
-        yValues.add(new
-
-    CandleEntry(0,1,2,3,4));
-        yValues.add(new
-
-    CandleEntry(2,1,2,3,4));
-        yValues.add(new
-
-    CandleEntry(3,1,2,3,4));
-        yValues.add(new
-
-    CandleEntry(0,1,2,3,4));
-//        yValues.add(new Entry(0,60f));
-//        yValues.add(new Entry(1,50f));
-//        yValues.add(new Entry(2,30f));
-//        yValues.add(new Entry(3,70f));
-//        yValues.add(new Entry(4,30f));
-//        yValues.add(new Entry(5,1.03745f));
-
-
-    CandleDataSet set1 = new CandleDataSet (yValues, "Data set1");
-    //set1.setFillAlpha(110);
-        set1.setColor(Color.RED);
-    //set1.setLineWidth(3f);
-        set1.setValueTextSize(10f);
-        set1.setValueTextColor(Color.BLACK);
-
-    ArrayList<ICandleDataSet> dataSets = new ArrayList<> ();
-        dataSets.add(set1);
-    CandleData data = new CandleData ();
-        mchart.setData(data);
-
-    String[] values = new String[]{"1 Sep 2016", "1 Mar 2017", "1 Sep 2017", "1 Mar 2018"};
-    XAxis xAxis = mchart.getXAxis ();
-        xAxis.setValueFormatter(new
-
-    MyAxisValueFormatter(values));
-        xAxis.setGranularity(1f);
-
-
-    }
-}*/

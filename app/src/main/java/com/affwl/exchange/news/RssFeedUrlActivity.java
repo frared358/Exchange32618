@@ -1,10 +1,15 @@
 package com.affwl.exchange.news;
 
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -22,20 +27,36 @@ import android.widget.Toast;
 
 import com.affwl.exchange.R;
 
+import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     EditText edit_add_url;
-    ImageView img_add_url,delete_url_img;
+    ImageView img_add_url;
     ListView display_url_list;
     Button submit_urlList,cancel_urlList;
-    List<RssUrlDetails> rssUrlDetailsList=new ArrayList<>();
-    RssUrlAdapter rssUrlAdapter;
     ArrayAdapter itemsAdapter;
     ArrayList<String> myList=new ArrayList<String>();
     private EditText edit_url_entered;
+    int categoryValue,selected_value;
+
+    private DatabaseHelper mDBHelper;
+    private SQLiteDatabase mDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +65,6 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
 
         edit_add_url=findViewById(R.id.edit_add_url);
         img_add_url=findViewById(R.id.img_add_url);
-        delete_url_img=findViewById(R.id.delete_url_img);
         display_url_list=findViewById(R.id.display_url_list);
         submit_urlList=findViewById(R.id.submit_urlList);
         cancel_urlList=findViewById(R.id.cancel_urlList);
@@ -52,19 +72,46 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
         submit_urlList.setOnClickListener(this);
         cancel_urlList.setOnClickListener(this);
         img_add_url.setOnClickListener(this);
-        delete_url_img.setOnClickListener(this);
 
         display_url_list.setOnItemClickListener(this);
         display_url_list.setOnItemLongClickListener(this);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                .permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        mDBHelper = new DatabaseHelper(this);
+
+        try {
+            mDBHelper.updateDataBase();
+        } catch (IOException mIOException) {
+            throw new Error("UnableToUpdateDatabase");
+        }
+
+        categoryValue = getIntent().getIntExtra("category",0);
+        try {
+            SQLiteDatabase db = mDBHelper.getReadableDatabase();
+            Cursor c = db.rawQuery("SELECT * FROM category_url a INNER JOIN selected_category b ON a.selected_id=b.selected_id WHERE b.category_id=?",  new String[] { String.valueOf(categoryValue) });
+
+            if (c.moveToFirst()) {
+
+                do {
+                    Log.i("Tag",""+c.getInt(c.getColumnIndex("url_id")));
+                    Log.i("Tag",""+c.getInt(c.getColumnIndex("selected_id")));
+                    Log.i("Tag",""+c.getString(c.getColumnIndex("url_name")));
+                    myList.add(c.getString(c.getColumnIndex("url_name")));
+                } while (c.moveToNext());
+            }
+            Log.i("my db"," "+mDb);
+
+        } catch (SQLException mSQLException) {
+            throw mSQLException;
+        }
 
 
+        itemsAdapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1,myList);
+        display_url_list.setAdapter(itemsAdapter);
 
- /*      myList = (ArrayList<String>) getIntent().getSerializableExtra("urlArray");
-        if(myList!=null) {
-            itemsAdapter = new ArrayAdapter<String>(RssFeedUrlActivity.this, android.R.layout.simple_list_item_1, myList);
-            display_url_list.setAdapter(itemsAdapter);
-        }*/
     }
 
     @Override
@@ -74,21 +121,62 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
             case R.id.img_add_url:
                 String url = edit_add_url.getText().toString();
                 if(!url.equalsIgnoreCase("") && url!=null) {
-                    if (rssUrlDetailsList.size() < 5) {
+                    try {
+                        DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+                        Document doc = builder.parse(url); // url is your url for testing
+                        if (doc.getDocumentElement().getNodeName().equalsIgnoreCase("rss"))
+                        {
+                            if (myList.size() < 5) {
 
-                        RssUrlDetails rssUrl=new RssUrlDetails(url, 0);
-                        rssUrlDetailsList.add(rssUrl);
+                                myList.add(url);
+                                itemsAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, myList);
+                                display_url_list.setAdapter(itemsAdapter);
 
-                        rssUrlAdapter = new RssUrlAdapter(RssFeedUrlActivity.this,rssUrlDetailsList);
-                        display_url_list.setAdapter(rssUrlAdapter);
+                                edit_add_url.setError(null);
+                                edit_add_url.setText("");
+                                InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                                in.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
 
-                        edit_add_url.setError(null);
-                        edit_add_url.setText("");
-                        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        in.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
+                                try {
 
-                    } else {
-                        edit_add_url.setError("Not more than 5 Url allowed");
+                                    SQLiteDatabase db = mDBHelper.getReadableDatabase();
+                                    Cursor c = db.rawQuery("SELECT * FROM selected_category WHERE category_id=?", new String[]{String.valueOf(categoryValue)});
+                                    if (c.moveToFirst()) {
+
+                                        do {
+                                            Log.i("Tag", "" + c.getInt(c.getColumnIndex("selected_id")));
+                                            selected_value = c.getInt(c.getColumnIndex("selected_id"));
+                                        } while (c.moveToNext());
+                                    }
+
+                                    mDb = mDBHelper.getWritableDatabase();
+                                    ContentValues values = new ContentValues();
+                                    values.put("selected_id", selected_value);
+                                    values.put("url_name", url);
+
+                                    mDb.insert("category_url", null, values);
+                                    Log.i("my db", " " + mDb);
+
+                                } catch (SQLException mSQLException) {
+                                    throw mSQLException;
+                                }
+                            } else {
+                                edit_add_url.setError("Not more than 5 Url allowed");
+                            }
+                    }
+                    else {
+                            diplayAlert();
+                        }
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                        diplayAlert();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        diplayAlert();
+                    } catch (ParserConfigurationException e) {
+                        e.printStackTrace();
+                    } catch (SAXException e) {
+                        e.printStackTrace();
                     }
                 }
                 else {
@@ -96,21 +184,9 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
 
-            case R.id.delete_url_img:
-                        diplayAlert();
-                break;
-
-
             case R.id.submit_urlList:
 
-                for(int i=0;i<rssUrlDetailsList.size();i++)
-                {
-                    myList.add(rssUrlDetailsList.get(i).getRssUrl());
-                }
-                Intent intent=new Intent(RssFeedUrlActivity.this,NewsActivity.class);
-                intent.putExtra("urlArray", myList);
-
-                startActivity(intent);
+                startActivity(new Intent(RssFeedUrlActivity.this,NewsActivity.class));
                 break;
 
             case R.id.cancel_urlList:
@@ -122,7 +198,7 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void diplayAlert() {
-        
+
             TextView alert_title,alertMessage;
             final ImageView close_alert;
             Button ok_alert,cancel_alert;
@@ -132,83 +208,52 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
             myAlertDialog.setCanceledOnTouchOutside(false);
             myAlertDialog.setContentView(R.layout.alert_message_dts);
 
-        alert_title = myAlertDialog.findViewById(R.id.alert_title);
-        alertMessage=myAlertDialog.findViewById(R.id.alertMessage);
-        close_alert=myAlertDialog.findViewById(R.id.close_alert);
-        ok_alert=myAlertDialog.findViewById(R.id.ok_alert);
-        cancel_alert=myAlertDialog.findViewById(R.id.cancel_alert);
+            alert_title = myAlertDialog.findViewById(R.id.alert_title);
+            alertMessage=myAlertDialog.findViewById(R.id.alertMessage);
+            close_alert=myAlertDialog.findViewById(R.id.close_alert);
+            ok_alert=myAlertDialog.findViewById(R.id.ok_alert);
+            cancel_alert=myAlertDialog.findViewById(R.id.cancel_alert);
 
-        String stringUrl = "";
-        String extension = "";
+            close_alert.setVisibility(View.GONE);
+        cancel_alert.setVisibility(View.GONE);
+        ok_alert.setText("OK");
+        alert_title.setText("Alert");
+        alertMessage.setText("Enter a valid URL");
 
-        for(int i=0;i<rssUrlDetailsList.size();i++){
-            if (rssUrlDetailsList.get(i).getIntCheck() == 1) {
-                myList.add(rssUrlDetailsList.get(i).getRssUrl());
-            }
-
-
-            if(myList.size()>1) {
-                alertMessage.append(myList.size()+"");
-                Log.i("Alert check"," "+alertMessage.getText().toString());
-            }
-           else {
-                String url=myList.get(i);
-                int leng=url.length();
-
-                    if (leng > 20) {
-                        stringUrl = url.substring(0, leng / 2) + "...";
-                        extension = url.substring(url.lastIndexOf(".") + 1);
-//                        alertMessage.append(stringUrl + extension + " , ");
-                        Log.i("Alert check"," "+alertMessage.getText().toString());
-
-                    }
+           /* close_alert.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    myAlertDialog.dismiss();
                 }
-                }
-                myList.clear();
+            });*/
 
-
-        cancel_alert.setOnClickListener(new View.OnClickListener() {
+            /*close_alert.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     myAlertDialog.dismiss();
                 }
             });
+*/
 
-        close_alert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myAlertDialog.dismiss();
-            }
-        });
+            ok_alert.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-
-        ok_alert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for(int i = (rssUrlDetailsList.size() - 1); i >= 0; i--) {
-                    if(rssUrlDetailsList.get(i).getIntCheck()==1)
-                    {
-                        rssUrlDetailsList.remove(i);
-
-                    }
+                    myAlertDialog.dismiss();
                 }
-                rssUrlAdapter = new RssUrlAdapter(RssFeedUrlActivity.this,rssUrlDetailsList);
-                display_url_list.setAdapter(rssUrlAdapter);
-
-                myAlertDialog.dismiss();
-            }
-        });
+            });
             myAlertDialog.show();
-        
+
+
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        showInputBox(rssUrlDetailsList.get(position).getRssUrl(),position);
+        showInputBox(myList.get(position),position);
     }
 
-    private void showInputBox(String oldItem, final int index) {
+    private void showInputBox(final String oldItem, final int index) {
         final Dialog dialog=new Dialog(RssFeedUrlActivity.this);
         dialog.setCanceledOnTouchOutside(false);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -240,11 +285,22 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
         btn_delete_url.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rssUrlDetailsList.remove(index);
+                myList.remove(index);
 
-                rssUrlAdapter = new RssUrlAdapter(RssFeedUrlActivity.this,rssUrlDetailsList);
-                display_url_list.setAdapter(rssUrlAdapter);
+                itemsAdapter.notifyDataSetChanged();
 
+                SQLiteDatabase db = mDBHelper.getReadableDatabase();
+                Cursor c = db.rawQuery("SELECT * FROM selected_category WHERE category_id=? AND user_id=?",  new String[] { String.valueOf(categoryValue),String.valueOf(1234) });
+                if (c.moveToFirst()) {
+
+                    do {
+                        Log.i("Tag",""+c.getInt(c.getColumnIndex("selected_id")));
+                        selected_value=c.getInt(c.getColumnIndex("selected_id"));
+                    } while (c.moveToNext());
+                }
+
+                SQLiteDatabase deldb = mDBHelper.getWritableDatabase();
+                deldb.delete("category_url", "url_name = ? AND selected_id = ?", new String[] { oldItem, String.valueOf(selected_value)});
                 dialog.dismiss();
 
             }
@@ -255,11 +311,27 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
             public void onClick(View v) {
 
                 String rssFeedStr= edit_url_entered.getText().toString();
-                RssUrlDetails rssUrl=new RssUrlDetails(rssFeedStr,0);
-                rssUrlDetailsList.set(index,rssUrl);
 
-                rssUrlAdapter = new RssUrlAdapter(RssFeedUrlActivity.this,rssUrlDetailsList);
-                display_url_list.setAdapter(rssUrlAdapter);
+                myList.set(index,rssFeedStr);
+                itemsAdapter.notifyDataSetChanged();
+
+                SQLiteDatabase db = mDBHelper.getReadableDatabase();
+                Cursor c = db.rawQuery("SELECT * FROM selected_category WHERE category_id=? AND user_id=?",  new String[] { String.valueOf(categoryValue),String.valueOf(1234) });
+                if (c.moveToFirst()) {
+
+                    do {
+                        Log.i("Tag",""+c.getInt(c.getColumnIndex("selected_id")));
+                        selected_value=c.getInt(c.getColumnIndex("selected_id"));
+                    } while (c.moveToNext());
+                }
+
+                SQLiteDatabase sqldb = mDBHelper.getWritableDatabase();
+
+                ContentValues values = new ContentValues();
+                values.put("url_name", rssFeedStr);
+
+                // updating row
+                sqldb.update("category_url", values, "url_name = ?", new String[] { oldItem });
 
                 dialog.dismiss();
             }
@@ -269,7 +341,7 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(this, " "+rssUrlDetailsList.get(position).getRssUrl(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, " "+myList.get(position), Toast.LENGTH_SHORT).show();
         return true;
     }
 }
