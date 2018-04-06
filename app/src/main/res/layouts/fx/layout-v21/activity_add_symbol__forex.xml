@@ -83,6 +83,5 @@
         android:layout_marginStart="23dp"
         android:visibility="gone"
         android:layout_marginTop="16dp"
-        app:srcCompat="?android:attr/actionModeWebSearchDrawable"
-        tools:ignore="NewApi" />
+        app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
 </RelativeLayout>

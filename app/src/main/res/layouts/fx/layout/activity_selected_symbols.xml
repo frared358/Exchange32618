@@ -17,15 +17,93 @@
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="Selected symbols"
         android:gravity="center"
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/RobotoCondensed-Regular.ttf"
         android:id="@+id/toolbar2" />
 
-    <ListView
-        android:id="@+id/list5"
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="64dp"
-        android:layout_below="@+id/toolbar2"/>
 
+<!--<RelativeLayout-->
+    <!--android:id="@+id/RLSS"-->
+    <!--android:layout_margin="5dp"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:layout_below="@id/toolbar2">-->
+
+
+    <!--<ImageView-->
+        <!--android:id="@+id/imageView15"-->
+        <!--android:layout_width="25dp"-->
+        <!--android:layout_height="25dp"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--app:srcCompat="@drawable/ic_view_headline_blue_grey_200_18dp" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/textView51"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_marginLeft="42dp"-->
+        <!--android:layout_marginStart="42dp"-->
+        <!--android:textColor="@color/colorBlack"-->
+        <!--android:layout_toEndOf="@+id/imageView15"-->
+        <!--android:layout_toRightOf="@+id/imageView15"-->
+        <!--android:text="EURUSD" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/textView52"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_marginLeft="18dp"-->
+        <!--android:layout_marginStart="18dp"-->
+        <!--android:layout_toEndOf="@+id/imageView15"-->
+        <!--android:layout_toRightOf="@+id/imageView15"-->
+        <!--android:text="Euro Vs US Dollar" />-->
+
+    <!--<CheckBox-->
+        <!--android:id="@+id/checkBox"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:visibility="gone"-->
+        <!--android:layout_alignTop="@+id/imageView15" />-->
+<!--</RelativeLayout>-->
+    <ListView
+    android:id="@+id/list5"
+    android:layout_width="368dp"
+    android:layout_height="495dp"
+    tools:layout_editor_absoluteX="8dp"
+    tools:layout_editor_absoluteY="64dp"
+    android:layout_below="@+id/toolbar2"
+    />
 
 </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--<ListView-->
+    <!--android:id="@+id/list5"-->
+    <!--android:layout_width="368dp"-->
+    <!--android:layout_height="495dp"-->
+    <!--tools:layout_editor_absoluteX="8dp"-->
+    <!--tools:layout_editor_absoluteY="64dp"-->
+    <!--android:layout_below="@+id/toolbar2"-->
+    <!--/>-->
