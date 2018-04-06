@@ -17,6 +17,7 @@ import java.util.List;
 
 public class CustomAdapter5_quotes extends BaseAdapter {
 
+
 	Context context;
 	List<RowItem5_quotes> rowItems5;
 
