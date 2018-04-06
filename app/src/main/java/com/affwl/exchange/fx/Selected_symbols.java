@@ -117,6 +117,8 @@ public class Selected_symbols extends AppCompatActivity {
         //checkbox
         if (item.getItemId() == R.id.delete) {
 
+
+
             //          mylistview.getItemAtPosition()
 
 //
