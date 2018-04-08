@@ -38,7 +38,7 @@ public class AlertsActivity extends AppCompatActivity {
         viewPagerMainAlert = (ViewPager)findViewById(R.id.viewPager_main_alert);
         tabLayoutmainalert = (TabLayout) findViewById(R.id.tabs_main_alert);
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < pageTitle.length; i++) {
             tabLayoutmainalert.addTab(tabLayoutmainalert.newTab().setText(pageTitle[i]));
         }
 
@@ -83,9 +83,9 @@ public class AlertsActivity extends AppCompatActivity {
             if (position == 0) {
                 return new GeneralAlertFragment();
             } else if (position == 1) {
-                return new FXAlertFragment();
-            } else if (position == 2) {
                 return new CryptoAlertFragment();
+            } else if (position == 2) {
+                return new FXAlertFragment();
             } else if (position == 3) {
                 return new IndieAlertFragment();
             } else if (position == 4) {
@@ -93,7 +93,7 @@ public class AlertsActivity extends AppCompatActivity {
             } else if (position == 5) {
                 return new SportsAlertFragment();
             }
-            else  if (position == 5) {
+            else  if (position == 6) {
                 return new TeenPattiAlertFragment();
             }
             else
@@ -104,7 +104,7 @@ public class AlertsActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 7;
+            return pageTitle.length;
         }
     }
 

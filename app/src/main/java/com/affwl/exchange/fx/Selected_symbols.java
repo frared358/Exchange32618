@@ -109,7 +109,7 @@ public class Selected_symbols extends AppCompatActivity {
             Intent i = new Intent(Selected_symbols.this, Add_symbol.class);
             startActivity(i);
         }
-        else if(item.getItemId()==R.id.action_delete)
+        else if(item.getItemId()==R.id.delete)
         {
             // multiple delete
             Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show();

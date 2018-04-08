@@ -173,20 +173,18 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
                     if (c.moveToFirst()) {
 
                         do {
-                            Log.i("Tag",""+c.getInt(c.getColumnIndex("url_id")));
+                           /* Log.i("Tag",""+c.getInt(c.getColumnIndex("url_id")));
                             Log.i("Tag",""+c.getInt(c.getColumnIndex("selected_id")));
-                            Log.i("Tag",""+c.getString(c.getColumnIndex("url_name")));
+                            Log.i("Tag",""+c.getString(c.getColumnIndex("url_name")));*/
                             myList.add(c.getString(c.getColumnIndex("url_name")));
                         } while (c.moveToNext());
                     }
-                    Log.i("my db"," "+mDb);
+//                    Log.i("my db"," "+mDb);
 
                 } catch (SQLException mSQLException) {
                     throw mSQLException;
                 }
-//             URL url=new URL("https://judeochristianclarion.com/feed/rss.xml");
-//             URL url=new URL("https://economictimes.indiatimes.com/industry/auto/rssfeeds/13359412.cms");
-//             URL url = new URL("http://cmhett.tk/rss.xml");
+
                 if(myList!=null) {
                     for (int i = 0; i < myList.size(); i++) {
                         URL url = new URL(myList.get(i));
@@ -201,7 +199,7 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
 
                         // Returns the type of current event: START_TAG, END_TAG, etc..
                         int eventType = xpp.getEventType();
-                        Log.i("Checking event"," "+eventType);
+//                        Log.i("Checking event"," "+eventType);
 
 
                         while (eventType != XmlPullParser.END_DOCUMENT) {
