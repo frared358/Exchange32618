@@ -163,10 +163,9 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
         int id = item.getItemId();
 
         if (id == R.id.myMarket) {
-            dialogMyMarket();
+            //dialogMyMarket();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -335,19 +334,78 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
             Toast.makeText(SportActivity.this, ""+result, Toast.LENGTH_SHORT).show();
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
-                String bookmakingData = jsonObjMain.getString("bookmakingData");
-
+                JSONArray array = new JSONArray(jsonObjMain.getString("data"));
+                int len = array.length();
+                for(int i=0;i<len;i++){
+                    JSONObject key = array.getJSONObject(i);
+                    String liability = key.getString("liability");
+                    String matchName = key.getString("matchName");
+                    arrayExposer.add(liability);
+                    arrayMatchName.add(matchName);
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
     }
 
+    ArrayList<String> arrayMatchName = new ArrayList<>();
+    ArrayList<String> arrayExposer = new ArrayList<>();
     void dialogMyMarket(){
+        new getMyMarketAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/MyMarket");
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_fancy_book_list);
         dialog.setTitle("My Market");
-        dialog.getWindow().setBackgroundDrawableResource(R.color.colorGreay);
+        //dialog.getWindow().setBackgroundDrawableResource(R.color.colorGreay);
+        Button btnCancelDialog = dialog.findViewById(R.id.btnCancelDialog);
+        LinearLayout llMatchName = dialog.findViewById(R.id.llFAncyBookKey);
+        LinearLayout llExposer = dialog.findViewById(R.id.llFAncyBookValue);
+
+        for (int i = 0; i < arrayMatchName.size() ; i++)
+        {
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(0,5,0,5);
+
+            LinearLayout ll = new LinearLayout(this);
+            ll.setOrientation(LinearLayout.HORIZONTAL);
+            ll.setBackgroundColor(ContextCompat.getColor(this,R.color.colorGreay));
+            LinearLayout.LayoutParams layoutForInner = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            ll.setLayoutParams(layoutForInner);
+
+            TextView tvMatchName = new TextView(this);
+            TextView tvExposer = new TextView(this);
+            tvMatchName.setTextSize(10);
+            tvExposer.setTextSize(10);
+            tvMatchName.setGravity(Gravity.CENTER);
+            tvExposer.setGravity(Gravity.CENTER);
+            tvExposer.setPadding(10,0,10,0);
+            tvMatchName.setPadding(10,0,10,0);
+            tvExposer.setLayoutParams(params);
+            tvMatchName.setLayoutParams(params);
+            tvMatchName.setText(arrayMatchName.get(i));
+            tvExposer.setText(arrayExposer.get(i));
+            tvMatchName.setBackgroundColor(ContextCompat.getColor(this,R.color.colorGreay));
+            tvExposer.setBackgroundColor(ContextCompat.getColor(this,R.color.colorGreay));
+            if(Double.valueOf(arrayExposer.get(i))<0){
+                tvExposer.setTextColor(ContextCompat.getColor(this,R.color.colorRed));
+            }else {
+                tvExposer.setTextColor(ContextCompat.getColor(this,R.color.colorGreen));
+            }
+            ll.addView(tvMatchName);
+            ll.addView(tvExposer);
+
+            llMatchName.addView(ll);
+            //llExposer.addView(tvExposer);
+            Log.i("ValueFancyBook.get(i)",arrayMatchName.get(i));
+            Log.i("KeyFancyBook.get(i)",arrayExposer.get(i));
+        }
+
+        btnCancelDialog.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
         dialog.show();
     }
 
