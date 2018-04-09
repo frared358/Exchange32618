@@ -35,7 +35,7 @@ import com.affwl.exchange.R;
 
 import butterknife.OnClick;
 
-
+/** check update*/
 public class FxActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public NavigationView navigationView;
