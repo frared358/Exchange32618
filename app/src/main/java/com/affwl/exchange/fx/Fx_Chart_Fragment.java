@@ -22,7 +22,10 @@ import com.github.mikephil.charting.data.CandleDataSet;
 import com.github.mikephil.charting.data.CandleEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by user on 1/24/2018.
@@ -68,6 +71,19 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
         xAxis.setPosition (XAxis.XAxisPosition.BOTTOM);
         xAxis.setDrawGridLines (true);
         xAxis.enableGridDashedLine (10f, 10f, 2f);
+        /**Add date time on chart start*/
+        xAxis.setCenterAxisLabels(true);
+        xAxis.setGranularity(1f); // one hour
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+
+            private SimpleDateFormat mFormat = new SimpleDateFormat("dd MMM HH:mm");
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                long millis = TimeUnit.HOURS.toMillis((long) value);
+                return mFormat.format(new Date (millis));
+            }
+        });
+        /**Add date time on chart end*/
 
         YAxis leftAxis = mChart.getAxisLeft ();
         leftAxis.setEnabled (false);
@@ -77,6 +93,7 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
 
         leftAxis.setDrawGridLines (true);
         leftAxis.enableGridDashedLine (10f, 10f, 2f);
+        //leftAxis.setDrawValues(false);
 
         YAxis rightAxis = mChart.getAxisRight ();
         rightAxis.setEnabled (true);
@@ -139,23 +156,20 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
         set1.setIncreasingPaintStyle (Paint.Style.STROKE);
         set1.setNeutralColor (Color.BLUE);
         set1.setHighLightColor (Color.BLACK);
+        set1.setDrawValues(false);              /**remove Data values */
         //set1.setHighlightLineWidth(1f);
         CandleData data = new CandleData (set1);
 
         mChart.setData (data);
         mChart.invalidate ();
-
-
     }
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-
     }
 
     public class MyAxisValueFormatter implements IAxisValueFormatter {
@@ -187,7 +201,6 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
 //        });
     }
 
-
     /**
      * Toggle on + icon on chart
      */
@@ -197,8 +210,6 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
             mChart.invalidate ();
         }
     }
-
-
 }
 
 
