@@ -21,50 +21,50 @@
         android:icon="@drawable/f"/>
 
     <item
-
-        android:icon="@drawable/dol1"
+        
         android:title="cd"
-        app:showAsAction="always">
+        app:showAsAction="always"
+        android:icon="@drawable/dol1">
 
-        <menu>
+    <menu>
 
-            <item
-                android:id="@+id/c1"
-                android:title="EURUSD"
-                app:showAsAction="always" />
+        <item
+            android:id="@+id/c1"
+            android:title="EURUSD"
+            app:showAsAction="always" />
 
-            <item
-                android:id="@+id/c2"
-                android:title="GBPUSD"
-                app:showAsAction="always" />
-            <item
-                android:id="@+id/c3"
-                android:title="USDCHF"
-                app:showAsAction="always" />
-            <item
-                android:id="@+id/c4"
-                android:title="USDJPY"
-                app:showAsAction="always" />
-            <item
-                android:id="@+id/c5"
-                android:title="USDCHN"
-                app:showAsAction="always" />
-            <item
-                android:id="@+id/c6"
-                android:title="USDRUB"
-                app:showAsAction="always" />
-            <item
-                android:id="@+id/c7"
-                android:title="AUDUSD"
-                app:showAsAction="always" />
-            <item
-                android:id="@+id/c8"
-                android:title="NZDUSD"
-                app:showAsAction="always" />
-        </menu>
+        <item
+            android:id="@+id/c2"
+            android:title="GBPUSD"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/c3"
+            android:title="USDCHF"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/c4"
+            android:title="USDJPY"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/c5"
+            android:title="USDCHN"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/c6"
+            android:title="USDRUB"
+        app:showAsAction="always" />
+        <item
+            android:id="@+id/c7"
+            android:title="AUDUSD"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/c8"
+            android:title="NZDUSD"
+            app:showAsAction="always" />
+    </menu>
 
 
-    </item>
+</item>
 
     <item
         android:icon="@drawable/copy"

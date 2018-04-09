@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/mylayout"
+
     tools:context="com.affwl.exchange.fx.FX_indicator_f1_add_Activity">
     <android.support.v7.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,6 +19,8 @@
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="Average Directional Movement Index"
         android:gravity="center"
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/RobotoCondensed-Regular.ttf"
         android:id="@+id/toolbar2" />
 
     <TextView
@@ -60,7 +64,7 @@
 
     <Spinner
         android:id="@+id/spinner3"
-        android:layout_width="match_parent"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/spinner4"
         android:layout_alignLeft="@+id/spinner4"
@@ -117,5 +121,39 @@
         android:layout_marginTop="14dp"
         android:focusable="true"
         android:hint="Levels:" />
+
+    <!--<Button-->
+        <!--android:id="@+id/btncolorpicker"-->
+        <!--android:layout_width="25dp"-->
+        <!--android:layout_height="25dp"-->
+        <!--android:layout_alignBaseline="@+id/spinner3"-->
+        <!--android:layout_alignBottom="@+id/spinner3"-->
+        <!--android:layout_toEndOf="@+id/spinner3"-->
+        <!--android:layout_toRightOf="@+id/spinner3"-->
+        <!--android:background="@color/colorBlack"-->
+        <!--android:textColor="@color/colorBlue"-->
+        <!--android:text="c" />-->
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/spinner3"
+        android:layout_alignBottom="@+id/spinner3"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:onClick="openPicker1"
+        android:background="@drawable/plus_round_corner"
+        android:text="C" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorAccent"
+        android:text="DONE" />
 
 </RelativeLayout>

@@ -1,41 +1,25 @@
 package com.affwl.exchange.news;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.affwl.exchange.DataHolder;
-import com.affwl.exchange.MainActivity;
 import com.affwl.exchange.R;
-import com.affwl.exchange.fx.CustomSpinner;
-import com.affwl.exchange.indie.IndieActivity;
-import com.affwl.exchange.indie.LiveTipsActivity;
-import com.affwl.exchange.indie.NewHiloActivity;
-import com.affwl.exchange.indie.PivotActivity;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -47,6 +31,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class NewsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -55,12 +40,16 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
     String title;
     String link;
 
+    private DatabaseHelper mDBHelper;
+    private SQLiteDatabase mDb;
+
+    int timeNow;
     List headlines,newsDateTimes;
     List<NewsItemDetails> newsItemDetailsList;
     List links;
     ProgressDialog progressDialog;
     ListView list_rss;
-    ArrayList<String> myList;
+    ArrayList<String> myList=new ArrayList<>();
 
 
     @Override
@@ -80,9 +69,41 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
 
         list_rss.setOnItemClickListener(NewsActivity.this);
 
+        mDBHelper = new DatabaseHelper(this);
+
+        try {
+            mDBHelper.updateDataBase();
+        } catch (IOException mIOException) {
+            throw new Error("UnableToUpdateDatabase");
+        }
+
             new MyAsyncTask().execute();
 
+  /*      SQLiteDatabase db = mDBHelper.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM selected_category WHERE user_id=?",  new String[] {String.valueOf(1234) });
+        if (c.moveToFirst()) {
+
+            do {
+                Log.i("TagCategory",""+c.getInt(c.getColumnIndex("category_id")));
+                Log.i("TagRefresh",""+c.getInt(c.getColumnIndex("refresh_time")));
+                timeNow=c.getInt(c.getColumnIndex("refresh_time"));
+//                reloadNews(timeNow);
+
+            } while (c.moveToNext());
+        }*/
+
     }
+
+  /*  private void reloadNews(final int timeNow) {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                new MyAsyncTask().execute();
+                reloadNews(timeNow);
+            }
+        }, TimeUnit.MINUTES.toMillis(timeNow));
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -104,11 +125,14 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
                 Intent i = new Intent(this, RssFeedListActivity.class); //add CustomSpinner
                 this.startActivity(i);
                 return true;
+
+            case R.id.news_reload:
+                new MyAsyncTask().execute();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
     @Override
     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
@@ -138,17 +162,34 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
             headlines = new ArrayList();
             newsDateTimes=new ArrayList();
             newsItemDetailsList=new ArrayList<>();
+            myList.clear();
 
             links = new ArrayList();
             try {
-//             URL url=new URL("https://judeochristianclarion.com/feed/rss.xml");
-//             URL url=new URL("https://economictimes.indiatimes.com/industry/auto/rssfeeds/13359412.cms");
-//             URL url = new URL("http://cmhett.tk/rss.xml");
-                myList = (ArrayList<String>) getIntent().getSerializableExtra("urlArray");
+                try {
+                    SQLiteDatabase db = mDBHelper.getReadableDatabase();
+                    Cursor c = db.rawQuery("SELECT * FROM category_url a INNER JOIN selected_category b ON a.selected_id=b.selected_id WHERE b.user_id=?",  new String[] { String.valueOf(1234) });
+
+                    if (c.moveToFirst()) {
+
+                        do {
+                           /* Log.i("Tag",""+c.getInt(c.getColumnIndex("url_id")));
+                            Log.i("Tag",""+c.getInt(c.getColumnIndex("selected_id")));
+                            Log.i("Tag",""+c.getString(c.getColumnIndex("url_name")));*/
+                            myList.add(c.getString(c.getColumnIndex("url_name")));
+                        } while (c.moveToNext());
+                    }
+//                    Log.i("my db"," "+mDb);
+
+                } catch (SQLException mSQLException) {
+                    throw mSQLException;
+                }
+
                 if(myList!=null) {
                     for (int i = 0; i < myList.size(); i++) {
                         URL url = new URL(myList.get(i));
                         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+
                         factory.setNamespaceAware(false);
                         XmlPullParser xpp = factory.newPullParser();
 
@@ -158,6 +199,8 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
 
                         // Returns the type of current event: START_TAG, END_TAG, etc..
                         int eventType = xpp.getEventType();
+//                        Log.i("Checking event"," "+eventType);
+
 
                         while (eventType != XmlPullParser.END_DOCUMENT) {
                             if (eventType == XmlPullParser.START_TAG) {
@@ -189,9 +232,9 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
-            } catch (XmlPullParserException e) {
-                e.printStackTrace();
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (XmlPullParserException e) {
                 e.printStackTrace();
             }
             return null;
