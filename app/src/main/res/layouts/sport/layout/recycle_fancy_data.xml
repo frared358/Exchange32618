@@ -8,7 +8,7 @@
     android:padding="5dp">
 
     <LinearLayout
-        android:id="@+id/llDispMarketData"
+        android:id="@+id/llDispFancyData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -16,7 +16,7 @@
         android:layout_weight="1">
 
         <TextView
-            android:id="@+id/txtVRunnerName"
+            android:id="@+id/txtVFancyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="South Africa"
@@ -25,7 +25,7 @@
             android:layout_weight="1"/>
 
         <TextView
-            android:id="@+id/txtVExposerData"
+            android:id="@+id/txtVBookData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
@@ -33,24 +33,37 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/txtVFancyBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:textSize="15sp"
+        android:text="Book"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:background="@color/colorYellow"/>
+
     <LinearLayout
-        android:id="@+id/llMarketData"
+        android:id="@+id/llFancyMarketData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1">
 
         <LinearLayout
-            android:id="@+id/llBack"
+            android:id="@+id/llNo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@color/colorBlueBet"
             android:layout_marginRight="5dp"
+            android:background="@color/colorRedBet"
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/txtVBackData"
+                android:id="@+id/txtVNoScore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
@@ -58,7 +71,7 @@
                 android:text="2.56"/>
 
             <TextView
-                android:id="@+id/txtVBackChips"
+                android:id="@+id/txtVNoRate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CHIPS 454"/>
@@ -66,16 +79,16 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/llLay"
+            android:id="@+id/llYes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@color/colorRedBet"
+            android:background="@color/colorBlueBet"
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/txtVLayData"
+                android:id="@+id/txtVYesScore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
@@ -83,27 +96,30 @@
                 android:text="2.56"/>
 
             <TextView
-                android:id="@+id/txtVLayChips"
+                android:id="@+id/txtVYesRate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="CHIPS 454"/>
 
         </LinearLayout>
 
-
     </LinearLayout>
 
+
+
         <TextView
-            android:id="@+id/txtVActiveResult"
+            android:id="@+id/txtVFancyActiveResult"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text=""
+            android:text="InActive"
             android:textStyle="bold"
             android:gravity="center"
-            android:visibility="gone"
             android:textSize="15sp"
+            android:visibility="gone"
             android:textColor="@color/colorRed"
             android:background="@color/colorRedBetTrasparent"
             android:layout_weight="1"/>
+
+
 
 </LinearLayout>

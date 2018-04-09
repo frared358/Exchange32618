@@ -16,6 +16,14 @@
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
+        <ImageView
+            android:id="@+id/imgVFavourit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:visibility="gone"
+            android:src="@drawable/star_small_white"/>
+
         <TextView
             android:id="@+id/txtVTournamentName"
             android:layout_width="wrap_content"

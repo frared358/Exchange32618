@@ -30,7 +30,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TournamentActivity extends AppCompatActivity {
+public class TournamentActivity extends AppCompatActivity implements View.OnClickListener{
 
     TextView txtVAllSportT,txtVSportNameT;
     RecyclerView recycleViewTournament;
@@ -45,6 +45,8 @@ public class TournamentActivity extends AppCompatActivity {
 
         txtVAllSportT = findViewById(R.id.txtVAllSportT);
         txtVSportNameT = findViewById(R.id.txtVSportNameT);
+
+        txtVAllSportT.setOnClickListener(this);
 
         Intent intent = getIntent();
         txtVSportNameT.setText(intent.getStringExtra("SportName")+" > ");
@@ -107,6 +109,15 @@ public class TournamentActivity extends AppCompatActivity {
 
         inputStream.close();
         return result;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.txtVAllSportT:
+                finish();
+                break;
+        }
     }
 
     private class TournamentAsyncTask extends AsyncTask<String, Void, String> {
