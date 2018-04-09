@@ -138,7 +138,6 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
             }
         });
 
-
     }
 
     //bootomsheet
@@ -175,27 +174,30 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         if (val=="1")
         {
             getMenuInflater().inflate(R.menu.charts,menu);
-
+            bcs.setValue("0");
         }
-        if (currentFragment != null && currentFragment instanceof Fx_Chart_Fragment) {
-           // navigation.setSelectedItemId (R.id.nav_charts1);  /** Chart moving constantaly */
-            getMenuInflater().inflate(R.menu.charts, menu);
+        else {
+            Toast.makeText(this, String.valueOf(bcs.getValue()), Toast.LENGTH_SHORT).show();
+            if (currentFragment != null && currentFragment instanceof Fx_Chart_Fragment) {
+                // navigation.setSelectedItemId (R.id.nav_charts1);  /** Chart moving constantaly */
+                getMenuInflater().inflate(R.menu.charts, menu);
 
 
-            //Toast.makeText(FxActivity.this, "click r", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(FxActivity.this, "click r", Toast.LENGTH_SHORT).show();
 
-        }
+            }
 
-        //quotesmenuicon
-        if (currentFragment != null && currentFragment instanceof Fx_Fragment_Quotes) {
+            //quotesmenuicon
+            if (currentFragment != null && currentFragment instanceof Fx_Fragment_Quotes) {
 //            navigation.setSelectedItemId (R.id.nav_quotes1);
-            getMenuInflater().inflate(R.menu.quotes_menu, menu);
-        }
-        if (currentFragment != null && currentFragment instanceof Fx_Manage_Fragment) {
-            getMenuInflater().inflate(R.menu.manageacc, menu);
-        }
-        if (currentFragment != null && currentFragment instanceof Fx_Manage_Account) {
-            getMenuInflater().inflate(R.menu.manageacc, menu);
+                getMenuInflater().inflate(R.menu.quotes_menu, menu);
+            }
+            if (currentFragment != null && currentFragment instanceof Fx_Manage_Fragment) {
+                getMenuInflater().inflate(R.menu.manageacc, menu);
+            }
+            if (currentFragment != null && currentFragment instanceof Fx_Manage_Account) {
+                getMenuInflater().inflate(R.menu.manageacc, menu);
+            }
         }
 
 

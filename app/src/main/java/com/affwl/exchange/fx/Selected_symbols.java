@@ -1,5 +1,6 @@
 package com.affwl.exchange.fx;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -17,6 +18,9 @@ import com.affwl.exchange.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class Selected_symbols extends AppCompatActivity {
 
@@ -36,8 +40,8 @@ public class Selected_symbols extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_symbols);
 
-/*        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf")
-                .setFontAttrId(R.attr.fontPath).build());*/
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf")
+                .setFontAttrId(R.attr.fontPath).build());
 
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
@@ -85,12 +89,11 @@ public class Selected_symbols extends AppCompatActivity {
 
 
     }
-/*
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
-*/
 
 
     @Override
