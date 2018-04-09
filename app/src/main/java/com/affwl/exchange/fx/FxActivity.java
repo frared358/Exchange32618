@@ -37,7 +37,7 @@ import butterknife.OnClick;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-/** check update*/
+/** check update.........*/
 public class FxActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public NavigationView navigationView;
