@@ -10,6 +10,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -17,10 +18,14 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.affwl.exchange.DataHolder;
 import com.affwl.exchange.R;
@@ -29,6 +34,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,6 +42,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class SportActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -155,8 +162,8 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
 
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.myMarket) {
+            dialogMyMarket();
             return true;
         }
 
@@ -205,7 +212,7 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
         }
     }
 
-    public String  HighligthsApi(String url){
+    public String  getApi(String url){
         InputStream inputStream = null;
         String result = "";
         try {
@@ -255,7 +262,7 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
 
         @Override
         protected String doInBackground(String... urls) {
-            return HighligthsApi(urls[0]);
+            return getApi(urls[0]);
         }
 
         @Override
@@ -314,4 +321,90 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
 
         dialog.show();
     }
+
+    private class getMyMarketAsyncTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            return getApi(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.i("Check",""+result);
+            Toast.makeText(SportActivity.this, ""+result, Toast.LENGTH_SHORT).show();
+            try {
+                JSONObject jsonObjMain = new JSONObject(result.toString());
+                String bookmakingData = jsonObjMain.getString("bookmakingData");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    void dialogMyMarket(){
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_fancy_book_list);
+        dialog.setTitle("My Market");
+        dialog.getWindow().setBackgroundDrawableResource(R.color.colorGreay);
+        dialog.show();
+    }
+
+    /*public void dialogFancyBook(){
+        final Dialog dialog = new Dialog(contextFancy);
+        dialog.setContentView(R.layout.dialog_fancy_book_list);
+        dialog.setTitle(fancyRunnerName.toUpperCase());
+        dialog.getWindow().setBackgroundDrawableResource(R.color.colorGreay);
+        Button btnCancelDialog = dialog.findViewById(R.id.btnCancelDialog);
+        LinearLayout llFAncyBook = dialog.findViewById(R.id.llFAncyBook);
+        LinearLayout llFAncyBookKey = dialog.findViewById(R.id.llFAncyBookKey);
+        LinearLayout llFAncyBookValue = dialog.findViewById(R.id.llFAncyBookValue);
+        float TEN = contextFancy.getResources().getDimension(R.dimen.sp10);
+        float ZERO = contextFancy.getResources().getDimension(R.dimen.sp10);
+        try{
+            for (int i = 0; i < KeyFancyBook.size() ; i++)
+            {
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                params.setMargins(0,5,0,5);
+                TextView tvScore = new TextView(contextFancy);
+                TextView tvAmt = new TextView(contextFancy);
+                tvScore.setTextSize(10);
+                tvAmt.setTextSize(10);
+                tvScore.setGravity(Gravity.CENTER);
+                tvAmt.setGravity(Gravity.CENTER);
+                tvAmt.setPadding(10,0,10,0);
+                tvScore.setPadding(10,0,10,0);
+                tvAmt.setLayoutParams(params);
+                tvScore.setLayoutParams(params);
+                tvScore.setText(KeyFancyBook.get(i));
+                tvAmt.setText(ValueFancyBook.get(i));
+                if(Integer.parseInt(ValueFancyBook.get(i))<0){
+                    tvScore.setBackgroundColor(ContextCompat.getColor(contextFancy,R.color.colorRedBet));
+                    tvAmt.setBackgroundColor(ContextCompat.getColor(contextFancy,R.color.colorRedBet));
+                }else {
+                    tvScore.setBackgroundColor(ContextCompat.getColor(contextFancy,R.color.colorBlueBet));
+                    tvAmt.setBackgroundColor(ContextCompat.getColor(contextFancy,R.color.colorBlueBet));
+                }
+
+                llFAncyBookKey.addView(tvScore);
+                llFAncyBookValue.addView(tvAmt);
+                Log.i("ValueFancyBook.get(i)",ValueFancyBook.get(i));
+                Log.i("KeyFancyBook.get(i)",KeyFancyBook.get(i));
+            }
+        }
+        catch(Exception e){
+            Log.i("CountryCount1",e.toString());
+        }
+
+        btnCancelDialog.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
+
+        dialog.show();
+    }*/
+
 }

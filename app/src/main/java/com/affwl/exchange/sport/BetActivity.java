@@ -409,38 +409,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         }
     }
 
-    public String  getApi(String url){
-        InputStream inputStream = null;
-        String result = "";
-        try {
 
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpGet Httpget = new HttpGet(url);
-
-            Httpget.setHeader("Accept", "application/json");
-            Httpget.setHeader("Content-type", "application/json");
-            Httpget.setHeader("Token", DataHolder.LOGIN_TOKEN);
-
-            HttpResponse httpResponse = httpclient.execute(Httpget);
-            inputStream = httpResponse.getEntity().getContent();
-
-            if(inputStream != null){
-                try {
-                    result = convertInputStreamToString(inputStream);
-                }
-                catch (Exception e){
-                    Log.e("Check",""+e);
-                }
-            }
-            else
-                result = "Did not work!";
-            Log.e("Check","how "+result);
-
-        } catch (Exception e) {
-            Log.d("InputStream", ""+e);
-        }
-        return result;
-    }
 
     String StackValue1,StackValue2,StackValue3;
 
@@ -596,6 +565,39 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                 e.printStackTrace();
             }
         }
+    }
+
+    public String  getApi(String url){
+        InputStream inputStream = null;
+        String result = "";
+        try {
+
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpGet Httpget = new HttpGet(url);
+
+            Httpget.setHeader("Accept", "application/json");
+            Httpget.setHeader("Content-type", "application/json");
+            Httpget.setHeader("Token", DataHolder.LOGIN_TOKEN);
+
+            HttpResponse httpResponse = httpclient.execute(Httpget);
+            inputStream = httpResponse.getEntity().getContent();
+
+            if(inputStream != null){
+                try {
+                    result = convertInputStreamToString(inputStream);
+                }
+                catch (Exception e){
+                    Log.e("Check",""+e);
+                }
+            }
+            else
+                result = "Did not work!";
+            Log.e("Check","how "+result);
+
+        } catch (Exception e) {
+            Log.d("InputStream", ""+e);
+        }
+        return result;
     }
 
     private static String convertInputStreamToString(InputStream inputStream) throws IOException {
