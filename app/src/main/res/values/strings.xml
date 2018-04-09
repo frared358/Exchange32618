@@ -94,6 +94,10 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_sports">SportsActivity</string>
 
+    <string name="equalsText">=</string>
+    <string name="greaterText"><![CDATA[>]]></string>
+    <string name="lessText"><![CDATA[<]]></string>
+
 
     <string-array name="Member_names">
         <item>Other</item>
@@ -227,6 +231,7 @@
         <item>White Theme</item>
         <item>Black Theme</item>
     </string-array>
+
 
 
     <string-array name="Add_symbols">
