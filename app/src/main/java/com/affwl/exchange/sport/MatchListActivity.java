@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +30,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MatchListActivity extends AppCompatActivity {
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
+
+public class MatchListActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView txtVAllSportM,txtVSportNameM,txtVTournamentNameM;
 
@@ -46,14 +50,17 @@ public class MatchListActivity extends AppCompatActivity {
         txtVSportNameM = findViewById(R.id.txtVSportNameM);
         txtVTournamentNameM = findViewById(R.id.txtVTournamentNameM);
 
+        txtVAllSportM.setOnClickListener(this);
+        txtVSportNameM.setOnClickListener(this);
+
         Intent intent = getIntent();
 
         int tournamentId = intent.getIntExtra("tournamentId",0);
         int sportId = intent.getIntExtra("sportId",0);
         Toast.makeText(this, tournamentId+" "+sportId, Toast.LENGTH_SHORT).show();
 
-        txtVSportNameM.setText(DataHolder.SPORT_NAME+" > ");
-        txtVTournamentNameM.setText(intent.getStringExtra("tournamentName")+" > ");
+        txtVSportNameM.setText(DataHolder.SPORT_NAME+"> ");
+        txtVTournamentNameM.setText(intent.getStringExtra("tournamentName")+"> ");
         DataHolder.TOURNAMENT_NAME = intent.getStringExtra("tournamentName");
 
         recycleViewMatchList = findViewById(R.id.recycleViewMatchList);
@@ -111,6 +118,24 @@ public class MatchListActivity extends AppCompatActivity {
 
         inputStream.close();
         return result;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.txtVAllSportM:
+                Intent intentAllSport = new Intent(this,SportActivity.class);
+                intentAllSport.addFlags(FLAG_ACTIVITY_CLEAR_TOP|FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intentAllSport);
+                break;
+            case R.id.txtVSportNameM:
+                finish();
+
+//                Intent intentSportName = new Intent(this,TournamentActivity.class);
+//                intentSportName.addFlags(FLAG_ACTIVITY_CLEAR_TOP|FLAG_ACTIVITY_SINGLE_TOP);
+//                startActivity(intentSportName);
+                break;
+        }
     }
 
     private class MatchListAsyncTask extends AsyncTask<String, Void, String> {

@@ -14,48 +14,48 @@
         android:padding="2dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Runner"
             android:layout_weight="1"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Odds"
             android:layout_weight="1"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Stack"
             android:layout_weight="1"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Profit /\nLiability"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:lines="2"
             android:layout_weight="1"
             android:gravity="center"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Date /\nTime"
             android:layout_weight="1"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:lines="2"
             android:gravity="center"/>

@@ -2,12 +2,15 @@ package com.affwl.exchange.sport;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +32,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MatchOddsActivity extends AppCompatActivity {
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+import static android.content.Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
+import static android.content.Intent.FLAG_ACTIVITY_SINGLE_TOP;
+
+public class MatchOddsActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
 
     TextView txtVAllSportO,txtVSportNameO,txtVTournamentNameO,txtVMatchName;
 
@@ -46,6 +53,14 @@ public class MatchOddsActivity extends AppCompatActivity {
         txtVSportNameO = findViewById(R.id.txtVSportNameO);
         txtVTournamentNameO = findViewById(R.id.txtVTournamentNameO);
         txtVMatchName = findViewById(R.id.txtVMatchName);
+
+        txtVAllSportO.setOnClickListener(this);
+        txtVSportNameO.setOnClickListener(this);
+        txtVTournamentNameO.setOnClickListener(this);
+
+//        txtVAllSportO.setOnTouchListener(this);
+//        txtVSportNameO.setOnTouchListener(this);
+//        txtVTournamentNameO.setOnTouchListener(this);
 
         txtVSportNameO.setText(DataHolder.SPORT_NAME+"> ");
         txtVTournamentNameO.setText(DataHolder.TOURNAMENT_NAME+"> ");
@@ -107,6 +122,62 @@ public class MatchOddsActivity extends AppCompatActivity {
 
         inputStream.close();
         return result;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.txtVAllSportO:
+                Intent intentAllSport = new Intent(this,SportActivity.class);
+                intentAllSport.addFlags(FLAG_ACTIVITY_CLEAR_TOP|FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intentAllSport);
+                break;
+            case R.id.txtVSportNameO:
+                Intent intentSportName = new Intent(this,TournamentActivity.class);
+                intentSportName.addFlags(FLAG_ACTIVITY_CLEAR_TOP|FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intentSportName);
+                break;
+            case R.id.txtVTournamentNameO:
+                finish();
+//                Intent intentTournamentName = new Intent(this,MatchListActivity.class);
+//                intentTournamentName.addFlags(FLAG_ACTIVITY_CLEAR_TOP|FLAG_ACTIVITY_SINGLE_TOP);
+//                startActivity(intentTournamentName);
+                break;
+
+        }
+    }
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (v.getId()){
+            case R.id.txtVAllSportO:
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    txtVAllSportO.setTextColor(ContextCompat.getColor(this,R.color.colorYellow));
+                }
+                else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    txtVAllSportO.setTextColor(ContextCompat.getColor(this,R.color.colorBlack));
+                }
+                break;
+
+            case R.id.txtVSportNameO:
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    txtVSportNameO.setTextColor(ContextCompat.getColor(this,R.color.colorYellow));
+                }
+                else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    txtVSportNameO.setTextColor(ContextCompat.getColor(this,R.color.colorBlack));
+                }
+                break;
+
+            case R.id.txtVTournamentNameO:
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    txtVTournamentNameO.setTextColor(ContextCompat.getColor(this,R.color.colorYellow));
+                }
+                else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    txtVTournamentNameO.setTextColor(ContextCompat.getColor(this,R.color.colorBlack));
+                }
+                break;
+        }
+        return false;
     }
 
     private class MatchOddsAsyncTask extends AsyncTask<String, Void, String> {

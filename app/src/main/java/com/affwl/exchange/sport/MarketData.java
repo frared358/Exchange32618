@@ -26,7 +26,39 @@ public class MarketData {
         this.Lay = Lay;
         this.ChipsBack = ChipsBack;
         this.ChipsLay = ChipsLay;
-        this.bfid = bfid;
     }
+
+
+    //Fancy BET
+    String yesRate,yesScore,noRate,noScore,ballStatus,book;
+    int fancyId;
+    public MarketData(String yesRate,String yesScore,String noRate,String noScore,String RunnerName,String ballStatus,String book,int fancyId){
+        this.yesRate = yesRate;
+        this.yesScore = yesScore;
+        this.noRate = noRate;
+        this.noScore = noScore;
+        this.RunnerName = RunnerName;
+        this.ballStatus = ballStatus;
+        this.book = book;
+        this.fancyId = fancyId;
+    }
+
+
+    // Book Making
+    String bmBallStatus,bmBook,bmName;
+    int bmId,bmBackPrice,bmBackSize,bmLayPrice;
+    int bmLaySize,bmRunnerId;
+    public MarketData(int bmId,int bmRunnerId,int bmBackPrice,int bmBackSize,int bmLayPrice,int bmLaySize,String bmName,String bmBallStatus,String bmBook){
+        this.bmBackPrice = bmBackPrice;
+        this.bmBackSize = bmBackSize;
+        this.bmLayPrice = bmLayPrice;
+        this.bmLaySize = bmLaySize;
+        this.bmName = bmName;
+        this.bmBallStatus = bmBallStatus;
+        this.bmBook = bmBook;
+        this.bmId = bmId;
+        this.bmRunnerId = bmRunnerId;
+    }
+
 
 }

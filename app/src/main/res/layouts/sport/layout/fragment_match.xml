@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="Runner"
             android:layout_weight="1"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"/>
 
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:text="Odds"
             android:layout_weight="1"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"/>
 
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:text="Stack"
             android:layout_weight="1"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:gravity="center"/>
 
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Profit /\nLiability"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:lines="2"
             android:textStyle="bold"
             android:layout_weight="1"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:text="Date /\nTime"
             android:layout_weight="1.5"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:lines="2"
             android:gravity="center"/>

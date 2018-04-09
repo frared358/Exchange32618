@@ -110,7 +110,7 @@ public class MatchFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String result) {
-            Log.i("Check",""+result);
+            Log.i("Check123",""+result);
             //Toast.makeText(MatchFragment.this.getContext(), ""+result, Toast.LENGTH_SHORT).show();
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
@@ -130,9 +130,9 @@ public class MatchFragment extends Fragment {
                     String odds = key.getString("odds");
                     String type = key.getString("type");
                     String placedDate = key.getString("placedDate");
+                    String marketName = key.getString("marketName");
 
-
-                    MatchList.add(new MatchData(selection,odds,matchedStake,type,placedDate));
+                    MatchList.add(new MatchData(selection,odds,matchedStake,type,placedDate,marketName));
 
                     matchAdapter.notifyDataSetChanged();
 

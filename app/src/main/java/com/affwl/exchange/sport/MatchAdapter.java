@@ -48,15 +48,26 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final MatchData matchData = dataList.get(position);
+        Double val;
         Log.i("CHECK "+position,matchData.runner+""+matchData.odd+""+matchData.stack+""+matchData.type+""+matchData.dateTime);
-        holder.txtVRunner.setText(matchData.runner);
-        holder.txtVOdds.setText(matchData.odd);
-        holder.txtVStack.setText(matchData.stack);
-        Double stackValue = Double.parseDouble(matchData.stack.trim());
-        Double oddValue = Double.parseDouble(matchData.odd.trim());
-        Double val = (oddValue-1.00)*stackValue;
 
-        holder.txtVProfitLiability.setText(String.format("%.2f", val));
+
+        holder.txtVStack.setText(matchData.stack);
+        if (matchData.marketName.equalsIgnoreCase("BookMaking") || matchData.marketName.equalsIgnoreCase("Match Odds")) {
+            Double stackValue = Double.parseDouble(matchData.stack.trim());
+            Double oddValue = Double.parseDouble(matchData.odd.trim());
+            val = (oddValue-1.00)*stackValue;
+            holder.txtVOdds.setText(matchData.odd);
+            holder.txtVProfitLiability.setText(String.format("%.2f", val));
+            holder.txtVRunner.setText(matchData.runner);
+        }else {
+            String[] split = matchData.odd.split("@");
+            holder.txtVOdds.setText(split[0]);
+            holder.txtVProfitLiability.setText(split[1]);
+            holder.txtVRunner.setText(matchData.runner.replaceFirst(" ","\n"));
+        }
+
+
         holder.txtVDateTime.setText(matchData.dateTime.replaceFirst(" ","\n"));
         if(matchData.type.equalsIgnoreCase("lay")){
             holder.llMatchList.setBackgroundColor(ContextCompat.getColor(contextMatch, R.color.colorRedBet));
