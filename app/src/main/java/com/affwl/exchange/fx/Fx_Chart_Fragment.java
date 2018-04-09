@@ -88,7 +88,7 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
         rightAxis.enableGridDashedLine (10f, 10f, 2f);
 
         // setting data
-        mSeekBarX.setProgress (50);
+        mSeekBarX.setProgress (40);
         mSeekBarY.setProgress (100);
 
         mChart.getLegend ().setEnabled (false);
