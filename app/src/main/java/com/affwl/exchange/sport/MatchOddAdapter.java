@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,12 +29,15 @@ public class MatchOddAdapter extends RecyclerView.Adapter<MatchOddAdapter.MyView
 
         public TextView txtVMatchOddName;
         LinearLayout llMatchOddData;
+        ImageView imgVFavourit;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             txtVMatchOddName = itemView.findViewById(R.id.txtVTournamentName);
             llMatchOddData = itemView.findViewById(R.id.llTournamentData);
+            imgVFavourit = itemView.findViewById(R.id.imgVFavourit);
+            imgVFavourit.setVisibility(View.VISIBLE);
 
         }
     }
@@ -50,7 +54,7 @@ public class MatchOddAdapter extends RecyclerView.Adapter<MatchOddAdapter.MyView
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
         final SportsData odd = dataListO.get(position);
         holder.txtVMatchOddName.setText(odd.matchOddName);
 
@@ -65,6 +69,13 @@ public class MatchOddAdapter extends RecyclerView.Adapter<MatchOddAdapter.MyView
                 intent.putExtra("bfId",odd.MatchOddBfId);
                 Log.i("TAG4567",DataHolder.MATCH_NAME+" "+odd.matchOddId+" "+odd.marketOddId);
                 contextO.startActivity(intent);
+            }
+        });
+
+        holder.imgVFavourit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.imgVFavourit.setImageDrawable(contextO.getResources().getDrawable(R.drawable.star_small_gold));
             }
         });
     }

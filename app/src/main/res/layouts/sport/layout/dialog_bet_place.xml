@@ -86,6 +86,7 @@
 
 
     <TextView
+        android:id="@+id/txtVOddScore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -161,7 +162,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="16sp"
-        android:background="@color/colorGreen"
+        android:background="@drawable/button_bet_place"
         android:textColor="@color/colorWhite"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"

@@ -13,18 +13,14 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import android.os.Handler;
 import android.widget.Toast;
 
 import com.affwl.exchange.DataHolder;
 import com.affwl.exchange.R;
-import com.google.gson.JsonElement;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -42,32 +38,22 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
+/**
+ * Created by user on 4/5/2018.
+ */
 
+public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.MyViewHolder> {
 
-import microsoft.aspnet.signalr.client.MessageReceivedHandler;
-import microsoft.aspnet.signalr.client.Platform;
-import microsoft.aspnet.signalr.client.SignalRFuture;
-import microsoft.aspnet.signalr.client.http.android.AndroidPlatformComponent;
-import microsoft.aspnet.signalr.client.hubs.HubConnection;
-import microsoft.aspnet.signalr.client.hubs.HubProxy;
-import microsoft.aspnet.signalr.client.hubs.SubscriptionHandler1;
-
-
-public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.MyViewHolder> {
-
-    Context contextMarket;
+    Context contextBook;
     private List<MarketData> dataList;
-    Handler handlerExposer = new Handler();
     ArrayList<String> arrayExposerName = new ArrayList<String>();
     ArrayList<String> arrayExposerValue = new ArrayList<String>();
 
+    public class MyViewHolder extends RecyclerView.ViewHolder{
+        TextView txtVRunnerName,txtVBackData,txtVBackChips,txtVLayData,txtVLayChips,txtVExposerData,txtVActiveResult;
+        LinearLayout llBack,llLay,llMarketData;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-
-        TextView txtVRunnerName,txtVBackData,txtVBackChips,txtVLayData,txtVLayChips,txtVExposerData;
-        LinearLayout llBack,llLay;
         public MyViewHolder(View view) {
             super(view);
             txtVRunnerName = view.findViewById(R.id.txtVRunnerName);
@@ -76,108 +62,70 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
             txtVLayData = view.findViewById(R.id.txtVLayData);
             txtVLayChips = view.findViewById(R.id.txtVLayChips);
             txtVExposerData = view.findViewById(R.id.txtVExposerData);
+            txtVActiveResult = view.findViewById(R.id.txtVActiveResult);
             llBack = view.findViewById(R.id.llBack);
             llLay = view.findViewById(R.id.llLay);
+            llMarketData = view.findViewById(R.id.llMarketData);
+
         }
     }
 
-    public MarketDataAdapter(Context contextMarket, List<MarketData> dataList){
-        this.contextMarket = contextMarket;
+    public BookMakingAdapter(Context contextBook, List<MarketData> dataList){
+        this.contextBook = contextBook;
         this.dataList = dataList;
     }
 
-    boolean ONCES=true;
-    String mRunnerName,mBack,mChipsBack,mLay,mChipsLay;
-    int mMatchId,mMarketId;
+    String mRunnerName;
+    double mBack,mChipsBack,mLay,mChipsLay;
+    int bookId,runnerId;
+//    String bmBallStatus,bmBook,bmName;
+//    int bmId,bmBackPrice,bmBackSize,bmLayPrice,bmLaySize;
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
-        final MarketData market = dataList.get(position);
-        //if (ONCES) {
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+        final MarketData book = dataList.get(position);
 
-        mRunnerName=market.RunnerName;
-        mBack=market.Back;
-        mChipsBack=market.ChipsBack;
-        mLay=market.Lay;
-        mChipsLay=market.ChipsLay;
-        mMatchId = market.MatchId;
-        mMarketId = market.MarketId;
+        mRunnerName=book.bmName;
+        mBack=book.bmBackPrice;
+        mChipsBack=book.bmBackSize;
+        mLay=book.bmLayPrice;
+        mChipsLay=book.bmLaySize;
+        bookId = book.bmId;
+        runnerId = book.bmRunnerId;
 
-        holder.txtVRunnerName.setText(market.RunnerName);
-        holder.txtVBackData.setText(market.Back);
-        holder.txtVBackChips.setText(market.ChipsBack);
-        holder.txtVLayData.setText(market.Lay);
-        holder.txtVLayChips.setText(market.ChipsLay);
+        holder.txtVRunnerName.setText(mRunnerName);
+        holder.txtVBackData.setText(String.valueOf(mBack));
+        holder.txtVBackChips.setText(String.valueOf(mChipsBack));
+        holder.txtVLayData.setText(String.valueOf(mLay));
+        holder.txtVLayChips.setText(String.valueOf(mChipsLay));
 
-
-        new getExposerAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/ExposureBook?mktid"+mMarketId);
-        for(int i =0; i< arrayExposerName.size();i++){
-            if(arrayExposerName.get(i).equalsIgnoreCase(market.RunnerName)){
-                holder.txtVExposerData.setText(arrayExposerValue.get(i));
-                if(Integer.parseInt(arrayExposerValue.get(i))>0){
-                    holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextMarket, R.color.colorGreen));
-                }else {
-                    holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextMarket, R.color.colorRed));
+        if(book.bmBook != null){
+            try {
+                int bookVal = Integer.parseInt(book.bmBook);
+                if(bookVal <0 ){
+                    holder.txtVExposerData.setText(String.valueOf(bookVal));
+                    holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook,R.color.colorRed));
                 }
-                break;
+                else if (bookVal>0){
+                    holder.txtVExposerData.setText(String.valueOf(bookVal));
+                    holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook,R.color.colorGreen));
+                }
+
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
             }
         }
 
-
-        //displaySignalRData(market.bfid,holder.txtVBackData,holder.txtVLayData,market);
-
-//        holder.llBack.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                dialogBetPlace(market.RunnerName,R.color.colorBlueBetTrasparent,Double.valueOf(market.Back),Double.valueOf(market.Back));
-//                Log.i("TAG12356","ll");
-//            }
-//        });
-//
-//        holder.llLay.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                dialogBetPlace(market.RunnerName,R.color.colorRedBetTrasparent,Double.valueOf(market.Lay),Double.valueOf(market.Lay));
-//                Log.i("TAG12356","ll");
-//            }
-//        });
-//
-//        holder.txtVBackData.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                dialogBetPlace(market.RunnerName,R.color.colorBlueBetTrasparent,Double.valueOf(market.Back),Double.valueOf(market.Back));
-//                Log.i("TAG12356","Data");
-//            }
-//        });
-//
-//        holder.txtVLayData.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                dialogBetPlace(market.RunnerName,R.color.colorRedBetTrasparent,Double.valueOf(market.Lay),Double.valueOf(market.Lay));
-//                Log.i("TAG12356","Data");
-//            }
-//        });
-
-//        holder.txtVBackChips.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                dialogBetPlace(market.RunnerName,R.color.colorBlueBetTrasparent,Double.valueOf(market.Back),Double.valueOf(market.Back));
-//                Log.i("TAG12356","Chips");
-//            }
-//        });
-//
-//        holder.txtVLayChips.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                dialogBetPlace(market.RunnerName,R.color.colorRedBetTrasparent,Double.valueOf(market.Lay),Double.valueOf(market.Lay));
-//                Log.i("TAG12356","Chips");
-//            }
-//        });
+        if(!book.bmBallStatus.equalsIgnoreCase("")){
+            holder.txtVActiveResult.setVisibility(View.VISIBLE);
+            holder.llMarketData.setVisibility(View.GONE);
+            holder.txtVActiveResult.setText(book.bmBallStatus);
+        }
 
         holder.llLay.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    dialogBetPlace(market.RunnerName,R.color.colorRedBetTrasparent,Double.valueOf(market.Lay),"Lay");
+                    dialogBetPlace(mRunnerName,R.color.colorRedBetTrasparent,mLay,"Lay");
                     Log.i("TAG12356","Touchll");
                 }
                 return false;
@@ -188,19 +136,24 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    dialogBetPlace(market.RunnerName,R.color.colorBlueBetTrasparent,Double.valueOf(market.Back),"Back");
+                    dialogBetPlace(mRunnerName,R.color.colorBlueBetTrasparent,mBack,"Back");
                     Log.i("TAG12356","Touchll");
                 }
                 return false;
             }
         });
+
+        new getExposerAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/ExposureBook?mktid="+bookId);
     }
+
+
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view =  LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_market_data,parent, false);
         return new MyViewHolder(view);
     }
+
 
     @Override
     public int getItemCount() {
@@ -215,7 +168,7 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
 
     public void dialogBetPlace(final String RunnerTitle,int color,final double oddValue,final String BackLay){
 
-        final Dialog dialog = new Dialog(contextMarket,R.style.Dialog);
+        final Dialog dialog = new Dialog(contextBook,R.style.Dialog);
         dialog.setContentView(R.layout.dialog_bet_place);
         dialog.setTitle(RunnerTitle);
         dialog.getWindow().setBackgroundDrawableResource(color);
@@ -324,7 +277,7 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
         btnBetPlace.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                new BetPlaceAsyncTask().execute(BackLay,String.valueOf(mMarketId),String.valueOf(mMatchId),ODDVALUE,STACKVALUE,PROFITVALUE,RunnerTitle);
+                new BetPlaceBookAsyncTask().execute(BackLay,ODDVALUE,STACKVALUE,RunnerTitle);
                 dialog.cancel();
             }
         });
@@ -375,150 +328,26 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
         dialog.show();
     }
 
-    /*private double increment(double val){
-
-        if(val >=0.00 && val <1.00){
-            val = val+0.02;
-        }
-        else if(val >=1.0 && val <10.0){
-            val = val+0.5;
-        }
-        else if(val >=10.0 && val <100.0) {
-            val = val+5.0;
-        }
-        else if(val >=100.0 && val <1000.0) {
-            val = val+20.0;
-        }
-        else if(val >=1000.0 ) {
-            val = 0;
-        }
-        return val;
-    }
-
-    private double decrement(double val){
-
-        if(val >0.05 && val <1.00){
-            val = val-0.02;
-        }
-        else if(val >=1.0 && val <10.0){
-            val = val-0.5;
-        }
-        else if(val >=10.0 && val <100.0) {
-            val = val-5.0;
-        }
-        else if(val >=10.0 && val <1000.0) {
-            val = val-5.0;
-        }
-        else if(val <= 0.05) {
-            val = 0;
-        }
-        return val;
-    }
-
-    private double profit(double odd,double stack){
-        return (odd-1)*stack;
-    }*/
-
-    HubConnection _connection;
-    HubProxy _hub;
-    SignalRFuture<Void> awaitConnection;
-    Handler handler = new Handler();
-    MarketData marketData;
-    String back1,lay1,runner;
-
-    public void displaySignalRData(final String bfid,final TextView backData,final TextView layData,MarketData market){
-        marketData = market;
-
-        Platform.loadPlatformComponent( new AndroidPlatformComponent() );
-        _connection=new HubConnection("http://178.238.236.221:10800");
-        _hub=_connection.createHubProxy("BetAngelHub");
-
-        try {
-            awaitConnection = _connection.start();
-            awaitConnection.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        _hub.invoke("SubscribeMarket",bfid);
-
-        try{
-            _connection.received(new MessageReceivedHandler() {
-                @Override
-                public void onMessageReceived(JsonElement json) {
-
-                    Log.i("Signalr",""+json);
-                    //Toast.makeText(BetActivity.this, ""+json, Toast.LENGTH_SHORT).show();
-
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//
-//                        }
-//                    },1000);
-
-                    try {
-
-
-                        JSONObject jsonMain = new JSONObject(json.toString());
-                        String jsonData = jsonMain.getString("A");
-                        JSONArray jsonArray = new JSONArray(jsonData);
-                        final JSONObject key = jsonArray.getJSONObject(0);
-                        Log.i("TAG",key.getString("runner"));
-                        back1 = key.getString("back1");
-                        lay1 = key.getString("lay1");
-                        runner = key.getString("runner");
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    //Toast.makeText(BetActivity.this, ""+json, Toast.LENGTH_SHORT).show();
-                    for(int i=0;i<BetActivity.MarketDataArray.size();i++) {
-                        marketData = dataList.get(i);
-                        if (BetActivity.MarketDataArray.get(i).equalsIgnoreCase(runner)) {
-                            marketData = dataList.get(i);
-                            Log.i("TAG1234", BetActivity.MarketDataArray.get(i) + " " + runner +" "+marketData.RunnerName);
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    backData.setText(marketData.Back);
-                                    layData.setText(marketData.Lay);
-                                }
-                            },1000);
-                        }
-                    }
-
-                }
-            });
-
-        }catch (Exception e){
-            e.printStackTrace();
-            //Log.i("graph",e.toString());}
-        }
-    }
-
-    public String  BetPlaceApi(String backlay,String marketId,String matchId,String odds,String stake,String profit,String runnerName){
+    public String  BetPlaceApi(String backlay,String odds,String stake,String runnerName){
         InputStream inputStream = null;
         String result = "";
         try {
 
             HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("http://173.212.248.188/pclient/Prince.svc/Bets/PlaceMOBet");
+            HttpPost httpPost = new HttpPost("http://173.212.248.188/pclient/Prince.svc/Bets/PlaceBMBet");
 
             String json = "";
             JSONObject jsonObject = new JSONObject();
             jsonObject.accumulate("backlay",backlay);
             jsonObject.accumulate("info","Android");
-            jsonObject.accumulate("marketId",marketId);
-            jsonObject.accumulate("matchId",matchId);
+            jsonObject.accumulate("bookId",bookId);
+            jsonObject.accumulate("eventId",Integer.parseInt(DataHolder.getData(contextBook,"Match_Id")));
             jsonObject.accumulate("odds",odds);
-            jsonObject.accumulate("profit",profit);
             jsonObject.accumulate("runnerName",runnerName);
+            jsonObject.accumulate("runnerId",runnerId);
             jsonObject.accumulate("source","Mobile");
             jsonObject.accumulate("stake",stake);
+
 
             json = jsonObject.toString();
             StringEntity se = new StringEntity(json);
@@ -551,18 +380,17 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
         return result;
     }
 
-    private class BetPlaceAsyncTask extends AsyncTask<String, Void, String> {
-
+    private class BetPlaceBookAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(final String... urls) {
-            return BetPlaceApi(urls[0],urls[1],urls[2],urls[3],urls[4],urls[5],urls[6]);
+            return BetPlaceApi(urls[0],urls[1],urls[2],urls[3]);
         }
 
         @Override
         protected void onPostExecute(String result) {
             Log.i("Check",""+result);
-            //Toast.makeText(contextMarket, ""+result, Toast.LENGTH_SHORT).show();
+
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
                 String status = jsonObjMain.getString("status");
@@ -594,7 +422,7 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
         return result;
     }
 
-    public String  getExposerApi(String url){
+    public String  getBookExposerApi(String url){
         InputStream inputStream = null;
         String result = "";
         try {
@@ -631,13 +459,13 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
 
         @Override
         protected String doInBackground(String... urls) {
-            return getExposerApi(urls[0]);
+            return getBookExposerApi(urls[0]);
         }
 
         @Override
         protected void onPostExecute(String result) {
             Log.i("Check",""+result);
-
+            Toast.makeText(contextBook, ""+result, Toast.LENGTH_SHORT).show();
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
                 JSONArray jsonArray = new JSONArray(jsonObjMain.getString("data"));

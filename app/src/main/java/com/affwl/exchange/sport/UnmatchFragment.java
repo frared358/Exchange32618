@@ -128,9 +128,9 @@ public class UnmatchFragment extends Fragment {
                     String odds = key.getString("odds");
                     String type = key.getString("type");
                     String placedDate = key.getString("placedDate");
+                    String marketName = key.getString("marketName");
 
-
-                    UnMatchList.add(new MatchData(selection,odds,matchedStake,type,placedDate));
+                    UnMatchList.add(new MatchData(selection,odds,matchedStake,type,placedDate,marketName));
 
                     unMatchAdapter.notifyDataSetChanged();
 

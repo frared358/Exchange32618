@@ -47,10 +47,6 @@ public class SportsNameAdapter extends RecyclerView.Adapter<SportsNameAdapter.My
     private List<SportsData> dataList;
     private Context context;
 
-
-
-
-
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         public TextView txtVSportName;
@@ -64,8 +60,6 @@ public class SportsNameAdapter extends RecyclerView.Adapter<SportsNameAdapter.My
             llMatchData = view.findViewById(R.id.llMatchData);
             imgVSportIcon = view.findViewById(R.id.imgVSportIcon);
         }
-
-
     }
 
     public SportsNameAdapter(Context context, List<SportsData> dataList) {
@@ -105,8 +99,6 @@ public class SportsNameAdapter extends RecyclerView.Adapter<SportsNameAdapter.My
             }
         });
 
-
-
         holder.llMatchData.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -116,7 +108,6 @@ public class SportsNameAdapter extends RecyclerView.Adapter<SportsNameAdapter.My
                 context.startActivity(i);
             }
         });
-
     }
 
     @Override
@@ -124,7 +115,6 @@ public class SportsNameAdapter extends RecyclerView.Adapter<SportsNameAdapter.My
         Log.i("TAG",dataList.size()+"");
         return dataList.size();
     }
-
 
 //    public String  TournamentApi(String url){
 //        InputStream inputStream = null;
