@@ -1,5 +1,6 @@
 package com.affwl.exchange.fx;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -206,8 +207,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         if (currentFragment != null && currentFragment instanceof Fx_Chart_Fragment) {
             switch (item.getItemId()) {
                 case R.id.idHighLight:
-                    FragmentManager fm = getSupportFragmentManager();
-
+                    FragmentManager fm = getSupportFragmentManager();  /** call method from fragment */
                     //if you added fragment via layout xml
                     Fx_Chart_Fragment fragment = (Fx_Chart_Fragment)fm.findFragmentById(R.id.xzz);
                     fragment.showHighLight();
@@ -221,6 +221,8 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                     Intent faddi = new Intent(this, Indicators.class);
                     this.startActivity(faddi);
                     return true;
+                case R.id.mnNewWindow:
+                     Toast.makeText (this,"New window clicked", Toast.LENGTH_LONG).show ();
                 default:
                     return super.onOptionsItemSelected(item);
             }
@@ -277,7 +279,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
 
     }
 
-
+    /*** Navigation drawer*/
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected (MenuItem item) {
