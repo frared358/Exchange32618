@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,6 +46,7 @@ public class CustomAdapter5_quotes extends BaseAdapter {
 		TextView member_name5;
 		TextView status5;
 
+
 	}
 
 	@Override
@@ -63,13 +65,13 @@ public class CustomAdapter5_quotes extends BaseAdapter {
 			holder.status5 = (TextView) convertView.findViewById(R.id.status5);
 
 
+
 			RowItem5_quotes row_pos = rowItems5.get(position);
 
 			//holder.profile_pic.setBackground(R.drawable.circle);
 			holder.profile_pic5.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_view_headline_blue_grey_200_18dp));
 			holder.member_name5.setText(row_pos.getMember_name5());
 			holder.status5.setText(row_pos.getStatus5());
-		;
 
 			convertView.setTag(holder);
 		} else {

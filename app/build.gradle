@@ -25,6 +25,7 @@ android {
             assets.srcDirs = ['src/main/assets']
             res.srcDirs =
                     [
+                            'src/main/res/layouts/alerts',
                             'src/main/res/layouts/settings',
                             'src/main/res/layouts/news',
                             'src/main/res/layouts/sport',
@@ -56,10 +57,10 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:26.+'
-    compile 'com.android.support:support-v4:26.+'
+    compile 'com.android.support:design:26.1.0'
+    compile 'com.android.support:support-v4:26.1.0'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     testCompile 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
@@ -74,7 +75,10 @@ dependencies {
     implementation 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
     //signalr
     implementation 'com.google.code.gson:gson:2.3.1'
+    compile 'petrov.kristiyan:colorpicker-library:1.1.4'
+    compile project(':libcolorpicker')
     implementation files('libs/signalr-client-sdk.jar')
     implementation files('libs/signalr-client-sdk-android.jar')
+    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
 
 }
