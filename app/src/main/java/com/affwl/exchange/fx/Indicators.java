@@ -5,27 +5,38 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.affwl.exchange.R;
 
-public class Indicators extends AppCompatActivity  {
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
+public class Indicators extends AppCompatActivity {
     ImageButton imageButton_fadd1;
+    CheckBox checkBox;
+    CheckBox checkBox2;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_indicators);
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf").setFontAttrId(R.attr.fontPath).build());
+
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
 
-        imageButton_fadd1=(ImageButton) findViewById(R.id.imageButton_fadd1);
+        imageButton_fadd1 = (ImageButton) findViewById(R.id.imageButton_fadd1);
         imageButton_fadd1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v){
                 Intent i = new Intent(v.getContext(), FX_indicator_f_add_Activity.class);
                 startActivity(i);
             }
@@ -33,16 +44,31 @@ public class Indicators extends AppCompatActivity  {
 
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase){
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu){
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.indi_menu, menu);
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
 
+        if (item.getItemId() == R.id.indi_del) {
+            checkBox = (CheckBox) findViewById(R.id.checkBox);
+            checkBox.setVisibility(View.VISIBLE);
+            checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
+            checkBox2.setVisibility(View.VISIBLE);
 
+        }
+            return super.onOptionsItemSelected(item);
+        }
     }
 
 

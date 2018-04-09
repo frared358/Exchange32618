@@ -35,7 +35,6 @@ import java.util.List;
 
 public class FragmentAllSport extends Fragment{
 
-
     RecyclerView recycleViewHighlights;
     private List<SportsData> HighlightsList= new ArrayList<>();
     SportsNameAdapter sportsNameAdapter;
@@ -54,7 +53,6 @@ public class FragmentAllSport extends Fragment{
         recycleViewHighlights.setItemAnimator(new DefaultItemAnimator());
 
         sportsNameAdapter = new SportsNameAdapter(FragmentAllSport.this.getActivity(),HighlightsList);
-
 //        recycleViewHighlights.addOnItemTouchListener(
 //                new SportNameRecycleItemClickListener(getActivity(), new SportNameRecycleItemClickListener.OnItemClickListener() {
 //                    @Override
@@ -67,7 +65,6 @@ public class FragmentAllSport extends Fragment{
 //                    }
 //                })
 //        );
-
         new HighlightsAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Navigation/SportsList");
         //new HighlightsAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/Highlights?sid=4");
 
@@ -136,29 +133,23 @@ public class FragmentAllSport extends Fragment{
                 String strData = jsonObjMain.getString("data");
                 JSONArray arrayData = new JSONArray(strData);
                 int length = arrayData.length();
-
                 if(length == 0){
                     txtVNoData.setVisibility(View.VISIBLE);
                 }
 
                 for(int i =0 ; i<length;i++){
-
                     JSONObject key = arrayData.getJSONObject(i);
 //                    String matchName = key.getString("matchName");
 //                    String matchDate = key.getString("matchDate");
 //                    String bfId = key.getString("bfId");
 //                    int marketId = key.getInt("marketId");
 //                    int matchId = key.getInt("matchId");
-
-
                     String name = key.getString("name");
                     int matchId = key.getInt("id");
-
                     //Log.i("TAG",""+matchName);
                     //HighlightsList.add(new SportsData(matchName,matchDate,bfId,matchId,marketId));
                     HighlightsList.add(new SportsData(name,matchId));
                     sportsNameAdapter.notifyDataSetChanged();
-
 //                    JSONObject key = arrayData.getJSONObject(i);
 //                    String sportName = key.getString("name");
 //                    int sportId = key.getInt("id");

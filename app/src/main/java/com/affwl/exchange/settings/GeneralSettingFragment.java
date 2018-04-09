@@ -5,10 +5,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Switch;
+import android.widget.TextView;
 
 import com.affwl.exchange.R;
 
-public class GeneralSettingFragment extends Fragment {
+public class GeneralSettingFragment extends Fragment implements View.OnClickListener {
+
+    Switch switch_crypto , switch_fx , switch_indie , switch_sixtysec , switch_sports , switch_teen_patti;
+    LinearLayout layout_push_notification_options , layout_language_options,accout_logout;
+    ImageView dropdown_language , dropdown_push_notification;
+    TextView txtAccount;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -17,6 +26,159 @@ public class GeneralSettingFragment extends Fragment {
 
         //Do your main coding of this page betweem this
 
+        txtAccount=view.findViewById(R.id.txtAccount);
+        switch_crypto=(Switch) view.findViewById(R.id.crypto_push_notify);
+        switch_fx=(Switch) view.findViewById(R.id.fx_push_notify);
+        switch_indie=(Switch) view.findViewById(R.id.indie_push_notify);
+        switch_sixtysec=(Switch) view.findViewById(R.id.sixtysec_push_notify);
+        switch_sports=(Switch) view.findViewById(R.id.sports_push_notify);
+        switch_teen_patti=(Switch) view.findViewById(R.id.teen_patti_push_notify);
+
+        accout_logout=view.findViewById(R.id.accout_logout);
+
+        layout_push_notification_options = view.findViewById(R.id.layout_push_notification_options);
+        layout_language_options= view.findViewById(R.id.layout_language_options);
+
+        layout_language_options.setOnClickListener(this);
+        layout_push_notification_options.setOnClickListener(this);
+
+        dropdown_language=view.findViewById(R.id.dropdown_language);
+        dropdown_push_notification=view.findViewById(R.id.dropdown_push_notification);
+
+        dropdown_push_notification.setOnClickListener(this);
+        dropdown_language.setOnClickListener(this);
+
+
+        txtAccount.setOnClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.txtAccount:
+                if(accout_logout.getVisibility()==View.GONE) {
+                    accout_logout.setVisibility(View.VISIBLE);
+                }else {
+                    accout_logout.setVisibility(View.GONE);
+                }
+                break;
+
+  /*          case R.id.crypto_push_notify:
+                changeCryptoswitch();
+                break;
+
+            case R.id.fx_push_notify:
+                changeFXswitch();
+                break;
+
+            case R.id.indie_push_notify:
+                changeIndieswitch();
+                break;
+
+            case R.id.sixtysec_push_notify:
+                changeSixtysecswitch();
+                break;
+
+            case R.id.sports_push_notify:
+                changeSportsswitch();
+                break;
+
+            case R.id.teen_patti_push_notify:
+                changeTeenPattiswitch();
+                break;*/
+
+            case R.id.dropdown_language:
+                dropdownLanguage();
+                break;
+
+            case R.id.dropdown_push_notification:
+                dropdownPushNotification();
+                break;
+        }
+    }
+
+    private void dropdownLanguage(){
+        if(layout_language_options.getVisibility() == View.GONE){
+
+            layout_language_options.setVisibility(View.VISIBLE);
+            dropdown_language.setImageDrawable(getResources().getDrawable(R.drawable.arrowup_general));
+
+        } else{
+
+            layout_language_options.setVisibility(View.GONE);
+            dropdown_language.setImageDrawable(getResources().getDrawable(R.drawable.drop_down_general));
+
+        }
+    }
+
+    private void dropdownPushNotification(){
+        if(layout_push_notification_options.getVisibility() == View.GONE){
+
+            layout_push_notification_options.setVisibility(View.VISIBLE);
+            dropdown_push_notification.setImageDrawable(getResources().getDrawable(R.drawable.arrowup_general));
+
+        } else{
+
+            layout_push_notification_options.setVisibility(View.GONE);
+            dropdown_push_notification.setImageDrawable(getResources().getDrawable(R.drawable.drop_down_general));
+
+        }
+
+    }
+
+    private void changeCryptoswitch() {
+        if(!switch_crypto.isChecked()){
+            switch_crypto.setChecked(true);
+        }
+        else {
+            switch_crypto.setChecked(false);
+        }
+    }
+
+    private void changeFXswitch() {
+        if(!switch_fx.isChecked()){
+            switch_fx.setChecked(true);
+        }
+        else {
+            switch_fx.setChecked(false);
+        }
+    }
+
+    private void changeIndieswitch() {
+        if(!switch_indie.isChecked()){
+            switch_indie.setChecked(true);
+        }
+        else {
+            switch_indie.setChecked(false);
+        }
+    }
+
+    private void changeSixtysecswitch(){
+        if(!switch_sixtysec.isChecked()){
+            switch_sixtysec.setChecked(true);
+        }
+        else {
+            switch_sixtysec.setChecked(false);
+        }
+    }
+
+    private void changeSportsswitch(){
+        if(!switch_sports.isChecked()){
+            switch_sports.setChecked(true);
+        }
+        else {
+            switch_sports.setChecked(false);
+        }
+    }
+
+    private void changeTeenPattiswitch(){
+        if(!switch_teen_patti.isChecked()){
+            switch_teen_patti.setChecked(true);
+        }
+        else {
+            switch_teen_patti.setChecked(false);
+        }
     }
 }

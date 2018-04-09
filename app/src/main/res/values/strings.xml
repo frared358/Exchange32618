@@ -227,4 +227,20 @@
         <item>White Theme</item>
         <item>Black Theme</item>
     </string-array>
+
+
+    <string-array name="Add_symbols">
+        <item>NZDUSD</item>
+        <item>USDSEK</item>
+        <item>USDJPY</item>
+        <item>USDCHF</item>
+        <item>GBPUSD</item>
+        <item>USDRUB</item>
+        <item>USDCAD</item>
+        <item>Australlian Dollar Vs Canadian Dollar</item>
+
+    </string-array>
+
+
+
 </resources>

@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,18 +64,23 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
     ImageView imgVCheck,imgRightDrawer;
     DrawerLayout drawerBet;
     NavigationView navigationView1,navigationView2;
-    //LinearLayout pink1,pink2,pink3,blue1,blue2,blue3;
-    TextView txtVChipsStake;
+    TextView txtVChipsStake,txtVTitleMatchName;
     ImageView imgVFav;
     Handler handler;
     Runnable runnable;
 
-    RecyclerView recycleViewMarketData;
+    LinearLayout llBookMaking,llFancyBet,llMatchOddData;
+    public static ScrollView scrollBetActivity;
+
+    RecyclerView recycleViewMarketData,recycleViewBookMakingData,recycleViewFancyBet;
     private List<MarketData> MarketDataList = new ArrayList<>();
+    private List<MarketData> BookMakingDataList = new ArrayList<>();
+    private List<MarketData> FancyDataList = new ArrayList<>();
     MarketDataAdapter marketDataAdapter;
+    BookMakingAdapter  bookMakingAdapter;
+    FancyAdapter fancyAdapter;
 
     Handler handlerMarketData;
-
 
     SignalRFuture<Void> awaitConnection;
 
@@ -93,12 +99,22 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         imgRightDrawer.setOnClickListener(this);
 
         recycleViewMarketData = findViewById(R.id.recycleViewMarketData);
-
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-
         recycleViewMarketData.setLayoutManager(mLayoutManager);
         recycleViewMarketData.setItemAnimator(new DefaultItemAnimator());
         marketDataAdapter = new MarketDataAdapter(this,MarketDataList);
+
+        recycleViewBookMakingData = findViewById(R.id.recycleViewBookMakingData);
+        RecyclerView.LayoutManager nLayoutManager = new LinearLayoutManager(this);
+        recycleViewBookMakingData.setLayoutManager(nLayoutManager);
+        recycleViewBookMakingData.setItemAnimator(new DefaultItemAnimator());
+        bookMakingAdapter = new BookMakingAdapter(this,BookMakingDataList);
+
+        recycleViewFancyBet = findViewById(R.id.recycleViewFancyBet);
+        RecyclerView.LayoutManager fLayoutManager = new LinearLayoutManager(this);
+        recycleViewFancyBet.setLayoutManager(fLayoutManager);
+        recycleViewFancyBet.setItemAnimator(new DefaultItemAnimator());
+        fancyAdapter = new FancyAdapter(this,FancyDataList);
 
 //        pink1 = findViewById(R.id.pink1);
 //        pink1.setOnClickListener(this);
@@ -113,12 +129,15 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
 //        blue2.setOnClickListener(this);
 //        blue3 = findViewById(R.id.blue3);
 //        blue3.setOnClickListener(this);
-
         txtVChipsStake = findViewById(R.id.txtVChipsStake);
         txtVChipsStake.setOnClickListener(this);
 
         imgVFav = findViewById(R.id.imgVFav);
         imgVFav.setOnClickListener(this);
+
+        //DataHolder.setLayout();
+        scrollBetActivity = findViewById(R.id.scrollBetActivity);
+
 
         drawerBet = (DrawerLayout) findViewById(R.id.drawerBet);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerBet, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -138,10 +157,21 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         matchId = getIntent().getIntExtra("matchId",0);
         bfId = getIntent().getStringExtra("bfId");
 
-        Log.i("TAG456",matchName+" "+marketId+" "+matchId);
+        /*DataHolder.setData(this,"keyMarketId",String.valueOf(marketId));*/
+        DataHolder.setData(this,"Match_Id",String.valueOf(matchId));
+
+        Log.i("TAG4561",matchName+" "+marketId+" "+matchId);
+        txtVTitleMatchName = findViewById(R.id.txtVTitleMatchName);
+        txtVTitleMatchName.setText(matchName);
+
+        llBookMaking = findViewById(R.id.llBookMaking);
+        llFancyBet = findViewById(R.id.llFancyBet);
+        llMatchOddData = findViewById(R.id.llMatchOddData);
 
         handler = new Handler();
+        DataHolder.SIGNALR = true;
         new getStackAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Settings/GetBetStakeSetting");
+        new getBookMakingAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/FancyData?mtid="+matchId);
         new getMartketDataAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/MktData?mtid="+matchId+"&mktid="+marketId);
     }
 
@@ -149,7 +179,12 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
     protected void onResume() {
         super.onResume();
         txtVChipsStake.setText("CHIPS "+DataHolder.getSTACK(this,"StackValue1"));
-        DataHolder.STACK_VALUE = Double.valueOf(DataHolder.getSTACK(this,"StackValue1"));
+        try{
+            DataHolder.STACK_VALUE = Double.valueOf(DataHolder.getSTACK(this,"StackValue1"));
+        }catch(NumberFormatException e){
+            
+        }
+
     }
 
     @Override
@@ -283,54 +318,58 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                     //Log.i("Signalr",""+json);
 
                     //Toast.makeText(BetActivity.this, ""+json, Toast.LENGTH_SHORT).show();
+                    //Log.i("TAG11","cbc");
+                    if(DataHolder.SIGNALR){
+                        handler.postDelayed(runnable = new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
 
-                    handler.postDelayed(runnable = new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
+                                    JSONObject jsonMain = new JSONObject(json.toString());
+                                    String jsonData = jsonMain.getString("A");
+                                    JSONArray jsonArray = new JSONArray(jsonData);
+                                    final JSONObject key = jsonArray.getJSONObject(0);
+                                    Log.i("TAG",json.toString());
+                                    back1 = key.getString("back1");
+                                    lay1 = key.getString("lay1");
+                                    backSize1 = key.getString("backSize1");
+                                    laySize1 = key.getString("laySize1");
+                                    runner = key.getString("runner");
 
-                                JSONObject jsonMain = new JSONObject(json.toString());
-                                String jsonData = jsonMain.getString("A");
-                                JSONArray jsonArray = new JSONArray(jsonData);
-                                final JSONObject key = jsonArray.getJSONObject(0);
-                                Log.i("TAG",json.toString());
-                                back1 = key.getString("back1");
-                                lay1 = key.getString("lay1");
-                                backSize1 = key.getString("backSize1");
-                                laySize1 = key.getString("laySize1");
-                                runner = key.getString("runner");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+                                for(index=0;index<MarketDataArray.size();index++) {
 
-                            for(index=0;index<MarketDataArray.size();index++) {
+                                    if (MarketDataArray.get(index).equalsIgnoreCase(runner)) {
 
-                                if (MarketDataArray.get(index).equalsIgnoreCase(runner)) {
+                                        if(index<MarketDataArray.size()){
 
-                                    if(index<MarketDataArray.size()){
+                                            Log.i("TAG1234", MarketDataArray.get(index) + " " + runner +" "+runner+ " " +back1+ " " +lay1+ " " +backSize1+ " " +laySize1+ " " +bfId);
 
-                                        Log.i("TAG1234", MarketDataArray.get(index) + " " + runner +" "+runner+ " " +back1+ " " +lay1+ " " +backSize1+ " " +laySize1+ " " +bfId);
-
-                                        MarketDataList.remove(index);
+                                            MarketDataList.remove(index);
 //                                        recycleViewMarketData.removeViewAt(index);
 //                                        marketDataAdapter.notifyItemRemoved(index);
 //                                        marketDataAdapter.notifyItemRemoved(index);
-                                        MarketDataList.add(index,new MarketData(runner,back1,lay1,backSize1,laySize1));
-                                        marketDataAdapter.notifyDataSetChanged();
+                                            MarketDataList.add(index,new MarketData(runner,back1,lay1,backSize1,laySize1));
+                                            marketDataAdapter.notifyDataSetChanged();
 //                                        recycleViewMarketData.setAdapter(marketDataAdapter);
 
-                                    }
-                                    else {
-                                        index = 0;
-                                        break;
+                                        }
+                                        else {
+                                            index = 0;
+                                            break;
+                                        }
                                     }
                                 }
                             }
-                        }
 
 
-                    },2000);
+                        },2000);
+                    }
+
+
                 }
             });
 
@@ -344,34 +383,33 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onStop() {
         super.onStop();
-        _connection.stop();
+        //_connection.stop();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         MarketDataArray.clear();
-
-        handler.removeCallbacks(runnable);
-        handler.removeCallbacksAndMessages(null);
+        DataHolder.SIGNALR = false;
+        //handler.removeCallbacks(runnable);
+        //handler.removeCallbacksAndMessages(null);
 
         try {
             if (runnable != null ) {
                 Log.i("TAG14552",runnable.toString());
-                _connection.closed(runnable);
-                _hub = null;
-                _connection.disconnect();
-                _hub.invoke("UnsubscirbeSymbol",bfId);
+                //_connection.closed(runnable);
+                //_hub = null;
+                //_connection.disconnect();
+                //_hub.invoke("Unsubscirbe",sub);
                 _connection.stop();
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
-    public String  getStackApi(String url){
+    public String  getApi(String url){
         InputStream inputStream = null;
         String result = "";
         try {
@@ -404,26 +442,13 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         return result;
     }
 
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null){
-            result += line;
-            Log.e("Line",result);
-        }
-
-        inputStream.close();
-        return result;
-    }
-
     String StackValue1,StackValue2,StackValue3;
 
     private class getStackAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
-            return getStackApi(urls[0]);
+            return getApi(urls[0]);
         }
 
         @Override
@@ -451,6 +476,139 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                 e.printStackTrace();
             }
         }
+    }
+
+    private class getMartketDataAsyncTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(final String... urls) {
+
+
+            return getApi(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.i("Check",""+result);
+
+            try {
+                JSONObject jsonObjMain = new JSONObject(result.toString());
+                JSONObject jsonObjData = new JSONObject(jsonObjMain.getString("data"));
+                String runnerData = jsonObjData.getString("runnerData");
+                Log.i("TAG",""+runnerData);
+                JSONArray arrayData = new JSONArray(runnerData);
+                int length = arrayData.length();
+
+                if(length >0){
+                    llMatchOddData.setVisibility(View.VISIBLE);
+                }
+
+                for(int i =0 ; i<length;i++){
+                    JSONObject key = arrayData.getJSONObject(i);
+                    String back1 = key.getString("back1");
+                    String lay1 = key.getString("lay1");
+                    String backSize1 = key.getString("backSize1");
+                    String laySize1 = key.getString("laySize1");
+                    String runnerName = key.getString("runnerName");
+                    MarketDataArray.add(key.getString("runnerName"));
+                    MarketDataList.add(new MarketData(runnerName,back1,lay1,backSize1,laySize1,bfId,matchId,marketId));
+                    marketDataAdapter.notifyDataSetChanged();
+                }
+                recycleViewMarketData.setAdapter(marketDataAdapter);
+
+                //displaySignalRData(bfId);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private class getBookMakingAsyncTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            return getApi(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.i("Check",""+result);
+
+            try {
+                JSONObject jsonObjMain = new JSONObject(result.toString());
+                String bookmakingData = jsonObjMain.getString("bookmakingData");
+                JSONObject jsonBook = new JSONObject(bookmakingData);
+                int BookId = jsonBook.getInt("id");
+                String runnerData = jsonBook.getString("runnerData");
+                JSONArray arrayData = new JSONArray(runnerData);
+                int lengthBook = arrayData.length();
+
+                if(lengthBook>0){
+
+                    llBookMaking.setVisibility(View.VISIBLE);
+
+                    for(int i =0 ; i<lengthBook;i++){
+                        JSONObject key = arrayData.getJSONObject(i);
+                        int back = key.getInt("backPrice");
+                        int lay = key.getInt("layPrice");
+                        int backSize = key.getInt("backSize");
+                        int laySize = key.getInt("laySize");
+                        String runnerName = key.getString("name");
+                        String ballStatus = key.getString("ballStatus");
+                        String book = key.getString("book");
+                        int runnerId = key.getInt("id");
+
+
+                        BookMakingDataList.add(new MarketData(BookId,runnerId,back,lay,backSize,laySize,runnerName,ballStatus,book));
+                        bookMakingAdapter.notifyDataSetChanged();
+                    }
+                    recycleViewBookMakingData.setAdapter(bookMakingAdapter);
+                }
+
+                String fancyData = jsonObjMain.getString("data");
+                JSONArray fancyArrayData = new JSONArray(fancyData);
+                int lengthFancy = fancyArrayData.length();
+                Log.i("TAG456",fancyData);
+
+                if(lengthFancy>0){
+
+                    llFancyBet.setVisibility(View.VISIBLE);
+
+                    for(int i =0 ; i<lengthFancy;i++){
+                        JSONObject key = fancyArrayData.getJSONObject(i);
+                        String yesRate = key.getString("yesRate");
+                        String yesScore = key.getString("yesScore");
+                        String noRate = key.getString("noRate");
+                        String noScore = key.getString("noScore");
+                        String runnerName = key.getString("name");
+                        String ballStatus = key.getString("ballStatus");
+                        String book = key.getString("book");
+                        int fancyId = key.getInt("id");
+
+                        FancyDataList.add(new MarketData(yesRate,yesScore,noRate,noScore,runnerName,ballStatus,book,fancyId));
+                        fancyAdapter.notifyDataSetChanged();
+                    }
+                    recycleViewFancyBet.setAdapter(fancyAdapter);
+                }
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+        while((line = bufferedReader.readLine()) != null){
+            result += line;
+            Log.e("Line",result);
+        }
+
+        inputStream.close();
+        return result;
     }
 
     public String  getMartketDataApi(String url){
@@ -486,50 +644,36 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         return result;
     }
 
-    private class getMartketDataAsyncTask extends AsyncTask<String, Void, String> {
+    public String  getBookMakingApi(String url){
+        InputStream inputStream = null;
+        String result = "";
+        try {
 
-        @Override
-        protected String doInBackground(final String... urls) {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpGet Httpget = new HttpGet(url);
 
+            Httpget.setHeader("Accept", "application/json");
+            Httpget.setHeader("Content-type", "application/json");
+            Httpget.setHeader("Token", DataHolder.LOGIN_TOKEN);
 
-            return getMartketDataApi(urls[0]);
-        }
+            HttpResponse httpResponse = httpclient.execute(Httpget);
+            inputStream = httpResponse.getEntity().getContent();
 
-        @Override
-        protected void onPostExecute(String result) {
-            Log.i("Check",""+result);
-            Toast.makeText(BetActivity.this, ""+result, Toast.LENGTH_SHORT).show();
-            try {
-                JSONObject jsonObjMain = new JSONObject(result.toString());
-                JSONObject jsonObjData = new JSONObject(jsonObjMain.getString("data"));
-                String runnerData = jsonObjData.getString("runnerData");
-                Log.i("TAG",""+runnerData);
-                JSONArray arrayData = new JSONArray(runnerData);
-                int length = arrayData.length();
-
-                for(int i =0 ; i<length;i++){
-                    JSONObject key = arrayData.getJSONObject(i);
-                    String back1 = key.getString("back1");
-                    String lay1 = key.getString("lay1");
-                    String backSize1 = key.getString("backSize1");
-                    String laySize1 = key.getString("laySize1");
-                    String runnerName = key.getString("runnerName");
-
-                    MarketDataArray.add(key.getString("runnerName"));
-
-                    MarketDataList.add(new MarketData(runnerName,back1,lay1,backSize1,laySize1,bfId,matchId,marketId));
-
-                    marketDataAdapter.notifyDataSetChanged();
-
+            if(inputStream != null){
+                try {
+                    result = convertInputStreamToString(inputStream);
                 }
-                recycleViewMarketData.setAdapter(marketDataAdapter);
-
-                displaySignalRData(bfId);
-            } catch (JSONException e) {
-                e.printStackTrace();
+                catch (Exception e){
+                    Log.e("Check",""+e);
+                }
             }
+            else
+                result = "Did not work!";
+            Log.e("Check","how "+result);
+
+        } catch (Exception e) {
+            Log.d("InputStream", ""+e);
         }
+        return result;
     }
-
-
 }

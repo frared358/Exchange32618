@@ -19,11 +19,14 @@
             android:layout_marginLeft="10dp">
 
             <TextView
+                tools:ignore="MissingPrefix"
+                fontPath="fonts/Roboto-ThinItalic.ttf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="QUOTES"
                 android:textColor="@color/colorWhite"
                 android:textStyle="bold"
+
                 android:layout_marginTop="20sp"/>
 
             <View

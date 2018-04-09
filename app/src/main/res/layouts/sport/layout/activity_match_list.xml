@@ -43,7 +43,8 @@
                 android:textSize="15sp"
                 android:layout_margin="3dp"
                 android:textStyle="bold"
-                android:text="All Sport >"/>
+                android:textColor="@color/colorBlack"
+                android:text="All Sport> "/>
 
             <TextView
                 android:id="@+id/txtVSportNameM"
@@ -52,7 +53,8 @@
                 android:textSize="15sp"
                 android:layout_margin="3dp"
                 android:textStyle="bold"
-                android:text="Cricket > "/>
+                android:textColor="@color/colorBlack"
+                android:text=""/>
 
             <TextView
                 android:id="@+id/txtVTournamentNameM"
@@ -61,7 +63,8 @@
                 android:textSize="15sp"
                 android:layout_margin="3dp"
                 android:textStyle="bold"
-                android:text="World Cup > "/>
+                android:textColor="@color/colorBlack"
+                android:text=""/>
 
             <!--<TextView
                 android:layout_width="wrap_content"

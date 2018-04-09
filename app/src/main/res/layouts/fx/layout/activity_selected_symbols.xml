@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:ignore="MissingPrefix"
+    fontPath="fonts/RobotoCondensed-Regular.ttf"
     tools:context="com.affwl.exchange.fx.Selected_symbols">
     <android.support.v7.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,15 +19,17 @@
         app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="Selected symbols"
         android:gravity="center"
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/RobotoCondensed-Regular.ttf"
         android:id="@+id/toolbar2" />
 
     <ListView
-        android:id="@+id/list5"
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="64dp"
-        android:layout_below="@+id/toolbar2"/>
-
+    android:id="@+id/list5"
+    android:layout_width="368dp"
+    android:layout_height="495dp"
+    tools:layout_editor_absoluteX="8dp"
+    tools:layout_editor_absoluteY="64dp"
+    android:layout_below="@+id/toolbar2"
+    />
 
 </RelativeLayout>

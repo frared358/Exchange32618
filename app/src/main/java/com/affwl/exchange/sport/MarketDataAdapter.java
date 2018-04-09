@@ -3,6 +3,7 @@ package com.affwl.exchange.sport;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -87,39 +88,39 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
 
     boolean ONCES=true;
     String mRunnerName,mBack,mChipsBack,mLay,mChipsLay;
+    int mMatchId,mMarketId;
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final MarketData market = dataList.get(position);
         //if (ONCES) {
 
-            mRunnerName=market.RunnerName;
-            mBack=market.Back;
-            mChipsBack=market.ChipsBack;
-            mLay=market.Lay;
-            mChipsLay=market.ChipsLay;
+        mRunnerName=market.RunnerName;
+        mBack=market.Back;
+        mChipsBack=market.ChipsBack;
+        mLay=market.Lay;
+        mChipsLay=market.ChipsLay;
+        mMatchId = market.MatchId;
+        mMarketId = market.MarketId;
 
-            holder.txtVRunnerName.setText(market.RunnerName);
-            holder.txtVBackData.setText(market.Back);
-            holder.txtVBackChips.setText(market.ChipsBack);
-            holder.txtVLayData.setText(market.Lay);
-            holder.txtVLayChips.setText(market.ChipsLay);
+        holder.txtVRunnerName.setText(market.RunnerName);
+        holder.txtVBackData.setText(market.Back);
+        holder.txtVBackChips.setText(market.ChipsBack);
+        holder.txtVLayData.setText(market.Lay);
+        holder.txtVLayChips.setText(market.ChipsLay);
 
 
-
-
-                new getExposerAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/ExposureBook?mktid=130");
-                for(int i =0; i< arrayExposerName.size();i++){
-                    if(arrayExposerName.get(i).equalsIgnoreCase(market.RunnerName)){
-                        holder.txtVExposerData.setText(arrayExposerValue.get(i));
-                        if(Integer.parseInt(arrayExposerValue.get(i))>0){
-                            holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextMarket, R.color.colorGreen));
-                        }else {
-                            holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextMarket, R.color.colorRed));
-                        }
-                        break;
-                    }
+        new getExposerAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/ExposureBook?mktid"+mMarketId);
+        for(int i =0; i< arrayExposerName.size();i++){
+            if(arrayExposerName.get(i).equalsIgnoreCase(market.RunnerName)){
+                holder.txtVExposerData.setText(arrayExposerValue.get(i));
+                if(Integer.parseInt(arrayExposerValue.get(i))>0){
+                    holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextMarket, R.color.colorGreen));
+                }else {
+                    holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextMarket, R.color.colorRed));
                 }
-
+                break;
+            }
+        }
 
 
         //displaySignalRData(market.bfid,holder.txtVBackData,holder.txtVLayData,market);
@@ -172,13 +173,11 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
 //            }
 //        });
 
-
-
         holder.llLay.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    dialogBetPlace(market.RunnerName,R.color.colorRedBetTrasparent,Double.valueOf(market.Lay),Double.valueOf(market.Lay));
+                    dialogBetPlace(market.RunnerName,R.color.colorRedBetTrasparent,Double.valueOf(market.Lay),"Lay");
                     Log.i("TAG12356","Touchll");
                 }
                 return false;
@@ -189,15 +188,13 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    dialogBetPlace(market.RunnerName,R.color.colorBlueBetTrasparent,Double.valueOf(market.Back),Double.valueOf(market.Back));
+                    dialogBetPlace(market.RunnerName,R.color.colorBlueBetTrasparent,Double.valueOf(market.Back),"Back");
                     Log.i("TAG12356","Touchll");
                 }
                 return false;
             }
         });
     }
-
-
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -216,7 +213,7 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
     LinearLayout llDialogBetPlace;
     String ODDVALUE,STACKVALUE,PROFITVALUE;
 
-    public void dialogBetPlace(String RunnerTitle,int color,final double oddValue,double market){
+    public void dialogBetPlace(final String RunnerTitle,int color,final double oddValue,final String BackLay){
 
         final Dialog dialog = new Dialog(contextMarket,R.style.Dialog);
         dialog.setContentView(R.layout.dialog_bet_place);
@@ -241,9 +238,8 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
         ODDVALUE = String.valueOf(oddValue);
         editTxtVOddValue.setText(ODDVALUE);
 
-        PROFITVALUE = String.format("Profit CHIPS %.2f", profit(oddValue,DataHolder.STACK_VALUE));
+        PROFITVALUE = String.format("Profit CHIPS %.2f", DataHolder.profit(oddValue,DataHolder.STACK_VALUE));
         txtVProfitValue.setText(PROFITVALUE);
-
 
 
         txtVOddIncrement.setOnClickListener(new View.OnClickListener(){
@@ -256,11 +252,11 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
                     oddVal = 0.0;
                     e.printStackTrace();
                 }
-                double inc = increment(oddVal);
+                double inc = DataHolder.increment(oddVal);
                 ODDVALUE = String.format("%.2f",inc);
                 editTxtVOddValue.setText(ODDVALUE);
 
-                PROFITVALUE = String.format("Profit CHIPS %.2f", profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
+                PROFITVALUE = String.format("Profit CHIPS %.2f", DataHolder.profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
                 txtVProfitValue.setText(PROFITVALUE);
             }
         } );
@@ -276,11 +272,11 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
                     e.printStackTrace();
                 }
 
-                double dec = decrement(oddVal);
+                double dec = DataHolder.decrement(oddVal);
                 ODDVALUE = String.format("%.2f",dec);
                 editTxtVOddValue.setText(ODDVALUE);
 
-                PROFITVALUE = String.format("Profit CHIPS %.2f", profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
+                PROFITVALUE = String.format("Profit CHIPS %.2f", DataHolder.profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
                 txtVProfitValue.setText(PROFITVALUE);
             }
         });
@@ -296,12 +292,12 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
                     e.printStackTrace();
                 }
                 Log.i("TAG",stackVal+"");
-                double dec = decrement(stackVal);
+                double dec = DataHolder.decrement(stackVal);
                 Log.i("TAG",dec+"");
                 STACKVALUE = String.format("%.2f",dec);
                 editTxtStackValue.setText(STACKVALUE);
 
-                PROFITVALUE = String.format("Profit CHIPS %.2f", profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
+                PROFITVALUE = String.format("Profit CHIPS %.2f", DataHolder.profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
                 txtVProfitValue.setText(PROFITVALUE);
             }
         });
@@ -316,19 +312,20 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
                     stackVal = 0.0;
                     e.printStackTrace();
                 }
-                double inc = increment(stackVal);
+                double inc = DataHolder.increment(stackVal);
                 STACKVALUE = String.format("%.2f",inc);
                 editTxtStackValue.setText(STACKVALUE);
 
-                PROFITVALUE = String.format("Profit CHIPS %.2f", profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
-                txtVProfitValue.setText(PROFITVALUE);
+                PROFITVALUE = String.format("%.2f", DataHolder.profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
+                txtVProfitValue.setText("Profit CHIPS "+PROFITVALUE);
             }
         });
 
         btnBetPlace.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                //new BetPlaceAsyncTask().execute("back","","",ODDVALUE,STACKVALUE,"","","");
+                new BetPlaceAsyncTask().execute(BackLay,String.valueOf(mMarketId),String.valueOf(mMatchId),ODDVALUE,STACKVALUE,PROFITVALUE,RunnerTitle);
+                dialog.cancel();
             }
         });
 
@@ -344,7 +341,7 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length() != 0 && s.length() <=5)  {
                     ODDVALUE = s.toString();
-                    PROFITVALUE = String.format("Profit CHIPS %.2f", profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
+                    PROFITVALUE = String.format("Profit CHIPS %.2f", DataHolder.profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
                     txtVProfitValue.setText(PROFITVALUE);
                 }
                 else {
@@ -366,7 +363,7 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.length() != 0 && Double.valueOf(s.toString().trim()) <=100000 && s.length() < 10)  {
                     STACKVALUE = s.toString();
-                    PROFITVALUE = String.format("Profit CHIPS %.2f", profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
+                    PROFITVALUE = String.format("Profit CHIPS %.2f", DataHolder.profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
                     txtVProfitValue.setText(PROFITVALUE);
                 }else  {
                     txtVProfitValue.setText("0.0");
@@ -378,7 +375,7 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
         dialog.show();
     }
 
-    private double increment(double val){
+    /*private double increment(double val){
 
         if(val >=0.00 && val <1.00){
             val = val+0.02;
@@ -420,7 +417,7 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
 
     private double profit(double odd,double stack){
         return (odd-1)*stack;
-    }
+    }*/
 
     HubConnection _connection;
     HubProxy _hub;
@@ -503,7 +500,7 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
         }
     }
 
-    public String  BetPlaceApi(String backlay,String marketId,String matchId,String odds,String stake,String profit,String runnerName,String source){
+    public String  BetPlaceApi(String backlay,String marketId,String matchId,String odds,String stake,String profit,String runnerName){
         InputStream inputStream = null;
         String result = "";
         try {
@@ -520,7 +517,7 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
             jsonObject.accumulate("odds",odds);
             jsonObject.accumulate("profit",profit);
             jsonObject.accumulate("runnerName",runnerName);
-            jsonObject.accumulate("source",source);
+            jsonObject.accumulate("source","Mobile");
             jsonObject.accumulate("stake",stake);
 
             json = jsonObject.toString();
@@ -559,34 +556,25 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
 
         @Override
         protected String doInBackground(final String... urls) {
-
-
-            return BetPlaceApi(urls[0],urls[1],urls[2],urls[3],urls[4],urls[5],urls[6],urls[7]);
+            return BetPlaceApi(urls[0],urls[1],urls[2],urls[3],urls[4],urls[5],urls[6]);
         }
 
         @Override
         protected void onPostExecute(String result) {
             Log.i("Check",""+result);
+            //Toast.makeText(contextMarket, ""+result, Toast.LENGTH_SHORT).show();
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
-                JSONObject jsonObjData = new JSONObject(jsonObjMain.getString("data"));
-                String runnerData = jsonObjData.getString("runnerData");
-                Log.i("TAG",""+runnerData);
-                JSONArray arrayData = new JSONArray(runnerData);
-                int length = arrayData.length();
-
-                for(int i =0 ; i<length;i++){
-                    JSONObject key = arrayData.getJSONObject(i);
-                    String back1 = key.getString("back1");
-                    String lay1 = key.getString("lay1");
-                    String backSize1 = key.getString("backSize1");
-                    String laySize1 = key.getString("laySize1");
-                    String runnerName = key.getString("runnerName");
-
-
-
+                String status = jsonObjMain.getString("status");
+                String msg = jsonObjMain.getString("result");
+                if(status.equalsIgnoreCase("Success")){
+                    Snackbar snackbar = Snackbar.make(BetActivity.scrollBetActivity, msg, Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 }
-
+                else {
+                    Snackbar snackbar = Snackbar.make(BetActivity.scrollBetActivity, msg, Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -648,6 +636,7 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
 
         @Override
         protected void onPostExecute(String result) {
+            Log.i("Check",""+result);
 
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
