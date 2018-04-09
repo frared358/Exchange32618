@@ -317,7 +317,7 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
         img_minus_minutes=myDialog.findViewById(R.id.img_minus_minutes);
 
                SQLiteDatabase db = mDBHelper.getReadableDatabase();
-                    Cursor c = db.rawQuery("SELECT * FROM selected_category WHERE category_id=? AND user_id=?",  new String[] { String.valueOf(categoryValue),String.valueOf(1234) });
+                    Cursor c = db.rawQuery("SELECT * FROM selected_category WHERE category_id= ? AND user_id=?",  new String[] { String.valueOf(categoryValue),String.valueOf(1234) });
                     if (c.moveToFirst()) {
 
                         do {

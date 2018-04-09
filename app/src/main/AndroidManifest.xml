@@ -58,17 +58,19 @@
             android:name=".binary.AssetNameActivity"
             android:parentActivityName=".binary.Sec60Activity" />
         <activity android:name=".LoginActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity android:name=".binary.AssetListActivity" />
         <activity android:name=".binary.TradeActivity" />
         <activity android:name=".binary.BinaryPotfolioActivity" />
-        <activity android:name=".fx.FxActivity" />
+        <activity android:name=".fx.FxActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".fx.CustomSpinner" />
         <activity android:name=".fx.Problem_Description" />
         <activity android:name=".fx.Certificates" />

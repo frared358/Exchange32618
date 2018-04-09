@@ -139,7 +139,7 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                         @Override
                         public void onClick(View v) {
                             bcs=new BottomClickSession(v.getContext());
-                            bcs.setValue("1 ");
+                            bcs.setValue("1");
                             ((FxActivity) viewdialog.getContext()).navigationView.getMenu().getItem(1).setChecked(true);
                             currentFragment = new Fx_Chart_Fragment();
                             android.support.v4.app.FragmentTransaction fragmentTransaction1 = ((FxActivity) viewdialog.getContext()).getSupportFragmentManager().beginTransaction();

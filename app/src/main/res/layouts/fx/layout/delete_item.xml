@@ -2,6 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:padding="2dp">
 
     <ImageView
@@ -37,6 +39,8 @@
         android:layout_below="@+id/view4"
         android:paddingBottom="10dp"
         android:text="txt"
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/RobotoCondensed-Regular.ttf"
         android:layout_marginRight="5dp"
         android:textSize="16sp"
         android:textColor="#000000"
@@ -50,6 +54,8 @@
         android:layout_marginLeft="62dp"
         android:layout_marginStart="62dp"
         android:layout_marginTop="11dp"
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/RobotoCondensed-Regular.ttf"
         android:layout_toEndOf="@+id/profile_pic5"
         android:layout_toRightOf="@+id/profile_pic5"
         android:text="txt"
@@ -58,12 +64,12 @@
 
     <CheckBox
         android:id="@+id/checkboxNow"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/view4"
         android:layout_alignRight="@+id/view4"
         android:layout_alignTop="@+id/profile_pic5"
-        android:background="@color/colorBlack" />
+        android:buttonTint="@color/Black"/>
 
 
 </RelativeLayout>
