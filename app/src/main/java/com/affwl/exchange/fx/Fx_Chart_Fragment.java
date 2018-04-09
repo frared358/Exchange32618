@@ -78,7 +78,6 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
         leftAxis.setDrawGridLines (true);
         leftAxis.enableGridDashedLine (10f, 10f, 2f);
 
-
         YAxis rightAxis = mChart.getAxisRight ();
         rightAxis.setEnabled (true);
         rightAxis.setDrawGridLines (true);
@@ -87,8 +86,6 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
 
         rightAxis.setDrawGridLines (true);
         rightAxis.enableGridDashedLine (10f, 10f, 2f);
-
-
 
         // setting data
         mSeekBarX.setProgress (50);
@@ -134,19 +131,15 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
 
         set1.setDrawIcons (false);
         set1.setAxisDependency (YAxis.AxisDependency.LEFT);
-//        set1.setColor(Color.rgb(80, 80, 80));
         set1.setShadowColor (Color.BLACK);
         set1.setShadowWidth (0.7f);
         set1.setDecreasingColor (Color.BLACK);
         set1.setDecreasingPaintStyle (Paint.Style.FILL);
-//        set1.setIncreasingColor(Color.rgb(122, 242, 84));
         set1.setIncreasingColor (Color.BLACK);
         set1.setIncreasingPaintStyle (Paint.Style.STROKE);
         set1.setNeutralColor (Color.BLUE);
         set1.setHighLightColor (Color.BLACK);
         //set1.setHighlightLineWidth(1f);
-
-
         CandleData data = new CandleData (set1);
 
         mChart.setData (data);
