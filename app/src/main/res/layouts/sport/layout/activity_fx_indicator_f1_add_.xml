@@ -135,15 +135,16 @@
         <!--android:text="c" />-->
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/spinner3"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_alignBottom="@+id/spinner3"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:background="@color/DeepOrange"
         android:onClick="openPicker1"
-        android:background="@drawable/plus_round_corner"
-        android:text="C" />
+        android:text="ok" />
 
     <Button
         android:id="@+id/button3"

@@ -26,7 +26,7 @@ public class Fx_Fragment_Quotes extends BottomSheetDialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.activity_fx, container, false);
+        View v= inflater.inflate(R.layout.activity_fx   , container, false);
         RecyclerView programingList = (RecyclerView) v.findViewById(R.id.programingList);
         // RecyclerView programingList1=(RecyclerView) findViewById(R.id.programingList1);
         //how to position items in PecyclerView
