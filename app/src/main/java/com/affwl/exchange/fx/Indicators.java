@@ -32,6 +32,8 @@ public class Indicators extends AppCompatActivity {
 
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         imageButton_fadd1 = (ImageButton) findViewById(R.id.imageButton_fadd1);
         imageButton_fadd1.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +44,11 @@ public class Indicators extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     @Override

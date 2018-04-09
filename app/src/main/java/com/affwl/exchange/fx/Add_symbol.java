@@ -31,6 +31,8 @@ String[] Add_symbols;
 
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
        autotv =(AutoCompleteTextView) findViewById(R.id.autotv);
         Add_symbols=getResources().getStringArray(R.array.Add_symbols);
@@ -51,6 +53,13 @@ autotv.setAdapter(adapter);
         });
 
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));

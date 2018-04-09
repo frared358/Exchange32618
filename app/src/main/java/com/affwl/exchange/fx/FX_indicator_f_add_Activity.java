@@ -23,6 +23,8 @@ TextView textView39;
         setContentView(R.layout.activity_fx_indicator_f_add_);
         android.support.v7.widget.Toolbar toolbar=findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         textView39=(TextView)findViewById(R.id.textView39);
         textView39.setOnClickListener(new View.OnClickListener() {
             @Override

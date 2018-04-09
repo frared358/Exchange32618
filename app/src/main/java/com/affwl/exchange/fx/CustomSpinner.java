@@ -1,6 +1,7 @@
 package com.affwl.exchange.fx;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -33,6 +34,9 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class CustomSpinner extends AppCompatActivity implements  OnChartValueSelectedListener,View.OnClickListener {
 
     private LineChart mChart;
@@ -49,6 +53,7 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
         getMenuInflater().inflate(R.menu.spinner_menu, menu);
 
         return true;
+
     }
 
 
@@ -61,6 +66,9 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf")
+                .setFontAttrId(R.attr.fontPath).build());
         /** fro line chart  */
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -68,6 +76,8 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
 
         android.support.v7.widget.Toolbar toolbar = findViewById (R.id.toolbar2);
         setSupportActionBar (toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         activity = this;
 
         Spinner SpinnerExample = (Spinner) findViewById (R.id.spinner);
@@ -180,6 +190,11 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
         rightAxis.setGranularityEnabled(false);
 
         /** Line chart End  */
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
         /**  Line chart   */

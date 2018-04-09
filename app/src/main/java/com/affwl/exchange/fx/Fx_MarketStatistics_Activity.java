@@ -27,7 +27,14 @@ public class Fx_MarketStatistics_Activity extends AppCompatActivity {
         setContentView (R.layout.activity_fx_marketstatistics);
         android.support.v7.widget.Toolbar toolbar=findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
     @Override
     protected void attachBaseContext(Context newBase) {

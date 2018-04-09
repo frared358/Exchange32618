@@ -32,7 +32,9 @@ RelativeLayout mylayout;
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf")
                 .setFontAttrId(R.attr.fontPath).build());
         setContentView(R.layout.activity_fx_indicator_f1_add_);
+
     }
+
 
     @Override
     protected void attachBaseContext(Context newBase) {

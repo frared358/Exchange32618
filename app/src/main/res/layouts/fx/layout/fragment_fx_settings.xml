@@ -35,6 +35,8 @@
                 android:background="#B0BEC5"/>
 
             <TableLayout
+                tools:ignore="MissingPrefix"
+                fontPath="fonts/Roboto-Bold.ttf"
                 android:layout_width="match_parent"
                 android:layout_height="234dp"
                 android:layout_margin="2dp"
