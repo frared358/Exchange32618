@@ -98,9 +98,9 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
             if (c.moveToFirst()) {
 
                 do {
-                    Log.i("Tag",""+c.getInt(c.getColumnIndex("category_id")));
+                  /*  Log.i("Tag",""+c.getInt(c.getColumnIndex("category_id")));
                     Log.i("Tag",""+c.getInt(c.getColumnIndex("user_name")));
-                    Log.i("Tag",""+c.getString(c.getColumnIndex("refresh_time")));
+                    Log.i("Tag",""+c.getString(c.getColumnIndex("refresh_time")));*/
                     if(c.getInt(c.getColumnIndex("category_id"))==1)
                     {
                         sportsCheckBox.setChecked(true);
@@ -123,7 +123,7 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
                     }
                 } while (c.moveToNext());
             }
-            Log.i("my db"," "+mDb);
+//            Log.i("my db"," "+mDb);
 
         } catch (SQLException mSQLException) {
             throw mSQLException;
@@ -146,7 +146,7 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
                         values.put("refresh_time",5);
 
                         mDb.insert("selected_category",null,values);
-                        Log.i("my db"," "+mDb);
+//                        Log.i("my db"," "+mDb);
 
                     } catch (SQLException mSQLException) {
                         throw mSQLException;
@@ -173,7 +173,7 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
                         values.put("refresh_time",5);
 
                         mDb.insert("selected_category",null,values);
-                        Log.i("my db"," "+mDb);
+//                        Log.i("my db"," "+mDb);
 
                     } catch (SQLException mSQLException) {
                         throw mSQLException;
@@ -199,7 +199,7 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
                         values.put("refresh_time",5);
 
                         mDb.insert("selected_category",null,values);
-                        Log.i("my db"," "+mDb);
+//                        Log.i("my db"," "+mDb);
 
                     } catch (SQLException mSQLException) {
                         throw mSQLException;
@@ -225,7 +225,7 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
                         values.put("refresh_time",5);
 
                         mDb.insert("selected_category",null,values);
-                        Log.i("my db"," "+mDb);
+//                        Log.i("my db"," "+mDb);
 
                     } catch (SQLException mSQLException) {
                         throw mSQLException;
@@ -251,7 +251,7 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
                         values.put("refresh_time",5);
 
                         mDb.insert("selected_category",null,values);
-                        Log.i("my db"," "+mDb);
+//                        Log.i("my db"," "+mDb);
 
                     } catch (SQLException mSQLException) {
                         throw mSQLException;
@@ -321,8 +321,8 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
                     if (c.moveToFirst()) {
 
                         do {
-                            Log.i("TagCategory",""+c.getInt(c.getColumnIndex("category_id")));
-                            Log.i("TagRefresh",""+c.getInt(c.getColumnIndex("refresh_time")));
+                         /*   Log.i("TagCategory",""+c.getInt(c.getColumnIndex("category_id")));
+                            Log.i("TagRefresh",""+c.getInt(c.getColumnIndex("refresh_time")));*/
                             timeNow=c.getInt(c.getColumnIndex("refresh_time"));
                             String strTime= String.valueOf(timeNow);
                             text_minutes.setText(strTime);
@@ -369,9 +369,9 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
             public void onClick(View v) {
 
                 String value = text_minutes.getText().toString();
-                Log.i("value",""+value);
+//                Log.i("value",""+value);
                 integer = Integer.parseInt(value);
-                Log.i("integer",""+integer);
+//                Log.i("integer",""+integer);
                 if (integer >= 5) {
                     integer = integer + 1;
                     String str = String.valueOf(integer);
@@ -395,9 +395,9 @@ public class RssFeedListActivity  extends AppCompatActivity implements View.OnCl
             public void onClick(View v) {
 
                 String value = text_minutes.getText().toString();
-                Log.i("value",""+value);
+//                Log.i("value",""+value);
                 integer = Integer.parseInt(value);
-                Log.i("integer",""+integer);
+//                Log.i("integer",""+integer);
                 if (integer > 5) {
                     integer = integer - 1;
                     String str = String.valueOf(integer);

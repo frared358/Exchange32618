@@ -11,7 +11,9 @@
       <module fileurl="file://C:\Users\user\Desktop\New folder\Exchange32618\ExchangeFx.iml" filepath="C:\Users\user\Desktop\New folder\Exchange32618\ExchangeFx.iml" />
       <module fileurl="file://E:\..\New folder\Exchange32618\ExchangeFx.iml" filepath="E:\..\New folder\Exchange32618\ExchangeFx.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+
       <module fileurl="file://E:\Git\Exchange32618\app\app.iml" filepath="E:\Git\Exchange32618\app\app.iml" />
+
       <module fileurl="file://$PROJECT_DIR$/libcolorpicker/libcolorpicker.iml" filepath="$PROJECT_DIR$/libcolorpicker/libcolorpicker.iml" />
     </modules>
   </component>

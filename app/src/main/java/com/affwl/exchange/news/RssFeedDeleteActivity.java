@@ -74,13 +74,13 @@ public class RssFeedDeleteActivity extends AppCompatActivity {
             if (c.moveToFirst()) {
 
                 do {
-                    Log.i("Tag",""+c.getInt(c.getColumnIndex("url_id")));
+                  /*  Log.i("Tag",""+c.getInt(c.getColumnIndex("url_id")));
                     Log.i("Tag",""+c.getInt(c.getColumnIndex("selected_id")));
-                    Log.i("Tag",""+c.getString(c.getColumnIndex("url_name")));
+                    Log.i("Tag",""+c.getString(c.getColumnIndex("url_name")));*/
                     myList.add(c.getString(c.getColumnIndex("url_name")));
                 } while (c.moveToNext());
             }
-            Log.i("my db"," "+mDb);
+//            Log.i("my db"," "+mDb);
 
         } catch (SQLException mSQLException) {
             throw mSQLException;
@@ -155,7 +155,7 @@ public class RssFeedDeleteActivity extends AppCompatActivity {
 
             if(myList.size()>1) {
                 alertMessage.append(myList.size()+"");
-                Log.i("Alert check"," "+alertMessage.getText().toString());
+//                Log.i("Alert check"," "+alertMessage.getText().toString());
             }
            else {
                 String url=myList.get(i);
@@ -165,7 +165,7 @@ public class RssFeedDeleteActivity extends AppCompatActivity {
                         stringUrl = url.substring(0, leng / 2) + "...";
                         extension = url.substring(url.lastIndexOf(".") + 1);
 //                        alertMessage.append(stringUrl + extension + " , ");
-                        Log.i("Alert check"," "+alertMessage.getText().toString());
+//                        Log.i("Alert check"," "+alertMessage.getText().toString());
 
                     }
                 }
@@ -199,7 +199,7 @@ public class RssFeedDeleteActivity extends AppCompatActivity {
                         if (c.moveToFirst()) {
 
                             do {
-                                Log.i("Tag",""+c.getInt(c.getColumnIndex("selected_id")));
+//                                Log.i("Tag",""+c.getInt(c.getColumnIndex("selected_id")));
                                 selected_value=c.getInt(c.getColumnIndex("selected_id"));
                             } while (c.moveToNext());
                         }
