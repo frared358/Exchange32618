@@ -17,6 +17,15 @@
         android:textSize="20sp"
         android:textColor="@color/colorWhite" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="text"
+        android:id="@+id/ringtone_indie"
+        android:visibility="gone"
+        android:textColor="@color/colorWhite"
+        android:textSize="15sp"/>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

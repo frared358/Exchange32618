@@ -96,13 +96,13 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
             if (c.moveToFirst()) {
 
                 do {
-                    Log.i("Tag",""+c.getInt(c.getColumnIndex("url_id")));
+                   /* Log.i("Tag",""+c.getInt(c.getColumnIndex("url_id")));
                     Log.i("Tag",""+c.getInt(c.getColumnIndex("selected_id")));
-                    Log.i("Tag",""+c.getString(c.getColumnIndex("url_name")));
+                    Log.i("Tag",""+c.getString(c.getColumnIndex("url_name")));*/
                     myList.add(c.getString(c.getColumnIndex("url_name")));
                 } while (c.moveToNext());
             }
-            Log.i("my db"," "+mDb);
+//            Log.i("my db"," "+mDb);
 
         } catch (SQLException mSQLException) {
             throw mSQLException;
@@ -144,7 +144,7 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
                                     if (c.moveToFirst()) {
 
                                         do {
-                                            Log.i("Tag", "" + c.getInt(c.getColumnIndex("selected_id")));
+//                                            Log.i("Tag", "" + c.getInt(c.getColumnIndex("selected_id")));
                                             selected_value = c.getInt(c.getColumnIndex("selected_id"));
                                         } while (c.moveToNext());
                                     }
@@ -155,7 +155,7 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
                                     values.put("url_name", url);
 
                                     mDb.insert("category_url", null, values);
-                                    Log.i("my db", " " + mDb);
+//                                    Log.i("my db", " " + mDb);
 
                                 } catch (SQLException mSQLException) {
                                     throw mSQLException;
@@ -294,7 +294,7 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
                 if (c.moveToFirst()) {
 
                     do {
-                        Log.i("Tag",""+c.getInt(c.getColumnIndex("selected_id")));
+//                        Log.i("Tag",""+c.getInt(c.getColumnIndex("selected_id")));
                         selected_value=c.getInt(c.getColumnIndex("selected_id"));
                     } while (c.moveToNext());
                 }
@@ -320,7 +320,7 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
                 if (c.moveToFirst()) {
 
                     do {
-                        Log.i("Tag",""+c.getInt(c.getColumnIndex("selected_id")));
+//                        Log.i("Tag",""+c.getInt(c.getColumnIndex("selected_id")));
                         selected_value=c.getInt(c.getColumnIndex("selected_id"));
                     } while (c.moveToNext());
                 }
