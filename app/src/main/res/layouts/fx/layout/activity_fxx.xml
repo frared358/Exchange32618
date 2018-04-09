@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    tools:ignore="MissingPrefix"
+    fontPath="fonts/RobotoCondensed-Regular.ttf"
     tools:openDrawer="start">
 
     <include layout="@layout/app_bar_fxx"

@@ -12,8 +12,11 @@ import android.widget.Toast;
 
 import com.affwl.exchange.R;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+
 /**  make sure select android.support.v4.app.Fragment  */
 public class Fx_Fragment_Quotes extends BottomSheetDialogFragment {
+
     public Fx_Fragment_Quotes(){
 
     }
@@ -25,6 +28,10 @@ public class Fx_Fragment_Quotes extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf")
+                .setFontAttrId(R.attr.fontPath).build());
+
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.activity_fx   , container, false);
         RecyclerView programingList = (RecyclerView) v.findViewById(R.id.programingList);

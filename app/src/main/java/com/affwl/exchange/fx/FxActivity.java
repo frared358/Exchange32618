@@ -2,6 +2,7 @@ package com.affwl.exchange.fx;
 
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -33,6 +34,8 @@ import android.widget.Toast;
 import com.affwl.exchange.R;
 
 import butterknife.OnClick;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public class FxActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -55,6 +58,9 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fxx);
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf")
+                .setFontAttrId(R.attr.fontPath).build());
 
         myDialog = new Dialog(this);
         myDialog1 = new Dialog(this);
@@ -139,6 +145,10 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
 
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
     //bootomsheet
     //@OnClick(R.id.demo)
     public void showBottomSheetDialog() {

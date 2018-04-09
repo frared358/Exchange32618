@@ -23,19 +23,18 @@ String[] Add_symbols;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf")
                 .setFontAttrId(R.attr.fontPath).build());
 
 
-
-
         setContentView(R.layout.activity_add_symbol);
+
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
+
        autotv =(AutoCompleteTextView) findViewById(R.id.autotv);
         Add_symbols=getResources().getStringArray(R.array.Add_symbols);
+
 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,Add_symbols);
 
 autotv.setAdapter(adapter);
