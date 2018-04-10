@@ -90,13 +90,14 @@
                     android:layout_height="wrap_content"
                     android:padding="5dp"
                     android:text="1.90987"
-                    android:textSize="22sp"
+                    android:textSize="25sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorRed"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Low: 1.24099"
+
                 android:textSize="12sp"/>
             </LinearLayout>
 
@@ -108,14 +109,15 @@
                 android:layout_weight="1">
 
 
-            <TextView
-                android:id="@+id/tvCurrencyHigh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="1.00044"
-                android:textSize="20sp"
-                />
+                <TextView
+                    android:id="@+id/tvCurrencyHigh"
+                    android:layout_width="111dp"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="right"
+                    android:text="1.00044"
+                    android:textSize="20sp" />
 
 
 
@@ -132,8 +134,9 @@
                         android:layout_height="wrap_content"
                         android:padding="5dp"
                         android:text="1.00044"
-                        android:textSize="20sp"
+                        android:textSize="25sp"
                         android:textStyle="bold"
+
                         android:textColor="@color/colorPrimaryDarkBlue"/>
 
                 <TextView

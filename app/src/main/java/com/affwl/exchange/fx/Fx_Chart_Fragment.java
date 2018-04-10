@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
  * Created by user on 1/24/2018.
  */
 
-public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChangeListener {
+public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChangeListener  {
     // private CandleStickChart mchart;
     private CandleStickChart mChart;
     private SeekBar mSeekBarX, mSeekBarY;
@@ -53,6 +53,7 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
 
         mSeekBarY = (SeekBar) view.findViewById (R.id.seekBar2);
         mSeekBarY.setOnSeekBarChangeListener (this);
+
 
         mChart = (CandleStickChart) view.findViewById (R.id.chart1);
         mChart.setBackgroundColor (Color.WHITE);

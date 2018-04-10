@@ -53,7 +53,7 @@ repositories {
 
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -80,5 +80,5 @@ dependencies {
     implementation files('libs/signalr-client-sdk.jar')
     implementation files('libs/signalr-client-sdk-android.jar')
     compile 'uk.co.chrisjenx:calligraphy:2.3.0'
-
+    implementation files('libs/ta-lib-0.4.0.jar')  //TA-Lib
 }

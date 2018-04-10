@@ -19,7 +19,6 @@
         android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal"
         android:paddingBottom="8dp"
-
         android:paddingTop="8dp">
 
 
