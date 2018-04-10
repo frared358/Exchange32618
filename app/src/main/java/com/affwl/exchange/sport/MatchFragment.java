@@ -131,8 +131,9 @@ public class MatchFragment extends Fragment {
                     String type = key.getString("type");
                     String placedDate = key.getString("placedDate");
                     String marketName = key.getString("marketName");
+                    boolean CHECKCANCEL = false;
 
-                    MatchList.add(new MatchData(selection,odds,matchedStake,type,placedDate,marketName));
+                    MatchList.add(new MatchData(selection,odds,matchedStake,type,placedDate,marketName,CHECKCANCEL));
 
                     matchAdapter.notifyDataSetChanged();
 

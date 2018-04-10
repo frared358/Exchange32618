@@ -137,7 +137,7 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
 
         new HighlightsAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/UserDescription");
         new HighlightsAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/Fund");
-
+        new getMyMarketAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/MyMarket");
     }
 
     @Override
@@ -163,7 +163,7 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
         int id = item.getItemId();
 
         if (id == R.id.myMarket) {
-            //dialogMyMarket();
+            dialogMyMarket();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -331,7 +331,7 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
         @Override
         protected void onPostExecute(String result) {
             Log.i("Check",""+result);
-            Toast.makeText(SportActivity.this, ""+result, Toast.LENGTH_SHORT).show();
+
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
                 JSONArray array = new JSONArray(jsonObjMain.getString("data"));
@@ -352,50 +352,58 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
     ArrayList<String> arrayMatchName = new ArrayList<>();
     ArrayList<String> arrayExposer = new ArrayList<>();
     void dialogMyMarket(){
-        new getMyMarketAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/MyMarket");
+
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_fancy_book_list);
         dialog.setTitle("My Market");
         //dialog.getWindow().setBackgroundDrawableResource(R.color.colorGreay);
         Button btnCancelDialog = dialog.findViewById(R.id.btnCancelDialog);
+
         LinearLayout llMatchName = dialog.findViewById(R.id.llFAncyBookKey);
         LinearLayout llExposer = dialog.findViewById(R.id.llFAncyBookValue);
+        llExposer.setVisibility(View.GONE);
+        TextView txtVHeaderScoreMatchName = dialog.findViewById(R.id.txtVHeaderScoreMatchName);
+        TextView txtVHeaderAmtExposer = dialog.findViewById(R.id.txtVHeaderAmtExposer);
+        txtVHeaderAmtExposer.setVisibility(View.GONE);
+        txtVHeaderScoreMatchName.setText("My Market");
 
         for (int i = 0; i < arrayMatchName.size() ; i++)
         {
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(0,5,0,5);
+            LinearLayout.LayoutParams paramsMN = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,1.0f);
+            LinearLayout.LayoutParams paramsExp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,0f);
 
             LinearLayout ll = new LinearLayout(this);
             ll.setOrientation(LinearLayout.HORIZONTAL);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             ll.setBackgroundColor(ContextCompat.getColor(this,R.color.colorGreay));
-            LinearLayout.LayoutParams layoutForInner = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            ll.setLayoutParams(layoutForInner);
+            layoutParams.setMargins(5,5,5,5);
+            ll.setLayoutParams(layoutParams);
 
             TextView tvMatchName = new TextView(this);
             TextView tvExposer = new TextView(this);
-            tvMatchName.setTextSize(10);
-            tvExposer.setTextSize(10);
-            tvMatchName.setGravity(Gravity.CENTER);
-            tvExposer.setGravity(Gravity.CENTER);
+
+            tvExposer.setLayoutParams(paramsExp);
+            tvMatchName.setLayoutParams(paramsMN);
+
+            tvMatchName.setTextSize(15);
+            tvExposer.setTextSize(15);
+            tvMatchName.setGravity(Gravity.LEFT);
+            tvExposer.setGravity(Gravity.RIGHT);
             tvExposer.setPadding(10,0,10,0);
             tvMatchName.setPadding(10,0,10,0);
-            tvExposer.setLayoutParams(params);
-            tvMatchName.setLayoutParams(params);
+
             tvMatchName.setText(arrayMatchName.get(i));
             tvExposer.setText(arrayExposer.get(i));
-            tvMatchName.setBackgroundColor(ContextCompat.getColor(this,R.color.colorGreay));
-            tvExposer.setBackgroundColor(ContextCompat.getColor(this,R.color.colorGreay));
             if(Double.valueOf(arrayExposer.get(i))<0){
                 tvExposer.setTextColor(ContextCompat.getColor(this,R.color.colorRed));
             }else {
                 tvExposer.setTextColor(ContextCompat.getColor(this,R.color.colorGreen));
             }
+
             ll.addView(tvMatchName);
             ll.addView(tvExposer);
 
             llMatchName.addView(ll);
-            //llExposer.addView(tvExposer);
             Log.i("ValueFancyBook.get(i)",arrayMatchName.get(i));
             Log.i("KeyFancyBook.get(i)",arrayExposer.get(i));
         }
@@ -409,60 +417,6 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
         dialog.show();
     }
 
-    /*public void dialogFancyBook(){
-        final Dialog dialog = new Dialog(contextFancy);
-        dialog.setContentView(R.layout.dialog_fancy_book_list);
-        dialog.setTitle(fancyRunnerName.toUpperCase());
-        dialog.getWindow().setBackgroundDrawableResource(R.color.colorGreay);
-        Button btnCancelDialog = dialog.findViewById(R.id.btnCancelDialog);
-        LinearLayout llFAncyBook = dialog.findViewById(R.id.llFAncyBook);
-        LinearLayout llFAncyBookKey = dialog.findViewById(R.id.llFAncyBookKey);
-        LinearLayout llFAncyBookValue = dialog.findViewById(R.id.llFAncyBookValue);
-        float TEN = contextFancy.getResources().getDimension(R.dimen.sp10);
-        float ZERO = contextFancy.getResources().getDimension(R.dimen.sp10);
-        try{
-            for (int i = 0; i < KeyFancyBook.size() ; i++)
-            {
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                params.setMargins(0,5,0,5);
-                TextView tvScore = new TextView(contextFancy);
-                TextView tvAmt = new TextView(contextFancy);
-                tvScore.setTextSize(10);
-                tvAmt.setTextSize(10);
-                tvScore.setGravity(Gravity.CENTER);
-                tvAmt.setGravity(Gravity.CENTER);
-                tvAmt.setPadding(10,0,10,0);
-                tvScore.setPadding(10,0,10,0);
-                tvAmt.setLayoutParams(params);
-                tvScore.setLayoutParams(params);
-                tvScore.setText(KeyFancyBook.get(i));
-                tvAmt.setText(ValueFancyBook.get(i));
-                if(Integer.parseInt(ValueFancyBook.get(i))<0){
-                    tvScore.setBackgroundColor(ContextCompat.getColor(contextFancy,R.color.colorRedBet));
-                    tvAmt.setBackgroundColor(ContextCompat.getColor(contextFancy,R.color.colorRedBet));
-                }else {
-                    tvScore.setBackgroundColor(ContextCompat.getColor(contextFancy,R.color.colorBlueBet));
-                    tvAmt.setBackgroundColor(ContextCompat.getColor(contextFancy,R.color.colorBlueBet));
-                }
 
-                llFAncyBookKey.addView(tvScore);
-                llFAncyBookValue.addView(tvAmt);
-                Log.i("ValueFancyBook.get(i)",ValueFancyBook.get(i));
-                Log.i("KeyFancyBook.get(i)",KeyFancyBook.get(i));
-            }
-        }
-        catch(Exception e){
-            Log.i("CountryCount1",e.toString());
-        }
-
-        btnCancelDialog.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                dialog.cancel();
-            }
-        });
-
-        dialog.show();
-    }*/
 
 }

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.affwl.exchange.DataHolder;
@@ -37,6 +38,7 @@ public class UnmatchFragment extends Fragment {
     RecyclerView recycleViewUnMatchData;
     private List<MatchData> UnMatchList = new ArrayList<>();
     MatchAdapter unMatchAdapter;
+    public static LinearLayout llUnMatchPage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class UnmatchFragment extends Fragment {
         recycleViewUnMatchData = view.findViewById(R.id.recycleViewUnMatchData);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-
+        llUnMatchPage = view.findViewById(R.id.llUnMatchPage);
         recycleViewUnMatchData.setLayoutManager(mLayoutManager);
         recycleViewUnMatchData.setItemAnimator(new DefaultItemAnimator());
         unMatchAdapter = new MatchAdapter(UnmatchFragment.this.getActivity(),UnMatchList);
@@ -129,8 +131,11 @@ public class UnmatchFragment extends Fragment {
                     String type = key.getString("type");
                     String placedDate = key.getString("placedDate");
                     String marketName = key.getString("marketName");
+                    String  betId = key.getString("betId");
+                    boolean CHECKCANCEL = true;
 
-                    UnMatchList.add(new MatchData(selection,odds,matchedStake,type,placedDate,marketName));
+
+                    UnMatchList.add(new MatchData(selection,odds,matchedStake,type,placedDate,marketName,betId,CHECKCANCEL));
 
                     unMatchAdapter.notifyDataSetChanged();
 

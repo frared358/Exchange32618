@@ -115,14 +115,16 @@ public class FragmentCricketInplay extends Fragment {
             Log.i("Check",""+result);
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
-                String strData = jsonObjMain.getString("data");
-                JSONArray arrayData = new JSONArray(strData);
+                JSONArray arrayData = new JSONArray(jsonObjMain.getString("data"));
+
                 int length = arrayData.length();
+
                 if(length == 0){
                     txtVNoData.setVisibility(View.VISIBLE);
                 }
                 for(int i =0 ; i<length;i++){
                     JSONObject key = arrayData.getJSONObject(i);
+
                     String matchName = key.getString("matchName");
                     Log.i("TAG",""+matchName);
                     HighlightsList.add(new SportsData(matchName));
