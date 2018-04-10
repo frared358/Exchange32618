@@ -178,9 +178,9 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onResume() {
         super.onResume();
-        txtVChipsStake.setText("CHIPS "+DataHolder.getSTACK(this,"StackValue1"));
+        txtVChipsStake.setText("CHIPS "+DataHolder.getSTACK(this,"ChipsValue"));
         try{
-            DataHolder.STACK_VALUE = Double.valueOf(DataHolder.getSTACK(this,"StackValue1"));
+            DataHolder.STACK_VALUE = Double.valueOf(DataHolder.getSTACK(this,"ChipsValue"));
         }catch(NumberFormatException e){
             
         }
@@ -267,7 +267,13 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         txtVOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
+                if(!editStackValue.getText().toString().equals("") && editStackValue.getText().toString() != null ){
+                    txtVChipsStake.setText("CHIPS "+editStackValue.getText().toString());
+                    DataHolder.setSTACK(BetActivity.this,"ChipsValue",editStackValue.getText().toString());
+                    dialog.dismiss();
+                }else {
+                    editStackValue.setError("Enter Chips Here");
+                }
             }
         });
 
@@ -439,7 +445,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                 DataHolder.setSTACK(BetActivity.this,"StackValue1",StackValue1);
                 DataHolder.setSTACK(BetActivity.this,"StackValue2",StackValue2);
                 DataHolder.setSTACK(BetActivity.this,"StackValue3",StackValue3);
-
+                DataHolder.setSTACK(BetActivity.this,"ChipsValue",StackValue1);
 
             } catch (JSONException e) {
                 e.printStackTrace();

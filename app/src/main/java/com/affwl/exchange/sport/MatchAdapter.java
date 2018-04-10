@@ -205,7 +205,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
         @Override
         protected void onPostExecute(String result) {
 
-            Log.i("Check","francis"+result);
+            Log.i("Check",""+result);
 
             try {
                 JSONObject  jsonObjMain = new JSONObject(result.toString());

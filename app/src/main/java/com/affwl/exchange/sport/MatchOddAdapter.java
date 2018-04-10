@@ -109,9 +109,14 @@ public class MatchOddAdapter extends RecyclerView.Adapter<MatchOddAdapter.MyView
             Log.i("Check",""+result);
             Toast.makeText(contextO, ""+result, Toast.LENGTH_SHORT).show();
             try {
-                JSONObject jsonObjMain = new JSONObject(result.toString());
-                String strData = jsonObjMain.getString("status");
-                Log.i("TAG",""+strData);
+                JSONObject  jsonObjMain = new JSONObject(result.toString());
+                String msg = jsonObjMain.getString("result");
+                String status = jsonObjMain.getString("status");
+                if (status.equalsIgnoreCase("Success")){
+                    Toast.makeText(contextO, ""+msg.toUpperCase(), Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(contextO, ""+msg.toUpperCase(), Toast.LENGTH_SHORT).show();
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();
