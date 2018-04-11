@@ -72,9 +72,9 @@ public class FavFragment extends Fragment {
         public Fragment getItem(int position) {
 
             if (position ==0) {
-                return new FragmentMyMarket();
-            } else {
                 return new FragmentBlankSport();
+            } else {
+                return new FragmentFavouriteData();
             }
         }
 

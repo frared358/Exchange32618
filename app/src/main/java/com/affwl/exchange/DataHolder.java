@@ -2,8 +2,19 @@ package com.affwl.exchange;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.widget.LinearLayout;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import microsoft.aspnet.signalr.client.SignalRFuture;
@@ -102,4 +113,96 @@ public class DataHolder {
         return (odd-1)*stack;
     }
 
+    public static String convertInputStreamToString(InputStream inputStream) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+        while((line = bufferedReader.readLine()) != null){
+            result += line;
+            Log.e("Line",result);
+        }
+
+        inputStream.close();
+        return result;
+    }
+
+    public static String  getApi(String url){
+        InputStream inputStream = null;
+        String result = "";
+        try {
+
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpGet Httpget = new HttpGet(url);
+
+            Httpget.setHeader("Accept", "application/json");
+            Httpget.setHeader("Content-type", "application/json");
+            Httpget.setHeader("Token", DataHolder.LOGIN_TOKEN);
+
+            HttpResponse httpResponse = httpclient.execute(Httpget);
+            inputStream = httpResponse.getEntity().getContent();
+
+            if(inputStream != null){
+                try {
+                    result = convertInputStreamToString(inputStream);
+                }
+                catch (Exception e){
+                    Log.e("Check",""+e);
+                }
+            }
+            else
+                result = "Did not work!";
+            Log.e("Check","how "+result);
+
+        } catch (Exception e) {
+            Log.d("InputStream", ""+e);
+        }
+        return result;
+    }
+
+    public static String  setApi(String url){
+
+        InputStream inputStream = null;
+
+        String result = "";
+        try {
+
+            HttpClient httpclient = new DefaultHttpClient();
+
+            HttpPost httpPost = new HttpPost(url);
+
+            httpPost.setHeader("Accept", "application/json");
+            httpPost.setHeader("Content-type", "application/json");
+            httpPost.setHeader("Token", DataHolder.LOGIN_TOKEN);
+            Log.e("Check","rtuyty");
+
+            HttpResponse httpResponse = httpclient.execute(httpPost);
+            Log.e("Check","tjhttjj");
+
+            inputStream = httpResponse.getEntity().getContent();
+
+            if(inputStream != null){
+                try {
+                    result = convertInputStreamToString(inputStream);
+                    Log.e("Check","hey");
+
+                }
+                catch (Exception e){
+                    Log.e("Check",""+e);
+                }
+            }
+            else
+                result = "Did not work!";
+            Log.e("Check","how "+result);
+
+
+
+        } catch (Exception e) {
+
+            Log.d("InputStream", ""+e);
+        }
+
+        Log.e("result",result+"");
+        //Toast.makeText(MainActivity.this, ""+result, Toast.LENGTH_SHORT).show();
+        return result;
+    }
 }
