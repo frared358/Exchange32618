@@ -220,21 +220,6 @@ public class RssFeedUrlActivity extends AppCompatActivity implements View.OnClic
         alert_title.setText("Alert");
         alertMessage.setText("Enter a valid URL");
 
-           /* close_alert.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    myAlertDialog.dismiss();
-                }
-            });*/
-
-            /*close_alert.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    myAlertDialog.dismiss();
-                }
-            });
-*/
-
             ok_alert.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

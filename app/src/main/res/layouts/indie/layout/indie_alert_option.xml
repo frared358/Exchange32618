@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ALERT HEADING"
+        android:id="@+id/alert_heading"
         android:textColor="@color/colorWhite"
         android:padding="10dp"
         android:textAlignment="center"
@@ -51,7 +52,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:textAlignment="center"
-            android:background="@color/Blue"/>
+            android:background="@color/colorBlackTransperDialog"/>
     </LinearLayout>
 
     <LinearLayout
@@ -69,6 +70,7 @@
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/operator_radiogroup"
                 android:orientation="horizontal">
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -102,14 +104,18 @@
             </RadioGroup>
         </LinearLayout>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="20"
-                android:text="29.4523"
-                android:textSize="25sp"
-                android:layout_margin="20dp"
-                android:background="@color/colorWhite"/>
+        <EditText
+            android:id="@+id/editText_alert_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="20"
+            android:layout_margin="20dp"
+            android:focusable="true"
+            android:textSize="20sp"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhite"
+            android:backgroundTint="@color/colorWhite"
+            android:textCursorDrawable="@null" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -127,7 +133,7 @@
                     android:id="@+id/cancel_alert_layout"
                     android:text="Cancel"
                     android:textSize="20sp"
-                    android:background="@color/Blue"/>
+                    android:background="@color/colorBlackTransperDialog"/>
 
                 <Button
                     android:layout_width="match_parent"
@@ -137,9 +143,10 @@
                     android:textAlignment="center"
                     android:textColor="@color/colorWhite"
                     android:padding="20dp"
+                    android:id="@+id/save_alert_layout"
                     android:text="Save"
                     android:textSize="20sp"
-                    android:background="@color/Blue"/>
+                    android:background="@color/colorBlackTransperDialog"/>
 
             </LinearLayout>
 
