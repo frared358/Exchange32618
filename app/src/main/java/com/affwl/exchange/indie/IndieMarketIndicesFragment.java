@@ -88,13 +88,17 @@ public class IndieMarketIndicesFragment extends Fragment implements View.OnClick
         switch (v.getId())
         {
             case R.id.indie_market_indices_layout:
-                displayAlertOption(v.getContext(),txtVTitle.getText().toString());
+                String strValue=txtVValue.getText().toString();
+                String strTitle=txtVTitle.getText().toString();
+                if(strValue!=null ||!strTitle.equalsIgnoreCase("")||!strValue.equalsIgnoreCase("")||strTitle!=null) {
+                    displayAlertOption(v.getContext(), strTitle, strValue);
+                }
                 break;
         }
         return false;
     }
 
-    private void displayAlertOption(final Context context, String strTitle) {
+    private void displayAlertOption(final Context context, String strTitle, String strValue) {
 
         myDialog = new Dialog(context);
         myDialog.setCanceledOnTouchOutside(false);
@@ -112,34 +116,38 @@ public class IndieMarketIndicesFragment extends Fragment implements View.OnClick
         editText_alert_value=myDialog.findViewById(R.id.editText_alert_value);
 
         alert_heading.setText(strTitle);
+        editText_alert_value.setText(strValue);
 
         save_alert_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String strEdit=editText_alert_value.getText().toString();
+                String strEdit = editText_alert_value.getText().toString();
                 int selectedId = operator_radiogroup.getCheckedRadioButtonId();
-                operator_radiobutton = myDialog.findViewById(selectedId);
+                    Log.i("Selected Id", " " + selectedId);
+                    if (selectedId != -1) {
+                        operator_radiobutton = myDialog.findViewById(selectedId);
+                        operator_radiobutton.setBackground(getResources().getDrawable(R.drawable.selected_radio_circle));
+                        String selectedString=operator_radiobutton.getText().toString();
+                            Log.i("String Edit",strEdit);
+                        String valueArray = alert_heading.getText().toString() + " " + selectedString + " " + strEdit;
+                        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
+                        if (sp.getStringSet("key", null) != null) {
+                            set = sp.getStringSet("key", null);
+                        } else {
+                            set = new HashSet<String>();
+                        }
 
-                if(operator_radiobutton.getText().toString()!=null && !operator_radiobutton.getText().toString().equalsIgnoreCase("")) {
-                    String valueArray = alert_heading.getText().toString()+ " " + operator_radiobutton.getText().toString() + " " + strEdit;
-                    SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
-                    if(sp.getStringSet("key",null)!=null){
-                        set = sp.getStringSet("key", null);
+                        set.add(valueArray);
+                        SharedPreferences.Editor saveEditor = sp.edit();
+                        saveEditor.putStringSet("key", set);
+                        saveEditor.commit();
+                        myDialog.dismiss();
+                        displayMessage("New Alert", "Alert Set Successfully !");
                     }
-                    else {
-                        set = new HashSet<String>();
-                    }
-
-                    set.add(valueArray);
-                    SharedPreferences.Editor saveEditor = sp.edit();
-                    saveEditor.putStringSet("key", set);
-                    saveEditor.commit();
-                    myDialog.dismiss();
-                    displayMessage("New Alert","Alert Set Successfully !");
-                }
                 else {
-                    displayMessage("Error","Select radio button first");
-                }
+                        operator_radiobutton.setBackground(getResources().getDrawable(R.drawable.radio_circle));
+                        displayMessage("Error", "Select radio button first");
+                    }
             }
         });
 
