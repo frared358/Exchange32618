@@ -39,6 +39,19 @@
         android:padding="10dp"
         android:textColor="@color/colorWhite"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGreay"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reminder"
+        android:id="@+id/indie_reminder"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:textColor="@color/colorWhite"/>
 
 
 </LinearLayout>

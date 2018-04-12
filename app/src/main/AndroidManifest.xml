@@ -122,6 +122,7 @@
 
         <activity android:name=".settings.SettingsMainActivity"/>
         <activity android:name=".alerts.AlertsActivity"/>
+        <activity android:name=".alerts.IndieReminderActivity"/>
 
         <activity android:name=".sport.TournamentActivity" />
         <activity android:name=".sport.MatchListActivity" />
