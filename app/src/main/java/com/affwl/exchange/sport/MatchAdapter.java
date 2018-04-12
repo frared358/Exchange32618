@@ -198,8 +198,6 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
         @Override
         protected String doInBackground(String... urls) {
             return CancelApi(urls[0]);
-
-
         }
 
         @Override

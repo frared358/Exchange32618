@@ -77,6 +77,7 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
 
     int fancyId;
     String fancyScore,fancyRate,fancyRunnerName;
+
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final MarketData fancy = dataList.get(position);
@@ -154,7 +155,7 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
     }
 
     public void dialogFancyBook(){
-        final Dialog dialog = new Dialog(contextFancy);
+        final Dialog dialog = new Dialog(contextFancy,R.style.Dialog);
         dialog.setContentView(R.layout.dialog_fancy_book_list);
         dialog.setTitle(fancyRunnerName.toUpperCase());
         dialog.getWindow().setBackgroundDrawableResource(R.color.colorGreay);
@@ -171,8 +172,8 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
                 params.setMargins(0,5,0,5);
                 TextView tvScore = new TextView(contextFancy);
                 TextView tvAmt = new TextView(contextFancy);
-                tvScore.setTextSize(10);
-                tvAmt.setTextSize(10);
+                tvScore.setTextSize(12);
+                tvAmt.setTextSize(12);
                 tvScore.setGravity(Gravity.CENTER);
                 tvAmt.setGravity(Gravity.CENTER);
                 tvAmt.setPadding(10,0,10,0);
@@ -208,6 +209,57 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
 
         dialog.show();
     }
+
+//    public void dialogOneClickBet(final String RunnerTitle,int color, String scoreValue,final String YesNo){
+//
+//        final Dialog dialog = new Dialog(contextFancy,R.style.Dialog);
+//        dialog.setContentView(R.layout.dialog_one_click_bet);
+//        dialog.setTitle("Please Confirm Your Bet");
+//        dialog.getWindow().setBackgroundDrawableResource(color);
+//
+//        //txtVRunnerTitle = dialog.findViewById(R.id.txtVRunnerTitle);
+//        LinearLayout llOneClickBet = dialog.findViewById(R.id.llOneClickBet);
+//        TextView txtVOneClickTitle = dialog.findViewById(R.id.txtVOneClickTitle);
+//        TextView txtVOddOneClickValue = dialog.findViewById(R.id.txtVOddOneClickValue);
+//        TextView txtVStackOneClickValue = dialog.findViewById(R.id.txtVStackOneClickValue);
+//        TextView txtVProfitOneClickValue = dialog.findViewById(R.id.txtVProfitOneClickValue);
+//        TextView txtVOneClickOddScore = dialog.findViewById(R.id.txtVOneClickOddScore);
+//        TextView txtVOneClickProfitLiability = dialog.findViewById(R.id.txtVOneClickProfitLiability);
+//
+//        Button btnOneClickCancel = dialog.findViewById(R.id.btnOneClickCancel);
+//        Button btnOneClickConfirm = dialog.findViewById(R.id.btnOneClickConfirm);
+//        txtVOneClickOddScore.setText("Score");
+//        txtVOneClickTitle.setText(RunnerTitle);
+//
+//        if (YesNo.equalsIgnoreCase("yes")){
+//            txtVOneClickProfitLiability.setText("Profit");
+//        }else {
+//            txtVOneClickProfitLiability.setText("Liability");
+//        }
+//        STACKVALUE = String.valueOf(DataHolder.STACK_VALUE);
+//        txtVStackOneClickValue.setText(STACKVALUE);
+//
+//        PROFITVALUE = String.format("%.2f", DataHolder.STACK_VALUE);
+//        txtVProfitOneClickValue.setText(PROFITVALUE);
+//
+//        btnOneClickConfirm.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//
+//                new BetPlaceFancyAsyncTask().execute(YesNo,STACKVALUE,RunnerTitle);
+//                dialog.cancel();
+//            }
+//        });
+//
+//        btnOneClickCancel.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                dialog.cancel();
+//            }
+//        });
+//
+//        dialog.show();
+//    }
 
     TextView txtVProfitValue,txtVOddIncrement,txtVOddDecrement,txtVStackDecrement,txtVStackIncrement,txtVOddScore;
     EditText editTxtStackValue,editTxtVOddValue;

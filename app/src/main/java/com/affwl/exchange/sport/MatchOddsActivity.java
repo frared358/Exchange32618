@@ -204,8 +204,9 @@ public class MatchOddsActivity extends AppCompatActivity implements View.OnClick
                     String MatchOddName = key.getString("name");
                     int MarketOddId = key.getInt("id");
                     int MatchOddId = key.getInt("mtId");
+                    int isMulti = key.getInt("isMulti");
 
-                    MatchOddList.add(new SportsData(MatchOddId,MarketOddId,MatchOddBfId,MatchOddName));
+                    MatchOddList.add(new SportsData(MatchOddId,MarketOddId,MatchOddBfId,MatchOddName,isMulti));
 
                     matchOddAdapter.notifyDataSetChanged();
                 }

@@ -197,7 +197,7 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
         public Fragment getItem(int position) {
 
             if (position ==0) {
-                return new TimerFragment();
+                return new FragmentInplay();
             } else if (position == 1) {
                 return new FragmentAllSport();
             } else {

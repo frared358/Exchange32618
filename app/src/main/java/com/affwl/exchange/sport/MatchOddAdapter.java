@@ -22,6 +22,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,7 +42,7 @@ public class MatchOddAdapter extends RecyclerView.Adapter<MatchOddAdapter.MyView
         public TextView txtVMatchOddName;
         LinearLayout llMatchOddData;
         ImageView imgVFavourit;
-
+        int Multi;
         public MyViewHolder(View itemView) {
             super(itemView);
 
@@ -64,10 +65,18 @@ public class MatchOddAdapter extends RecyclerView.Adapter<MatchOddAdapter.MyView
         return new MyViewHolder(v);
     }
 
+
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final SportsData odd = dataListO.get(position);
         holder.txtVMatchOddName.setText(odd.matchOddName);
+        holder.Multi= odd.isMulti;
+
+        if(holder.Multi == 1){
+            holder.imgVFavourit.setImageDrawable(contextO.getResources().getDrawable(R.drawable.star_small_gold));
+        }else {
+            holder.imgVFavourit.setImageDrawable(contextO.getResources().getDrawable(R.drawable.star_small_white));
+        }
 
         holder.txtVMatchOddName.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -83,13 +92,24 @@ public class MatchOddAdapter extends RecyclerView.Adapter<MatchOddAdapter.MyView
             }
         });
 
+
         holder.imgVFavourit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new setFavouriteAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/AddMultiMkt?id="+odd.marketOddId);
-                holder.imgVFavourit.setImageDrawable(contextO.getResources().getDrawable(R.drawable.star_small_gold));
+                if (holder.Multi == 1){
+                    new removeFavouriteAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/RemoveMultiMkt?id="+odd.marketOddId);
+                    holder.imgVFavourit.setImageDrawable(contextO.getResources().getDrawable(R.drawable.star_small_white));
+                    holder.Multi = 0;
+                }else {
+                    new setFavouriteAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/AddMultiMkt?id="+odd.marketOddId);
+                    holder.imgVFavourit.setImageDrawable(contextO.getResources().getDrawable(R.drawable.star_small_gold));
+                    holder.Multi = 1;
+                }
+
             }
         });
+
+        //new CancelAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/RemoveMultiMkt?id="+data.marketId);
     }
 
     @Override
@@ -122,6 +142,38 @@ public class MatchOddAdapter extends RecyclerView.Adapter<MatchOddAdapter.MyView
                 e.printStackTrace();
             }
         }
+    }
+
+    private class removeFavouriteAsyncTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            return DataHolder.setApi(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            Log.i("Check","francis"+result);
+
+            try {
+                JSONObject jsonObjMain = new JSONObject(result.toString());
+                String msg = jsonObjMain.getString("result");
+                String status = jsonObjMain.getString("status");
+                if (status.equalsIgnoreCase("Success")){
+
+                    Toast.makeText(contextO, ""+msg, Toast.LENGTH_SHORT).show();
+
+                }else {
+                    Toast.makeText(contextO, ""+msg, Toast.LENGTH_SHORT).show();
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
     }
 
     public String  setFavouriteApi(String url){

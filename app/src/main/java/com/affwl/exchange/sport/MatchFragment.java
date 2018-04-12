@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.affwl.exchange.DataHolder;
@@ -38,10 +39,11 @@ public class MatchFragment extends Fragment {
     RecyclerView recycleViewMatchData;
     private List<MatchData> MatchList = new ArrayList<>();
     MatchAdapter matchAdapter;
-
+    TextView txtMatchNoData;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_match, container, false);
+        txtMatchNoData = view.findViewById(R.id.txtMatchNoData);
         recycleViewMatchData = view.findViewById(R.id.recycleViewMatchData);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -118,11 +120,11 @@ public class MatchFragment extends Fragment {
 
                 JSONArray arrayData = new JSONArray(strData);
                 int length = arrayData.length();
-//
-//                if(length == 0){
-//                    txtVNoData.setVisibility(View.VISIBLE);
-//                }
-//
+
+                if(length == 0){
+                    txtMatchNoData.setVisibility(View.VISIBLE);
+                }
+
                 for(int i =0 ; i<length;i++){
                     JSONObject key = arrayData.getJSONObject(i);
                     String selection = key.getString("selection");

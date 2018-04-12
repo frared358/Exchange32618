@@ -37,7 +37,7 @@ public class TimerFragment extends Fragment {
 
     TabLayout tabLayoutTime;
     ViewPager viewPagerTime;
-    private int[] icon = {R.drawable.football,R.drawable.horse_head,R.drawable.cricket};
+    private int[] icon = {R.drawable.football,R.drawable.tennis,R.drawable.cricket};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -50,12 +50,13 @@ public class TimerFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        new getInplayAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/Inplay");
         tabLayoutTime = (TabLayout)view.findViewById(R.id.tabLayoutTime);
         viewPagerTime = (ViewPager)view.findViewById(R.id.viewPagerTime);
 
-        for (int i = 0; i < 3; i++) {
+        /*for (int i = 0; i < 3; i++) {
             tabLayoutTime.addTab(tabLayoutTime.newTab().setIcon(icon[i]));
-        }
+        }*/
 
         tabLayoutTime.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -87,13 +88,27 @@ public class TimerFragment extends Fragment {
         public ViewPagerAdapter(FragmentManager fm) {
             super(fm);
         }
-        /*Bundle bundle = new Bundle();
-        bundle.putString("edttext", "data From Activity");
-        // set Fragmentclass Arguments
-        tab1Fragment fragobj = new tab1Fragment();
-        fragobj.setArguments(bundle);*/
+
         @Override
         public Fragment getItem(int position) {
+            /*Bundle bundle = new Bundle();
+            bundle.putString("edttext", "data From Activity");
+            // set Fragmentclass Arguments
+            FragmentBlankSport fragobj = new FragmentBlankSport();
+            fragobj.setArguments(bundle);*/
+
+            /*for(int i=0;i< InplayData.size()-1;i++){
+                if(position == i){
+                    Bundle bundle = new Bundle();
+                    bundle.putString("inplay", InplayData.get(i));
+
+                    FragmentBlankSport obj = new FragmentBlankSport();
+                    obj.setArguments(bundle);
+                    return obj;
+                }else {
+
+                }
+            }*/
             if (position ==0) {
                 return new FragmentBlankSport();
             }else if(position ==1) {
@@ -110,7 +125,7 @@ public class TimerFragment extends Fragment {
         }
     }
 
-    ArrayList<String> SPORTNAME = new ArrayList<>();
+    ArrayList<String> InplayData = new ArrayList<>();
     private class getInplayAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -124,13 +139,30 @@ public class TimerFragment extends Fragment {
 
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
+
                 JSONArray jsonArray = new JSONArray(jsonObjMain.getString("data"));
                 int len = jsonArray.length();
                 for(int i=0; i<len;i++){
                     JSONObject key = jsonArray.getJSONObject(i);
                     String name = key.getString("name");
-                    String Inplay = key.getString("inplayData");
+                    String inplay = key.getString("inplayData");
+                    Log.i("INPLAY",""+inplay.toString());
+                    InplayData.add(inplay);
+                    if(name.equalsIgnoreCase("Cricket")){
+                        tabLayoutTime.addTab(tabLayoutTime.newTab().setIcon(R.drawable.cricket));
+                    }else if(name.equalsIgnoreCase("Tennis")){
+                        tabLayoutTime.addTab(tabLayoutTime.newTab().setIcon(R.drawable.tennis));
+                    }else if(name.equalsIgnoreCase("Football")){
+                        tabLayoutTime.addTab(tabLayoutTime.newTab().setIcon(R.drawable.football));
+                    }
+
+                    /*JSONArray inplayArray = new JSONArray(key.getString("inplayData"));
+                    int lenInplay = inplayArray.length();
                     SPORTNAME.add(name);
+                    for (int j=0;j>lenInplay;j++){
+                        JSONObject in = inplayArray.getJSONObject(j);
+                    }*/
+
 
                     /*JSONArray inplayArray = new JSONArray();
                     int lenInplay = inplayArray.length();

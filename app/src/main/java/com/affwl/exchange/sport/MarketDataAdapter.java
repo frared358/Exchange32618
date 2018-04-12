@@ -177,8 +177,12 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    dialogBetPlace(market.RunnerName,R.color.colorRedBetTrasparent,Double.valueOf(market.Lay),"Lay");
-                    Log.i("TAG12356","Touchll");
+                    if(DataHolder.getData(contextMarket,"OneClickBet").equals("true")){
+                        dialogOneClickBet(market.RunnerName,R.color.colorRedBetTrasparent,Double.valueOf(market.Lay),"Lay");
+                    }else {
+                        dialogBetPlace(market.RunnerName,R.color.colorRedBetTrasparent,Double.valueOf(market.Lay),"Lay");
+                        Log.i("TAG12356","Touchll");
+                    }
                 }
                 return false;
             }
@@ -188,8 +192,12 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    dialogBetPlace(market.RunnerName,R.color.colorBlueBetTrasparent,Double.valueOf(market.Back),"Back");
-                    Log.i("TAG12356","Touchll");
+                    if(DataHolder.getData(contextMarket,"OneClickBet").equals("true")){
+                        dialogOneClickBet(market.RunnerName,R.color.colorBlueBetTrasparent,Double.valueOf(market.Back),"Back");
+                    }else {
+                        dialogBetPlace(market.RunnerName,R.color.colorBlueBetTrasparent,Double.valueOf(market.Back),"Back");
+                        Log.i("TAG12356","Touchll");
+                    }
                 }
                 return false;
             }
@@ -369,6 +377,53 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
                     txtVProfitValue.setText("0.0");
                     editTxtStackValue.setText("0.0");
                 }
+            }
+        });
+
+        dialog.show();
+    }
+
+    public void dialogOneClickBet(final String RunnerTitle,int color,final double oddValue,final String BackLay){
+
+        final Dialog dialog = new Dialog(contextMarket,R.style.Dialog);
+        dialog.setContentView(R.layout.dialog_one_click_bet);
+        dialog.setTitle("Please Confirm Your Bet");
+        dialog.getWindow().setBackgroundDrawableResource(color);
+
+        //txtVRunnerTitle = dialog.findViewById(R.id.txtVRunnerTitle);
+        LinearLayout llOneClickBet = dialog.findViewById(R.id.llOneClickBet);
+        TextView txtVOneClickTitle = dialog.findViewById(R.id.txtVOneClickTitle);
+        TextView txtVOddOneClickValue = dialog.findViewById(R.id.txtVOddOneClickValue);
+        TextView txtVStackOneClickValue = dialog.findViewById(R.id.txtVStackOneClickValue);
+        TextView txtVProfitOneClickValue = dialog.findViewById(R.id.txtVProfitOneClickValue);
+        Button btnOneClickCancel = dialog.findViewById(R.id.btnOneClickCancel);
+        Button btnOneClickConfirm = dialog.findViewById(R.id.btnOneClickConfirm);
+
+        txtVOneClickTitle.setText(RunnerTitle);
+
+        STACKVALUE = String.valueOf(DataHolder.STACK_VALUE);
+        txtVStackOneClickValue.setText(STACKVALUE);
+
+        ODDVALUE = String.valueOf(oddValue);
+        txtVOddOneClickValue.setText(ODDVALUE);
+
+
+        PROFITVALUE = String.format("%.2f", DataHolder.profit(oddValue,DataHolder.STACK_VALUE));
+        txtVProfitOneClickValue.setText(PROFITVALUE);
+
+
+        btnOneClickConfirm.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                new BetPlaceAsyncTask().execute(BackLay,String.valueOf(mMarketId),String.valueOf(mMatchId),ODDVALUE,STACKVALUE,PROFITVALUE,RunnerTitle);
+                dialog.cancel();
+            }
+        });
+
+        btnOneClickCancel.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
             }
         });
 

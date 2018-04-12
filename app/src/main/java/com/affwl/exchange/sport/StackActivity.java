@@ -130,6 +130,9 @@ public class StackActivity extends AppCompatActivity implements View.OnClickList
                     DataHolder.setSTACK(StackActivity.this,"StackValue1",editTxtStackValue1.getText().toString());
                     DataHolder.setSTACK(StackActivity.this,"StackValue2",editTxtStackValue2.getText().toString());
                     DataHolder.setSTACK(StackActivity.this,"StackValue3",editTxtStackValue3.getText().toString());
+
+                    DataHolder.setSTACK(StackActivity.this,"ChipsValue",editTxtStackValue1.getText().toString());
+                    DataHolder.STACK_VALUE = Double.valueOf(editTxtStackValue1.getText().toString());
                 }
                 Toast.makeText(StackActivity.this, ""+strData, Toast.LENGTH_SHORT).show();
 
