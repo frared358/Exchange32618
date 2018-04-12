@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.affwl.exchange.DataHolder;
@@ -29,9 +30,12 @@ public class FragmentFavouriteData extends Fragment {
     RecyclerView recycleViewFavouriteDataList;
     private List<Data> favList= new ArrayList<>();
     FavouriteDataAdapter favouritAdapter;
+    TextView txtFavouriteNoData;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favourite_data, container, false);
+        txtFavouriteNoData = view.findViewById(R.id.txtFavouriteNoData);
         recycleViewFavouriteDataList = view.findViewById(R.id.recycleViewFavouriteDataList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
 
@@ -66,6 +70,13 @@ public class FragmentFavouriteData extends Fragment {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
                 JSONArray dataArray = new JSONArray(jsonObjMain.getString("data"));
                 int len = dataArray.length();
+
+                if(len ==0){
+                    txtFavouriteNoData.setVisibility(View.VISIBLE);
+                }else {
+                    txtFavouriteNoData.setVisibility(View.GONE);
+                }
+
 
                 for(int i=0;i<len;i++){
                     JSONObject key = dataArray.getJSONObject(i);

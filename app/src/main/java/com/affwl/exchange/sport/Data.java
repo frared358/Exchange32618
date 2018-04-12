@@ -15,4 +15,16 @@ public class Data {
         this.matchDate = matchDate;
         this.sportName = sportName;
     }
+
+    //InPLay Data
+    String inMatchName,inBfId,inMatchDate;
+    int inMatchId,inMarketId,isMulti;
+    public Data(int inMatchId, int inMarketId,String inBfId,String inMatchName,int isMulti,String inMatchDate){
+        this.inMatchId = inMatchId;
+        this.inMatchName = inMatchName;
+        this.inBfId = inBfId;
+        this.inMarketId = inMarketId;
+        this.isMulti = isMulti;
+        this.inMatchDate = inMatchDate;
+    }
 }

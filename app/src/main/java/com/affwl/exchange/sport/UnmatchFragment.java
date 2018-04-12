@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.affwl.exchange.DataHolder;
@@ -39,10 +40,13 @@ public class UnmatchFragment extends Fragment {
     private List<MatchData> UnMatchList = new ArrayList<>();
     MatchAdapter unMatchAdapter;
     public static LinearLayout llUnMatchPage;
+    TextView txtUnmatchNoData;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_unmatch, container, false);
+
+        txtUnmatchNoData = view.findViewById(R.id.txtUnmatchNoData);
         recycleViewUnMatchData = view.findViewById(R.id.recycleViewUnMatchData);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -118,11 +122,11 @@ public class UnmatchFragment extends Fragment {
 
                 JSONArray arrayData = new JSONArray(strData);
                 int length = arrayData.length();
-//
-//                if(length == 0){
-//                    txtVNoData.setVisibility(View.VISIBLE);
-//                }
-//
+
+                if(length == 0){
+                    txtUnmatchNoData.setVisibility(View.VISIBLE);
+                }
+
                 for(int i =0 ; i<length;i++){
                     JSONObject key = arrayData.getJSONObject(i);
                     String selection = key.getString("selection");

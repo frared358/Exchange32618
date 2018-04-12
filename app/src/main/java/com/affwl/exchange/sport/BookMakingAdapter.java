@@ -83,7 +83,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final MarketData book = dataList.get(position);
-
+        final double mBack,mChipsBack,mLay,mChipsLay;
         mRunnerName=book.bmName;
         mBack=book.bmBackPrice;
         mChipsBack=book.bmBackSize;
@@ -98,6 +98,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
         holder.txtVLayData.setText(String.valueOf(mLay));
         holder.txtVLayChips.setText(String.valueOf(mChipsLay));
 
+        Log.i("ROHITlk",mBack+"");
         if(book.bmBook != null){
             try {
                 int bookVal = Integer.parseInt(book.bmBook);
@@ -125,6 +126,11 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    /*if(DataHolder.getData(contextBook,"OneClickBet").equals("true")){
+                        dialogOneClickBet(mRunnerName,R.color.colorRedBetTrasparent,mLay,"Lay");
+                    }else {
+
+                    }*/
                     dialogBetPlace(mRunnerName,R.color.colorRedBetTrasparent,mLay,"Lay");
                     Log.i("TAG12356","Touchll");
                 }
@@ -136,8 +142,13 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    dialogBetPlace(mRunnerName,R.color.colorBlueBetTrasparent,mBack,"Back");
-                    Log.i("TAG12356","Touchll");
+                /*if(DataHolder.getData(contextBook,"OneClickBet").equals("true")){
+                    dialogOneClickBet(mRunnerName,R.color.colorBlueBetTrasparent,mBack,"Back");
+                }else {
+
+                }*/
+                    dialogBetPlace(mRunnerName, R.color.colorBlueBetTrasparent, mBack, "Back");
+                    Log.i("TAG12356", "Touchll");
                 }
                 return false;
             }
@@ -183,7 +194,9 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
         txtVStackDecrement = dialog.findViewById(R.id.txtVStackDecrement);
         txtVStackIncrement = dialog.findViewById(R.id.txtVStackIncrement);
         btnBetPlace = dialog.findViewById(R.id.btnBetPlace);
-
+        txtVOddDecrement.setVisibility(View.GONE);
+        txtVOddIncrement.setVisibility(View.GONE);
+        editTxtVOddValue.setEnabled(false);
         //llDialogBetPlace.setBackgroundColor(ContextCompat.getColor(contextMarket, color));
         //txtVRunnerTitle.setText(RunnerTitle);
         STACKVALUE = String.valueOf(DataHolder.STACK_VALUE);
@@ -327,6 +340,53 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
 
         dialog.show();
     }
+
+//    public void dialogOneClickBet(final String RunnerTitle,int color,final double oddValue,final String BackLay){
+//
+//        final Dialog dialog = new Dialog(contextBook,R.style.Dialog);
+//        dialog.setContentView(R.layout.dialog_one_click_bet);
+//        dialog.setTitle("Please Confirm Your Bet");
+//        dialog.getWindow().setBackgroundDrawableResource(color);
+//
+//        //txtVRunnerTitle = dialog.findViewById(R.id.txtVRunnerTitle);
+//        LinearLayout llOneClickBet = dialog.findViewById(R.id.llOneClickBet);
+//        TextView txtVOneClickTitle = dialog.findViewById(R.id.txtVOneClickTitle);
+//        TextView txtVOddOneClickValue = dialog.findViewById(R.id.txtVOddOneClickValue);
+//        TextView txtVStackOneClickValue = dialog.findViewById(R.id.txtVStackOneClickValue);
+//        TextView txtVProfitOneClickValue = dialog.findViewById(R.id.txtVProfitOneClickValue);
+//        Button btnOneClickCancel = dialog.findViewById(R.id.btnOneClickCancel);
+//        Button btnOneClickConfirm = dialog.findViewById(R.id.btnOneClickConfirm);
+//
+//        txtVOneClickTitle.setText(RunnerTitle);
+//
+//        STACKVALUE = String.valueOf(DataHolder.STACK_VALUE);
+//        txtVStackOneClickValue.setText(STACKVALUE);
+//
+//        ODDVALUE = String.valueOf(oddValue);
+//        txtVOddOneClickValue.setText(ODDVALUE);
+//
+//
+//        PROFITVALUE = String.format("%.2f", DataHolder.profit(oddValue,DataHolder.STACK_VALUE));
+//        txtVProfitOneClickValue.setText(PROFITVALUE);
+//
+//
+//        btnOneClickConfirm.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                new BetPlaceBookAsyncTask().execute(BackLay,ODDVALUE,STACKVALUE,RunnerTitle);
+//                dialog.cancel();
+//            }
+//        });
+//
+//        btnOneClickCancel.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                dialog.cancel();
+//            }
+//        });
+//
+//        dialog.show();
+//    }
 
     public String  BetPlaceApi(String backlay,String odds,String stake,String runnerName){
         InputStream inputStream = null;

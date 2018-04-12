@@ -20,10 +20,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -251,6 +253,12 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         txtVCancel =  dialog.findViewById(R.id.txtVCancel);
         txtVStackEdit = dialog.findViewById(R.id.txtVStackEdit);
 
+        Switch switchOneClickBet = dialog.findViewById(R.id.switchOneClickBet);
+
+        if (DataHolder.getData(BetActivity.this,"OneClickBet").equals("true")){
+            switchOneClickBet.setChecked(true);
+        }
+
         editStackValue = dialog.findViewById(R.id.editStackValue);
         txtVStackValue1 =  dialog.findViewById(R.id.txtVStackValue1);
         txtVStackValue2 =  dialog.findViewById(R.id.txtVStackValue2);
@@ -270,9 +278,22 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                 if(!editStackValue.getText().toString().equals("") && editStackValue.getText().toString() != null ){
                     txtVChipsStake.setText("CHIPS "+editStackValue.getText().toString());
                     DataHolder.setSTACK(BetActivity.this,"ChipsValue",editStackValue.getText().toString());
+                    DataHolder.STACK_VALUE = Double.valueOf(editStackValue.getText().toString());
                     dialog.dismiss();
                 }else {
                     editStackValue.setError("Enter Chips Here");
+                }
+            }
+        });
+
+
+
+        switchOneClickBet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    DataHolder.setData(BetActivity.this,"OneClickBet","true");
+                }else {
+                    DataHolder.setData(BetActivity.this,"OneClickBet","false");
                 }
             }
         });

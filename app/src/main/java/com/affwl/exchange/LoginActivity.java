@@ -123,7 +123,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
             JSONObject jsonObject = new JSONObject();
             jsonObject.accumulate("context","mobile");
             jsonObject.accumulate("pwd","123456");
-            jsonObject.accumulate("username","francis");
+            jsonObject.accumulate("username","franciscl");
 
             json = jsonObject.toString();
             StringEntity se = new StringEntity(json);
