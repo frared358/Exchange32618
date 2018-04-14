@@ -67,7 +67,7 @@ public class IndieAlertFragment extends Fragment implements View.OnClickListener
         Log.i("Request Code"," "+requestCode);
         switch (resultCode) {
             case RESULT_OK:
-                if (requestCode == 903) {
+                if (requestCode == 904) {
                     currentTone = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
                     ringtone_indie.setVisibility(View.VISIBLE);
                     currentRingtone = RingtoneManager.getRingtone(getActivity(), currentTone);
