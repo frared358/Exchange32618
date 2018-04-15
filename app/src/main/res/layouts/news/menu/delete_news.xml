@@ -5,7 +5,7 @@
     <item
         android:id="@+id/news_delete"
         android:title="Delete"
-        android:icon="@drawable/delete"
+        android:icon="@drawable/message_delete"
         app:showAsAction="always">
 
     </item>

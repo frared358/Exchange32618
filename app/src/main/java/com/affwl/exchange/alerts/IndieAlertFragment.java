@@ -22,7 +22,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class IndieAlertFragment extends Fragment implements View.OnClickListener {
 
-    TextView indie_sounds,ringtone_indie,indie_reminder;
+    TextView indie_sounds,ringtone_indie,indie_reminder,indie_messages;
     private int TONE_PICKER=904;
     Ringtone currentRingtone;
     Uri currentTone;
@@ -34,10 +34,12 @@ public class IndieAlertFragment extends Fragment implements View.OnClickListener
 
         indie_sounds=view.findViewById(R.id.indie_sounds);
         ringtone_indie=view.findViewById(R.id.ringtone_indie);
+        indie_messages=view.findViewById(R.id.indie_messages);
         indie_reminder=view.findViewById(R.id.indie_reminder);
 
         indie_sounds.setOnClickListener(this);
         indie_reminder.setOnClickListener(this);
+        indie_messages.setOnClickListener(this);
         return view;
     }
 
@@ -58,6 +60,10 @@ public class IndieAlertFragment extends Fragment implements View.OnClickListener
 
             case R.id.indie_reminder:
                 startActivity(new Intent(v.getContext(),IndieReminderActivity.class));
+                break;
+
+            case R.id.indie_messages:
+                startActivity(new Intent(v.getContext(),MessageMainActivity.class));
                 break;
         }
     }

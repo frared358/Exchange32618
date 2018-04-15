@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
             android:background="#000000"
-            app:title="DTS"
+            app:title="Indie"
             android:gravity="center"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:theme="@style/ThemeOverlay.AppCompat.Dark"

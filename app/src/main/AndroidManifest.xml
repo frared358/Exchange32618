@@ -128,6 +128,12 @@
         <activity android:name=".sport.MatchListActivity" />
         <activity android:name=".sport.MatchOddsActivity"></activity>
         <activity android:name=".trades.TradesActivity"/>
+
+        <activity android:name=".alerts.MessageMainActivity"/>
+        <activity android:name=".alerts.MessagePage"/>
+
+        <activity android:name=".reports.ReportsActivity"/>
+
     </application>
 
 </manifest>
