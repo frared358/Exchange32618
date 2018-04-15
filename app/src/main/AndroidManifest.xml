@@ -133,6 +133,14 @@
         <activity android:name=".alerts.MessagePage"/>
 
         <activity android:name=".reports.ReportsActivity"/>
+        <activity android:name=".reports.OrderReportActivity"
+            android:parentActivityName=".reports.ReportsActivity"/>
+        <activity android:name=".reports.MarginPositionActivity"
+            android:parentActivityName=".reports.ReportsActivity"/>
+        <activity android:name=".reports.NetPositionActivity"
+            android:parentActivityName=".reports.ReportsActivity"/>
+        <activity android:name=".reports.TradeReportActivity"
+            android:parentActivityName=".reports.ReportsActivity"/>
 
     </application>
 

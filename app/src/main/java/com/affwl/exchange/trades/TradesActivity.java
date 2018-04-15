@@ -93,7 +93,7 @@ public class TradesActivity extends AppCompatActivity implements NavigationView.
             if (position == 0) {
                 return new TradesFragment();
             } else if (position == 1) {
-                return new OrderFragment();
+                return new TradesFragment();
             }
             else {
                 return new TradesFragment();
