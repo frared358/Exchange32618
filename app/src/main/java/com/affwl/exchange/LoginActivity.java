@@ -152,7 +152,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         }
 
         Log.e("result",result+"");
-        //Toast.makeText(MainActivity.this, ""+result, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(SelectSymbolActivity.this, ""+result, Toast.LENGTH_SHORT).show();
         return result;
     }
 

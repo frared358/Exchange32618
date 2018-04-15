@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this,SportActivity.class));
                 break;
             case R.id.fx:case R.id.imgfx:
-          //   startActivity(new Intent(this,FxActivity.class));
                 startActivity(new Intent(this,FxActivity.class));
                 break;
 
