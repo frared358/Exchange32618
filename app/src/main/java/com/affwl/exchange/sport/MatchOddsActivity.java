@@ -78,52 +78,6 @@ public class MatchOddsActivity extends AppCompatActivity implements View.OnClick
         new MatchOddsAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Navigation/MarketList?mtid="+matchId);
     }
 
-    public String  MatchOddsApi(String url){
-        InputStream inputStream = null;
-        String result = "";
-        try {
-
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpGet Httpget = new HttpGet(url);
-
-            Httpget.setHeader("Accept", "application/json");
-            Httpget.setHeader("Content-type", "application/json");
-            Httpget.setHeader("Token", DataHolder.LOGIN_TOKEN);
-
-            HttpResponse httpResponse = httpclient.execute(Httpget);
-            inputStream = httpResponse.getEntity().getContent();
-
-            if(inputStream != null){
-                try {
-                    result = convertInputStreamToString(inputStream);
-                }
-                catch (Exception e){
-                    Log.e("Check",""+e);
-                }
-            }
-            else
-                result = "Did not work!";
-            Log.e("Check","how "+result);
-
-        } catch (Exception e) {
-            Log.d("InputStream", ""+e);
-        }
-        return result;
-    }
-
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null){
-            result += line;
-            Log.e("Line",result);
-        }
-
-        inputStream.close();
-        return result;
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -139,9 +93,7 @@ public class MatchOddsActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.txtVTournamentNameO:
                 finish();
-//                Intent intentTournamentName = new Intent(this,MatchListActivity.class);
-//                intentTournamentName.addFlags(FLAG_ACTIVITY_CLEAR_TOP|FLAG_ACTIVITY_SINGLE_TOP);
-//                startActivity(intentTournamentName);
+
                 break;
 
         }
@@ -184,7 +136,7 @@ public class MatchOddsActivity extends AppCompatActivity implements View.OnClick
 
         @Override
         protected String doInBackground(String... urls) {
-            return MatchOddsApi(urls[0]);
+            return DataHolder.getApi(urls[0]);
         }
 
         @Override
@@ -204,8 +156,9 @@ public class MatchOddsActivity extends AppCompatActivity implements View.OnClick
                     String MatchOddName = key.getString("name");
                     int MarketOddId = key.getInt("id");
                     int MatchOddId = key.getInt("mtId");
+                    int isMulti = key.getInt("isMulti");
 
-                    MatchOddList.add(new SportsData(MatchOddId,MarketOddId,MatchOddBfId,MatchOddName));
+                    MatchOddList.add(new SportsData(MatchOddId,MarketOddId,MatchOddBfId,MatchOddName,isMulti));
 
                     matchOddAdapter.notifyDataSetChanged();
                 }
@@ -213,6 +166,7 @@ public class MatchOddsActivity extends AppCompatActivity implements View.OnClick
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                DataHolder.unAuthorized(MatchOddsActivity.this,result);
             }
         }
     }

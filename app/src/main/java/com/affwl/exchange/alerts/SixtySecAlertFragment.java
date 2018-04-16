@@ -60,7 +60,7 @@ public class SixtySecAlertFragment extends Fragment implements View.OnClickListe
         Log.i("Request Code"," "+requestCode);
         switch (resultCode) {
             case RESULT_OK:
-                if (requestCode == 903) {
+                if (requestCode == 905) {
                     currentTone = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
                     ringtone_sixtysec.setVisibility(View.VISIBLE);
                     currentRingtone = RingtoneManager.getRingtone(getActivity(), currentTone);

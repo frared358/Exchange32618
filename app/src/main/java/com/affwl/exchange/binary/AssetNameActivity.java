@@ -41,6 +41,7 @@ public class AssetNameActivity extends AppCompatActivity implements View.OnClick
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navViewBinaryAsset);
+        navigationView.setItemIconTintList(null);
         assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
 
