@@ -163,16 +163,6 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         scrollBetActivity = findViewById(R.id.scrollBetActivity);
 
 
-        /*drawerBet = (DrawerLayout) findViewById(R.id.drawerBet);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerBet, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerBet.addDrawerListener(toggle);
-        toggle.syncState();*/
-
-        /*navigationView1 = (NavigationView) findViewById(R.id.nav_view1);
-        navigationView1.setNavigationItemSelectedListener(this);
-
-        navigationView2 = (NavigationView) findViewById(R.id.nav_view2);
-        navigationView2.setNavigationItemSelectedListener(this);*/
 
 
         marketId = getIntent().getIntExtra("marketId",0);
