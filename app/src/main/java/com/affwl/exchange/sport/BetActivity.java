@@ -140,19 +140,6 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         recycleViewFancyBet.setItemAnimator(new DefaultItemAnimator());
         fancyAdapter = new FancyAdapter(this,FancyDataList);
 
-//        pink1 = findViewById(R.id.pink1);
-//        pink1.setOnClickListener(this);
-//        pink2 = findViewById(R.id.pink2);
-//        pink2.setOnClickListener(this);
-//        pink3 = findViewById(R.id.pink3);
-//        pink3.setOnClickListener(this);
-//
-//        blue1 = findViewById(R.id.blue1);
-//        blue1.setOnClickListener(this);
-//        blue2 = findViewById(R.id.blue2);
-//        blue2.setOnClickListener(this);
-//        blue3 = findViewById(R.id.blue3);
-//        blue3.setOnClickListener(this);
         txtVChipsStake = findViewById(R.id.txtVChipsStake);
         txtVChipsStake.setOnClickListener(this);
 
