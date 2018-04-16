@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,7 +21,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
+                android:background="@color/colorPrimary"
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 app:title="@string/app_name">
@@ -86,6 +86,7 @@
                         android:layout_weight="1"
                         android:background="@color/colorGreayDark"
                         android:padding="2dp"
+                        android:visibility="gone"
                         android:gravity="center_vertical"
                         android:layout_margin="2dp">
 
@@ -116,28 +117,41 @@
                         android:padding="5dp"
                         android:layout_margin="2dp">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="G"
-                            android:textColor="@color/colorWhite"
-                            android:textSize="15dp"
-                            android:padding="5dp"
-                            android:textStyle="bold"
-                            android:background="@color/colorBlue"/>
+                            android:orientation="horizontal"
+                            android:background="@color/colorGreay">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="2dp"
-                            android:textSize="12sp"
-                            android:text="13:30"/>
+                            <TextView
+                                android:id="@+id/txtLiveSymbol"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="G"
+                                android:textColor="@color/colorWhite"
+                                android:textSize="15dp"
+                                android:padding="5dp"
+                                android:textStyle="bold"
+                                android:background="@color/colorBlue"/>
+
+                            <TextView
+                                android:id="@+id/txtMarketTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="3dp"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorBlack"
+                                android:text="20:00"/>
+
+                        </LinearLayout>
                     </LinearLayout>
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:visibility="gone"
                         android:layout_margin="2dp">
 
                         <LinearLayout
@@ -613,7 +627,7 @@
 
     </RelativeLayout>
 
-    <android.support.design.widget.NavigationView
+    <!--<android.support.design.widget.NavigationView
         android:id="@+id/nav_view1"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -628,8 +642,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="end"
         android:fitsSystemWindows="false"
-        app:headerLayout="@layout/drawer_right_bet" />
+        app:headerLayout="@layout/drawer_right_bet" />-->
 
 
 
-</android.support.v4.widget.DrawerLayout>
+</LinearLayout>

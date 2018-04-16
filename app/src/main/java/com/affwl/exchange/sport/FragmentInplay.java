@@ -134,10 +134,11 @@ public class FragmentInplay extends Fragment {
                     }
                 }
 
-
+                DataHolder.cancelProgress();
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                DataHolder.unAuthorized(getActivity(),result);
             }
         }
     }

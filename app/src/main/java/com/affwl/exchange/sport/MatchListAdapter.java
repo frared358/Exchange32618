@@ -51,6 +51,7 @@ public class MatchListAdapter extends RecyclerView.Adapter<MatchListAdapter.MyVi
         holder.llMatchData.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                DataHolder.MATCH_DATE = match.date;
                 DataHolder.MATCH_NAME = match.matchName;
                 Intent intent = new Intent(new Intent(contextM,MatchOddsActivity.class));
                 intent.putExtra("matchId",match.matchId);

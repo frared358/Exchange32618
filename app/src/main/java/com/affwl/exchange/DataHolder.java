@@ -1,15 +1,21 @@
 package com.affwl.exchange;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -36,6 +42,25 @@ public class DataHolder {
     public static String SPORT_NAME;
     public static String TOURNAMENT_NAME;
     public static String MATCH_NAME;
+    public static String MATCH_DATE;
+
+    public static ProgressDialog progressDialog;
+    public static void showProgress(Context context){
+        progressDialog=new ProgressDialog(context);
+        progressDialog.setTitle("Loading");
+        progressDialog.setMessage("Please Wait ... ");
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+    }
+
+    public static void cancelProgress(){
+        if(progressDialog != null){
+            progressDialog.dismiss();
+        }
+    }
+
+
 
 //  Stack Share Prefrences
     private static SharedPreferences getPrefSTACK(Context context) {
@@ -119,7 +144,7 @@ public class DataHolder {
         String result = "";
         while((line = bufferedReader.readLine()) != null){
             result += line;
-            Log.e("Line",result);
+            //Log.e("Line",result);
         }
 
         inputStream.close();
@@ -146,15 +171,15 @@ public class DataHolder {
                     result = convertInputStreamToString(inputStream);
                 }
                 catch (Exception e){
-                    Log.e("Check",""+e);
+                    Log.e("ERROR ",""+e);
                 }
             }
             else
                 result = "Did not work!";
-            Log.e("Check","how "+result);
+
 
         } catch (Exception e) {
-            Log.d("InputStream", ""+e);
+            Log.d("ERROR ", ""+e);
         }
         return result;
     }
@@ -187,7 +212,7 @@ public class DataHolder {
 
                 }
                 catch (Exception e){
-                    Log.e("Check",""+e);
+                    Log.e("ERROR ",""+e);
                 }
             }
             else
@@ -198,11 +223,31 @@ public class DataHolder {
 
         } catch (Exception e) {
 
-            Log.d("InputStream", ""+e);
+            Log.d("ERROR ", ""+e);
         }
 
         Log.e("result",result+"");
         //Toast.makeText(MainActivity.this, ""+result, Toast.LENGTH_SHORT).show();
         return result;
     }
+
+    public static void unAuthorized(Context context,String result){
+        try {
+            JSONObject jsonObjMain = new JSONObject(result.toString());
+            JSONObject jsonDes = new JSONObject(jsonObjMain.getString("description"));
+            String UnAuthorized = jsonDes.getString("result");
+
+            if(UnAuthorized.equalsIgnoreCase("UnAuthorized access found")){
+                Toast.makeText(context, "Token Expire", Toast.LENGTH_SHORT).show();
+                context.startActivity(new Intent(context, LoginActivity.class));
+            }
+        } catch (JSONException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    public static final String ACTION_SEND_ACTIVE = "com.affwl.exchange.sport.RESPONSE";
+    public static final String ACTION_SEND_FANCY_BOOKMAKING = "com.affwl.exchange.sport.FANCY_BOOKMAKING";
+    public static final String keySIGNALR = "SIGNALR";
+    public static final String keyFANCY_BOOKMAKING = "FANCY_BOOKMAKING";
 }

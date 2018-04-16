@@ -72,6 +72,7 @@ public class InplayAdapter extends RecyclerView.Adapter<InplayAdapter.MyViewHold
             @Override
             public void onClick(View v) {
                 DataHolder.MATCH_NAME = data.inMatchName;
+                DataHolder.MATCH_DATE = data.inMatchDate;
                 Intent intent = new Intent(contextInplay,BetActivity.class);
                 intent.putExtra("matchName", DataHolder.MATCH_NAME);
                 intent.putExtra("marketId",data.inMarketId);
@@ -121,7 +122,7 @@ public class InplayAdapter extends RecyclerView.Adapter<InplayAdapter.MyViewHold
         @Override
         protected void onPostExecute(String result) {
             Log.i("Check",""+result);
-            Toast.makeText(contextInplay, ""+result, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(contextInplay, ""+result, Toast.LENGTH_SHORT).show();
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
                 String msg = jsonObjMain.getString("result");
