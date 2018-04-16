@@ -45,16 +45,23 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
     private LineChart mChart;
     protected Typeface mTfLight;
 
-    //int mInteger=0;
+    int DeviationValue=0;
     int redvar1;
-    int greenvar1;
-    EditText displayInteger;
+    int greenvar1,devhigh1,devlow1;
+
+    EditText displayInteger,displayDeviation;
     EditText displayInteger1;
     ImageView imgVIncrementRed;
     ImageView decGreen;
     ImageView incGreen;
     EditText redValue;
     EditText greenValue;
+    EditText devValue;
+    ImageView ivDevInc;
+    ImageView ivDevdec;
+
+    TextView tvLowValue;
+    TextView tvHighValue;
 
 
 
@@ -91,8 +98,10 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
 
         android.support.v7.widget.Toolbar toolbar = findViewById (R.id.toolbar2);
         setSupportActionBar (toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         activity = this;
         
         redValue=(EditText)findViewById (R.id.redValue);
@@ -105,12 +114,37 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
 
 
 
+        tvHighValue=(TextView)findViewById (R.id.tvHighValue);
+        String devhigh=tvHighValue.getText ().toString ();
+        devhigh1=Integer.parseInt (devhigh);
+
+        tvLowValue=(TextView)findViewById (R.id.tvLowValue);
+        String devlow=tvLowValue.getText ().toString ();
+        devlow1=Integer.parseInt (devlow);
+
+
+
+
+
         Spinner SpinnerExample = (Spinner) findViewById (R.id.spinner);
         //output = (TextView) findViewById(R.id.output);
+
+
+        ivDevInc=findViewById (R.id.ivDevInc);
+        ivDevInc.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v){
+
+            incrementDeviation();
+
+        }
+    });
+
 
         decGreen=findViewById (R.id.decGreen);
         incGreen=findViewById (R.id.incGreen);
         displayInteger1 =  findViewById (R.id.greenValue);
+
 
         incGreen.setOnClickListener (new View.OnClickListener () {
             @Override
@@ -121,7 +155,7 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
 
 
         displayInteger =  findViewById (R.id.redValue);
-
+        displayDeviation = findViewById(R.id.etDevValue);
 
         imgVIncrementRed = findViewById (R.id.imgVIncrementRed);
         imgVIncrementRed.setOnClickListener (new View.OnClickListener (){
@@ -229,6 +263,11 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
         rightAxis.setGranularityEnabled(false);
 
         /** Line chart End  */
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     @Override
@@ -411,7 +450,7 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
 
     }
 
-
+//Increment/Decrement  for green value *
     public  void incrementRed1()
     {
         greenvar1 = greenvar1 + 1;
@@ -426,6 +465,23 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
 
         display1 (greenvar1);
     }
+
+    /** Increment/Decrement  for Deviation */
+    public  void incrementDeviation()
+    {
+        DeviationValue = DeviationValue + 1;
+        displayDiviation(DeviationValue);
+
+    }
+    public  void decrementDeviation(View view)
+    {
+        DeviationValue = DeviationValue - 1;
+        displayDiviation(DeviationValue);
+
+    }
+
+
+
 
     private void  display(int number)
     {
@@ -450,6 +506,16 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
         }
     }
 
+    private void  displayDiviation(int number)
+    {
+        Log.i ("TAGf",""+number);
+        try {
+            displayDeviation.setText(String.valueOf (number));
+        } catch (Exception e) {
+            e.printStackTrace ();
+            Log.i("TAGf",""+e);
+        }
+    }
 
     @Override
     public void onClick(View v) {

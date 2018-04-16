@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.affwl.exchange">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -51,6 +52,7 @@
         <activity
             android:name=".indie.NewsActivity"
             android:label="News" />
+
         <activity
             android:name=".binary.Sec60Activity"
             android:parentActivityName=".MainActivity" />
@@ -70,6 +72,7 @@
         <activity android:name=".binary.BinaryPotfolioActivity" />
         <activity android:name=".fx.FxActivity" >
 
+
         </activity>
         <activity android:name=".fx.CustomSpinner" />
         <activity android:name=".fx.Problem_Description" />
@@ -79,6 +82,7 @@
         <activity android:name=".fx.Mailbox1" />
         <activity android:name=".fx.Selected_symbols" />
        <activity android:name=".fx.Add_symbol"/>
+        <activity android:name=".fx.select_symbol.SelectSymbolActivity"/>
         <activity android:name=".fx.Add_symbol_Forex"/>
         <activity android:name=".fx.FX_indicator_f_add_Activity"/>
         <activity android:name=".fx.FX_indicator_f1_add_Activity"/>

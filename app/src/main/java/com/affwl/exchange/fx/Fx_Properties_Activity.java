@@ -51,10 +51,15 @@ public class Fx_Properties_Activity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        String url = "http://www.google.co.in";
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
-        startActivity(i);
+
+        switch (item.getItemId()) {
+            case R.id.search:
+
+                String url = "http://www.google.co.in";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+        }
         return super.onOptionsItemSelected(item);
     }
 }

@@ -20,40 +20,51 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class Fx_MarketStatistics_Activity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate (savedInstanceState);
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf")
-                .setFontAttrId(R.attr.fontPath).build());
-        setContentView (R.layout.activity_fx_marketstatistics);
-        android.support.v7.widget.Toolbar toolbar=findViewById(R.id.toolbar2);
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf").setFontAttrId(R.attr.fontPath).build());
+
+        setContentView(R.layout.activity_fx_marketstatistics);
+
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     }
+
     @Override
-    public boolean onSupportNavigateUp() {
+    public boolean onSupportNavigateUp(){
         onBackPressed();
         return true;
     }
+
     @Override
-    protected void attachBaseContext(Context newBase) {
+    protected void attachBaseContext(Context newBase){
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu){
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.web_search, menu);
 
         return true;
     }
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        String url = "http://www.google.co.in";
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
-        startActivity(i);
-        return super.onOptionsItemSelected(item);
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        switch (item.getItemId()) {
+            case R.id.search:
+                String url = "http://www.google.co.in";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+        }
+                return super.onOptionsItemSelected(item);
+        }
     }
-}
-   
+
