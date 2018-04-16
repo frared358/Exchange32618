@@ -37,6 +37,8 @@ public class TradeActivity extends AppCompatActivity implements View.OnClickList
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navViewBinaryTrade);
+        navigationView.setItemIconTintList(null);
+
         assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
     }

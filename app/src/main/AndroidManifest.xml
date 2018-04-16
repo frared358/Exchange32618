@@ -9,7 +9,7 @@
 
     <application
         android:allowBackup="true"
-        android:hardwareAccelerated="false"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -62,8 +62,10 @@
         <activity android:name=".LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".binary.AssetListActivity" />
         <activity android:name=".binary.TradeActivity" />
@@ -104,10 +106,7 @@
             android:name=".sport.UnmatchMatchTabActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".sport.SettingsActivity" />
-        <activity
-            android:name=".sport.DemoActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".sport.StackActivity" />
         <activity android:name=".fx.Fx_Currency_Activity"></activity>
         <activity android:name=".fx.Fx_AVW_Activity"></activity>
@@ -124,6 +123,35 @@
 
         <activity android:name=".settings.SettingsMainActivity"/>
         <activity android:name=".alerts.AlertsActivity"/>
+        <activity android:name=".alerts.IndieReminderActivity"/>
+
+        <activity android:name=".sport.TournamentActivity" />
+        <activity android:name=".sport.MatchListActivity" />
+        <activity android:name=".sport.MatchOddsActivity"></activity>
+
+        <service android:name=".sport.SignalRService"/>
+        <!--<receiver android:name=".sport.BroadcastReceiverSignalr" >
+            <intent-filter>
+                <action android:name="com.affwl.exchange.sport.RESPONSE" />
+
+            </intent-filter>
+        </receiver>-->
+
+        <activity android:name=".trades.TradesActivity"/>
+
+        <activity android:name=".alerts.MessageMainActivity"/>
+        <activity android:name=".alerts.MessagePage"/>
+
+        <activity android:name=".reports.ReportsActivity"/>
+        <activity android:name=".reports.OrderReportActivity"
+            android:parentActivityName=".reports.ReportsActivity"/>
+        <activity android:name=".reports.MarginPositionActivity"
+            android:parentActivityName=".reports.ReportsActivity"/>
+        <activity android:name=".reports.NetPositionActivity"
+            android:parentActivityName=".reports.ReportsActivity"/>
+        <activity android:name=".reports.TradeReportActivity"
+            android:parentActivityName=".reports.ReportsActivity"/>
+
     </application>
 
 </manifest>

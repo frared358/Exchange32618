@@ -1,5 +1,7 @@
 package com.affwl.exchange.sport;
 
+import android.util.Log;
+
 /**
  * Created by user on 3/31/2018.
  */
@@ -31,8 +33,8 @@ public class MarketData {
 
     //Fancy BET
     String yesRate,yesScore,noRate,noScore,ballStatus,book;
-    int fancyId;
-    public MarketData(String yesRate,String yesScore,String noRate,String noScore,String RunnerName,String ballStatus,String book,int fancyId){
+    int fancyId,matchId;
+    public MarketData(String yesRate,String yesScore,String noRate,String noScore,String RunnerName,String ballStatus,String book,int fancyId,int matchId){
         this.yesRate = yesRate;
         this.yesScore = yesScore;
         this.noRate = noRate;
@@ -41,6 +43,7 @@ public class MarketData {
         this.ballStatus = ballStatus;
         this.book = book;
         this.fancyId = fancyId;
+        this.matchId = matchId;
     }
 
 
@@ -48,7 +51,8 @@ public class MarketData {
     String bmBallStatus,bmBook,bmName;
     int bmId,bmBackPrice,bmBackSize,bmLayPrice;
     int bmLaySize,bmRunnerId;
-    public MarketData(int bmId,int bmRunnerId,int bmBackPrice,int bmBackSize,int bmLayPrice,int bmLaySize,String bmName,String bmBallStatus,String bmBook){
+    public MarketData(int bmId,int bmRunnerId,int bmBackPrice,int bmLayPrice,int bmBackSize,int bmLaySize,String bmName,String bmBallStatus,String bmBook){
+
         this.bmBackPrice = bmBackPrice;
         this.bmBackSize = bmBackSize;
         this.bmLayPrice = bmLayPrice;

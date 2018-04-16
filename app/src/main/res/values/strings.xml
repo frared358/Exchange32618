@@ -14,7 +14,6 @@
     <string name="logout">Logout</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_blank_fragment1">Hello blank fragment Indices</string>
     <string name="pivot">Pivot</string>
     <string name="live_tips">Live Tips</string>
@@ -93,6 +92,10 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_sports">SportsActivity</string>
+
+    <string name="equalsText">=</string>
+    <string name="greaterText"><![CDATA[>]]></string>
+    <string name="lessText"><![CDATA[<]]></string>
 
 
     <string-array name="Member_names">
@@ -227,6 +230,7 @@
         <item>White Theme</item>
         <item>Black Theme</item>
     </string-array>
+
 
 
     <string-array name="Add_symbols">

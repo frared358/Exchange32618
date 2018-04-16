@@ -61,7 +61,7 @@ public class SportsAlertFragment extends Fragment implements View.OnClickListene
         Log.i("Request Code"," "+requestCode);
         switch (resultCode) {
             case RESULT_OK:
-                if (requestCode == 903) {
+                if (requestCode == 906) {
                     currentTone = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
                     ringtone_sports.setVisibility(View.VISIBLE);
                     currentRingtone = RingtoneManager.getRingtone(getActivity(), currentTone);

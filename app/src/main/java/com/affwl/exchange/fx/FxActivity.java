@@ -32,9 +32,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.affwl.exchange.R;
-import com.affwl.exchange.fx.select_symbol.SelectSymbolActivity;
-import com.tictactec.ta.lib.*;
-
 
 import butterknife.OnClick;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -43,11 +40,12 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 /** check update.........*/
 public class FxActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
     public NavigationView navigationView;
     public BottomNavigationView navigation;
     LinearLayout layoutBottomSheet;
+
     BottomSheetBehavior sheetBehavior;
+
     Fragment fragment = null;
     private static String TAG = "FxActivity";
     ImageView view;
@@ -56,9 +54,6 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
     private Fragment currentFragment;
     Dialog myDialog,myDialog1;
     BottomClickSession bcs;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,15 +65,16 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         myDialog = new Dialog(this);
         myDialog1 = new Dialog(this);
 
-        
 
         /**Bottom navigation*/
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+
         /** hide frame layout */
         FrameLayout layout = (FrameLayout) findViewById(R.id.xzz);
         layout.setVisibility(View.GONE);           //View.GONE
+
 
         /**     RecyclerView    */
         RecyclerView programingList = (RecyclerView) findViewById(R.id.programingList);
@@ -117,6 +113,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         View view = findViewById(R.id.xzz);
+
 
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -256,7 +253,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         if (currentFragment != null && currentFragment instanceof Fx_Fragment_Quotes) {
             switch (item.getItemId()) {
                 case R.id.edit:
-                    Intent i = new Intent(this, SelectSymbolActivity.class);
+                    Intent i = new Intent(this, Selected_symbols.class);
                     this.startActivity(i);
                     return true;
                 case R.id.add:
@@ -489,8 +486,5 @@ public void ShowPopup1() {
 
         myDialog.show();
     }
-
-
-
 
 }
