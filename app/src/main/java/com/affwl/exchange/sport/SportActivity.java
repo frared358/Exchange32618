@@ -28,6 +28,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.affwl.exchange.DataHolder;
+import com.affwl.exchange.LoginActivity;
+import com.affwl.exchange.MainActivity;
 import com.affwl.exchange.R;
 
 import org.apache.http.HttpResponse;
@@ -44,15 +46,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class SportActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class SportActivity extends AppCompatActivity /*implements NavigationView.OnNavigationItemSelectedListener*/ {
 
     TabLayout tabLayoutSport;
     ViewPager viewPagerSport;
-    DrawerLayout drawerSport;
+    //DrawerLayout drawerSport;
     int[] icon = {R.drawable.stop_watch_greay,R.drawable.trophy_greay,R.drawable.fav_contact_greay};
     int[] iconWhite = {R.drawable.stop_watch_white,R.drawable.trophy_white,R.drawable.fav_contact_white};
     Toolbar toolbar;
-    TextView userName;
+    //TextView userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,15 +63,15 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
         setSupportActionBar(toolbar);
 
 
-        drawerSport = (DrawerLayout) findViewById(R.id.drawer_layout);
+        /*drawerSport = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerSport, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerSport.addDrawerListener(toggle);
-        toggle.syncState();
+        toggle.syncState();*/
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        /*NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View header=navigationView.getHeaderView(0);
-        userName = header.findViewById(R.id.tvUserName);
+        userName = header.findViewById(R.id.tvUserName);*/
 
         tabLayoutSport = (TabLayout)findViewById(R.id.tabLayoutSport);
         viewPagerSport = (ViewPager)findViewById(R.id.viewPagerSport);
@@ -135,20 +137,21 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
             tabLayoutSport.getTabAt(0).setIcon(iconWhite[0]);
         }
 
-        new HighlightsAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/UserDescription");
-        new HighlightsAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/Fund");
+        DataHolder.showProgress(this);
+        //new HighlightsAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/UserDescription");
+        new getFundAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/Fund");
         new getMyMarketAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/MyMarket");
     }
 
-    @Override
-    public void onBackPressed() {
-
-        if (drawerSport.isDrawerOpen(GravityCompat.START)) {
-            drawerSport.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//
+//        /*if (drawerSport.isDrawerOpen(GravityCompat.START)) {
+//            drawerSport.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//        }*/
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -169,7 +172,7 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+    /*@SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -185,7 +188,7 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
 
         drawerSport.closeDrawer(GravityCompat.START);
         return true;
-    }
+    }*/
 
     public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -211,63 +214,24 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
         }
     }
 
-    public String  getApi(String url){
-        InputStream inputStream = null;
-        String result = "";
-        try {
-
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpGet Httpget = new HttpGet(url);
-
-            Httpget.setHeader("Accept", "application/json");
-            Httpget.setHeader("Content-type", "application/json");
-            Httpget.setHeader("Token", DataHolder.LOGIN_TOKEN);
-
-            HttpResponse httpResponse = httpclient.execute(Httpget);
-            inputStream = httpResponse.getEntity().getContent();
-
-            if(inputStream != null){
-                try {
-                    result = convertInputStreamToString(inputStream);
-                }
-                catch (Exception e){
-                    Log.e("Check",""+e);
-                }
-            }
-            else
-                result = "Did not work!";
-            Log.e("Check","how "+result);
-
-        } catch (Exception e) {
-            Log.d("InputStream", ""+e);
-        }
-        return result;
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null){
-            result += line;
-            Log.e("Line",result);
-        }
-
-        inputStream.close();
-        return result;
-    }
-
-    private class HighlightsAsyncTask extends AsyncTask<String, Void, String> {
+    private class getFundAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
-            return getApi(urls[0]);
+            return DataHolder.getApi(urls[0]);
         }
 
         @Override
         protected void onPostExecute(String result) {
             Log.i("Check123456",""+result);
-            try {
+            /*try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
                 String strData = jsonObjMain.getString("data");
                 JSONObject jsonData = new JSONObject(strData);
@@ -278,7 +242,7 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
 
             } catch (JSONException e) {
                 e.printStackTrace();
-            }
+            }*/
 
             try {
                 JSONObject jsonObject = new JSONObject(result.toString());
@@ -292,6 +256,7 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                DataHolder.unAuthorized(SportActivity.this,result);
             }
 
         }
@@ -325,7 +290,7 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
 
         @Override
         protected String doInBackground(String... urls) {
-            return getApi(urls[0]);
+            return DataHolder.getApi(urls[0]);
         }
 
         @Override
@@ -345,6 +310,7 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
+                DataHolder.unAuthorized(SportActivity.this,result);
             }
         }
     }
@@ -416,7 +382,4 @@ public class SportActivity extends AppCompatActivity implements NavigationView.O
         });
         dialog.show();
     }
-
-
-
 }

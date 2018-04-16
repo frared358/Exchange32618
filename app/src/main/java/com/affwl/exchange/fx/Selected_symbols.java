@@ -45,7 +45,8 @@ public class Selected_symbols extends AppCompatActivity {
 
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         rowItems5 = new ArrayList<RowItem5_quotes>();
 
@@ -88,6 +89,11 @@ public class Selected_symbols extends AppCompatActivity {
         });
 
 
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     @Override

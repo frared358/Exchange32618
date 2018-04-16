@@ -65,51 +65,7 @@ public class TournamentActivity extends AppCompatActivity implements View.OnClic
         new TournamentAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Navigation/TournamentList?id="+sportId);
     }
 
-    public String  TournamentApi(String url){
-        InputStream inputStream = null;
-        String result = "";
-        try {
 
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpGet Httpget = new HttpGet(url);
-
-            Httpget.setHeader("Accept", "application/json");
-            Httpget.setHeader("Content-type", "application/json");
-            Httpget.setHeader("Token", DataHolder.LOGIN_TOKEN);
-
-            HttpResponse httpResponse = httpclient.execute(Httpget);
-            inputStream = httpResponse.getEntity().getContent();
-
-            if(inputStream != null){
-                try {
-                    result = convertInputStreamToString(inputStream);
-                }
-                catch (Exception e){
-                    Log.e("Check",""+e);
-                }
-            }
-            else
-                result = "Did not work!";
-            Log.e("Check","how "+result);
-
-        } catch (Exception e) {
-            Log.d("InputStream", ""+e);
-        }
-        return result;
-    }
-
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null){
-            result += line;
-            Log.e("Line",result);
-        }
-
-        inputStream.close();
-        return result;
-    }
 
     @Override
     public void onClick(View v) {
@@ -124,7 +80,7 @@ public class TournamentActivity extends AppCompatActivity implements View.OnClic
 
         @Override
         protected String doInBackground(String... urls) {
-            return TournamentApi(urls[0]);
+            return DataHolder.getApi(urls[0]);
         }
 
         @Override
@@ -143,43 +99,21 @@ public class TournamentActivity extends AppCompatActivity implements View.OnClic
                 for(int i =0 ; i<length;i++){
 
                     JSONObject key = arrayData.getJSONObject(i);
-//                    String matchName = key.getString("matchName");
-//                    String matchDate = key.getString("matchDate");
-//                    String bfId = key.getString("bfId");
-//                    int marketId = key.getInt("marketId");
-//                    int matchId = key.getInt("matchId");
+
                     String name = key.getString("name");
                     int Id = key.getInt("id");
 
-                    //Log.i("TAG",""+matchName);
-                    //HighlightsList.add(new SportsData(matchName,matchDate,bfId,matchId,marketId));
 
                     TournamentList.add(new SportsData(name,Id,sportId));
                     tournamentAdapter.notifyDataSetChanged();
 
-//                    JSONObject key = arrayData.getJSONObject(i);
-//                    String sportName = key.getString("name");
-//                    int sportId = key.getInt("id");
-//                    Log.i("TAG",""+sportName);
-//                    HighlightsList.add(new SportsData(sportName,sportId));
-//                    /*,matchNamemarketId
-//                            , matchDate
-//                            , matchId
-//                            , runner1Back
-//                            , runner1Lay
-//                            , runner1Name
-//                            , runner2Back
-//                            , runner2Lay
-//                            , runner2Name
-//                            , runner3Back
-//                            , runner3Lay
-//                            , runner3Name*/
-//                    sportsNameAdapter.notifyDataSetChanged();
+
                 }
                 recycleViewTournament.setAdapter(tournamentAdapter);
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                DataHolder.unAuthorized(TournamentActivity.this,result);
             }
         }
     }

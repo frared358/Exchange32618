@@ -76,7 +76,6 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
     }
 
     String mRunnerName;
-    double mBack,mChipsBack,mLay,mChipsLay;
     int bookId,runnerId;
 //    String bmBallStatus,bmBook,bmName;
 //    int bmId,bmBackPrice,bmBackSize,bmLayPrice,bmLaySize;
@@ -98,7 +97,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
         holder.txtVLayData.setText(String.valueOf(mLay));
         holder.txtVLayChips.setText(String.valueOf(mChipsLay));
 
-        Log.i("ROHITlk",mBack+"");
+        //Log.i("ROHITlk",mLay+" "+mChipsLay);
         if(book.bmBook != null){
             try {
                 int bookVal = Integer.parseInt(book.bmBook);
@@ -132,7 +131,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
 
                     }*/
                     dialogBetPlace(mRunnerName,R.color.colorRedBetTrasparent,mLay,"Lay");
-                    Log.i("TAG12356","Touchll");
+                    //Log.i("TAG12356","Touchll");
                 }
                 return false;
             }
@@ -148,7 +147,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
 
                 }*/
                     dialogBetPlace(mRunnerName, R.color.colorBlueBetTrasparent, mBack, "Back");
-                    Log.i("TAG12356", "Touchll");
+                    //Log.i("TAG12356", "Touchll");
                 }
                 return false;
             }
@@ -257,9 +256,9 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
                     stackVal = 0.0;
                     e.printStackTrace();
                 }
-                Log.i("TAG",stackVal+"");
+                //Log.i("TAG",stackVal+"");
                 double dec = DataHolder.decrement(stackVal);
-                Log.i("TAG",dec+"");
+                //Log.i("TAG",dec+"");
                 STACKVALUE = String.format("%.2f",dec);
                 editTxtStackValue.setText(STACKVALUE);
 
@@ -290,6 +289,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
         btnBetPlace.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                DataHolder.showProgress(contextBook);
                 new BetPlaceBookAsyncTask().execute(BackLay,ODDVALUE,STACKVALUE,RunnerTitle);
                 dialog.cancel();
             }
@@ -427,15 +427,15 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
                     result = convertInputStreamToString(inputStream);
                 }
                 catch (Exception e){
-                    Log.e("Check",""+e);
+                    Log.e("ERROR ",""+e);
                 }
             }
             else
                 result = "Did not work!";
-            Log.e("Check","how "+result);
+            //Log.e("Check","how "+result);
 
         } catch (Exception e) {
-            Log.d("InputStream", ""+e);
+            Log.d("ERROR ", ""+e);
         }
         return result;
     }
@@ -449,7 +449,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
 
         @Override
         protected void onPostExecute(String result) {
-            Log.i("Check",""+result);
+            //Log.i("Check",""+result);
 
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
@@ -467,6 +467,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            DataHolder.cancelProgress();
         }
     }
 
@@ -502,7 +503,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
                     result = convertInputStreamToString(inputStream);
                 }
                 catch (Exception e){
-                    Log.e("Check",""+e);
+                    Log.e("ERROR ",""+e);
                 }
             }
             else
@@ -510,7 +511,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
 
 
         } catch (Exception e) {
-            Log.d("InputStream", ""+e);
+            Log.d("ERROR ", ""+e);
         }
         return result;
     }
@@ -524,8 +525,8 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
 
         @Override
         protected void onPostExecute(String result) {
-            Log.i("Check",""+result);
-            Toast.makeText(contextBook, ""+result, Toast.LENGTH_SHORT).show();
+            //Log.i("Check",""+result);
+            //Toast.makeText(contextBook, ""+result, Toast.LENGTH_SHORT).show();
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
                 JSONArray jsonArray = new JSONArray(jsonObjMain.getString("data"));

@@ -29,6 +29,13 @@ public class Fx_Properties_Activity extends AppCompatActivity {
         setContentView (R.layout.activity_fx_properties);
         android.support.v7.widget.Toolbar toolbar=findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
     @Override
     protected void attachBaseContext(Context newBase) {
