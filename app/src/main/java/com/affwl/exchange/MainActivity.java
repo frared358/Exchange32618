@@ -2,6 +2,9 @@ package com.affwl.exchange;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,6 +14,7 @@ import android.widget.TextView;
 import com.affwl.exchange.alerts.AlertsActivity;
 import com.affwl.exchange.binary.Sec60Activity;
 import com.affwl.exchange.fx.FxActivity;
+import com.affwl.exchange.fx.Fx_Fragment_Quotes;
 import com.affwl.exchange.indie.IndieActivity;
 import com.affwl.exchange.news.NewsActivity;
 import com.affwl.exchange.settings.SettingsMainActivity;
@@ -74,8 +78,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.fx:case R.id.imgfx:
           //   startActivity(new Intent(this,FxActivity.class));
-                startActivity(new Intent(this,FxActivity.class));
+               startActivity(new Intent(this,FxActivity.class));
                 break;
+//                Fragment currentFragment = new Fragment ();
+//                FragmentManager fragmentManager = getSupportFragmentManager();
+//                FragmentTransaction ft = fragmentManager.beginTransaction();
+//                ft.replace(R.id.xzz, currentFragment);    //content_fx
+              //  ft.commit();
 
             case R.id.news_layout:
                 startActivity(new Intent(this,NewsActivity.class));

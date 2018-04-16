@@ -21,14 +21,17 @@
         android:icon="@drawable/f"/>
 
     <item
-
+        android:id="@+id/dolllar"
         android:icon="@drawable/dol1"
-        android:title="cd"
-        app:showAsAction="always">
+        android:title=""
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.ImageView">
 
-        <menu>
+       <!-- <menu
+            style="@style/layoutwidth">
 
             <item
+                style="@style/layoutwidth"
                 android:id="@+id/c1"
                 android:title="EURUSD"
                 app:showAsAction="always" />
@@ -61,7 +64,7 @@
                 android:id="@+id/c8"
                 android:title="NZDUSD"
                 app:showAsAction="always" />
-        </menu>
+        </menu>-->
 
 
     </item>
@@ -69,6 +72,7 @@
     <item
         android:icon="@drawable/copy"
         android:title="Charts"
+        android:width="@style/AppBaseTheme"
         app:showAsAction="always">
 
         <menu>
@@ -77,6 +81,8 @@
                 android:id="@+id/mnNewWindow"
                 android:title="New Window"
                 android:icon="@drawable/ic_add_black_24dp"
+                android:listPreferredItemHeightSmall="@style/AppBaseTheme"
+
                 app:showAsAction="always" />
 
 
@@ -85,6 +91,8 @@
                 android:id="@+id/mnChartWindow1"
                android:checked="true"
                 android:checkable="true"
+                android:listPreferredItemHeightSmall="@style/AppBaseTheme"
+
                 android:title="USDCNH, M1"
                 app:showAsAction="always" />
 
@@ -93,6 +101,8 @@
                 android:checked="false"
                 android:checkable="true"
                 android:title="EURUSD, H1"
+                android:listPreferredItemHeightSmall="@style/AppBaseTheme"
+
                 android:visible="false"
                 app:showAsAction="always" />
 
@@ -105,11 +115,15 @@
             <item
                 android:id="@+id/mnTileHorizontal"
                 android:title="TileHorizontal"
+                android:listPreferredItemHeightSmall="@style/AppBaseTheme"
+
                 app:showAsAction="always" />
 
             <item
                 android:id="@+id/mnTileVertically"
                 android:title="TileVertically"
+                android:textSize="@style/PopupMenuTextView"
+
                 app:showAsAction="always" />
 
 

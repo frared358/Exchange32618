@@ -19,6 +19,7 @@ import com.affwl.exchange.R;
 public class Fx_Manage_Account extends Fragment implements View.OnClickListener{
     Dialog myDialog,myDialog1;
 LinearLayout linearLayout;
+
 ImageView btnShowPopupAccount,btnShowPopupAccount1;
 
 

@@ -137,6 +137,8 @@ public class Selected_symbols extends AppCompatActivity {
         DeleteNow adapter = new DeleteNow(getApplicationContext(), rowItems5);
         mylistview.setAdapter(adapter);
         }
+
+
         //checkbox
         return super.onOptionsItemSelected(item);
     }

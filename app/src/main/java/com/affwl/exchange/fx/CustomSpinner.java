@@ -42,29 +42,23 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class CustomSpinner extends AppCompatActivity implements  OnChartValueSelectedListener,View.OnClickListener {
 
     
-    private LineChart mChart;
+    public ArrayList<SpinnerModel> CustomListViewValuesArr = new ArrayList<SpinnerModel>();
     protected Typeface mTfLight;
 
     int DeviationValue=0;
     int redvar1;
     int greenvar1,devhigh1,devlow1;
 
-    EditText displayInteger,displayDeviation;
-    EditText displayInteger1;
-    ImageView imgVIncrementRed;
-    ImageView decGreen;
-    ImageView incGreen;
-    EditText redValue;
-    EditText greenValue;
-    EditText devValue;
-    ImageView ivDevInc;
-    ImageView ivDevdec;
+    EditText displayInteger,displayDeviation,displayInteger1;
+    ImageView imgVIncrementRed,decGreen,incGreen,ivDevInc;
 
-    TextView tvLowValue;
-    TextView tvHighValue;
+    EditText redValue,greenValue;
 
-
-
+    TextView tvLowValue,tvHighValue;
+    TextView output = null;
+    CustomAdapter4_customspinner adapter;
+    CustomSpinner activity = null;
+    private LineChart mChart;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -74,13 +68,6 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
         return true;
 
     }
-
-
-
-    public ArrayList<SpinnerModel> CustomListViewValuesArr = new ArrayList<SpinnerModel>();
-    TextView output = null;
-    CustomAdapter4_customspinner adapter;
-    CustomSpinner activity = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,20 +79,19 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView (R.layout.activity_custom_spinner);
-        
-        
-        
 
+
+        /** for  toolbar  */
         android.support.v7.widget.Toolbar toolbar = findViewById (R.id.toolbar2);
         setSupportActionBar (toolbar);
-
+        /** for  toolbar backpress */
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         activity = this;
         
         redValue=(EditText)findViewById (R.id.redValue);
-       String var= redValue.getText ().toString ();
+        String var= redValue.getText ().toString ();
         redvar1=Integer.parseInt (var);
 
         greenValue=(EditText)findViewById (R.id.greenValue);
@@ -264,6 +250,7 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
 
         /** Line chart End  */
     }
+    /** for  toolbar backpress */
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
