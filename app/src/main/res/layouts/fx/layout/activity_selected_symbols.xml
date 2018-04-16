@@ -22,7 +22,6 @@
         tools:ignore="MissingPrefix"
         fontPath="fonts/RobotoCondensed-Regular.ttf"
         android:id="@+id/toolbar2" />
-
     <ListView
     android:id="@+id/list5"
     android:layout_width="368dp"

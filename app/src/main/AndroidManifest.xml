@@ -52,6 +52,7 @@
         <activity
             android:name=".indie.NewsActivity"
             android:label="News" />
+
         <activity
             android:name=".binary.Sec60Activity"
             android:parentActivityName=".MainActivity" />
@@ -79,6 +80,7 @@
         <activity android:name=".fx.Mailbox1" />
         <activity android:name=".fx.Selected_symbols" />
        <activity android:name=".fx.Add_symbol"/>
+        <activity android:name=".fx.select_symbol.SelectSymbolActivity"/>
         <activity android:name=".fx.Add_symbol_Forex"/>
         <activity android:name=".fx.FX_indicator_f_add_Activity"/>
         <activity android:name=".fx.FX_indicator_f1_add_Activity"/>

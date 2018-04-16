@@ -32,6 +32,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.affwl.exchange.R;
+import com.affwl.exchange.fx.select_symbol.SelectSymbolActivity;
 import com.tictactec.ta.lib.*;
 
 
@@ -255,7 +256,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         if (currentFragment != null && currentFragment instanceof Fx_Fragment_Quotes) {
             switch (item.getItemId()) {
                 case R.id.edit:
-                    Intent i = new Intent(this, Selected_symbols.class);
+                    Intent i = new Intent(this, SelectSymbolActivity.class);
                     this.startActivity(i);
                     return true;
                 case R.id.add:

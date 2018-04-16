@@ -25,13 +25,13 @@ android {
             assets.srcDirs = ['src/main/assets']
             res.srcDirs =
                     [
+                            'src/main/res/layouts/fx/select_sysmbol',
                             'src/main/res/layouts/alerts',
                             'src/main/res/layouts/settings',
                             'src/main/res/layouts/news',
                             'src/main/res/layouts/sport',
                             'src/main/res/layouts/indie',
                             'src/main/res/layouts/binary',
-//                          'src/main/res/layouts/fx/select_symbol_layout',
                             'src/main/res/layouts/fx',
                             'src/main/res/layouts',
                             'src/main/res'

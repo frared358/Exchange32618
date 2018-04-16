@@ -8,8 +8,7 @@ public class Customer {
     private Long id;
     private String name;
     private String emailAddress;
-    private int imageId;
-    private String imagePath;
+
 
     public void setName(String name) {
         this.name = name;
@@ -23,9 +22,7 @@ public class Customer {
         this.emailAddress = emailAddress;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
+
 
     public String getName() {
         return name;
@@ -35,7 +32,5 @@ public class Customer {
         return emailAddress;
     }
 
-    public String getImagePath() {
-        return imagePath;
-    }
+
 }

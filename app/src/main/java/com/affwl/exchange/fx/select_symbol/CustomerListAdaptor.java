@@ -61,10 +61,10 @@ class CustomerListAdapter extends           //changed
 
         holder.customerName.setText(selectedCustomer.getName());
         holder.customerEmail.setText(selectedCustomer.getEmailAddress());
-        Picasso.with(mContext)
-                .load(selectedCustomer.getImagePath())
-                .placeholder(R.drawable.ic_launcher_foreground)
-                .into(holder.profileImage);
+//        Picasso.with(mContext)
+//                .load(selectedCustomer.getImagePath())
+//                .placeholder(R.drawable.ic_launcher_foreground)
+//                .into(holder.profileImage);
 
 
 
@@ -99,7 +99,8 @@ class CustomerListAdapter extends           //changed
     public static class ItemViewHolder extends RecyclerView.ViewHolder implements
             ItemTouchHelperViewHolder {
         public final TextView customerName, customerEmail;
-        public final ImageView handleView, profileImage;
+        public final ImageView handleView;
+
 
 
         public ItemViewHolder(View itemView) {
@@ -107,7 +108,7 @@ class CustomerListAdapter extends           //changed
             customerName = (TextView)itemView.findViewById(R.id.text_view_customer_name);
             customerEmail = (TextView)itemView.findViewById(R.id.text_view_customer_email);
             handleView = (ImageView)itemView.findViewById(R.id.handle);
-            profileImage = (ImageView)itemView.findViewById(R.id.image_view_customer_head_shot);
+
         }
 
         @Override
