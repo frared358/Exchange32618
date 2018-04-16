@@ -168,7 +168,7 @@
         android:layout_marginRight="20dp"
         android:text="Bet"/>
 
-    <Switch
+    <!--<Switch
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="13dp"
@@ -176,6 +176,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
-        android:text="One Click Betting"/>
+        android:text="One Click Betting"/>-->
 
 </LinearLayout>

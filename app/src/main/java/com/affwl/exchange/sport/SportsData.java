@@ -41,14 +41,15 @@ public class SportsData {
         this.date = date;
     }
 
-
+//Match Odd
     String matchOddName,MatchOddBfId;
-    int matchOddId,marketOddId;
-    public SportsData(int matchOddId, int marketOddId,String MatchOddBfId,String matchOddName){
+    int matchOddId,marketOddId,isMulti;
+    public SportsData(int matchOddId, int marketOddId,String MatchOddBfId,String matchOddName,int isMulti){
         this.matchOddId = matchOddId;
         this.matchOddName = matchOddName;
         this.MatchOddBfId = MatchOddBfId;
         this.marketOddId = marketOddId;
+        this.isMulti = isMulti;
     }
 
     SportsData(int matchId){

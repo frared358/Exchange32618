@@ -130,13 +130,18 @@ public class StackActivity extends AppCompatActivity implements View.OnClickList
                     DataHolder.setSTACK(StackActivity.this,"StackValue1",editTxtStackValue1.getText().toString());
                     DataHolder.setSTACK(StackActivity.this,"StackValue2",editTxtStackValue2.getText().toString());
                     DataHolder.setSTACK(StackActivity.this,"StackValue3",editTxtStackValue3.getText().toString());
+
+                    DataHolder.setSTACK(StackActivity.this,"ChipsValue",editTxtStackValue1.getText().toString());
+                    DataHolder.STACK_VALUE = Double.valueOf(editTxtStackValue1.getText().toString());
                 }
                 Toast.makeText(StackActivity.this, ""+strData, Toast.LENGTH_SHORT).show();
 
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                DataHolder.unAuthorized(StackActivity.this,result);
             }
+            DataHolder.cancelProgress();
         }
     }
 
@@ -189,7 +194,7 @@ public class StackActivity extends AppCompatActivity implements View.OnClickList
                 String strData = jsonObjMain.getString("data");
                 Log.i("TAG",""+strData);
 
-                Toast.makeText(StackActivity.this, ""+strData, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(StackActivity.this, ""+strData, Toast.LENGTH_SHORT).show();
 
                 JSONObject jsonObj = new JSONObject(jsonObjMain.getString("data"));
 
@@ -199,6 +204,7 @@ public class StackActivity extends AppCompatActivity implements View.OnClickList
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                DataHolder.unAuthorized(StackActivity.this,result);
             }
         }
     }
@@ -207,7 +213,18 @@ public class StackActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnStackSave:
-                new setStackAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Settings/SaveBetStakeSetting");
+
+                if(editTxtStackValue1.getText().toString().equals("") || editTxtStackValue1.getText().toString() == null){
+                    editTxtStackValue1.setError("Enter Stack Value");
+                }else if(editTxtStackValue2.getText().toString().equals("") || editTxtStackValue2.getText().toString() == null){
+                    editTxtStackValue2.setError("Enter Stack Value");
+                }else if(editTxtStackValue3.getText().toString().equals("") || editTxtStackValue3.getText().toString() == null){
+                    editTxtStackValue3.setError("Enter Stack Value");
+                }else {
+                    DataHolder.showProgress(StackActivity.this);
+                    new setStackAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Settings/SaveBetStakeSetting");
+                }
+
                 break;
         }
     }

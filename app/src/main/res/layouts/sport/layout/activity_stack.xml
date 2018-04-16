@@ -74,8 +74,8 @@
         android:gravity="center"
         android:padding="1dp"
         android:text="OK"
-        android:background="@color/colorReddishGreay"
-        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_book_press"
+        android:textColor="@color/colorBlack"
         android:textSize="18dp" />
 
 </LinearLayout>

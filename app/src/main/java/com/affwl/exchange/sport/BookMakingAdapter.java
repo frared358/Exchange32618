@@ -76,14 +76,13 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
     }
 
     String mRunnerName;
-    double mBack,mChipsBack,mLay,mChipsLay;
     int bookId,runnerId;
 //    String bmBallStatus,bmBook,bmName;
 //    int bmId,bmBackPrice,bmBackSize,bmLayPrice,bmLaySize;
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final MarketData book = dataList.get(position);
-
+        final double mBack,mChipsBack,mLay,mChipsLay;
         mRunnerName=book.bmName;
         mBack=book.bmBackPrice;
         mChipsBack=book.bmBackSize;
@@ -98,6 +97,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
         holder.txtVLayData.setText(String.valueOf(mLay));
         holder.txtVLayChips.setText(String.valueOf(mChipsLay));
 
+        //Log.i("ROHITlk",mLay+" "+mChipsLay);
         if(book.bmBook != null){
             try {
                 int bookVal = Integer.parseInt(book.bmBook);
@@ -125,8 +125,13 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    /*if(DataHolder.getData(contextBook,"OneClickBet").equals("true")){
+                        dialogOneClickBet(mRunnerName,R.color.colorRedBetTrasparent,mLay,"Lay");
+                    }else {
+
+                    }*/
                     dialogBetPlace(mRunnerName,R.color.colorRedBetTrasparent,mLay,"Lay");
-                    Log.i("TAG12356","Touchll");
+                    //Log.i("TAG12356","Touchll");
                 }
                 return false;
             }
@@ -136,8 +141,13 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    dialogBetPlace(mRunnerName,R.color.colorBlueBetTrasparent,mBack,"Back");
-                    Log.i("TAG12356","Touchll");
+                /*if(DataHolder.getData(contextBook,"OneClickBet").equals("true")){
+                    dialogOneClickBet(mRunnerName,R.color.colorBlueBetTrasparent,mBack,"Back");
+                }else {
+
+                }*/
+                    dialogBetPlace(mRunnerName, R.color.colorBlueBetTrasparent, mBack, "Back");
+                    //Log.i("TAG12356", "Touchll");
                 }
                 return false;
             }
@@ -183,7 +193,9 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
         txtVStackDecrement = dialog.findViewById(R.id.txtVStackDecrement);
         txtVStackIncrement = dialog.findViewById(R.id.txtVStackIncrement);
         btnBetPlace = dialog.findViewById(R.id.btnBetPlace);
-
+        txtVOddDecrement.setVisibility(View.GONE);
+        txtVOddIncrement.setVisibility(View.GONE);
+        editTxtVOddValue.setEnabled(false);
         //llDialogBetPlace.setBackgroundColor(ContextCompat.getColor(contextMarket, color));
         //txtVRunnerTitle.setText(RunnerTitle);
         STACKVALUE = String.valueOf(DataHolder.STACK_VALUE);
@@ -244,9 +256,9 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
                     stackVal = 0.0;
                     e.printStackTrace();
                 }
-                Log.i("TAG",stackVal+"");
+                //Log.i("TAG",stackVal+"");
                 double dec = DataHolder.decrement(stackVal);
-                Log.i("TAG",dec+"");
+                //Log.i("TAG",dec+"");
                 STACKVALUE = String.format("%.2f",dec);
                 editTxtStackValue.setText(STACKVALUE);
 
@@ -277,6 +289,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
         btnBetPlace.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                DataHolder.showProgress(contextBook);
                 new BetPlaceBookAsyncTask().execute(BackLay,ODDVALUE,STACKVALUE,RunnerTitle);
                 dialog.cancel();
             }
@@ -328,6 +341,53 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
         dialog.show();
     }
 
+//    public void dialogOneClickBet(final String RunnerTitle,int color,final double oddValue,final String BackLay){
+//
+//        final Dialog dialog = new Dialog(contextBook,R.style.Dialog);
+//        dialog.setContentView(R.layout.dialog_one_click_bet);
+//        dialog.setTitle("Please Confirm Your Bet");
+//        dialog.getWindow().setBackgroundDrawableResource(color);
+//
+//        //txtVRunnerTitle = dialog.findViewById(R.id.txtVRunnerTitle);
+//        LinearLayout llOneClickBet = dialog.findViewById(R.id.llOneClickBet);
+//        TextView txtVOneClickTitle = dialog.findViewById(R.id.txtVOneClickTitle);
+//        TextView txtVOddOneClickValue = dialog.findViewById(R.id.txtVOddOneClickValue);
+//        TextView txtVStackOneClickValue = dialog.findViewById(R.id.txtVStackOneClickValue);
+//        TextView txtVProfitOneClickValue = dialog.findViewById(R.id.txtVProfitOneClickValue);
+//        Button btnOneClickCancel = dialog.findViewById(R.id.btnOneClickCancel);
+//        Button btnOneClickConfirm = dialog.findViewById(R.id.btnOneClickConfirm);
+//
+//        txtVOneClickTitle.setText(RunnerTitle);
+//
+//        STACKVALUE = String.valueOf(DataHolder.STACK_VALUE);
+//        txtVStackOneClickValue.setText(STACKVALUE);
+//
+//        ODDVALUE = String.valueOf(oddValue);
+//        txtVOddOneClickValue.setText(ODDVALUE);
+//
+//
+//        PROFITVALUE = String.format("%.2f", DataHolder.profit(oddValue,DataHolder.STACK_VALUE));
+//        txtVProfitOneClickValue.setText(PROFITVALUE);
+//
+//
+//        btnOneClickConfirm.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                new BetPlaceBookAsyncTask().execute(BackLay,ODDVALUE,STACKVALUE,RunnerTitle);
+//                dialog.cancel();
+//            }
+//        });
+//
+//        btnOneClickCancel.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                dialog.cancel();
+//            }
+//        });
+//
+//        dialog.show();
+//    }
+
     public String  BetPlaceApi(String backlay,String odds,String stake,String runnerName){
         InputStream inputStream = null;
         String result = "";
@@ -367,15 +427,15 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
                     result = convertInputStreamToString(inputStream);
                 }
                 catch (Exception e){
-                    Log.e("Check",""+e);
+                    Log.e("ERROR ",""+e);
                 }
             }
             else
                 result = "Did not work!";
-            Log.e("Check","how "+result);
+            //Log.e("Check","how "+result);
 
         } catch (Exception e) {
-            Log.d("InputStream", ""+e);
+            Log.d("ERROR ", ""+e);
         }
         return result;
     }
@@ -389,7 +449,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
 
         @Override
         protected void onPostExecute(String result) {
-            Log.i("Check",""+result);
+            //Log.i("Check",""+result);
 
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
@@ -407,6 +467,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            DataHolder.cancelProgress();
         }
     }
 
@@ -442,7 +503,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
                     result = convertInputStreamToString(inputStream);
                 }
                 catch (Exception e){
-                    Log.e("Check",""+e);
+                    Log.e("ERROR ",""+e);
                 }
             }
             else
@@ -450,7 +511,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
 
 
         } catch (Exception e) {
-            Log.d("InputStream", ""+e);
+            Log.d("ERROR ", ""+e);
         }
         return result;
     }
@@ -464,8 +525,8 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
 
         @Override
         protected void onPostExecute(String result) {
-            Log.i("Check",""+result);
-            Toast.makeText(contextBook, ""+result, Toast.LENGTH_SHORT).show();
+            //Log.i("Check",""+result);
+            //Toast.makeText(contextBook, ""+result, Toast.LENGTH_SHORT).show();
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
                 JSONArray jsonArray = new JSONArray(jsonObjMain.getString("data"));

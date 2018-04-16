@@ -126,6 +126,8 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         View headerview = navigationView.getHeaderView(0);
         acc = headerview.findViewById(R.id.acc);
 
+
+
         acc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,6 +144,15 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
 //                Toast.makeText(FxActivity.this, "click", Toast.LENGTH_SHORT).show();
             }
         });
+
+        navigationView.getMenu().getItem(0).setChecked(true);
+        currentFragment =new Fx_Fragment_Quotes();
+        FragmentTransaction fragmentTransaction0=getSupportFragmentManager().beginTransaction();
+        fragmentTransaction0.replace(R.id.xzz,currentFragment);
+        fragmentTransaction0.commit();
+        layout.setVisibility(View.INVISIBLE);
+        invalidateOptionsMenu();
+        setTitle("Quotes");
 
     }
 

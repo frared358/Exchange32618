@@ -1,9 +1,26 @@
 package com.affwl.exchange;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import microsoft.aspnet.signalr.client.SignalRFuture;
@@ -25,6 +42,25 @@ public class DataHolder {
     public static String SPORT_NAME;
     public static String TOURNAMENT_NAME;
     public static String MATCH_NAME;
+    public static String MATCH_DATE;
+
+    public static ProgressDialog progressDialog;
+    public static void showProgress(Context context){
+        progressDialog=new ProgressDialog(context);
+        progressDialog.setTitle("Loading");
+        progressDialog.setMessage("Please Wait ... ");
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+    }
+
+    public static void cancelProgress(){
+        if(progressDialog != null){
+            progressDialog.dismiss();
+        }
+    }
+
+
 
 //  Stack Share Prefrences
     private static SharedPreferences getPrefSTACK(Context context) {
@@ -102,4 +138,116 @@ public class DataHolder {
         return (odd-1)*stack;
     }
 
+    public static String convertInputStreamToString(InputStream inputStream) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+        while((line = bufferedReader.readLine()) != null){
+            result += line;
+            //Log.e("Line",result);
+        }
+
+        inputStream.close();
+        return result;
+    }
+
+    public static String  getApi(String url){
+        InputStream inputStream = null;
+        String result = "";
+        try {
+
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpGet Httpget = new HttpGet(url);
+
+            Httpget.setHeader("Accept", "application/json");
+            Httpget.setHeader("Content-type", "application/json");
+            Httpget.setHeader("Token", DataHolder.LOGIN_TOKEN);
+
+            HttpResponse httpResponse = httpclient.execute(Httpget);
+            inputStream = httpResponse.getEntity().getContent();
+
+            if(inputStream != null){
+                try {
+                    result = convertInputStreamToString(inputStream);
+                }
+                catch (Exception e){
+                    Log.e("ERROR ",""+e);
+                }
+            }
+            else
+                result = "Did not work!";
+
+
+        } catch (Exception e) {
+            Log.d("ERROR ", ""+e);
+        }
+        return result;
+    }
+
+    public static String  setApi(String url){
+
+        InputStream inputStream = null;
+
+        String result = "";
+        try {
+
+            HttpClient httpclient = new DefaultHttpClient();
+
+            HttpPost httpPost = new HttpPost(url);
+
+            httpPost.setHeader("Accept", "application/json");
+            httpPost.setHeader("Content-type", "application/json");
+            httpPost.setHeader("Token", DataHolder.LOGIN_TOKEN);
+            Log.e("Check","rtuyty");
+
+            HttpResponse httpResponse = httpclient.execute(httpPost);
+            Log.e("Check","tjhttjj");
+
+            inputStream = httpResponse.getEntity().getContent();
+
+            if(inputStream != null){
+                try {
+                    result = convertInputStreamToString(inputStream);
+                    Log.e("Check","hey");
+
+                }
+                catch (Exception e){
+                    Log.e("ERROR ",""+e);
+                }
+            }
+            else
+                result = "Did not work!";
+            Log.e("Check","how "+result);
+
+
+
+        } catch (Exception e) {
+
+            Log.d("ERROR ", ""+e);
+        }
+
+        Log.e("result",result+"");
+        //Toast.makeText(MainActivity.this, ""+result, Toast.LENGTH_SHORT).show();
+        return result;
+    }
+
+    public static void unAuthorized(Context context,String result){
+        try {
+            JSONObject jsonObjMain = new JSONObject(result.toString());
+            JSONObject jsonDes = new JSONObject(jsonObjMain.getString("description"));
+            String UnAuthorized = jsonDes.getString("result");
+
+            if(UnAuthorized.equalsIgnoreCase("UnAuthorized access found")){
+                Toast.makeText(context, "Token Expire", Toast.LENGTH_SHORT).show();
+                context.startActivity(new Intent(context, LoginActivity.class));
+            }
+        } catch (JSONException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    public static final String ACTION_SEND_ACTIVE = "com.affwl.exchange.sport.RESPONSE";
+    public static final String ACTION_SEND_FANCY_BOOKMAKING = "com.affwl.exchange.sport.FANCY_BOOKMAKING";
+    public static final String keySIGNALR = "SIGNALR";
+    public static final String keyFANCY_BOOKMAKING = "FANCY_BOOKMAKING";
 }

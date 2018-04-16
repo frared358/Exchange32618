@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -52,12 +53,12 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView txtVFancyName,txtVYesRate,txtVYesScore,txtVNoRate,txtVNoScore,txtVBookData,txtVFancyActiveResult,txtVFancyBook;
         LinearLayout llYes,llNo,llFancyMarketData;
-
+        Handler handler;
         public MyViewHolder(View view) {
             super(view);
             txtVFancyName = view.findViewById(R.id.txtVFancyName);
-            txtVYesRate = view.findViewById(R.id.txtVYesScore);
-            txtVYesScore = view.findViewById(R.id.txtVYesRate);
+            txtVYesRate = view.findViewById(R.id.txtVYesRate);
+            txtVYesScore = view.findViewById(R.id.txtVYesScore);
             txtVNoRate = view.findViewById(R.id.txtVNoRate);
             txtVNoScore = view.findViewById(R.id.txtVNoScore);
             txtVBookData = view.findViewById(R.id.txtVBookData);
@@ -67,6 +68,7 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
             llFancyMarketData = view.findViewById(R.id.llFancyMarketData);
             txtVFancyBook = view.findViewById(R.id.txtVFancyBook);
             txtVFancyBook.setVisibility(View.VISIBLE);
+            handler= new Handler();
         }
     }
 
@@ -75,10 +77,30 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
         this.dataList = dataList;
     }
 
-    int fancyId;
+    public void updateNoRate(MyViewHolder holder,String s) {
+        holder.txtVNoRate.setText(String.valueOf(s));
+        holder.txtVNoRate.invalidate();
+    }
+    public void updateYesRate(MyViewHolder holder,String s) {
+        holder.txtVYesRate.setText(String.valueOf(s));
+        holder.txtVYesRate.invalidate();
+    }
+
+    public void updateNoScore(MyViewHolder holder,String s) {
+        holder.txtVNoScore.setText(String.valueOf(s));
+        holder.txtVNoScore.invalidate();
+    }
+
+    public void updateYesScore(MyViewHolder holder,String s) {
+        holder.txtVYesScore.setText(String.valueOf(s));
+        holder.txtVYesScore.invalidate();
+    }
+
+    int fancyId,matchId;
     String fancyScore,fancyRate,fancyRunnerName;
+
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
         final MarketData fancy = dataList.get(position);
 
         holder.txtVFancyName.setText(fancy.RunnerName);
@@ -88,6 +110,7 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
         holder.txtVNoScore.setText(fancy.noScore);
         fancyRunnerName = fancy.RunnerName;
         fancyId = fancy.fancyId;
+        matchId = fancy.matchId;
 
         if (!fancy.book.equals("-")){
         try {
@@ -134,10 +157,16 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
         holder.txtVFancyBook.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                DataHolder.showProgress(contextFancy);
                 String matchId = DataHolder.getData(contextFancy,"Match_Id");
                 new FancyBookAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/Fancybook?mtid="+matchId+"&fid="+fancyId);
             }
         });
+
+
+
+
+
     }
 
 
@@ -154,16 +183,14 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
     }
 
     public void dialogFancyBook(){
-        final Dialog dialog = new Dialog(contextFancy);
+        final Dialog dialog = new Dialog(contextFancy,R.style.Dialog);
         dialog.setContentView(R.layout.dialog_fancy_book_list);
         dialog.setTitle(fancyRunnerName.toUpperCase());
         dialog.getWindow().setBackgroundDrawableResource(R.color.colorGreay);
         Button btnCancelDialog = dialog.findViewById(R.id.btnCancelDialog);
-        LinearLayout llFAncyBook = dialog.findViewById(R.id.llFAncyBook);
         LinearLayout llFAncyBookKey = dialog.findViewById(R.id.llFAncyBookKey);
         LinearLayout llFAncyBookValue = dialog.findViewById(R.id.llFAncyBookValue);
-        float TEN = contextFancy.getResources().getDimension(R.dimen.sp10);
-        float ZERO = contextFancy.getResources().getDimension(R.dimen.sp10);
+
         try{
             for (int i = 0; i < KeyFancyBook.size() ; i++)
             {
@@ -171,8 +198,8 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
                 params.setMargins(0,5,0,5);
                 TextView tvScore = new TextView(contextFancy);
                 TextView tvAmt = new TextView(contextFancy);
-                tvScore.setTextSize(10);
-                tvAmt.setTextSize(10);
+                tvScore.setTextSize(12);
+                tvAmt.setTextSize(12);
                 tvScore.setGravity(Gravity.CENTER);
                 tvAmt.setGravity(Gravity.CENTER);
                 tvAmt.setPadding(10,0,10,0);
@@ -191,12 +218,12 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
 
                 llFAncyBookKey.addView(tvScore);
                 llFAncyBookValue.addView(tvAmt);
-                Log.i("ValueFancyBook.get(i)",ValueFancyBook.get(i));
-                Log.i("KeyFancyBook.get(i)",KeyFancyBook.get(i));
+
+
             }
         }
         catch(Exception e){
-            Log.i("CountryCount1",e.toString());
+            Log.i("ERROR ",e.toString());
         }
 
         btnCancelDialog.setOnClickListener(new View.OnClickListener(){
@@ -205,9 +232,61 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
                 dialog.cancel();
             }
         });
-
+        DataHolder.cancelProgress();
         dialog.show();
+
     }
+
+//    public void dialogOneClickBet(final String RunnerTitle,int color, String scoreValue,final String YesNo){
+//
+//        final Dialog dialog = new Dialog(contextFancy,R.style.Dialog);
+//        dialog.setContentView(R.layout.dialog_one_click_bet);
+//        dialog.setTitle("Please Confirm Your Bet");
+//        dialog.getWindow().setBackgroundDrawableResource(color);
+//
+//        //txtVRunnerTitle = dialog.findViewById(R.id.txtVRunnerTitle);
+//        LinearLayout llOneClickBet = dialog.findViewById(R.id.llOneClickBet);
+//        TextView txtVOneClickTitle = dialog.findViewById(R.id.txtVOneClickTitle);
+//        TextView txtVOddOneClickValue = dialog.findViewById(R.id.txtVOddOneClickValue);
+//        TextView txtVStackOneClickValue = dialog.findViewById(R.id.txtVStackOneClickValue);
+//        TextView txtVProfitOneClickValue = dialog.findViewById(R.id.txtVProfitOneClickValue);
+//        TextView txtVOneClickOddScore = dialog.findViewById(R.id.txtVOneClickOddScore);
+//        TextView txtVOneClickProfitLiability = dialog.findViewById(R.id.txtVOneClickProfitLiability);
+//
+//        Button btnOneClickCancel = dialog.findViewById(R.id.btnOneClickCancel);
+//        Button btnOneClickConfirm = dialog.findViewById(R.id.btnOneClickConfirm);
+//        txtVOneClickOddScore.setText("Score");
+//        txtVOneClickTitle.setText(RunnerTitle);
+//
+//        if (YesNo.equalsIgnoreCase("yes")){
+//            txtVOneClickProfitLiability.setText("Profit");
+//        }else {
+//            txtVOneClickProfitLiability.setText("Liability");
+//        }
+//        STACKVALUE = String.valueOf(DataHolder.STACK_VALUE);
+//        txtVStackOneClickValue.setText(STACKVALUE);
+//
+//        PROFITVALUE = String.format("%.2f", DataHolder.STACK_VALUE);
+//        txtVProfitOneClickValue.setText(PROFITVALUE);
+//
+//        btnOneClickConfirm.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//
+//                new BetPlaceFancyAsyncTask().execute(YesNo,STACKVALUE,RunnerTitle);
+//                dialog.cancel();
+//            }
+//        });
+//
+//        btnOneClickCancel.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                dialog.cancel();
+//            }
+//        });
+//
+//        dialog.show();
+//    }
 
     TextView txtVProfitValue,txtVOddIncrement,txtVOddDecrement,txtVStackDecrement,txtVStackIncrement,txtVOddScore;
     EditText editTxtStackValue,editTxtVOddValue;
@@ -297,6 +376,7 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
         btnBetPlace.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                DataHolder.showProgress(contextFancy);
                 new BetPlaceFancyAsyncTask().execute(YesNo,STACKVALUE,RunnerTitle);
                 dialog.cancel();
             }
@@ -335,7 +415,7 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost("http://173.212.248.188/pclient/Prince.svc/Bets/PlaceFancyBet");
 
-            Log.i("Check",yesno+" "+fancyId+" "+fancyRate+" "+fancyScore+" "+runnerName+" "+Integer.parseInt(DataHolder.getData(contextFancy,"Match_Id")));
+            //Log.i("Check",yesno+" "+fancyId+" "+fancyRate+" "+fancyScore+" "+runnerName+" "+Integer.parseInt(DataHolder.getData(contextFancy,"Match_Id")));
             String json = "";
             JSONObject jsonObject = new JSONObject();
             jsonObject.accumulate("yesno",yesno);
@@ -367,15 +447,15 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
                     result = convertInputStreamToString(inputStream);
                 }
                 catch (Exception e){
-                    Log.e("Check",""+e);
+                    Log.e("ERROR ",""+e);
                 }
             }
             else
                 result = "Did not work!";
-            Log.e("Check","how "+result);
+            //Log.e("Check","how "+result);
 
         } catch (Exception e) {
-            Log.d("InputStream", ""+e);
+            Log.d("ERROR ", ""+e);
         }
         return result;
     }
@@ -389,7 +469,7 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
 
         @Override
         protected void onPostExecute(String result) {
-            Log.i("Check",""+result);
+            //Log.i("Check",""+result);
 
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
@@ -407,6 +487,7 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            DataHolder.cancelProgress();
         }
     }
 
@@ -442,7 +523,7 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
                     result = convertInputStreamToString(inputStream);
                 }
                 catch (Exception e){
-                    Log.e("Check",""+e);
+                    Log.e("ERROR ",""+e);
                 }
             }
             else
@@ -450,7 +531,7 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
 
 
         } catch (Exception e) {
-            Log.d("InputStream", ""+e);
+            Log.d("ERROR ", ""+e);
         }
         return result;
     }
@@ -462,12 +543,12 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
 
         @Override
         protected String doInBackground(final String... urls) {
-            return FancyBookApi(urls[0]);
+            return DataHolder.getApi(urls[0]);
         }
 
         @Override
         protected void onPostExecute(String result) {
-            Log.i("Check",""+result);
+            //Log.i("Check",""+result);
             //Toast.makeText(contextFancy, ""+result, Toast.LENGTH_SHORT).show();
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
@@ -481,13 +562,101 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
                     KeyFancyBook.add(Key);
                     ValueFancyBook.add(Value);
                 }
-
                 dialogFancyBook();
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    int COUNTBOOK=0;
+    private class getBookMakingRefreshAsyncTask extends AsyncTask<MyViewHolder, Void, MyViewHolder> {
+
+        String Value;
+        @Override
+        protected MyViewHolder doInBackground(MyViewHolder... urls) {
+            Value = getFancyApi(urls[0]);
+            return urls[0];
+        }
+
+        @Override
+        protected void onPostExecute(MyViewHolder holder) {
+            super.onPostExecute(holder);
+            try {
+                JSONObject jsonObjMain = new JSONObject(Value.toString());
+                String bookmakingData = jsonObjMain.getString("bookmakingData");
+                JSONObject jsonBook = new JSONObject(bookmakingData);
+                int BookId = jsonBook.getInt("id");
+
+                String fancyData = jsonObjMain.getString("data");
+                JSONArray fancyArrayData = new JSONArray(fancyData);
+                int lengthFancy = fancyArrayData.length();
+                //Log.i("TAG456",fancyData);
+                String yesRate= null,yesScore= null,noRate = null,noScore= null,runnerName,ballStatus,book;
+                if(lengthFancy>0){
+
+                    for(int i =0 ; i<lengthFancy;i++){
+                        JSONObject key = fancyArrayData.getJSONObject(i);
+                        yesRate = key.getString("yesRate");
+                        yesScore = key.getString("yesScore");
+                        noRate = key.getString("noRate");
+                        noScore = key.getString("noScore");
+                        runnerName = key.getString("name");
+                        ballStatus = key.getString("ballStatus");
+                        book = key.getString("book");
+                        int fancyId = key.getInt("id");
+
+                    }
+
+                }
+
+                updateNoRate(holder,noRate);
+                updateYesRate(holder,yesRate);
+                updateNoScore(holder,noScore);
+                updateYesScore(holder,yesScore);
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public String  getFancyApi(MyViewHolder holder){
+        InputStream inputStream = null;
+        String result = "";
+        try {
+
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpGet Httpget = new HttpGet("http://173.212.248.188/pclient/Prince.svc/Data/FancyData?mtid="+matchId);
+
+            Httpget.setHeader("Accept", "application/json");
+            Httpget.setHeader("Content-type", "application/json");
+            Httpget.setHeader("Token", DataHolder.LOGIN_TOKEN);
+
+            HttpResponse httpResponse = httpclient.execute(Httpget);
+            inputStream = httpResponse.getEntity().getContent();
+
+            if(inputStream != null){
+                try {
+                    result = convertInputStreamToString(inputStream);
+                }
+                catch (Exception e){
+                    Log.e("ERROR ",""+e);
+                }
+            }
+            else
+                result = "Did not work!";
+            //Log.e("Check","how "+result);
+
+        } catch (Exception e) {
+            Log.d("ERROR ", ""+e);
+        }
+
+        return result;
+
+
     }
 
 }
