@@ -26,8 +26,9 @@
         android:title="cd"
         app:showAsAction="always">
 
-        <menu>
-
+        <layer-list
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
             <item
                 android:id="@+id/c1"
                 android:title="EURUSD"
@@ -61,7 +62,7 @@
                 android:id="@+id/c8"
                 android:title="NZDUSD"
                 app:showAsAction="always" />
-        </menu>
+        </layer-list>
 
 
     </item>

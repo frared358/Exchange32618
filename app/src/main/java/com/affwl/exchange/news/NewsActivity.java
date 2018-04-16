@@ -15,7 +15,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -48,6 +51,8 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
     List<NewsItemDetails> newsItemDetailsList;
     List links;
     ProgressDialog progressDialog;
+    ImageView loading_news;
+
     ListView list_rss;
     ArrayList<String> myList=new ArrayList<>();
 
@@ -66,6 +71,7 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
 
     private void initiateComponent() {
         list_rss=findViewById(R.id.list_rss);
+        loading_news=findViewById(R.id.loading_news);
 
         list_rss.setOnItemClickListener(NewsActivity.this);
 
@@ -149,12 +155,15 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
         protected void onPreExecute() {
             super.onPreExecute();
 
-            progressDialog=new ProgressDialog(NewsActivity.this);
+         /*   progressDialog=new ProgressDialog(NewsActivity.this);
             progressDialog.setTitle("Fetching the RSS");
             progressDialog.setMessage("Please Wait ... ");
             progressDialog.setCancelable(false);
             progressDialog.setCanceledOnTouchOutside(false);
-            progressDialog.show();
+            progressDialog.show();*/
+
+            Animation startRotation= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.animate_progressbar);
+            loading_news.startAnimation(startRotation);
         }
 
         @Override
@@ -244,10 +253,14 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
             adapter = new NewsAdapter(NewsActivity.this, newsItemDetailsList);
             list_rss.setAdapter(adapter);
 
-            if(progressDialog!=null)
+           /* if(progressDialog!=null)
             {
                 progressDialog.dismiss();
-            }
+            }*/
+           if(loading_news.getVisibility()==View.VISIBLE)
+           {
+               loading_news.setVisibility(View.GONE);
+           }
         }
     }
 

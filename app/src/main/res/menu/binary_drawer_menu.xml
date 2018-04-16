@@ -5,27 +5,33 @@
 
     <item
         android:id="@+id/mHome"
-        android:title="@string/home_page" />
+        android:title=""
+        android:icon="@drawable/ic_home_black_24dp"/>
 
     <item
         android:id="@+id/mProduct"
-        android:title="@string/product" />
+        android:title=""
+        android:icon="@drawable/product_icon"/>
 
     <item
         android:id="@+id/mAsset"
-        android:title="@string/asset" />
+        android:title=""
+        android:icon="@drawable/asset_icon" />
 
     <item
         android:id="@+id/mTrade"
-        android:title="@string/trade" />
+        android:title=""
+        android:icon="@drawable/trade_icon" />
 
     <item
         android:id="@+id/mAccount"
-        android:title="@string/account" />
+        android:title=""
+        android:icon="@drawable/account_icon"/>
 
     <item
         android:id="@+id/mPortfolio"
-        android:title="@string/portfolio" />
+        android:title=""
+        android:icon="@drawable/portfolio_icon" />
 
 
 </menu>

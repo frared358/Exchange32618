@@ -44,6 +44,8 @@ public class BinaryPotfolioActivity extends AppCompatActivity implements Navigat
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navViewBinaryPortfolio);
+        navigationView.setItemIconTintList(null);
+
         assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
 
