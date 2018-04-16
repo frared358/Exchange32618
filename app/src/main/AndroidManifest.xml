@@ -70,6 +70,7 @@
         <activity android:name=".binary.BinaryPotfolioActivity" />
         <activity android:name=".fx.FxActivity" >
 
+
         </activity>
         <activity android:name=".fx.CustomSpinner" />
         <activity android:name=".fx.Problem_Description" />
