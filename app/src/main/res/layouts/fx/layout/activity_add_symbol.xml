@@ -70,7 +70,7 @@ android:id="@+id/autotv"
         android:textColor="@color/colorAccent"
         android:text="Forex"
 
-        android:textSize="15dp"/>
+        android:textSize="16dp"/>
 
 </LinearLayout>
     <View
