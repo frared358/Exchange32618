@@ -22,7 +22,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class IndieAlertFragment extends Fragment implements View.OnClickListener {
 
-    TextView indie_sounds,ringtone_indie;
+    TextView indie_sounds,ringtone_indie,indie_reminder,indie_messages;
     private int TONE_PICKER=904;
     Ringtone currentRingtone;
     Uri currentTone;
@@ -34,7 +34,12 @@ public class IndieAlertFragment extends Fragment implements View.OnClickListener
 
         indie_sounds=view.findViewById(R.id.indie_sounds);
         ringtone_indie=view.findViewById(R.id.ringtone_indie);
+        indie_messages=view.findViewById(R.id.indie_messages);
+        indie_reminder=view.findViewById(R.id.indie_reminder);
+
         indie_sounds.setOnClickListener(this);
+        indie_reminder.setOnClickListener(this);
+        indie_messages.setOnClickListener(this);
         return view;
     }
 
@@ -52,6 +57,14 @@ public class IndieAlertFragment extends Fragment implements View.OnClickListener
                 intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
                 startActivityForResult(intent, TONE_PICKER);
                 break;
+
+            case R.id.indie_reminder:
+                startActivity(new Intent(v.getContext(),IndieReminderActivity.class));
+                break;
+
+            case R.id.indie_messages:
+                startActivity(new Intent(v.getContext(),MessageMainActivity.class));
+                break;
         }
     }
 
@@ -60,7 +73,7 @@ public class IndieAlertFragment extends Fragment implements View.OnClickListener
         Log.i("Request Code"," "+requestCode);
         switch (resultCode) {
             case RESULT_OK:
-                if (requestCode == 903) {
+                if (requestCode == 904) {
                     currentTone = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
                     ringtone_indie.setVisibility(View.VISIBLE);
                     currentRingtone = RingtoneManager.getRingtone(getActivity(), currentTone);

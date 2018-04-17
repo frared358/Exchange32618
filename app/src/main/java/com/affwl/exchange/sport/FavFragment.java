@@ -20,7 +20,7 @@ public class FavFragment extends Fragment {
 
     TabLayout tabLayoutFav;
     ViewPager viewPagerFav;
-    private int[] icon = {R.drawable.play,R.drawable.star_small};
+    private int[] icon = {R.drawable.star_small,R.drawable.play};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -72,9 +72,9 @@ public class FavFragment extends Fragment {
         public Fragment getItem(int position) {
 
             if (position ==0) {
-                return new FragmentBlankSport();
+                return new FragmentFavouriteData();
             } else {
-                return new FragmentBlankSport();
+                return new FragmentTv();
             }
         }
 

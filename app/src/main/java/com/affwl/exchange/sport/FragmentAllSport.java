@@ -53,81 +53,23 @@ public class FragmentAllSport extends Fragment{
         recycleViewHighlights.setItemAnimator(new DefaultItemAnimator());
 
         sportsNameAdapter = new SportsNameAdapter(FragmentAllSport.this.getActivity(),HighlightsList);
-//        recycleViewHighlights.addOnItemTouchListener(
-//                new SportNameRecycleItemClickListener(getActivity(), new SportNameRecycleItemClickListener.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(View view, int position) {
-//                        try {
-//                            sportsNameAdapter.setSelected(position);
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                })
-//        );
-        new HighlightsAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Navigation/SportsList");
+
+        new SportListAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Navigation/SportsList");
         //new HighlightsAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/Highlights?sid=4");
 
         return view;
     }
 
-
-    public String  HighligthsApi(String url){
-        InputStream inputStream = null;
-        String result = "";
-        try {
-
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpGet Httpget = new HttpGet(url);
-
-            Httpget.setHeader("Accept", "application/json");
-            Httpget.setHeader("Content-type", "application/json");
-            Httpget.setHeader("Token", DataHolder.LOGIN_TOKEN);
-
-            HttpResponse httpResponse = httpclient.execute(Httpget);
-            inputStream = httpResponse.getEntity().getContent();
-
-            if(inputStream != null){
-                try {
-                    result = convertInputStreamToString(inputStream);
-                }
-                catch (Exception e){
-                    Log.e("Check",""+e);
-                }
-            }
-            else
-                result = "Did not work!";
-            Log.e("Check","how "+result);
-
-        } catch (Exception e) {
-            Log.d("InputStream", ""+e);
-        }
-        return result;
-    }
-
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null){
-            result += line;
-            Log.e("Line",result);
-        }
-
-        inputStream.close();
-        return result;
-    }
-
-    private class HighlightsAsyncTask extends AsyncTask<String, Void, String> {
+    private class SportListAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
-            return HighligthsApi(urls[0]);
+            return DataHolder.getApi(urls[0]);
         }
 
         @Override
         protected void onPostExecute(String result) {
-            Log.i("Check",""+result);
+            //Log.i("Check",""+result);
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
                 String strData = jsonObjMain.getString("data");
@@ -139,40 +81,19 @@ public class FragmentAllSport extends Fragment{
 
                 for(int i =0 ; i<length;i++){
                     JSONObject key = arrayData.getJSONObject(i);
-//                    String matchName = key.getString("matchName");
-//                    String matchDate = key.getString("matchDate");
-//                    String bfId = key.getString("bfId");
-//                    int marketId = key.getInt("marketId");
-//                    int matchId = key.getInt("matchId");
+
                     String name = key.getString("name");
                     int matchId = key.getInt("id");
-                    //Log.i("TAG",""+matchName);
-                    //HighlightsList.add(new SportsData(matchName,matchDate,bfId,matchId,marketId));
+
                     HighlightsList.add(new SportsData(name,matchId));
                     sportsNameAdapter.notifyDataSetChanged();
-//                    JSONObject key = arrayData.getJSONObject(i);
-//                    String sportName = key.getString("name");
-//                    int sportId = key.getInt("id");
-//                    Log.i("TAG",""+sportName);
-//                    HighlightsList.add(new SportsData(sportName,sportId));
-//                    /*,matchNamemarketId
-//                            , matchDate
-//                            , matchId
-//                            , runner1Back
-//                            , runner1Lay
-//                            , runner1Name
-//                            , runner2Back
-//                            , runner2Lay
-//                            , runner2Name
-//                            , runner3Back
-//                            , runner3Lay
-//                            , runner3Name*/
-//                    sportsNameAdapter.notifyDataSetChanged();
+
                 }
                 recycleViewHighlights.setAdapter(sportsNameAdapter);
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                DataHolder.unAuthorized(getActivity(),result);
             }
         }
     }

@@ -68,7 +68,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.My
         holder.llTournamentData.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Toast.makeText(contextT, ""+position, Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(contextT,MatchListActivity.class);
                 intent.putExtra("tournamentName",tournament.txtVTournamentName);
                 intent.putExtra("tournamentId",tournament.txtVTournamentId);

@@ -61,7 +61,7 @@ public class TeenPattiAlertFragment extends Fragment implements View.OnClickList
         Log.i("Request Code"," "+requestCode);
         switch (resultCode) {
             case RESULT_OK:
-                if (requestCode == 903) {
+                if (requestCode == 907) {
                     currentTone = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
                     ringtone_teenpatti.setVisibility(View.VISIBLE);
                     currentRingtone = RingtoneManager.getRingtone(getActivity(), currentTone);

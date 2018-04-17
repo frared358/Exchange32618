@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.affwl.exchange.DataHolder;
@@ -38,10 +39,13 @@ public class MatchFragment extends Fragment {
     RecyclerView recycleViewMatchData;
     private List<MatchData> MatchList = new ArrayList<>();
     MatchAdapter matchAdapter;
-
+    TextView txtMatchNoData;
+    String matchedbets;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_match, container, false);
+
+        txtMatchNoData = view.findViewById(R.id.txtMatchNoData);
         recycleViewMatchData = view.findViewById(R.id.recycleViewMatchData);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -49,63 +53,21 @@ public class MatchFragment extends Fragment {
         recycleViewMatchData.setLayoutManager(mLayoutManager);
         recycleViewMatchData.setItemAnimator(new DefaultItemAnimator());
         matchAdapter = new MatchAdapter(MatchFragment.this.getActivity(),MatchList);
-        new MatchAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Reports/GetCurrentBets");
 
+        String s = getArguments().getString("matchedbets");
+        new MatchDataAsyncTask().execute(s);
+
+        //new MatchAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Reports/GetCurrentBets");
 
         return view;
     }
 
-    public String  MatchApi(String url){
-        InputStream inputStream = null;
-        String result = "";
-        try {
-
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpGet Httpget = new HttpGet(url);
-
-            Httpget.setHeader("Accept", "application/json");
-            Httpget.setHeader("Content-type", "application/json");
-            Httpget.setHeader("Token", DataHolder.LOGIN_TOKEN);
-
-            HttpResponse httpResponse = httpclient.execute(Httpget);
-            inputStream = httpResponse.getEntity().getContent();
-
-            if(inputStream != null){
-                try {
-                    result = convertInputStreamToString(inputStream);
-                }
-                catch (Exception e){
-                    Log.e("Check",""+e);
-                }
-            }
-            else
-                result = "Did not work!";
-            Log.e("Check","how "+result);
-
-        } catch (Exception e) {
-            Log.d("InputStream", ""+e);
-        }
-        return result;
-    }
-
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null){
-            result += line;
-            Log.e("Line",result);
-        }
-
-        inputStream.close();
-        return result;
-    }
 
     private class MatchAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
-            return MatchApi(urls[0]);
+            return DataHolder.getApi(urls[0]);
         }
 
         @Override
@@ -118,11 +80,11 @@ public class MatchFragment extends Fragment {
 
                 JSONArray arrayData = new JSONArray(strData);
                 int length = arrayData.length();
-//
-//                if(length == 0){
-//                    txtVNoData.setVisibility(View.VISIBLE);
-//                }
-//
+
+                if(length == 0){
+                    txtMatchNoData.setVisibility(View.VISIBLE);
+                }
+
                 for(int i =0 ; i<length;i++){
                     JSONObject key = arrayData.getJSONObject(i);
                     String selection = key.getString("selection");
@@ -131,8 +93,9 @@ public class MatchFragment extends Fragment {
                     String type = key.getString("type");
                     String placedDate = key.getString("placedDate");
                     String marketName = key.getString("marketName");
+                    boolean CHECKCANCEL = false;
 
-                    MatchList.add(new MatchData(selection,odds,matchedStake,type,placedDate,marketName));
+                    MatchList.add(new MatchData(selection,odds,matchedStake,type,placedDate,marketName,CHECKCANCEL));
 
                     matchAdapter.notifyDataSetChanged();
 
@@ -141,7 +104,53 @@ public class MatchFragment extends Fragment {
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                DataHolder.unAuthorized(getActivity(),result);
             }
         }
     }
+
+    private class MatchDataAsyncTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            return urls[0];
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            //Log.i("Check123",""+result);
+            //Toast.makeText(MatchFragment.this.getContext(), ""+result, Toast.LENGTH_SHORT).show();
+            try {
+                JSONArray arrayData = new JSONArray(result);
+                int length = arrayData.length();
+
+                if(length == 0){
+                    txtMatchNoData.setVisibility(View.VISIBLE);
+                }
+
+                for(int i =0 ; i<length;i++){
+                    JSONObject key = arrayData.getJSONObject(i);
+                    String selection = key.getString("selection");
+                    String matchedStake = key.getString("matchedStake");
+                    String odds = key.getString("odds");
+                    String type = key.getString("type");
+                    String placedDate = key.getString("placedDate");
+                    String marketName = key.getString("marketName");
+                    boolean CHECKCANCEL = false;
+
+                    MatchList.add(new MatchData(selection,odds,matchedStake,type,placedDate,marketName,CHECKCANCEL));
+
+                    matchAdapter.notifyDataSetChanged();
+
+                }
+                recycleViewMatchData.setAdapter(matchAdapter);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                DataHolder.unAuthorized(getActivity(),result);
+            }
+        }
+    }
+
+
 }

@@ -44,7 +44,7 @@
         android:layout_margin="5dp"
         android:textStyle="bold"
         android:visibility="gone"
-        android:background="@color/colorYellow"/>
+        android:background="@drawable/button_book_press"/>
 
     <LinearLayout
         android:id="@+id/llFancyMarketData"

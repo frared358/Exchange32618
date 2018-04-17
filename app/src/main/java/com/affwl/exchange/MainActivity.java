@@ -1,5 +1,6 @@
 package com.affwl.exchange;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,14 +18,16 @@ import com.affwl.exchange.fx.FxActivity;
 import com.affwl.exchange.fx.Fx_Fragment_Quotes;
 import com.affwl.exchange.indie.IndieActivity;
 import com.affwl.exchange.news.NewsActivity;
+import com.affwl.exchange.reports.ReportsActivity;
 import com.affwl.exchange.settings.SettingsMainActivity;
 import com.affwl.exchange.sport.SportActivity;
+import com.affwl.exchange.trades.TradesActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView txtVIndie,txtV60Sec,txtVsports,fx;
     ImageView imgVIndie,imgV60Sec,imgVsports,imgVsportsCup,imgfx;
-    LinearLayout news_layout,settings_layout,alerts_layout;
+    LinearLayout news_layout,settings_layout,alerts_layout,trade_layout,reports_layout;
 
 
     @Override
@@ -46,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imgfx=(ImageView)findViewById(R.id.imgfx);
 
         news_layout=findViewById(R.id.news_layout);
+        trade_layout=findViewById(R.id.trade_layout);
+        reports_layout=findViewById(R.id.reports_layout);
         settings_layout=findViewById(R.id.settings_layout);
         alerts_layout=findViewById(R.id.alerts_layout);
 
@@ -59,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imgfx.setOnClickListener(this);
 
         news_layout.setOnClickListener(this);
+        trade_layout.setOnClickListener(this);
+        reports_layout.setOnClickListener(this);
         settings_layout.setOnClickListener(this);
         alerts_layout.setOnClickListener(this);
 
@@ -90,6 +97,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this,NewsActivity.class));
                 break;
 
+            case R.id.trade_layout:
+                startActivity(new Intent(this, TradesActivity.class));
+                break;
+
+            case R.id.reports_layout:
+                startActivity(new Intent(this, ReportsActivity.class));
+                break;
+
             case R.id.alerts_layout:
                 startActivity(new Intent(this, AlertsActivity.class));
                 break;
@@ -99,5 +114,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        dialogLogout();
+    }
+
+    void dialogLogout(){
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_logout);
+
+        TextView txtVOK =  dialog.findViewById(R.id.txtVOK);
+        TextView txtVCancel =  dialog.findViewById(R.id.txtVCancel);
+
+        txtVOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.exit(0);
+            }
+        });
+
+        txtVCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 }

@@ -57,7 +57,7 @@ public class MatchListActivity extends AppCompatActivity implements View.OnClick
 
         int tournamentId = intent.getIntExtra("tournamentId",0);
         int sportId = intent.getIntExtra("sportId",0);
-        Toast.makeText(this, tournamentId+" "+sportId, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, tournamentId+" "+sportId, Toast.LENGTH_SHORT).show();
 
         txtVSportNameM.setText(DataHolder.SPORT_NAME+"> ");
         txtVTournamentNameM.setText(intent.getStringExtra("tournamentName")+"> ");
@@ -72,52 +72,6 @@ public class MatchListActivity extends AppCompatActivity implements View.OnClick
         matchListAdapter = new MatchListAdapter(this,MatchList);
 
         new MatchListAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Navigation/MatchList?id="+sportId+"&tourid="+tournamentId);
-    }
-
-    public String  MatchListApi(String url){
-        InputStream inputStream = null;
-        String result = "";
-        try {
-
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpGet Httpget = new HttpGet(url);
-
-            Httpget.setHeader("Accept", "application/json");
-            Httpget.setHeader("Content-type", "application/json");
-            Httpget.setHeader("Token", DataHolder.LOGIN_TOKEN);
-
-            HttpResponse httpResponse = httpclient.execute(Httpget);
-            inputStream = httpResponse.getEntity().getContent();
-
-            if(inputStream != null){
-                try {
-                    result = convertInputStreamToString(inputStream);
-                }
-                catch (Exception e){
-                    Log.e("Check",""+e);
-                }
-            }
-            else
-                result = "Did not work!";
-            Log.e("Check","how "+result);
-
-        } catch (Exception e) {
-            Log.d("InputStream", ""+e);
-        }
-        return result;
-    }
-
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null){
-            result += line;
-            Log.e("Line",result);
-        }
-
-        inputStream.close();
-        return result;
     }
 
     @Override
@@ -142,7 +96,7 @@ public class MatchListActivity extends AppCompatActivity implements View.OnClick
 
         @Override
         protected String doInBackground(String... urls) {
-            return MatchListApi(urls[0]);
+            return DataHolder.getApi(urls[0]);
         }
 
         @Override
@@ -171,6 +125,7 @@ public class MatchListActivity extends AppCompatActivity implements View.OnClick
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                DataHolder.unAuthorized(MatchListActivity.this,result);
             }
         }
     }

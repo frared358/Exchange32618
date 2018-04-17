@@ -83,7 +83,7 @@ public class Selected_symbols extends AppCompatActivity {
         mylistview.setOnDragListener(new View.OnDragListener() {
             @Override
             public boolean onDrag(View v, DragEvent event) {
-
+                Toast.makeText(Selected_symbols.this, "Dragging", Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
