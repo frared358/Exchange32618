@@ -14,7 +14,7 @@ import com.affwl.exchange.R;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
-/**  make sure select android.support.v4.app.Fragment  */
+/**  make sure select android.support.v4.app.Fragment   */
 public class Fx_Fragment_Quotes extends BottomSheetDialogFragment {
 
     public Fx_Fragment_Quotes(){
