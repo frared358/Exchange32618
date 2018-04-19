@@ -5,47 +5,59 @@
     android:orientation="vertical"
     android:background="@color/colorBackground">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/operator_radiogroup"
+        android:orientation="horizontal"
         android:layout_margin="5dp"
-        android:orientation="horizontal">
+        android:layout_weight="1">
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:button="@drawable/radiobutton_display"
+            android:textSize="15sp"
             android:checked="false"
-            android:padding="10dp"
-            android:layout_weight="1"
+            android:buttonTint="@color/colorWhite"
             android:textColor="@color/colorWhite"
-            android:text="Nse fut"/>
+            android:text=" Nse fut"/>
+            <!--android:button="@drawable/radiobutton_display"-->
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+           android:buttonTint="@color/colorWhite"
+            android:checked="false"
+            android:textColor="@color/colorWhite"
+            android:text=" Mcx"/>
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:button="@drawable/radiobutton_display"
-            android:checked="false"
+            android:textSize="15sp"
+            android:buttonTint="@color/colorWhite"
+               android:checked="false"
             android:textColor="@color/colorWhite"
-            android:text="Mcx"/>
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_weight="1"
-            android:button="@drawable/radiobutton_display"
-            android:checked="false"
-            android:textColor="@color/colorWhite"
-            android:text="Ncdex"/>
+            android:text=" Ncdex"/>
     </RadioGroup>
 
+        <Spinner
+            android:layout_width="60dp"
+            android:layout_height="32dp"
+            android:background="@drawable/material_better_spinner"
+            android:hint="Trade"
+            android:theme="@style/spinnerTheme"
+            style="@style/mySpinnerItemStyle"
+            android:layout_margin="5dp"
+            android:entries="@array/indie_trade_array" />
+    </LinearLayout>
+
+
     <!--Adding checkbox-->
-    <View
+   <!-- <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#434445"/>
@@ -58,7 +70,7 @@
             android:padding="10dp"
             android:layout_margin="5dp"
             android:text="Day"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textColor="@color/colorWhite"
             android:layout_gravity="center_vertical"
             android:buttonTint="@color/colorWhite" />
@@ -76,7 +88,7 @@
         android:padding="10dp"
         android:text="CNF"
         android:layout_margin="5dp"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textColor="@color/colorWhite"
         android:layout_gravity="center_vertical"
         android:buttonTint="@color/colorWhite" />
@@ -92,12 +104,12 @@
         android:layout_height="wrap_content"
         android:checked="false"
         android:padding="10dp"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:layout_margin="5dp"
         android:text="Both"
         android:textColor="@color/colorWhite"
         android:layout_gravity="center_vertical"
         android:buttonTint="@color/colorWhite" />
-
+-->
 
 </LinearLayout>

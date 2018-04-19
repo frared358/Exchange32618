@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 
 import com.affwl.exchange.R;
 
-public class OrderFragment extends Fragment {
+public class TradesCryptoFragment extends Fragment {
 
 
-    public OrderFragment() {
+    public TradesCryptoFragment() {
         // Required empty public constructor
     }
 
@@ -20,7 +20,7 @@ public class OrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_order, container, false);
+        return inflater.inflate(R.layout.fragment_trades_crypto, container, false);
     }
 
 }

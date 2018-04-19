@@ -86,14 +86,14 @@ dependencies {
 
 
     /**FX Gradle start*/
-    compile 'uk.co.chrisjenx:calligraphy:2.3.0'
+    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
     implementation files('libs/ta-lib-0.4.0.jar')  //TA-Lib
     //compile group: 'com.tictactec', name: 'ta-lib', version: '0.4.0'
-    compile 'com.android.support:recyclerview-v7:26.1.0'
-    compile 'de.hdodenhof:circleimageview:2.0.0'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.yqritc:recyclerview-flexibledivider:1.2.6'
-    compile 'com.google.code.gson:gson:2.3.1'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'de.hdodenhof:circleimageview:2.0.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.yqritc:recyclerview-flexibledivider:1.2.6'
+    implementation 'com.google.code.gson:gson:2.3.1'
     /**FX Gradle End*/
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
 

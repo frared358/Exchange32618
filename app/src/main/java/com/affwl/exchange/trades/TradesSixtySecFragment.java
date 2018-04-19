@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 
 import com.affwl.exchange.R;
 
-public class TradesFragment extends Fragment {
+public class TradesSixtySecFragment extends Fragment {
 
 
-    public TradesFragment() {
+    public TradesSixtySecFragment() {
         // Required empty public constructor
     }
 
@@ -20,7 +20,8 @@ public class TradesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_trade, container, false);
+        return inflater.inflate(R.layout.fragment_trades_sixtysec, container, false);
     }
 
 }
+
