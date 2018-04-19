@@ -2,9 +2,6 @@ package com.affwl.exchange.fx.select_symbol.listener;
 
 import android.support.v7.widget.RecyclerView;
 
-/**
- * Created by user on 4/15/2018.
- */
 
 public interface OnStartDragListener {
     /**

@@ -1,9 +1,11 @@
 package com.affwl.exchange.fx;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -30,18 +32,39 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.tictactec.ta.lib.meta.TaGrpService;
 
 import java.util.ArrayList;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class CustomSpinner extends AppCompatActivity implements  OnChartValueSelectedListener,View.OnClickListener {
 
+    
     private LineChart mChart;
     protected Typeface mTfLight;
 
-    int mInteger=0;
+    int DeviationValue=0;
+    int redvar1;
+    int greenvar1,devhigh1,devlow1;
 
-    EditText displayInteger;
+    EditText displayInteger,displayDeviation;
+    EditText displayInteger1;
     ImageView imgVIncrementRed;
+    ImageView decGreen;
+    ImageView incGreen;
+    EditText redValue;
+    EditText greenValue;
+    EditText devValue;
+    ImageView ivDevInc;
+    ImageView ivDevdec;
+
+    TextView tvLowValue;
+    TextView tvHighValue;
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,6 +72,7 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
         getMenuInflater().inflate(R.menu.spinner_menu, menu);
 
         return true;
+
     }
 
 
@@ -61,19 +85,78 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
+
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf")
+                .setFontAttrId(R.attr.fontPath).build());
         /** fro line chart  */
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView (R.layout.activity_custom_spinner);
+        
+        
+        
 
         android.support.v7.widget.Toolbar toolbar = findViewById (R.id.toolbar2);
         setSupportActionBar (toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         activity = this;
+        
+        redValue=(EditText)findViewById (R.id.redValue);
+       String var= redValue.getText ().toString ();
+        redvar1=Integer.parseInt (var);
+
+        greenValue=(EditText)findViewById (R.id.greenValue);
+        String greenvar=greenValue.getText ().toString ();
+        greenvar1=Integer.parseInt (greenvar);
+
+
+
+        tvHighValue=(TextView)findViewById (R.id.tvHighValue);
+        String devhigh=tvHighValue.getText ().toString ();
+        devhigh1=Integer.parseInt (devhigh);
+
+        tvLowValue=(TextView)findViewById (R.id.tvLowValue);
+        String devlow=tvLowValue.getText ().toString ();
+        devlow1=Integer.parseInt (devlow);
+
+
+
+
 
         Spinner SpinnerExample = (Spinner) findViewById (R.id.spinner);
         //output = (TextView) findViewById(R.id.output);
 
+
+        ivDevInc=findViewById (R.id.ivDevInc);
+        ivDevInc.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v){
+
+            incrementDeviation();
+
+        }
+    });
+
+
+        decGreen=findViewById (R.id.decGreen);
+        incGreen=findViewById (R.id.incGreen);
+        displayInteger1 =  findViewById (R.id.greenValue);
+
+
+        incGreen.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View v) {
+                incrementRed1 ();
+            }
+        });
+
+
         displayInteger =  findViewById (R.id.redValue);
+        displayDeviation = findViewById(R.id.etDevValue);
+
         imgVIncrementRed = findViewById (R.id.imgVIncrementRed);
         imgVIncrementRed.setOnClickListener (new View.OnClickListener (){
             @Override
@@ -180,6 +263,16 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
         rightAxis.setGranularityEnabled(false);
 
         /** Line chart End  */
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
         /**  Line chart   */
@@ -344,28 +437,85 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
    /** Increment/Decrement  for Red value */
    public  void incrementRed()
    {
-       mInteger = mInteger + 1;
-       display(mInteger);
+       redvar1 = redvar1 + 1;
+       display(redvar1);
+
    }
 
 
     public  void decrementRed(View view)
     {
-        mInteger = mInteger - 1;
-        display(mInteger);
+        redvar1 = redvar1 - 1;
+        display(redvar1);
+
     }
 
-    private void  display(int number)
-   {
-       Log.i ("TAGf",""+number);
-       try {
-           displayInteger.setText(String.valueOf (number));
-       } catch (Exception e) {
-           e.printStackTrace ();
-           Log.i("TAGf",""+e);
-       }
-   }
+//Increment/Decrement  for green value *
+    public  void incrementRed1()
+    {
+        greenvar1 = greenvar1 + 1;
 
+        display1 (greenvar1);
+    }
+
+
+    public  void decrementRed1(View view)
+    {
+        greenvar1 = greenvar1 - 1;
+
+        display1 (greenvar1);
+    }
+
+    /** Increment/Decrement  for Deviation */
+    public  void incrementDeviation()
+    {
+        DeviationValue = DeviationValue + 1;
+        displayDiviation(DeviationValue);
+
+    }
+    public  void decrementDeviation(View view)
+    {
+        DeviationValue = DeviationValue - 1;
+        displayDiviation(DeviationValue);
+
+    }
+
+
+
+
+    private void  display(int number)
+    {
+        Log.i ("TAGf",""+number);
+        try {
+            displayInteger.setText(String.valueOf (number));
+        } catch (Exception e) {
+            e.printStackTrace ();
+            Log.i("TAGf",""+e);
+        }
+    }
+
+
+    private void  display1(int number)
+    {
+        Log.i ("TAGf",""+number);
+        try {
+            displayInteger1.setText(String.valueOf (number));
+        } catch (Exception e) {
+            e.printStackTrace ();
+            Log.i("TAGf",""+e);
+        }
+    }
+
+    private void  displayDiviation(int number)
+    {
+        Log.i ("TAGf",""+number);
+        try {
+            displayDeviation.setText(String.valueOf (number));
+        } catch (Exception e) {
+            e.printStackTrace ();
+            Log.i("TAGf",""+e);
+        }
+    }
 
     @Override
     public void onClick(View v) {

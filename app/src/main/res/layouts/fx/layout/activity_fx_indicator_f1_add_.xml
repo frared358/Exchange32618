@@ -35,7 +35,7 @@
         android:layout_marginTop="25dp"
         android:text="PARAMETERS"
         android:textColor="#000"
-        android:textSize="14dp"
+        android:textSize="16dp"
         android:textStyle="bold" />
 
     <EditText
@@ -122,17 +122,6 @@
         android:focusable="true"
         android:hint="Levels:" />
 
-    <!--<Button-->
-        <!--android:id="@+id/btncolorpicker"-->
-        <!--android:layout_width="25dp"-->
-        <!--android:layout_height="25dp"-->
-        <!--android:layout_alignBaseline="@+id/spinner3"-->
-        <!--android:layout_alignBottom="@+id/spinner3"-->
-        <!--android:layout_toEndOf="@+id/spinner3"-->
-        <!--android:layout_toRightOf="@+id/spinner3"-->
-        <!--android:background="@color/colorBlack"-->
-        <!--android:textColor="@color/colorBlue"-->
-        <!--android:text="c" />-->
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="25dp"

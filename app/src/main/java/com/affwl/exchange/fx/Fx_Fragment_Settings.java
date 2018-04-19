@@ -30,16 +30,21 @@ public class Fx_Fragment_Settings extends Fragment {
     {
         View v = inflater.inflate(R.layout.fragment_fx_settings, null);
 
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/Oswald-Stencbab.ttf")
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/Roboto-Bold.ttf.ttf")
                 .setFontAttrId(R.attr.fontPath).build());
 
         return v;
     }
 
-/*
     @Override
-    protected void attachBaseContext(Context newBase) {
-        View.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }*/
+    public void onAttachFragment(Fragment childFragment){
+        super.onAttachFragment(childFragment);
+    }
+
+///*
+//    @Override
+//    protected void attachBaseContext(Context newBase) {
+//        View.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+//   }*/
 }
 

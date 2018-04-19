@@ -21,13 +21,14 @@
        android:layout_margin="10dp" />
 
 
+
+
    <com.github.mikephil.charting.charts.CandleStickChart
        android:layout_width="360dp"
        android:layout_height="400dp"
        android:layout_below="@id/chart1"
        android:layout_margin="10dp"
-
-       android:visibility="visible">
+       android:visibility="gone">
 
    </com.github.mikephil.charting.charts.CandleStickChart>
 

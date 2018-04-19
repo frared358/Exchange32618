@@ -46,6 +46,7 @@ public class UnmatchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_unmatch, container, false);
 
+
         txtUnmatchNoData = view.findViewById(R.id.txtUnmatchNoData);
         recycleViewUnMatchData = view.findViewById(R.id.recycleViewUnMatchData);
 
@@ -54,62 +55,21 @@ public class UnmatchFragment extends Fragment {
         recycleViewUnMatchData.setLayoutManager(mLayoutManager);
         recycleViewUnMatchData.setItemAnimator(new DefaultItemAnimator());
         unMatchAdapter = new MatchAdapter(UnmatchFragment.this.getActivity(),UnMatchList);
-        new UnMatchAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Reports/GetCurrentBets");
+
+        String s = getArguments().getString("unMatchedbets");
+        new UnMatchDataAsyncTask().execute(s);
+
+        //new UnMatchAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Reports/GetCurrentBets");
 
         return view;
     }
 
-    public String  UnMatchApi(String url){
-        InputStream inputStream = null;
-        String result = "";
-        try {
-
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpGet Httpget = new HttpGet(url);
-
-            Httpget.setHeader("Accept", "application/json");
-            Httpget.setHeader("Content-type", "application/json");
-            Httpget.setHeader("Token", DataHolder.LOGIN_TOKEN);
-
-            HttpResponse httpResponse = httpclient.execute(Httpget);
-            inputStream = httpResponse.getEntity().getContent();
-
-            if(inputStream != null){
-                try {
-                    result = convertInputStreamToString(inputStream);
-                }
-                catch (Exception e){
-                    Log.e("Check",""+e);
-                }
-            }
-            else
-                result = "Did not work!";
-            Log.e("Check","how "+result);
-
-        } catch (Exception e) {
-            Log.d("InputStream", ""+e);
-        }
-        return result;
-    }
-
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null){
-            result += line;
-            Log.e("Line",result);
-        }
-
-        inputStream.close();
-        return result;
-    }
 
     private class UnMatchAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
-            return UnMatchApi(urls[0]);
+            return DataHolder.getApi(urls[0]);
         }
 
         @Override
@@ -148,9 +108,55 @@ public class UnmatchFragment extends Fragment {
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                DataHolder.unAuthorized(getActivity(),result);
             }
         }
     }
 
+    private class UnMatchDataAsyncTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            return urls[0];
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            //Log.i("Check",""+result);
+            //Toast.makeText(UnmatchFragment.this.getContext(), ""+result, Toast.LENGTH_SHORT).show();
+            try {
+
+                JSONArray arrayData = new JSONArray(result);
+                int length = arrayData.length();
+
+                if(length == 0){
+                    txtUnmatchNoData.setVisibility(View.VISIBLE);
+                }
+
+                for(int i =0 ; i<length;i++){
+                    JSONObject key = arrayData.getJSONObject(i);
+                    String selection = key.getString("selection");
+                    String matchedStake = key.getString("matchedStake");
+                    String odds = key.getString("odds");
+                    String type = key.getString("type");
+                    String placedDate = key.getString("placedDate");
+                    String marketName = key.getString("marketName");
+                    String  betId = key.getString("betId");
+                    boolean CHECKCANCEL = true;
+
+
+                    UnMatchList.add(new MatchData(selection,odds,matchedStake,type,placedDate,marketName,betId,CHECKCANCEL));
+
+                    unMatchAdapter.notifyDataSetChanged();
+
+                }
+                recycleViewUnMatchData.setAdapter(unMatchAdapter);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                DataHolder.unAuthorized(getActivity(),result);
+            }
+        }
+    }
 }
 

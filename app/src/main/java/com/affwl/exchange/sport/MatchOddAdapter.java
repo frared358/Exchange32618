@@ -127,7 +127,7 @@ public class MatchOddAdapter extends RecyclerView.Adapter<MatchOddAdapter.MyView
         @Override
         protected void onPostExecute(String result) {
             Log.i("Check",""+result);
-            Toast.makeText(contextO, ""+result, Toast.LENGTH_SHORT).show();
+
             try {
                 JSONObject  jsonObjMain = new JSONObject(result.toString());
                 String msg = jsonObjMain.getString("result");

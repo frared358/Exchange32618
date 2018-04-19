@@ -83,6 +83,7 @@ public class FavouriteDataAdapter extends RecyclerView.Adapter<FavouriteDataAdap
             @Override
             public void onClick(View v) {
                 DataHolder.MATCH_NAME = data.matchName;
+                DataHolder.MATCH_DATE = data.matchDate;
                 Intent intent = new Intent(contextFav,BetActivity.class);
                 intent.putExtra("matchName", DataHolder.MATCH_NAME);
                 intent.putExtra("marketId",Integer.parseInt(data.marketId));
@@ -112,7 +113,7 @@ public class FavouriteDataAdapter extends RecyclerView.Adapter<FavouriteDataAdap
         @Override
         protected void onPostExecute(String result) {
 
-            Log.i("Check","francis"+result);
+            //Log.i("Check","francis"+result);
 
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());

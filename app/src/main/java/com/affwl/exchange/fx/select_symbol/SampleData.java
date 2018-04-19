@@ -3,9 +3,7 @@ package com.affwl.exchange.fx.select_symbol;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by user on 4/15/2018.
- */
+
 
 public class SampleData {
     public  static List<Customer> addSampleCustomers(){

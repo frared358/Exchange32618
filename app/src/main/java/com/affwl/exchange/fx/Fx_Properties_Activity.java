@@ -29,6 +29,13 @@ public class Fx_Properties_Activity extends AppCompatActivity {
         setContentView (R.layout.activity_fx_properties);
         android.support.v7.widget.Toolbar toolbar=findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -44,10 +51,15 @@ public class Fx_Properties_Activity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        String url = "http://www.google.co.in";
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
-        startActivity(i);
+
+        switch (item.getItemId()) {
+            case R.id.search:
+
+                String url = "http://www.google.co.in";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+        }
         return super.onOptionsItemSelected(item);
     }
 }

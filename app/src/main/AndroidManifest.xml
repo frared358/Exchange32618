@@ -2,13 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.affwl.exchange">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
-        android:hardwareAccelerated="false"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -51,6 +52,7 @@
         <activity
             android:name=".indie.NewsActivity"
             android:label="News" />
+
         <activity
             android:name=".binary.Sec60Activity"
             android:parentActivityName=".MainActivity" />
@@ -70,6 +72,7 @@
         <activity android:name=".binary.BinaryPotfolioActivity" />
         <activity android:name=".fx.FxActivity" >
 
+
         </activity>
         <activity android:name=".fx.CustomSpinner" />
         <activity android:name=".fx.Problem_Description" />
@@ -79,6 +82,7 @@
         <activity android:name=".fx.Mailbox1" />
         <activity android:name=".fx.Selected_symbols" />
        <activity android:name=".fx.Add_symbol"/>
+        <activity android:name=".fx.select_symbol.SelectSymbolActivity"/>
         <activity android:name=".fx.Add_symbol_Forex"/>
         <activity android:name=".fx.FX_indicator_f_add_Activity"/>
         <activity android:name=".fx.FX_indicator_f1_add_Activity"/>
@@ -102,10 +106,7 @@
             android:name=".sport.UnmatchMatchTabActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".sport.SettingsActivity" />
-        <activity
-            android:name=".sport.DemoActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".sport.StackActivity" />
         <activity android:name=".fx.Fx_Currency_Activity"></activity>
         <activity android:name=".fx.Fx_AVW_Activity"></activity>
@@ -127,6 +128,15 @@
         <activity android:name=".sport.TournamentActivity" />
         <activity android:name=".sport.MatchListActivity" />
         <activity android:name=".sport.MatchOddsActivity"></activity>
+
+        <service android:name=".sport.SignalRService"/>
+        <!--<receiver android:name=".sport.BroadcastReceiverSignalr" >
+            <intent-filter>
+                <action android:name="com.affwl.exchange.sport.RESPONSE" />
+
+            </intent-filter>
+        </receiver>-->
+
         <activity android:name=".trades.TradesActivity"/>
 
         <activity android:name=".alerts.MessageMainActivity"/>

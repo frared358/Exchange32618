@@ -91,12 +91,12 @@ public class FragmentFavouriteData extends Fragment {
                     favouritAdapter.notifyDataSetChanged();
                 }
                 recycleViewFavouriteDataList.setAdapter(favouritAdapter);
-
+                DataHolder.cancelProgress();
             } catch (JSONException e) {
                 e.printStackTrace();
+                DataHolder.unAuthorized(getActivity(),result);
             }
         }
-
 
     }
 }

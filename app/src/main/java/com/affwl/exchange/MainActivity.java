@@ -1,5 +1,6 @@
 package com.affwl.exchange;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -79,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this,SportActivity.class));
                 break;
             case R.id.fx:case R.id.imgfx:
+          //   startActivity(new Intent(this,FxActivity.class));
                 startActivity(new Intent(this,FxActivity.class));
                 break;
 
@@ -103,5 +105,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        dialogLogout();
+    }
+
+    void dialogLogout(){
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_logout);
+
+        TextView txtVOK =  dialog.findViewById(R.id.txtVOK);
+        TextView txtVCancel =  dialog.findViewById(R.id.txtVCancel);
+
+        txtVOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.exit(0);
+            }
+        });
+
+        txtVCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 }

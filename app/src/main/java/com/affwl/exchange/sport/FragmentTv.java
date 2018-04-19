@@ -19,7 +19,9 @@ import com.affwl.exchange.R;
  */
 public class FragmentTv extends Fragment {
 
-    WebView webView;
+
+WebView webView;
+
 
 
     public FragmentTv() {

@@ -86,15 +86,16 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                 {
                     if(rememberCheckBox.isChecked())
                     {
-                        Toast.makeText(this, ""+editUser+" "+editPass, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(this, ""+editUser+" "+editPass, Toast.LENGTH_SHORT).show();
                         saveLoginDetails(editUser,editPass);
                     }
-                    new HttpAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Login");
+
                     startActivity(new Intent(this, MainActivity.class));
                     finish();
                 }
                 else {
-                    Toast.makeText(this, "Please check User name & Password", Toast.LENGTH_SHORT).show();
+                    new HttpAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Login");
+                    //Toast.makeText(this, "Please check User name & Password", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
@@ -109,8 +110,6 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         editor.commit();
     }
 
-
-
     public String  loginApi(String url){
         InputStream inputStream = null;
         String result = "";
@@ -122,8 +121,8 @@ public class LoginActivity extends Activity implements View.OnClickListener{
             String json = "";
             JSONObject jsonObject = new JSONObject();
             jsonObject.accumulate("context","mobile");
-            jsonObject.accumulate("pwd","123456");
-            jsonObject.accumulate("username","franciscl");
+            jsonObject.accumulate("pwd",editPass);
+            jsonObject.accumulate("username",editUser);
 
             json = jsonObject.toString();
             StringEntity se = new StringEntity(json);
@@ -152,7 +151,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         }
 
         Log.e("result",result+"");
-        //Toast.makeText(MainActivity.this, ""+result, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(SelectSymbolActivity.this, ""+result, Toast.LENGTH_SHORT).show();
         return result;
     }
 
@@ -192,20 +191,35 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                 String status = jsonObjDes.getString("result");
 
                 if(status.equals("Login Successful")){
-                    Toast.makeText(getApplicationContext(), ""+result, Toast.LENGTH_SHORT).show();
-                }
-                else if (status.equals("Login Successful")){
-                    Toast.makeText(LoginActivity.this,"Invalid Username",Toast.LENGTH_SHORT).show();
-
-                }else if (status.equals("Login Successful")){
-                    Toast.makeText(LoginActivity.this,"Invalid Password",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), ""+status, Toast.LENGTH_SHORT).show();
+                    if(rememberCheckBox.isChecked())
+                    {
+                        saveLoginDetails(editUser,editPass);
+                    }
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 }
 
                 Log.i("result","result "+DataHolder.LOGIN_TOKEN+" Status "+status);
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                JSONObject jsonObjMain = null;
+                try {
+                    jsonObjMain = new JSONObject(result.toString());
+                    JSONObject des  = new JSONObject(jsonObjMain.getString("description"));
+                    String res = des.getString("result");
+                    if (res.equals("Invalid username")){
+                        Toast.makeText(LoginActivity.this,"Invalid Username",Toast.LENGTH_SHORT).show();
+
+                    }else if (res.equals("Invalid password")){
+                        Toast.makeText(LoginActivity.this,"Invalid Password",Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e1) {
+                    e1.printStackTrace();
+                }
             }
         }
     }
+
 }

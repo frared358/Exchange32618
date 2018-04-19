@@ -94,6 +94,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tvLowValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="right"
@@ -104,6 +105,7 @@
             android:text="72769"/>
 
         <TextView
+            android:id="@+id/tvHighValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -133,7 +135,7 @@
                 <ImageView
                     android:id="@+id/decRed"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
                     android:layout_marginTop="4dp"
                     android:paddingLeft="20dp"
                     android:onClick="decrementRed"
@@ -144,8 +146,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
                     android:background="@color/transparent"
+                    android:gravity="center"
                     android:hint="SL"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
@@ -155,7 +157,7 @@
                 <ImageView
                     android:id="@+id/imgVIncrementRed"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="20dp"
                     android:layout_marginTop="4dp"
                     android:paddingRight="10dp"
                     android:src="@drawable/ic_blue_plus"/>
@@ -187,11 +189,13 @@
             <ImageView
                 android:id="@+id/decGreen"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:paddingLeft="20dp"
+                android:onClick="decrementRed1"
                 android:layout_marginTop="4dp"
                 android:src="@drawable/ic_blue_minus"/>
             <EditText
+                android:id="@+id/greenValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
@@ -205,9 +209,10 @@
             <ImageView
                 android:id="@+id/incGreen"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="20dp"
                 android:paddingRight="30dp"
                 android:layout_marginTop="4dp"
+
                 android:src="@drawable/ic_blue_plus"/>
         </LinearLayout>
     <View
@@ -232,10 +237,12 @@
 
 
         <ImageView
+            android:id="@+id/devDec"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="25dp"
             android:paddingLeft="20dp"
 
+            android:onClick="decrementDeviation"
             android:src="@drawable/ic_blue_minus"/>
         <TextView
             android:layout_width="match_parent"
@@ -246,6 +253,7 @@
             android:hint="Deviation"/>
 
         <EditText
+            android:id="@+id/etDevValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
@@ -257,14 +265,12 @@
             android:background="@color/transparent"
             />
         <ImageView
+            android:id="@+id/ivDevInc"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="25dp"
             android:layout_marginRight="30dp"
             android:paddingLeft="20dp"
-
             android:src="@drawable/ic_blue_plus"/>
-
-
     </LinearLayout>
     <View
         android:layout_width="wrap_content"
