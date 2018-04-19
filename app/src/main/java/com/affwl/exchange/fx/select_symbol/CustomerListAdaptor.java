@@ -24,9 +24,7 @@ import  com.affwl.exchange.fx.select_symbol.utilities.ItemTouchHelperViewHolder;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by Valentine on 10/18/2015.
- */
+
 class CustomerListAdapter extends           //changed
         RecyclerView.Adapter<CustomerListAdapter.ItemViewHolder>
         implements ItemTouchHelperAdapter {
