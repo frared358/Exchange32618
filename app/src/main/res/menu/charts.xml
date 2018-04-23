@@ -22,7 +22,6 @@
 
     <item
         android:id="@+id/dolllar"
-        android:icon="@drawable/dol1"
         android:title=""
         app:showAsAction="always"
         app:actionViewClass="android.widget.ImageView">
@@ -70,8 +69,10 @@
     </item>
 
     <item
+        android:id="@+id/new_window"
         android:icon="@drawable/copy"
         android:title="Charts"
+        app:actionViewClass="android.widget.ImageView"
         android:width="@style/AppBaseTheme"
         app:showAsAction="always">
 

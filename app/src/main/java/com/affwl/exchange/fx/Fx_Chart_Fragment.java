@@ -9,8 +9,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.affwl.exchange.R;
 import com.github.mikephil.charting.charts.CandleStickChart;
@@ -36,7 +38,7 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
     private CandleStickChart mChart;
     private SeekBar mSeekBarX, mSeekBarY;
     private TextView tvX, tvY;
-
+    BottomClickSession bcs;
 
     @Nullable
     @Override
@@ -44,7 +46,15 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate (R.layout.fragment_fx_chart, null);
 
-
+//        bcs=new BottomClickSession(getContext());
+//        String chartval=bcs.getChart();
+//        if (chartval != "1") {
+//            Toast.makeText(getContext(), "hi", Toast.LENGTH_SHORT).show();
+           // RelativeLayout relativeLayout=view.findViewById(R.id.rlchartb);
+//
+//            if (relativeLayout.getVisibility()== View.GONE)
+//            relativeLayout.setVisibility(View.VISIBLE);
+   //     }
         tvX = (TextView) view.findViewById (R.id.tvXMax);
         tvY = (TextView) view.findViewById (R.id.tvYMax);
 
@@ -58,6 +68,14 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
         mChart = (CandleStickChart) view.findViewById (R.id.chart1);
         mChart.setBackgroundColor (Color.WHITE);
 
+
+
+        creatingChart();
+
+        return view;
+    }
+
+    private void creatingChart(){
         mChart.getDescription ().setEnabled (false);
         // if more than 60 entries are displayed in the chart, no values will be
         // drawn
@@ -110,7 +128,7 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
         mSeekBarY.setProgress (100);
 
         mChart.getLegend ().setEnabled (false);
-        return view;
+
     }
 
     @Override

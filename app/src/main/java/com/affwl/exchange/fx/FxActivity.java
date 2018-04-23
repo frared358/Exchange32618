@@ -29,14 +29,17 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.affwl.exchange.R;
+import com.affwl.exchange.fx.select_symbol.SelectSymbolActivity;
 
 import butterknife.OnClick;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -57,10 +60,10 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
     BottomClickSession bcs;
     private Fragment currentFragment;
 
-    ImageView locButton;
-
+    ImageView locButton,locButton1;
+    private PopupWindow mDropdownnew = null;
     private PopupWindow mDropdown = null;
-    LayoutInflater mInflater;
+    LayoutInflater mInflater,mInflater1;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             =new BottomNavigationView.OnNavigationItemSelectedListener () {
@@ -115,7 +118,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fxx);
-
+        RelativeLayout  rlcharta = (RelativeLayout) findViewById(R.id.rlcharta);
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf").setFontAttrId(R.attr.fontPath).build());
 
         myDialog = new Dialog(this);
@@ -263,13 +266,28 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                 // navigation.setSelectedItemId (R.id.nav_charts1);  /** Chart moving constantaly */
                 getMenuInflater().inflate(R.menu.charts, menu);
 
+                locButton1 = (ImageView) menu.findItem(R.id.new_window).getActionView();
+                //Toast.makeText(FxActivity.this, "click r", Toast.LENGTH_SHORT).show();
+
+                locButton1.setImageDrawable(getResources().getDrawable(R.drawable.copy));
+                locButton1.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+                        initiatePopupWindow1(v);
+//                        mQuickAction.show(v);
+                    }
+                });
+
                 locButton = (ImageView) menu.findItem(R.id.dolllar).getActionView();
-                locButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_background_add_symbol));
+                locButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_symbols));
                 locButton.setOnClickListener(new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {
                         // TODO Auto-generated method stub
+
                         initiatePopupWindow();
 //                        mQuickAction.show(v);
                     }
@@ -315,13 +333,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                     //if you added fragment via layout xml
                     Fx_Chart_Fragment fragment = (Fx_Chart_Fragment)fm.findFragmentById(R.id.xzz);
                     fragment.showHighLight();
-
                     return true;
-//                case R.id.dolllar:
-//                    ShowPopup3();
-//                    break;
-
-
 
                 case R.id.itemp1:
                     Intent i = new Intent(this, CustomSpinner.class); //add CustomSpinner
@@ -344,7 +356,8 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         if (currentFragment != null && currentFragment instanceof Fx_Fragment_Quotes) {
             switch (item.getItemId()) {
                 case R.id.edit:
-                    Intent i = new Intent(this, Selected_symbols.class);
+                    Intent i = new Intent(this, SelectSymbolActivity.class);
+
                     this.startActivity(i);
                     return true;
                 case R.id.add:
@@ -393,12 +406,9 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
             View layout = mInflater.inflate(R.layout.activity_chart_dollar_activity, null);
 
             //If you want to add any listeners to your textviews, these are two //textviews.
-            final TextView itema = (TextView) layout.findViewById(R.id.ItemA);
+            final TextView itemA = (TextView) layout.findViewById(R.id.ItemA);
 
-
-            final TextView itemb = (TextView) layout.findViewById(R.id.ItemB);
-
-
+            final TextView itemB = (TextView) layout.findViewById(R.id.ItemB);
 
             layout.measure(View.MeasureSpec.UNSPECIFIED,
                     View.MeasureSpec.UNSPECIFIED);
@@ -408,15 +418,65 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
             FrameLayout.LayoutParams.WRAP_CONTENT,true);
             Drawable background = getResources().getDrawable(android.R.drawable.alert_light_frame);
             mDropdown.setBackgroundDrawable(background);
-            mDropdown.showAsDropDown(locButton , -300, -100);
-
+            mDropdown.showAsDropDown(locButton , -220, -225);
 //            mDropdown.showAtLocation(view, Gravity.LEFT, 100, 100);
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
         return mDropdown;
+    }
+
+    private PopupWindow initiatePopupWindow1(final View vchart) {
+
+                    try {
+
+                        mInflater1 = (LayoutInflater) getApplicationContext()
+                                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View layout = mInflater1.inflate(R.layout.activity_chart_new_popupwindow_activity, null);
+
+                        //If you want to add any listeners to your textviews, these are two //textviews.
+                        final TextView itema = (TextView) layout.findViewById(R.id.Itema);
+                        final TextView itemb = (TextView) layout.findViewById(R.id.Itemb);
+                        LinearLayout llnew_window=(LinearLayout)layout.findViewById(R.id.llnew_window);
+                        final LinearLayout lleuro=layout.findViewById(R.id.lleuro);
+
+                        layout.measure(View.MeasureSpec.UNSPECIFIED,
+                                View.MeasureSpec.UNSPECIFIED);
+                        mDropdownnew = new PopupWindow(layout,LinearLayout.LayoutParams.WRAP_CONTENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT,true);
+                        Drawable background = getResources().getDrawable(android.R.drawable.alert_light_frame);
+                        mDropdownnew.setBackgroundDrawable(background);
+                        mDropdownnew.showAsDropDown(locButton1 , 0, -90);
+
+                        llnew_window.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v){
+//
+                                if(lleuro.getVisibility()==View.VISIBLE) {
+                                    lleuro.setVisibility(View.GONE);
+                                }else {
+                                    lleuro.setVisibility(View.VISIBLE);
+                                }
+                                Toast.makeText(v.getContext(),"chart",Toast.LENGTH_LONG).show();
+                                Toast.makeText(v.getContext(),""+view,Toast.LENGTH_LONG).show();
+
+//                    RelativeLayout  rlchartb = (RelativeLayout) vchart.findViewById(R.id.rlchartb);
+//                    if(rlchartb.getVisibility()==vchart.GONE){
+//                    rlchartb.setVisibility(vchart.VISIBLE);
+//                    bcs.setValue("1");}
+//                    else {
+//                        rlchartb.setVisibility(vchart.GONE);
+//                    }
+//                    mDropdownnew.dismiss();
+                                Toast.makeText(FxActivity.this, bcs.getValue(), Toast.LENGTH_SHORT).show();
+                            }
+            });
+//            mDropdown.showAtLocation(view, Gravity.LEFT, 100, 100);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mDropdownnew;
 
     }
 
