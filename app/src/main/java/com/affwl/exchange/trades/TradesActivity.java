@@ -1,5 +1,6 @@
 package com.affwl.exchange.trades;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -15,6 +16,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.affwl.exchange.R;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class TradesActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -79,7 +83,6 @@ public class TradesActivity extends AppCompatActivity implements NavigationView.
             }
         });
     }
-
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
