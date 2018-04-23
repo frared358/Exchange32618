@@ -344,8 +344,8 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                     this.startActivity(faddi);
                     return true;
 
-                case R.id.mnNewWindow:
-                     Toast.makeText (this,"New window clicked", Toast.LENGTH_LONG).show ();
+       /*         case R.id.mnNewWindow:
+                     Toast.makeText (this,"New window clicked", Toast.LENGTH_LONG).show ();*/
                 default:
                     return super.onOptionsItemSelected(item);
             }
@@ -413,9 +413,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
             layout.measure(View.MeasureSpec.UNSPECIFIED,
                     View.MeasureSpec.UNSPECIFIED);
             mDropdown = new PopupWindow(layout,FrameLayout.LayoutParams.WRAP_CONTENT,
-
-
-            FrameLayout.LayoutParams.WRAP_CONTENT,true);
+                    FrameLayout.LayoutParams.WRAP_CONTENT,true);
             Drawable background = getResources().getDrawable(android.R.drawable.alert_light_frame);
             mDropdown.setBackgroundDrawable(background);
             mDropdown.showAsDropDown(locButton , -220, -225);
@@ -442,11 +440,11 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
 
                         layout.measure(View.MeasureSpec.UNSPECIFIED,
                                 View.MeasureSpec.UNSPECIFIED);
-                        mDropdownnew = new PopupWindow(layout,LinearLayout.LayoutParams.WRAP_CONTENT,
-                                LinearLayout.LayoutParams.WRAP_CONTENT,true);
+                        mDropdownnew = new PopupWindow(layout,FrameLayout.LayoutParams.WRAP_CONTENT,
+                                FrameLayout.LayoutParams.WRAP_CONTENT,true);
                         Drawable background = getResources().getDrawable(android.R.drawable.alert_light_frame);
                         mDropdownnew.setBackgroundDrawable(background);
-                        mDropdownnew.showAsDropDown(locButton1 , 0, -90);
+                        mDropdownnew.showAsDropDown(locButton1 , -350, -90);
 
                         llnew_window.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -462,7 +460,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                                 Fx_Chart_Fragment.DisplayChart();
                                 bcs.setValue("1");
 
-//                    mDropdownnew.dismiss();
+                    mDropdownnew.dismiss();
                                 Toast.makeText(FxActivity.this, bcs.getValue(), Toast.LENGTH_SHORT).show();
                             }
             });

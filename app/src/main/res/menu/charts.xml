@@ -24,49 +24,7 @@
         android:id="@+id/dolllar"
         android:title=""
         app:showAsAction="always"
-        app:actionViewClass="android.widget.ImageView">
-
-       <!-- <menu
-            style="@style/layoutwidth">
-
-            <item
-                style="@style/layoutwidth"
-                android:id="@+id/c1"
-                android:title="EURUSD"
-                app:showAsAction="always" />
-
-            <item
-                android:id="@+id/c2"
-                android:title="GBPUSD"
-                app:showAsAction="always" />
-            <item
-                android:id="@+id/c3"
-                android:title="USDCHF"
-                app:showAsAction="always" />
-            <item
-                android:id="@+id/c4"
-                android:title="USDJPY"
-                app:showAsAction="always" />
-            <item
-                android:id="@+id/c5"
-                android:title="USDCHN"
-                app:showAsAction="always" />
-            <item
-                android:id="@+id/c6"
-                android:title="USDRUB"
-                app:showAsAction="always" />
-            <item
-                android:id="@+id/c7"
-                android:title="AUDUSD"
-                app:showAsAction="always" />
-            <item
-                android:id="@+id/c8"
-                android:title="NZDUSD"
-                app:showAsAction="always" />
-        </menu>-->
-
-
-    </item>
+        app:actionViewClass="android.widget.ImageView"/>
 
     <item
         android:id="@+id/new_window"
@@ -74,63 +32,8 @@
         android:title="Charts"
         app:actionViewClass="android.widget.ImageView"
         android:width="@style/AppBaseTheme"
-        app:showAsAction="always">
+        app:showAsAction="always"/>
 
-        <menu>
-
-            <item
-                android:id="@+id/mnNewWindow"
-                android:title="New Window"
-                android:icon="@drawable/ic_add_black_24dp"
-                android:listPreferredItemHeightSmall="@style/AppBaseTheme"
-
-                app:showAsAction="always" />
-
-
-
-            <item
-                android:id="@+id/mnChartWindow1"
-               android:checked="true"
-                android:checkable="true"
-                android:listPreferredItemHeightSmall="@style/AppBaseTheme"
-
-                android:title="USDCNH, M1"
-                app:showAsAction="always" />
-
-            <item
-                android:id="@+id/mnChartWindow2"
-                android:checked="false"
-                android:checkable="true"
-                android:title="EURUSD, H1"
-                android:listPreferredItemHeightSmall="@style/AppBaseTheme"
-
-                android:visible="false"
-                app:showAsAction="always" />
-
-            <!--<CheckBox-->
-                <!--android:id="@+id/cb"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Check box"/>-->
-
-            <item
-                android:id="@+id/mnTileHorizontal"
-                android:title="TileHorizontal"
-                android:listPreferredItemHeightSmall="@style/AppBaseTheme"
-
-                app:showAsAction="always" />
-
-            <item
-                android:id="@+id/mnTileVertically"
-                android:title="TileVertically"
-                android:textSize="@style/PopupMenuTextView"
-
-                app:showAsAction="always" />
-
-
-
-        </menu>
-    </item>
     <item
         android:id="@+id/itemp1"
         android:title="Calender"

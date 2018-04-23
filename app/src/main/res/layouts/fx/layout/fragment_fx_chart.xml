@@ -8,7 +8,7 @@
    <RelativeLayout
        android:id="@+id/rlcharta"
        android:layout_width="match_parent"
-       android:layout_height="100dp"
+       android:layout_height="wrap_content"
        android:layout_weight="1">
 
       <TextView
@@ -24,7 +24,7 @@
         android:layout_below="@+id/tvusd"
           android:id="@+id/chart1"
           android:layout_width="match_parent"
-          android:layout_height="200dp"
+          android:layout_height="280dp"
           android:layout_margin="10dp" />
 
       <com.github.mikephil.charting.charts.CandleStickChart
