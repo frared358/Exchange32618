@@ -12,9 +12,6 @@ import com.affwl.exchange.R;
 import com.guna.libcolorpicker.ColorPickerOval;
 import com.guna.libcolorpicker.OnColorChangedListener;
 
-import java.util.ArrayList;
-
-import petrov.kristiyan.colorpicker.ColorPicker;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
@@ -31,7 +28,7 @@ RelativeLayout mylayout;
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf")
                 .setFontAttrId(R.attr.fontPath).build());
-        setContentView(R.layout.activity_fx_indicator_f1_add_);
+        setContentView(R.layout.activity_fx_indicator_f1_add);
 
     }
 

@@ -84,7 +84,6 @@ dependencies {
     implementation files('libs/signalr-client-sdk.jar')
     implementation files('libs/signalr-client-sdk-android.jar')
 
-
     /**FX Gradle start*/
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
     implementation files('libs/ta-lib-0.4.0.jar')  //TA-Lib

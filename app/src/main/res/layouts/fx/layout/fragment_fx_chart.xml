@@ -1,90 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="400dp">
+    android:orientation="vertical"
+    android:layout_height="match_parent">
 
-   <TextView
+
+   <RelativeLayout
+       android:id="@+id/rlcharta"
        android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:gravity="left"
-       android:padding="10dp"
-       android:text="NZDUSD, MN"
-       android:textColor="@color/colorBlack" />
+       android:layout_height="100dp"
+       android:layout_weight="1">
 
-   <com.github.mikephil.charting.charts.CandleStickChart
-       android:id="@+id/chart1"
-       android:layout_width="361dp"
-       android:layout_height="400dp"
-       android:layout_above="@+id/seekBar1"
-       android:layout_alignParentLeft="true"
-       android:layout_alignParentStart="true"
-       android:layout_margin="10dp" />
+      <TextView
+          android:padding="3dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="left"
+          android:id="@+id/tvusd"
+          android:text="NZDUSD, MN"
+          android:textColor="@color/colorBlack" />
 
+      <com.github.mikephil.charting.charts.CandleStickChart
+        android:layout_below="@+id/tvusd"
+          android:id="@+id/chart1"
+          android:layout_width="match_parent"
+          android:layout_height="200dp"
+          android:layout_margin="10dp" />
 
+      <com.github.mikephil.charting.charts.CandleStickChart
+          android:layout_width="match_parent"
+          android:layout_height="200dp"
+          android:layout_below="@id/chart1"
+          android:layout_margin="10dp"
+          android:visibility="gone">
 
+      </com.github.mikephil.charting.charts.CandleStickChart>
 
-   <com.github.mikephil.charting.charts.CandleStickChart
-       android:layout_width="360dp"
-       android:layout_height="400dp"
-       android:layout_below="@id/chart1"
-       android:layout_margin="10dp"
-       android:visibility="gone">
+      <SeekBar
+          android:id="@+id/seekBar2"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_margin="8dp"
+          android:layout_marginRight="5dp"
+          android:layout_below="@+id/chart1"
+          android:layout_toLeftOf="@+id/tvYMax"
+          android:max="200"
+          android:paddingBottom="12dp" />
 
-   </com.github.mikephil.charting.charts.CandleStickChart>
+      <SeekBar
+          android:id="@+id/seekBar1"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+        android:layout_below="@+id/seekBar2"
+          android:layout_margin="8dp"
+          android:layout_marginBottom="35dp"
+          android:layout_marginRight="5dp"
+          android:layout_toLeftOf="@+id/tvXMax"
+          android:max="3000"
+          android:paddingBottom="12dp" />
 
-   <!--<com.github.mikephil.charting.charts.LineChart-->
-   <!--android:layout_width="match_parent"-->
-   <!--android:layout_height="match_parent"-->
-   <!--android:id="@+id/linechart">-->
+      <TextView
+          android:id="@+id/tvXMax"
+          android:layout_width="50dp"
+          android:layout_height="wrap_content"
+          android:layout_alignBottom="@+id/seekBar1"
+          android:layout_alignParentRight="true"
+          android:layout_marginBottom="15dp"
+          android:layout_marginRight="10dp"
+          android:gravity="right"
+          android:text="500"
+           />
 
-   <!--</com.github.mikephil.charting.charts.LineChart>-->
+      <TextView
+          android:id="@+id/tvYMax"
+          android:layout_width="50dp"
+          android:layout_height="wrap_content"
+          android:layout_alignBottom="@+id/seekBar2"
+          android:layout_alignParentRight="true"
+          android:layout_marginBottom="15dp"
+          android:layout_marginRight="10dp"
+          android:gravity="right"
+          android:text="500"
+          />
 
-   <SeekBar
-       android:id="@+id/seekBar2"
+   </RelativeLayout>
+
+   <!--/charts b-->
+   <RelativeLayout
+       android:visibility="gone"
+       android:id="@+id/rlchartb"
+       android:layout_below="@+id/rlcharta"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_alignParentBottom="true"
-       android:layout_alignParentLeft="true"
-       android:layout_margin="8dp"
-       android:layout_marginRight="5dp"
-       android:layout_toLeftOf="@+id/tvYMax"
-       android:max="200"
-       android:paddingBottom="12dp" />
+       android:layout_height="300dp">
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="left"
+          android:padding="10dp"
+          android:text="NZDUSD, MN"
+          android:textColor="@color/colorBlack" />
 
-   <SeekBar
-       android:id="@+id/seekBar1"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_above="@+id/seekBar2"
-       android:layout_margin="8dp"
-       android:layout_marginBottom="35dp"
-       android:layout_marginRight="5dp"
-       android:layout_toLeftOf="@+id/tvXMax"
-       android:max="3000"
-       android:paddingBottom="12dp" />
+      <com.github.mikephil.charting.charts.CandleStickChart
+          android:id="@+id/chart15"
+          android:layout_width="match_parent"
+          android:layout_height="150dp"
+          android:layout_above="@+id/seekBar15"
+          android:layout_alignParentLeft="true"
+          android:layout_alignParentStart="true"
+          android:layout_margin="10dp" />
 
-   <TextView
-       android:id="@+id/tvXMax"
-       android:layout_width="50dp"
-       android:layout_height="wrap_content"
-       android:layout_alignBottom="@+id/seekBar1"
-       android:layout_alignParentRight="true"
-       android:layout_marginBottom="15dp"
-       android:layout_marginRight="10dp"
-       android:gravity="right"
-       android:text="500"
-       android:textAppearance="?android:attr/textAppearanceMedium" />
+      <com.github.mikephil.charting.charts.CandleStickChart
+          android:layout_width="match_parent"
+          android:layout_height="200dp"
+          android:layout_below="@id/chart15"
+          android:layout_margin="10dp"
+          android:visibility="gone">
 
-   <TextView
-       android:id="@+id/tvYMax"
-       android:layout_width="50dp"
-       android:layout_height="wrap_content"
-       android:layout_alignBottom="@+id/seekBar2"
-       android:layout_alignParentRight="true"
-       android:layout_marginBottom="15dp"
-       android:layout_marginRight="10dp"
-       android:gravity="right"
-       android:text="500"
-       android:textAppearance="?android:attr/textAppearanceMedium" />
+      </com.github.mikephil.charting.charts.CandleStickChart>
 
-</RelativeLayout>
+      <SeekBar
+          android:id="@+id/seekBar25"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_alignParentBottom="true"
+          android:layout_alignParentLeft="true"
+          android:layout_margin="8dp"
+          android:layout_marginRight="5dp"
+          android:layout_toLeftOf="@+id/tvYMax5"
+          android:max="200"
+          android:paddingBottom="12dp" />
+
+      <SeekBar
+          android:id="@+id/seekBar15"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_above="@+id/seekBar25"
+          android:layout_margin="8dp"
+          android:layout_marginBottom="35dp"
+          android:layout_marginRight="5dp"
+          android:max="3000"
+          android:paddingBottom="12dp" />
+
+      <TextView
+          android:id="@+id/tvXMax5"
+          android:layout_width="50dp"
+          android:layout_height="wrap_content"
+          android:layout_alignBottom="@+id/seekBar15"
+          android:layout_alignParentRight="true"
+          android:layout_marginBottom="15dp"
+          android:layout_marginRight="10dp"
+          android:gravity="right"
+          android:text="500" />
+
+      <TextView
+          android:id="@+id/tvYMax5"
+          android:layout_width="50dp"
+          android:layout_height="wrap_content"
+          android:layout_alignBottom="@+id/seekBar25"
+          android:layout_alignParentRight="true"
+          android:layout_marginBottom="15dp"
+          android:layout_marginRight="10dp"
+          android:gravity="right"
+          android:text="500" />
+
+   </RelativeLayout>
+
+</LinearLayout>
+

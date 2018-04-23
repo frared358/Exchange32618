@@ -4,6 +4,7 @@ package com.affwl.exchange.fx;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -21,20 +22,24 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.affwl.exchange.R;
 import com.affwl.exchange.fx.select_symbol.SelectSymbolActivity;
-import com.tictactec.ta.lib.*;
-
 
 import butterknife.OnClick;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -43,42 +48,94 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 /** check update.........*/
 public class FxActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    private static String TAG = "FxActivity";
     public NavigationView navigationView;
     public BottomNavigationView navigation;
     LinearLayout layoutBottomSheet;
     BottomSheetBehavior sheetBehavior;
     Fragment fragment = null;
-    private static String TAG = "FxActivity";
     ImageView view;
     LinearLayout acc;
-
-    private Fragment currentFragment;
-    Dialog myDialog,myDialog1;
+    Dialog myDialog,myDialog1,myDialog2;
     BottomClickSession bcs;
+    private Fragment currentFragment;
+
+    ImageView locButton,locButton1;
+    private PopupWindow mDropdownnew = null;
+    private PopupWindow mDropdown = null;
+    LayoutInflater mInflater,mInflater1;
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            =new BottomNavigationView.OnNavigationItemSelectedListener () {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            FrameLayout layout = (FrameLayout)findViewById(R.id.xzz);
+            int id=item.getItemId ();
+            //int position=item.getOrder ();
+            switch (id){
+                case R.id.nav_quotes1:
+                    navigationView.setFocusable (true);
+                    navigation.setFocusable (true);
+
+                    navigationView.getMenu().getItem(0).setChecked(true);//  layout.setVisibility(View.INVISIBLE);
+                    //  layout.setVisibility(View.INVISIBLE);
+                    //  Fragment fragment2=new Fragment ();
+                    // Toast.makeText (this,"currentFragment "+fragment1,Toast.LENGTH_LONG).show ();
+                    Log.i (TAG,"Bottom bar clicked"+ id);
+                    currentFragment =new Fx_Fragment_Quotes();
+
+                    FragmentTransaction fragmentTransaction0=getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction0.replace(R.id.xzz,currentFragment);
+                    fragmentTransaction0.commit();
+                    layout.setVisibility(View.INVISIBLE);
+                    invalidateOptionsMenu();
+                    setTitle("Quotes");
+
+                    return  true;
 
 
+                case  R.id.nav_charts1:
+                    navigationView.getMenu().getItem(1).setChecked(true);
+                    //fragment1=new Fx_Fragment_Quotes ();
+                    Log.i (TAG,"nav_quotes clicked"+ id);
+                    currentFragment=new Fx_Chart_Fragment ();
+                    FragmentTransaction fragmentTransaction1=getSupportFragmentManager ().beginTransaction ();
+                    fragmentTransaction1.replace (R.id.xzz,currentFragment);
+                    fragmentTransaction1.commit();
+                    layout.setVisibility(View.VISIBLE);
+                 invalidateOptionsMenu();
+                    setTitle("");
+                    return  true;
+
+            }
+
+            return true;
+        }
+
+    };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fxx);
-
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf")
-                .setFontAttrId(R.attr.fontPath).build());
+        RelativeLayout  rlcharta = (RelativeLayout) findViewById(R.id.rlcharta);
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf").setFontAttrId(R.attr.fontPath).build());
 
         myDialog = new Dialog(this);
         myDialog1 = new Dialog(this);
+        myDialog2 = new Dialog(this);
 
-        
 
         /**Bottom navigation*/
         navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+
         /** hide frame layout */
+
         FrameLayout layout = (FrameLayout) findViewById(R.id.xzz);
         layout.setVisibility(View.GONE);           //View.GONE
+
 
         /**     RecyclerView    */
         RecyclerView programingList = (RecyclerView) findViewById(R.id.programingList);
@@ -96,19 +153,19 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         //programingList.setAdapter(new ProgramingAdapter(currency));
         programingList.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
-            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e){
                 return false;
             }
 
             @Override
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+            public void onTouchEvent(RecyclerView rv, MotionEvent e){
                 RecyclerView.Adapter adapter = rv.getAdapter();
                 adapter.getItemCount();
                 Toast.makeText(FxActivity.this, adapter.getItemCount(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept){
 
             }
         });
@@ -116,7 +173,10 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         /**   Toolbar   */
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
         View view = findViewById(R.id.xzz);
+
 
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -129,11 +189,9 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         View headerview = navigationView.getHeaderView(0);
         acc = headerview.findViewById(R.id.acc);
 
-
-
         acc.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v){
                 FrameLayout layout = (FrameLayout) findViewById(R.id.xzz);
                 layout.setVisibility(View.VISIBLE);
                 setTitle("Accounts");
@@ -150,20 +208,22 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
 
 
         navigationView.getMenu().getItem(0).setChecked(true);
-        currentFragment =new Fx_Fragment_Quotes();
-        FragmentTransaction fragmentTransaction0=getSupportFragmentManager().beginTransaction();
-        fragmentTransaction0.replace(R.id.xzz,currentFragment);
+        currentFragment = new Fx_Fragment_Quotes();
+        FragmentTransaction fragmentTransaction0 = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction0.replace(R.id.xzz, currentFragment);
         fragmentTransaction0.commit();
         layout.setVisibility(View.INVISIBLE);
         invalidateOptionsMenu();
         setTitle("Quotes");
-
     }
-
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
+
+
+
+
     //bootomsheet
     //@OnClick(R.id.demo)
     public void showBottomSheetDialog() {
@@ -206,6 +266,32 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                 // navigation.setSelectedItemId (R.id.nav_charts1);  /** Chart moving constantaly */
                 getMenuInflater().inflate(R.menu.charts, menu);
 
+                locButton1 = (ImageView) menu.findItem(R.id.new_window).getActionView();
+                //Toast.makeText(FxActivity.this, "click r", Toast.LENGTH_SHORT).show();
+
+                locButton1.setImageDrawable(getResources().getDrawable(R.drawable.copy));
+                locButton1.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+                        initiatePopupWindow1(v);
+//                        mQuickAction.show(v);
+                    }
+                });
+
+                locButton = (ImageView) menu.findItem(R.id.dolllar).getActionView();
+                locButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_symbols));
+                locButton.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+
+                        initiatePopupWindow();
+//                        mQuickAction.show(v);
+                    }
+                });
 
                 //Toast.makeText(FxActivity.this, "click r", Toast.LENGTH_SHORT).show();
 
@@ -247,8 +333,8 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                     //if you added fragment via layout xml
                     Fx_Chart_Fragment fragment = (Fx_Chart_Fragment)fm.findFragmentById(R.id.xzz);
                     fragment.showHighLight();
-
                     return true;
+
                 case R.id.itemp1:
                     Intent i = new Intent(this, CustomSpinner.class); //add CustomSpinner
                     this.startActivity(i);
@@ -257,6 +343,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                     Intent faddi = new Intent(this, Indicators.class);
                     this.startActivity(faddi);
                     return true;
+
                 case R.id.mnNewWindow:
                      Toast.makeText (this,"New window clicked", Toast.LENGTH_LONG).show ();
                 default:
@@ -270,6 +357,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
             switch (item.getItemId()) {
                 case R.id.edit:
                     Intent i = new Intent(this, SelectSymbolActivity.class);
+
                     this.startActivity(i);
                     return true;
                 case R.id.add:
@@ -293,11 +381,6 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                     Intent addacci = new Intent(this, New_Account.class);
                     this.startActivity(addacci);
                     return true;
-/*                case R.id.changepass:
-                    Intent i1 = new Intent(this, Change_password_Activity.class);
-                    this.startActivity(i1);
-                    getMenuInflater();
-                    return true;*/
                 case R.id.clearspass:
                     ShowPopup1();
                      break;
@@ -315,6 +398,88 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
 
     }
 
+    private PopupWindow initiatePopupWindow() {
+
+        try {
+            mInflater = (LayoutInflater) getApplicationContext()
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View layout = mInflater.inflate(R.layout.activity_chart_dollar_activity, null);
+
+            //If you want to add any listeners to your textviews, these are two //textviews.
+            final TextView itemA = (TextView) layout.findViewById(R.id.ItemA);
+
+            final TextView itemB = (TextView) layout.findViewById(R.id.ItemB);
+
+            layout.measure(View.MeasureSpec.UNSPECIFIED,
+                    View.MeasureSpec.UNSPECIFIED);
+            mDropdown = new PopupWindow(layout,FrameLayout.LayoutParams.WRAP_CONTENT,
+
+
+            FrameLayout.LayoutParams.WRAP_CONTENT,true);
+            Drawable background = getResources().getDrawable(android.R.drawable.alert_light_frame);
+            mDropdown.setBackgroundDrawable(background);
+            mDropdown.showAsDropDown(locButton , -220, -225);
+//            mDropdown.showAtLocation(view, Gravity.LEFT, 100, 100);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mDropdown;
+    }
+
+    private PopupWindow initiatePopupWindow1(final View vchart) {
+
+                    try {
+
+                        mInflater1 = (LayoutInflater) getApplicationContext()
+                                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View layout = mInflater1.inflate(R.layout.activity_chart_new_popupwindow_activity, null);
+
+                        //If you want to add any listeners to your textviews, these are two //textviews.
+                        final TextView itema = (TextView) layout.findViewById(R.id.Itema);
+                        final TextView itemb = (TextView) layout.findViewById(R.id.Itemb);
+                        LinearLayout llnew_window=(LinearLayout)layout.findViewById(R.id.llnew_window);
+                        final LinearLayout lleuro=layout.findViewById(R.id.lleuro);
+
+                        layout.measure(View.MeasureSpec.UNSPECIFIED,
+                                View.MeasureSpec.UNSPECIFIED);
+                        mDropdownnew = new PopupWindow(layout,LinearLayout.LayoutParams.WRAP_CONTENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT,true);
+                        Drawable background = getResources().getDrawable(android.R.drawable.alert_light_frame);
+                        mDropdownnew.setBackgroundDrawable(background);
+                        mDropdownnew.showAsDropDown(locButton1 , 0, -90);
+
+                        llnew_window.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v){
+//
+                                if(lleuro.getVisibility()==View.VISIBLE) {
+                                    lleuro.setVisibility(View.GONE);
+                                }else {
+                                    lleuro.setVisibility(View.VISIBLE);
+                                }
+                                Toast.makeText(v.getContext(),"chart",Toast.LENGTH_LONG).show();
+                                Toast.makeText(v.getContext(),""+view,Toast.LENGTH_LONG).show();
+
+//                    RelativeLayout  rlchartb = (RelativeLayout) vchart.findViewById(R.id.rlchartb);
+//                    if(rlchartb.getVisibility()==vchart.GONE){
+//                    rlchartb.setVisibility(vchart.VISIBLE);
+//                    bcs.setValue("1");}
+//                    else {
+//                        rlchartb.setVisibility(vchart.GONE);
+//                    }
+//                    mDropdownnew.dismiss();
+                                Toast.makeText(FxActivity.this, bcs.getValue(), Toast.LENGTH_SHORT).show();
+                            }
+            });
+//            mDropdown.showAtLocation(view, Gravity.LEFT, 100, 100);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mDropdownnew;
+
+    }
+
     /*** Navigation drawer*/
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -326,7 +491,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
 
         if (id == R.id.nav_quotes) {
             // Handle the quotes action
-//            Intent resultIntent = new Intent(this, FxActivity.class);
+//           Intent resultIntent = new Intent(this, FxActivity.class);
 //            startActivity (resultIntent);
             navigationView.getMenu().findItem(R.id.nav_quotes).setChecked(true); /** set drawer navigation checked*/
             navigation.getMenu().findItem(R.id.nav_quotes1).setChecked(true);  /**select bottom nav checked*/
@@ -334,6 +499,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
             setTitle("Quotes");
             currentFragment=new Fx_Fragment_Quotes ();
             FragmentManager fragmentManager=getSupportFragmentManager ();
+
             FragmentTransaction ft=fragmentManager.beginTransaction ();
             ft.replace (R.id.xzz ,currentFragment);    //content_fx
             ft.commit ();
@@ -390,70 +556,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            =new BottomNavigationView.OnNavigationItemSelectedListener () {
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            FrameLayout layout = (FrameLayout)findViewById(R.id.xzz);
-            int id=item.getItemId ();
-            //int position=item.getOrder ();
-            switch (id){
-                case R.id.nav_quotes1:
-                    navigationView.setFocusable (true);
-                    navigation.setFocusable (true);
-                    navigationView.getMenu().getItem(0).setChecked(true);//  layout.setVisibility(View.INVISIBLE);
-                    //  layout.setVisibility(View.INVISIBLE);
-                    //  Fragment fragment2=new Fragment ();
-                    // Toast.makeText (this,"currentFragment "+fragment1,Toast.LENGTH_LONG).show ();
-                    Log.i (TAG,"Bottom bar clicked"+ id);
-                    currentFragment =new Fx_Fragment_Quotes();
-                    FragmentTransaction fragmentTransaction0=getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction0.replace(R.id.xzz,currentFragment);
-                    fragmentTransaction0.commit();
-                    layout.setVisibility(View.INVISIBLE);
-                    invalidateOptionsMenu();
-                    setTitle("Quotes");
 
-                    return  true;
-
-                //  FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction ();
-                //fragmentTransaction.replace (R.id.xzz,fragment1,"");
-                // fragmentTransaction.replace (R.id.xzz,fragment2);
-                // fragmentTransaction.commit ();
-
-                case  R.id.nav_charts1:
-                    navigationView.getMenu().getItem(1).setChecked(true);
-                    //fragment1=new Fx_Fragment_Quotes ();
-                    Log.i (TAG,"nav_quotes clicked"+ id);
-                    currentFragment=new Fx_Chart_Fragment ();
-                    FragmentTransaction fragmentTransaction1=getSupportFragmentManager ().beginTransaction ();
-                    fragmentTransaction1.replace (R.id.xzz,currentFragment);
-                    fragmentTransaction1.commit();
-                    layout.setVisibility(View.VISIBLE);
-                 invalidateOptionsMenu();
-                    setTitle("");
-                    return  true;
-
-            }
-            //FragmentTransaction fragmentTransaction=getSupportFragmentManager ().beginTransaction ();
-            //fragmentTransaction.replace (R.id.xzz,fragment1,"");
-            //fragmentTransaction.replace (R.id.xzz,currentFragment);
-            //fragmentTransaction.commit ();
-            return true;
-        }
-
-    };
-    //spinner on mailbox icon
-//    @Override
-//    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//String text=parent.getItemAtPosition(position).toString();
-//Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT).show();
-//    }
-
-//    @Override
-//    public void onNothingSelected(AdapterView<?> parent) {
-//
-//    }
 public void ShowPopup1() {
     TextView txtclose;
     Button btnFollow;
@@ -503,7 +606,16 @@ public void ShowPopup1() {
         myDialog.show();
     }
 
-
-
+//    public void ShowPopup3() {
+//        TextView txtclose;
+//        Button btnFollow;
+//        Button btnFollow1;
+//
+//        myDialog2.setContentView(R.layout.dollar_menu_popup);
+//
+//
+//        btnFollow = myDialog2.findViewById(R.id.btnfollow3);
+//        myDialog2.show();
+//    }
 
 }

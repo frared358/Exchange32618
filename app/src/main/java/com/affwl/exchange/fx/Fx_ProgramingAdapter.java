@@ -32,16 +32,16 @@ import com.affwl.exchange.R;
 //Add a java class and inherit Adapter
 public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdapter.ProgramingViewHolder> {  //alt+enter (inside Generic)
 
-    //Create Constructor after implementing method
-    private String[] data;
-    View viewdialog;
-    Context ctx;
-    BottomClickSession bcs;
     /**
      * for recyclerview click handler
      */
 
     private static final String TAG = "MainFragment";
+    View viewdialog;
+    Context ctx;
+    BottomClickSession bcs;
+    //Create Constructor after implementing method
+    private String[] data;
 
     public Fx_ProgramingAdapter(String[] data, Context ctx) {
         this.data = data;
@@ -138,9 +138,8 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                     });
 
                     llChart.setOnClickListener(new View.OnClickListener() {
-                        private Fx_Chart_Fragment currentFragment;
                         FrameLayout layout = (FrameLayout) ((FxActivity) viewdialog.getContext()).findViewById(R.id.xzz);
-
+                        private Fx_Chart_Fragment currentFragment;
 
                         @Override
                         public void onClick(View v) {

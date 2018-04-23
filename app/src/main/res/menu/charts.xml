@@ -21,15 +21,16 @@
         android:icon="@drawable/f"/>
 
     <item
+        android:id="@+id/dolllar"
+        android:title=""
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.ImageView">
 
-        android:icon="@drawable/dol1"
-        android:title="cd"
-        app:showAsAction="always">
+       <!-- <menu
+            style="@style/layoutwidth">
 
-        <layer-list
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
             <item
+                style="@style/layoutwidth"
                 android:id="@+id/c1"
                 android:title="EURUSD"
                 app:showAsAction="always" />
@@ -62,14 +63,17 @@
                 android:id="@+id/c8"
                 android:title="NZDUSD"
                 app:showAsAction="always" />
-        </layer-list>
+        </menu>-->
 
 
     </item>
 
     <item
+        android:id="@+id/new_window"
         android:icon="@drawable/copy"
         android:title="Charts"
+        app:actionViewClass="android.widget.ImageView"
+        android:width="@style/AppBaseTheme"
         app:showAsAction="always">
 
         <menu>
@@ -78,6 +82,8 @@
                 android:id="@+id/mnNewWindow"
                 android:title="New Window"
                 android:icon="@drawable/ic_add_black_24dp"
+                android:listPreferredItemHeightSmall="@style/AppBaseTheme"
+
                 app:showAsAction="always" />
 
 
@@ -86,6 +92,8 @@
                 android:id="@+id/mnChartWindow1"
                android:checked="true"
                 android:checkable="true"
+                android:listPreferredItemHeightSmall="@style/AppBaseTheme"
+
                 android:title="USDCNH, M1"
                 app:showAsAction="always" />
 
@@ -94,6 +102,8 @@
                 android:checked="false"
                 android:checkable="true"
                 android:title="EURUSD, H1"
+                android:listPreferredItemHeightSmall="@style/AppBaseTheme"
+
                 android:visible="false"
                 app:showAsAction="always" />
 
@@ -106,11 +116,15 @@
             <item
                 android:id="@+id/mnTileHorizontal"
                 android:title="TileHorizontal"
+                android:listPreferredItemHeightSmall="@style/AppBaseTheme"
+
                 app:showAsAction="always" />
 
             <item
                 android:id="@+id/mnTileVertically"
                 android:title="TileVertically"
+                android:textSize="@style/PopupMenuTextView"
+
                 app:showAsAction="always" />
 
 

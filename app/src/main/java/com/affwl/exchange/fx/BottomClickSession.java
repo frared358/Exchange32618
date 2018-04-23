@@ -31,4 +31,15 @@ public class BottomClickSession {
         String val=sharedPreferences.getString("val","");
         return val;
     }
+    public void setChart(String chart)
+    {
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString("chartvalue",chart);
+        editor.commit();
+    }
+    public String getChart()
+    {
+        String chartval=sharedPreferences.getString("chartvalue","");
+        return chartval;
+    }
 }
