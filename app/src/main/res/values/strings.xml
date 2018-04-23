@@ -218,7 +218,6 @@
     <string name="language_hindi">हिंदी</string>
     <string name="language_gujarati">ગુજરાતી</string>
     <string name="language_marathi">मराठी</string>
-    <string name="hello_blank_fragment">Hello Blank Fragment</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string-array name="Indie_Data_Streaming_spinner">

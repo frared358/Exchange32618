@@ -19,7 +19,7 @@ public class new_Acc_open_a_real_acc_Activity extends AppCompatActivity implemen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new__acc_open_a_real_acc);
+        setContentView(R.layout.activity_new_acc_open_a_real_acc);
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
         RL = (RelativeLayout)findViewById(R.id.RL);

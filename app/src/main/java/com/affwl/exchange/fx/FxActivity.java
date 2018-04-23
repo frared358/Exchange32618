@@ -459,14 +459,9 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                                 }
                                 Toast.makeText(v.getContext(),"chart",Toast.LENGTH_LONG).show();
                                 Toast.makeText(v.getContext(),""+view,Toast.LENGTH_LONG).show();
+                                Fx_Chart_Fragment.DisplayChart();
+                                bcs.setValue("1");
 
-//                    RelativeLayout  rlchartb = (RelativeLayout) vchart.findViewById(R.id.rlchartb);
-//                    if(rlchartb.getVisibility()==vchart.GONE){
-//                    rlchartb.setVisibility(vchart.VISIBLE);
-//                    bcs.setValue("1");}
-//                    else {
-//                        rlchartb.setVisibility(vchart.GONE);
-//                    }
 //                    mDropdownnew.dismiss();
                                 Toast.makeText(FxActivity.this, bcs.getValue(), Toast.LENGTH_SHORT).show();
                             }

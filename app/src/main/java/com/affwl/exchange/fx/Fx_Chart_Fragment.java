@@ -39,12 +39,14 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
     private SeekBar mSeekBarX, mSeekBarY;
     private TextView tvX, tvY;
     BottomClickSession bcs;
+    static RelativeLayout  rlchartb;
+    public View viewChart;
 
     @Nullable
     @Override
     /** Right click - Generate - Override Method - slect onCreateView*/
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate (R.layout.fragment_fx_chart, null);
+        viewChart = inflater.inflate (R.layout.fragment_fx_chart, null);
 
 //        bcs=new BottomClickSession(getContext());
 //        String chartval=bcs.getChart();
@@ -55,24 +57,24 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
 //            if (relativeLayout.getVisibility()== View.GONE)
 //            relativeLayout.setVisibility(View.VISIBLE);
    //     }
-        tvX = (TextView) view.findViewById (R.id.tvXMax);
-        tvY = (TextView) view.findViewById (R.id.tvYMax);
+        tvX = (TextView) viewChart.findViewById (R.id.tvXMax);
+        tvY = (TextView) viewChart.findViewById (R.id.tvYMax);
 
-        mSeekBarX = (SeekBar) view.findViewById (R.id.seekBar1);
+        mSeekBarX = (SeekBar) viewChart.findViewById (R.id.seekBar1);
         mSeekBarX.setOnSeekBarChangeListener (this);
 
-        mSeekBarY = (SeekBar) view.findViewById (R.id.seekBar2);
+        mSeekBarY = (SeekBar) viewChart.findViewById (R.id.seekBar2);
         mSeekBarY.setOnSeekBarChangeListener (this);
 
 
-        mChart = (CandleStickChart) view.findViewById (R.id.chart1);
+        mChart = (CandleStickChart) viewChart.findViewById (R.id.chart1);
         mChart.setBackgroundColor (Color.WHITE);
 
-
+        rlchartb = (RelativeLayout) viewChart.findViewById(R.id.rlchartb);
 
         creatingChart();
 
-        return view;
+        return viewChart;
     }
 
     private void creatingChart(){
@@ -228,6 +230,15 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
             mChart.getData ().setHighlightEnabled (!mChart.getData ().isHighlightEnabled ());
             mChart.invalidate ();
         }
+    }
+
+    public static void DisplayChart(){
+                    if(rlchartb.getVisibility()==View.GONE) {
+                        rlchartb.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        rlchartb.setVisibility(View.GONE);
+                    }
     }
 }
 

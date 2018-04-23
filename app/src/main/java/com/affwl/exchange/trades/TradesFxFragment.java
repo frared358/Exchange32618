@@ -28,7 +28,6 @@ public class TradesFxFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_trades_fx, container, false);
 
-
     }
 
     @Override
