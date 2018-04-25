@@ -112,6 +112,7 @@
         <activity android:name=".news.NewsActivity" />
         <activity android:name=".news.RssFeedDeleteActivity" />
         <activity android:name=".settings.SettingsMainActivity" />
+        <activity android:name=".trades.TradesActivity"/>
         <activity android:name=".alerts.AlertsActivity" />
         <activity android:name=".reports.ReportsActivity" />
         <activity android:name=".fx.chart_new_popupwindow_activity"></activity>

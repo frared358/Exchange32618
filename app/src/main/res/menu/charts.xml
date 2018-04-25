@@ -8,6 +8,12 @@
          <!--android:icon="@drawable/ic_launcher_foreground"-->
         <!--android:title="@string/action_settings"-->
         <!--app:showAsAction="ifRoo   m" />-->
+    <item
+        android:id="@+id/time"
+        android:title="cd"
+        app:actionViewClass="android.widget.ImageView"
+        app:showAsAction="always"
+        android:icon="@drawable/radio_circle"/>
 
     <item
         android:id="@+id/idHighLight"
@@ -23,6 +29,7 @@
     <item
         android:id="@+id/dolllar"
         android:title=""
+        android:icon="@drawable/dol1"
         app:showAsAction="always"
         app:actionViewClass="android.widget.ImageView"/>
 

@@ -3,6 +3,7 @@ package com.affwl.exchange.fx.select_symbol;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -12,10 +13,14 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.affwl.exchange.R;
 import com.affwl.exchange.fx.Add_symbol;
+import com.affwl.exchange.fx.CustomAdapter5_quotes;
 import com.affwl.exchange.fx.DeleteNow;
 import com.affwl.exchange.fx.RowItem5_quotes;
 import com.affwl.exchange.fx.Selected_symbols;
@@ -24,6 +29,7 @@ import com.affwl.exchange.fx.select_symbol.listener.OnStartDragListener;
 import com.affwl.exchange.fx.select_symbol.utilities.SimpleItemTouchHelperCallback;
 import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -37,6 +43,14 @@ public class SelectSymbolActivity extends AppCompatActivity implements OnCustome
     private ItemTouchHelper mItemTouchHelper;
     private List<Customer> mCustomers;
     Toolbar toolbar;
+
+    String[] member_names5;
+    TypedArray profile_pics5;
+    String[] statues5;
+
+
+    List<RowItem5_quotes> rowItems5;
+    ListView mylistview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +66,39 @@ public class SelectSymbolActivity extends AppCompatActivity implements OnCustome
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+        rowItems5 = new ArrayList<RowItem5_quotes>();
+
+        member_names5 = getResources().getStringArray(R.array.Member_names5);
+
+        profile_pics5 = getResources().obtainTypedArray(R.array.profile_pics5);
+
+        statues5 = getResources().getStringArray(R.array.statues5);
+
+
+        for (int i = 0; i < member_names5.length; i++) {
+            RowItem5_quotes item = new RowItem5_quotes(member_names5[i], profile_pics5.getResourceId(i, -1), statues5[i]);
+            rowItems5.add(item);
+        }
+
+        mylistview = (ListView) findViewById(R.id.list5);
+        CustomAdapter5_quotes adapter = new CustomAdapter5_quotes(getApplicationContext(), rowItems5);
+        mylistview.setAdapter(adapter);
+
+        mylistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String member_name5 = rowItems5.get(position).getMember_name5();
+                Toast.makeText(getApplicationContext(), "" + member_name5, Toast.LENGTH_SHORT).show();
+            }
+        });
+        mylistview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                // view.startDrag();
+                return false;
+            }
+        });
 
 }
     @Override
@@ -86,7 +133,22 @@ public class SelectSymbolActivity extends AppCompatActivity implements OnCustome
         {
             // multiple delete
             Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show();
+            for (int i = 0; i < member_names5.length; i++) {
+                RowItem5_quotes itemdel = new RowItem5_quotes(member_names5[i], profile_pics5.getResourceId(i, -1), statues5[i],0);
+                rowItems5.add(itemdel);
+            }
 
+            for(int i = (rowItems5.size() - 1); i >= 0; i--) {
+                if(rowItems5.get(i).getIntCheck()==1)
+                {
+                    rowItems5.remove(i);
+                }
+            }
+
+            mylistview.setVisibility(View.VISIBLE);
+            mRecyclerView.setVisibility(View.GONE);
+            DeleteNow adapter = new DeleteNow(getApplicationContext(), rowItems5);
+            mylistview.setAdapter(adapter);
         }
 
 
