@@ -1,0 +1,785 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.affwl.exchange.fx.Fx_Chart_AddObject_Activity">
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:navigationContentDescription="@string/abc_action_bar_up_description"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="Add Object"
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/RobotoCondensed-Regular.ttf"
+        android:gravity="center"
+        android:id="@+id/toolbar2" />
+    <ScrollView
+        android:id="@+id/sv"
+        android:layout_below="@id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_below="@+id/sv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LINES"
+                android:textColor="@color/colorBlack"
+                android:textSize="16dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/Black"
+                android:layout_height="1dp"/>
+            <LinearLayout
+                android:id="@+id/llline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iivvl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_line_vertical" />
+
+                <TextView
+                    android:id="@+id/tvvl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Vertical Lines"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llnew_window1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivhl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_line_horisontal" />
+
+                <TextView
+                    android:id="@+id/tvhl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Horizontal Line"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llnew_window2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_line_trend" />
+
+                <TextView
+                    android:id="@+id/tvt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Treadline"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llnew_window3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivtba"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_line_angle" />
+
+                <TextView
+                    android:id="@+id/tvtba"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Tread By Angle"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llnew_window4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivcl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_line_cycle" />
+
+                <TextView
+                    android:id="@+id/tvcl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Cycle Lines"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llnew_window5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ival"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_line_arrowed" />
+
+                <TextView
+                    android:id="@+id/tval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Arrowed Line"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llnew_window6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="CHANNELS"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/Black"
+                android:layout_height="1dp"/>
+            <LinearLayout
+                android:id="@+id/llec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_channel_equidistant" />
+
+                <TextView
+                    android:id="@+id/tvvec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Equidistant Channel"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llsc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivsc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_channel_stddev" />
+
+                <TextView
+                    android:id="@+id/tvsdc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="StdDev Channel"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llrc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivrc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_channel_regression" />
+
+                <TextView
+                    android:id="@+id/tvrc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Regression Channel"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_channel_andrews_pitchfork" />
+
+                <TextView
+                    android:id="@+id/tvap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Andrews Pitchfork"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llgann"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="GANN"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/Black"
+                android:layout_height="1dp"/>
+            <LinearLayout
+                android:id="@+id/llgl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivgl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_gann_line" />
+
+                <TextView
+                    android:id="@+id/tvgl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Gann Line"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llgf"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivgf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_gann_fan" />
+
+                <TextView
+                    android:id="@+id/tvgf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Gann Fan"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llgg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivgg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_gann_grid" />
+
+                <TextView
+                    android:id="@+id/tvgg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Gann Grid"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llfab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvfab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="FIBONACCI"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/Black"
+                android:layout_height="1dp"/>
+            <LinearLayout
+                android:id="@+id/llfr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivfr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_fibonacci_retracement" />
+
+                <TextView
+                    android:id="@+id/tvfr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Fibonacci Retracement"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llftz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivftz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_fibonacci_time_zones" />
+
+                <TextView
+                    android:id="@+id/tvftz"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Fibonacci Time Zones"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llff"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_fibonacci_fan" />
+
+                <TextView
+                    android:id="@+id/tvff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Fibonacci Fan"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llfa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_fibonacci_arcs" />
+
+                <TextView
+                    android:id="@+id/tvtfa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Fibonacci Arcs"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llfc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_fibonacci_channel" />
+
+                <TextView
+                    android:id="@+id/tvfc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Fibonacci Channel"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llfe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivfe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_fibonacci_expansion" />
+
+                <TextView
+                    android:id="@+id/tvfe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Fibonacci Expansion"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llElliott"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tve"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="ELLITOT"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/Black"
+                android:layout_height="1dp"/>
+            <LinearLayout
+                android:id="@+id/llemw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivemw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_elliott_corrective_wave" />
+
+                <TextView
+                    android:id="@+id/tvemw"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Elliott Motive Wave"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llecw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivecv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_elliott_motive_wave" />
+
+                <TextView
+                    android:id="@+id/tvecv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Elliott Corrective Wave"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llshapes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="SHAPES"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/Black"
+                android:layout_height="1dp"/>
+            <LinearLayout
+                android:id="@+id/llrec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivrec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_shape_rectabgle" />
+
+                <TextView
+                    android:id="@+id/tvrec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Rectangle"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lltri"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivtri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_shape_triangle" />
+
+                <TextView
+                    android:id="@+id/tvtri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Triangle"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llelli"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_shape_ellipse" />
+
+                <TextView
+                    android:id="@+id/tvelli"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Ellipse"
+                    android:textColor="@color/Black"
+                    android:textSize="16dp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+
+</RelativeLayout>

@@ -52,39 +52,17 @@
 
 
     <LinearLayout
-        android:layout_width="225dp"
+        android:layout_width="wrap_content"
         android:id="@+id/lleur"
         android:orientation="vertical"
         android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/lleuro"
-            android:layout_width="225dp"
-            android:layout_height="wrap_content">
-        <CheckBox
-            android:textColor="@color/Black"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="3dp"
-            android:buttonTint="@color/Black"
-            android:text=" EURUSD ,M5"
-            android:textSize="16dp" />
-        <ImageView
-            android:id="@+id/ivadd1"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:padding="5dp"
-            android:src="@drawable/ic_drag" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lleuro1"
-            android:layout_width="225dp"
             android:layout_height="wrap_content">
-
             <CheckBox
+                android:id="@+id/cbeuro"
                 android:textColor="@color/Black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -92,76 +70,108 @@
                 android:buttonTint="@color/Black"
                 android:text=" EURUSD ,M5"
                 android:textSize="16dp" />
-
             <ImageView
-                android:id="@+id/ivadd2"
+                android:id="@+id/ivadd1"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
                 android:padding="5dp"
                 android:src="@drawable/ic_drag" />
+        </LinearLayout>
+<LinearLayout
+    android:id="@+id/llchart"
+    android:visibility="gone"
+    android:layout_width="wrap_content"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:id="@+id/lleuro1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/cbeuro1"
+            android:textColor="@color/Black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:buttonTint="@color/Black"
+            android:text=" EURUSD ,M5"
+            android:textSize="16dp" />
+
+        <ImageView
+            android:id="@+id/ivadd2"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_drag" />
 
     </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/llth"
-            android:layout_width="225dp"
-            android:padding="3dp"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/ivadd3"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:padding="5dp"
-                android:src="@drawable/ic_drag" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="Tile Horizontally"
-                android:textSize="16dp"
-                android:padding="3dp"
-                android:textColor="@color/Black"
-                android:layout_height="match_parent" />
+    <LinearLayout
+        android:id="@+id/llth"
+        android:layout_width="wrap_content"
+        android:padding="3dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ivadd3"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_drag" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Tile Horizontally"
+            android:textSize="16dp"
+            android:textColor="@color/Black"
+            android:layout_height="match_parent" />
 
 
 
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/lltv"
-            android:layout_width="225dp"
-            android:padding="3dp"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/ivadd4"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:padding="5dp"
-                android:src="@drawable/ic_drag" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="Tile Vertically"
-                android:textSize="16dp"
-                android:padding="3dp"
-                android:textColor="@color/Black"
-                android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lltv"
+        android:layout_width="wrap_content"
+        android:padding="3dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ivadd4"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_drag" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Tile Vertically"
+            android:textSize="16dp"
+
+            android:textColor="@color/Black"
+            android:layout_height="wrap_content" />
 
 
 
-        </LinearLayout>
-    <TextView
-        android:id="@+id/Itemd"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:gravity="center"
-        android:textColor="@color/Black"
-        android:background="@color/lite_blue"
-        android:layout_marginTop="10dp"
-        android:text="REMOVE"
-        tools:ignore="HardcodedText" />
-
+    </LinearLayout>
 </LinearLayout>
+
+        <TextView
+            android:id="@+id/Itemd"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:textColor="@color/Black"
+            android:background="@color/lite_blue"
+            android:layout_marginTop="10dp"
+            android:text="REMOVE"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
 </LinearLayout>

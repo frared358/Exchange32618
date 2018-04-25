@@ -30,6 +30,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.Checkable;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -44,6 +46,8 @@ import com.affwl.exchange.fx.select_symbol.SelectSymbolActivity;
 import butterknife.OnClick;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
+import static com.affwl.exchange.fx.Fx_Chart_Fragment.rlchartb;
 
 /** check update.........*/
 public class FxActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -60,10 +64,11 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
     BottomClickSession bcs;
     private Fragment currentFragment;
 
-    ImageView locButton,locButton1;
+    ImageView locButton,locButton1,locButton2,locButton3,locButton4,tvobject;
     private PopupWindow mDropdownnew = null;
     private PopupWindow mDropdown = null;
-    LayoutInflater mInflater,mInflater1;
+    private PopupWindow Dropdown = null;
+    LayoutInflater mInflater,mInflater1,Inflater;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             =new BottomNavigationView.OnNavigationItemSelectedListener () {
@@ -255,16 +260,144 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         // Inflate the menu; this adds items to the action bar if it is present.
         bcs=new BottomClickSession(this);
         String val=bcs.getValue();
-        if (val=="1")
+        if (val.equals("1"))
         {
             getMenuInflater().inflate(R.menu.charts,menu);
+
+                    tvobject = (ImageView) menu.findItem(R.id.object).getActionView();
+            tvobject.setImageDrawable(getResources().getDrawable(R.drawable.ic_objects_white));
+            tvobject.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    // TODO Auto-generated method stub
+
+                    Intent i = new Intent(getApplication(), Chart_ObjectsActivity.class); //add CustomSpinner
+                    startActivity(i);
+//                        mQuickAction.show(v);
+                }
+            });
+
+            locButton4 = (ImageView) menu.findItem(R.id.itemp1).getActionView();
+            locButton4.setImageDrawable(getResources().getDrawable(R.drawable.ic_actionbar_new_order_normal));
+            locButton4.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    // TODO Auto-generated method stub
+
+                    Intent i = new Intent(getApplication(), CustomSpinner.class); //add CustomSpinner
+                    startActivity(i);
+//                        mQuickAction.show(v);
+                }
+            });
+            locButton3 = (ImageView) menu.findItem(R.id.fadd).getActionView();
+            locButton3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chart_indicator));
+            locButton3.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    // TODO Auto-generated method stub
+
+                    Intent faddi = new Intent(getApplication(), Indicators.class);
+                    startActivity(faddi);
+//                        mQuickAction.show(v);
+                }
+            });
+
+
+            locButton2 = (ImageView) menu.findItem(R.id.time).getActionView();
+            locButton2.setImageDrawable(getResources().getDrawable(R.drawable.time));
+            locButton2.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    // TODO Auto-generated method stub
+
+                    initiatePopupWindow2();
+//                        mQuickAction.show(v);
+                }
+            });
+
+            locButton1 = (ImageView) menu.findItem(R.id.new_window).getActionView();
+            locButton1.setImageDrawable(getResources().getDrawable(R.drawable.copy));
+            LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            lp1.setMargins(50, 2, -30, 2);
+            locButton1.setLayoutParams(lp1);
+            locButton1.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    // TODO Auto-generated method stub
+                    initiatePopupWindow1(v);
+//                        mQuickAction.show(v);
+                }
+            });
+
+            locButton = (ImageView) menu.findItem(R.id.dolllar).getActionView();
+            locButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_symbols));
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            lp.setMargins(0, 2, 30, 2);
+            locButton.setLayoutParams(lp);
+            locButton.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    // TODO Auto-generated method stub
+
+                    initiatePopupWindow();
+//                        mQuickAction.show(v);
+                }
+            });
             bcs.setValue("0");
+
+
+
         }
-        else {
-            Toast.makeText(this, String.valueOf(bcs.getValue()), Toast.LENGTH_SHORT).show();
-            if (currentFragment != null && currentFragment instanceof Fx_Chart_Fragment) {
+        else if ((currentFragment != null && currentFragment instanceof Fx_Chart_Fragment)||val.equals("1")) {
                 // navigation.setSelectedItemId (R.id.nav_charts1);  /** Chart moving constantaly */
                 getMenuInflater().inflate(R.menu.charts, menu);
+
+            locButton4 = (ImageView) menu.findItem(R.id.itemp1).getActionView();
+            locButton4.setImageDrawable(getResources().getDrawable(R.drawable.ic_actionbar_new_order_normal));
+            locButton4.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    // TODO Auto-generated method stub
+
+                    Intent i = new Intent(getApplication(), CustomSpinner.class); //add CustomSpinner
+                    startActivity(i);
+//                        mQuickAction.show(v);
+                }
+            });
+            locButton3 = (ImageView) menu.findItem(R.id.fadd).getActionView();
+            locButton3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chart_indicator));
+            locButton3.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    // TODO Auto-generated method stub
+
+                    Intent faddi = new Intent(getApplication(), Indicators.class);
+                    startActivity(faddi);
+//                        mQuickAction.show(v);
+                }
+            });
+
+
+                locButton2 = (ImageView) menu.findItem(R.id.time).getActionView();
+                locButton2.setImageDrawable(getResources().getDrawable(R.drawable.time));
+                locButton2.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+
+                        initiatePopupWindow2();
+//                        mQuickAction.show(v);
+                    }
+                });
 
                 locButton1 = (ImageView) menu.findItem(R.id.new_window).getActionView();
                 //Toast.makeText(FxActivity.this, "click r", Toast.LENGTH_SHORT).show();
@@ -298,17 +431,18 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
             }
 
             //quotesmenuicon
-            if (currentFragment != null && currentFragment instanceof Fx_Fragment_Quotes) {
+        else if (currentFragment != null && currentFragment instanceof Fx_Fragment_Quotes) {
 //            navigation.setSelectedItemId (R.id.nav_quotes1);
                 getMenuInflater().inflate(R.menu.quotes_menu, menu);
             }
-            if (currentFragment != null && currentFragment instanceof Fx_Manage_Fragment) {
+        else if (currentFragment != null && currentFragment instanceof Fx_Manage_Fragment) {
                 getMenuInflater().inflate(R.menu.manageacc, menu);
             }
-            if (currentFragment != null && currentFragment instanceof Fx_Manage_Account) {
+        else  if (currentFragment != null && currentFragment instanceof Fx_Manage_Account) {
                 getMenuInflater().inflate(R.menu.manageacc, menu);
             }
-        }
+
+
 
 
 //
@@ -351,13 +485,31 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
             }
         }
 
+        bcs=new BottomClickSession(this);
+        String val=bcs.getValue();
+        if (val.equals("1"))
+        {
+            switch (item.getItemId()) {
+                case R.id.itemp1:
+                    Intent i = new Intent(this, CustomSpinner.class); //add CustomSpinner
+                    this.startActivity(i);
+                    return true;
+                case R.id.fadd:
+                    Intent faddi = new Intent(this, Indicators.class);
+                    this.startActivity(faddi);
+                    return true;
 
+       /*         case R.id.mnNewWindow:
+                     Toast.makeText (this,"New window clicked", Toast.LENGTH_LONG).show ();*/
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+        }
 
         if (currentFragment != null && currentFragment instanceof Fx_Fragment_Quotes) {
             switch (item.getItemId()) {
                 case R.id.edit:
                     Intent i = new Intent(this, SelectSymbolActivity.class);
-
                     this.startActivity(i);
                     return true;
                 case R.id.add:
@@ -396,6 +548,31 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
 
             return super.onOptionsItemSelected(item);
 
+    }
+    private PopupWindow initiatePopupWindow2() {
+
+        try {
+            Inflater = (LayoutInflater) getApplicationContext()
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View layout = Inflater.inflate(R.layout.activity_chart_quickmenu_windowpopup_activity, null);
+
+            //If you want to add any listeners to your textviews, these are two //textviews.
+            final TextView itemA = (TextView) layout.findViewById(R.id.ItemA);
+
+            final TextView itemB = (TextView) layout.findViewById(R.id.ItemB);
+
+            layout.measure(View.MeasureSpec.UNSPECIFIED,
+                    View.MeasureSpec.UNSPECIFIED);
+            Dropdown = new PopupWindow(layout,FrameLayout.LayoutParams.WRAP_CONTENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT,true);
+            Drawable background = getResources().getDrawable(android.R.drawable.alert_light_frame);
+            Dropdown.setBackgroundDrawable(background);
+            Dropdown.showAsDropDown(locButton2 , -150, -225);
+//            mDropdown.showAtLocation(view, Gravity.LEFT, 100, 100);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Dropdown;
     }
 
     private PopupWindow initiatePopupWindow() {
@@ -436,7 +613,11 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                         final TextView itema = (TextView) layout.findViewById(R.id.Itema);
                         final TextView itemb = (TextView) layout.findViewById(R.id.Itemb);
                         LinearLayout llnew_window=(LinearLayout)layout.findViewById(R.id.llnew_window);
-                        final LinearLayout lleuro=layout.findViewById(R.id.lleuro);
+                        final LinearLayout llchart=layout.findViewById(R.id.llchart);
+                        final CheckBox cbeuro =(CheckBox) layout.findViewById(R.id.cbeuro);
+                        final CheckBox   cbeuro1=(CheckBox) layout.findViewById(R.id.cbeuro1);
+                       TextView  Itemd =(TextView)layout.findViewById(R.id.Itemd);
+
 
                         layout.measure(View.MeasureSpec.UNSPECIFIED,
                                 View.MeasureSpec.UNSPECIFIED);
@@ -444,23 +625,42 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                                 FrameLayout.LayoutParams.WRAP_CONTENT,true);
                         Drawable background = getResources().getDrawable(android.R.drawable.alert_light_frame);
                         mDropdownnew.setBackgroundDrawable(background);
-                        mDropdownnew.showAsDropDown(locButton1 , -350, -90);
+                        mDropdownnew.showAsDropDown(locButton1 , -500, -100);
+
+
+Itemd.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v){
+        if(cbeuro1.isChecked())
+        {
+            rlchartb.setVisibility(View.GONE);
+
+        }
+        if(cbeuro.isChecked())
+        {
+            rlchartb.setVisibility(View.GONE);
+        }
+
+    }
+});
+
 
                         llnew_window.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v){
 //
-                                if(lleuro.getVisibility()==View.VISIBLE) {
-                                    lleuro.setVisibility(View.GONE);
-                                }else {
-                                    lleuro.setVisibility(View.VISIBLE);
-                                }
-                                Toast.makeText(v.getContext(),"chart",Toast.LENGTH_LONG).show();
-                                Toast.makeText(v.getContext(),""+view,Toast.LENGTH_LONG).show();
+                       /*         if(llchart.getVisibility()==View.VISIBLE) {
+                                    llchart.setVisibility(View.GONE);
+                                }else {*/
+                                    llchart.setVisibility(View.VISIBLE);
+//                                }
+
+                                //Toast.makeText(v.getContext(),"chart",Toast.LENGTH_LONG).show();
+                                //Toast.makeText(v.getContext(),""+view,Toast.LENGTH_LONG).show();
                                 Fx_Chart_Fragment.DisplayChart();
                                 bcs.setValue("1");
 
-                    mDropdownnew.dismiss();
+                  //  mDropdownnew.dismiss();
                                 Toast.makeText(FxActivity.this, bcs.getValue(), Toast.LENGTH_SHORT).show();
                             }
             });
@@ -599,16 +799,5 @@ public void ShowPopup1() {
         myDialog.show();
     }
 
-//    public void ShowPopup3() {
-//        TextView txtclose;
-//        Button btnFollow;
-//        Button btnFollow1;
-//
-//        myDialog2.setContentView(R.layout.dollar_menu_popup);
-//
-//
-//        btnFollow = myDialog2.findViewById(R.id.btnfollow3);
-//        myDialog2.show();
-//    }
 
 }

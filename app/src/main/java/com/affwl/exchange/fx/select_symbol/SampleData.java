@@ -6,6 +6,7 @@ import java.util.List;
 
 
 public class SampleData {
+
     public  static List<Customer> addSampleCustomers(){
         List<Customer> customers = new ArrayList<Customer> ();
 

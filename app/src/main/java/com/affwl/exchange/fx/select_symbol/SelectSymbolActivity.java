@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.affwl.exchange.DataHolder;
 import com.affwl.exchange.R;
 import com.affwl.exchange.fx.Add_symbol;
 import com.affwl.exchange.fx.CustomAdapter5_quotes;
@@ -60,7 +62,7 @@ public class SelectSymbolActivity extends AppCompatActivity implements OnCustome
                 .setFontAttrId(R.attr.fontPath).build());
 
         setContentView (R.layout.select_symbol);
-        setupRecyclerView();
+
 
         toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
@@ -101,6 +103,15 @@ public class SelectSymbolActivity extends AppCompatActivity implements OnCustome
         });
 
 }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        setupRecyclerView();
+
+    }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -132,23 +143,46 @@ public class SelectSymbolActivity extends AppCompatActivity implements OnCustome
         else if(item.getItemId()==R.id.delete)
         {
             // multiple delete
-            Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show();
-            for (int i = 0; i < member_names5.length; i++) {
-                RowItem5_quotes itemdel = new RowItem5_quotes(member_names5[i], profile_pics5.getResourceId(i, -1), statues5[i],0);
-                rowItems5.add(itemdel);
-            }
+//            Toast.makeText(this, "Delete", Toast.LENGTH_SHORT).show();
+//            for (int i = 0; i < member_names5.length; i++) {
+//                RowItem5_quotes itemdel = new RowItem5_quotes(member_names5[i], profile_pics5.getResourceId(i, -1), statues5[i],0);
+//                rowItems5.add(itemdel);
+//            }
+//
+//            for(int i = (rowItems5.size() - 1); i >= 0; i--) {
+//                if(rowItems5.get(i).getIntCheck()==1)
+//                {
+//                    rowItems5.remove(i);
+//                }
+//            }
+//
+//            mylistview.setVisibility(View.VISIBLE);
+//            mRecyclerView.setVisibility(View.GONE);
+//            DeleteNow adapter = new DeleteNow(getApplicationContext(), rowItems5);
+//            mylistview.setAdapter(adapter);
 
-            for(int i = (rowItems5.size() - 1); i >= 0; i--) {
-                if(rowItems5.get(i).getIntCheck()==1)
+//            for (int i=DataHolder.ArrayListCustomeName.size()-1;i>=0;i--){
+//                Toast.makeText(this, DataHolder.ArrayListCustomeName.size()+" "+DataHolder.ArrayListCustomeName.get(i), Toast.LENGTH_SHORT).show();
+//                Log.e("DIP",DataHolder.ArrayListCustomeName.size()+" "+DataHolder.ArrayListCustomeName.get(i));
+//                mCustomers.remove(Integer.parseInt(DataHolder.ArrayListCustomeName.get(i)));
+//                DataHolder.ArrayListCustomeName.remove(i);
+//                mAdapter.notifyDataSetChanged();
+//                if(DataHolder.ArrayListCustomeName.size()-1==i){
+//                    DataHolder.ArrayListCustomeName.clear();
+//                }
+//            }
+
+            for (int i=0;i<DataHolder.ListDeleted.size(); i++){
+                //Toast.makeText(this, DataHolder.ArrayListCustomeName.size()+" "+DataHolder.ArrayListCustomeName.get(i), Toast.LENGTH_SHORT).show();
+                Log.e("DIP",DataHolder.ListDeleted.size()+" "+DataHolder.ListDeleted.get(i));
+
+                if(DataHolder.ListDeleted.get(i) == true)
                 {
-                    rowItems5.remove(i);
+                    mCustomers.remove(i);
+                    DataHolder.ListDeleted.remove(i);
+                    mAdapter.notifyDataSetChanged();
                 }
             }
-
-            mylistview.setVisibility(View.VISIBLE);
-            mRecyclerView.setVisibility(View.GONE);
-            DeleteNow adapter = new DeleteNow(getApplicationContext(), rowItems5);
-            mylistview.setAdapter(adapter);
         }
 
 

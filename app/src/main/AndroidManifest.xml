@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".indie.IndieActivity" />
         <activity
             android:name=".indie.PivotActivity"
@@ -65,7 +65,7 @@
         <activity android:name=".binary.AssetListActivity" />
         <activity android:name=".binary.TradeActivity" />
         <activity android:name=".binary.BinaryPotfolioActivity" />
-        <activity android:name=".fx.FxActivity"></activity>
+        <activity android:name=".fx.FxActivity" />
         <activity android:name=".fx.CustomSpinner" />
         <activity android:name=".fx.Problem_Description" />
         <activity android:name=".fx.Certificates" />
@@ -103,7 +103,7 @@
         <activity android:name=".sport.StackActivity" />
         <activity android:name=".fx.Fx_Currency_Activity" />
         <activity android:name=".fx.Fx_AVW_Activity" />
-        <activity android:name=".fx.Fx_DOM_Activity"></activity>
+        <activity android:name=".fx.Fx_DOM_Activity" />
         <activity android:name=".fx.Fx_MarketStatistics_Activity" />
         <activity android:name=".fx.Fx_Properties_Activity" />
         <activity android:name=".news.RssFeedUrlActivity" />
@@ -115,7 +115,10 @@
         <activity android:name=".trades.TradesActivity"/>
         <activity android:name=".alerts.AlertsActivity" />
         <activity android:name=".reports.ReportsActivity" />
-        <activity android:name=".fx.chart_new_popupwindow_activity"></activity>
+        <activity android:name=".fx.chart_new_popupwindow_activity" />
+        <activity android:name=".fx.chart_quickmenu_windowpopup_activity" />
+        <activity android:name=".fx.Chart_ObjectsActivity" />
+        <activity android:name=".fx.Fx_Chart_AddObject_Activity"></activity>
     </application>
 
 </manifest>

@@ -36,6 +36,11 @@ TextView textView39;
         });
 
     }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 
     @Override
     protected void attachBaseContext(Context newBase) {

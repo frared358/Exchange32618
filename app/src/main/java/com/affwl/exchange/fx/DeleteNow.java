@@ -92,7 +92,6 @@ public class DeleteNow extends BaseAdapter {
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if(isChecked)
                     {
-
                         row_pos.setIntCheck(1);
                     }
                     else

@@ -6,6 +6,6 @@
         android:id="@+id/indi_del"
         android:title="HI"
 
-        android:icon="@drawable/message_delete"
-        app:showAsAction="always" />3
+        android:icon="@drawable/delete"
+        app:showAsAction="always" />
 </menu>

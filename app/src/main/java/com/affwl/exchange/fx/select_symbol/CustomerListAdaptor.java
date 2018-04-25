@@ -7,13 +7,19 @@ package com.affwl.exchange.fx.select_symbol;
 import android.content.Context;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.affwl.exchange.DataHolder;
 import com.affwl.exchange.R;
 import com.squareup.picasso.Picasso;
 import com.affwl.exchange.fx.select_symbol.listener.OnCustomerListChangedListener;
@@ -25,8 +31,8 @@ import java.util.Collections;
 import java.util.List;
 
 
-class CustomerListAdapter extends           //changed
-        RecyclerView.Adapter<CustomerListAdapter.ItemViewHolder>
+class CustomerListAdapter extends RecyclerView.Adapter<CustomerListAdapter.ItemViewHolder>          //changed
+
         implements ItemTouchHelperAdapter {
 
     private List<Customer> mCustomers;
@@ -34,9 +40,7 @@ class CustomerListAdapter extends           //changed
     private OnStartDragListener mDragStartListener;
     private OnCustomerListChangedListener mListChangedListener;
 
-    public CustomerListAdapter(List<Customer> customers, Context context,
-                               OnStartDragListener dragLlistener,
-                               OnCustomerListChangedListener listChangedListener){
+    public CustomerListAdapter(List<Customer> customers, Context context, OnStartDragListener dragLlistener, OnCustomerListChangedListener listChangedListener){
         mCustomers = customers;
         mContext = context;
         mDragStartListener = dragLlistener;
@@ -46,16 +50,16 @@ class CustomerListAdapter extends           //changed
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View rowView = LayoutInflater.from
-                (parent.getContext()).inflate(R.layout.row_customer_list, parent, false);
+        View rowView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_customer_list, parent, false);
         ItemViewHolder viewHolder = new ItemViewHolder(rowView);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(final ItemViewHolder holder, int position) {
+    public void onBindViewHolder(final ItemViewHolder holder, final int position) {
 
         final Customer selectedCustomer = mCustomers.get(position);
+
 
         holder.customerName.setText(selectedCustomer.getName());
         holder.customerEmail.setText(selectedCustomer.getEmailAddress());
@@ -75,6 +79,30 @@ class CustomerListAdapter extends           //changed
                 return false;
             }
         });
+
+        DataHolder.ListDeleted.add(false);
+        holder.checkBoxCustomeName.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                if (isChecked){
+                    DataHolder.ListDeleted.add(position,true);
+                    DataHolder.ArrayListCustomeName.add(String.valueOf(position));
+                    Log.e("DIP",DataHolder.ListDeleted.get(position)+" "+position);
+                    Toast.makeText(mContext, "p "+DataHolder.ListDeleted.get(position), Toast.LENGTH_SHORT).show();
+                }
+                //else {
+//                    for (int i=0;i<DataHolder.ArrayListCustomeName.size();i++){
+//                            if(DataHolder.ArrayListCustomeName.get()){
+//
+//                            }
+//                        DataHolder.ArrayListCustomeName.add(String.valueOf(position));
+//                    }
+
+                //}
+            }
+        });
+
     }
 
     @Override
@@ -98,7 +126,7 @@ class CustomerListAdapter extends           //changed
             ItemTouchHelperViewHolder {
         public final TextView customerName, customerEmail;
         public final ImageView handleView;
-
+        public CheckBox checkBoxCustomeName;
 
 
         public ItemViewHolder(View itemView) {
@@ -106,6 +134,7 @@ class CustomerListAdapter extends           //changed
             customerName = (TextView)itemView.findViewById(R.id.text_view_customer_name);
             customerEmail = (TextView)itemView.findViewById(R.id.text_view_customer_email);
             handleView = (ImageView)itemView.findViewById(R.id.handle);
+            checkBoxCustomeName = itemView.findViewById(R.id.checkBoxCustomeName);
 
         }
 

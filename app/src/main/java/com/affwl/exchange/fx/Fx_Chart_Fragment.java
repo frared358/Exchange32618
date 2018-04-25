@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChangeListener  {
     // private CandleStickChart mchart;
-    private CandleStickChart mChart;
+    private CandleStickChart mChart, m2Chart;
     private SeekBar mSeekBarX, mSeekBarY;
     private TextView tvX, tvY;
     BottomClickSession bcs;
@@ -48,10 +48,11 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewChart = inflater.inflate (R.layout.fragment_fx_chart, null);
 
-//        bcs=new BottomClickSession(getContext());
+        bcs=new BottomClickSession(getContext());
 //        String chartval=bcs.getChart();
 //        if (chartval != "1") {
 //            Toast.makeText(getContext(), "hi", Toast.LENGTH_SHORT).show();
+        //}
            // RelativeLayout relativeLayout=view.findViewById(R.id.rlchartb);
 //
 //            if (relativeLayout.getVisibility()== View.GONE)
@@ -69,6 +70,9 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
 
         mChart = (CandleStickChart) viewChart.findViewById (R.id.chart1);
         mChart.setBackgroundColor (Color.WHITE);
+//
+        m2Chart = (CandleStickChart) viewChart.findViewById (R.id.chart15);
+        m2Chart.setBackgroundColor (Color.WHITE);
 
         rlchartb = (RelativeLayout) viewChart.findViewById(R.id.rlchartb);
 
@@ -79,14 +83,19 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
 
     private void creatingChart(){
         mChart.getDescription ().setEnabled (false);
+        m2Chart.getDescription().setEnabled(false);
+
         // if more than 60 entries are displayed in the chart, no values will be
         // drawn
         mChart.setMaxVisibleValueCount (60);
+        m2Chart.setMaxVisibleValueCount(60);
 
         // scaling can now only be done on x- and y-axis separately
         mChart.setPinchZoom (false);
+        m2Chart.setPinchZoom(false);
 
         mChart.setDrawGridBackground (false);
+        m2Chart.setDrawGridBackground(false);
 
         XAxis xAxis = mChart.getXAxis ();
         xAxis.setPosition (XAxis.XAxisPosition.BOTTOM);
@@ -96,6 +105,23 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
         xAxis.setCenterAxisLabels(true);
         xAxis.setGranularity(1f); // one hour
         xAxis.setValueFormatter(new IAxisValueFormatter() {
+
+            private SimpleDateFormat mFormat = new SimpleDateFormat("dd MMM HH:mm");
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                long millis = TimeUnit.HOURS.toMillis((long) value);
+                return mFormat.format(new Date (millis));
+            }
+        });
+
+        XAxis xAxis2 = m2Chart.getXAxis ();
+        xAxis2.setPosition (XAxis.XAxisPosition.BOTTOM);
+        xAxis2.setDrawGridLines (true);
+        xAxis2.enableGridDashedLine (10f, 10f, 2f);
+        /**Add date time on chart start*/
+        xAxis2.setCenterAxisLabels(true);
+        xAxis2.setGranularity(1f); // one hour
+        xAxis2.setValueFormatter(new IAxisValueFormatter() {
 
             private SimpleDateFormat mFormat = new SimpleDateFormat("dd MMM HH:mm");
             @Override
@@ -114,22 +140,34 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
 
         leftAxis.setDrawGridLines (true);
         leftAxis.enableGridDashedLine (10f, 10f, 2f);
+
+
+
+        YAxis leftAxis2 = m2Chart.getAxisLeft ();
+        leftAxis2.setEnabled (false);
+        leftAxis2.setLabelCount (7, false);
+        leftAxis2.setDrawGridLines (false);
+        leftAxis2.setDrawAxisLine (false);
+
+        leftAxis2.setDrawGridLines (true);
+        leftAxis2.enableGridDashedLine (10f, 10f, 2f);
         //leftAxis.setDrawValues(false);
 
-        YAxis rightAxis = mChart.getAxisRight ();
-        rightAxis.setEnabled (true);
-        rightAxis.setDrawGridLines (true);
-        rightAxis.setDrawGridLines (true);
+//        YAxis rightAxis = m2Chart.getAxisRight ();
+//        rightAxis.setEnabled (true);
+//        rightAxis.setDrawGridLines (true);
+//        rightAxis.setDrawGridLines (true);
 //        rightAxis.setStartAtZero(false);
 
-        rightAxis.setDrawGridLines (true);
-        rightAxis.enableGridDashedLine (10f, 10f, 2f);
+//        rightAxis.setDrawGridLines (true);
+//        rightAxis.enableGridDashedLine (10f, 10f, 2f);
 
         // setting data
         mSeekBarX.setProgress (40);
         mSeekBarY.setProgress (100);
 
         mChart.getLegend ().setEnabled (false);
+        m2Chart.getLegend ().setEnabled (false);
 
     }
 
@@ -183,6 +221,8 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
 
         mChart.setData (data);
         mChart.invalidate ();
+        m2Chart.setData (data);
+        m2Chart.invalidate ();
     }
 
     @Override
@@ -233,12 +273,12 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
     }
 
     public static void DisplayChart(){
-                    if(rlchartb.getVisibility()==View.GONE) {
+//                    if(rlchartb.getVisibility()==View.GONE) {
                         rlchartb.setVisibility(View.VISIBLE);
-                    }
-                    else {
+//                    }
+                   /* else {
                         rlchartb.setVisibility(View.GONE);
-                    }
+                    }*/
     }
 }
 

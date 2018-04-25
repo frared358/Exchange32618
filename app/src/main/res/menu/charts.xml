@@ -2,35 +2,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.affwl.exchange.fx.FxActivity">
-
-    <!--<item-->
-        <!--android:id="@+id/action_settings"-->
-         <!--android:icon="@drawable/ic_launcher_foreground"-->
-        <!--android:title="@string/action_settings"-->
-        <!--app:showAsAction="ifRoo   m" />-->
+    <item
+        android:id="@+id/object"
+        android:title="time"
+        app:showAsAction="always"
+        android:width="@style/AppBaseTheme"
+        app:actionViewClass="android.widget.ImageView"
+        android:icon="@drawable/ic_objects_normal"/>
     <item
         android:id="@+id/time"
-        android:title="cd"
-        app:actionViewClass="android.widget.ImageView"
+        android:title="time"
         app:showAsAction="always"
-        android:icon="@drawable/radio_circle"/>
-
+        android:width="@style/AppBaseTheme"
+        app:actionViewClass="android.widget.ImageView"
+        android:icon="@drawable/time"/>
     <item
         android:id="@+id/idHighLight"
         android:title="cd"
         app:showAsAction="always"
-        android:icon="@drawable/plus"/>
+        android:icon="@drawable/ic_chart_cross"/>
     <item
         android:title="cd"
         android:id="@+id/fadd"
         app:showAsAction="always"
+        app:actionViewClass="android.widget.ImageView"
         android:icon="@drawable/f"/>
 
     <item
         android:id="@+id/dolllar"
-        android:title=""
-        android:icon="@drawable/dol1"
+        android:title="dollar"
+        android:icon="@drawable/dol"
         app:showAsAction="always"
+        android:width="@style/AppBaseTheme"
         app:actionViewClass="android.widget.ImageView"/>
 
     <item
@@ -45,6 +48,7 @@
         android:id="@+id/itemp1"
         android:title="Calender"
         android:icon="@drawable/addicon"
+        app:actionViewClass="android.widget.ImageView"
         app:showAsAction="always" >
     </item>
 </menu>
