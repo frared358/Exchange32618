@@ -21,13 +21,14 @@ import com.affwl.exchange.news.NewsActivity;
 import com.affwl.exchange.reports.ReportsActivity;
 import com.affwl.exchange.settings.SettingsMainActivity;
 import com.affwl.exchange.sport.SportActivity;
+import com.affwl.exchange.teenpatti.SplashActivity;
 import com.affwl.exchange.trades.TradesActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView txtVIndie,txtV60Sec,txtVsports,fx;
     ImageView imgVIndie,imgV60Sec,imgVsports,imgVsportsCup,imgfx;
-    LinearLayout news_layout,settings_layout,alerts_layout,trade_layout,reports_layout;
+    LinearLayout news_layout,settings_layout,alerts_layout,trade_layout,reports_layout,teenpatti_layout;
 
 
     @Override
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fx=(TextView)findViewById(R.id.fx);
         imgfx=(ImageView)findViewById(R.id.imgfx);
 
+        teenpatti_layout=findViewById(R.id.teenpatti_layout);
         news_layout=findViewById(R.id.news_layout);
         trade_layout=findViewById(R.id.trade_layout);
         reports_layout=findViewById(R.id.reports_layout);
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         reports_layout.setOnClickListener(this);
         settings_layout.setOnClickListener(this);
         alerts_layout.setOnClickListener(this);
+        teenpatti_layout.setOnClickListener(this);
 
     }
 
@@ -95,6 +98,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.news_layout:
                 startActivity(new Intent(this,NewsActivity.class));
+                break;
+
+            case R.id.teenpatti_layout:
+                startActivity(new Intent(this, SplashActivity.class));
                 break;
 
             case R.id.trade_layout:

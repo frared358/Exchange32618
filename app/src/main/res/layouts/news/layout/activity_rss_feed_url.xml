@@ -64,7 +64,7 @@
     <ListView
         android:id="@+id/display_url_list"
         android:layout_width="match_parent"
-        android:background="@color/colorRedLight"
+        android:background="@color/colorRedLight1"
         android:layout_height="350dp">
 
     </ListView>

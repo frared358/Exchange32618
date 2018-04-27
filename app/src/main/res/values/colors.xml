@@ -34,7 +34,6 @@
     <color name="colorGrey500">#ffffff</color>
     <color name="colorGrey5001">#E0E0E0</color>
     <color name="colorBlueGrey">#ECEFF1</color>
-    <color name="colorOrange">#FF9800</color>
 
     <color name="colorYellowDark">#ddaa00</color>
     <color name="colorYellowDarkTransparent">#7dddaa00</color>
@@ -46,7 +45,7 @@
     <color name="colorPurpal">#271d7b</color>
     <color name="colorLightGrey">#ececec</color>
     <color name="colorRedBlood">#fc000d</color>
-    <color name="colorRedLight">#c7c7c7</color>
+    <color name="colorRedLight1">#c7c7c7</color>
     <color name="colorBlackTransper">#b3000000</color>
     <color name="colorBlackTransperDialog">#987b7b7b</color>
     <color name="colorBlackTransperDark">#eb000000</color>
@@ -54,11 +53,22 @@
     <color name="colorLogoOrange">#F15F23</color>
     <color name="colorLogoOrangeDark">#c23900</color>
 
-    <color name="colorBlueBet">#a0d0f2</color>
-    <color name="colorRedBet">#f5afbe</color>
+    <color name="colorBlueBet1">#a0d0f2</color>
+    <color name="colorRedBet1">#f5afbe</color>
 
     <color name="colorBlueBetTrasparent">#eba0d0f2</color>
     <color name="colorRedBetTrasparent">#ebfca2b5</color>
 
+<color name="colorOrange">#FF9800</color>
+<color name="colorYellowGolden">#dbcc00</color>
+<color name="coralorange">#FF7F50</color>
+<color name="orangered">#FF4500</color>
+
+<color name="colorRedLight">#ff4646</color>
+<color name="colorBlueBet">#72BBEF</color>
+<color name="colorRedBet">#FAA9BA</color>
+<color name="darkbrown">#250400</color>
+    <!--3Patti-->
+    <color name="colorLanguageBg">#20b9b9b9</color>
 
 </resources>

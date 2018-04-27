@@ -22,7 +22,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorRedLight"
+            android:background="@color/colorRedLight1"
             android:orientation="vertical">
 
             <ImageView
@@ -35,7 +35,7 @@
 
             <ListView
                 android:id="@+id/list_rss"
-                android:background="@color/colorRedLight"
+                android:background="@color/colorRedLight1"
                 android:layout_width="match_parent"
                 android:padding="5dp"
                 android:layout_height="wrap_content">
