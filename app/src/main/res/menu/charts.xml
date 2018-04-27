@@ -30,12 +30,11 @@
 
     <item
         android:id="@+id/dolllar"
-        android:title="dollar"
-        android:icon="@drawable/dol"
-        app:showAsAction="always"
         android:width="@style/AppBaseTheme"
-        app:actionViewClass="android.widget.ImageView"/>
-
+        android:icon="@drawable/dol"
+        android:title="dollar"
+        app:actionViewClass="android.widget.ImageView"
+        app:showAsAction="always" />
     <item
         android:id="@+id/new_window"
         android:icon="@drawable/copy"
