@@ -125,7 +125,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:padding="5dp"
-            android:src="@drawable/ic_drag" />
+            android:src="@drawable/hori" />
         <TextView
             android:layout_width="wrap_content"
             android:text="Tile Horizontally"
@@ -148,15 +148,13 @@
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:padding="5dp"
-            android:src="@drawable/ic_drag" />
+            android:src="@drawable/vertic" />
         <TextView
             android:layout_width="wrap_content"
             android:text="Tile Vertically"
             android:textSize="16dp"
-
             android:textColor="@color/Black"
             android:layout_height="wrap_content" />
-
 
 
     </LinearLayout>

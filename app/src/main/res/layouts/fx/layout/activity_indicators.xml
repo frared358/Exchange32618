@@ -68,6 +68,7 @@
             android:id="@+id/view3" />
 
         <TextView
+            android:visibility="visible"
             android:id="@+id/textView17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -126,6 +127,7 @@
             android:id="@+id/view7" />
 
         <TextView
+            android:visibility="visible"
             android:id="@+id/textView19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

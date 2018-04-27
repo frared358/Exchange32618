@@ -11,16 +11,20 @@ import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.affwl.exchange.R;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+import static com.affwl.exchange.fx.Fx_Chart_Fragment.rlchartb;
+
 public class Indicators extends AppCompatActivity {
     ImageButton imageButton_fadd1;
     CheckBox checkBox;
     CheckBox checkBox2;
+    TextView textView17, textView19;
 
 
     @Override
@@ -45,8 +49,9 @@ public class Indicators extends AppCompatActivity {
         });
 
     }
+
     @Override
-    public boolean onSupportNavigateUp() {
+    public boolean onSupportNavigateUp(){
         onBackPressed();
         return true;
     }
@@ -70,12 +75,26 @@ public class Indicators extends AppCompatActivity {
         if (item.getItemId() == R.id.indi_del) {
             checkBox = (CheckBox) findViewById(R.id.checkBox);
             checkBox.setVisibility(View.VISIBLE);
+
             checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
             checkBox2.setVisibility(View.VISIBLE);
 
         }
-            return super.onOptionsItemSelected(item);
-        }
+//       else if(checkBox.isChecked())
+//        {
+//            textView17.setVisibility(View.GONE);
+//
+//        }
+//        if(checkBox2.isChecked())
+//        {
+//            textView19.setVisibility(View.GONE);
+//        }
+//
+        return super.onOptionsItemSelected(item);
     }
+
+}
+
+
 
 

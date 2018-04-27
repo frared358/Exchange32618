@@ -5,6 +5,8 @@ package com.affwl.exchange.fx.select_symbol;
  */
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,17 +18,23 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.affwl.exchange.DataHolder;
 import com.affwl.exchange.R;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.CandleData;
+import com.github.mikephil.charting.data.CandleDataSet;
+import com.github.mikephil.charting.data.CandleEntry;
 import com.squareup.picasso.Picasso;
 import com.affwl.exchange.fx.select_symbol.listener.OnCustomerListChangedListener;
 import  com.affwl.exchange.fx.select_symbol.listener.OnStartDragListener;
 import  com.affwl.exchange.fx.select_symbol.utilities.ItemTouchHelperAdapter;
 import  com.affwl.exchange.fx.select_symbol.utilities.ItemTouchHelperViewHolder;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -79,6 +87,9 @@ class CustomerListAdapter extends RecyclerView.Adapter<CustomerListAdapter.ItemV
                 return false;
             }
         });
+
+
+
 
         DataHolder.ListDeleted.add(false);
         holder.checkBoxCustomeName.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

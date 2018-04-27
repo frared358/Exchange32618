@@ -63,6 +63,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
     Dialog myDialog,myDialog1,myDialog2;
     BottomClickSession bcs;
     private Fragment currentFragment;
+    LinearLayout llcharverti;
 
     ImageView locButton,locButton1,locButton2,locButton3,locButton4,tvobject;
     private PopupWindow mDropdownnew = null;
@@ -613,6 +614,8 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                         final TextView itema = (TextView) layout.findViewById(R.id.Itema);
                         final TextView itemb = (TextView) layout.findViewById(R.id.Itemb);
                         LinearLayout llnew_window=(LinearLayout)layout.findViewById(R.id.llnew_window);
+                        LinearLayout lltv=(LinearLayout)layout.findViewById(R.id.lltv);
+                        LinearLayout llth=layout.findViewById(R.id.llth);
                         final LinearLayout llchart=layout.findViewById(R.id.llchart);
                         final CheckBox cbeuro =(CheckBox) layout.findViewById(R.id.cbeuro);
                         final CheckBox   cbeuro1=(CheckBox) layout.findViewById(R.id.cbeuro1);
@@ -643,6 +646,19 @@ Itemd.setOnClickListener(new View.OnClickListener() {
 
     }
 });
+                        lltv.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v){
+                                Fx_Chart_Fragment.displayHorizontal();
+                            }
+                        });
+
+                        llth.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v){
+                                Fx_Chart_Fragment.displayVertical();
+                            }
+                        });
 
 
                         llnew_window.setOnClickListener(new View.OnClickListener() {

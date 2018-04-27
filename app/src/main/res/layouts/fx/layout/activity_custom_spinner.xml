@@ -280,50 +280,44 @@
         android:background="#FF909090" />
 
 
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:layout_marginLeft="-20dp"
-    >
-
-
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/chartNewOrder"
-        android:layout_width="match_parent"
-        android:layout_height="245sp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:paddingRight="10dp"/>
-
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp">
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="187dp"
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chartNewOrder"
+            android:layout_width="match_parent"
+            android:layout_height="245sp"
+            android:padding="10dp"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="SELL"
-            android:textColor="#F44336" />
+            android:padding="5dp">
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="187dp"
-            android:textColor="#2196F3"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:text="BUY" />
-    </RelativeLayout>
+            <Button
+                android:id="@+id/button"
+                android:layout_width="187dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="SELL"
+                android:textColor="#F44336" />
 
-</LinearLayout>
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="187dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="BUY"
+                android:textColor="#2196F3" />
+        </RelativeLayout>
+
+    </LinearLayout>
 
 
 

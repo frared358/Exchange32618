@@ -76,6 +76,7 @@
         <activity android:name=".fx.select_symbol.SelectSymbolActivity" />
         <activity android:name=".fx.Add_symbol" />
         <activity android:name=".fx.Add_symbol_Forex" />
+        <activity android:name=".fx.fx_chart.RecycleChartActivity"/>
         <activity android:name=".fx.FX_indicator_f_add_Activity" />
         <activity android:name=".fx.FX_indicator_f1_add_Activity" />
         <activity android:name=".fx.new_Acc_open_a_real_acc_Activity" />

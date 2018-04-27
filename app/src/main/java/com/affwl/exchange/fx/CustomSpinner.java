@@ -231,13 +231,13 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
         xAxis.setDrawGridLines(false);
         xAxis.setDrawAxisLine(false);
 
-        YAxis leftAxis = mChart.getAxisLeft();
-        leftAxis.setTypeface(mTfLight);
-        leftAxis.setTextColor(ColorTemplate.getHoloBlue());
-        leftAxis.setAxisMaximum(200f);
-        leftAxis.setAxisMinimum(0f);
-        leftAxis.setDrawGridLines(true);
-        leftAxis.setGranularityEnabled(true);
+//        YAxis leftAxis = mChart.getAxisLeft();
+//        leftAxis.setTypeface(mTfLight);
+//        leftAxis.setTextColor(ColorTemplate.getHoloBlue());
+//        leftAxis.setAxisMaximum(200f);
+//        leftAxis.setAxisMinimum(0f);
+//        leftAxis.setDrawGridLines(true);
+//        leftAxis.setGranularityEnabled(true);
 
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setTypeface(mTfLight);
