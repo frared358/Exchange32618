@@ -38,7 +38,6 @@ import java.util.List;
 
 public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.MyViewHolder> {
 
-
     Context contextT;
     private List<SportsData> dataListT;
 
@@ -65,6 +64,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.My
     public void onBindViewHolder(TournamentAdapter.MyViewHolder holder, final int position) {
         final SportsData tournament = dataListT.get(position);
         holder.txtVTournamentName.setText(tournament.txtVTournamentName);
+
         holder.llTournamentData.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {

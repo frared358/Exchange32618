@@ -81,7 +81,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
     ImageView imgVFav;
     Handler handler;
     Runnable runnable;
-    boolean REFRESH_FANCY = true,REFRESH_BOOKMAKING = true,REFRESH_MARKET=false;
+    boolean REFRESH_FANCY = false,REFRESH_BOOKMAKING = false,REFRESH_MARKET=false;
     LinearLayout llBookMaking,llFancyBet,llMatchOddData;
     public static ScrollView scrollBetActivity;
 
@@ -656,7 +656,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                         bookMakingAdapter.notifyDataSetChanged();
                     }
                     recycleViewBookMakingData.setAdapter(bookMakingAdapter);
-
+                    REFRESH_BOOKMAKING = true;
                 }else {
                     REFRESH_BOOKMAKING =false;
                 }
@@ -686,7 +686,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                         fancyAdapter.notifyDataSetChanged();
                     }
                     recycleViewFancyBet.setAdapter(fancyAdapter);
-
+                    REFRESH_FANCY = true;
                     //register BroadcastReceiver
 //                    try {
 //                        IntentFilter intentFilter = new IntentFilter(DataHolder.ACTION_SEND_FANCY_BOOKMAKING);
