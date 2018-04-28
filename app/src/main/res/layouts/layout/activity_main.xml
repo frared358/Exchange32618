@@ -201,6 +201,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:id="@+id/trade_layout"
                 android:orientation="vertical">
 
                 <ImageView
@@ -223,6 +224,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:id="@+id/reports_layout"
                 android:gravity="center"
                 android:orientation="vertical">
 

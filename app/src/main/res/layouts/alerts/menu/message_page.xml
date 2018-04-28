@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/DTS_id"
+            android:title="DTS ID"
+            app:showAsAction="always"
+            android:icon="@drawable/dts_id"/>
+
+        <item
+            android:id="@+id/message_search"
+            android:title="Search"
+            app:showAsAction="always"
+            android:icon="@drawable/msg_search"/>
+
+
+       <item
+             android:id="@+id/message_delete"
+             android:title="Delete"
+             app:showAsAction="always"
+             android:icon="@drawable/message_delete"/>
+
+       <!-- <item
+            android:id="@+id/refresh_message"
+            android:icon="@drawable/refresh"
+            android:title="New Message"
+            app:showAsAction="always" />-->
+
+    </group>
+
+</menu>

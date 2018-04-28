@@ -14,7 +14,7 @@
     <item
         android:id="@+id/delete"
         android:title="Calender"
-        android:icon="@drawable/delete"
+        android:icon="@drawable/message_delete"
         app:showAsAction="always" >
 
 

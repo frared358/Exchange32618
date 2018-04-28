@@ -51,6 +51,7 @@ public class Sec60Activity extends AppCompatActivity implements View.OnClickList
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navViewBinary);
+        navigationView.setItemIconTintList(null);
         assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
     }

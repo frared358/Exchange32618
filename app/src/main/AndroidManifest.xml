@@ -124,6 +124,7 @@
         <activity android:name=".sport.TournamentActivity" />
         <activity android:name=".sport.MatchListActivity" />
         <activity android:name=".sport.MatchOddsActivity"></activity>
+
         <service android:name=".sport.SignalRService"/>
         <!--<receiver android:name=".sport.BroadcastReceiverSignalr" >
             <intent-filter>
@@ -131,6 +132,22 @@
 
             </intent-filter>
         </receiver>-->
+
+        <activity android:name=".trades.TradesActivity"/>
+
+        <activity android:name=".alerts.MessageMainActivity"/>
+        <activity android:name=".alerts.MessagePage"/>
+
+        <activity android:name=".reports.ReportsActivity"/>
+        <activity android:name=".reports.OrderReportActivity"
+            android:parentActivityName=".reports.ReportsActivity"/>
+        <activity android:name=".reports.MarginPositionActivity"
+            android:parentActivityName=".reports.ReportsActivity"/>
+        <activity android:name=".reports.NetPositionActivity"
+            android:parentActivityName=".reports.ReportsActivity"/>
+        <activity android:name=".reports.TradeReportActivity"
+            android:parentActivityName=".reports.ReportsActivity"/>
+
     </application>
 
 </manifest>

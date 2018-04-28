@@ -2,6 +2,8 @@ package com.affwl.exchange.alerts;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -19,6 +22,8 @@ import android.widget.Toast;
 import com.affwl.exchange.R;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class AlertListAdapter extends RecyclerView.Adapter<AlertListAdapter.AlertListHolder> {
 
@@ -63,6 +68,15 @@ public class AlertListAdapter extends RecyclerView.Adapter<AlertListAdapter.Aler
         alertStrList.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, alertStrList.size());
+
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+
+        Set<String> set= new HashSet<String>();
+
+        set.addAll(alertStrList);
+        SharedPreferences.Editor saveEditor = sp.edit();
+        saveEditor.putStringSet("key", set);
+        saveEditor.commit();
     }
 
     public class AlertListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -84,7 +98,7 @@ public class AlertListAdapter extends RecyclerView.Adapter<AlertListAdapter.Aler
             switch (v.getId())
             {
                 case R.id.txtDeleteAlert:
-                    deleteRow(getAdapterPosition());
+                    deleteAlert("Delete Alert","Are you sure. You want to delete ?",getAdapterPosition());
                     break;
 
                 case R.id.txtEditAlert:
@@ -93,6 +107,50 @@ public class AlertListAdapter extends RecyclerView.Adapter<AlertListAdapter.Aler
                     break;
             }
         }
+    }
+
+
+    private void deleteAlert(String title, String message, final int adapterPos) {
+
+        TextView alert_title,alertMessage;
+        final ImageView close_alert;
+        Button ok_alert,cancel_alert;
+        final Dialog myAlertDialog = new Dialog(context);
+        myAlertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        myAlertDialog.setCanceledOnTouchOutside(false);
+        myAlertDialog.setContentView(R.layout.alert_message_dts);
+
+        alert_title = myAlertDialog.findViewById(R.id.alert_title);
+        alertMessage=myAlertDialog.findViewById(R.id.alertMessage);
+        close_alert=myAlertDialog.findViewById(R.id.close_alert);
+        ok_alert=myAlertDialog.findViewById(R.id.ok_alert);
+        cancel_alert=myAlertDialog.findViewById(R.id.cancel_alert);
+
+        alert_title.setText(title);
+        alertMessage.setText(message);
+
+        cancel_alert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myAlertDialog.dismiss();
+            }
+        });
+
+        close_alert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myAlertDialog.dismiss();
+            }
+        });
+        ok_alert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteRow(adapterPos);
+                myAlertDialog.dismiss();
+            }
+        });
+        myAlertDialog.show();
+
     }
 
 
@@ -172,6 +230,16 @@ public class AlertListAdapter extends RecyclerView.Adapter<AlertListAdapter.Aler
                 String valueArray=alert_heading.getText().toString()+" "+operator_radiobutton.getText().toString()+" "+strEdit;
                 alertStrList.set(pos,valueArray);
                 notifyDataSetChanged();
+
+                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+
+                Set<String> set= new HashSet<String>();
+
+                set.addAll(alertStrList);
+                SharedPreferences.Editor saveEditor = sp.edit();
+                saveEditor.putStringSet("key", set);
+                saveEditor.commit();
+
                 myDialog.dismiss();
             }
         });
