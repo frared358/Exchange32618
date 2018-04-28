@@ -565,6 +565,7 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost("http://173.212.248.188/pclient/Prince.svc/Bets/PlaceMOBet");
 
+            Log.i("ghji",""+odds);
             String json = "";
             JSONObject jsonObject = new JSONObject();
             jsonObject.accumulate("backlay",backlay);
@@ -613,6 +614,7 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
 
         @Override
         protected String doInBackground(final String... urls) {
+
             return BetPlaceApi(urls[0],urls[1],urls[2],urls[3],urls[4],urls[5],urls[6]);
         }
 

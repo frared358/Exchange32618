@@ -81,7 +81,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
     ImageView imgVFav;
     Handler handler;
     Runnable runnable;
-    boolean REFRESH_FANCY = true,REFRESH_BOOKMAKING = true,REFRESH_MARKET=false;
+    boolean REFRESH_FANCY = false,REFRESH_BOOKMAKING = false,REFRESH_MARKET=false;
     LinearLayout llBookMaking,llFancyBet,llMatchOddData;
     public static ScrollView scrollBetActivity;
 
@@ -592,8 +592,6 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                 }
                 recycleViewMarketData.setAdapter(marketDataAdapter);
 
-
-
                 //register BroadcastReceiver
                 try {
                     if (REFRESH_MARKET) {
@@ -656,7 +654,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                         bookMakingAdapter.notifyDataSetChanged();
                     }
                     recycleViewBookMakingData.setAdapter(bookMakingAdapter);
-
+                    REFRESH_BOOKMAKING = true;
                 }else {
                     REFRESH_BOOKMAKING =false;
                 }
@@ -686,7 +684,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                         fancyAdapter.notifyDataSetChanged();
                     }
                     recycleViewFancyBet.setAdapter(fancyAdapter);
-
+                    REFRESH_FANCY = true;
                     //register BroadcastReceiver
 //                    try {
 //                        IntentFilter intentFilter = new IntentFilter(DataHolder.ACTION_SEND_FANCY_BOOKMAKING);
@@ -827,7 +825,11 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
             if(UnAuthorized.equalsIgnoreCase("UnAuthorized access found")){
                 Toast.makeText(context, "Token Expire", Toast.LENGTH_SHORT).show();
                 if (broadcastReceiverSignalr != null) {
-                    unregisterReceiver(broadcastReceiverSignalr);
+                    try {
+                        unregisterReceiver(broadcastReceiverSignalr);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 MarketDataArray.clear();
                 BookMakingArray.clear();
