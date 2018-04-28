@@ -592,8 +592,6 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                 }
                 recycleViewMarketData.setAdapter(marketDataAdapter);
 
-
-
                 //register BroadcastReceiver
                 try {
                     if (REFRESH_MARKET) {
@@ -827,7 +825,11 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
             if(UnAuthorized.equalsIgnoreCase("UnAuthorized access found")){
                 Toast.makeText(context, "Token Expire", Toast.LENGTH_SHORT).show();
                 if (broadcastReceiverSignalr != null) {
-                    unregisterReceiver(broadcastReceiverSignalr);
+                    try {
+                        unregisterReceiver(broadcastReceiverSignalr);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
                 MarketDataArray.clear();
                 BookMakingArray.clear();
