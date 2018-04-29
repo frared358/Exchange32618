@@ -52,6 +52,7 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
     List links;
     ProgressDialog progressDialog;
     ImageView loading_news;
+    Animation startRotation;
 
     ListView list_rss;
     ArrayList<String> myList=new ArrayList<>();
@@ -65,7 +66,9 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       initiateComponent();
+        startRotation= AnimationUtils.loadAnimation(this,R.anim.animate_progressbar);
+
+        initiateComponent();
 
     }
 
@@ -135,6 +138,7 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
             case R.id.news_reload:
                 new MyAsyncTask().execute();
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -155,14 +159,14 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
         protected void onPreExecute() {
             super.onPreExecute();
 
-         /*   progressDialog=new ProgressDialog(NewsActivity.this);
+         /* progressDialog=new ProgressDialog(NewsActivity.this);
             progressDialog.setTitle("Fetching the RSS");
             progressDialog.setMessage("Please Wait ... ");
             progressDialog.setCancelable(false);
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();*/
 
-            Animation startRotation= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.animate_progressbar);
+            loading_news.setVisibility(View.VISIBLE);
             loading_news.startAnimation(startRotation);
         }
 
@@ -259,6 +263,7 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
             }*/
            if(loading_news.getVisibility()==View.VISIBLE)
            {
+               loading_news.clearAnimation();
                loading_news.setVisibility(View.GONE);
            }
         }

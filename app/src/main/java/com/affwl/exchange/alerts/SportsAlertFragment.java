@@ -22,7 +22,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class SportsAlertFragment extends Fragment implements View.OnClickListener {
 
-    TextView sports_sounds,ringtone_sports;
+    TextView sports_sounds,ringtone_sports,sports_messages;
     private int TONE_PICKER=906;
     Ringtone currentRingtone;
     Uri currentTone;
@@ -34,8 +34,10 @@ public class SportsAlertFragment extends Fragment implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_sports_alert, container, false);
 
         sports_sounds=view.findViewById(R.id.sports_sounds);
+        sports_messages=view.findViewById(R.id.sports_messages);
         ringtone_sports=view.findViewById(R.id.ringtone_sports);
         sports_sounds.setOnClickListener(this);
+        sports_messages.setOnClickListener(this);
         return view;
     }
 
@@ -52,6 +54,10 @@ public class SportsAlertFragment extends Fragment implements View.OnClickListene
                 intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false);
                 intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
                 startActivityForResult(intent, TONE_PICKER);
+                break;
+
+            case R.id.sports_messages:
+                startActivity(new Intent(v.getContext(),MessageMainActivity.class));
                 break;
         }
     }

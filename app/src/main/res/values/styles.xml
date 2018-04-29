@@ -29,9 +29,9 @@
     </style>
 
     <style name="mySpinnerItemStyle" parent="TextAppearance.AppCompat.Widget.TextView.SpinnerItem">
-        <!--<item name="android:textColor">@color/colorBlack</item>
-        <item name="android:dialogTheme">@color/colorWhite</item>
-        <item name="android:selectableItemBackground">@color/colorPrimary</item>
+       <!-- <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:dialogTheme">@color/colorGreay</item>-->
+        <!--<item name="android:selectableItemBackground">@color/colorPrimary</item>
         <item name="android:background">@drawable/material_better_spinner</item>-->
     </style>
 

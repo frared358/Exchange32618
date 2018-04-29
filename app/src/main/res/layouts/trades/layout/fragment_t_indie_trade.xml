@@ -19,8 +19,9 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:checked="false"
+            android:layout_weight="1"
             android:buttonTint="@color/colorWhite"
             android:textColor="@color/colorWhite"
             android:text=" Nse fut"/>
@@ -28,7 +29,8 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="12sp"
+            android:layout_weight="1"
            android:buttonTint="@color/colorWhite"
             android:checked="false"
             android:textColor="@color/colorWhite"
@@ -37,7 +39,8 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="12sp"
+            android:layout_weight="1"
             android:buttonTint="@color/colorWhite"
                android:checked="false"
             android:textColor="@color/colorWhite"
@@ -45,11 +48,10 @@
     </RadioGroup>
 
         <Spinner
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:layout_height="32dp"
             android:background="@drawable/material_better_spinner"
             android:hint="Trade"
-            android:theme="@style/spinnerTheme"
             style="@style/mySpinnerItemStyle"
             android:layout_margin="5dp"
             android:entries="@array/indie_trade_array" />

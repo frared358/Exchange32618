@@ -88,6 +88,131 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/hukum_info"
+        android:layout_width="190dp"
+        android:layout_height="match_parent"
+        android:background="#990000"
+        android:orientation="vertical"
+        android:layout_margin="60dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorYellowDark"
+            android:text="@string/xboot"
+            android:textSize="15sp"
+            android:textAlignment="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fcfbae"
+            android:textAlignment="center"
+            android:textSize="10sp"
+            android:text="@string/xbootinfo"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/muflis_info"
+        android:layout_width="190dp"
+        android:layout_height="match_parent"
+        android:background="#990000"
+        android:orientation="vertical"
+        android:layout_margin="60dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorYellowDark"
+            android:text="@string/xboot"
+            android:textSize="15sp"
+            android:textAlignment="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fcfbae"
+            android:textAlignment="center"
+            android:textSize="10sp"
+            android:text="@string/xbootinfo"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/faceoff_info"
+        android:layout_width="190dp"
+        android:layout_height="match_parent"
+        android:background="#990000"
+        android:orientation="vertical"
+        android:layout_margin="60dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorYellowDark"
+            android:text="@string/xboot"
+            android:textSize="15sp"
+            android:textAlignment="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fcfbae"
+            android:textAlignment="center"
+            android:textSize="10sp"
+            android:text="@string/xbootinfo"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ljoker_info"
+        android:layout_width="190dp"
+        android:layout_height="match_parent"
+        android:background="#990000"
+        android:orientation="vertical"
+        android:layout_margin="60dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorYellowDark"
+            android:text="@string/xboot"
+            android:textSize="15sp"
+            android:textAlignment="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fcfbae"
+            android:textAlignment="center"
+            android:textSize="10sp"
+            android:text="@string/xbootinfo"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/nnnine_info"
+        android:layout_width="190dp"
+        android:layout_height="match_parent"
+        android:background="#990000"
+        android:orientation="vertical"
+        android:layout_margin="60dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorYellowDark"
+            android:text="@string/xboot"
+            android:textSize="15sp"
+            android:textAlignment="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fcfbae"
+            android:textAlignment="center"
+            android:textSize="10sp"
+            android:text="@string/xbootinfo"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#ab0202"
@@ -220,6 +345,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/hukum_layout"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:orientation="horizontal"
@@ -250,6 +376,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/muflis_layout"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:orientation="horizontal"
@@ -281,6 +408,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/faceoff_layout"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:orientation="horizontal"
@@ -311,6 +439,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ljoker_layout"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:orientation="horizontal"
@@ -342,6 +471,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/nnnine_layout"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:orientation="horizontal"

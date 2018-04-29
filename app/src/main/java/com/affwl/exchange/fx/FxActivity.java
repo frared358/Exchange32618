@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -65,7 +66,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
     private Fragment currentFragment;
     LinearLayout llcharverti;
 
-    ImageView locButton,locButton1,locButton2,locButton3,locButton4,tvobject;
+    ImageView locButton,locButton1,locButton2,locButton3,locButton4,tvobject,idHighLight;
     private PopupWindow mDropdownnew = null;
     private PopupWindow mDropdown = null;
     private PopupWindow Dropdown = null;
@@ -265,8 +266,9 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
         {
             getMenuInflater().inflate(R.menu.charts,menu);
 
-                    tvobject = (ImageView) menu.findItem(R.id.object).getActionView();
+            tvobject = (ImageView) menu.findItem(R.id.object).getActionView();
             tvobject.setImageDrawable(getResources().getDrawable(R.drawable.ic_objects_white));
+            tvobject.setPadding(20,2,0,2);
             tvobject.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -279,8 +281,22 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                 }
             });
 
+            idHighLight=(ImageView)menu.findItem(R.id.idHighLight).getActionView();
+            idHighLight.setImageDrawable(getResources().getDrawable(R.drawable.ic_chart_cross));
+            idHighLight.setPadding(20,2,0,2);
+            idHighLight.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager fm = getSupportFragmentManager();  /** call method from fragment */
+                    //if you added fragment via layout xml
+                    Fx_Chart_Fragment fragment = (Fx_Chart_Fragment)fm.findFragmentById(R.id.xzz);
+                    fragment.showHighLight();
+                }
+            });
+
             locButton4 = (ImageView) menu.findItem(R.id.itemp1).getActionView();
             locButton4.setImageDrawable(getResources().getDrawable(R.drawable.ic_actionbar_new_order_normal));
+            locButton4.setPadding(20,2,0,2);
             locButton4.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -294,6 +310,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
             });
             locButton3 = (ImageView) menu.findItem(R.id.fadd).getActionView();
             locButton3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chart_indicator));
+            locButton3.setPadding(20,2,0,2);
             locButton3.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -309,6 +326,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
 
             locButton2 = (ImageView) menu.findItem(R.id.time).getActionView();
             locButton2.setImageDrawable(getResources().getDrawable(R.drawable.time));
+            locButton2.setPadding(20,2,0,2);
             locButton2.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -321,10 +339,8 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
             });
 
             locButton1 = (ImageView) menu.findItem(R.id.new_window).getActionView();
-            locButton1.setImageDrawable(getResources().getDrawable(R.drawable.copy));
-            LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            lp1.setMargins(50, 2, -30, 2);
-            locButton1.setLayoutParams(lp1);
+            locButton1.setImageDrawable(getResources().getDrawable(R.drawable.ic_copy));
+            locButton1.setPadding(20,2,0,2);
             locButton1.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -336,10 +352,8 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
             });
 
             locButton = (ImageView) menu.findItem(R.id.dolllar).getActionView();
-            locButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_symbols));
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            lp.setMargins(0, 2, 30, 2);
-            locButton.setLayoutParams(lp);
+            locButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_symbol));
+            locButton.setPadding(20,2,0,2);
             locButton.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -359,8 +373,23 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                 // navigation.setSelectedItemId (R.id.nav_charts1);  /** Chart moving constantaly */
                 getMenuInflater().inflate(R.menu.charts, menu);
 
+            idHighLight=(ImageView)menu.findItem(R.id.idHighLight).getActionView();
+            idHighLight.setImageDrawable(getResources().getDrawable(R.drawable.ic_chart_cross));
+            idHighLight.setPadding(20,2,0,2);
+            idHighLight.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FragmentManager fm = getSupportFragmentManager();  /** call method from fragment */
+                    //if you added fragment via layout xml
+                    Fx_Chart_Fragment fragment = (Fx_Chart_Fragment)fm.findFragmentById(R.id.xzz);
+                    fragment.showHighLight();
+                }
+            });
+
+
             locButton4 = (ImageView) menu.findItem(R.id.itemp1).getActionView();
             locButton4.setImageDrawable(getResources().getDrawable(R.drawable.ic_actionbar_new_order_normal));
+            locButton4.setPadding(20,2,0,2);
             locButton4.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -374,6 +403,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
             });
             locButton3 = (ImageView) menu.findItem(R.id.fadd).getActionView();
             locButton3.setImageDrawable(getResources().getDrawable(R.drawable.ic_chart_indicator));
+            locButton3.setPadding(20,2,0,2);
             locButton3.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -389,6 +419,7 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
 
                 locButton2 = (ImageView) menu.findItem(R.id.time).getActionView();
                 locButton2.setImageDrawable(getResources().getDrawable(R.drawable.time));
+                locButton2.setPadding(20,2,0,2);
                 locButton2.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -403,7 +434,8 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                 locButton1 = (ImageView) menu.findItem(R.id.new_window).getActionView();
                 //Toast.makeText(FxActivity.this, "click r", Toast.LENGTH_SHORT).show();
 
-                locButton1.setImageDrawable(getResources().getDrawable(R.drawable.copy));
+                locButton1.setImageDrawable(getResources().getDrawable(R.drawable.ic_copy));
+                locButton1.setPadding(20,2,0,2);
                 locButton1.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -415,7 +447,8 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                 });
 
                 locButton = (ImageView) menu.findItem(R.id.dolllar).getActionView();
-                locButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_menu_symbols));
+                locButton.setImageDrawable(getResources().getDrawable(R.drawable.ic_symbol));
+                locButton.setPadding(20,2,0,2);
                 locButton.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -469,16 +502,16 @@ public class FxActivity extends AppCompatActivity implements NavigationView.OnNa
                     Fx_Chart_Fragment fragment = (Fx_Chart_Fragment)fm.findFragmentById(R.id.xzz);
                     fragment.showHighLight();
                     return true;
-
+/*
                 case R.id.itemp1:
                     Intent i = new Intent(this, CustomSpinner.class); //add CustomSpinner
                     this.startActivity(i);
-                    return true;
-                case R.id.fadd:
+                    return true;*/
+              /*  case R.id.fadd:
                     Intent faddi = new Intent(this, Indicators.class);
                     this.startActivity(faddi);
                     return true;
-
+*/
        /*         case R.id.mnNewWindow:
                      Toast.makeText (this,"New window clicked", Toast.LENGTH_LONG).show ();*/
                 default:

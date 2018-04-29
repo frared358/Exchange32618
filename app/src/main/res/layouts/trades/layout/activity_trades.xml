@@ -53,7 +53,7 @@
     <android.support.design.widget.NavigationView
         android:id="@+id/trades_nav_view"
         android:layout_width="130dp"
-        android:background="@drawable/background_main"
+        android:background="@drawable/drawer_background"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"

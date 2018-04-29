@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -87,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this,SportActivity.class));
                 break;
             case R.id.fx:case R.id.imgfx:
-          //   startActivity(new Intent(this,FxActivity.class));
                startActivity(new Intent(this,FxActivity.class));
                 break;
 //                Fragment currentFragment = new Fragment ();
@@ -130,7 +130,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     void dialogLogout(){
         final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCanceledOnTouchOutside(false);
         dialog.setContentView(R.layout.dialog_logout);
+
 
         TextView txtVOK =  dialog.findViewById(R.id.txtVOK);
         TextView txtVCancel =  dialog.findViewById(R.id.txtVCancel);

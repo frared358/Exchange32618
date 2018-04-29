@@ -2,14 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:background="@color/colorRedLight1">
 
     <!--included in app_bar_fxx.xml-->
 
-    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v7.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/programingList">
+        android:id="@+id/programingList"
+        android:background="@color/colorRedLight1">
 </android.support.v7.widget.RecyclerView>
 
     <include layout="@layout/fragment_fx_quotes" />

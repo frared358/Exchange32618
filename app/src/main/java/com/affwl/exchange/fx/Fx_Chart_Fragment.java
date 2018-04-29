@@ -46,7 +46,7 @@ import java.util.concurrent.TimeUnit;
  * Created by user on 1/24/2018.
  */
 
-public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChangeListener,OnChartValueSelectedListener, View.OnClickListener {
+public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChangeListener,OnChartValueSelectedListener {
     // private CandleStickChart mchart;
     private CandleStickChart mChart, m2Chart;
     private SeekBar mSeekBarX, mSeekBarY;
@@ -96,8 +96,8 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
         llcharverti=(LinearLayout)viewChart.findViewById(R.id.llcharverti);
 
 
-        checkDemo=viewChart.findViewById(R.id.checkDemo);
-        checkDemo.setOnClickListener(this);
+     /*   checkDemo=viewChart.findViewById(R.id.checkDemo);
+        checkDemo.setOnClickListener(this);*/
         creatingChart();
 
 
@@ -448,7 +448,7 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
     public void onStopTrackingTouch(SeekBar seekBar) {
     }
 
-    @Override
+/*    @Override
     public void onClick(View v){
         switch (v.getId())
         {
@@ -456,7 +456,7 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
                 startActivity(new Intent(getContext(), RecycleChartActivity.class));
                 break;
         }
-    }
+    }*/
 
     @Override
     public void onValueSelected(Entry e, Highlight h){

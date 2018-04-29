@@ -6,20 +6,19 @@
         android:id="@+id/object"
         android:title="time"
         app:showAsAction="always"
-        android:width="@style/AppBaseTheme"
         app:actionViewClass="android.widget.ImageView"
         android:icon="@drawable/ic_objects_normal"/>
     <item
         android:id="@+id/time"
         android:title="time"
         app:showAsAction="always"
-        android:width="@style/AppBaseTheme"
         app:actionViewClass="android.widget.ImageView"
         android:icon="@drawable/time"/>
     <item
         android:id="@+id/idHighLight"
         android:title="cd"
         app:showAsAction="always"
+        app:actionViewClass="android.widget.ImageView"
         android:icon="@drawable/ic_chart_cross"/>
     <item
         android:title="cd"
@@ -30,7 +29,6 @@
 
     <item
         android:id="@+id/dolllar"
-        android:width="@style/AppBaseTheme"
         android:icon="@drawable/dol"
         android:title="dollar"
         app:actionViewClass="android.widget.ImageView"
@@ -40,7 +38,6 @@
         android:icon="@drawable/copy"
         android:title="Charts"
         app:actionViewClass="android.widget.ImageView"
-        android:width="@style/AppBaseTheme"
         app:showAsAction="always"/>
 
     <item

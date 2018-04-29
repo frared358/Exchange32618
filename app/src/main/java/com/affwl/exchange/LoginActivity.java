@@ -197,6 +197,7 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                         saveLoginDetails(editUser,editPass);
                     }
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
                 }
 
                 Log.i("result","result "+DataHolder.LOGIN_TOKEN+" Status "+status);

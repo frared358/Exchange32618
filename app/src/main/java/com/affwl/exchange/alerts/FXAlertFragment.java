@@ -22,7 +22,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class FXAlertFragment extends Fragment implements View.OnClickListener {
 
-    TextView fx_sounds,ringtone_fx;
+    TextView fx_sounds,ringtone_fx,fx_messages;
     private int TONE_PICKER=902;
     Ringtone currentRingtone;
     Uri currentTone;
@@ -33,8 +33,10 @@ public class FXAlertFragment extends Fragment implements View.OnClickListener {
      View view = inflater.inflate(R.layout.fragment_fxalert, container, false);
 
         fx_sounds=view.findViewById(R.id.fx_sounds);
+        fx_messages=view.findViewById(R.id.fx_messages);
         ringtone_fx=view.findViewById(R.id.ringtone_fx);
         fx_sounds.setOnClickListener(this);
+        fx_messages.setOnClickListener(this);
         return view;
     }
 
@@ -51,6 +53,10 @@ public class FXAlertFragment extends Fragment implements View.OnClickListener {
                 intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false);
                 intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
                 startActivityForResult(intent, TONE_PICKER);
+                break;
+
+            case R.id.fx_messages:
+                startActivity(new Intent(v.getContext(),MessageMainActivity.class));
                 break;
         }
     }

@@ -22,13 +22,13 @@
              android:text="NZDUSD, MN"
              android:textColor="@color/colorBlack" />
 
-         <Button
+       <!--  <Button
              android:text="click"
              android:id="@+id/checkDemo"
              android:padding="3dp"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:layout_toRightOf="@id/tvusd"/>
+             android:layout_toRightOf="@id/tvusd"/>-->
 
 
       <com.github.mikephil.charting.charts.CandleStickChart

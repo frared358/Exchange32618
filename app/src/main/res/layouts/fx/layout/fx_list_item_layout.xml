@@ -5,17 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="1.5dp"
+    android:background="@color/colorRedLight1"
     android:orientation="horizontal">
 
     <android.support.v7.widget.CardView
         android:id="@+id/demo_card"
         android:layout_width="match_parent"
-
+        android:background="@color/colorRedLight1"
         android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorRedLight1"
             android:weightSum="3"
             android:orientation="horizontal">
 
@@ -24,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:background="@color/colorRedLight1"
                 android:paddingLeft="15dp"
                 android:layout_weight="1">
 
@@ -39,6 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:background="@color/colorRedLight1"
                     android:visibility="gone">
 
                     <TextView
@@ -59,6 +63,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorRedLight1"
                 android:orientation="vertical"
                 android:gravity="right"
                 android:layout_weight="1">
@@ -80,6 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:background="@color/colorRedLight1"
                     android:gravity="center"
                     android:visibility="gone">
                     <TextView
@@ -103,6 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:background="@color/colorRedLight1"
                 android:gravity="center"
                 android:layout_weight="1">
 
@@ -125,6 +132,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center"
+                    android:background="@color/colorRedLight1"
                     android:visibility="gone">
                     <TextView
                         android:id="@+id/tvAdvCurrencyHigh"

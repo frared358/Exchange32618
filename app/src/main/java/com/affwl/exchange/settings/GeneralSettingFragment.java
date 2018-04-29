@@ -15,9 +15,9 @@ import com.affwl.exchange.R;
 public class GeneralSettingFragment extends Fragment implements View.OnClickListener {
 
     Switch switch_crypto , switch_fx , switch_indie , switch_sixtysec , switch_sports , switch_teen_patti;
-    LinearLayout layout_push_notification_options , layout_language_options,accout_logout;
-    ImageView dropdown_language , dropdown_push_notification;
-    TextView txtAccount;
+    LinearLayout dropdown_language,layout_push_notification_options , layout_language_options,accout_logout,dropdown_push_notification;
+    TextView txtAccount, tv_logout;
+    ImageView dropdown_language_arrow, dropdown_push_notification_arrow;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,7 +34,6 @@ public class GeneralSettingFragment extends Fragment implements View.OnClickList
         switch_sports=(Switch) view.findViewById(R.id.sports_push_notify);
         switch_teen_patti=(Switch) view.findViewById(R.id.teen_patti_push_notify);
 
-        accout_logout=view.findViewById(R.id.accout_logout);
 
         layout_push_notification_options = view.findViewById(R.id.layout_push_notification_options);
         layout_language_options= view.findViewById(R.id.layout_language_options);
@@ -45,10 +44,15 @@ public class GeneralSettingFragment extends Fragment implements View.OnClickList
         dropdown_language=view.findViewById(R.id.dropdown_language);
         dropdown_push_notification=view.findViewById(R.id.dropdown_push_notification);
 
+        dropdown_language_arrow=view.findViewById(R.id.dropdown_language_arrow);
+        dropdown_push_notification_arrow=view.findViewById(R.id.dropdown_push_notification_arrow);
+
+        tv_logout=view.findViewById(R.id.tv_logout);
+
         dropdown_push_notification.setOnClickListener(this);
         dropdown_language.setOnClickListener(this);
 
-
+        tv_logout.setOnClickListener(this);
         txtAccount.setOnClickListener(this);
 
         return view;
@@ -63,6 +67,10 @@ public class GeneralSettingFragment extends Fragment implements View.OnClickList
                 }else {
                     accout_logout.setVisibility(View.GONE);
                 }
+                break;
+
+            case R.id.tv_logout:
+                System.exit(0);
                 break;
 
   /*          case R.id.crypto_push_notify:
@@ -103,12 +111,12 @@ public class GeneralSettingFragment extends Fragment implements View.OnClickList
         if(layout_language_options.getVisibility() == View.GONE){
 
             layout_language_options.setVisibility(View.VISIBLE);
-            dropdown_language.setImageDrawable(getResources().getDrawable(R.drawable.arrowup_general));
+            dropdown_language_arrow.setImageDrawable(getResources().getDrawable(R.drawable.arrowup_general));
 
         } else{
 
             layout_language_options.setVisibility(View.GONE);
-            dropdown_language.setImageDrawable(getResources().getDrawable(R.drawable.drop_down_general));
+            dropdown_language_arrow.setImageDrawable(getResources().getDrawable(R.drawable.drop_down_general));
 
         }
     }
@@ -117,12 +125,12 @@ public class GeneralSettingFragment extends Fragment implements View.OnClickList
         if(layout_push_notification_options.getVisibility() == View.GONE){
 
             layout_push_notification_options.setVisibility(View.VISIBLE);
-            dropdown_push_notification.setImageDrawable(getResources().getDrawable(R.drawable.arrowup_general));
+            dropdown_push_notification_arrow.setImageDrawable(getResources().getDrawable(R.drawable.arrowup_general));
 
         } else{
 
             layout_push_notification_options.setVisibility(View.GONE);
-            dropdown_push_notification.setImageDrawable(getResources().getDrawable(R.drawable.drop_down_general));
+            dropdown_push_notification_arrow.setImageDrawable(getResources().getDrawable(R.drawable.drop_down_general));
 
         }
 
