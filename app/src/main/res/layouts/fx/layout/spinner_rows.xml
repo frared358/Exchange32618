@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
+    android:background="#E0E0E0"
     android:orientation="vertical"
     tools:context="com.affwl.exchange.fx.CustomSpinner">
     <!--<ImageView-->

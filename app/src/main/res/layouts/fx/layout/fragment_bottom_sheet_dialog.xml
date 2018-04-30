@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="15dp"
+    android:background="#E0E0E0"
     android:paddingTop="15dp">
 
     <!-- NOTE: This list should be displayed in a list

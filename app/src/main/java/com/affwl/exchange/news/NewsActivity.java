@@ -207,33 +207,35 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
                         XmlPullParser xpp = factory.newPullParser();
 
                         // We will get the XML from an input stream
-                        xpp.setInput(getInputStream(url), "UTF_8");
-                        boolean insideItem = false;
+                        if(getInputStream(url)!=null) {
+                            xpp.setInput(getInputStream(url), "UTF_8");
+                            boolean insideItem = false;
 
-                        // Returns the type of current event: START_TAG, END_TAG, etc..
-                        int eventType = xpp.getEventType();
+                            // Returns the type of current event: START_TAG, END_TAG, etc..
+                            int eventType = xpp.getEventType();
 //                        Log.i("Checking event"," "+eventType);
 
 
-                        while (eventType != XmlPullParser.END_DOCUMENT) {
-                            if (eventType == XmlPullParser.START_TAG) {
-                                if (xpp.getName().equalsIgnoreCase("item")) {
-                                    insideItem = true;
-                                } else if (xpp.getName().equalsIgnoreCase("title")) {
-                                    if (insideItem)
-                                        headlines.add(xpp.nextText());
-                                    //extract the headline
-                                } else if (xpp.getName().equalsIgnoreCase("pubDate")) {
-                                    if (insideItem)
-                                        newsDateTimes.add(xpp.nextText()); //extract the link of article
-                                } else if (xpp.getName().equalsIgnoreCase("link")) {
-                                    if (insideItem)
-                                        links.add(xpp.nextText()); //extract the link of article
+                            while (eventType != XmlPullParser.END_DOCUMENT) {
+                                if (eventType == XmlPullParser.START_TAG) {
+                                    if (xpp.getName().equalsIgnoreCase("item")) {
+                                        insideItem = true;
+                                    } else if (xpp.getName().equalsIgnoreCase("title")) {
+                                        if (insideItem) headlines.add(xpp.nextText());
+                                        //extract the headline
+                                    } else if (xpp.getName().equalsIgnoreCase("pubDate")) {
+                                        if (insideItem) newsDateTimes.add(xpp.nextText()); //extract the link of article
+                                    } else if (xpp.getName().equalsIgnoreCase("link")) {
+                                        if (insideItem) links.add(xpp.nextText()); //extract the link of article
+                                    }
+                                } else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")) {
+                                    insideItem = false;
                                 }
-                            } else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")) {
-                                insideItem = false;
+                                eventType = xpp.next(); //move to next element
                             }
-                            eventType = xpp.next(); //move to next element
+                        }
+                        else {
+                            Toast.makeText(NewsActivity.this, "No url", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

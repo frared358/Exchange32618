@@ -142,6 +142,7 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
         l.setTypeface(mTfLight);
         l.setTextSize(11f);
         l.setTextColor(Color.GRAY);
+
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
@@ -427,6 +428,7 @@ public class Fx_Chart_Fragment extends Fragment implements SeekBar.OnSeekBarChan
         set1.setDecreasingColor (Color.BLACK);
         set1.setDecreasingPaintStyle (Paint.Style.FILL);
         set1.setIncreasingColor (Color.BLACK);
+               set1.setBarSpace(Color.GRAY);
         set1.setIncreasingPaintStyle (Paint.Style.STROKE);
         set1.setNeutralColor (Color.BLUE);
         set1.setHighLightColor (Color.BLACK);

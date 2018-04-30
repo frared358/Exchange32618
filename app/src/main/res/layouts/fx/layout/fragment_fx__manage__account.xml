@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#E0E0E0"
     android:gravity="center_horizontal"
     tools:context="com.affwl.exchange.fx.Fx_Manage_Account">
 
@@ -22,7 +23,7 @@
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:background="#81D4FA"
+            android:background="@color/colorRedLight1"
             android:layout_margin="5dp"
             android:src="@drawable/dts_logo" />
 

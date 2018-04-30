@@ -24,7 +24,7 @@
         android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#9E9E9E"
+        android:background="#E0E0E0"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_fxx"
         app:menu="@menu/activity_fxx_drawer" />

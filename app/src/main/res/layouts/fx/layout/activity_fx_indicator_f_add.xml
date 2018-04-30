@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#E0E0E0"
     tools:context="com.affwl.exchange.fx.FX_indicator_f_add_Activity">
 
 

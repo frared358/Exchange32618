@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="@color/colorRedLight1">
+    android:background="#E0E0E0">
 
     <!--included in app_bar_fxx.xml-->
 
@@ -11,7 +11,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
         android:id="@+id/programingList"
-        android:background="@color/colorRedLight1">
+        android:background="#E0E0E0">
 </android.support.v7.widget.RecyclerView>
 
     <include layout="@layout/fragment_fx_quotes" />

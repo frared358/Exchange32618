@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/rl1"
-    android:background="@color/colorRedLight1"
+    android:background="#E0E0E0"
     tools:context="com.affwl.exchange.fx.Add_symbol">
 
     <android.support.v7.widget.Toolbar

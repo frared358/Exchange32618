@@ -5,16 +5,20 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,11 +63,23 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
     CustomAdapter4_customspinner adapter;
     CustomSpinner activity = null;
     private LineChart mChart;
+    ImageView locButton10;
+    private PopupWindow mDropdown = null;
+    LayoutInflater mInflater;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.spinner_menu, menu);
+        locButton10 = (ImageView) menu.findItem(R.id.dolllar1).getActionView();
+        locButton10.setImageDrawable(getResources().getDrawable(R.drawable.ic_symbol));
+        locButton10.setPadding(2,2,0,2);
+     locButton10.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v){
+             initiatePopupWindow();
+         }
+     });
 
         return true;
 
@@ -250,6 +266,32 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
 
         /** Line chart End  */
     }
+    private PopupWindow initiatePopupWindow() {
+
+        try {
+            mInflater = (LayoutInflater) getApplicationContext()
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View layout = mInflater.inflate(R.layout.activity_chart_dollar_activity, null);
+
+            //If you want to add any listeners to your textviews, these are two //textviews.
+            final TextView itemA = (TextView) layout.findViewById(R.id.ItemA);
+
+            final TextView itemB = (TextView) layout.findViewById(R.id.ItemB);
+
+            layout.measure(View.MeasureSpec.UNSPECIFIED,
+                    View.MeasureSpec.UNSPECIFIED);
+            mDropdown = new PopupWindow(layout, FrameLayout.LayoutParams.WRAP_CONTENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT,true);
+            Drawable background = getResources().getDrawable(android.R.drawable.alert_light_frame);
+            mDropdown.setBackgroundDrawable(background);
+            mDropdown.showAsDropDown(locButton10 , -10, -115);
+//            mDropdown.showAtLocation(view, Gravity.LEFT, 100, 100);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mDropdown;
+    }
+
     /** for  toolbar backpress */
     @Override
     public boolean onSupportNavigateUp() {
