@@ -1165,6 +1165,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 });
+
+                // general click
                 general.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
