@@ -112,6 +112,8 @@
         <item name="android:textColor">@color/colorWhite</item>
     </style>
 
+    <!--Teenpatti Application theme-->
+
 </resources>
 
 

@@ -36,21 +36,22 @@ import com.affwl.exchange.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ImageView showPopupBtn, closeRateus, closeHelpBtn, closeTrophyBtn,profile,orangechipsbtn,close312help,closesixpattihelp,short321info,tourney_shortinfo_closebtn,shortsixpattiinfo,bluechipsbtn,cyanchipsbtn,shortinfo_tourney,tourney_join_closebtn,ygreenchipsbtn,closebtn_create_table,mainlimegchipsbtn,variation_closebtn,share_loader,facebook,whatsapp,general;
-    PopupWindow RateuspopupWindow, HelpUspopupWindow, TrophypopupWindow, tounpopupWindow,howto321popup,sixpattipopup,howtosixpattipopup,join_tourney_popupWindow,shortinfo_tourney_popupwindow,create_table_private_popupwindow,join_table_popupwindow;
-    RelativeLayout RelativeLayoutloader,relativelayout321,relativeLayoutsixpatti,relativeLayout_tourney;
-    TextView loaderbuychips,joinnowbtn,howtoplay321btn,howtoplaysixpattibtn,joinnowsixpattibtn,join_tourneybtn,create_table_btn,join_variation_btn,nametext,code;
+    ImageView inout_arrowimg,inout_img,revolvej_arrowimg,revolvej_img,closenewvationchooser,showPopupBtn, closeRateus, closeHelpBtn, closeTrophyBtn,profile,orangechipsbtn,close312help,closesixpattihelp,short321info,tourney_shortinfo_closebtn,shortsixpattiinfo,bluechipsbtn,cyanchipsbtn,shortinfo_tourney,tourney_join_closebtn,ygreenchipsbtn,closebtn_create_table,mainlimegchipsbtn,variation_closebtn,share_loader,facebook,whatsapp,general;
+    PopupWindow newvariationchoose,RateuspopupWindow, HelpUspopupWindow, TrophypopupWindow, tounpopupWindow,howto321popup,sixpattipopup,howtosixpattipopup,join_tourney_popupWindow,shortinfo_tourney_popupwindow,create_table_private_popupwindow,join_table_popupwindow;
+    RelativeLayout newvariationlayout,RelativeLayoutloader,relativelayout321,relativeLayoutsixpatti,relativeLayout_tourney;
+    TextView joinnewvariation,loaderbuychips,joinnowbtn,howtoplay321btn,howtoplaysixpattibtn,joinnowsixpattibtn,join_tourneybtn,create_table_btn,join_variation_btn,nametext,code;
     Session session;
-    LinearLayout jokerlayout_btn,jokerinfo_layout,ak47_layout_btn,ak47info_layout,xboot_layout_btn,xboot_info_layout;
+    LinearLayout inoutinfo,inoutnv,rvjokerinfo,rvjokernv,jokerlayout_btn,jokerinfo_layout,ak47_layout_btn,ak47info_layout,xboot_layout_btn,xboot_info_layout;
     ImageView joker_img,ak_img,xboot_img;
 
 
     int value=0;
     int value1=0;
-    int value2=0;
 
     ImageView mainychips,mainlimegchips,blackchips;
 
+    private Animation Animleft;
+    private Animation Animright;
 
 
     @Override
@@ -540,8 +541,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 jokerinfo_layout=customView.findViewById(R.id.jokerinfo);
                 joker_img=customView.findViewById(R.id.joker_img);
 
-                 final Animation Animleft = AnimationUtils.loadAnimation(MainActivity.this, R.anim.left_translate);
-                 final Animation Animright = AnimationUtils.loadAnimation(MainActivity.this, R.anim.right_translate);
+                 Animleft = AnimationUtils.loadAnimation(MainActivity.this, R.anim.left_translate);
+                 Animright = AnimationUtils.loadAnimation(MainActivity.this, R.anim.right_translate);
 
                 jokerlayout_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -786,6 +787,137 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onAnimationRepeat(Animation animation) {
 
+            }
+        });
+
+        //////////////// Popup for new variation ////////////////
+
+
+        blackchips = findViewById(R.id.blackchips);
+        RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
+        newvariationlayout = findViewById(R.id.newvariationlayout);
+
+        blackchips.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //instantiate the popup
+                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View customView = layoutInflater.inflate(R.layout.new_variation_join_table,null);
+
+                joinnewvariation = customView.findViewById(R.id.joinnewvariation);
+
+                closenewvationchooser = customView.findViewById(R.id.closenewvationchooser);
+
+                //Instantiate the popup
+                newvariationchoose = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+
+                //display the popup window
+                newvariationchoose.showAtLocation(RelativeLayoutloader, Gravity.TOP, 0, 0);
+
+                closenewvationchooser.setOnClickListener(new View.OnClickListener(){
+
+                    @Override
+                    public void onClick(View v) {
+                        newvariationchoose.dismiss();
+                    }
+                });
+//                binding the buttons
+                rvjokernv = customView.findViewById(R.id.rvjokernv);
+                inoutnv = customView.findViewById(R.id.inoutnv);
+
+//              binding the layouts
+                rvjokerinfo = customView.findViewById(R.id.rvjokerinfo);
+                inoutinfo = customView.findViewById(R.id.inoutinfo);
+
+                revolvej_img = customView.findViewById(R.id.revolvej_img);
+                final Animation Animleft = AnimationUtils.loadAnimation(MainActivity.this, R.anim.left_translate);
+                final Animation Animright = AnimationUtils.loadAnimation(MainActivity.this, R.anim.right_translate);
+                rvjokernv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(value==0) {
+                            rvjokernv.setBackgroundDrawable(getResources().getDrawable(R.drawable.variation_selected));
+
+                            inoutinfo.clearAnimation();
+                            rvjokerinfo.clearAnimation();
+
+                            rvjokerinfo.setVisibility(View.VISIBLE);
+                            inout_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+
+                            revolvej_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
+                            rvjokerinfo.startAnimation(Animleft);
+                            value = 1;
+                            value1=0;
+
+                            Animleft.setFillAfter(true);
+                            return;
+                        }
+                        if(value==1)
+                        {
+                            rvjokernv.setBackgroundDrawable(getResources().getDrawable(R.drawable.themelistlabelback));
+
+                            rvjokerinfo.clearAnimation();
+                            inoutinfo.clearAnimation();
+
+                            rvjokerinfo.setVisibility(View.INVISIBLE);
+                            inout_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+
+                            revolvej_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
+                            rvjokerinfo.startAnimation(Animleft);
+                            value = 0;
+                            Animright.setFillAfter(true);
+                            return;
+                        }
+                    }
+                });
+
+                inout_img = customView.findViewById(R.id.inout_img);
+                inoutnv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(value1==0) {
+                            inoutnv.setBackgroundDrawable(getResources().getDrawable(R.drawable.variation_selected));
+
+                            inoutinfo.clearAnimation();
+                            rvjokerinfo.clearAnimation();
+
+                            inoutinfo.setVisibility(View.VISIBLE);
+                            inout_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+
+                            revolvej_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
+                            inoutinfo.startAnimation(Animleft);
+                            value = 0;
+                            value1=1;
+                            Animleft.setFillAfter(true);
+                            return;
+                        }
+                        if(value1==1)
+                        {
+                            inoutnv.setBackgroundDrawable(getResources().getDrawable(R.drawable.themelistlabelback));
+
+
+                            rvjokerinfo.clearAnimation();
+                            inoutinfo.clearAnimation();
+
+                            rvjokerinfo.setVisibility(View.INVISIBLE);
+                            inout_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+
+                            revolvej_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
+                            inoutinfo.startAnimation(Animleft);
+                            value1 = 0;
+                            Animright.setFillAfter(true);
+                            return;
+                        }
+                    }
+                });
+
+                joinnewvariation.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MainActivity.this, NewVariationActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
         });
     }

@@ -240,6 +240,8 @@
 
     </string-array>
 
+    <!--Teenpatti-->
+
     <string name="teenpatti_app_name">Teen Patti</string>
     <string name="language_english">English</string>
     <string name="language_hindi">हिंदी</string>
@@ -395,6 +397,11 @@
     <string name="xbootinfo">Boot will be 4 times in
                 this variation.</string>
 
+    <!--new variations-->
+
+    <string name="revolve_joker_desc">The dealer pulls out 3 cards at random. These 3 cards and all other cards of the same rank are jokers. If any player packs, then the dealer pulls 3 new joker cards.</string>
+    <string name="revolving_joker">Revolving Joker</string>
+    <string name="in_out_desc">In this variation, highest hand wins. After viewing the cards, each player may drop or continue in the game. Now there is show. Winner takes the pot money. The remaining players put 1.5 times the pot money to fill the pot, and the game continues.</string>
 
 
 </resources>
