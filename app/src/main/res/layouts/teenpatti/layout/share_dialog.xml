@@ -18,8 +18,10 @@
     android:layout_height="wrap_content"
     android:text="SHARE YOUR INVITE CODE"
     android:layout_centerInParent="true"
-    android:layout_marginTop="15dp"/>
+    android:layout_marginTop="15dp"
+    android:textColor="@color/colorYellowDark"/>
         <ImageView
+            android:id="@+id/close_share"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/cross"
@@ -31,8 +33,16 @@
         android:text="eetg24371"
         android:id="@+id/code"
         android:gravity="center"
+        android:textColor="@color/Black"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="15dp"
+        android:background="#ecdfdf"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:background="@color/colorYellow">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,11 +51,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/darkbrown"
             android:text="AND GET 80,000 CHIPS"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="GET MORE?"/>
+            android:text="GET MORE?"
+            android:textColor="@color/white"
+            android:background="@drawable/blue_button"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -72,6 +85,7 @@
             android:layout_margin="15dp"/>
     </LinearLayout>
 </LinearLayout>
+</LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -87,10 +101,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorYellowDark"
         android:text="Your friend will get: 80,000 chips"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/colorYellowDark"
         android:text="Invite limit: 10 friends"/>
 </LinearLayout>
         <LinearLayout
@@ -101,6 +117,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/blue_button"
+            android:textColor="@color/white"
             android:text="ENTER FRIEND'S CODE"
             android:layout_gravity="center"/>
         </LinearLayout>

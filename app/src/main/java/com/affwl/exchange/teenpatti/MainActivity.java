@@ -1185,7 +1185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 alert.show();
                 alert.getWindow().setAttributes(lp);
                 // builder.show();
-
+//                alert.dismiss();
 
             }
         });

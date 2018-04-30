@@ -267,7 +267,7 @@
     <string name="joker">Joker</string>
     <string name="ak">AK47</string>
     <string name="xboot">4x Boot</string>
-    <string name="hukum">Hukum</string>
+    <string name="hukum">Hukam</string>
     <string name="muflis">Muflis</string>
     <string name="faceoff">FaceOff</string>
     <string name="lowestjoker">Lowest Joker</string>
@@ -383,18 +383,13 @@
 
     <!--Helps for variations-->
 
-    <string name="jokertxt" tools:ignore="DuplicateDefinition">The dealer pulls out one
-            card at random after
-            dealing and nominates
-            all other cards of the
-            same rank/strength/number
-            as jokers(wild cards).</string>
-    <string name="ak47">Ace,King,4 and 7
-            become the jokers
-            in this variation.</string>
-    <string name="xbootinfo">Boot will be 4 times in
-                this variation.</string>
-
-
-
+    <string name="jokertxt" tools:ignore="DuplicateDefinition">The dealer pulls out one\n card at random after \ndealing and nominates \nall other cards of the \nsame rank/strength/\nnumber as jokers(wild \ncards).</string>
+    <string name="ak47">Ace,King,4 and 7\n become the jokers\n in this variation.</string>
+    <string name="xbootinfo">Boot will be\n 4 times in\nthis variation.</string>
+    <string name="hukaminfo">One HUKAM card in the\n centre of the table\n Any card with the \nsame number as the \nHUKAM card is a \njoker card.</string>
+    <string name="muflisinfo">The least ranking \n combination has the \n highest rank and vice versa</string>
+    <string name="faceoffinfo">Everyone gets face\n card. A face card is any\n suit card of 10/J/Q/K/\nA denomination</string>
+    <string name="lowestjokerinfo">Each players lowest-\nranking card (and all\n other cards of that \nsame rank/strength/\nnumber) are  jokers\n(wild cards) in that\nplayer's hand  only.If the \ntwo lowest cards are a \npair then that pair is \nconsidered as two jokers.</string>
+    <string name="nineinfo">There cards are dealt\n and  the player has to \nmake tthe game closest\n to the figure 999(nine\n hundred ninety nine). \nAll face cards(jack,\nQueen and King) and 10 \nare considered Zero \nfor this game and Ace\n is considered as One.\n For e.g. if you have 5-7-\nJack then closeset\n number
+to 999 will be 750.\n If you have 9-Ace-9 \nthen you havea 991 and \nyou are probably a winner!</string>
 </resources>
