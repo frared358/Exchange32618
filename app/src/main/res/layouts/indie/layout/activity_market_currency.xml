@@ -146,6 +146,7 @@
         <android.support.design.widget.NavigationView
             android:id="@+id/navViewMarketCurrency"
             android:layout_width="150dp"
+            android:background="@color/colorGreay"
             android:layout_height="match_parent"
             android:layout_marginRight="100dp"
             android:layout_gravity="start"

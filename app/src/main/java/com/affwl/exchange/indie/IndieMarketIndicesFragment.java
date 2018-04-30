@@ -122,32 +122,38 @@ public class IndieMarketIndicesFragment extends Fragment implements View.OnClick
             @Override
             public void onClick(View v) {
                 String strEdit = editText_alert_value.getText().toString();
+                Toast.makeText(context, "Checking text : "+strEdit, Toast.LENGTH_SHORT).show();
                 int selectedId = operator_radiogroup.getCheckedRadioButtonId();
                     Log.i("Selected Id", " " + selectedId);
-                    if (selectedId != -1) {
+                if(selectedId == -1) {
+                    displayMessage("Error", "Select radio button first");
+                }
+                    else  {
                         operator_radiobutton = myDialog.findViewById(selectedId);
-                        operator_radiobutton.setBackground(getResources().getDrawable(R.drawable.selected_radio_circle));
+//                        operator_radiobutton.setBackground(getResources().getDrawable(R.drawable.selected_radio_circle));
                         String selectedString=operator_radiobutton.getText().toString();
                             Log.i("String Edit",strEdit);
-                        String valueArray = alert_heading.getText().toString() + " " + selectedString + " " + strEdit;
-                        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
-                        if (sp.getStringSet("key", null) != null) {
-                            set = sp.getStringSet("key", null);
-                        } else {
-                            set = new HashSet<String>();
-                        }
+                            if(!strEdit.equalsIgnoreCase("")&& strEdit!=null) {
+                                String valueArray = alert_heading.getText().toString() + " " + selectedString + " " + strEdit;
+                                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getContext());
+                                if (sp.getStringSet("key", null) != null) {
+                                    set = sp.getStringSet("key", null);
+                                } else {
+                                    set = new HashSet<String>();
+                                }
 
-                        set.add(valueArray);
-                        SharedPreferences.Editor saveEditor = sp.edit();
-                        saveEditor.putStringSet("key", set);
-                        saveEditor.commit();
-                        myDialog.dismiss();
-                        displayMessage("New Alert", "Alert Set Successfully !");
+                                set.add(valueArray);
+                                SharedPreferences.Editor saveEditor = sp.edit();
+                                saveEditor.putStringSet("key", set);
+                                saveEditor.commit();
+                                myDialog.dismiss();
+                                displayMessage("New Alert", "Alert Set Successfully !");
+                            }
+                            else {
+                                displayMessage("Error", "Please enter a value");
+                            }
                     }
-                else {
-                        operator_radiobutton.setBackground(getResources().getDrawable(R.drawable.radio_circle));
-                        displayMessage("Error", "Select radio button first");
-                    }
+
             }
         });
 
@@ -181,7 +187,8 @@ public class IndieMarketIndicesFragment extends Fragment implements View.OnClick
             TextView alert_title,alertMessage;
             final ImageView close_alert;
             Button ok_alert,cancel_alert;
-             final Dialog myAlertDialog = new Dialog(getContext());
+
+            final Dialog myAlertDialog = new Dialog(getContext());
             myAlertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             myAlertDialog.setCanceledOnTouchOutside(false);
             myAlertDialog.setContentView(R.layout.alert_message_dts);

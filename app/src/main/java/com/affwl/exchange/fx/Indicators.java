@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.affwl.exchange.R;
 
@@ -25,6 +26,7 @@ public class Indicators extends AppCompatActivity {
     CheckBox checkBox;
     CheckBox checkBox2;
     TextView textView17, textView19;
+    int select=0;
 
 
     @Override
@@ -38,6 +40,13 @@ public class Indicators extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        textView17=findViewById(R.id.textView17);
+        textView19=findViewById(R.id.textView19);
+
+        checkBox = (CheckBox) findViewById(R.id.checkBox);
+        checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
+
 
         imageButton_fadd1 = (ImageButton) findViewById(R.id.imageButton_fadd1);
         imageButton_fadd1.setOnClickListener(new View.OnClickListener() {
@@ -70,16 +79,32 @@ public class Indicators extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-        if (item.getItemId() == R.id.indi_del) {
-            checkBox = (CheckBox) findViewById(R.id.checkBox);
-            checkBox.setVisibility(View.VISIBLE);
+        switch (item.getItemId()) {
+            case R.id.indi_del:
+                Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
+                if (checkBox.getVisibility() == View.GONE || checkBox2.getVisibility()==View.GONE) {
+                    checkBox.setVisibility(View.VISIBLE);
+                    checkBox2.setVisibility(View.VISIBLE);
+                    select=1;
+                }
+                    if (checkBox.isChecked()) {
+                        textView17.setVisibility(View.INVISIBLE);
+                    }
+                    else if (checkBox2.isChecked()) {
+                        textView19.setVisibility(View.INVISIBLE);
+                    }
+                    else {
+                        textView17.setVisibility(View.VISIBLE);
+                        textView19.setVisibility(View.VISIBLE);
 
-            checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
-            checkBox2.setVisibility(View.VISIBLE);
+                    }
 
-        }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+
 //       else if(checkBox.isChecked())
 //        {
 //            textView17.setVisibility(View.GONE);
@@ -90,9 +115,8 @@ public class Indicators extends AppCompatActivity {
 //            textView19.setVisibility(View.GONE);
 //        }
 //
-        return super.onOptionsItemSelected(item);
+        }
     }
-
 }
 
 

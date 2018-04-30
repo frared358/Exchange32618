@@ -20,7 +20,7 @@ public class TradesFxFragment extends Fragment implements View.OnClickListener {
     }
 
     LinearLayout ll_position_details,ll_position_list;
-    TextView tv4,tv_buy,tv_minus,tv_from_value,tv_to_value;
+    TextView tv4,tv_buy,tv_minus,tv_from_value,tv_to_value,fx_position_details;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,6 +38,7 @@ public class TradesFxFragment extends Fragment implements View.OnClickListener {
         Typeface yourfont = Typeface.createFromAsset(getContext().getAssets(), "fonts/RobotoCondensed-Regular.ttf");
 
         ll_position_list=view.findViewById(R.id.ll_position_list);
+        fx_position_details=view.findViewById(R.id.fx_position_details);
         ll_position_details=view.findViewById(R.id.ll_position_details);
 
         tv4=view.findViewById(R.id.tv4);
@@ -53,6 +54,7 @@ public class TradesFxFragment extends Fragment implements View.OnClickListener {
         tv_to_value.setTypeface(yourfont);
 
         ll_position_list.setOnClickListener(this);
+        fx_position_details.setOnClickListener(this);
     }
 
     @Override
@@ -66,6 +68,17 @@ public class TradesFxFragment extends Fragment implements View.OnClickListener {
                 }
                 else {
                     ll_position_details.setVisibility(View.VISIBLE);
+                }
+                break;
+
+            case R.id.fx_position_details:
+                if(ll_position_list.getVisibility()==View.VISIBLE){
+                    ll_position_list.setVisibility(View.GONE);
+                    ll_position_details.setVisibility(View.GONE);
+                }
+                else {
+                    ll_position_list.setVisibility(View.VISIBLE);
+                    ll_position_details.setVisibility(View.GONE);
                 }
                 break;
         }
