@@ -225,22 +225,31 @@ public class AlertListAdapter extends RecyclerView.Adapter<AlertListAdapter.Aler
             public void onClick(View v) {
                 String strEdit=editText_alert_value.getText().toString();
                 int selectedId = operator_radiogroup.getCheckedRadioButtonId();
-                operator_radiobutton = myDialog.findViewById(selectedId);
+                if(selectedId == -1) {
+                    displayMessage("Error", "Select radio button first");
+                }
+                else {
+                    operator_radiobutton = myDialog.findViewById(selectedId);
+                    if (!strEdit.equalsIgnoreCase("") && strEdit != null) {
+                        String valueArray = alert_heading.getText().toString() + " " + operator_radiobutton.getText().toString() + " " + strEdit;
+                        alertStrList.set(pos, valueArray);
+                        notifyDataSetChanged();
 
-                String valueArray=alert_heading.getText().toString()+" "+operator_radiobutton.getText().toString()+" "+strEdit;
-                alertStrList.set(pos,valueArray);
-                notifyDataSetChanged();
+                        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
 
-                SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+                        Set<String> set = new HashSet<String>();
 
-                Set<String> set= new HashSet<String>();
+                        set.addAll(alertStrList);
+                        SharedPreferences.Editor saveEditor = sp.edit();
+                        saveEditor.putStringSet("key", set);
+                        saveEditor.commit();
 
-                set.addAll(alertStrList);
-                SharedPreferences.Editor saveEditor = sp.edit();
-                saveEditor.putStringSet("key", set);
-                saveEditor.commit();
-
-                myDialog.dismiss();
+                        myDialog.dismiss();
+                    }
+                    else {
+                        displayMessage("Error", "Please enter a value");
+                    }
+                }
             }
         });
 
@@ -259,5 +268,38 @@ public class AlertListAdapter extends RecyclerView.Adapter<AlertListAdapter.Aler
         });
 
         myDialog.show();
+    }
+
+    private void displayMessage(String title, String message) {
+
+        TextView alert_title,alertMessage;
+        final ImageView close_alert;
+        Button ok_alert,cancel_alert;
+        final Dialog myAlertDialog = new Dialog(context);
+        myAlertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        myAlertDialog.setCanceledOnTouchOutside(false);
+        myAlertDialog.setContentView(R.layout.alert_message_dts);
+
+        alert_title = myAlertDialog.findViewById(R.id.alert_title);
+        alertMessage=myAlertDialog.findViewById(R.id.alertMessage);
+        close_alert=myAlertDialog.findViewById(R.id.close_alert);
+        ok_alert=myAlertDialog.findViewById(R.id.ok_alert);
+        cancel_alert=myAlertDialog.findViewById(R.id.cancel_alert);
+
+        close_alert.setVisibility(View.GONE);
+        cancel_alert.setVisibility(View.GONE);
+        ok_alert.setText("OK");
+        alert_title.setText(title);
+        alertMessage.setText(message);
+
+        ok_alert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                myAlertDialog.dismiss();
+            }
+        });
+        myAlertDialog.show();
+
     }
 }

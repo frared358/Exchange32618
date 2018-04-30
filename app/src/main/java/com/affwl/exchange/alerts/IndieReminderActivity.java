@@ -49,7 +49,7 @@ public class IndieReminderActivity extends AppCompatActivity {
         }
         else {
             alert_array_list=new ArrayList<>();
-            alert_array_list.add("No data to display");
+//            alert_array_list.add("No data to display");
         }
         alertListAdapter = new AlertListAdapter(this,alert_array_list);
         list_alerts.setAdapter(alertListAdapter);

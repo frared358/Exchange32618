@@ -74,6 +74,7 @@
             android:id="@+id/navViewBinaryAsset"
             android:layout_width="70dp"
             android:layout_height="match_parent"
+            android:background="@color/colorGreay"
             android:layout_marginRight="100dp"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
