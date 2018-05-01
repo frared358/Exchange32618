@@ -33,7 +33,10 @@
             android:layout_height="wrap_content"
             android:textColor="#fcfbae"
             android:textAlignment="center"
-            android:textSize="10sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textSize="12sp"
             android:text="@string/jokertxt"/>
     </LinearLayout>
 
@@ -57,7 +60,10 @@
         android:layout_height="wrap_content"
         android:textColor="#fcfbae"
         android:textAlignment="center"
-        android:textSize="10sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:textSize="12sp"
         android:text="@string/ak47"/>
 </LinearLayout>
 
@@ -83,7 +89,10 @@
             android:layout_height="wrap_content"
             android:textColor="#fcfbae"
             android:textAlignment="center"
-            android:textSize="10sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textSize="12sp"
             android:text="@string/xbootinfo"/>
     </LinearLayout>
 
@@ -100,7 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorYellowDark"
-            android:text="@string/xboot"
+            android:text="@string/hukum"
             android:textSize="15sp"
             android:textAlignment="center"/>
         <TextView
@@ -108,8 +117,11 @@
             android:layout_height="wrap_content"
             android:textColor="#fcfbae"
             android:textAlignment="center"
-            android:textSize="10sp"
-            android:text="@string/xbootinfo"/>
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textSize="12sp"
+            android:text="@string/hukaminfo"/>
     </LinearLayout>
 
     <LinearLayout
@@ -125,7 +137,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorYellowDark"
-            android:text="@string/xboot"
+            android:text="@string/muflis"
             android:textSize="15sp"
             android:textAlignment="center"/>
         <TextView
@@ -133,8 +145,11 @@
             android:layout_height="wrap_content"
             android:textColor="#fcfbae"
             android:textAlignment="center"
-            android:textSize="10sp"
-            android:text="@string/xbootinfo"/>
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="12sp"
+            android:text="@string/muflisinfo"
+            android:layout_margin="10dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -150,7 +165,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorYellowDark"
-            android:text="@string/xboot"
+            android:text="@string/faceoff"
             android:textSize="15sp"
             android:textAlignment="center"/>
         <TextView
@@ -158,8 +173,11 @@
             android:layout_height="wrap_content"
             android:textColor="#fcfbae"
             android:textAlignment="center"
-            android:textSize="10sp"
-            android:text="@string/xbootinfo"/>
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textSize="12sp"
+            android:text="@string/faceoffinfo"/>
     </LinearLayout>
 
     <LinearLayout
@@ -175,7 +193,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorYellowDark"
-            android:text="@string/xboot"
+            android:text="@string/lowestjoker"
             android:textSize="15sp"
             android:textAlignment="center"/>
         <TextView
@@ -183,8 +201,11 @@
             android:layout_height="wrap_content"
             android:textColor="#fcfbae"
             android:textAlignment="center"
-            android:textSize="10sp"
-            android:text="@string/xbootinfo"/>
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textSize="12sp"
+            android:text="@string/lowestjokerinfo"/>
     </LinearLayout>
 
     <LinearLayout
@@ -200,7 +221,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorYellowDark"
-            android:text="@string/xboot"
+            android:text="@string/nine"
             android:textSize="15sp"
             android:textAlignment="center"/>
         <TextView
@@ -208,8 +229,11 @@
             android:layout_height="wrap_content"
             android:textColor="#fcfbae"
             android:textAlignment="center"
-            android:textSize="10sp"
-            android:text="@string/xbootinfo"/>
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textSize="12sp"
+            android:text="@string/nineinfo"/>
     </LinearLayout>
 
     <LinearLayout
@@ -283,7 +307,7 @@
 
                     <LinearLayout
                         android:id="@+id/ak47_layout"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:orientation="horizontal"
                         android:background="@drawable/themelistlabelback">
@@ -315,7 +339,7 @@
 
                     <LinearLayout
                         android:id="@+id/xboot_layout"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:orientation="horizontal"
                         android:background="@drawable/themelistlabelback">
@@ -346,7 +370,7 @@
 
                     <LinearLayout
                         android:id="@+id/hukum_layout"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:orientation="horizontal"
                         android:background="@drawable/themelistlabelback">
@@ -377,7 +401,7 @@
 
                     <LinearLayout
                         android:id="@+id/muflis_layout"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:orientation="horizontal"
                         android:background="@drawable/themelistlabelback">
@@ -409,8 +433,8 @@
 
                     <LinearLayout
                         android:id="@+id/faceoff_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
                         android:orientation="horizontal"
                         android:background="@drawable/themelistlabelback">
                         <TextView
@@ -440,8 +464,8 @@
 
                     <LinearLayout
                         android:id="@+id/ljoker_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
                         android:orientation="horizontal"
                         android:background="@drawable/themelistlabelback">
                         <TextView
@@ -472,8 +496,8 @@
 
                     <LinearLayout
                         android:id="@+id/nnnine_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
                         android:orientation="horizontal"
                         android:background="@drawable/themelistlabelback">
                         <TextView

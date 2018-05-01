@@ -1165,6 +1165,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 });
+
+                // general click
                 general.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -1185,7 +1187,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 alert.show();
                 alert.getWindow().setAttributes(lp);
                 // builder.show();
-
+//                alert.dismiss();
 
             }
         });
