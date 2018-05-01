@@ -267,7 +267,7 @@
     <string name="joker">Joker</string>
     <string name="ak">AK47</string>
     <string name="xboot">4x Boot</string>
-    <string name="hukum">Hukam</string>
+    <string name="hukum">Hukum</string>
     <string name="muflis">Muflis</string>
     <string name="faceoff">FaceOff</string>
     <string name="lowestjoker">Lowest Joker</string>
@@ -392,4 +392,15 @@
     <string name="lowestjokerinfo">Each players lowest-\nranking card (and all\n other cards of that \nsame rank/strength/\nnumber) are  jokers\n(wild cards) in that\nplayer's hand  only.If the \ntwo lowest cards are a \npair then that pair is \nconsidered as two jokers.</string>
     <string name="nineinfo">There cards are dealt\n and  the player has to \nmake tthe game closest\n to the figure 999(nine\n hundred ninety nine). \nAll face cards(jack,\nQueen and King) and 10 \nare considered Zero \nfor this game and Ace\n is considered as One.\n For e.g. if you have 5-7-\nJack then closeset\n number
 to 999 will be 750.\n If you have 9-Ace-9 \nthen you havea 991 and \nyou are probably a winner!</string>
+
+    <string name="revolve_joker_desc">The dealer pulls out 3 cards at random. These 3 cards and all other cards of the same rank are jokers. If any player packs, then the dealer pulls 3 new joker cards.</string>
+    <string name="revolving_joker">Revolving Joker</string>
+    <string name="in_out_desc">In this variation, highest hand wins. After viewing the cards, each player may drop or continue in the game. Now there is show. Winner takes the pot money. The remaining players put 1.5 times the pot money to fill the pot, and the game continues.</string>
+
+
+
+
+
+
+
 </resources>
