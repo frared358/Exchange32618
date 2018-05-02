@@ -32,7 +32,7 @@ public class NewVariationActivity extends AppCompatActivity implements View.OnCl
     PopupWindow popupWindow,infopopupWindow,chatpopupWindow,themepopupWindow,ustatuspopupWindow,dealerpopupWindow,oustatuspopupWindow,sendmsgpopupWindow,chngdpopupWindow,selectvariationpopupWindow;
     Button msgbtn,blockbtn;
     RelativeLayout relativeLayout,relativeLayout2,relativeLayout3;
-    DrawerLayout variationtble;
+    DrawerLayout newvariationtble;
     NavigationView navigationView;
     public int counter=15;
     public int counter2=15;
@@ -49,9 +49,9 @@ public class NewVariationActivity extends AppCompatActivity implements View.OnCl
         handle_right.setOnClickListener(this);
 
 
-        variationtble = findViewById(R.id.variationtble);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, variationtble, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        variationtble.addDrawerListener(toggle);
+        newvariationtble = findViewById(R.id.newvariationtble);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, newvariationtble, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        newvariationtble.addDrawerListener(toggle);
         toggle.syncState();
 
         navigationView = findViewById(R.id.teen_nav_view);
@@ -64,7 +64,7 @@ public class NewVariationActivity extends AppCompatActivity implements View.OnCl
 
 
         backbtn= findViewById(R.id.back);
-        variationtble = findViewById(R.id.variationtble);
+        newvariationtble = findViewById(R.id.newvariationtble);
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +105,7 @@ public class NewVariationActivity extends AppCompatActivity implements View.OnCl
         //////////////// Popup for InfoButton ///////////////////
 
         infobtn= findViewById(R.id.info);
-        variationtble = findViewById(R.id.variationtble);
+        newvariationtble = findViewById(R.id.newvariationtble);
 
         infobtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +136,7 @@ public class NewVariationActivity extends AppCompatActivity implements View.OnCl
         //////////////// Popup for ChatButton ///////////////////
 
         chatbtn= findViewById(R.id.chat);
-        variationtble = findViewById(R.id.variationtble);
+        newvariationtble = findViewById(R.id.newvariationtble);
 
         chatbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,7 +173,7 @@ public class NewVariationActivity extends AppCompatActivity implements View.OnCl
         //////////////// Popup for Userstatus ///////////////////
 
         myplayerbtn= findViewById(R.id.myplayer);
-        variationtble = findViewById(R.id.variationtble);
+        newvariationtble = findViewById(R.id.newvariationtble);
 
         myplayerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,7 +205,7 @@ public class NewVariationActivity extends AppCompatActivity implements View.OnCl
 
         // Onclick on playerdealer button
         pdealerbtn= findViewById(R.id.playerdealervar);
-        variationtble = findViewById(R.id.variationtble);
+        newvariationtble = findViewById(R.id.newvariationtble);
         pdealerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -325,7 +325,7 @@ public class NewVariationActivity extends AppCompatActivity implements View.OnCl
         //////////////// Popup for Dealer ///////////////////
 
         dealerbtn= findViewById(R.id.dealer);
-        variationtble = findViewById(R.id.variationtble);
+        newvariationtble = findViewById(R.id.newvariationtble);
 
         dealerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -436,7 +436,7 @@ public class NewVariationActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.handle_right:
-                variationtble.openDrawer(navigationView);
+                newvariationtble.openDrawer(navigationView);
                 break;
         }
     }
