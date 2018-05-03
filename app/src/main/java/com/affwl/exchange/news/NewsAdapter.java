@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.affwl.exchange.R;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -20,6 +21,7 @@ public class NewsAdapter extends BaseAdapter{
 
     Context context;
     List<NewsItemDetails> newsItemDetailsList;
+    NewsItemDetails newsItemDetails;
 
     public NewsAdapter(Context context, List<NewsItemDetails> newsItemDetailsList) {
         this.context = context;
@@ -60,7 +62,7 @@ public class NewsAdapter extends BaseAdapter{
             newsHolder.tv_rss_dateTime=convertView.findViewById(R.id.tv_rss_dateTime);
             newsHolder.tv_rss_article=convertView.findViewById(R.id.tv_rss_article);
 
-            NewsItemDetails newsItemDetails=newsItemDetailsList.get(position);
+            newsItemDetails=newsItemDetailsList.get(position);
 
             newsHolder.tv_rss_headlines.setText(newsItemDetails.getRssHeadlines());
             newsHolder.tv_rss_article.setText(newsItemDetails.getRssArticle());
