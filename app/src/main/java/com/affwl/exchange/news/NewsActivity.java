@@ -32,7 +32,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -48,6 +52,7 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
 
     int timeNow;
     List headlines,newsDateTimes;
+    List <Date> newsDateList;
     List<NewsItemDetails> newsItemDetailsList;
     List links;
     ProgressDialog progressDialog;
@@ -174,9 +179,14 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
         protected NewsAdapter doInBackground(Object[] params) {
             headlines = new ArrayList();
             newsDateTimes=new ArrayList();
+            newsDateList=new ArrayList<Date>();
             newsItemDetailsList=new ArrayList<>();
             myList.clear();
+            newsItemDetailsList.clear();
 
+//            SimpleDateFormat formatter5=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss+00:00");
+
+            SimpleDateFormat formatter5=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss+Z");
             links = new ArrayList();
             try {
                 try {
@@ -224,7 +234,9 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
                                         if (insideItem) headlines.add(xpp.nextText());
                                         //extract the headline
                                     } else if (xpp.getName().equalsIgnoreCase("pubDate")) {
-                                        if (insideItem) newsDateTimes.add(xpp.nextText()); //extract the link of article
+                                        if (insideItem) {
+                                            newsDateTimes.add(xpp.nextText().trim()); //extract the link of article
+                                        }
                                     } else if (xpp.getName().equalsIgnoreCase("link")) {
                                         if (insideItem) links.add(xpp.nextText()); //extract the link of article
                                     }
@@ -240,16 +252,34 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
                     }
                 }
 
-                    for(int i=0;i<headlines.size();i++) {
-                        NewsItemDetails newsItem = new NewsItemDetails(headlines.get(i).toString(), newsDateTimes.get(i).toString(), "aritcle");
+                for(int i=0;i<newsDateTimes.size();i++)
+                {
+                    Date date5 = formatter5.parse(newsDateTimes.get(i).toString());
+                    newsDateList.add(date5);
+                }
+
+            /*    for(int j=0;j<newsDateList.size();j++)
+                {*/
+                    Collections.sort(newsDateList, Collections.reverseOrder());
+
+                  /*  Log.i("Checking date : ",newsDateList.get(j).toString());
+                }*/
+                  Log.i("Checking size",""+headlines.size());
+                    for(int k=0;k<headlines.size();k++) {
+                        NewsItemDetails newsItem = new NewsItemDetails(headlines.get(k).toString(), newsDateList.get(k).toString(), "aritcle");
                         newsItemDetailsList.add(newsItem);
                     }
+
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (XmlPullParserException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return null;
@@ -268,6 +298,32 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
                loading_news.clearAnimation();
                loading_news.setVisibility(View.GONE);
            }
+        }
+
+        public Date parseDate(String strDate) throws Exception
+        {
+            if (strDate != null && !strDate.isEmpty())
+            {
+                SimpleDateFormat[] formats =
+                        new SimpleDateFormat[] {new SimpleDateFormat("MM-dd-yyyy"), new SimpleDateFormat("yyyyMMdd"), new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss Z"), new SimpleDateFormat("yyyy-mm-dd.thh:mm:ss+00:00"),
+                                new SimpleDateFormat("MM/dd/yyyy")};
+
+                Date parsedDate = null;
+
+                for (int i = 0; i < formats.length; i++)
+                {
+                    try
+                    {
+                        parsedDate = formats[i].parse(strDate);
+                        return parsedDate;
+                    }
+                    catch (ParseException e)
+                    {
+                        continue;
+                    }
+                }
+            }
+            throw new Exception("Unknown date format: '" + strDate + "'");
         }
     }
 

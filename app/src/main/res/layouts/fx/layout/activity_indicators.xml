@@ -100,8 +100,8 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="Average Directional Movement Index"/>
+
         <CheckBox
             android:id="@+id/cbindi"
             android:visibility="gone"
