@@ -7,7 +7,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -38,21 +37,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class NewsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private DrawerLayout drawerLayoutIndieNews;
 
-    String title;
-    String link;
-
     private DatabaseHelper mDBHelper;
     private SQLiteDatabase mDb;
 
     int timeNow;
-    List headlines,newsDateTimes;
-    List <Date> newsDateList;
     List<NewsItemDetails> newsItemDetailsList;
     List links;
     ProgressDialog progressDialog;
@@ -61,6 +54,10 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
 
     ListView list_rss;
     ArrayList<String> myList=new ArrayList<>();
+
+    String strHeadlines;
+    String strLinks;
+    Date strDateTime;
 
 
     @Override
@@ -152,7 +149,8 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
         Bundle bundle = new Bundle();
-        bundle.putString("urLink", links.get(position).toString());
+//        bundle.putString("urLink", links.get(position).toString());
+        bundle.putString("urLink",newsItemDetailsList.get(position).RssLinks);
         Intent i = new Intent(NewsActivity.this, WebActivity.class);
         i.putExtras(bundle);
         startActivity(i);
@@ -177,16 +175,11 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
 
         @Override
         protected NewsAdapter doInBackground(Object[] params) {
-            headlines = new ArrayList();
-            newsDateTimes=new ArrayList();
-            newsDateList=new ArrayList<Date>();
             newsItemDetailsList=new ArrayList<>();
             myList.clear();
             newsItemDetailsList.clear();
 
-//            SimpleDateFormat formatter5=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss+00:00");
-
-            SimpleDateFormat formatter5=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss+Z");
+//            SimpleDateFormat formatter5=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
             links = new ArrayList();
             try {
                 try {
@@ -231,16 +224,24 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
                                     if (xpp.getName().equalsIgnoreCase("item")) {
                                         insideItem = true;
                                     } else if (xpp.getName().equalsIgnoreCase("title")) {
-                                        if (insideItem) headlines.add(xpp.nextText());
+                                        if (insideItem)
+                                        {
+                                            strHeadlines=xpp.nextText();
+                                        }
                                         //extract the headline
                                     } else if (xpp.getName().equalsIgnoreCase("pubDate")) {
                                         if (insideItem) {
-                                            newsDateTimes.add(xpp.nextText().trim()); //extract the link of article
+                                            strDateTime=parseDate(xpp.nextText().trim());
                                         }
                                     } else if (xpp.getName().equalsIgnoreCase("link")) {
-                                        if (insideItem) links.add(xpp.nextText()); //extract the link of article
+                                        if (insideItem) {
+                                            strLinks=xpp.nextText();
+
+                                        }
                                     }
                                 } else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")) {
+                                    NewsItemDetails newsItem = new NewsItemDetails(strHeadlines,strDateTime,strLinks,"Articles");
+                                    newsItemDetailsList.add(newsItem);
                                     insideItem = false;
                                 }
                                 eventType = xpp.next(); //move to next element
@@ -252,24 +253,13 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
                     }
                 }
 
-                for(int i=0;i<newsDateTimes.size();i++)
-                {
-                    Date date5 = formatter5.parse(newsDateTimes.get(i).toString());
-                    newsDateList.add(date5);
+
+                Collections.sort(newsItemDetailsList,Collections.reverseOrder());
+
+                Log.i("Size",""+newsItemDetailsList.size());
+                for(int j=0;j<newsItemDetailsList.size();j++){
+                    Log.i("Tagging",newsItemDetailsList.get(j).RssHeadlines+"====>"+newsItemDetailsList.get(j).RssDateTime);
                 }
-
-            /*    for(int j=0;j<newsDateList.size();j++)
-                {*/
-                    Collections.sort(newsDateList, Collections.reverseOrder());
-
-                  /*  Log.i("Checking date : ",newsDateList.get(j).toString());
-                }*/
-                  Log.i("Checking size",""+headlines.size());
-                    for(int k=0;k<headlines.size();k++) {
-                        NewsItemDetails newsItem = new NewsItemDetails(headlines.get(k).toString(), newsDateList.get(k).toString(), "aritcle");
-                        newsItemDetailsList.add(newsItem);
-                    }
-
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -305,8 +295,25 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
             if (strDate != null && !strDate.isEmpty())
             {
                 SimpleDateFormat[] formats =
-                        new SimpleDateFormat[] {new SimpleDateFormat("MM-dd-yyyy"), new SimpleDateFormat("yyyyMMdd"), new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss Z"), new SimpleDateFormat("yyyy-mm-dd.thh:mm:ss+00:00"),
-                                new SimpleDateFormat("MM/dd/yyyy")};
+                        new SimpleDateFormat[] {
+                                new SimpleDateFormat("yyyy-MM-dd"),
+                                new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss Z"),
+                                new SimpleDateFormat("MM/dd/yyyy"),
+                                new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ"),
+                                new SimpleDateFormat("dd-MM-yy"),
+                                new SimpleDateFormat("dd-MM-yyyy"),
+                                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"),
+                                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS"),
+                                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSZ"),
+                                new SimpleDateFormat("EEEEE MMMMM yyyy HH:mm:ss.SSSZ"),
+                                new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z"),
+                                new SimpleDateFormat("EEE, MMM d, ''yy"),
+                                new SimpleDateFormat("yyyyy.MMMMM.dd GGG hh:mm aaa"),
+                                new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z"),
+                                new SimpleDateFormat("yyMMddHHmmssZ"),
+                                new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ"),
+                                new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"),
+                                new SimpleDateFormat("MM-dd-yyyy")};
 
                 Date parsedDate = null;
 

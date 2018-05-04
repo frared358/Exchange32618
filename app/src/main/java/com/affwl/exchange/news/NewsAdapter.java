@@ -62,19 +62,18 @@ public class NewsAdapter extends BaseAdapter{
             newsHolder.tv_rss_dateTime=convertView.findViewById(R.id.tv_rss_dateTime);
             newsHolder.tv_rss_article=convertView.findViewById(R.id.tv_rss_article);
 
-            newsItemDetails=newsItemDetailsList.get(position);
-
-            newsHolder.tv_rss_headlines.setText(newsItemDetails.getRssHeadlines());
-            newsHolder.tv_rss_article.setText(newsItemDetails.getRssArticle());
-            newsHolder.tv_rss_dateTime.setText(newsItemDetails.getRssDateTime());
-
             convertView.setTag(newsHolder);
-
         }
         else {
             newsHolder=(NewsHolder) convertView.getTag();
-
         }
+
+        newsItemDetails=newsItemDetailsList.get(position);
+
+        newsHolder.tv_rss_headlines.setText(newsItemDetails.getRssHeadlines());
+        newsHolder.tv_rss_article.setText(newsItemDetails.getRssArticle());
+        newsHolder.tv_rss_dateTime.setText(newsItemDetails.getRssDateTime().toString());
+
         return convertView;
 
     }
