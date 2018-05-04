@@ -43,13 +43,13 @@
                     android:src="@drawable/back" />
 
 
-                <ImageView
-                    android:id="@+id/info"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="70dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/infogame" />
+                <!--<ImageView-->
+                    <!--android:id="@+id/info"-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_height="40dp"-->
+                    <!--android:layout_marginLeft="70dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:src="@drawable/infogame" />-->
             </RelativeLayout>
 
             <!--Right side ithree_two_one_leaderboardyout-->
@@ -62,21 +62,29 @@
                 android:layout_marginBottom="211dp">
 
 
+                <!--<ImageView-->
+                    <!--android:id="@+id/chat"-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_height="40dp"-->
+                    <!--android:layout_marginLeft="0dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:clickable="true"-->
+                    <!--android:src="@drawable/chatgame" />-->
+                <!--<ImageView-->
+                    <!--android:id="@+id/getchips"-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_height="40dp"-->
+                    <!--android:layout_marginLeft="60dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:src="@drawable/getchips" />-->
+
                 <ImageView
-                    android:id="@+id/chat"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="10dp"
-                    android:clickable="true"
-                    android:src="@drawable/chatgame" />
-                <ImageView
-                    android:id="@+id/getchips"
+                    android:id="@+id/info"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="60dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/getchips" />
+                    android:src="@drawable/infogame" />
 
 
             </RelativeLayout>
@@ -208,19 +216,21 @@
 
                     <ImageView
                         android:id="@+id/myplayer"
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="40dp"
-                        android:src="@drawable/myplayerbackground1" />
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/yellow_circle" />
 
-                    <ImageView
-
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/inner_player_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/myplayer"
+                        android:src="@drawable/inner_img_profile"
+                        android:layout_margin="5dp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/playerinviteavatar" />
+                        />
 
                     <RelativeLayout
                         android:layout_width="wrap_content"

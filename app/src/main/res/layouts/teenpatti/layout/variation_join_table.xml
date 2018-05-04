@@ -300,7 +300,7 @@
                             android:layout_height="wrap_content"
                             android:src="@drawable/q"
                             android:layout_centerInParent="true"
-                     android:layout_gravity="center"/>
+                            android:layout_gravity="center"/>
 
                         </RelativeLayout>
                     </LinearLayout>

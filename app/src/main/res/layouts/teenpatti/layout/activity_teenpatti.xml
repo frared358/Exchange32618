@@ -99,24 +99,19 @@
                 android:src="@drawable/teenpattitableimage" />
 
 
-            <!--<RelativeLayout-->
-                <!--android:id="@+id/playerbg1relativeLayout"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
-
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/table"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="70dp"
-                android:id="@+id/rl_playerbg1">
+                android:id="@+id/playerbg1relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/playerbg1"
                     android:layout_width="110dp"
                     android:layout_height="100dp"
+                    android:layout_alignTop="@+id/table"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:src="@drawable/myplayerbackground1"
                     tools:ignore="NotSibling" />
 
@@ -124,52 +119,51 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_alignTop="@+id/playerbg1"
-                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
                     android:layout_marginTop="30dp"
                     android:src="@drawable/playerinviteavatar" />
-            </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignTop="@+id/table"
-                android:id="@+id/rl_playerbg3"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="70dp">
 
                 <ImageView
                     android:id="@+id/playerbg3"
                     android:layout_width="110dp"
                     android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/table"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:src="@drawable/myplayerbackground1"
                     tools:ignore="NotSibling" />
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:layout_alignTop="@+id/playerbg3"
-                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
                     android:layout_marginTop="30dp"
                     android:src="@drawable/playerinviteavatar" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/playerbg2relativeLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rl_playerbg1"
-                android:id="@+id/rl_playerbg2"
-                android:layout_marginBottom="35dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentBottom="true"
-                tools:ignore="NotSibling">
+                android:layout_below="@+id/playerbg1relativeLayout">
 
                 <ImageView
                     android:id="@+id/playerbg2"
                     android:layout_width="110dp"
                     android:layout_height="100dp"
+                    android:layout_below="@+id/relativeLayout2"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
                     android:src="@drawable/myplayerbackground1"
                     tools:ignore="NotSibling,UnknownId" />
 
@@ -177,236 +171,60 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_alignTop="@+id/playerbg2"
-                   android:layout_centerInParent="true"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
                     android:layout_marginTop="30dp"
                     android:src="@drawable/playerinviteavatar" />
-            </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/rl_playerbg4"
-                android:layout_alignParentRight="true"
-                android:layout_below="@+id/rl_playerbg3"
-                android:layout_marginTop="30dp"
-                tools:ignore="NotSibling">
 
-            <ImageView
-                android:id="@+id/playerbg4"
-                android:layout_width="110dp"
-                android:layout_height="100dp"
-                android:layout_centerInParent="true"
-                android:src="@drawable/myplayerbackground1"
-                tools:ignore="NotSibling" />
+                <ImageView
+                    android:id="@+id/playerbg4"
+                    android:layout_width="110dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/table"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/myplayerbackground1"
+                    tools:ignore="NotSibling" />
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:layout_alignTop="@+id/playerbg4"
-                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="30dp"
                     android:src="@drawable/playerinviteavatar" />
 
-            </RelativeLayout>
-
-                <ImageView
-                    android:id="@+id/card1"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="117dp"
-                    android:rotation="90"
-                    android:src="@drawable/card_back"/>
+                    android:layout_centerInParent="true">
 
-                <ImageView
-                    android:id="@+id/card2"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="117dp"
-                    android:rotation="90"
-                    android:src="@drawable/card_back"/>
-
-                <ImageView
-                    android:id="@+id/card3"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="117dp"
-                    android:rotation="90"
-                    android:src="@drawable/card_back"/>
-
-                <ImageView
-                    android:id="@+id/card4"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="117dp"
-                    android:rotation="90"
-                    android:src="@drawable/card_back"/>
-
-                <ImageView
-                    android:id="@+id/card5"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="117dp"
-                    android:rotation="90"
-                    android:src="@drawable/card_back"/>
-
-                <ImageView
-                    android:id="@+id/card6"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="117dp"
-                    android:rotation="90"
-                    android:src="@drawable/card_back"/>
-
-                <ImageView
-                    android:id="@+id/card7"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="117dp"
-                    android:rotation="90"
-                    android:src="@drawable/card_back"/>
-
-                <ImageView
-                    android:id="@+id/card8"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="117dp"
-                    android:rotation="90"
-                    android:src="@drawable/card_back"/>
-
-                <ImageView
-                    android:id="@+id/card9"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="117dp"
-                    android:rotation="90"
-                    android:src="@drawable/card_back"/>
-
-                <ImageView
-                    android:id="@+id/card10"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="117dp"
-                    android:rotation="90"
-                    android:src="@drawable/card_back"/>
-
-                <ImageView
-                    android:id="@+id/card11"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="117dp"
-                    android:rotation="90"
-                    android:src="@drawable/card_back"/>
-
-                <ImageView
-                    android:id="@+id/card12"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="117dp"
-                    android:rotation="90"
-                    android:src="@drawable/card_back"/>
-
-                <ImageView
-                    android:id="@+id/card13"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="117dp"
-                    android:rotation="90"
-                    android:src="@drawable/card_back"/>
-
-                <ImageView
-                    android:id="@+id/card14"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="117dp"
-                    android:rotation="90"
-                    android:src="@drawable/card_back"/>
-
-                <ImageView
-                    android:id="@+id/card15"
-                    android:layout_width="20dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="117dp"
-                    android:rotation="90"
-                    android:src="@drawable/card_back"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="SEE"
-                android:textSize="20sp"
-                android:visibility="gone"
-                android:padding="5dp"
-                android:textColor="@color/white"
-                android:id="@+id/btn_see_cards"
-                android:layout_toRightOf="@+id/rl_myplayer"
-                android:layout_alignTop="@+id/rl_myplayer"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="-10dp"
-                android:background="@color/colorBlueBet" />
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:id="@+id/rl_myplayer">
                     <ImageView
                         android:id="@+id/myplayer"
                         android:layout_width="110dp"
-                        android:layout_height="157dp"
-                        android:src="@drawable/myplayerbackground1"
-                        tools:ignore="NotSibling" />
+                        android:layout_height="110dp"
+                        android:layout_marginTop="30dp"
+                        android:src="@drawable/myplayerbackground1" />
 
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_alignTop="@+id/myplayer"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="60dp"
+                        android:layout_marginTop="40dp"
                         android:src="@drawable/playerinviteavatar" />
-            </RelativeLayout>
-            <!--</RelativeLayout>-->
-
-      <!--      <RelativeLayout
-                android:id="@+id/playerbg2relativeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/playerbg1relativeLayout">
-
-
+                </RelativeLayout>
 
             </RelativeLayout>
--->
+
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -422,6 +240,14 @@
                     android:src="@drawable/dealer"
                     tools:ignore="NotSibling" />
 
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="20dp"
+                    android:rotation="90"
+                    android:id="@+id/iv_shuffle_cards"
+                    android:layout_below="@id/dealer"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/addnewpdmbtn"/>
             </RelativeLayout>
 
 
@@ -433,7 +259,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="#250400"
-            android:id="@+id/rl_bottom_caption"
             android:orientation="horizontal"
             android:padding="5dp">
 
