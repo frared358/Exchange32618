@@ -2,6 +2,8 @@ package com.affwl.exchange.teenpatti;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -24,12 +27,13 @@ import com.affwl.exchange.R;
 
 
 public class PrivateActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
-    ImageView handle_right, backbtn,infobtn,infoclosebtn,chatbtn,chatclosebtn,chatclosebtn2,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn;;
-    TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,backtolobby;
+    ImageView handle_right, backbtn,infobtn,infoclosebtn,profile,chatclosebtn,chatclosebtn2,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn;;
+    TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,backtolobby,nametext,code;
     PopupWindow popupWindow,infopopupWindow,chatpopupWindow,ustatuspopupWindow,dealerpopupWindow,oustatuspopupWindow,sendmsgpopupWindow,chngdpopupWindow;
     Button msgbtn,blockbtn;
     RelativeLayout relativeLayout,relativeLayout2,relativeLayout3;
     DrawerLayout privatetble;
+    Session session;
     NavigationView navigationView;
 
     int minteger = 0;
@@ -52,6 +56,23 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
         navigationView.setNavigationItemSelectedListener(this);
 
 
+        relativeLayout= (RelativeLayout) findViewById(R.id.privaterecycler);
+
+        //        implemention of user profile pic
+        profile=findViewById(R.id.inner_player_img);
+        nametext=findViewById(R.id.nametext);
+
+        code=findViewById(R.id.code);
+        session=new Session(this);
+        String encodedimage=session.getImage();
+        if (!encodedimage.equalsIgnoreCase(""))
+        {
+            byte[] b= Base64.decode(encodedimage, Base64.DEFAULT);
+            Bitmap bmp= BitmapFactory.decodeByteArray(b,0,b.length);
+            profile.setImageBitmap(bmp);
+        }
+        String name=session.getName();
+        nametext.setText(name);
 
 
         //////////////// Popup for Backbutton ///////////////////
@@ -128,126 +149,126 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
 
         //////////////// Popup for ChatButton ///////////////////
 
-        chatbtn=(ImageView) findViewById(R.id.chat);
-        privatetble = (DrawerLayout) findViewById(R.id.privatetble);
-
-        chatbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //instantiate the popup.xml layout file
-                LayoutInflater layoutInflater = (LayoutInflater) PrivateActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.chat_popup, null);
-
-                chatclosebtn = (ImageView) customView.findViewById(R.id.chatclose);
-                chatclosebtn2 = (ImageView) customView.findViewById(R.id.chatclose2);
-                //instantiate popup window
-                chatpopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-
-                //display the popup window
-                chatpopupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 0);
-
-                //close the popup window on button click
-                chatclosebtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        chatpopupWindow.dismiss();
-                    }
-                });
-                chatclosebtn2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        chatpopupWindow.dismiss();
-                    }
-                });
-            }
-        });
+//        chatbtn=(ImageView) findViewById(R.id.chat);
+//        privatetble = (DrawerLayout) findViewById(R.id.privatetble);
+//
+//        chatbtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //instantiate the popup.xml layout file
+//                LayoutInflater layoutInflater = (LayoutInflater) PrivateActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                View customView = layoutInflater.inflate(R.layout.chat_popup, null);
+//
+//                chatclosebtn = (ImageView) customView.findViewById(R.id.chatclose);
+//                chatclosebtn2 = (ImageView) customView.findViewById(R.id.chatclose2);
+//                //instantiate popup window
+//                chatpopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+//
+//                //display the popup window
+//                chatpopupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 0);
+//
+//                //close the popup window on button click
+//                chatclosebtn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        chatpopupWindow.dismiss();
+//                    }
+//                });
+//                chatclosebtn2.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        chatpopupWindow.dismiss();
+//                    }
+//                });
+//            }
+//        });
 
         //////////////// Popup for Userstatus ///////////////////
 
-        myplayerbtn=(ImageView) findViewById(R.id.myplayer);
-        privatetble = (DrawerLayout) findViewById(R.id.privatetble);
-
-        myplayerbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //instantiate the popup.xml layout file
-                LayoutInflater layoutInflater = (LayoutInflater) PrivateActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.player_status_popup, null);
-
-                ustatusclosebtn = (ImageView) customView.findViewById(R.id.userstatusclose);
-                //instantiate popup window
-                ustatuspopupWindow = new PopupWindow(customView,RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-
-                //display the popup window
-                ustatuspopupWindow.showAtLocation(relativeLayout, Gravity.CENTER_HORIZONTAL, 0, 0);
-
-                //close the popup window on button click
-                ustatusclosebtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ustatuspopupWindow.dismiss();
-                    }
-                });
-            }
-        });
+//        myplayerbtn=(ImageView) findViewById(R.id.myplayer);
+//        privatetble = (DrawerLayout) findViewById(R.id.privatetble);
+//
+//        myplayerbtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //instantiate the popup.xml layout file
+//                LayoutInflater layoutInflater = (LayoutInflater) PrivateActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                View customView = layoutInflater.inflate(R.layout.player_status_popup, null);
+//
+//                ustatusclosebtn = (ImageView) customView.findViewById(R.id.userstatusclose);
+//                //instantiate popup window
+//                ustatuspopupWindow = new PopupWindow(customView,RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+//
+//                //display the popup window
+//                ustatuspopupWindow.showAtLocation(relativeLayout, Gravity.CENTER_HORIZONTAL, 0, 0);
+//
+//                //close the popup window on button click
+//                ustatusclosebtn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        ustatuspopupWindow.dismiss();
+//                    }
+//                });
+//            }
+//        });
 
 
 
         //////////////// Popup for Otheruserstatus ///////////////////
 
-        oplayerbtn=(ImageView) findViewById(R.id.playerbg2);
-        relativeLayout= (RelativeLayout) findViewById(R.id.privaterecycler);
-
-        oplayerbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //instantiate the popup.xml layout file
-                LayoutInflater layoutInflater = (LayoutInflater) PrivateActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.other_player_status, null);
-
-                msgbtn=customView.findViewById(R.id.msg);
-
-                // onclick event for message button
-                msgbtn.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                        LayoutInflater layoutInflater = (LayoutInflater) PrivateActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        View customView1 = layoutInflater.inflate(R.layout.send_message_popup, null);
-                        msgclosebtn=customView1.findViewById(R.id.msgclose);
-                        //instantiate popup window
-                        sendmsgpopupWindow = new PopupWindow(customView1,RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-                        //display the popup window
-                        sendmsgpopupWindow.showAtLocation(relativeLayout, Gravity.TOP, 0, 0);
-
-                        //close the popup window on button click
-                        msgclosebtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                sendmsgpopupWindow.dismiss();
-                            }
-                        });
-
-                        oustatuspopupWindow.dismiss();
-                    }
-
-                });
-
-                oustatusclosebtn = (ImageView) customView.findViewById(R.id.ouserstatusclose);
-                //instantiate popup window
-                oustatuspopupWindow = new PopupWindow(customView,RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-
-                //display the popup window
-                oustatuspopupWindow.showAtLocation(relativeLayout, Gravity.CENTER_HORIZONTAL, 0, 0);
-
-                //close the popup window on button click
-                oustatusclosebtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        oustatuspopupWindow.dismiss();
-                    }
-                });
-            }
-        });
+//        oplayerbtn=(ImageView) findViewById(R.id.playerbg2);
+//
+//
+//        oplayerbtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //instantiate the popup.xml layout file
+//                LayoutInflater layoutInflater = (LayoutInflater) PrivateActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                View customView = layoutInflater.inflate(R.layout.other_player_status, null);
+//
+//                msgbtn=customView.findViewById(R.id.msg);
+//
+//                // onclick event for message button
+//                msgbtn.setOnClickListener(new View.OnClickListener() {
+//                    public void onClick(View v) {
+//                        LayoutInflater layoutInflater = (LayoutInflater) PrivateActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                        View customView1 = layoutInflater.inflate(R.layout.send_message_popup, null);
+//                        msgclosebtn=customView1.findViewById(R.id.msgclose);
+//                        //instantiate popup window
+//                        sendmsgpopupWindow = new PopupWindow(customView1,RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//
+//                        //display the popup window
+//                        sendmsgpopupWindow.showAtLocation(relativeLayout, Gravity.TOP, 0, 0);
+//
+//                        //close the popup window on button click
+//                        msgclosebtn.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                sendmsgpopupWindow.dismiss();
+//                            }
+//                        });
+//
+//                        oustatuspopupWindow.dismiss();
+//                    }
+//
+//                });
+//
+//                oustatusclosebtn = (ImageView) customView.findViewById(R.id.ouserstatusclose);
+//                //instantiate popup window
+//                oustatuspopupWindow = new PopupWindow(customView,RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+//
+//                //display the popup window
+//                oustatuspopupWindow.showAtLocation(relativeLayout, Gravity.CENTER_HORIZONTAL, 0, 0);
+//
+//                //close the popup window on button click
+//                oustatusclosebtn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        oustatuspopupWindow.dismiss();
+//                    }
+//                });
+//            }
+//        });
 
         //////////////// Popup for Dealer ///////////////////
 

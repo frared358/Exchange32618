@@ -36,7 +36,7 @@ import com.affwl.exchange.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ImageView showPopupBtn, closeRateus, closeHelpBtn, closeTrophyBtn,profile,orangechipsbtn,close312help,closesixpattihelp,short321info,tourney_shortinfo_closebtn,shortsixpattiinfo,bluechipsbtn,cyanchipsbtn,shortinfo_tourney,tourney_join_closebtn,ygreenchipsbtn,closebtn_create_table,mainlimegchipsbtn,variation_closebtn,share_loader,facebook,whatsapp,general;
+    ImageView showPopupBtn, closeRateus, closeHelpBtn, closeTrophyBtn,profile,orangechipsbtn,close312help,closesixpattihelp,short321info,tourney_shortinfo_closebtn,shortsixpattiinfo,bluechipsbtn,cyanchipsbtn,shortinfo_tourney,tourney_join_closebtn,ygreenchipsbtn,closebtn_create_table,mainlimegchipsbtn,variation_closebtn,facebook,whatsapp,general;
     PopupWindow RateuspopupWindow, HelpUspopupWindow, TrophypopupWindow, tounpopupWindow,howto321popup,sixpattipopup,howtosixpattipopup,join_tourney_popupWindow,shortinfo_tourney_popupwindow,create_table_private_popupwindow,join_table_popupwindow;
     RelativeLayout RelativeLayoutloader,relativelayout321,relativeLayoutsixpatti,relativeLayout_tourney;
     TextView loaderbuychips,joinnowbtn,howtoplay321btn,howtoplaysixpattibtn,joinnowsixpattibtn,join_tourneybtn,create_table_btn,join_variation_btn,nametext,code;
@@ -72,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         profile=findViewById(R.id.profile);
         nametext=findViewById(R.id.nametext);
-        share_loader=findViewById(R.id.share_loader);
 
         mainychips=findViewById(R.id.mainychips);
         mainychips.setOnClickListener(this);
@@ -96,38 +95,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nametext.setText(name);
 
         // Popup for RateUS
-        showPopupBtn = findViewById(R.id.rateus_btn_loader);
+//        showPopupBtn = findViewById(R.id.rateus_btn_loader);
         RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
 //        profile=findViewById(R.id.profile);
 //        Intent intent=getIntent();
 //        Bitmap bmp=intent.getParcelableExtra("img");
         //Toast.makeText(this, String.valueOf(bmp), Toast.LENGTH_SHORT).show();
 //        profile.setImageBitmap(bmp);
-        showPopupBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //instantiate the popup.xml three_two_one_leaderboard file
-                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.rateus_popup,null);
-
-                closeRateus = customView.findViewById(R.id.close_rateus);
-
-                //instantiate popup window
-                RateuspopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-                //display the popup window
-                RateuspopupWindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
-
-                //close the popup window on button click
-                closeRateus.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        RateuspopupWindow.dismiss();
-                    }
-                });
-
-            }
-        });
+//        showPopupBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //instantiate the popup.xml three_two_one_leaderboard file
+//                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                View customView = layoutInflater.inflate(R.layout.rateus_popup,null);
+//
+//                closeRateus = customView.findViewById(R.id.close_rateus);
+//
+//                //instantiate popup window
+//                RateuspopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//
+//                //display the popup window
+//                RateuspopupWindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
+//
+//                //close the popup window on button click
+//                closeRateus.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        RateuspopupWindow.dismiss();
+//                    }
+//                });
+//
+//            }
+//        });
 
         // Popup for Help
         showPopupBtn = findViewById(R.id.help_btn_loader);
@@ -170,16 +169,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 //instantiate the popup.xml three_two_one_leaderboard file
                 LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.leaderboard_popup,null);
+                View customView = layoutInflater.inflate(R.layout.leaderboard_list_item,null);
 
 
-                closeTrophyBtn = customView.findViewById(R.id.leaderboardclose);
+                closeTrophyBtn = customView.findViewById(R.id.leaderclose);
 
                 //instantiate popup window
                 TrophypopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
 
                 //display the popup window
                 TrophypopupWindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
+
+//                RecyclerView playerList = customView.findViewById(R.id.leaderboardlist);
+//                playerList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+//                String[] values = {"Anand","Tejas","Anirudh","Ravi","Rohit","Francis"};
+//                playerList.setAdapter(new LeaderboardListAdapter(values));
 
                 //close the popup window on button click
                 closeTrophyBtn.setOnClickListener(new View.OnClickListener() {
@@ -189,25 +193,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
 
-                RecyclerView playerList = customView.findViewById(R.id.leaderboardlist);
-                playerList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-                String[] values = {"Anand","Tejas","Anirudh","Ravi","Rohit","Francis"};
-                playerList.setAdapter(new LeaderboardListAdapter(values));
+
             }
         });
 
 
         //Buy Chips Popup
 
-        loaderbuychips = (findViewById(R.id.buy_chips_loader));
-        loaderbuychips.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                BuyChipsFragment frag = new BuyChipsFragment();
-                frag.show(ft, "txn_tag");
-            }
-        });
+//        loaderbuychips = (findViewById(R.id.buy_chips_loader));
+//        loaderbuychips.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FragmentTransaction ft = getFragmentManager().beginTransaction();
+//                BuyChipsFragment frag = new BuyChipsFragment();
+//                frag.show(ft, "txn_tag");
+//            }
+//        });
 
 
 
@@ -1132,71 +1133,70 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 //        Implementation of share
 
-        share_loader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder=new AlertDialog.Builder(v.getContext());
-                LayoutInflater inflater=getLayoutInflater();
-                View view= inflater.inflate(R.layout.share_dialog,null);
-                builder.setView(view);
-                facebook=view.findViewById(R.id.facebook);
-                whatsapp=view.findViewById(R.id.whatsapp);
-                general=view.findViewById(R.id.general);
-                facebook.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                        sharingIntent.setType("text/plain");
-                        sharingIntent.putExtra(Intent.EXTRA_TEXT, "http://www.facebook.com");
-                        startActivity(Intent.createChooser(sharingIntent, "Share via"));
-                    }
-                });
-                whatsapp.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
-                        whatsappIntent.setType("text/plain");
-                        whatsappIntent.setPackage("com.whatsapp");
-                        whatsappIntent.putExtra(Intent.EXTRA_TEXT, "The text you wanted to share");
-                        try {
-                            startActivity(whatsappIntent);
-                        } catch (android.content.ActivityNotFoundException ex) {
-                            Toast.makeText(MainActivity.this, "whatsapp not installed", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+//        share_loader.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                AlertDialog.Builder builder=new AlertDialog.Builder(v.getContext());
+//                LayoutInflater inflater=getLayoutInflater();
+//                View view= inflater.inflate(R.layout.share_dialog,null);
+//                builder.setView(view);
+//                facebook=view.findViewById(R.id.facebook);
+//                whatsapp=view.findViewById(R.id.whatsapp);
+//                general=view.findViewById(R.id.general);
+//                facebook.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+//                        sharingIntent.setType("text/plain");
+//                        sharingIntent.putExtra(Intent.EXTRA_TEXT, "http://www.facebook.com");
+//                        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+//                    }
+//                });
+//                whatsapp.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
+//                        whatsappIntent.setType("text/plain");
+//                        whatsappIntent.setPackage("com.whatsapp");
+//                        whatsappIntent.putExtra(Intent.EXTRA_TEXT, "The text you wanted to share");
+//                        try {
+//                            startActivity(whatsappIntent);
+//                        } catch (android.content.ActivityNotFoundException ex) {
+//                            Toast.makeText(MainActivity.this, "whatsapp not installed", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                });
+//
+//                // general click
+//                general.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        //Uri pictureUri = Uri.parse("https://lifeclearance.com/androidImages/0.png");
+//                        Intent shareIntent = new Intent();
+//                        shareIntent.setAction(Intent.ACTION_SEND);
+//                        shareIntent.putExtra(Intent.EXTRA_STREAM, "hi");
+//                        shareIntent.setType("text/plain");
+//                        //shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        startActivity(Intent.createChooser(shareIntent, "Share images..."));
+//                    }
+//                });
+//                AlertDialog alert= builder.create();
+//                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+//                lp.copyFrom(alert.getWindow().getAttributes());
+//                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+//                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+//                alert.show();
+//                alert.getWindow().setAttributes(lp);
+//
+//            }
+//        });
 
-                // general click
-                general.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //Uri pictureUri = Uri.parse("https://lifeclearance.com/androidImages/0.png");
-                        Intent shareIntent = new Intent();
-                        shareIntent.setAction(Intent.ACTION_SEND);
-                        shareIntent.putExtra(Intent.EXTRA_STREAM, "hi");
-                        shareIntent.setType("text/plain");
-                        //shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        startActivity(Intent.createChooser(shareIntent, "Share images..."));
-                    }
-                });
-                AlertDialog alert= builder.create();
-                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-                lp.copyFrom(alert.getWindow().getAttributes());
-                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-                alert.show();
-                alert.getWindow().setAttributes(lp);
-                // builder.show();
-//                alert.dismiss();
 
-            }
-        });
 
         // Animation of chips on main page
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.mainactivity_chips_rotate);
         findViewById(R.id.mainychips).startAnimation(animation);
-//        findViewById(R.id.mainbchips).startAnimation(animation);
         findViewById(R.id.mainlimegchips).startAnimation(animation);
         findViewById(R.id.mainorgchips).startAnimation(animation);
         findViewById(R.id.darkbluechips).startAnimation(animation);
@@ -1211,8 +1211,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onAnimationEnd(Animation animation) {
-//                finish();
-//                startActivity(new Intent(String.valueOf(MainActivity.this)));
 
             }
 
@@ -1223,10 +1221,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         Animation antianimation = AnimationUtils.loadAnimation(this, R.anim.mainactivity_chips_rotate_anticlockwise);
-//        findViewById(R.id.mainbchips).startAnimation(antianimation);
-//        findViewById(R.id.mainorgchips).startAnimation(antianimation);
-//        findViewById(R.id.blackchips).startAnimation(antianimation);
-//        findViewById(R.id.ygreenchips).startAnimation(antianimation);
         findViewById(R.id.innerlime).startAnimation(antianimation);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -1236,8 +1230,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onAnimationEnd(Animation animation) {
-//                finish();
-//                startActivity(new Intent(String.valueOf(MainActivity.this)));
 
             }
 
