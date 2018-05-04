@@ -23,11 +23,10 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import static com.affwl.exchange.fx.Fx_Chart_Fragment.rlchartb;
 
 public class Indicators extends AppCompatActivity {
-    ImageView imageButton_fadd1,imageButton_fadd;
-    CheckBox checkBox;
-    CheckBox checkBox2;
-    TextView textView17, textView19;
-    LinearLayout llkuchb;
+    ImageView fadd;
+    CheckBox cbindi;
+
+    LinearLayout llmainchart, llindichart;
     int select=0;
 
 
@@ -43,21 +42,13 @@ public class Indicators extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        llkuchb=findViewById(R.id.llkuchb);
+        llmainchart=findViewById(R.id.llmainchart);
+        llindichart=findViewById(R.id.llindichart);
 
+        cbindi=findViewById(R.id.cbindi);
 
-        checkBox = (CheckBox) findViewById(R.id.cbindi);
-
-        imageButton_fadd=findViewById(R.id.imageButton_fadd);
-        imageButton_fadd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), FX_indicator_f_add_Activity.class);
-                startActivity(i);
-            }
-        });
-        imageButton_fadd1 = findViewById(R.id.imageButton_fadd1);
-        imageButton_fadd1.setOnClickListener(new View.OnClickListener() {
+        fadd = (ImageView) findViewById(R.id.fadd);
+        fadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 Intent i = new Intent(v.getContext(), FX_indicator_f_add_Activity.class);
@@ -86,44 +77,45 @@ public class Indicators extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.indi_del:
-                Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
-                if (checkBox.getVisibility() == View.GONE ) {
-                    checkBox.setVisibility(View.VISIBLE);
-                    select=1;
-                }
-                if( select==1){
-                    if (checkBox.isChecked()) {
-                        llkuchb.setVisibility(View.GONE);
-
-                    }}
-
-                  /*  else {
-                        textView17.setVisibility(View.VISIBLE);
-                        textView19.setVisibility(View.VISIBLE);
-
-                    }
-*/
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-
-//       else if(checkBox.isChecked())
-//        {
-//            textView17.setVisibility(View.GONE);
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
 //
-//        }
-//        if(checkBox2.isChecked())
-//        {
-//            textView19.setVisibility(View.GONE);
-//        }
+//        switch (item.getItemId()) {
+//            case R.id.indi_del:
+//                Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
+//                if (checkBox.getVisibility() == View.GONE || checkBox2.getVisibility()==View.GONE) {
+//                    checkBox.setVisibility(View.VISIBLE);
+//                    checkBox2.setVisibility(View.VISIBLE);
+//                    select=1;
+//                }
+//                    if (checkBox.isChecked()) {
+//                        textView17.setVisibility(View.INVISIBLE);
+//                    }
+//                    else if (checkBox2.isChecked()) {
+//                        textView19.setVisibility(View.INVISIBLE);
+//                    }
+//                    else {
+//                        textView17.setVisibility(View.VISIBLE);
+//                        textView19.setVisibility(View.VISIBLE);
 //
-        }
-    }
+//                    }
+//
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//
+////       else if(checkBox.isChecked())
+////        {
+////            textView17.setVisibility(View.GONE);
+////
+////        }
+////        if(checkBox2.isChecked())
+////        {
+////            textView19.setVisibility(View.GONE);
+////        }
+////
+//        }
+//    }
 }
 
 

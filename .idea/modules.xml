@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Exchange32618.iml" filepath="$PROJECT_DIR$/Exchange32618.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Exchange32618.iml" filepath="$PROJECT_DIR$/.idea/Exchange32618.iml" />
+      <module fileurl="file://F:/Exchange32618/Exchange32618.iml" filepath="F:/Exchange32618/Exchange32618.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://F:/Exchange32618/app/app.iml" filepath="F:/Exchange32618/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libcolorpicker/libcolorpicker.iml" filepath="$PROJECT_DIR$/libcolorpicker/libcolorpicker.iml" />
+      <module fileurl="file://F:/Exchange32618/libcolorpicker/libcolorpicker.iml" filepath="F:/Exchange32618/libcolorpicker/libcolorpicker.iml" />
     </modules>
   </component>
 </project>
