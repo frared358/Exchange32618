@@ -96,4 +96,6 @@ dependencies {
     /**FX Gradle End*/
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
 
+    implementation 'com.android.support:percent:26.1.0'
+
 }
