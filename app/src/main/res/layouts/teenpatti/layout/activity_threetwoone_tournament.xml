@@ -46,12 +46,12 @@
                         android:layout_margin="5dp"
                         android:src="@drawable/back" />
 
-                    <ImageView
-                        android:id="@+id/info"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_margin="5dp"
-                        android:src="@drawable/infogame" />
+                    <!--<ImageView-->
+                        <!--android:id="@+id/info"-->
+                        <!--android:layout_width="40dp"-->
+                        <!--android:layout_height="40dp"-->
+                        <!--android:layout_margin="5dp"-->
+                        <!--android:src="@drawable/infogame" />-->
                 </LinearLayout>
             </RelativeLayout>
 
@@ -82,11 +82,11 @@
                             <!--android:src="@drawable/chatgame" />-->
 
                         <ImageView
-                            android:id="@+id/leaderboard321"
+                            android:id="@+id/info"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_margin="5dp"
-                            android:src="@drawable/leaderboardgame" />
+                            android:src="@drawable/infogame" />
                     </LinearLayout>
 
                 </LinearLayout>

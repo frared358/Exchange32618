@@ -387,33 +387,33 @@ public class TourneyActivity extends AppCompatActivity implements View.OnClickLi
 
         //////////////// Popup for Leaderboard ///////////////////
 
-        leaderboard_tourneybtn=(ImageView) findViewById(R.id.leaderboardtourney);
-        tourneytble = (DrawerLayout) findViewById(R.id.tourneytble);
-
-        leaderboard_tourneybtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //instantiate the popup.xml layout file
-                LayoutInflater layoutInflater = (LayoutInflater) TourneyActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.tourney_leaderboard, null);
-
-                closebtn_tourney_leadboard = (ImageView) customView.findViewById(R.id.closeleadtourney);
-
-                //instantiate popup window
-                tourney_leadboardpopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-
-                //display the popup window
-                tourney_leadboardpopupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 0);
-
-                //close the popup window on button click
-                closebtn_tourney_leadboard.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        tourney_leadboardpopupWindow.dismiss();
-                    }
-                });
-            }
-        });
+//        leaderboard_tourneybtn=(ImageView) findViewById(R.id.leaderboardtourney);
+//        tourneytble = (DrawerLayout) findViewById(R.id.tourneytble);
+//
+//        leaderboard_tourneybtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //instantiate the popup.xml layout file
+//                LayoutInflater layoutInflater = (LayoutInflater) TourneyActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                View customView = layoutInflater.inflate(R.layout.tourney_leaderboard, null);
+//
+//                closebtn_tourney_leadboard = (ImageView) customView.findViewById(R.id.closeleadtourney);
+//
+//                //instantiate popup window
+//                tourney_leadboardpopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+//
+//                //display the popup window
+//                tourney_leadboardpopupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 0);
+//
+//                //close the popup window on button click
+//                closebtn_tourney_leadboard.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        tourney_leadboardpopupWindow.dismiss();
+//                    }
+//                });
+//            }
+//        });
     }
 
     /////////// Slider /////////////

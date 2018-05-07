@@ -267,13 +267,13 @@
                 android:clickable="true"
                 android:src="@drawable/loader_help" />
 
-            <ImageView
-                android:id="@+id/trophy_btn_loader"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:clickable="true"
-                android:src="@drawable/loader_trophy" />
+            <!--<ImageView-->
+                <!--android:id="@+id/trophy_btn_loader"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:clickable="true"-->
+                <!--android:src="@drawable/loader_trophy" />-->
 
             <!--<ImageView-->
                 <!--android:id="@+id/settings_btn_loader"-->

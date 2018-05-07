@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         blackchips=findViewById(R.id.blackchips);
         blackchips.setOnClickListener(this);
+        RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
 
         code=findViewById(R.id.code);
         session=new Session(this);
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Popup for RateUS
 //        showPopupBtn = findViewById(R.id.rateus_btn_loader);
-        RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
+
 //        profile=findViewById(R.id.profile);
 //        Intent intent=getIntent();
 //        Bitmap bmp=intent.getParcelableExtra("img");
@@ -161,41 +162,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         // Popup for Leaderboard
-        ImageView showPopupBtnTropy = findViewById(R.id.trophy_btn_loader);
-        RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
-
-        showPopupBtnTropy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //instantiate the popup.xml three_two_one_leaderboard file
-                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.leaderboard_list_item,null);
-
-
-                closeTrophyBtn = customView.findViewById(R.id.leaderclose);
-
-                //instantiate popup window
-                TrophypopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-
-                //display the popup window
-                TrophypopupWindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
-
-//                RecyclerView playerList = customView.findViewById(R.id.leaderboardlist);
-//                playerList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-//                String[] values = {"Anand","Tejas","Anirudh","Ravi","Rohit","Francis"};
-//                playerList.setAdapter(new LeaderboardListAdapter(values));
-
-                //close the popup window on button click
-                closeTrophyBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        TrophypopupWindow.dismiss();
-                    }
-                });
-
-
-            }
-        });
+//        ImageView showPopupBtnTropy = findViewById(R.id.trophy_btn_loader);
+//        RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
+//
+//        showPopupBtnTropy.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //instantiate the popup.xml three_two_one_leaderboard file
+//                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                View customView = layoutInflater.inflate(R.layout.leaderboard_list_item,null);
+//
+//
+//                closeTrophyBtn = customView.findViewById(R.id.leaderclose);
+//
+//                //instantiate popup window
+//                TrophypopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+//
+//                //display the popup window
+//                TrophypopupWindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
+//
+////                RecyclerView playerList = customView.findViewById(R.id.leaderboardlist);
+////                playerList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+////                String[] values = {"Anand","Tejas","Anirudh","Ravi","Rohit","Francis"};
+////                playerList.setAdapter(new LeaderboardListAdapter(values));
+//
+//                //close the popup window on button click
+//                closeTrophyBtn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        TrophypopupWindow.dismiss();
+//                    }
+//                });
+//
+//
+//            }
+//        });
 
 
         //Buy Chips Popup
@@ -221,56 +222,59 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         orangechipsbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //instantiate the popup.xml three_two_one_leaderboard file
-                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.activity_how_to_play_three_two_one,null);
-                short321info = findViewById(R.id.short312info);
 
-                howtoplay321btn = customView.findViewById(R.id.howtoplay321btn);
+
+                Intent intent = new Intent(MainActivity.this, ThreetwooneTournament.class);
+                startActivity(intent);
+                //instantiate the popup.xml three_two_one_leaderboard file
+//                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                View customView = layoutInflater.inflate(R.layout.activity_how_to_play_three_two_one,null);
+//                short321info = findViewById(R.id.short312info);
+//
+//                howtoplay321btn = customView.findViewById(R.id.howtoplay321btn);
 
 
 
                 // onclick event
-                howtoplay321btn.setOnClickListener(new View.OnClickListener(){
-                    public void onClick(View v) {
-                        LayoutInflater layoutInflater1 = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        View customView1 = layoutInflater1.inflate(R.layout.threetwoone_how_to_play_info,null);
-                        close312help = customView1.findViewById(R.id.close312help);
-
-                        //Instantiate the popup
-                        howto321popup = new PopupWindow(customView1, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-
-                        //display the popup window
-                        howto321popup.showAtLocation(RelativeLayoutloader, Gravity.TOP, 0, 0);
-
-                        //closing the popup
-                        close312help.setOnClickListener(new View.OnClickListener(){
-
-                            @Override
-                            public void onClick(View v) {
-                                howto321popup.dismiss();
-                            }
-                        });
-                        tounpopupWindow.dismiss();
-                    }
-                });
+//                howtoplay321btn.setOnClickListener(new View.OnClickListener(){
+//                    public void onClick(View v) {
+//                        LayoutInflater layoutInflater1 = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                        View customView1 = layoutInflater1.inflate(R.layout.threetwoone_how_to_play_info,null);
+//                        close312help = customView1.findViewById(R.id.close312help);
+//
+//                        //Instantiate the popup
+//                        howto321popup = new PopupWindow(customView1, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+//
+//                        //display the popup window
+//                        howto321popup.showAtLocation(RelativeLayoutloader, Gravity.TOP, 0, 0);
+//
+//                        //closing the popup
+//                        close312help.setOnClickListener(new View.OnClickListener(){
+//
+//                            @Override
+//                            public void onClick(View v) {
+//                                howto321popup.dismiss();
+//                            }
+//                        });
+//                        tounpopupWindow.dismiss();
+//                    }
+//                });
 
                 //instantiate popup window
-                tounpopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-
-                //display the popup window
-                tounpopupWindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
-
-                //join now the popup window on button click
-                joinnowbtn = customView.findViewById(R.id.joinnow);
-
-                joinnowbtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(MainActivity.this, ThreetwooneTournament.class);
-                        startActivity(intent);
-                    }
-                });
+//                tounpopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+//
+//                //display the popup window
+//                tounpopupWindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
+//
+//                //join now the popup window on button click
+//                joinnowbtn = customView.findViewById(R.id.joinnow);
+//
+//                joinnowbtn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                    }
+//                });
             }
         });
 
@@ -289,57 +293,63 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bluechipsbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //instantiate the popup.xml three_two_one_leaderboard file
-                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.activity_how_to_play_sixpatti,null);
-                shortsixpattiinfo = findViewById(R.id.shortsixpattiinfo);
-
-                howtoplaysixpattibtn = customView.findViewById(R.id.howtoplaysixpattibtn);
 
 
+                Intent intent = new Intent(MainActivity.this, LoadingScreen_sixpatti.class);
+                startActivity(intent);
+                finish();
 
-                // onclick event
-                howtoplaysixpattibtn.setOnClickListener(new View.OnClickListener(){
-                    public void onClick(View v) {
-                        LayoutInflater layoutInflater1 = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        View customView1 = layoutInflater1.inflate(R.layout.sixpatti_how_to_play_info,null);
-                        closesixpattihelp = customView1.findViewById(R.id.closesixpattihelp);
-
-                        //Instantiate the popup
-                        howtosixpattipopup = new PopupWindow(customView1, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-
-                        //display the popup window
-                        howtosixpattipopup.showAtLocation(RelativeLayoutloader, Gravity.TOP, 0, 0);
-
-                        //closing the popup
-                        closesixpattihelp.setOnClickListener(new View.OnClickListener(){
-
-                            @Override
-                            public void onClick(View v) {
-                                howtosixpattipopup.dismiss();
-                            }
-                        });
-                        sixpattipopup.dismiss();
-                    }
-                });
-
-                //instantiate popup window
-                sixpattipopup = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-
-                //display the popup window
-                sixpattipopup.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
-
-                //join now the popup window on button click
-                joinnowsixpattibtn = customView.findViewById(R.id.joinnowsixpatti);
-
-                joinnowsixpattibtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(MainActivity.this, LoadingScreen_sixpatti.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                });
+//                //instantiate the popup.xml three_two_one_leaderboard file
+//                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                View customView = layoutInflater.inflate(R.layout.activity_how_to_play_sixpatti,null);
+//                shortsixpattiinfo = findViewById(R.id.shortsixpattiinfo);
+//
+//                howtoplaysixpattibtn = customView.findViewById(R.id.howtoplaysixpattibtn);
+//
+//
+//
+//                // onclick event
+//                howtoplaysixpattibtn.setOnClickListener(new View.OnClickListener(){
+//                    public void onClick(View v) {
+//                        LayoutInflater layoutInflater1 = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                        View customView1 = layoutInflater1.inflate(R.layout.sixpatti_how_to_play_info,null);
+//                        closesixpattihelp = customView1.findViewById(R.id.closesixpattihelp);
+//
+//                        //Instantiate the popup
+//                        howtosixpattipopup = new PopupWindow(customView1, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+//
+//                        //display the popup window
+//                        howtosixpattipopup.showAtLocation(RelativeLayoutloader, Gravity.TOP, 0, 0);
+//
+//                        //closing the popup
+//                        closesixpattihelp.setOnClickListener(new View.OnClickListener(){
+//
+//                            @Override
+//                            public void onClick(View v) {
+//                                howtosixpattipopup.dismiss();
+//                            }
+//                        });
+//                        sixpattipopup.dismiss();
+//                    }
+//                });
+//
+//                //instantiate popup window
+//                sixpattipopup = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+//
+//                //display the popup window
+//                sixpattipopup.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
+//
+//                //join now the popup window on button click
+//                joinnowsixpattibtn = customView.findViewById(R.id.joinnowsixpatti);
+//
+//                joinnowsixpattibtn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intent = new Intent(MainActivity.this, LoadingScreen_sixpatti.class);
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//                });
             }
         });
 
@@ -353,57 +363,63 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @SuppressLint("WrongViewCast")
             @Override
             public void onClick(View v) {
-                //instantiate the popup.xml three_two_one_leaderboard file
-                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.tourney_join_tournament_popup,null);
-                shortinfo_tourney =customView.findViewById(R.id.short_tourney_info);
-
-                tourney_join_closebtn = customView.findViewById(R.id.join_tourney_close);
 
 
+                Intent intent = new Intent(MainActivity.this, LoadingScreen_tourney.class);
+                startActivity(intent);
+                finish();
 
-                // onclick event
-                shortinfo_tourney.setOnClickListener(new View.OnClickListener(){
-                    public void onClick(View v) {
-                        LayoutInflater layoutInflater1 = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        View customView1 = layoutInflater1.inflate(R.layout.tourney_info,null);
-                        tourney_shortinfo_closebtn = customView1.findViewById(R.id.close_tourney_info);
-
-                        //Instantiate the popup
-                        shortinfo_tourney_popupwindow = new PopupWindow(customView1, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-
-                        //display the popup window
-                        shortinfo_tourney_popupwindow.showAtLocation(RelativeLayoutloader, Gravity.TOP, 0, 0);
-
-                        //closing the popup
-                        tourney_shortinfo_closebtn.setOnClickListener(new View.OnClickListener(){
-
-                            @Override
-                            public void onClick(View v) {
-                                shortinfo_tourney_popupwindow.dismiss();
-                            }
-                        });
-//                        sixpattipopup.dismiss();
-                    }
-                });
-
-                //instantiate popup window
-                join_tourney_popupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-
-                //display the popup window
-                join_tourney_popupWindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
-
-                //join now the popup window on button click
-                join_tourneybtn = customView.findViewById(R.id.joinnow_tourney);
-
-                join_tourneybtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(MainActivity.this, LoadingScreen_tourney.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                });
+//                //instantiate the popup.xml three_two_one_leaderboard file
+//                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                View customView = layoutInflater.inflate(R.layout.tourney_join_tournament_popup,null);
+//                shortinfo_tourney =customView.findViewById(R.id.short_tourney_info);
+//
+//                tourney_join_closebtn = customView.findViewById(R.id.join_tourney_close);
+//
+//
+//
+//                // onclick event
+//                shortinfo_tourney.setOnClickListener(new View.OnClickListener(){
+//                    public void onClick(View v) {
+//                        LayoutInflater layoutInflater1 = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                        View customView1 = layoutInflater1.inflate(R.layout.tourney_info,null);
+//                        tourney_shortinfo_closebtn = customView1.findViewById(R.id.close_tourney_info);
+//
+//                        //Instantiate the popup
+//                        shortinfo_tourney_popupwindow = new PopupWindow(customView1, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+//
+//                        //display the popup window
+//                        shortinfo_tourney_popupwindow.showAtLocation(RelativeLayoutloader, Gravity.TOP, 0, 0);
+//
+//                        //closing the popup
+//                        tourney_shortinfo_closebtn.setOnClickListener(new View.OnClickListener(){
+//
+//                            @Override
+//                            public void onClick(View v) {
+//                                shortinfo_tourney_popupwindow.dismiss();
+//                            }
+//                        });
+////                        sixpattipopup.dismiss();
+//                    }
+//                });
+//
+//                //instantiate popup window
+//                join_tourney_popupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+//
+//                //display the popup window
+//                join_tourney_popupWindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
+//
+//                //join now the popup window on button click
+//                join_tourneybtn = customView.findViewById(R.id.joinnow_tourney);
+//
+//                join_tourneybtn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intent = new Intent(MainActivity.this, LoadingScreen_tourney.class);
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//                });
             }
         });
 
@@ -420,57 +436,62 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @SuppressLint("WrongViewCast")
             @Override
             public void onClick(View v) {
-                //instantiate the popup.xml layout file
-                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.tourney_join_tournament_popup,null);
-                shortinfo_tourney =customView.findViewById(R.id.short_tourney_info);
 
-                tourney_join_closebtn = customView.findViewById(R.id.join_tourney_close);
+                Intent intent = new Intent(MainActivity.this, LoadingScreen_tourney.class);
+                startActivity(intent);
+                finish();
 
-
-
-                // onclick event
-                shortinfo_tourney.setOnClickListener(new View.OnClickListener(){
-                    public void onClick(View v) {
-                        LayoutInflater layoutInflater1 = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        View customView1 = layoutInflater1.inflate(R.layout.tourney_info,null);
-                        tourney_shortinfo_closebtn = customView1.findViewById(R.id.close_tourney_info);
-
-                        //Instantiate the popup
-                        shortinfo_tourney_popupwindow = new PopupWindow(customView1, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-
-                        //display the popup window
-                        shortinfo_tourney_popupwindow.showAtLocation(RelativeLayoutloader, Gravity.TOP, 0, 0);
-
-                        //closing the popup
-                        tourney_shortinfo_closebtn.setOnClickListener(new View.OnClickListener(){
-
-                            @Override
-                            public void onClick(View v) {
-                                shortinfo_tourney_popupwindow.dismiss();
-                            }
-                        });
-//                        sixpattipopup.dismiss();
-                    }
-                });
-
-                //instantiate popup window
-                join_tourney_popupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-
-                //display the popup window
-                join_tourney_popupWindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
-
-                //join now the popup window on button click
-                join_tourneybtn = customView.findViewById(R.id.joinnow_tourney);
-
-                join_tourneybtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(MainActivity.this, LoadingScreen_tourney.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                });
+//                //instantiate the popup.xml layout file
+//                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                View customView = layoutInflater.inflate(R.layout.tourney_join_tournament_popup,null);
+//                shortinfo_tourney =customView.findViewById(R.id.short_tourney_info);
+//
+//                tourney_join_closebtn = customView.findViewById(R.id.join_tourney_close);
+//
+//
+//
+//                // onclick event
+//                shortinfo_tourney.setOnClickListener(new View.OnClickListener(){
+//                    public void onClick(View v) {
+//                        LayoutInflater layoutInflater1 = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                        View customView1 = layoutInflater1.inflate(R.layout.tourney_info,null);
+//                        tourney_shortinfo_closebtn = customView1.findViewById(R.id.close_tourney_info);
+//
+//                        //Instantiate the popup
+//                        shortinfo_tourney_popupwindow = new PopupWindow(customView1, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+//
+//                        //display the popup window
+//                        shortinfo_tourney_popupwindow.showAtLocation(RelativeLayoutloader, Gravity.TOP, 0, 0);
+//
+//                        //closing the popup
+//                        tourney_shortinfo_closebtn.setOnClickListener(new View.OnClickListener(){
+//
+//                            @Override
+//                            public void onClick(View v) {
+//                                shortinfo_tourney_popupwindow.dismiss();
+//                            }
+//                        });
+////                        sixpattipopup.dismiss();
+//                    }
+//                });
+//
+//                //instantiate popup window
+//                join_tourney_popupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+//
+//                //display the popup window
+//                join_tourney_popupWindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
+//
+//                //join now the popup window on button click
+//                join_tourneybtn = customView.findViewById(R.id.joinnow_tourney);
+//
+//                join_tourneybtn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intent = new Intent(MainActivity.this, LoadingScreen_tourney.class);
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//                });
             }
         });
 
@@ -485,32 +506,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @SuppressLint("WrongViewCast")
             @Override
             public void onClick(View v) {
-                //instantiate the popup.xml layout file
-                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.private_create_table_popup,null);
-                closebtn_create_table =customView.findViewById(R.id.close_create_table);
-                //instantiate popup window
-                create_table_private_popupwindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
 
-                //display the popup window
-                create_table_private_popupwindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
 
-                //join now the popup window on button click
-                create_table_btn = customView.findViewById(R.id.create_table);
+                Intent intent = new Intent(MainActivity.this, LoadingScreen_private.class);
+                startActivity(intent);
 
-                closebtn_create_table.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        create_table_private_popupwindow.dismiss();
-                    }
-                });
-                create_table_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(MainActivity.this, LoadingScreen_private.class);
-                        startActivity(intent);
-                    }
-                });
+
+//                //instantiate the popup.xml layout file
+//                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                View customView = layoutInflater.inflate(R.layout.private_create_table_popup,null);
+//                closebtn_create_table =customView.findViewById(R.id.close_create_table);
+//                //instantiate popup window
+//                create_table_private_popupwindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+//
+//                //display the popup window
+//                create_table_private_popupwindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
+//
+//                //join now the popup window on button click
+//                create_table_btn = customView.findViewById(R.id.create_table);
+//
+//                closebtn_create_table.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        create_table_private_popupwindow.dismiss();
+//                    }
+//                });
+//                create_table_btn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intent = new Intent(MainActivity.this, LoadingScreen_private.class);
+//                        startActivity(intent);
+//                    }
+//                });
             }
         });
 
