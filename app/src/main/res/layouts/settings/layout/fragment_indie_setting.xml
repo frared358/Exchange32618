@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -32,13 +31,14 @@
                     android:layout_weight="1"
                     android:layout_gravity="center"/>
 
-                <android.support.v7.widget.AppCompatSpinner
+                <Spinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@color/colorWhite"
-                    android:layout_margin="10dp"
-                    android:entries="@array/Indie_Data_Streaming_spinner"/>
+                    android:background="@drawable/material_better_spinner"
+                    style="@style/mySpinnerItemStyle"
+                    android:layout_margin="5dp"
+                    android:entries="@array/Indie_Data_Streaming_spinner" />
 
             </LinearLayout>
 
@@ -61,12 +61,13 @@
                     android:padding="5dp"
                     android:layout_gravity="center"/>
 
-                <android.support.v7.widget.AppCompatSpinner
+                <Spinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@color/colorWhite"
-                    android:layout_margin="10dp"
+                    android:background="@drawable/material_better_spinner"
+                    style="@style/mySpinnerItemStyle"
+                    android:layout_margin="5dp"
                     android:entries="@array/Indie_Default_view_spinner"/>
 
             </LinearLayout>

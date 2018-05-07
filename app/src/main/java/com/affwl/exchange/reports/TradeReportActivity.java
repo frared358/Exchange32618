@@ -64,12 +64,10 @@ public class TradeReportActivity extends AppCompatActivity implements View.OnCli
         switch (v.getId())
         {
             case R.id.from_date_layout:
-                Toast.makeText(this, "Its working", Toast.LENGTH_SHORT).show();
                 showDialog(DATE_DIALOG_ID);
                 break;
             case R.id.to_date_layout:
                 showDialog(TO_DIALOG_ID);
-                Toast.makeText(this, "Its working", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.btn_get_trade:

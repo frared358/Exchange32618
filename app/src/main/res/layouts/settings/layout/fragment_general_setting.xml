@@ -60,7 +60,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Crypto"
+                    android:text="Arabic"
                     android:padding="10dp"
                     android:textColor="@color/colorWhite"
                     android:textSize="20sp"/>
@@ -73,21 +73,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="FX"
-                    android:padding="10dp"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="20sp"/>
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colorGreay"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Indie"
+                    android:text="Bengali"
                     android:padding="10dp"
                     android:textColor="@color/colorWhite"
                     android:textSize="20sp"/>
@@ -101,7 +87,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="60 Sec"
+                    android:text="English"
                     android:padding="10dp"
                     android:textColor="@color/colorWhite"
                     android:textSize="20sp"/>
@@ -115,7 +101,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sports"
+                    android:text="Gujrati"
                     android:padding="10dp"
                     android:textColor="@color/colorWhite"
                     android:textSize="20sp"/>
@@ -129,11 +115,89 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Teen Patti"
+                    android:text="Hindi"
                     android:padding="10dp"
                     android:textColor="@color/colorWhite"
                     android:textSize="20sp"/>
 
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kannada"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Malayalam"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nepali"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Punjabi"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Telugu"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tamil"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"/>
 
             </LinearLayout>
 

@@ -43,13 +43,13 @@
                     android:src="@drawable/back" />
 
 
-                <ImageView
-                    android:id="@+id/info"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="70dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/infogame" />
+                <!--<ImageView-->
+                    <!--android:id="@+id/info"-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_height="40dp"-->
+                    <!--android:layout_marginLeft="70dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:src="@drawable/infogame" />-->
             </RelativeLayout>
 
             <!--Right side icon layout-->
@@ -62,21 +62,21 @@
                 android:layout_marginBottom="211dp">
 
 
+                <!--<ImageView-->
+                    <!--android:id="@+id/chat"-->
+                    <!--android:layout_width="40dp"-->
+                    <!--android:layout_height="40dp"-->
+                    <!--android:layout_marginLeft="0dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:clickable="true"-->
+                    <!--android:src="@drawable/chatgame" />-->
                 <ImageView
-                    android:id="@+id/chat"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="10dp"
-                    android:clickable="true"
-                    android:src="@drawable/chatgame" />
-                <ImageView
-                    android:id="@+id/leaderboardsixpatti"
+                    android:id="@+id/info"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="60dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/leaderboardgame" />
+                    android:src="@drawable/infogame" />
 
 
             </RelativeLayout>
@@ -147,7 +147,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"/>
-            </RelativeLayout>
+           <!-- </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/playerbg2relativeLayout"
@@ -155,13 +155,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/playerbg1relativeLayout">
+                android:layout_below="@+id/playerbg1relativeLayout">-->
 
                 <ImageView
                     android:id="@+id/playerbg2"
                     android:layout_width="110dp"
                     android:layout_height="100dp"
-                    android:layout_below="@+id/relativeLayout2"
+                    android:layout_below="@+id/playerbg1"
                     android:layout_margin="20dp"
                     android:layout_marginTop="35dp"
                     android:src="@drawable/myplayerbackground1"
@@ -181,6 +181,7 @@
                     android:id="@+id/playerbg4"
                     android:layout_width="110dp"
                     android:layout_height="100dp"
+                    android:layout_below="@+id/playerbg3"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_alignTop="@+id/table"
@@ -201,24 +202,36 @@
                     android:src="@drawable/playerinviteavatar" />
 
                 <RelativeLayout
+                    android:id="@+id/rl_myplayer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/rl_myplayer"
-                    android:layout_centerInParent="true">
+                    android:layout_alignBottom="@+id/playerbg2"
+                    android:layout_centerHorizontal="true">
 
                     <ImageView
                         android:id="@+id/myplayer"
                         android:layout_width="110dp"
                         android:layout_height="110dp"
-                        android:src="@drawable/myplayerbackground1" />
+                        android:src="@drawable/yellow_circle" />
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/inner_player_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_alignTop="@+id/myplayer"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="40dp"
-                        android:src="@drawable/playerinviteavatar" />
+                        android:layout_centerInParent="true"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/inner_img_profile" />
+
+                    <TextView
+                        android:id="@+id/nametext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@id/inner_player_img"
+                        android:background="@color/colorYellowGolden"
+                        android:textAlignment="center"
+                        android:textColor="@color/Black" />
                 </RelativeLayout>
 
                 <!--Sort Button-->
