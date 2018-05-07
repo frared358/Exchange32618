@@ -250,6 +250,7 @@
             </RelativeLayout>
 
 
+
             <LinearLayout
                 android:id="@+id/blindshow_layout"
                 android:layout_width="match_parent"
