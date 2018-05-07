@@ -1,5 +1,6 @@
 package com.affwl.exchange.teenpatti;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,8 +17,11 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,10 +29,12 @@ import android.widget.Toast;
 
 import com.affwl.exchange.R;
 
+import org.w3c.dom.DOMImplementation;
+
 
 public class PrivateActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
-    ImageView handle_right, backbtn,infobtn,infoclosebtn,profile,chatclosebtn,chatclosebtn2,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn;;
-    TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,backtolobby,nametext,code;
+    ImageView handle_right, backbtn,infobtn,infoclosebtn,profile,plus_btn,minus_btn,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn;;
+    TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,backtolobby,nametext,code,blind_btn;
     PopupWindow popupWindow,infopopupWindow,chatpopupWindow,ustatuspopupWindow,dealerpopupWindow,oustatuspopupWindow,sendmsgpopupWindow,chngdpopupWindow;
     Button msgbtn,blockbtn;
     RelativeLayout relativeLayout,relativeLayout2,relativeLayout3;
@@ -37,6 +43,7 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
     NavigationView navigationView;
 
     int minteger = 0;
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -74,9 +81,54 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
         String name=session.getName();
         nametext.setText(name);
 
+//        Animation on blindshow_layout
+        LinearLayout blindshow_layout=findViewById(R.id.blindshow_layout);
+        TranslateAnimation animations = new TranslateAnimation(0.0f, 0.0f,
+                0.0f, -10.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
+        animations.setDuration(100);  // animation duration
+        animations.setFillAfter(true);
+        blindshow_layout.startAnimation(animations);
+
+//        Implementation of increament amount
+        final TextView displayAmount = findViewById(R.id.start_amount);
+        plus_btn=findViewById(R.id.inc_amount);
+        plus_btn.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                String sub= displayAmount.getText().toString().substring(1);
+                minteger = Integer.parseInt(sub)*2;
+                displayAmount.setText("₹" + minteger);
+
+            }
+
+        });
+
+        //Implementation of decreament amount
+        minus_btn=findViewById(R.id.dec_amount);
+        minus_btn.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                String sub= displayAmount.getText().toString().substring(1);
+                minteger =Integer.parseInt(sub)/2;
+                displayAmount.setText("₹" + minteger);
+            }
+        });
+
+//        Implementation of Blind
+        blind_btn=findViewById(R.id.blind);
+        blind_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TranslateAnimation animations = new TranslateAnimation(0.0f, 0.0f,
+                        0.0f, -80.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
+                animations.setDuration(100);  // animation duration
+                animations.setFillAfter(true);
+                displayAmount.startAnimation(animations);
+
+            }
+        });
 
         //////////////// Popup for Backbutton ///////////////////
-
 
         backbtn=(ImageView) findViewById(R.id.back);
         privatetble = (DrawerLayout) findViewById(R.id.privatetble);
@@ -338,7 +390,7 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
                     }
                 });
 
-                //Implementation of increament button
+                //Implementation of increament tip button
                 final TextView displayInteger = customView.findViewById(R.id.tipamount);
                 plusbtn=customView.findViewById(R.id.plus);
                 plusbtn.setOnClickListener(new View.OnClickListener() {
@@ -352,7 +404,7 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
 
                 });
 
-                //Implementation of decreament
+                //Implementation of decreament tip
                 minusbtn=customView.findViewById(R.id.minus);
                 minusbtn.setOnClickListener(new View.OnClickListener() {
 

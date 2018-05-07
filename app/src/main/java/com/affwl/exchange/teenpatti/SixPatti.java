@@ -781,34 +781,34 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
 
 
         //////////////// Popup for Leaderboard ///////////////////
-
-        leaderboardsixpattibtn=(ImageView) findViewById(R.id.leaderboardsixpatti);
-        relativeLayout= (RelativeLayout) findViewById(R.id.sixpattirecycler);
-
-        leaderboardsixpattibtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //instantiate the popup.xml three_two_one_leaderboard file
-                LayoutInflater layoutInflater = (LayoutInflater) SixPatti.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.six_patti_leaderboard, null);
-
-                closebtnsixpattileadboard = (ImageView) customView.findViewById(R.id.closeleadsix);
-
-                //instantiate popup window
-                sixpattileadboardpopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-
-                //display the popup window
-                sixpattileadboardpopupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 0);
-
-                //close the popup window on button click
-                closebtnsixpattileadboard.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        sixpattileadboardpopupWindow.dismiss();
-                    }
-                });
-            }
-        });
+//
+//        leaderboardsixpattibtn=(ImageView) findViewById(R.id.leaderboardsixpatti);
+//        relativeLayout= (RelativeLayout) findViewById(R.id.sixpattirecycler);
+//
+//        leaderboardsixpattibtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //instantiate the popup.xml three_two_one_leaderboard file
+//                LayoutInflater layoutInflater = (LayoutInflater) SixPatti.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                View customView = layoutInflater.inflate(R.layout.six_patti_leaderboard, null);
+//
+//                closebtnsixpattileadboard = (ImageView) customView.findViewById(R.id.closeleadsix);
+//
+//                //instantiate popup window
+//                sixpattileadboardpopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+//
+//                //display the popup window
+//                sixpattileadboardpopupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 0);
+//
+//                //close the popup window on button click
+//                closebtnsixpattileadboard.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        sixpattileadboardpopupWindow.dismiss();
+//                    }
+//                });
+//            }
+//        });
     }
 
     /////////// Slider /////////////
