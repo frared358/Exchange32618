@@ -69,30 +69,6 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
         findViews();
         implementEvents();
 
-//        handle_right = findViewById(R.id.handle_right);
-//        tournamenttble = findViewById(R.id.tournamenttble);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, tournamenttble, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        tournamenttble.addDrawerListener(toggle);
-//        toggle.syncState();
-//
-//        navigationView = findViewById(R.id.teen_nav_view);
-//        navigationView.setNavigationItemSelectedListener(this);
-//        handle_right.setOnClickListener(new View.OnClickListener() {
-//        @Override
-//        public void onClick(View v) {
-//            //instantiate the popup.xml three_two_one_leaderboard file
-//            LayoutInflater layoutInflater = (LayoutInflater) ThreetwooneTournament.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            View customView = layoutInflater.inflate(R.three_two_one_leaderboard.leaderboard_popup,null);
-//
-//            RecyclerView playerList = customView.findViewById(R.id.leaderboardlist);
-//            playerList.setLayoutManager(new LinearLayoutManager(ThreetwooneTournament.this));
-//            String[] values = {"Anand","Tejas","Anirudh","Ravi","Rohit","Francis"};
-//            playerList.setAdapter(new LeaderboardListAdapter(values));
-//        }
-//    });
-
-
-
 
         //        implemention of user profile pic
         profile=findViewById(R.id.inner_player_img);
@@ -181,133 +157,6 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
                 });
             }
         });
-
-
-        //////////////// Popup for ChatButton ///////////////////
-
-//        chat321= findViewById(R.id.chat321);
-//        tournamenttble = findViewById(R.id.tournamenttble);
-//
-//        chat321.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //instantiate the popup.xml three_two_one_leaderboard file
-//                LayoutInflater layoutInflater = (LayoutInflater) ThreetwooneTournament.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                View customView = layoutInflater.inflate(R.layout.chat_popup, null);
-//
-//                chatclosebtn = customView.findViewById(R.id.chatclose);
-//                chatclosebtn2 = customView.findViewById(R.id.chatclose2);
-//                //instantiate popup window
-//                chatpopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-//
-//                //display the popup window
-//                chatpopupWindow.showAtLocation(tournamenttble, Gravity.CENTER, 0, 0);
-//
-//                //close the popup window on button click
-//                chatclosebtn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        chatpopupWindow.dismiss();
-//                    }
-//                });
-//                chatclosebtn2.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        chatpopupWindow.dismiss();
-//                    }
-//                });
-//            }
-//        });
-
-
-        //////////////// Popup for Userstatus ///////////////////
-
-//        myplayerbtn= findViewById(R.id.myplayer);
-//        tournamenttble = findViewById(R.id.tournamenttble);
-//
-//        myplayerbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //instantiate the popup.xml three_two_one_leaderboard file
-//                LayoutInflater layoutInflater = (LayoutInflater) ThreetwooneTournament.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                View customView = layoutInflater.inflate(R.layout.player_status_popup, null);
-//
-//                ustatusclosebtn = customView.findViewById(R.id.userstatusclose);
-//                //instantiate popup window
-//                ustatuspopupWindow = new PopupWindow(customView,RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-//
-//                //display the popup window
-//                ustatuspopupWindow.showAtLocation(tournamenttble, Gravity.CENTER_HORIZONTAL, 0, 0);
-//
-//                //close the popup window on button click
-//                ustatusclosebtn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        ustatuspopupWindow.dismiss();
-//                    }
-//                });
-//            }
-//        });
-
-
-
-        //////////////// Popup for Otheruserstatus ///////////////////
-//
-//        oplayerbtn= findViewById(R.id.playerbg2);
-//        tournamenttble = findViewById(R.id.tournamenttble);
-//
-//        oplayerbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //instantiate the popup.xml three_two_one_leaderboard file
-//                LayoutInflater layoutInflater = (LayoutInflater) ThreetwooneTournament.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                View customView = layoutInflater.inflate(R.layout.other_player_status, null);
-//
-//                msgbtn = customView.findViewById(R.id.msg);
-//
-//                // onclick event for message button
-//                msgbtn.setOnClickListener(new View.OnClickListener() {
-//                    public void onClick(View v) {
-//                        LayoutInflater layoutInflater = (LayoutInflater) ThreetwooneTournament.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                        View customView1 = layoutInflater.inflate(R.layout.send_message_popup, null);
-//                        msgclosebtn=customView1.findViewById(R.id.msgclose);
-//                        //instantiate popup window
-//                        sendmsgpopupWindow = new PopupWindow(customView1,RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-//
-//                        //display the popup window
-//                        sendmsgpopupWindow.showAtLocation(tournamenttble, Gravity.TOP, 0, 0);
-//
-//                        //close the popup window on button click
-//                        msgclosebtn.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                sendmsgpopupWindow.dismiss();
-//                            }
-//                        });
-//
-//                        oustatuspopupWindow.dismiss();
-//                    }
-//
-//                });
-//
-//                oustatusclosebtn = customView.findViewById(R.id.ouserstatusclose);
-//                //instantiate popup window
-//                oustatuspopupWindow = new PopupWindow(customView,RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-//
-//                //display the popup window
-//                oustatuspopupWindow.showAtLocation(tournamenttble, Gravity.CENTER_HORIZONTAL, 0, 0);
-//
-//                //close the popup window on button click
-//                oustatusclosebtn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        oustatuspopupWindow.dismiss();
-//                    }
-//                });
-//            }
-//        });
-
-
 
         //////////////// Popup for Dealer ///////////////////
 
@@ -429,39 +278,6 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
             }
         });
 
-
-        //////////////// Popup for Leaderboard ///////////////////
-
-//        leaderboard321=(ImageView) findViewById(R.id.leaderboard321);
-//        tournamenttble = (DrawerLayout) findViewById(R.id.tournamenttble);
-//
-//        leaderboard321.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //instantiate the popup.xml three_two_one_leaderboard file
-//                LayoutInflater layoutInflater = (LayoutInflater) ThreetwooneTournament.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                View customView = layoutInflater.inflate(R.layout.three_two_one_leaderboard, null);
-//
-//                closeleadleader321 = (ImageView) customView.findViewById(R.id.closeleadleader321);
-//
-//                //instantiate popup window
-//                threetwooneleadboardpopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-//
-//                //display the popup window
-//                threetwooneleadboardpopupWindow.showAtLocation(tournamenttble, Gravity.CENTER, 0, 0);
-//
-//                //close the popup window on button click
-//                closeleadleader321.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        threetwooneleadboardpopupWindow.dismiss();
-//                    }
-//                });
-//            }
-//        });
-
-
-
     }
 
     //Finds all views and set Tag to all draggable views
@@ -496,15 +312,6 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
         findViewById(R.id.cyancardholder).setOnDragListener(this);
         findViewById(R.id.default321layout).setOnDragListener(this);
     }
-
-    /////////// Slider /////////////
-//    public void onClick(View v) {
-//        switch (v.getId()){
-//            case R.id.handle_right:
-//                tournamenttble.openDrawer(navigationView);
-//                break;
-//        }
-//    }
 
 
     @Override
@@ -544,14 +351,10 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
 
     @Override
     public boolean onLongClick(View v) {
-        // this method creates a new ClipData.
-        // This is done in two steps to provide clarity. The convenience method
 
         // Create a new ClipData.Item from the ImageView object's tag
         ClipData.Item item = new ClipData.Item((CharSequence) v.getTag());
 
-        // Create a new ClipData using the tag as a label, the plain text MIME type, and
-        // the already-created item. This will create a new ClipDescription object within the
         // ClipData, and set its MIME type entry to "text/plain"
         String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
 
@@ -571,8 +374,8 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
         v.setVisibility(View.INVISIBLE);
         return true;
     }
-    // This is the method that the system calls when it dispatches a drag event to the
-    // listener.
+    // This is the method that the system calls when it dispatches a drag event to the listener.
+
     @Override
     public boolean onDrag(View view, DragEvent event) {
         // Defines a variable to store the action type for the incoming event
@@ -582,44 +385,21 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
             case DragEvent.ACTION_DRAG_STARTED:
                 // Determines if this View can accept the dragged data
                 if (event.getClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
-                    // if you want to apply color when drag started to your view you can uncomment below lines
-                    // to give any color tint to the View to indicate that it can accept
-                    // data.
-
-                    //  view.getBackground().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);//set background color to your view
-
-                    // Invalidate the view to force a redraw in the new tint
-                    //  view.invalidate();
-
                     // returns true to indicate that the View can accept the dragged data.
                     return true;
-
                 }
-
                 // Returns false. During the current drag and drop operation, this View will
                 // not receive events again until ACTION_DRAG_ENDED is sent.
                 return false;
 
             case DragEvent.ACTION_DRAG_ENTERED:
-                // Applies a YELLOW or any color tint to the View, when the dragged view entered into drag acceptable view
-                // Return true; the return value is ignored.
-
-//                view.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.SRC_IN);
-
                 // Invalidate the view to force a redraw in the new tint
                 view.invalidate();
-
                 return true;
             case DragEvent.ACTION_DRAG_LOCATION:
-                // Ignore the event
                 return true;
             case DragEvent.ACTION_DRAG_EXITED:
-                // Re-sets the color tint to blue, if you had set the BLUE color or any color in ACTION_DRAG_STARTED. Returns true; the return value is ignored.
 
-                //  view.getBackground().setColorFilter(Color.BLUE, PorterDuff.Mode.SRC_IN);
-
-                //If u had not provided any color in ACTION_DRAG_STARTED then clear color filter.
-//                view.getBackground().clearColorFilter();
                 // Invalidate the view to force a redraw in the new tint
                 view.invalidate();
 
@@ -634,8 +414,6 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
                 // Displays a message containing the dragged data.
                 Toast.makeText(this, "Dragged card is " + dragData, Toast.LENGTH_SHORT).show();
 
-                // Turns off any color tints
-//                view.getBackground().clearColorFilter();
 
                 // Invalidates the view to force a redraw
                 view.invalidate();
@@ -650,19 +428,9 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
                 // Returns true. DragEvent.getResult() will return true.
                 return true;
             case DragEvent.ACTION_DRAG_ENDED:
-                // Turns off any color tinting
-                // view.getBackground().clearColorFilter();
 
                 // Invalidates the view to force a redraw
                 view.invalidate();
-
-                // Does a getResult(), and displays what happened.
-//                if (event.getResult())
-//                    Toast.makeText(this, "The drop was handled.", Toast.LENGTH_SHORT).show();
-//
-//                else
-//                    Toast.makeText(this, "The drop didn't work.", Toast.LENGTH_SHORT).show();
-
 
                 // returns true; the value is ignored.
                 return true;
@@ -674,23 +442,4 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
         }
         return false;
     }
-
-//    @Override
-//    public void onClick(View v) {
-//        return;
-//    }
-
-
-//        Animation animZoomIn = AnimationUtils.loadAnimation(getApplicationContext(),
-//                R.anim.zoom_in);
-//        RelativeLayout vrelative=three_two_one_leaderboard.findViewById(R.id.variation);
-//        vrelative.setVisibility(View.VISIBLE);
-//        vrelative.startAnimation(animZoomIn);
-//
-//
-//        Animation animZoomOut = AnimationUtils.loadAnimation(getApplicationContext(),
-//                R.anim.zoom_out);
-//        vrelative.setVisibility(View.VISIBLE);
-//        vrelative.startAnimation(animZoomOut);
-//        windows.dismiss();
-    }
+}

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_deselect_language"
+    android:background="#B4680102"
     android:fillViewport="true"
     android:orientation="vertical"
     android:id="@+id/helpusLayout">
@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1.Trail or Set"
-                android:textColor="#ffff00"
+                android:textColor="#ffffff"
                 android:textSize="20sp" />
 
             <LinearLayout
@@ -54,16 +54,16 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="50dp"
+                    android:layout_width="80dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"
-                    android:src="@drawable/rateus_star" />
+                    android:src="@drawable/trail1" />
 
                 <ImageView
-                    android:layout_width="50dp"
+                    android:layout_width="80dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"
-                    android:src="@drawable/rateus_star" />
+                    android:src="@drawable/trail2" />
 
                 <View
                     android:layout_width="150dp"
@@ -72,10 +72,10 @@
                     android:background="@drawable/line_seperator" />
 
                 <ImageView
-                    android:layout_width="50dp"
+                    android:layout_width="84dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"
-                    android:src="@drawable/rateus_star" />
+                    android:src="@drawable/trail3" />
 
             </LinearLayout>
 
@@ -88,7 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2. Pure Sequence"
-                    android:textColor="#ffff00"
+                    android:textColor="#ffffff"
                     android:textSize="20sp" />
 
                 <LinearLayout
@@ -97,16 +97,16 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
                         android:layout_height="50dp"
                         android:layout_margin="5dp"
-                        android:src="@drawable/rateus_star" />
+                        android:src="@drawable/pures1" />
 
                     <ImageView
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
                         android:layout_height="50dp"
                         android:layout_margin="5dp"
-                        android:src="@drawable/rateus_star" />
+                        android:src="@drawable/pures3" />
 
                     <View
                         android:layout_width="150dp"
@@ -115,10 +115,10 @@
                         android:background="@drawable/line_seperator" />
 
                     <ImageView
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
                         android:layout_height="50dp"
                         android:layout_margin="5dp"
-                        android:src="@drawable/rateus_star" />
+                        android:src="@drawable/pures2" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -132,7 +132,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="3. Sequence (run)"
-                    android:textColor="#ffff00"
+                    android:textColor="#ffffff"
                     android:textSize="20sp" />
 
                 <LinearLayout
@@ -141,16 +141,16 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
                         android:layout_height="50dp"
                         android:layout_margin="5dp"
-                        android:src="@drawable/rateus_star" />
+                        android:src="@drawable/sq1" />
 
                     <ImageView
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
                         android:layout_height="50dp"
                         android:layout_margin="5dp"
-                        android:src="@drawable/rateus_star" />
+                        android:src="@drawable/sq3" />
 
                     <View
                         android:layout_width="150dp"
@@ -159,10 +159,10 @@
                         android:background="@drawable/line_seperator" />
 
                     <ImageView
-                        android:layout_width="50dp"
+                        android:layout_width="80dp"
                         android:layout_height="50dp"
                         android:layout_margin="5dp"
-                        android:src="@drawable/rateus_star" />
+                        android:src="@drawable/sq2" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -176,7 +176,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4. Color"
-                    android:textColor="#ffff00"
+                    android:textColor="#ffffff"
                     android:textSize="20sp" />
 
                 <LinearLayout
@@ -220,7 +220,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5. Pair (Two cards of same rank"
-                    android:textColor="#ffff00"
+                    android:textColor="#ffffff"
                     android:textSize="20sp" />
 
                 <LinearLayout
@@ -264,7 +264,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="6. High Card"
-                    android:textColor="#ffff00"
+                    android:textColor="#ffffff"
                     android:textSize="20sp" />
 
                 <LinearLayout
