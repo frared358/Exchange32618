@@ -2,7 +2,7 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/variationtble"
+    android:id="@+id/newvariationtble"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -43,13 +43,13 @@
                     android:src="@drawable/back" />
 
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/info"-->
-                    <!--android:layout_width="40dp"-->
-                    <!--android:layout_height="40dp"-->
-                    <!--android:layout_marginLeft="70dp"-->
-                    <!--android:layout_marginTop="10dp"-->
-                    <!--android:src="@drawable/infogame" />-->
+                <ImageView
+                    android:id="@+id/info"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="70dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/infogame" />
             </RelativeLayout>
 
             <!--Right side ithree_two_one_leaderboardyout-->
@@ -62,29 +62,22 @@
                 android:layout_marginBottom="211dp">
 
 
-                <!--<ImageView-->
-                    <!--android:id="@+id/chat"-->
-                    <!--android:layout_width="40dp"-->
-                    <!--android:layout_height="40dp"-->
-                    <!--android:layout_marginLeft="0dp"-->
-                    <!--android:layout_marginTop="10dp"-->
-                    <!--android:clickable="true"-->
-                    <!--android:src="@drawable/chatgame" />-->
-                <!--<ImageView-->
-                    <!--android:id="@+id/getchips"-->
-                    <!--android:layout_width="40dp"-->
-                    <!--android:layout_height="40dp"-->
-                    <!--android:layout_marginLeft="60dp"-->
-                    <!--android:layout_marginTop="10dp"-->
-                    <!--android:src="@drawable/getchips" />-->
-
                 <ImageView
-                    android:id="@+id/info"
+                    android:id="@+id/chat"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="10dp"
+                    android:clickable="true"
+                    android:src="@drawable/chatgame"
+                    android:focusable="true" />
+                <ImageView
+                    android:id="@+id/getchips"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="60dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/infogame" />
+                    android:src="@drawable/getchips" />
 
 
             </RelativeLayout>
@@ -216,21 +209,19 @@
 
                     <ImageView
                         android:id="@+id/myplayer"
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/yellow_circle" />
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="40dp"
+                        android:src="@drawable/myplayerbackground1" />
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/inner_player_img"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/myplayer"
-                        android:src="@drawable/inner_img_profile"
-                        android:layout_margin="5dp"
+                    <ImageView
+
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerInParent="true"
-                        />
+                        android:src="@drawable/playerinviteavatar" />
 
                     <RelativeLayout
                         android:layout_width="wrap_content"
@@ -355,7 +346,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:fitsSystemWindows="false"
-        app:headerLayout="@layout/leaderboard_popup" />
+        android:fitsSystemWindows="false">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/btn_handle_left" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryBlue">
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
