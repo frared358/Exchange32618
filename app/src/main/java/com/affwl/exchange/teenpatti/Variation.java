@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.percent.PercentRelativeLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -36,13 +37,15 @@ public class Variation extends AppCompatActivity implements View.OnClickListener
     TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,nametext,backtolobby,code;
     PopupWindow popupWindow,infopopupWindow,chatpopupWindow,themepopupWindow,ustatuspopupWindow,dealerpopupWindow,oustatuspopupWindow,sendmsgpopupWindow,chngdpopupWindow,selectvariationpopupWindow;
     Button msgbtn,blockbtn;
-    RelativeLayout relativeLayout,relativeLayout2,relativeLayout3;
+    RelativeLayout relativeLayout2,relativeLayout3;
     DrawerLayout variationtble;
     NavigationView navigationView;
     public int counter=15;
     public int counter4=15;
     public int counter5=15;
     Session session;
+
+    PercentRelativeLayout relativeLayout;
 
     CountDownTimer countDownTimer;
 
@@ -66,7 +69,7 @@ public class Variation extends AppCompatActivity implements View.OnClickListener
 
         navigationView = (NavigationView) findViewById(R.id.teen_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        relativeLayout= (RelativeLayout) findViewById(R.id.variationrecycler);
+        relativeLayout= (PercentRelativeLayout) findViewById(R.id.variationrecycler);
         loadingPopup();
 
 
@@ -241,7 +244,7 @@ public class Variation extends AppCompatActivity implements View.OnClickListener
                 LayoutInflater layoutInflater = (LayoutInflater) Variation.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View customView = layoutInflater.inflate(R.layout.select_variation, null);
                 //instantiate popup window
-                selectvariationpopupWindow = new PopupWindow(customView,RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                selectvariationpopupWindow = new PopupWindow(customView,PercentRelativeLayout.LayoutParams.WRAP_CONTENT, PercentRelativeLayout.LayoutParams.WRAP_CONTENT);
 
                 //display the popup window
                 selectvariationpopupWindow.showAtLocation(relativeLayout, Gravity.CENTER, 0, 0);
