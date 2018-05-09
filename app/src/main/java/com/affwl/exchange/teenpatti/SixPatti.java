@@ -43,7 +43,7 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
     DrawerLayout sixpattitble;
     NavigationView navigationView;
     int minteger = 0;
-    ImageView card1,card2,card3,card4,card5,card6;
+    ImageView my_card1,my_card2,my_card3,my_card4,my_card5,my_card6;
     Session session;
     ArrayList<Integer> cards;
     int value=0;
@@ -52,6 +52,16 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
     int value3=0;
     int value4=0;
     int value5=0;
+
+    ImageView card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17,
+            card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30;
+
+    Animation animatecard1, animatecard2, animatecard3, animatecard4, animatecard5, animatecard6, animatecard7, animatecard8,
+            animatecard9, animatecard10, animatecard11, animatecard12, animatecard13, animatecard14, animatecard15, animatecard16,
+            animatecard17, animatecard18, animatecard19,animatecard20, animatecard21, animatecard22, animatecard23, animatecard24,
+            animatecard25, animatecard26,animatecard27, animatecard28, animatecard29, animatecard30;
+
+    TextView btn_see_cards;
 
     ArrayList<String> selectedCardArray=new ArrayList<String>();
 
@@ -83,17 +93,202 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
         nametext.setText(name);
 
 
-
-//        Implementation of cards
+        //        Implementation of cards
         gobtn=findViewById(R.id.sixpatti_go);
         sortbtn=findViewById(R.id.sort);
+        my_card1=findViewById(R.id.my_card1);
+        my_card2=findViewById(R.id.my_card2);
+        my_card3=findViewById(R.id.my_card3);
+        my_card4=findViewById(R.id.my_card4);
+        my_card5=findViewById(R.id.my_card5);
+        my_card6=findViewById(R.id.my_card6);
+
+        //shuffling card animation
+        animatecard1 = AnimationUtils.loadAnimation(this, R.anim.translate_top_left);
+        animatecard2 = AnimationUtils.loadAnimation(this, R.anim.translate_top_right);
+        animatecard3 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom_left);
+        animatecard4= AnimationUtils.loadAnimation(this, R.anim.translate_bottom_right);
+        animatecard5 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom);
+
+
+        animatecard6 = AnimationUtils.loadAnimation(this, R.anim.translate_top_left);
+        animatecard7 = AnimationUtils.loadAnimation(this, R.anim.translate_top_right);
+        animatecard8 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom_left);
+        animatecard9= AnimationUtils.loadAnimation(this, R.anim.translate_bottom_right);
+        animatecard10 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom);
+
+        animatecard11 = AnimationUtils.loadAnimation(this, R.anim.translate_top_left);
+        animatecard12 = AnimationUtils.loadAnimation(this, R.anim.translate_top_right);
+        animatecard13 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom_left);
+        animatecard14= AnimationUtils.loadAnimation(this, R.anim.translate_bottom_right);
+        animatecard15 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom);
+
+        animatecard16 = AnimationUtils.loadAnimation(this, R.anim.translate_top_left);
+        animatecard17 = AnimationUtils.loadAnimation(this, R.anim.translate_top_right);
+        animatecard18 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom_left);
+        animatecard19= AnimationUtils.loadAnimation(this, R.anim.translate_bottom_right);
+        animatecard20 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom);
+
+        animatecard21 = AnimationUtils.loadAnimation(this, R.anim.translate_top_left);
+        animatecard22 = AnimationUtils.loadAnimation(this, R.anim.translate_top_right);
+        animatecard23 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom_left);
+        animatecard24= AnimationUtils.loadAnimation(this, R.anim.translate_bottom_right);
+        animatecard25 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom);
+
+        animatecard26 = AnimationUtils.loadAnimation(this, R.anim.translate_top_left);
+        animatecard27 = AnimationUtils.loadAnimation(this, R.anim.translate_top_right);
+        animatecard28 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom_left);
+        animatecard29= AnimationUtils.loadAnimation(this, R.anim.translate_bottom_right);
+        animatecard30 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom);
+
+
+        //card image
         card1=findViewById(R.id.card1);
         card2=findViewById(R.id.card2);
         card3=findViewById(R.id.card3);
         card4=findViewById(R.id.card4);
         card5=findViewById(R.id.card5);
         card6=findViewById(R.id.card6);
+        card7=findViewById(R.id.card7);
+        card8=findViewById(R.id.card8);
+        card9=findViewById(R.id.card9);
+        card10=findViewById(R.id.card10);
+        card11=findViewById(R.id.card11);
+        card12=findViewById(R.id.card12);
+        card13=findViewById(R.id.card13);
+        card14=findViewById(R.id.card14);
+        card15=findViewById(R.id.card15);
+        card16=findViewById(R.id.card16);
+        card17=findViewById(R.id.card17);
+        card18=findViewById(R.id.card18);
+        card19=findViewById(R.id.card19);
+        card20=findViewById(R.id.card20);
+        card21=findViewById(R.id.card21);
+        card22=findViewById(R.id.card22);
+        card23=findViewById(R.id.card23);
+        card24=findViewById(R.id.card24);
+        card25=findViewById(R.id.card25);
+        card26=findViewById(R.id.card26);
+        card27=findViewById(R.id.card27);
+        card28=findViewById(R.id.card28);
+        card29=findViewById(R.id.card29);
+        card30=findViewById(R.id.card30);
 
+        //see myplayer card
+        btn_see_cards=findViewById(R.id.btn_see_cards);
+
+        btn_see_cards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                card3.setImageResource(R.drawable.club_ace);
+                card8.setImageResource(R.drawable.club_6);
+                card13.setImageResource(R.drawable.club_ace);
+                btn_see_cards.setVisibility(View.GONE);
+            }
+        });
+
+        card3.bringToFront();
+        card8.bringToFront();
+        card13.bringToFront();
+        card18.bringToFront();
+        card23.bringToFront();
+        card28.bringToFront();
+
+        //animate shuffle cards
+        card1.startAnimation(animatecard1);
+        animatecard2.setStartOffset(200);
+        card2.startAnimation(animatecard2);
+        animatecard3.setStartOffset(400);
+        card3.startAnimation(animatecard3);
+        animatecard4.setStartOffset(600);
+        card4.startAnimation(animatecard4);
+        animatecard5.setStartOffset(800);
+        card5.startAnimation(animatecard5);
+
+        animatecard6.setStartOffset(1000);
+        card6.startAnimation(animatecard6);
+        animatecard7.setStartOffset(1200);
+        card7.startAnimation(animatecard7);
+        animatecard8.setStartOffset(1400);
+        card8.startAnimation(animatecard8);
+        animatecard9.setStartOffset(1600);
+        card9.startAnimation(animatecard9);
+        animatecard10.setStartOffset(1800);
+        card10.startAnimation(animatecard10);
+
+
+        animatecard11.setStartOffset(2000);
+        card11.startAnimation(animatecard11);
+        animatecard12.setStartOffset(2200);
+        card12.startAnimation(animatecard12);
+        animatecard13.setStartOffset(2400);
+        card13.startAnimation(animatecard13);
+        animatecard14.setStartOffset(2600);
+        card14.startAnimation(animatecard14);
+        animatecard15.setStartOffset(2800);
+        card15.startAnimation(animatecard15);
+
+
+        animatecard16.setStartOffset(3000);
+        card16.startAnimation(animatecard16);
+        animatecard17.setStartOffset(3200);
+        card17.startAnimation(animatecard17);
+        animatecard18.setStartOffset(3400);
+        card18.startAnimation(animatecard18);
+        animatecard19.setStartOffset(3600);
+        card19.startAnimation(animatecard19);
+        animatecard20.setStartOffset(3800);
+        card20.startAnimation(animatecard20);
+
+
+        animatecard21.setStartOffset(4000);
+        card21.startAnimation(animatecard21);
+        animatecard22.setStartOffset(4200);
+        card22.startAnimation(animatecard22);
+        animatecard23.setStartOffset(4400);
+        card23.startAnimation(animatecard23);
+        animatecard24.setStartOffset(4600);
+        card24.startAnimation(animatecard24);
+        animatecard25.setStartOffset(4800);
+        card25.startAnimation(animatecard25);
+
+
+        animatecard26.setStartOffset(5000);
+        card26.startAnimation(animatecard26);
+        animatecard27.setStartOffset(5200);
+        card27.startAnimation(animatecard27);
+        animatecard28.setStartOffset(5400);
+        card28.startAnimation(animatecard28);
+        animatecard29.setStartOffset(5600);
+        card29.startAnimation(animatecard29);
+        animatecard30.setStartOffset(5800);
+        card30.startAnimation(animatecard30);
+
+        //display cards in position after animation overs
+        animatecard30.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Pass the Intent to switch to other Activity
+                my_card1.setVisibility(View.VISIBLE);
+                my_card2.setVisibility(View.VISIBLE);
+                my_card3.setVisibility(View.VISIBLE);
+                my_card4.setVisibility(View.VISIBLE);
+                my_card5.setVisibility(View.VISIBLE);
+                my_card6.setVisibility(View.VISIBLE);
+            }
+        });
+
+//        Implementation of cards
 
         cards=new ArrayList<>();
         cards.add(106);// six of clubs
@@ -107,18 +302,18 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
         // deal the firts 6 cards
 
 
-        card1.setVisibility(View.VISIBLE);
-        card2.setVisibility(View.VISIBLE);
-        card3.setVisibility(View.VISIBLE);
-        card4.setVisibility(View.VISIBLE);
-        card5.setVisibility(View.VISIBLE);
-        card6.setVisibility(View.VISIBLE);
+//        my_card1.setVisibility(View.VISIBLE);
+//        my_card2.setVisibility(View.VISIBLE);
+//        my_card3.setVisibility(View.VISIBLE);
+//        my_card4.setVisibility(View.VISIBLE);
+//        my_card5.setVisibility(View.VISIBLE);
+//        my_card6.setVisibility(View.VISIBLE);
 
         playerbg2relativeLayout=findViewById(R.id.playerbg2relativeLayout);
         rl_myplayer=findViewById(R.id.rl_myplayer);
         // Implementaion of six cards onclick and translate animation
 
-        card1.setOnClickListener(new View.OnClickListener() {
+        my_card1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -126,7 +321,7 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
                     Animation animation = new TranslateAnimation(0, 0, 0, -20);
                     animation.setDuration(100);
                     animation.setFillAfter(true);
-                    card1.startAnimation(animation);
+                    my_card1.startAnimation(animation);
                     value = 1;
                     selectedCardArray.add("value");
                     return;
@@ -136,7 +331,7 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
                     Animation animation1 = new TranslateAnimation(0, 0,0, 0);
                     animation1.setDuration(100);
                     animation1.setFillAfter(true);
-                    card1.startAnimation(animation1);
+                    my_card1.startAnimation(animation1);
                     value=0;
                     selectedCardArray.remove("value");
                     return;
@@ -144,7 +339,7 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
             }
         });
 
-        card2.setOnClickListener(new View.OnClickListener() {
+        my_card2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -152,17 +347,17 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
                     Animation animation2 = new TranslateAnimation(0, 0, 0, -20);
                     animation2.setDuration(100);
                     animation2.setFillAfter(true);
-                    card2.startAnimation(animation2);
+                    my_card2.startAnimation(animation2);
                     value1 = 1;
                     selectedCardArray.add("value1");
                     return;
                 }
                 if (value1==1)
-                {card2.clearAnimation();
+                {my_card2.clearAnimation();
                     Animation animation3 = new TranslateAnimation(0, 0,0, 0);
                     animation3.setDuration(100);
                     animation3.setFillAfter(true);
-                    card2.startAnimation(animation3);
+                    my_card2.startAnimation(animation3);
                     value1=0;
                     selectedCardArray.remove("value1");
                     return;
@@ -170,7 +365,7 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
             }
         });
 
-        card3.setOnClickListener(new View.OnClickListener() {
+        my_card3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -178,17 +373,17 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
                     Animation animation4 = new TranslateAnimation(0, 0, 0, -20);
                     animation4.setDuration(100);
                     animation4.setFillAfter(true);
-                    card3.startAnimation(animation4);
+                    my_card3.startAnimation(animation4);
                     value2= 1;
                     selectedCardArray.add("value2");
                     return;
                 }
                 if (value2==1)
-                {card3.clearAnimation();
+                {my_card3.clearAnimation();
                     Animation animation5 = new TranslateAnimation(0, 0,0, 0);
                     animation5.setDuration(100);
                     animation5.setFillAfter(true);
-                    card3.startAnimation(animation5);
+                    my_card3.startAnimation(animation5);
                     value2=0;
                     selectedCardArray.remove("value2");
                     return;
@@ -196,7 +391,7 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
             }
         });
 
-        card4.setOnClickListener(new View.OnClickListener() {
+        my_card4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -204,17 +399,17 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
                     Animation animation6 = new TranslateAnimation(0, 0, 0, -20);
                     animation6.setDuration(100);
                     animation6.setFillAfter(true);
-                    card4.startAnimation(animation6);
+                    my_card4.startAnimation(animation6);
                     value3= 1;
                     selectedCardArray.add("value3");
                     return;
                 }
                 if (value3==1)
-                {card4.clearAnimation();
+                {my_card4.clearAnimation();
                     Animation animation7 = new TranslateAnimation(0, 0,0, 0);
                     animation7.setDuration(100);
                     animation7.setFillAfter(true);
-                    card4.startAnimation(animation7);
+                    my_card4.startAnimation(animation7);
                     value3=0;
                     selectedCardArray.remove("value3");
                     return;
@@ -222,7 +417,7 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
             }
         });
 
-        card5.setOnClickListener(new View.OnClickListener() {
+        my_card5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -230,17 +425,17 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
                     Animation animation8 = new TranslateAnimation(0, 0, 0, -20);
                     animation8.setDuration(100);
                     animation8.setFillAfter(true);
-                    card5.startAnimation(animation8);
+                    my_card5.startAnimation(animation8);
                     value4= 1;
                     selectedCardArray.add("value4");
                     return;
                 }
                 if (value4==1)
-                {card5.clearAnimation();
+                {my_card5.clearAnimation();
                     Animation animation9 = new TranslateAnimation(0, 0,0, 0);
                     animation9.setDuration(100);
                     animation9.setFillAfter(true);
-                    card5.startAnimation(animation9);
+                    my_card5.startAnimation(animation9);
                     value4=0;
                     selectedCardArray.remove("value4");
                     return;
@@ -248,7 +443,7 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
             }
         });
 
-        card6.setOnClickListener(new View.OnClickListener() {
+        my_card6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -256,17 +451,17 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
                     Animation animation10 = new TranslateAnimation(0, 0, 0, -20);
                     animation10.setDuration(100);
                     animation10.setFillAfter(true);
-                    card6.startAnimation(animation10);
+                    my_card6.startAnimation(animation10);
                     value5= 1;
                     selectedCardArray.add("value5");
                     return;
                 }
                 if (value5==1)
-                {card6.clearAnimation();
+                {my_card6.clearAnimation();
                     Animation animation11 = new TranslateAnimation(0, 0,0, 0);
                     animation11.setDuration(100);
                     animation11.setFillAfter(true);
-                    card6.startAnimation(animation11);
+                    my_card6.startAnimation(animation11);
                     value5=0;
                     selectedCardArray.remove("value5");
                     return;
@@ -287,12 +482,12 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
 
                 // deal the firts 6 cards
 
-                assignImages(cards.get(0),card1);
-                assignImages(cards.get(1),card2);
-                assignImages(cards.get(2),card3);
-                assignImages(cards.get(3),card4);
-                assignImages(cards.get(4),card5);
-                assignImages(cards.get(5),card6);
+                assignImages(cards.get(0),my_card1);
+                assignImages(cards.get(1),my_card2);
+                assignImages(cards.get(2),my_card3);
+                assignImages(cards.get(3),my_card4);
+                assignImages(cards.get(4),my_card5);
+                assignImages(cards.get(5),my_card6);
 
             }
         });
@@ -307,167 +502,167 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
                 //animation.setFillAfter(true);
                if(selectedCardArray.size()==3){
                     if(selectedCardArray.get(0).equalsIgnoreCase("value")){
-                        card1.startAnimation(animations);
-                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card1.getLayoutParams();
+                        my_card1.startAnimation(animations);
+                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card1.getLayoutParams();
                         params.setMargins(-100, 0, 0, 50);
                         params.addRule(RelativeLayout.CENTER_IN_PARENT);
                         params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                        card1.setLayoutParams(params);
-                        card1.setRotation(-30.0f);
+                        my_card1.setLayoutParams(params);
+                        my_card1.setRotation(-30.0f);
                     }
                     if(selectedCardArray.get(0).equalsIgnoreCase("value1")){
-                        card2.startAnimation(animations);
-                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card2.getLayoutParams();
+                        my_card2.startAnimation(animations);
+                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card2.getLayoutParams();
                         params.setMargins(-100, 0, 0, 50);
                         params.addRule(RelativeLayout.CENTER_IN_PARENT);
                         params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                        card2.setLayoutParams(params);
-                        card2.setRotation(-30.0f);
+                        my_card2.setLayoutParams(params);
+                        my_card2.setRotation(-30.0f);
                     }
                     if(selectedCardArray.get(0).equalsIgnoreCase("value2")){
-                        card3.startAnimation(animations);
-                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card3.getLayoutParams();
+                        my_card3.startAnimation(animations);
+                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card3.getLayoutParams();
                         params.setMargins(-100, 0, 0, 50);
                         params.addRule(RelativeLayout.CENTER_IN_PARENT);
                         params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                        card3.setLayoutParams(params);
-                        card3.setRotation(-30.0f);
+                        my_card3.setLayoutParams(params);
+                        my_card3.setRotation(-30.0f);
                     }
                     if(selectedCardArray.get(0).equalsIgnoreCase("value3")){
-                        card4.startAnimation(animations);
-                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card4.getLayoutParams();
+                        my_card4.startAnimation(animations);
+                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card4.getLayoutParams();
                         params.setMargins(-100, 0, 0, 50);
                         params.addRule(RelativeLayout.CENTER_IN_PARENT);
                         params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                        card4.setLayoutParams(params);
-                        card4.setRotation(-30.0f);
+                        my_card4.setLayoutParams(params);
+                        my_card4.setRotation(-30.0f);
                     }
                     if(selectedCardArray.get(0).equalsIgnoreCase("value4")){
-                        card5.startAnimation(animations);
-                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card5.getLayoutParams();
+                        my_card5.startAnimation(animations);
+                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card5.getLayoutParams();
                         params.setMargins(-100, 0, 0, 50);
                         params.addRule(RelativeLayout.CENTER_IN_PARENT);
                         params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                        card5.setLayoutParams(params);
-                        card5.setRotation(-30.0f);
+                        my_card5.setLayoutParams(params);
+                        my_card5.setRotation(-30.0f);
                     }
                     if(selectedCardArray.get(0).equalsIgnoreCase("value5")){
-                        card6.startAnimation(animations);
-                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card6.getLayoutParams();
+                        my_card6.startAnimation(animations);
+                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card6.getLayoutParams();
                         params.setMargins(-100, 0, 0, 50);
                         params.addRule(RelativeLayout.CENTER_IN_PARENT);
                         params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                        card6.setLayoutParams(params);
-                        card6.setRotation(-30.0f);
+                        my_card6.setLayoutParams(params);
+                        my_card6.setRotation(-30.0f);
                     }
                 if(selectedCardArray.get(1).equalsIgnoreCase("value")){
-                    card1.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card1.getLayoutParams();
+                    my_card1.startAnimation(animations);
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card1.getLayoutParams();
                     params.setMargins(-80, 0, 0, 50);
                     params.addRule(RelativeLayout.CENTER_IN_PARENT);
                     params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    card1.setLayoutParams(params);
-                    card1.setRotation(-10.0f);
+                    my_card1.setLayoutParams(params);
+                    my_card1.setRotation(-10.0f);
                 }
                 if(selectedCardArray.get(1).equalsIgnoreCase("value1")){
-                    card2.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card2.getLayoutParams();
+                    my_card2.startAnimation(animations);
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card2.getLayoutParams();
                     params.setMargins(-80, 0, 0, 50);
                     params.addRule(RelativeLayout.CENTER_IN_PARENT);
                     params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    card2.setLayoutParams(params);
-                    card2.setRotation(-10.0f);
+                    my_card2.setLayoutParams(params);
+                    my_card2.setRotation(-10.0f);
                 }
                 if(selectedCardArray.get(1).equalsIgnoreCase("value2")){
-                    card3.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card3.getLayoutParams();
+                    my_card3.startAnimation(animations);
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card3.getLayoutParams();
                     params.setMargins(-80, 0, 0, 50);
                     params.addRule(RelativeLayout.CENTER_IN_PARENT);
                     params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    card3.setLayoutParams(params);
-                    card3.setRotation(-10.0f);
+                    my_card3.setLayoutParams(params);
+                    my_card3.setRotation(-10.0f);
                 }
                 if(selectedCardArray.get(1).equalsIgnoreCase("value3")){
-                    card4.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card4.getLayoutParams();
+                    my_card4.startAnimation(animations);
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card4.getLayoutParams();
                     params.setMargins(-80, 0, 0, 50);
                     params.addRule(RelativeLayout.CENTER_IN_PARENT);
                     params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    card4.setLayoutParams(params);
-                    card4.setRotation(-10.0f);
+                    my_card4.setLayoutParams(params);
+                    my_card4.setRotation(-10.0f);
                 }
                 if(selectedCardArray.get(1).equalsIgnoreCase("value4")){
-                    card5.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card5.getLayoutParams();
+                    my_card5.startAnimation(animations);
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card5.getLayoutParams();
                     params.setMargins(-80, 0, 0, 50);
                     params.addRule(RelativeLayout.CENTER_IN_PARENT);
                     params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    card5.setLayoutParams(params);
-                    card5.setRotation(-10.0f);
+                    my_card5.setLayoutParams(params);
+                    my_card5.setRotation(-10.0f);
                 }
                 if(selectedCardArray.get(1).equalsIgnoreCase("value5")){
-                    card6.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card6.getLayoutParams();
+                    my_card6.startAnimation(animations);
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card6.getLayoutParams();
                     params.setMargins(-80, 0, 0, 50);
                     params.addRule(RelativeLayout.CENTER_IN_PARENT);
                     params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    card6.setLayoutParams(params);
-                    card6.setRotation(-10.0f);
+                    my_card6.setLayoutParams(params);
+                    my_card6.setRotation(-10.0f);
                 }
 
                 if(selectedCardArray.get(2).equalsIgnoreCase("value")){
-                    card1.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card1.getLayoutParams();
+                    my_card1.startAnimation(animations);
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card1.getLayoutParams();
                     params.setMargins(-60, 0, 0, 50);
                     params.addRule(RelativeLayout.CENTER_IN_PARENT);
                     params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    card1.setLayoutParams(params);
-                    card1.setRotation(10.0f);
+                    my_card1.setLayoutParams(params);
+                    my_card1.setRotation(10.0f);
                 }
                 if(selectedCardArray.get(2).equalsIgnoreCase("value1")){
-                    card2.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card2.getLayoutParams();
+                    my_card2.startAnimation(animations);
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card2.getLayoutParams();
                     params.setMargins(-60, 0, 0, 50);
                     params.addRule(RelativeLayout.CENTER_IN_PARENT);
                     params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    card2.setLayoutParams(params);
-                    card2.setRotation(10.0f);
+                    my_card2.setLayoutParams(params);
+                    my_card2.setRotation(10.0f);
                 }
                 if(selectedCardArray.get(2).equalsIgnoreCase("value2")){
-                    card3.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card3.getLayoutParams();
+                    my_card3.startAnimation(animations);
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card3.getLayoutParams();
                     params.setMargins(-60, 0, 0, 50);
                     params.addRule(RelativeLayout.CENTER_IN_PARENT);
                     params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    card3.setLayoutParams(params);
-                    card3.setRotation(10.0f);
+                    my_card3.setLayoutParams(params);
+                    my_card3.setRotation(10.0f);
                 }
                 if(selectedCardArray.get(2).equalsIgnoreCase("value3")){
-                    card4.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card4.getLayoutParams();
+                    my_card4.startAnimation(animations);
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card4.getLayoutParams();
                     params.setMargins(-60, 0, 0, 50);
                     params.addRule(RelativeLayout.CENTER_IN_PARENT);
                     params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    card4.setLayoutParams(params);
-                    card4.setRotation(10.0f);
+                    my_card4.setLayoutParams(params);
+                    my_card4.setRotation(10.0f);
                 }
                 if(selectedCardArray.get(2).equalsIgnoreCase("value4")){
-                    card5.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card5.getLayoutParams();
+                    my_card5.startAnimation(animations);
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card5.getLayoutParams();
                     params.setMargins(-60, 0, 0, 50);
                     params.addRule(RelativeLayout.CENTER_IN_PARENT);
                     params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    card5.setLayoutParams(params);
-                    card5.setRotation(10.0f);
+                    my_card5.setLayoutParams(params);
+                    my_card5.setRotation(10.0f);
                 }
                 if(selectedCardArray.get(2).equalsIgnoreCase("value5")){
-                    card6.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) card6.getLayoutParams();
+                    my_card6.startAnimation(animations);
+                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card6.getLayoutParams();
                     params.setMargins(-60, 0, 0, 50);
                     params.addRule(RelativeLayout.CENTER_IN_PARENT);
                     params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    card6.setLayoutParams(params);
-                    card6.setRotation(10.0f);
+                    my_card6.setLayoutParams(params);
+                    my_card6.setRotation(10.0f);
                 }
                             gobtn.setVisibility(View.GONE);
                     }

@@ -61,6 +61,19 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
     LinearLayout linearcardholder321;
     int minteger = 0;
     Session session;
+
+    ImageView card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17,
+            card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30;
+
+    Animation animatecard1, animatecard2, animatecard3, animatecard4, animatecard5, animatecard6, animatecard7, animatecard8,
+            animatecard9, animatecard10, animatecard11, animatecard12, animatecard13, animatecard14, animatecard15, animatecard16,
+            animatecard17, animatecard18, animatecard19,animatecard20, animatecard21, animatecard22, animatecard23, animatecard24,
+            animatecard25, animatecard26,animatecard27, animatecard28, animatecard29, animatecard30;
+
+    ViewGroup owner;
+    View v;
+    LinearLayout default321layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -98,6 +111,8 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
         profile=findViewById(R.id.inner_player_img);
         nametext=findViewById(R.id.nametext);
 
+        default321layout=findViewById(R.id.default321layout);
+
         code=findViewById(R.id.code);
         session=new Session(this);
         String encodedimage=session.getImage();
@@ -110,8 +125,178 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
         String name=session.getName();
         nametext.setText(name);
 
+        //shuffling card animation
+        animatecard1 = AnimationUtils.loadAnimation(this, R.anim.translate_top_left);
+        animatecard2 = AnimationUtils.loadAnimation(this, R.anim.translate_top_right);
+        animatecard3 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom_left);
+        animatecard4= AnimationUtils.loadAnimation(this, R.anim.translate_bottom_right);
+        animatecard5 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom);
 
 
+        animatecard6 = AnimationUtils.loadAnimation(this, R.anim.translate_top_left);
+        animatecard7 = AnimationUtils.loadAnimation(this, R.anim.translate_top_right);
+        animatecard8 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom_left);
+        animatecard9= AnimationUtils.loadAnimation(this, R.anim.translate_bottom_right);
+        animatecard10 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom);
+
+        animatecard11 = AnimationUtils.loadAnimation(this, R.anim.translate_top_left);
+        animatecard12 = AnimationUtils.loadAnimation(this, R.anim.translate_top_right);
+        animatecard13 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom_left);
+        animatecard14= AnimationUtils.loadAnimation(this, R.anim.translate_bottom_right);
+        animatecard15 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom);
+
+        animatecard16 = AnimationUtils.loadAnimation(this, R.anim.translate_top_left);
+        animatecard17 = AnimationUtils.loadAnimation(this, R.anim.translate_top_right);
+        animatecard18 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom_left);
+        animatecard19= AnimationUtils.loadAnimation(this, R.anim.translate_bottom_right);
+        animatecard20 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom);
+
+        animatecard21 = AnimationUtils.loadAnimation(this, R.anim.translate_top_left);
+        animatecard22 = AnimationUtils.loadAnimation(this, R.anim.translate_top_right);
+        animatecard23 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom_left);
+        animatecard24= AnimationUtils.loadAnimation(this, R.anim.translate_bottom_right);
+        animatecard25 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom);
+
+        animatecard26 = AnimationUtils.loadAnimation(this, R.anim.translate_top_left);
+        animatecard27 = AnimationUtils.loadAnimation(this, R.anim.translate_top_right);
+        animatecard28 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom_left);
+        animatecard29= AnimationUtils.loadAnimation(this, R.anim.translate_bottom_right);
+        animatecard30 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom);
+
+
+        //card image
+        card1=findViewById(R.id.card1);
+        card2=findViewById(R.id.card2);
+        card3=findViewById(R.id.card3);
+        card4=findViewById(R.id.card4);
+        card5=findViewById(R.id.card5);
+        card6=findViewById(R.id.card6);
+        card7=findViewById(R.id.card7);
+        card8=findViewById(R.id.card8);
+        card9=findViewById(R.id.card9);
+        card10=findViewById(R.id.card10);
+        card11=findViewById(R.id.card11);
+        card12=findViewById(R.id.card12);
+        card13=findViewById(R.id.card13);
+        card14=findViewById(R.id.card14);
+        card15=findViewById(R.id.card15);
+        card16=findViewById(R.id.card16);
+        card17=findViewById(R.id.card17);
+        card18=findViewById(R.id.card18);
+        card19=findViewById(R.id.card19);
+        card20=findViewById(R.id.card20);
+        card21=findViewById(R.id.card21);
+        card22=findViewById(R.id.card22);
+        card23=findViewById(R.id.card23);
+        card24=findViewById(R.id.card24);
+        card25=findViewById(R.id.card25);
+        card26=findViewById(R.id.card26);
+        card27=findViewById(R.id.card27);
+        card28=findViewById(R.id.card28);
+        card29=findViewById(R.id.card29);
+        card30=findViewById(R.id.card30);
+
+        card3.bringToFront();
+        card8.bringToFront();
+        card13.bringToFront();
+        card18.bringToFront();
+        card23.bringToFront();
+        card28.bringToFront();
+
+        //animate shuffle cards
+        card1.startAnimation(animatecard1);
+        animatecard2.setStartOffset(200);
+        card2.startAnimation(animatecard2);
+        animatecard3.setStartOffset(400);
+        card3.startAnimation(animatecard3);
+        animatecard4.setStartOffset(600);
+        card4.startAnimation(animatecard4);
+        animatecard5.setStartOffset(800);
+        card5.startAnimation(animatecard5);
+
+        animatecard6.setStartOffset(1000);
+        card6.startAnimation(animatecard6);
+        animatecard7.setStartOffset(1200);
+        card7.startAnimation(animatecard7);
+        animatecard8.setStartOffset(1400);
+        card8.startAnimation(animatecard8);
+        animatecard9.setStartOffset(1600);
+        card9.startAnimation(animatecard9);
+        animatecard10.setStartOffset(1800);
+        card10.startAnimation(animatecard10);
+
+
+        animatecard11.setStartOffset(2000);
+        card11.startAnimation(animatecard11);
+        animatecard12.setStartOffset(2200);
+        card12.startAnimation(animatecard12);
+        animatecard13.setStartOffset(2400);
+        card13.startAnimation(animatecard13);
+        animatecard14.setStartOffset(2600);
+        card14.startAnimation(animatecard14);
+        animatecard15.setStartOffset(2800);
+        card15.startAnimation(animatecard15);
+
+
+        animatecard16.setStartOffset(3000);
+        card16.startAnimation(animatecard16);
+        animatecard17.setStartOffset(3200);
+        card17.startAnimation(animatecard17);
+        animatecard18.setStartOffset(3400);
+        card18.startAnimation(animatecard18);
+        animatecard19.setStartOffset(3600);
+        card19.startAnimation(animatecard19);
+        animatecard20.setStartOffset(3800);
+        card20.startAnimation(animatecard20);
+
+
+        animatecard21.setStartOffset(4000);
+        card21.startAnimation(animatecard21);
+        animatecard22.setStartOffset(4200);
+        card22.startAnimation(animatecard22);
+        animatecard23.setStartOffset(4400);
+        card23.startAnimation(animatecard23);
+        animatecard24.setStartOffset(4600);
+        card24.startAnimation(animatecard24);
+        animatecard25.setStartOffset(4800);
+        card25.startAnimation(animatecard25);
+
+
+        animatecard26.setStartOffset(5000);
+        card26.startAnimation(animatecard26);
+        animatecard27.setStartOffset(5200);
+        card27.startAnimation(animatecard27);
+        animatecard28.setStartOffset(5400);
+        card28.startAnimation(animatecard28);
+        animatecard29.setStartOffset(5600);
+        card29.startAnimation(animatecard29);
+        animatecard30.setStartOffset(5800);
+        card30.startAnimation(animatecard30);
+
+
+        //display cards in position after animation overs
+        animatecard30.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Pass the Intent to switch to other Activity
+                card321_1.setVisibility(View.VISIBLE);
+                card321_2.setVisibility(View.VISIBLE);
+                card321_3.setVisibility(View.VISIBLE);
+                card321_4.setVisibility(View.VISIBLE);
+                card321_5.setVisibility(View.VISIBLE);
+                card321_6.setVisibility(View.VISIBLE);
+            }
+        });
         //////////////// Popup for Backbutton ///////////////////
 
 
@@ -422,10 +607,18 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
         cards321shifterbtn = findViewById(R.id.cards321shifterbtn);
         cards321shifterbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                cards321shifterbtn.setVisibility(View.GONE);
                 linearcardholder321 = findViewById(R.id.linearcardholder321);
                 linearcardholder321.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
                 linearcardholder321.setGravity(Gravity.CENTER);
+                card321_1.setEnabled(false);
+                card321_2.setEnabled(false);
+                card321_3.setEnabled(false);
+                card321_4.setEnabled(false);
+                card321_5.setEnabled(false);
+                card321_6.setEnabled(false);
+
+                cards321shifterbtn.setVisibility(View.GONE);
+
             }
         });
 
@@ -495,6 +688,7 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
         findViewById(R.id.bluecardholder).setOnDragListener(this);
         findViewById(R.id.cyancardholder).setOnDragListener(this);
         findViewById(R.id.default321layout).setOnDragListener(this);
+
     }
 
     /////////// Slider /////////////
@@ -640,8 +834,8 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
                 // Invalidates the view to force a redraw
                 view.invalidate();
 
-                View v = (View) event.getLocalState();
-                ViewGroup owner = (ViewGroup) v.getParent();
+                v = (View) event.getLocalState();
+                owner = (ViewGroup) v.getParent();
                 owner.removeView(v);//remove the dragged view
                 LinearLayout container = (LinearLayout) view;//caste the view into LinearLayout as our drag acceptable three_two_one_leaderboard is LinearLayout
                 container.addView(v);//Add the dragged view
@@ -656,13 +850,21 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
                 // Invalidates the view to force a redraw
                 view.invalidate();
 
-                // Does a getResult(), and displays what happened.
-//                if (event.getResult())
-//                    Toast.makeText(this, "The drop was handled.", Toast.LENGTH_SHORT).show();
-//
-//                else
-//                    Toast.makeText(this, "The drop didn't work.", Toast.LENGTH_SHORT).show();
+                if(owner!=null) {
+                    if (owner.getChildCount() == 0) {
+                        cards321shifterbtn.setVisibility(View.VISIBLE);
+                    }
+                }
 
+                // Does a getResult(), and displays what happened.
+                if (!event.getResult()) {
+                    v = (View) event.getLocalState();
+                    if(v.getParent()!=null) {
+                        ((ViewGroup) v.getParent()).removeView(v);
+                        v.setVisibility(View.VISIBLE);
+                        default321layout.addView(v);
+                    }
+                }
 
                 // returns true; the value is ignored.
                 return true;

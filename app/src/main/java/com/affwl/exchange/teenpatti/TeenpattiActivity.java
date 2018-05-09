@@ -128,6 +128,7 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
             }
         });
 
+        //shuffling card animation
         animatecard1 = AnimationUtils.loadAnimation(this, R.anim.translate_top_left);
         animatecard2 = AnimationUtils.loadAnimation(this, R.anim.translate_top_right);
         animatecard3 = AnimationUtils.loadAnimation(this, R.anim.translate_bottom_left);
@@ -152,6 +153,7 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
 
         backbtn=(ImageView) findViewById(R.id.back);
 
+        //card image
         card1=findViewById(R.id.card1);
         card2=findViewById(R.id.card2);
         card3=findViewById(R.id.card3);
@@ -168,13 +170,24 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
         card14=findViewById(R.id.card14);
         card15=findViewById(R.id.card15);
 
+        //see myplayer card
         btn_see_cards=findViewById(R.id.btn_see_cards);
 
+        btn_see_cards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                card3.setImageResource(R.drawable.club_ace);
+                card8.setImageResource(R.drawable.club_6);
+                card13.setImageResource(R.drawable.club_ace);
+                btn_see_cards.setVisibility(View.GONE);
+            }
+        });
 
         card3.bringToFront();
         card8.bringToFront();
         card13.bringToFront();
 
+        //animate shuffle cards
         card1.startAnimation(animatecard1);
         animatecard2.setStartOffset(200);
         card2.startAnimation(animatecard2);
@@ -211,6 +224,7 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
         animatecard15.setStartOffset(2800);
         card15.startAnimation(animatecard15);
 
+        //display cards in position after animation overs
         animatecard15.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -456,16 +470,7 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
             }
         });
 
-        btn_see_cards.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(TeenpattiActivity.this, "Clicked", Toast.LENGTH_SHORT).show();
-                card3.setImageResource(R.drawable.club_ace);
-                card8.setImageResource(R.drawable.club_6);
-                card13.setImageResource(R.drawable.club_ace);
-                btn_see_cards.setVisibility(View.GONE);
-            }
-        });
+
 
         teenpattitble = (DrawerLayout) findViewById(R.id.teenpattitble);
 
