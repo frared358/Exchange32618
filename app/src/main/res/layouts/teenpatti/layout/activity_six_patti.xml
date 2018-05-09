@@ -562,7 +562,7 @@
             </android.support.percent.PercentRelativeLayout>
 
 
-        </android.support.percent.PercentRelativeLayout>
+
 
         <!--Bottom ithree_two_one_leaderboardyout-->
         <!--      <android.support.percent.PercentRelativeLayout
@@ -673,6 +673,7 @@
             android:layout_alignParentRight="true" />
         <!--   </android.support.percent.PercentRelativeLayout>-->
 
+        </android.support.percent.PercentRelativeLayout>
     </android.support.percent.PercentRelativeLayout>
 
     <android.support.design.widget.NavigationView

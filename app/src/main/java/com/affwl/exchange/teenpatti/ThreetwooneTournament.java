@@ -38,7 +38,7 @@ import android.widget.Toast;
 
 import com.affwl.exchange.R;
 
-
+@SuppressWarnings( "deprecation" )
 public class ThreetwooneTournament extends AppCompatActivity implements View.OnDragListener, View.OnLongClickListener{
 
     private static final String TAG = ThreetwooneTournament.class.getSimpleName();

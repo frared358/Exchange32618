@@ -34,6 +34,8 @@ import com.affwl.exchange.R;
 
 import org.w3c.dom.DOMImplementation;
 
+@SuppressWarnings( "deprecation" )
+@SuppressLint("WrongViewCast")
 
 public class PrivateActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
     ImageView handle_right, backbtn,infobtn,infoclosebtn,profile,plus_btn,minus_btn,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn;;
@@ -56,7 +58,6 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
     TextView btn_see_cards;
 
     int minteger = 0;
-    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

@@ -35,7 +35,7 @@ import com.affwl.exchange.R;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
+@SuppressWarnings( "deprecation" )
 public class TourneyActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
     ImageView handle_right, backbtn,infobtn,infoclosebtn,profile,chatclosebtn,chatclosebtn2,closebtn_tourney_leadboard,leaderboard_tourneybtn,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn;
     TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,backtolobby,nametext,code;
