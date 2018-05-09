@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <android.support.percent.PercentRelativeLayout
         android:id="@+id/privaterecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,8 +15,8 @@
 
         <ImageView
             android:id="@+id/handle_right"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            app:layout_widthPercent="5%"
+            app:layout_heightPercent="10%"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
@@ -24,73 +24,64 @@
             android:src="@drawable/btn_handle_right" />
 
 
-        <RelativeLayout
+        <android.support.percent.PercentRelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
 
-            <!--Left side icon layout-->
-            <RelativeLayout
+            <!--Left side ithree_two_one_leaderboardyout-->
+            <android.support.percent.PercentRelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/back"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
+                    app:layout_widthPercent="25%"
+                    app:layout_heightPercent="10%"
+                    app:layout_marginLeftPercent="1%"
+                    app:layout_marginTopPercent="1%"
                     android:src="@drawable/back" />
 
-
                 <!--<ImageView-->
-                    <!--android:id="@+id/info"-->
-                    <!--android:layout_width="40dp"-->
-                    <!--android:layout_height="40dp"-->
-                    <!--android:layout_marginLeft="70dp"-->
-                    <!--android:layout_marginTop="10dp"-->
-                    <!--android:src="@drawable/infogame" />-->
+                <!--android:id="@+id/info"-->
+                <!--android:layout_width="40dp"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:layout_marginLeft="50dp"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:src="@drawable/infogame" />-->
 
-            </RelativeLayout>
+            </android.support.percent.PercentRelativeLayout>
 
-            <!--Right side icon layout-->
-            <RelativeLayout
+            <!--Right side ithree_two_one_leaderboardyout-->
+            <android.support.percent.PercentRelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true">
 
                 <!--<ImageView-->
-                    <!--android:id="@+id/chat"-->
-                    <!--android:layout_width="40dp"-->
-                    <!--android:layout_height="40dp"-->
-                    <!--android:layout_marginLeft="0dp"-->
-                    <!--android:layout_marginTop="10dp"-->
-                    <!--android:clickable="true"-->
-                    <!--android:src="@drawable/chatgame" />-->
-
-                <!--<ImageView-->
-                    <!--android:id="@+id/getchips"-->
-                    <!--android:layout_width="40dp"-->
-                    <!--android:layout_height="40dp"-->
-                    <!--android:layout_marginLeft="60dp"-->
-                    <!--android:layout_marginTop="10dp"-->
-                    <!--android:src="@drawable/getchips" />-->
-                <!---->
+                <!--android:id="@+id/chat"-->
+                <!--android:layout_width="40dp"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:clickable="true"-->
+                <!--android:src="@drawable/chatgame"-->
+                <!--android:focusable="true" />-->
 
                 <ImageView
                     android:id="@+id/info"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="60dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/infogame" />
+                    app:layout_widthPercent="8%"
+                    app:layout_heightPercent="10%"
+                    app:layout_marginLeftPercent="1%"
+                    app:layout_marginTopPercent="1%"
+                    android:src="@drawable/infogame"
+                    android:layout_alignParentRight="true"/>
 
-            </RelativeLayout>
-        </RelativeLayout>
+            </android.support.percent.PercentRelativeLayout>
+        </android.support.percent.PercentRelativeLayout>
 
 
-        <!--Table layout-->
-        <RelativeLayout
+        <!--Tathree_two_one_leaderboardyout-->
+        <android.support.percent.PercentRelativeLayout
             android:id="@+id/relativeLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -99,303 +90,480 @@
 
             <ImageView
                 android:id="@+id/table"
-                android:layout_width="400dp"
-                android:layout_height="wrap_content"
+                android:layout_width="410dp"
+                android:layout_height="match_parent"
                 android:layout_centerInParent="true"
                 android:gravity="center"
-                android:src="@drawable/teenpattitableimage" />
+                android:src="@drawable/teenpattitableimage"
+                app:layout_widthPercent="70%" />
 
 
-            <RelativeLayout
-                android:id="@+id/playerbg1relativeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <!--<RelativeLayout-->
+            <!--android:id="@+id/playerbg1relativeLayout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <android.support.percent.PercentRelativeLayout
+                app:layout_widthPercent="20%"
+                app:layout_heightPercent="30%"
+                android:layout_alignTop="@+id/table"
+                app:layout_marginTopPercent="12%"
+                android:id="@+id/rl_playerbg1">
 
                 <ImageView
                     android:id="@+id/playerbg1"
-                    android:layout_width="110dp"
-                    android:layout_height="100dp"
-                    android:layout_alignTop="@+id/table"
-                    android:layout_marginTop="70dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
+                    app:layout_widthPercent="100%"
+                    app:layout_heightPercent="100%"
                     android:src="@drawable/myplayerbackground1"
                     tools:ignore="NotSibling" />
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    app:layout_widthPercent="35%"
+                    app:layout_heightPercent="35%"
                     android:layout_alignTop="@+id/playerbg1"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginTop="30dp"
+                    app:layout_marginTopPercent="20%"
+                    android:layout_centerHorizontal="true"
                     android:src="@drawable/playerinviteavatar" />
+            </android.support.percent.PercentRelativeLayout>
 
+            <android.support.percent.PercentRelativeLayout
+                app:layout_widthPercent="20%"
+                app:layout_heightPercent="30%"
+                app:layout_marginTopPercent="12%"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/table"
+                android:id="@+id/rl_playerbg3">
 
                 <ImageView
                     android:id="@+id/playerbg3"
-                    android:layout_width="110dp"
-                    android:layout_height="100dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignTop="@+id/table"
-                    android:layout_marginTop="70dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
+                    app:layout_widthPercent="100%"
+                    app:layout_heightPercent="100%"
                     android:src="@drawable/myplayerbackground1"
                     tools:ignore="NotSibling" />
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
+                    app:layout_widthPercent="35%"
+                    app:layout_heightPercent="35%"
+                    android:layout_centerHorizontal="true"
                     android:layout_alignTop="@+id/playerbg3"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginTop="30dp"
+                    app:layout_marginTopPercent="20%"
                     android:src="@drawable/playerinviteavatar" />
-            </RelativeLayout>
+            </android.support.percent.PercentRelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/playerbg2relativeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/playerbg1relativeLayout">
+            <android.support.percent.PercentRelativeLayout
+                app:layout_widthPercent="20%"
+                app:layout_heightPercent="30%"
+                android:layout_below="@+id/rl_playerbg1"
+                android:id="@+id/rl_playerbg2"
+                app:layout_marginTopPercent="18%"
+                android:layout_alignParentLeft="true"
+                tools:ignore="NotSibling">
 
                 <ImageView
                     android:id="@+id/playerbg2"
-                    android:layout_width="110dp"
-                    android:layout_height="100dp"
-                    android:layout_below="@+id/relativeLayout2"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
+                    app:layout_widthPercent="100%"
+                    app:layout_heightPercent="100%"
                     android:src="@drawable/myplayerbackground1"
                     tools:ignore="NotSibling,UnknownId" />
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    app:layout_widthPercent="35%"
+                    app:layout_heightPercent="35%"
                     android:layout_alignTop="@+id/playerbg2"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_centerHorizontal="true"
+                    app:layout_marginTopPercent="20%"
                     android:src="@drawable/playerinviteavatar" />
+            </android.support.percent.PercentRelativeLayout>
 
+            <android.support.percent.PercentRelativeLayout
+                app:layout_widthPercent="20%"
+                app:layout_heightPercent="30%"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/rl_playerbg4"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/rl_playerbg3"
+                app:layout_marginTopPercent="18%"
+                tools:ignore="NotSibling">
 
                 <ImageView
                     android:id="@+id/playerbg4"
-                    android:layout_width="110dp"
-                    android:layout_height="100dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignTop="@+id/table"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="5dp"
+                    app:layout_widthPercent="100%"
+                    app:layout_heightPercent="100%"
+                    android:layout_centerInParent="true"
                     android:src="@drawable/myplayerbackground1"
                     tools:ignore="NotSibling" />
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
+                    app:layout_widthPercent="35%"
+                    app:layout_heightPercent="35%"
+                    app:layout_marginTopPercent="20%"
                     android:layout_alignTop="@+id/playerbg4"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_centerHorizontal="true"
                     android:src="@drawable/playerinviteavatar" />
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerInParent="true">
-                    <ImageView
-                        android:id="@+id/myplayer"
-                        android:layout_width="110dp"
-                        android:layout_height="110dp"
-                        android:layout_marginTop="20dp"
-                        android:src="@drawable/yellow_circle" />
+            </android.support.percent.PercentRelativeLayout>
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/inner_player_img"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/myplayer"
-                        android:src="@drawable/inner_img_profile"
-                        android:layout_margin="5dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerInParent="true"
-                        />
-                    <TextView
-                        android:id="@+id/nametext"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="center"
-                        android:layout_alignTop="@id/inner_player_img"
-                        android:textColor="@color/Black"
-                        android:background="@color/colorYellowGolden"
-                        />
-                </RelativeLayout>
+            <ImageView
+                android:id="@+id/card1"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
 
-            </RelativeLayout>
+            <ImageView
+                android:id="@+id/card2"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
 
+            <ImageView
+                android:id="@+id/card3"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
 
-            <RelativeLayout
+            <ImageView
+                android:id="@+id/card4"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card5"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card6"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card7"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card8"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card9"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card10"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card11"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card12"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card13"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card14"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card15"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="SEE"
+                android:textSize="20sp"
+                android:visibility="gone"
+                android:padding="5dp"
+                android:textColor="@color/white"
+                android:id="@+id/btn_see_cards"
+                android:layout_toRightOf="@+id/rl_myplayer"
+                android:layout_alignTop="@+id/rl_myplayer"
+                app:layout_marginTopPercent="10%"
+                android:background="@drawable/see_btn" />
+
+            <TextView
+                android:id="@+id/display_myplayer_bind"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:layout_heightPercent="10%"
+                app:layout_widthPercent="15%"
+                android:text="Now"
+                app:layout_marginTopPercent="70%"
+                app:layout_marginLeftPercent="42%"
+                android:layout_alignParentLeft="true"
+                tools:ignore="NotSibling" />
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/rl_myplayer"
+                android:layout_centerHorizontal="true"
+                app:layout_heightPercent="30%"
+                android:layout_alignTop="@+id/table"
+                app:layout_marginTopPercent="60%"
+                app:layout_widthPercent="20%"
+                tools:ignore="NotSibling">
+
+                <ImageView
+                    android:id="@+id/myplayer"
+                    android:src="@drawable/yellow_circle"
+                    app:layout_heightPercent="100%"
+                    app:layout_widthPercent="100%" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/inner_player_img"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/inner_img_profile"
+                    app:layout_heightPercent="88%"
+                    app:layout_widthPercent="88%" />
+
+                <TextView
+                    android:id="@+id/nametext"
+                    android:layout_alignTop="@id/inner_player_img"
+                    android:background="@color/colorYellowGolden"
+                    android:textAlignment="center"
+                    android:textColor="@color/Black"
+                    app:layout_heightPercent="20%"
+                    app:layout_widthPercent="50%" />
+            </android.support.percent.PercentRelativeLayout>            <!--</RelativeLayout>-->
+
+            <!--      <RelativeLayout
+                      android:id="@+id/playerbg2relativeLayout"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@+id/playerbg1relativeLayout">
+
+
+
+                  </RelativeLayout>
+      -->
+
+            <android.support.percent.PercentRelativeLayout
+                app:layout_widthPercent="25%"
+                app:layout_heightPercent="30%"
                 android:layout_centerHorizontal="true">
 
                 <ImageView
                     android:id="@+id/dealer"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    app:layout_widthPercent="100%"
+                    app:layout_heightPercent="100%"
                     android:layout_alignTop="@+id/table"
-                    android:layout_marginTop="20dp"
+                    app:layout_marginTopPercent="10%"
                     android:src="@drawable/dealer"
                     tools:ignore="NotSibling" />
-            </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/blindshow_layout"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/pack"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/action_btn"
-                    android:padding="5dp"
-                    android:text="PACK"
-                    android:textAlignment="center"
-                    android:textColor="@color/darkbrown"
-                    android:textSize="20sp" />
-
-                <ImageView
-                    android:id="@+id/dec_amount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/minus_btn" />
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:id="@+id/amount_bg"
-                        android:layout_width="175dp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/emptybtn" />
-
-                    <TextView
-                        android:id="@+id/start_amount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/amount_bg"
-                        android:padding="10dp"
-                        android:text="₹2"
-                        android:layout_centerInParent="true"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
-                </RelativeLayout>
+            </android.support.percent.PercentRelativeLayout>
 
 
-                <ImageView
-                    android:id="@+id/inc_amount"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/plus_btn" />
+        </android.support.percent.PercentRelativeLayout>
 
-                <TextView
-                    android:id="@+id/blind"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/action_btn"
-                    android:padding="5dp"
-                    android:text="BLIND"
-                    android:textAlignment="center"
-                    android:textColor="@color/darkbrown"
-                    android:textSize="20sp" />
+        <!--Bottom ithree_two_one_leaderboardyout-->
+        <!--      <android.support.percent.PercentRelativeLayout
+                  app:layout_widthPercent="100%"
+                  app:layout_heightPercent="12%"
+                  android:layout_alignParentBottom="true"
+                  android:background="#250400"
+                  android:gravity="center"
+                  android:id="@+id/rl_bottom_caption"
+                  android:orientation="horizontal">-->
 
-                <TextView
-                    android:id="@+id/show"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/action_btn"
-                    android:padding="5dp"
-                    android:text="SHOW"
-                    android:textAlignment="center"
-                    android:textColor="@color/darkbrown"
-                    android:textSize="20sp" />
-            </LinearLayout>
-        </RelativeLayout>
-
-        <!--Bottom info layout-->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/pack"
+            app:layout_widthPercent="12%"
+            app:layout_heightPercent="12%"
             android:layout_alignParentBottom="true"
-            android:background="#250400"
-            android:orientation="horizontal"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/action_btn"
+            android:text="PACK"
             android:padding="5dp"
-            android:visibility="invisible">
+            app:layout_marginLeftPercent="5%"
+            android:textAlignment="center"
+            android:textColor="@color/darkbrown"
+            android:textSize="20sp" />
 
-            <LinearLayout
+        <ImageView
+            android:id="@+id/dec_amount"
+            app:layout_widthPercent="10%"
+            app:layout_heightPercent="12%"
+            app:layout_marginLeftPercent="1%"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/pack"
+            android:src="@drawable/minus_btn" />
+
+             <ImageView
+                 android:id="@+id/amount_bg"
+                 app:layout_widthPercent="28%"
+                 app:layout_marginLeftPercent="1%"
+                 android:layout_toRightOf="@+id/dec_amount"
+                 app:layout_heightPercent="12%"
+                 android:layout_alignParentBottom="true"
+                 android:src="@drawable/emptybtn" />
+
+        <TextView
+            android:id="@+id/start_amount"
+            app:layout_widthPercent="28%"
+            app:layout_heightPercent="12%"
+            app:layout_marginLeftPercent="1%"
+            android:layout_alignTop="@+id/amount_bg"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/dec_amount"
+            android:padding="10dp"
+            android:text="₹2"
+            android:layout_centerInParent="true"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+
+        <ImageView
+            android:id="@+id/inc_amount"
+            app:layout_widthPercent="10%"
+            app:layout_heightPercent="12%"
+            android:layout_alignParentBottom="true"
+            app:layout_marginLeftPercent="1%"
+            android:layout_toRightOf="@+id/start_amount"
+            android:src="@drawable/plus_btn" />
+
+        <TextView
+            android:id="@+id/blind"
+            app:layout_widthPercent="12%"
+            app:layout_heightPercent="12%"
+            app:layout_marginLeftPercent="1%"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/action_btn"
+            android:text="BLIND"
+            android:padding="5dp"
+            android:layout_toRightOf="@+id/inc_amount"
+            android:textAlignment="center"
+            android:textColor="@color/darkbrown"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/show"
+            app:layout_widthPercent="12%"
+            app:layout_heightPercent="12%"
+            app:layout_marginLeftPercent="1%"
+            app:layout_marginRightPercent="5%"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/action_btn"
+            android:text="SHOW"
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:textColor="@color/darkbrown"
+            android:layout_toRightOf="@+id/blind"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/boot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true">
+                android:text="@string/table_boot"
+                android:textColor="@color/colorWhite" />
 
-                <TextView
-                    android:id="@+id/boot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/table_boot"
-                    android:textColor="@color/colorYellowDark" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/pot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/table_pot"
+                android:textColor="@color/colorWhite" />
 
-                <TextView
-                    android:id="@+id/pot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/table_pot"
-                    android:textColor="@color/colorYellowDark" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/max"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/table_max"
+                android:textColor="@color/colorWhite" />
 
-                <TextView
-                    android:id="@+id/max"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/table_max"
-                    android:textColor="@color/colorYellowDark" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <!--   </android.support.percent.PercentRelativeLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </RelativeLayout>
-
-
-    </RelativeLayout>
-
+    </android.support.percent.PercentRelativeLayout>
     <android.support.design.widget.NavigationView
         android:id="@+id/teen_nav_view"
         android:layout_width="match_parent"

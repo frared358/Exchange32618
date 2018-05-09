@@ -20,8 +20,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -41,6 +43,13 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
 
     Session session;
     TextView btn_see_cards;
+
+    ImageView plus_btn, minus_btn;
+    TextView blind_btn;
+
+    TextView display_myplayer_bind;
+
+    Animation animations;
 
     ImageView card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15;
 
@@ -65,6 +74,59 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
 
         navigationView = (NavigationView) findViewById(R.id.teen_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        display_myplayer_bind=findViewById(R.id.display_myplayer_bind);
+
+        blind_btn=findViewById(R.id.blind);
+
+        //        Animation on blindshow_layout
+//        LinearLayout blindshow_layout=findViewById(R.id.blindshow_layout);
+        TranslateAnimation animationsb = new TranslateAnimation(0.0f, 0.0f,0.0f, -10.0f);
+        animationsb.setDuration(100);  // animation duration
+        animationsb.setFillAfter(true);
+        blind_btn.startAnimation(animationsb);
+
+//        Implementation of increament amount
+        final TextView displayAmount = findViewById(R.id.start_amount);
+        plus_btn=findViewById(R.id.inc_amount);
+        plus_btn.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                String sub= displayAmount.getText().toString().substring(1);
+                minteger = Integer.parseInt(sub)*2;
+                displayAmount.setText("₹" + minteger);
+
+            }
+
+        });
+
+        //Implementation of decreament amount
+        minus_btn=findViewById(R.id.dec_amount);
+        minus_btn.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                String sub= displayAmount.getText().toString().substring(1);
+                minteger =Integer.parseInt(sub)/2;
+                displayAmount.setText("₹" + minteger);
+            }
+        });
+
+//        Implementation of Blind
+        blind_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                display_myplayer_bind.setText(displayAmount.getText().toString());
+                display_myplayer_bind.bringToFront();
+              /*  TranslateAnimation animations = new TranslateAnimation(0.0f, 0.0f,
+                        0.0f, -80.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
+                animations.setDuration(100);  // animation duration
+                animations.setFillAfter(true);*/
+                animations = AnimationUtils.loadAnimation(TeenpattiActivity.this, R.anim.translate_text_up);
+                display_myplayer_bind.startAnimation(animations);
+                display_myplayer_bind.setVisibility(View.GONE);
+
+            }
+        });
 
         animatecard1 = AnimationUtils.loadAnimation(this, R.anim.translate_top_left);
         animatecard2 = AnimationUtils.loadAnimation(this, R.anim.translate_top_right);

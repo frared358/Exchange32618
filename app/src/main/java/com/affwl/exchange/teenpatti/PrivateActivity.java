@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -42,6 +43,10 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
     Session session;
     NavigationView navigationView;
 
+    TextView display_myplayer_bind;
+
+    Animation animations;
+
     int minteger = 0;
     @SuppressLint("WrongViewCast")
     @Override
@@ -62,6 +67,7 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
         navigationView = (NavigationView) findViewById(R.id.teen_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        display_myplayer_bind=findViewById(R.id.display_myplayer_bind);
 
         relativeLayout= (RelativeLayout) findViewById(R.id.privaterecycler);
 
@@ -81,13 +87,14 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
         String name=session.getName();
         nametext.setText(name);
 
+        blind_btn=findViewById(R.id.blind);
 //        Animation on blindshow_layout
-        LinearLayout blindshow_layout=findViewById(R.id.blindshow_layout);
-        TranslateAnimation animations = new TranslateAnimation(0.0f, 0.0f,
+//        LinearLayout blindshow_layout=findViewById(R.id.blindshow_layout);
+        TranslateAnimation animationsb = new TranslateAnimation(0.0f, 0.0f,
                 0.0f, -10.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
-        animations.setDuration(100);  // animation duration
-        animations.setFillAfter(true);
-        blindshow_layout.startAnimation(animations);
+        animationsb.setDuration(1000);  // animation duration
+        animationsb.setFillAfter(true);
+        blind_btn.startAnimation(animationsb);
 
 //        Implementation of increament amount
         final TextView displayAmount = findViewById(R.id.start_amount);
@@ -119,11 +126,15 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
         blind_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TranslateAnimation animations = new TranslateAnimation(0.0f, 0.0f,
+                display_myplayer_bind.setText(displayAmount.getText().toString());
+                display_myplayer_bind.bringToFront();
+              /*  TranslateAnimation animations = new TranslateAnimation(0.0f, 0.0f,
                         0.0f, -80.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
                 animations.setDuration(100);  // animation duration
-                animations.setFillAfter(true);
-                displayAmount.startAnimation(animations);
+                animations.setFillAfter(true);*/
+                animations = AnimationUtils.loadAnimation(PrivateActivity.this, R.anim.translate_text_up);
+                display_myplayer_bind.startAnimation(animations);
+                display_myplayer_bind.setVisibility(View.GONE);
 
             }
         });
