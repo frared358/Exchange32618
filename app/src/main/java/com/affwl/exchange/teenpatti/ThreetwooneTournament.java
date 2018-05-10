@@ -850,8 +850,8 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
                 // Invalidates the view to force a redraw
                 view.invalidate();
 
-                if(owner!=null) {
-                    if (owner.getChildCount() == 0) {
+                if(default321layout!=null) {
+                    if (default321layout.getChildCount() == 0) {
                         cards321shifterbtn.setVisibility(View.VISIBLE);
                     }
                 }
