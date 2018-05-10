@@ -250,4 +250,6 @@ public class DataHolder {
     public static final String ACTION_SEND_FANCY_BOOKMAKING = "com.affwl.exchange.sport.FANCY_BOOKMAKING";
     public static final String keySIGNALR = "SIGNALR";
     public static final String keyFANCY_BOOKMAKING = "FANCY_BOOKMAKING";
+
+
 }

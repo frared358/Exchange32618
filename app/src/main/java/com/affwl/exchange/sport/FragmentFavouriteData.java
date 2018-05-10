@@ -94,7 +94,7 @@ public class FragmentFavouriteData extends Fragment {
                 DataHolder.cancelProgress();
             } catch (JSONException e) {
                 e.printStackTrace();
-                DataHolder.unAuthorized(getActivity(),result);
+                //DataHolder.unAuthorized(getActivity(),result);
             }
         }
 

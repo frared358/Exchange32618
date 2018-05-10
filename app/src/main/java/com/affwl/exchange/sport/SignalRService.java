@@ -41,25 +41,25 @@ import static com.affwl.exchange.DataHolder._hub;
 
 public class SignalRService extends IntentService {
 
-
     SignalRFuture<Void> awaitConnection;
-
     public SignalRService() {
         super("MyServices");
     }
 
-
-    String BfId;
+    String BfId,HubAddress;
     @Override
     protected void onHandleIntent(@Nullable Intent intentS) {
         try {
             if (intentS != null) {
                 BfId = intentS.getStringExtra("BfId");
-                Log.i("TAGF",BfId+" ");
+                HubAddress = intentS.getStringExtra("HubAddress");
+                Log.i("TAGS",BfId+" "+HubAddress);
             }
             Platform.loadPlatformComponent( new AndroidPlatformComponent() );
-            _connection=new HubConnection("http://178.238.236.221:10800");
-            _hub=_connection.createHubProxy("BetAngelHub");
+            //_connection=new HubConnection("http://178.238.236.221:10800");
+            //_hub=_connection.createHubProxy("BetAngelHub");
+            _connection=new HubConnection(HubAddress);
+            _hub=_connection.createHubProxy("RunnersHub");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -80,17 +80,15 @@ public class SignalRService extends IntentService {
                 public void onMessageReceived(final JsonElement json) {
 
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(10);
                         Intent intentSignalR = new Intent(DataHolder.ACTION_SEND_ACTIVE);
-
                         intentSignalR.putExtra(DataHolder.keySIGNALR, json.toString());
-                        Log.i("TAG"," "+json);
-
                         sendBroadcast(intentSignalR);
                     } catch (InterruptedException e) {
                         Log.i("TGH",""+e);
                         e.printStackTrace();
                     }
+
                 }
             });
 
