@@ -145,7 +145,6 @@ public class StackActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-
     public String  getStackApi(String url){
         InputStream inputStream = null;
         String result = "";
@@ -204,7 +203,7 @@ public class StackActivity extends AppCompatActivity implements View.OnClickList
 
             } catch (JSONException e) {
                 e.printStackTrace();
-                DataHolder.unAuthorized(StackActivity.this,result);
+                //DataHolder.unAuthorized(StackActivity.this,result);
             }
         }
     }

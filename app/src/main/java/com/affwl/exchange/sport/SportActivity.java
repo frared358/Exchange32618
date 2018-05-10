@@ -179,7 +179,7 @@ public class SportActivity extends AppCompatActivity /*implements NavigationView
         int id = item.getItemId();
 
         if (id == R.id.nav_setting) {
-            Intent i = new Intent(SportActivity.this, SettingsActivity.class);
+            Intent i = new Intent(SportActivity.this, .class);
             startActivity(i);
         } else if (id == R.id.nav_logout) {
             dialogLogout();
@@ -231,18 +231,6 @@ public class SportActivity extends AppCompatActivity /*implements NavigationView
         @Override
         protected void onPostExecute(String result) {
             Log.i("Check123456",""+result);
-            /*try {
-                JSONObject jsonObjMain = new JSONObject(result.toString());
-                String strData = jsonObjMain.getString("data");
-                JSONObject jsonData = new JSONObject(strData);
-                String name = jsonData.getString("name");
-
-                Log.i("TAG159",""+userName );
-                userName.setText(name);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }*/
 
             try {
                 JSONObject jsonObject = new JSONObject(result.toString());
@@ -256,7 +244,7 @@ public class SportActivity extends AppCompatActivity /*implements NavigationView
 
             } catch (JSONException e) {
                 e.printStackTrace();
-                DataHolder.unAuthorized(SportActivity.this,result);
+                //DataHolder.unAuthorized(SportActivity.this,result);
             }
 
         }
@@ -310,7 +298,7 @@ public class SportActivity extends AppCompatActivity /*implements NavigationView
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                DataHolder.unAuthorized(SportActivity.this,result);
+                //DataHolder.unAuthorized(SportActivity.this,result);
             }
         }
     }

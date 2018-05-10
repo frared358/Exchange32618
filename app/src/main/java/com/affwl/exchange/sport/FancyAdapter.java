@@ -49,7 +49,7 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
 
     Context contextFancy;
     private List<MarketData> dataList;
-
+    Handler handler =  new Handler();
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView txtVFancyName,txtVYesRate,txtVYesScore,txtVNoRate,txtVNoScore,txtVBookData,txtVFancyActiveResult,txtVFancyBook;
         LinearLayout llYes,llNo,llFancyMarketData;
@@ -77,25 +77,6 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
         this.dataList = dataList;
     }
 
-    public void updateNoRate(MyViewHolder holder,String s) {
-        holder.txtVNoRate.setText(String.valueOf(s));
-        holder.txtVNoRate.invalidate();
-    }
-    public void updateYesRate(MyViewHolder holder,String s) {
-        holder.txtVYesRate.setText(String.valueOf(s));
-        holder.txtVYesRate.invalidate();
-    }
-
-    public void updateNoScore(MyViewHolder holder,String s) {
-        holder.txtVNoScore.setText(String.valueOf(s));
-        holder.txtVNoScore.invalidate();
-    }
-
-    public void updateYesScore(MyViewHolder holder,String s) {
-        holder.txtVYesScore.setText(String.valueOf(s));
-        holder.txtVYesScore.invalidate();
-    }
-
     int fancyId,matchId;
     String fancyScore,fancyRate,fancyRunnerName;
 
@@ -103,37 +84,43 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final MarketData fancy = dataList.get(position);
 
-        holder.txtVFancyName.setText(fancy.RunnerName);
-        holder.txtVYesRate.setText(fancy.yesRate);
-        holder.txtVYesScore.setText(fancy.yesScore);
-        holder.txtVNoRate.setText(fancy.noRate);
-        holder.txtVNoScore.setText(fancy.noScore);
-        fancyRunnerName = fancy.RunnerName;
-        fancyId = fancy.fancyId;
-        matchId = fancy.matchId;
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                holder.txtVFancyName.setText(fancy.RunnerName);
+                holder.txtVYesRate.setText(fancy.yesRate);
+                holder.txtVYesScore.setText(fancy.yesScore);
+                holder.txtVNoRate.setText(fancy.noRate);
+                holder.txtVNoScore.setText(fancy.noScore);
+                fancyRunnerName = fancy.RunnerName;
+                fancyId = fancy.fancyId;
+                matchId = fancy.matchId;
 
-        if (!fancy.book.equals("-")){
-        try {
-            int bookVal = Integer.parseInt(fancy.book);
-            if(bookVal <0 ){
-                holder.txtVBookData.setText(String.valueOf(bookVal));
-                holder.txtVBookData.setTextColor(ContextCompat.getColor(contextFancy,R.color.colorRed));
+                if (!fancy.book.equals("-")){
+                    try {
+                        int bookVal = Integer.parseInt(fancy.book);
+                        if(bookVal <0 ){
+                            holder.txtVBookData.setText(String.valueOf(bookVal));
+                            holder.txtVBookData.setTextColor(ContextCompat.getColor(contextFancy,R.color.colorRed));
+                        }
+                        else if (bookVal>0){
+                            holder.txtVBookData.setText(String.valueOf(bookVal));
+                            holder.txtVBookData.setTextColor(ContextCompat.getColor(contextFancy,R.color.colorGreen));
+                        }
+
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if(!fancy.ballStatus.equalsIgnoreCase("")){
+                    holder.txtVFancyActiveResult.setVisibility(View.VISIBLE);
+                    holder.llFancyMarketData.setVisibility(View.GONE);
+                    holder.txtVFancyActiveResult.setText(fancy.ballStatus);
+                }
             }
-            else if (bookVal>0){
-                holder.txtVBookData.setText(String.valueOf(bookVal));
-                holder.txtVBookData.setTextColor(ContextCompat.getColor(contextFancy,R.color.colorGreen));
-            }
+        });
 
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-    }
-
-        if(!fancy.ballStatus.equalsIgnoreCase("")){
-            holder.txtVFancyActiveResult.setVisibility(View.VISIBLE);
-            holder.llFancyMarketData.setVisibility(View.GONE);
-            holder.txtVFancyActiveResult.setText(fancy.ballStatus);
-        }
         holder.llYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,20 +149,13 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
                 new FancyBookAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/Fancybook?mtid="+matchId+"&fid="+fancyId);
             }
         });
-
-
-
-
-
     }
-
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view =  LayoutInflater.from(parent.getContext()).inflate(R.layout.recycle_fancy_data,parent, false);
         return new MyViewHolder(view);
     }
-
 
     @Override
     public int getItemCount() {
@@ -418,6 +398,7 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
             //Log.i("Check",yesno+" "+fancyId+" "+fancyRate+" "+fancyScore+" "+runnerName+" "+Integer.parseInt(DataHolder.getData(contextFancy,"Match_Id")));
             String json = "";
             JSONObject jsonObject = new JSONObject();
+            Log.i("TAGTAGTAGTAG",""+yesno);
             jsonObject.accumulate("yesno",yesno);
             jsonObject.accumulate("info","Android");
             jsonObject.accumulate("fancyId",fancyId);
@@ -503,39 +484,6 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
         return result;
     }
 
-    public String  FancyBookApi(String url){
-        InputStream inputStream = null;
-        String result = "";
-        try {
-
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpGet Httpget = new HttpGet(url);
-
-            Httpget.setHeader("Accept", "application/json");
-            Httpget.setHeader("Content-type", "application/json");
-            Httpget.setHeader("Token", DataHolder.LOGIN_TOKEN);
-
-            HttpResponse httpResponse = httpclient.execute(Httpget);
-            inputStream = httpResponse.getEntity().getContent();
-
-            if(inputStream != null){
-                try {
-                    result = convertInputStreamToString(inputStream);
-                }
-                catch (Exception e){
-                    Log.e("ERROR ",""+e);
-                }
-            }
-            else
-                result = "Did not work!";
-
-
-        } catch (Exception e) {
-            Log.d("ERROR ", ""+e);
-        }
-        return result;
-    }
-
     ArrayList<String> KeyFancyBook = new ArrayList<>();
     ArrayList<String> ValueFancyBook = new ArrayList<>();
 
@@ -569,8 +517,12 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
             }
         }
     }
+}
 
-    int COUNTBOOK=0;
+
+/*
+
+int COUNTBOOK=0;
     private class getBookMakingRefreshAsyncTask extends AsyncTask<MyViewHolder, Void, MyViewHolder> {
 
         String Value;
@@ -623,6 +575,8 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
         }
     }
 
+    ==
+
     public String  getFancyApi(MyViewHolder holder){
         InputStream inputStream = null;
         String result = "";
@@ -655,8 +609,27 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
         }
 
         return result;
-
-
     }
 
-}
+    ===
+
+     public void updateNoRate(MyViewHolder holder,String s) {
+        holder.txtVNoRate.setText(String.valueOf(s));
+        holder.txtVNoRate.invalidate();
+    }
+    public void updateYesRate(MyViewHolder holder,String s) {
+        holder.txtVYesRate.setText(String.valueOf(s));
+        holder.txtVYesRate.invalidate();
+    }
+
+    public void updateNoScore(MyViewHolder holder,String s) {
+        holder.txtVNoScore.setText(String.valueOf(s));
+        holder.txtVNoScore.invalidate();
+    }
+
+    public void updateYesScore(MyViewHolder holder,String s) {
+        holder.txtVYesScore.setText(String.valueOf(s));
+        holder.txtVYesScore.invalidate();
+    }
+
+* */
