@@ -334,12 +334,5 @@
 
     </RelativeLayout>
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/teen_nav_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:fitsSystemWindows="false"
-        app:headerLayout="@layout/leaderboard_popup" />
 
 </android.support.v4.widget.DrawerLayout>

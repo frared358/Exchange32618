@@ -55,8 +55,7 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
     TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,nametext,backtolobby,code;
     PopupWindow threetwooneleadboardpopupWindow,TrophypopupWindow,popupWindow,infopopupWindow,chatpopupWindow,themepopupWindow,ustatuspopupWindow,dealerpopupWindow,oustatuspopupWindow,sendmsgpopupWindow,chngdpopupWindow;
     Button msgbtn,blockbtn,cards321shifterbtn;
-    RelativeLayout relativeLayout,relativeLayout2,relativeLayout3,RelativeLayoutloader;
-    DrawerLayout tournamenttble;
+    RelativeLayout relativeLayout,relativeLayout2,relativeLayout3,RelativeLayoutloader,tournamenttble;
     NavigationView navigationView;
     LinearLayout linearcardholder321;
     int minteger = 0;
@@ -111,7 +110,7 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
         profile=findViewById(R.id.inner_player_img);
         nametext=findViewById(R.id.nametext);
 
-        default321layout=findViewById(R.id.default321layout);
+        default321layout = findViewById(R.id.default321layout);
 
         code=findViewById(R.id.code);
         session=new Session(this);
@@ -895,4 +894,4 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
 //        vrelative.setVisibility(View.VISIBLE);
 //        vrelative.startAnimation(animZoomOut);
 //        windows.dismiss();
-    }
+}

@@ -1,36 +1,26 @@
 package com.affwl.exchange.teenpatti;
 
 import android.annotation.SuppressLint;
-import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Dialog;
-import android.app.DialogFragment;
 
 import com.affwl.exchange.R;
 
@@ -38,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     ImageView showPopupBtn, closeRateus, closeHelpBtn, closeTrophyBtn,profile,orangechipsbtn,close312help,closesixpattihelp,short321info,tourney_shortinfo_closebtn,shortsixpattiinfo,bluechipsbtn,cyanchipsbtn,shortinfo_tourney,tourney_join_closebtn,ygreenchipsbtn,closebtn_create_table,mainlimegchipsbtn,variation_closebtn,facebook,whatsapp,general;
     PopupWindow RateuspopupWindow, HelpUspopupWindow, TrophypopupWindow, tounpopupWindow,howto321popup,sixpattipopup,howtosixpattipopup,join_tourney_popupWindow,shortinfo_tourney_popupwindow,create_table_private_popupwindow,join_table_popupwindow;
-    RelativeLayout RelativeLayoutloader,relativelayout321,relativeLayoutsixpatti,relativeLayout_tourney;
+    RelativeLayout RelativeLayoutloader,relativelayout321,relativeLayoutsixpatti,relativeLayout_tourney,yellowchiplayout,orangechipslayout,limechipslayout,darkbluechiplayout,blackchipslayout,cyanchipslayout,ygreenchipslayout;
     TextView loaderbuychips,joinnowbtn,howtoplay321btn,howtoplaysixpattibtn,joinnowsixpattibtn,join_tourneybtn,create_table_btn,join_variation_btn,nametext,code;
     Session session;
     LinearLayout jokerlayout_btn,jokerinfo_layout,ak47_layout_btn,ak47info_layout,xboot_layout_btn,xboot_info_layout,
@@ -46,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ljoker_layout_btn, ljoker_info_layout, nnnine_layout_btn, nnnine_info_layout;
 
     ImageView joker_img,ak_img,xboot_img, hukum_img, muflis_img, faceoff_img, ljoker_img, nnnine_img;
+    ImageView mainychips,mainlimegchips,blackchips;
+    Animation animatechips1,animatechips2,animatechips3,animatechips4,animatechips5,animatechips6,animatechips7;
 
 
     int value=0;
@@ -56,9 +48,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int value5=0;
     int value6=0;
     int value7=0;
-
-    ImageView mainychips,mainlimegchips,blackchips;
-
 
 
     @Override
@@ -73,8 +62,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         profile=findViewById(R.id.profile);
         nametext=findViewById(R.id.nametext);
 
+        final Animation Animchipsright = AnimationUtils.loadAnimation(MainActivity.this, R.anim.translate_chips_right);
+
         mainychips=findViewById(R.id.mainychips);
         mainychips.setOnClickListener(this);
+        mainychips.startAnimation(Animchipsright);
 
         mainlimegchips=findViewById(R.id.mainlimegchips);
         mainlimegchips.setOnClickListener(this);
@@ -95,41 +87,74 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String name=session.getName();
         nametext.setText(name);
 
-        // Popup for RateUS
-//        showPopupBtn = findViewById(R.id.rateus_btn_loader);
 
-//        profile=findViewById(R.id.profile);
-//        Intent intent=getIntent();
-//        Bitmap bmp=intent.getParcelableExtra("img");
-        //Toast.makeText(this, String.valueOf(bmp), Toast.LENGTH_SHORT).show();
-//        profile.setImageBitmap(bmp);
-//        showPopupBtn.setOnClickListener(new View.OnClickListener() {
+        //Animations for chips click
+//        final Animation Animchipsright = AnimationUtils.loadAnimation(MainActivity.this, R.anim.translate_chips_right);
+        final Animation Animchipsleft = AnimationUtils.loadAnimation(MainActivity.this, R.anim.translate_chips_left);
+
+        animatechips1 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_right);
+        animatechips2 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_right);
+        animatechips3 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_right);
+        //animatechips4 = AnimationUtils.loadAnimation(this, R.anim.translate_center);
+        animatechips5 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_left);
+        animatechips6 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_left);
+        animatechips7 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_left);
+
+        yellowchiplayout = findViewById(R.id.yellowchiplayout);
+        yellowchiplayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                yellowchiplayout.startAnimation(Animchipsright);
+            }
+        });
+        orangechipslayout = findViewById(R.id.orangechipslayout);
+        orangechipslayout.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                orangechipslayout.startAnimation(Animchipsright);
+            }
+        });
+//        limechipslayout = findViewById(R.id.limechipslayout);
+//        limechipslayout.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                //instantiate the popup.xml three_two_one_leaderboard file
-//                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                View customView = layoutInflater.inflate(R.layout.rateus_popup,null);
-//
-//                closeRateus = customView.findViewById(R.id.close_rateus);
-//
-//                //instantiate popup window
-//                RateuspopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-//
-//                //display the popup window
-//                RateuspopupWindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
-//
-//                //close the popup window on button click
-//                closeRateus.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        RateuspopupWindow.dismiss();
-//                    }
-//                });
-//
+//                limechipslayout.startAnimation(animatechips3);
+//            }
+//        });
+//        darkbluechiplayout = findViewById(R.id.darkbluechiplayout);
+//        yellowchiplayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                yellowchiplayout.startAnimation(animatechips1);
+//            }
+//        });
+//        blackchipslayout = findViewById(R.id.blackchipslayout);
+//        blackchipslayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                blackchipslayout.startAnimation(animatechips5);
+//            }
+//        });
+//        cyanchipslayout = findViewById(R.id.cyanchipslayout);
+//        cyanchipslayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                cyanchipslayout.startAnimation(animatechips6);
+//            }
+//        });
+//        ygreenchipslayout = findViewById(R.id.ygreenchipslayout);
+//        ygreenchipslayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                ygreenchipslayout.startAnimation(animatechips7);
 //            }
 //        });
 
-        // Popup for Help
+
+
+
+
+
+                // Popup for Help
         showPopupBtn = findViewById(R.id.help_btn_loader);
         RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
 
@@ -161,58 +186,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        // Popup for Leaderboard
-//        ImageView showPopupBtnTropy = findViewById(R.id.trophy_btn_loader);
-//        RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
-//
-//        showPopupBtnTropy.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //instantiate the popup.xml three_two_one_leaderboard file
-//                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                View customView = layoutInflater.inflate(R.layout.leaderboard_list_item,null);
-//
-//
-//                closeTrophyBtn = customView.findViewById(R.id.leaderclose);
-//
-//                //instantiate popup window
-//                TrophypopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-//
-//                //display the popup window
-//                TrophypopupWindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
-//
-////                RecyclerView playerList = customView.findViewById(R.id.leaderboardlist);
-////                playerList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-////                String[] values = {"Anand","Tejas","Anirudh","Ravi","Rohit","Francis"};
-////                playerList.setAdapter(new LeaderboardListAdapter(values));
-//
-//                //close the popup window on button click
-//                closeTrophyBtn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        TrophypopupWindow.dismiss();
-//                    }
-//                });
-//
-//
-//            }
-//        });
-
-
-        //Buy Chips Popup
-
-//        loaderbuychips = (findViewById(R.id.buy_chips_loader));
-//        loaderbuychips.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FragmentTransaction ft = getFragmentManager().beginTransaction();
-//                BuyChipsFragment frag = new BuyChipsFragment();
-//                frag.show(ft, "txn_tag");
-//            }
-//        });
-
-
-
         //////////////// Popup for 321 tournament ////////////////
         orangechipsbtn = findViewById(R.id.mainorgchips);
         RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
@@ -222,67 +195,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         orangechipsbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 Intent intent = new Intent(MainActivity.this, ThreetwooneTournament.class);
                 startActivity(intent);
-                //instantiate the popup.xml three_two_one_leaderboard file
-//                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                View customView = layoutInflater.inflate(R.layout.activity_how_to_play_three_two_one,null);
-//                short321info = findViewById(R.id.short312info);
-//
-//                howtoplay321btn = customView.findViewById(R.id.howtoplay321btn);
-
-
-
-                // onclick event
-//                howtoplay321btn.setOnClickListener(new View.OnClickListener(){
-//                    public void onClick(View v) {
-//                        LayoutInflater layoutInflater1 = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                        View customView1 = layoutInflater1.inflate(R.layout.threetwoone_how_to_play_info,null);
-//                        close312help = customView1.findViewById(R.id.close312help);
-//
-//                        //Instantiate the popup
-//                        howto321popup = new PopupWindow(customView1, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-//
-//                        //display the popup window
-//                        howto321popup.showAtLocation(RelativeLayoutloader, Gravity.TOP, 0, 0);
-//
-//                        //closing the popup
-//                        close312help.setOnClickListener(new View.OnClickListener(){
-//
-//                            @Override
-//                            public void onClick(View v) {
-//                                howto321popup.dismiss();
-//                            }
-//                        });
-//                        tounpopupWindow.dismiss();
-//                    }
-//                });
-
-                //instantiate popup window
-//                tounpopupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-//
-//                //display the popup window
-//                tounpopupWindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
-//
-//                //join now the popup window on button click
-//                joinnowbtn = customView.findViewById(R.id.joinnow);
-//
-//                joinnowbtn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//
-//                    }
-//                });
             }
         });
-
-
-
-
-
-
 
         //////////////// Popup for six patti ////////////////
         bluechipsbtn = findViewById(R.id.darkbluechips);
@@ -293,8 +209,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bluechipsbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 Intent intent = new Intent(MainActivity.this, LoadingScreen_sixpatti.class);
                 startActivity(intent);
                 finish();
@@ -426,74 +340,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        //////////////// Popup for Tourney ////////////////
-        cyanchipsbtn = findViewById(R.id.cyanchips);
-        RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
-        relativeLayout_tourney = findViewById(R.id.relativelayout_tourney);
-
-
-        cyanchipsbtn.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("WrongViewCast")
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(MainActivity.this, LoadingScreen_tourney.class);
-                startActivity(intent);
-                finish();
-
-//                //instantiate the popup.xml layout file
-//                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                View customView = layoutInflater.inflate(R.layout.tourney_join_tournament_popup,null);
-//                shortinfo_tourney =customView.findViewById(R.id.short_tourney_info);
-//
-//                tourney_join_closebtn = customView.findViewById(R.id.join_tourney_close);
+        //////////////// Popup for Tourney2 ////////////////
+//        cyanchipsbtn = findViewById(R.id.cyanchips);
+//        RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
+//        relativeLayout_tourney = findViewById(R.id.relativelayout_tourney);
 //
 //
+//        cyanchipsbtn.setOnClickListener(new View.OnClickListener() {
+//            @SuppressLint("WrongViewCast")
+//            @Override
+//            public void onClick(View v) {
 //
-//                // onclick event
-//                shortinfo_tourney.setOnClickListener(new View.OnClickListener(){
-//                    public void onClick(View v) {
-//                        LayoutInflater layoutInflater1 = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                        View customView1 = layoutInflater1.inflate(R.layout.tourney_info,null);
-//                        tourney_shortinfo_closebtn = customView1.findViewById(R.id.close_tourney_info);
+//                Intent intent = new Intent(MainActivity.this, LoadingScreen_tourney.class);
+//                startActivity(intent);
+//                finish();
 //
-//                        //Instantiate the popup
-//                        shortinfo_tourney_popupwindow = new PopupWindow(customView1, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-//
-//                        //display the popup window
-//                        shortinfo_tourney_popupwindow.showAtLocation(RelativeLayoutloader, Gravity.TOP, 0, 0);
-//
-//                        //closing the popup
-//                        tourney_shortinfo_closebtn.setOnClickListener(new View.OnClickListener(){
-//
-//                            @Override
-//                            public void onClick(View v) {
-//                                shortinfo_tourney_popupwindow.dismiss();
-//                            }
-//                        });
-////                        sixpattipopup.dismiss();
-//                    }
-//                });
-//
-//                //instantiate popup window
-//                join_tourney_popupWindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-//
-//                //display the popup window
-//                join_tourney_popupWindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
-//
-//                //join now the popup window on button click
-//                join_tourneybtn = customView.findViewById(R.id.joinnow_tourney);
-//
-//                join_tourneybtn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent intent = new Intent(MainActivity.this, LoadingScreen_tourney.class);
-//                        startActivity(intent);
-//                        finish();
-//                    }
-//                });
-            }
-        });
+//            }
+//        });
 
 
 

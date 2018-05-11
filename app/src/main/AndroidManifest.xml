@@ -238,7 +238,6 @@
             android:name=".teenpatti.TeenpattiActivity"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
-        <activity android:name=".teenpatti.SidedrawerActivity" />
         <activity
             android:name=".teenpatti.LoadingScreen_teenpatti"
             android:screenOrientation="landscape"
