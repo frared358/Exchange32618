@@ -32,13 +32,12 @@ import android.widget.Toast;
 import com.affwl.exchange.R;
 
 @SuppressWarnings( "deprecation" )
-public class TeenpattiActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
+public class TeenpattiActivity extends AppCompatActivity implements View.OnClickListener{
     ImageView handle_right, backbtn,infobtn,infoclosebtn,chatbtn,chatclosebtn,chatclosebtn2,profile,themeclosebtn,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn;;
     TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,backtolobby,nametext, code;
     PopupWindow popupWindow,infopopupWindow,chatpopupWindow,themepopupWindow,ustatuspopupWindow,dealerpopupWindow,oustatuspopupWindow,sendmsgpopupWindow,chngdpopupWindow;
     Button msgbtn,blockbtn;
-    RelativeLayout relativeLayout,relativeLayout2,relativeLayout3;
-    DrawerLayout teenpattitble;
+    RelativeLayout relativeLayout,relativeLayout2,relativeLayout3,teenpattitble;
     NavigationView navigationView;
 
     Session session;
@@ -63,17 +62,17 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teenpatti);
 
-        handle_right = findViewById(R.id.handle_right);
-        handle_right.setOnClickListener(this);
+//        handle_right = findViewById(R.id.handle_right);
+//        handle_right.setOnClickListener(this);
 
-        teenpattitble = (DrawerLayout) findViewById(R.id.teenpattitble);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, teenpattitble, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        teenpattitble.addDrawerListener(toggle);
-        toggle.syncState();
-        relativeLayout= (RelativeLayout) findViewById(R.id.teenpattitblerecycler);
-
-        navigationView = (NavigationView) findViewById(R.id.teen_nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+//        teenpattitble = (RelativeLayout) findViewById(R.id.teenpattitble);
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, teenpattitble, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        teenpattitble.addDrawerListener(toggle);
+//        toggle.syncState();
+          relativeLayout= (RelativeLayout) findViewById(R.id.teenpattitble);
+//
+//        navigationView = (NavigationView) findViewById(R.id.teen_nav_view);
+//        navigationView.setNavigationItemSelectedListener(this);
 
         display_myplayer_bind=findViewById(R.id.display_myplayer_bind);
 
@@ -194,7 +193,6 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
         animatecard3.setStartOffset(400);
         card3.startAnimation(animatecard3);
         animatecard4.setStartOffset(600);
-        animatecard4.setFillAfter(true);
         card4.startAnimation(animatecard4);
         animatecard5.setStartOffset(800);
         card5.startAnimation(animatecard5);
@@ -206,7 +204,6 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
         animatecard8.setStartOffset(1400);
         card8.startAnimation(animatecard8);
         animatecard9.setStartOffset(1600);
-        animatecard9.setFillAfter(true);
         card9.startAnimation(animatecard9);
         animatecard10.setStartOffset(1800);
         card10.startAnimation(animatecard10);
@@ -219,7 +216,6 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
         animatecard13.setStartOffset(2400);
         card13.startAnimation(animatecard13);
         animatecard14.setStartOffset(2600);
-        animatecard14.setFillAfter(true);
         card14.startAnimation(animatecard14);
         animatecard15.setStartOffset(2800);
         card15.startAnimation(animatecard15);
@@ -290,8 +286,8 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
                 PercentLayoutHelper.PercentLayoutInfo info4 = params4.getPercentLayoutInfo();
                 info4.widthPercent = 0.15f;
                 info4.heightPercent=0.15f;
-                info4.topMarginPercent=0.25f;
-                info4.rightMarginPercent=0.44f;
+                info4.topMarginPercent=0.60f;
+                info4.rightMarginPercent=0.14f;
                 params4.addRule(RelativeLayout.BELOW,R.id.rl_playerbg3);
                 params4.addRule(RelativeLayout.ALIGN_PARENT_END);
                 params4.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
@@ -358,8 +354,8 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
                 PercentLayoutHelper.PercentLayoutInfo info9 = params9.getPercentLayoutInfo();
                 info9.widthPercent = 0.15f;
                 info9.heightPercent=0.15f;
-                info9.topMarginPercent=0.25f;
-                info9.rightMarginPercent=0.42f;
+                info9.topMarginPercent=0.60f;
+                info9.rightMarginPercent=0.12f;
                 params9.addRule(RelativeLayout.ALIGN_PARENT_END);
                 params9.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 params9.addRule(RelativeLayout.BELOW,R.id.rl_playerbg3);
@@ -430,8 +426,8 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
                 PercentLayoutHelper.PercentLayoutInfo info14 = params14.getPercentLayoutInfo();
                 info14.widthPercent = 0.15f;
                 info14.heightPercent=0.15f;
-                info14.topMarginPercent=0.25f;
-                info14.rightMarginPercent=0.40f;
+                info14.topMarginPercent=0.60f;
+                info14.rightMarginPercent=0.10f;
                 params14.addRule(RelativeLayout.ALIGN_PARENT_END);
                 params14.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                 params14.addRule(RelativeLayout.BELOW,R.id.rl_playerbg3);
@@ -472,7 +468,7 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
 
 
 
-        teenpattitble = (DrawerLayout) findViewById(R.id.teenpattitble);
+        teenpattitble = (RelativeLayout) findViewById(R.id.teenpattitble);
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -527,7 +523,7 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
         //////////////// Popup for InfoButton ///////////////////
 
         infobtn=(ImageView) findViewById(R.id.info);
-        teenpattitble = (DrawerLayout) findViewById(R.id.teenpattitble);
+        teenpattitble = (RelativeLayout) findViewById(R.id.teenpattitble);
 
         infobtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -681,7 +677,7 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
         //////////////// Popup for Dealer ///////////////////
 
         dealerbtn=(ImageView) findViewById(R.id.dealer);
-        teenpattitble = (DrawerLayout) findViewById(R.id.teenpattitble);
+        teenpattitble = (RelativeLayout) findViewById(R.id.teenpattitble);
 
         dealerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -789,13 +785,13 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
     }
 
     /////////// Slider /////////////
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.handle_right:
-                teenpattitble.openDrawer(navigationView);
-                break;
-        }
-    }
+//    public void onClick(View v) {
+//        switch (v.getId()){
+//            case R.id.handle_right:
+//                teenpattitble.openDrawer(navigationView);
+//                break;
+//        }
+//    }
 
 
     @Override
@@ -830,30 +826,8 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
         });
     }
 
-
-
-
-
-
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+    public void onClick(View v) {
+        return;
     }
-//    public void increaseInteger(View v) {
-//        minteger = minteger + 1;
-//        display(minteger);
-//
-//    }
-//    public void decreaseInteger(View v) {
-//        minteger = minteger - 1;
-//        display(minteger);
-//    }
-//
-//    private void display(int number) {
-//        TextView displayInteger = (TextView) findViewById(R.id.tipamount);
-//        if (displayInteger.getVisibility()==View.VISIBLE) {
-//            displayInteger.setText("" + number);
-//        }
-//    }
-
 }

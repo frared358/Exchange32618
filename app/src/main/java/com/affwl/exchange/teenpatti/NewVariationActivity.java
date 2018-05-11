@@ -7,9 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.percent.PercentLayoutHelper;
 import android.support.percent.PercentRelativeLayout;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -32,13 +29,12 @@ import com.affwl.exchange.R;
 
 @SuppressWarnings( "deprecation" )
 
-public class NewVariationActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
+public class NewVariationActivity extends AppCompatActivity implements View.OnClickListener{
     ImageView handle_right, backbtn,infobtn,infoclosebtn,chatbtn,chatclosebtn,chatclosebtn2,themebtn,themeclosebtn,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn,pdealerbtn;
     TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,txtTimerSecond,backtolobby;
     PopupWindow popupWindow,infopopupWindow,chatpopupWindow,themepopupWindow,ustatuspopupWindow,dealerpopupWindow,oustatuspopupWindow,sendmsgpopupWindow,chngdpopupWindow,selectvariationpopupWindow;
     Button msgbtn,blockbtn;
-    RelativeLayout relativeLayout,relativeLayout2,relativeLayout3;
-    DrawerLayout newvariationtble;
+    RelativeLayout relativeLayout,relativeLayout2,relativeLayout3,newvariationtble;
     NavigationView navigationView;
     public int counter=15;
     public int counter2=15;
@@ -64,17 +60,7 @@ public class NewVariationActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_variation);
 
-        handle_right = findViewById(R.id.handle_right);
-        handle_right.setOnClickListener(this);
 
-
-        newvariationtble = findViewById(R.id.newvariationtble);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, newvariationtble, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        newvariationtble.addDrawerListener(toggle);
-        toggle.syncState();
-
-        navigationView = findViewById(R.id.teen_nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
         loadingPopup();
 
@@ -840,13 +826,13 @@ public class NewVariationActivity extends AppCompatActivity implements View.OnCl
     }
 
     /////////// Slider /////////////
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.handle_right:
-                newvariationtble.openDrawer(navigationView);
-                break;
-        }
-    }
+//    public void onClick(View v) {
+//        switch (v.getId()){
+//            case R.id.handle_right:
+//                newvariationtble.openDrawer(navigationView);
+//                break;
+//        }
+//    }
 
 
     @Override
@@ -880,19 +866,6 @@ public class NewVariationActivity extends AppCompatActivity implements View.OnCl
                 finish();
             }
         });
-    }
-
-
-
-
-
-
-
-
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
     }
 
 
@@ -943,5 +916,10 @@ public class NewVariationActivity extends AppCompatActivity implements View.OnCl
 //        vrelative.setVisibility(View.VISIBLE);
 //        vrelative.startAnimation(animZoomOut);
 //        windows.dismiss();
+    }
+
+    @Override
+    public void onClick(View v) {
+        return;
     }
 }
