@@ -35,7 +35,7 @@ import android.widget.Toast;
 
 import com.affwl.exchange.R;
 
-
+@SuppressWarnings( "deprecation" )
 public class Variation extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
     ImageView handle_right, backbtn,infobtn,infoclosebtn,profile,chatclosebtn,chatclosebtn2,themebtn,themeclosebtn,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn,pdealerbtn;
     TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,nametext,backtolobby,code;

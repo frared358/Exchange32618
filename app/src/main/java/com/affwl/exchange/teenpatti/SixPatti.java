@@ -1,18 +1,16 @@
 package com.affwl.exchange.teenpatti;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.CountDownTimer;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
+import android.support.percent.PercentLayoutHelper;
+import android.support.percent.PercentRelativeLayout;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Base64;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -33,7 +30,7 @@ import com.affwl.exchange.R;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
+@SuppressWarnings( "deprecation" )
 public class SixPatti extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
     ImageView handle_right, backbtn,infobtn,infoclosebtn,profile,chatclosebtn,chatclosebtn2,closebtnsixpattileadboard,leaderboardsixpattibtn,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn;;
     TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,nametext,sortbtn,gobtn,backtolobby,code;
@@ -60,6 +57,12 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
             animatecard9, animatecard10, animatecard11, animatecard12, animatecard13, animatecard14, animatecard15, animatecard16,
             animatecard17, animatecard18, animatecard19,animatecard20, animatecard21, animatecard22, animatecard23, animatecard24,
             animatecard25, animatecard26,animatecard27, animatecard28, animatecard29, animatecard30;
+
+    Animation animate_my_card1_up, animate_my_card1_back_down, animate_my_card2_up, animate_my_card2_back_down,
+            animate_my_card3_up, animate_my_card3_back_down, animate_my_card4_up, animate_my_card4_back_down,
+            animate_my_card5_up, animate_my_card5_back_down, animate_my_card6_up, animate_my_card6_back_down;
+
+    Animation animate_my_player_card;
 
     TextView btn_see_cards;
 
@@ -313,25 +316,41 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
         rl_myplayer=findViewById(R.id.rl_myplayer);
         // Implementaion of six cards onclick and translate animation
 
+        animate_my_card1_up = AnimationUtils.loadAnimation(this, R.anim.translate_card_up);
+        animate_my_card1_back_down = AnimationUtils.loadAnimation(this, R.anim.translate_card_back_down);
+
+        animate_my_card2_up = AnimationUtils.loadAnimation(this, R.anim.translate_card_up);
+        animate_my_card2_back_down = AnimationUtils.loadAnimation(this, R.anim.translate_card_back_down);
+
+        animate_my_card3_up = AnimationUtils.loadAnimation(this, R.anim.translate_card_up);
+        animate_my_card3_back_down = AnimationUtils.loadAnimation(this, R.anim.translate_card_back_down);
+
+        animate_my_card4_up = AnimationUtils.loadAnimation(this, R.anim.translate_card_up);
+        animate_my_card4_back_down = AnimationUtils.loadAnimation(this, R.anim.translate_card_back_down);
+
+        animate_my_card5_up = AnimationUtils.loadAnimation(this, R.anim.translate_card_up);
+        animate_my_card5_back_down = AnimationUtils.loadAnimation(this, R.anim.translate_card_back_down);
+
+        animate_my_card6_up = AnimationUtils.loadAnimation(this, R.anim.translate_card_up);
+        animate_my_card6_back_down = AnimationUtils.loadAnimation(this, R.anim.translate_card_back_down);
+
         my_card1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (value==0) {
-                    Animation animation = new TranslateAnimation(0, 0, 0, -20);
-                    animation.setDuration(100);
-                    animation.setFillAfter(true);
-                    my_card1.startAnimation(animation);
+                    my_card1.clearAnimation();
+                    animate_my_card1_up.setFillAfter(true);
+                    my_card1.startAnimation(animate_my_card1_up);
                     value = 1;
                     selectedCardArray.add("value");
                     return;
                 }
                 if (value==1)
                 {
-                    Animation animation1 = new TranslateAnimation(0, 0,0, 0);
-                    animation1.setDuration(100);
-                    animation1.setFillAfter(true);
-                    my_card1.startAnimation(animation1);
+                    my_card1.clearAnimation();
+                    animate_my_card1_back_down.setFillAfter(true);
+                    my_card1.startAnimation(animate_my_card1_back_down);
                     value=0;
                     selectedCardArray.remove("value");
                     return;
@@ -344,20 +363,18 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
             public void onClick(View v) {
 
                 if (value1==0) {
-                    Animation animation2 = new TranslateAnimation(0, 0, 0, -20);
-                    animation2.setDuration(100);
-                    animation2.setFillAfter(true);
-                    my_card2.startAnimation(animation2);
+                    my_card2.clearAnimation();
+                    animate_my_card2_up.setFillAfter(true);
+                    my_card2.startAnimation(animate_my_card2_up);
                     value1 = 1;
                     selectedCardArray.add("value1");
                     return;
                 }
                 if (value1==1)
-                {my_card2.clearAnimation();
-                    Animation animation3 = new TranslateAnimation(0, 0,0, 0);
-                    animation3.setDuration(100);
-                    animation3.setFillAfter(true);
-                    my_card2.startAnimation(animation3);
+                {
+                    my_card2.clearAnimation();
+                    animate_my_card2_back_down.setFillAfter(true);
+                    my_card2.startAnimation(animate_my_card2_back_down);
                     value1=0;
                     selectedCardArray.remove("value1");
                     return;
@@ -370,20 +387,18 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
             public void onClick(View v) {
 
                 if (value2==0) {
-                    Animation animation4 = new TranslateAnimation(0, 0, 0, -20);
-                    animation4.setDuration(100);
-                    animation4.setFillAfter(true);
-                    my_card3.startAnimation(animation4);
+                    my_card3.clearAnimation();
+                    animate_my_card3_up.setFillAfter(true);
+                    my_card3.startAnimation(animate_my_card3_up);
                     value2= 1;
                     selectedCardArray.add("value2");
                     return;
                 }
                 if (value2==1)
-                {my_card3.clearAnimation();
-                    Animation animation5 = new TranslateAnimation(0, 0,0, 0);
-                    animation5.setDuration(100);
-                    animation5.setFillAfter(true);
-                    my_card3.startAnimation(animation5);
+                {
+                    my_card3.clearAnimation();
+                    animate_my_card3_back_down.setFillAfter(true);
+                    my_card3.startAnimation(animate_my_card3_back_down);
                     value2=0;
                     selectedCardArray.remove("value2");
                     return;
@@ -396,20 +411,18 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
             public void onClick(View v) {
 
                 if (value3==0) {
-                    Animation animation6 = new TranslateAnimation(0, 0, 0, -20);
-                    animation6.setDuration(100);
-                    animation6.setFillAfter(true);
-                    my_card4.startAnimation(animation6);
+                    my_card4.clearAnimation();
+                    animate_my_card4_up.setFillAfter(true);
+                    my_card4.startAnimation(animate_my_card4_up);
                     value3= 1;
                     selectedCardArray.add("value3");
                     return;
                 }
                 if (value3==1)
-                {my_card4.clearAnimation();
-                    Animation animation7 = new TranslateAnimation(0, 0,0, 0);
-                    animation7.setDuration(100);
-                    animation7.setFillAfter(true);
-                    my_card4.startAnimation(animation7);
+                {
+                    my_card4.clearAnimation();
+                    animate_my_card4_back_down.setFillAfter(true);
+                    my_card4.startAnimation(animate_my_card4_back_down);
                     value3=0;
                     selectedCardArray.remove("value3");
                     return;
@@ -422,20 +435,18 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
             public void onClick(View v) {
 
                 if (value4==0) {
-                    Animation animation8 = new TranslateAnimation(0, 0, 0, -20);
-                    animation8.setDuration(100);
-                    animation8.setFillAfter(true);
-                    my_card5.startAnimation(animation8);
+                    my_card5.clearAnimation();
+                    animate_my_card5_up.setFillAfter(true);
+                    my_card5.startAnimation(animate_my_card5_up);
                     value4= 1;
                     selectedCardArray.add("value4");
                     return;
                 }
                 if (value4==1)
-                {my_card5.clearAnimation();
-                    Animation animation9 = new TranslateAnimation(0, 0,0, 0);
-                    animation9.setDuration(100);
-                    animation9.setFillAfter(true);
-                    my_card5.startAnimation(animation9);
+                {
+                    my_card5.clearAnimation();
+                    animate_my_card5_back_down.setFillAfter(true);
+                    my_card5.startAnimation(animate_my_card5_back_down);
                     value4=0;
                     selectedCardArray.remove("value4");
                     return;
@@ -448,29 +459,24 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
             public void onClick(View v) {
 
                 if (value5==0) {
-                    Animation animation10 = new TranslateAnimation(0, 0, 0, -20);
-                    animation10.setDuration(100);
-                    animation10.setFillAfter(true);
-                    my_card6.startAnimation(animation10);
+                    my_card6.clearAnimation();
+                    animate_my_card6_up.setFillAfter(true);
+                    my_card6.startAnimation(animate_my_card6_up);
                     value5= 1;
                     selectedCardArray.add("value5");
                     return;
                 }
                 if (value5==1)
-                {my_card6.clearAnimation();
-                    Animation animation11 = new TranslateAnimation(0, 0,0, 0);
-                    animation11.setDuration(100);
-                    animation11.setFillAfter(true);
-                    my_card6.startAnimation(animation11);
+                {
+                    my_card6.clearAnimation();
+                    animate_my_card6_back_down.setFillAfter(true);
+                    my_card6.startAnimation(animate_my_card6_back_down);
                     value5=0;
                     selectedCardArray.remove("value5");
                     return;
                 }
             }
         });
-
-
-
 
         // Click on Sort button
         sortbtn.setOnClickListener(new View.OnClickListener() {
@@ -492,177 +498,294 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener,
             }
         });
 
+        animate_my_player_card = AnimationUtils.loadAnimation(this, R.anim.translate_card_back_down);
+
         gobtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TranslateAnimation animations = new TranslateAnimation(0.0f, 0.0f,
-                        -20.0f, -50.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
-                animations.setDuration(100);  // animation duration
-                animations.setFillAfter(true);
+//                TranslateAnimation animations = new TranslateAnimation(0.0f, 0.0f,
+//                        -20.0f, -50.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
+//                animations.setDuration(100);  // animation duration
+                animate_my_player_card.setFillAfter(true);
                 //animation.setFillAfter(true);
                if(selectedCardArray.size()==3){
                     if(selectedCardArray.get(0).equalsIgnoreCase("value")){
-                        my_card1.startAnimation(animations);
-                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card1.getLayoutParams();
+                        my_card1.startAnimation(animate_my_player_card);
+                        View view1 = findViewById(R.id.my_card1);
+                        PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                        PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                        info1.bottomMarginPercent=0.25f;
+                        info1.widthPercent = 0.10f;
+                        info1.heightPercent=0.10f;
+                        info1.leftMarginPercent=0.52f;
+                        params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                        params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                        view1.setRotation(-30.0f);
+                        view1.bringToFront();
+                        view1.requestLayout();
+
+                     /*   RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card1.getLayoutParams();
                         params.setMargins(-100, 0, 0, 50);
                         params.addRule(RelativeLayout.CENTER_IN_PARENT);
                         params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
                         my_card1.setLayoutParams(params);
-                        my_card1.setRotation(-30.0f);
+                        my_card1.setRotation(-30.0f);*/
                     }
                     if(selectedCardArray.get(0).equalsIgnoreCase("value1")){
-                        my_card2.startAnimation(animations);
-                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card2.getLayoutParams();
-                        params.setMargins(-100, 0, 0, 50);
-                        params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                        params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                        my_card2.setLayoutParams(params);
-                        my_card2.setRotation(-30.0f);
+                        my_card2.startAnimation(animate_my_player_card);
+                        View view1 = findViewById(R.id.my_card2);
+                        PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                        PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                        info1.bottomMarginPercent=0.25f;
+                        info1.widthPercent = 0.10f;
+                        info1.heightPercent=0.10f;
+                        info1.leftMarginPercent=0.52f;
+                        params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                        params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                        view1.setRotation(-30.0f);
+                        view1.bringToFront();
+                        view1.requestLayout();
                     }
                     if(selectedCardArray.get(0).equalsIgnoreCase("value2")){
-                        my_card3.startAnimation(animations);
-                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card3.getLayoutParams();
-                        params.setMargins(-100, 0, 0, 50);
-                        params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                        params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                        my_card3.setLayoutParams(params);
-                        my_card3.setRotation(-30.0f);
+                        my_card3.startAnimation(animate_my_player_card);
+                        View view1 = findViewById(R.id.my_card3);
+                        PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                        PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                        info1.bottomMarginPercent=0.25f;
+                        info1.widthPercent = 0.10f;
+                        info1.heightPercent=0.10f;
+                        info1.leftMarginPercent=0.52f;
+                        params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                        params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                        view1.setRotation(-30.0f);
+                        view1.bringToFront();
+                        view1.requestLayout();
                     }
                     if(selectedCardArray.get(0).equalsIgnoreCase("value3")){
-                        my_card4.startAnimation(animations);
-                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card4.getLayoutParams();
-                        params.setMargins(-100, 0, 0, 50);
-                        params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                        params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                        my_card4.setLayoutParams(params);
-                        my_card4.setRotation(-30.0f);
+                        my_card4.startAnimation(animate_my_player_card);
+                        View view1 = findViewById(R.id.my_card4);
+                        PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                        PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                        info1.bottomMarginPercent=0.25f;
+                        info1.widthPercent = 0.10f;
+                        info1.heightPercent=0.10f;
+                        info1.leftMarginPercent=0.52f;
+                        params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                        params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                        view1.setRotation(-30.0f);
+                        view1.bringToFront();
+                        view1.requestLayout();
                     }
                     if(selectedCardArray.get(0).equalsIgnoreCase("value4")){
-                        my_card5.startAnimation(animations);
-                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card5.getLayoutParams();
-                        params.setMargins(-100, 0, 0, 50);
-                        params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                        params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                        my_card5.setLayoutParams(params);
-                        my_card5.setRotation(-30.0f);
+                        my_card5.startAnimation(animate_my_player_card);
+                        View view1 = findViewById(R.id.my_card5);
+                        PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                        PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                        info1.bottomMarginPercent=0.25f;
+                        info1.widthPercent = 0.10f;
+                        info1.heightPercent=0.10f;
+                        info1.leftMarginPercent=0.52f;
+                        params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                        params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                        view1.setRotation(-30.0f);
+                        view1.bringToFront();
+                        view1.requestLayout();
                     }
                     if(selectedCardArray.get(0).equalsIgnoreCase("value5")){
-                        my_card6.startAnimation(animations);
-                        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card6.getLayoutParams();
-                        params.setMargins(-100, 0, 0, 50);
-                        params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                        params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                        my_card6.setLayoutParams(params);
-                        my_card6.setRotation(-30.0f);
+                        my_card6.startAnimation(animate_my_player_card);
+                        View view1 = findViewById(R.id.my_card6);
+                        PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                        PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                        info1.bottomMarginPercent=0.25f;
+                        info1.widthPercent = 0.10f;
+                        info1.heightPercent=0.10f;
+                        info1.leftMarginPercent=0.52f;
+                        params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                        params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                        view1.setRotation(-30.0f);
+                        view1.bringToFront();
+                        view1.requestLayout();
                     }
                 if(selectedCardArray.get(1).equalsIgnoreCase("value")){
-                    my_card1.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card1.getLayoutParams();
-                    params.setMargins(-80, 0, 0, 50);
-                    params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                    params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    my_card1.setLayoutParams(params);
-                    my_card1.setRotation(-10.0f);
+                    my_card1.startAnimation(animate_my_player_card);
+                    View view1 = findViewById(R.id.my_card1);
+                    PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                    PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                    info1.bottomMarginPercent=0.25f;
+                    info1.widthPercent = 0.10f;
+                    info1.heightPercent=0.10f;
+                    info1.leftMarginPercent=0.54f;
+                    params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                    params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                    view1.setRotation(-10.0f);
+                    view1.bringToFront();
+                    view1.requestLayout();
                 }
                 if(selectedCardArray.get(1).equalsIgnoreCase("value1")){
-                    my_card2.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card2.getLayoutParams();
-                    params.setMargins(-80, 0, 0, 50);
-                    params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                    params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    my_card2.setLayoutParams(params);
-                    my_card2.setRotation(-10.0f);
+                    my_card2.startAnimation(animate_my_player_card);
+                    View view1 = findViewById(R.id.my_card2);
+                    PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                    PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                    info1.bottomMarginPercent=0.25f;
+                    info1.widthPercent = 0.10f;
+                    info1.heightPercent=0.10f;
+                    info1.leftMarginPercent=0.54f;
+                    params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                    params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                    view1.setRotation(-10.0f);
+                    view1.bringToFront();
+                    view1.requestLayout();
                 }
                 if(selectedCardArray.get(1).equalsIgnoreCase("value2")){
-                    my_card3.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card3.getLayoutParams();
-                    params.setMargins(-80, 0, 0, 50);
-                    params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                    params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    my_card3.setLayoutParams(params);
-                    my_card3.setRotation(-10.0f);
+                    my_card3.startAnimation(animate_my_player_card);
+                    View view1 = findViewById(R.id.my_card3);
+                    PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                    PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                    info1.bottomMarginPercent=0.25f;
+                    info1.widthPercent = 0.10f;
+                    info1.heightPercent=0.10f;
+                    info1.leftMarginPercent=0.54f;
+                    params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                    params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                    view1.setRotation(-10.0f);
+                    view1.bringToFront();
+                    view1.requestLayout();
                 }
                 if(selectedCardArray.get(1).equalsIgnoreCase("value3")){
-                    my_card4.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card4.getLayoutParams();
-                    params.setMargins(-80, 0, 0, 50);
-                    params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                    params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    my_card4.setLayoutParams(params);
-                    my_card4.setRotation(-10.0f);
+                    my_card4.startAnimation(animate_my_player_card);
+                    View view1 = findViewById(R.id.my_card4);
+                    PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                    PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                    info1.bottomMarginPercent=0.25f;
+                    info1.widthPercent = 0.10f;
+                    info1.heightPercent=0.10f;
+                    info1.leftMarginPercent=0.54f;
+                    params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                    params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                    view1.setRotation(-10.0f);
+                    view1.bringToFront();
+                    view1.requestLayout();
                 }
                 if(selectedCardArray.get(1).equalsIgnoreCase("value4")){
-                    my_card5.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card5.getLayoutParams();
-                    params.setMargins(-80, 0, 0, 50);
-                    params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                    params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    my_card5.setLayoutParams(params);
-                    my_card5.setRotation(-10.0f);
+                    my_card5.startAnimation(animate_my_player_card);
+                    View view1 = findViewById(R.id.my_card5);
+                    PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                    PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                    info1.bottomMarginPercent=0.25f;
+                    info1.widthPercent = 0.10f;
+                    info1.heightPercent=0.10f;
+                    info1.leftMarginPercent=0.54f;
+                    params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                    params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                    view1.setRotation(-10.0f);
+                    view1.bringToFront();
+                    view1.requestLayout();
                 }
                 if(selectedCardArray.get(1).equalsIgnoreCase("value5")){
-                    my_card6.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card6.getLayoutParams();
-                    params.setMargins(-80, 0, 0, 50);
-                    params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                    params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    my_card6.setLayoutParams(params);
-                    my_card6.setRotation(-10.0f);
+                    my_card6.startAnimation(animate_my_player_card);
+                    View view1 = findViewById(R.id.my_card6);
+                    PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                    PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                    info1.bottomMarginPercent=0.25f;
+                    info1.widthPercent = 0.10f;
+                    info1.heightPercent=0.10f;
+                    info1.leftMarginPercent=0.54f;
+                    params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                    params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                    view1.setRotation(-10.0f);
+                    view1.bringToFront();
+                    view1.requestLayout();
                 }
 
                 if(selectedCardArray.get(2).equalsIgnoreCase("value")){
-                    my_card1.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card1.getLayoutParams();
-                    params.setMargins(-60, 0, 0, 50);
-                    params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                    params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    my_card1.setLayoutParams(params);
-                    my_card1.setRotation(10.0f);
+                    my_card1.startAnimation(animate_my_player_card);
+                    View view1 = findViewById(R.id.my_card1);
+                    PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                    PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                    info1.bottomMarginPercent=0.25f;
+                    info1.widthPercent = 0.10f;
+                    info1.heightPercent=0.10f;
+                    info1.leftMarginPercent=0.56f;
+                    params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                    params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                    view1.setRotation(10.0f);
+                    view1.bringToFront();
+                    view1.requestLayout();
                 }
                 if(selectedCardArray.get(2).equalsIgnoreCase("value1")){
-                    my_card2.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card2.getLayoutParams();
-                    params.setMargins(-60, 0, 0, 50);
-                    params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                    params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    my_card2.setLayoutParams(params);
-                    my_card2.setRotation(10.0f);
+                    my_card2.startAnimation(animate_my_player_card);
+                    View view1 = findViewById(R.id.my_card2);
+                    PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                    PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                    info1.bottomMarginPercent=0.25f;
+                    info1.widthPercent = 0.10f;
+                    info1.heightPercent=0.10f;
+                    info1.leftMarginPercent=0.56f;
+                    params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                    params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                    view1.setRotation(10.0f);
+                    view1.bringToFront();
+                    view1.requestLayout();
                 }
                 if(selectedCardArray.get(2).equalsIgnoreCase("value2")){
-                    my_card3.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card3.getLayoutParams();
-                    params.setMargins(-60, 0, 0, 50);
-                    params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                    params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    my_card3.setLayoutParams(params);
-                    my_card3.setRotation(10.0f);
+                    my_card3.startAnimation(animate_my_player_card);
+                    View view1 = findViewById(R.id.my_card3);
+                    PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                    PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                    info1.bottomMarginPercent=0.25f;
+                    info1.widthPercent = 0.10f;
+                    info1.heightPercent=0.10f;
+                    info1.leftMarginPercent=0.56f;
+                    params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                    params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                    view1.setRotation(10.0f);
+                    view1.bringToFront();
+                    view1.requestLayout();
                 }
                 if(selectedCardArray.get(2).equalsIgnoreCase("value3")){
-                    my_card4.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card4.getLayoutParams();
-                    params.setMargins(-60, 0, 0, 50);
-                    params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                    params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    my_card4.setLayoutParams(params);
-                    my_card4.setRotation(10.0f);
+                    my_card4.startAnimation(animate_my_player_card);
+                    View view1 = findViewById(R.id.my_card4);
+                    PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                    PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                    info1.bottomMarginPercent=0.25f;
+                    info1.widthPercent = 0.10f;
+                    info1.heightPercent=0.10f;
+                    info1.leftMarginPercent=0.56f;
+                    params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                    params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                    view1.setRotation(10.0f);
+                    view1.bringToFront();
+                    view1.requestLayout();
                 }
                 if(selectedCardArray.get(2).equalsIgnoreCase("value4")){
-                    my_card5.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card5.getLayoutParams();
-                    params.setMargins(-60, 0, 0, 50);
-                    params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                    params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    my_card5.setLayoutParams(params);
-                    my_card5.setRotation(10.0f);
+                    my_card5.startAnimation(animate_my_player_card);
+                    View view1 = findViewById(R.id.my_card5);
+                    PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                    PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                    info1.bottomMarginPercent=0.25f;
+                    info1.widthPercent = 0.10f;
+                    info1.heightPercent=0.10f;
+                    info1.leftMarginPercent=0.56f;
+                    params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                    params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                    view1.setRotation(10.0f);
+                    view1.bringToFront();
+                    view1.requestLayout();
                 }
                 if(selectedCardArray.get(2).equalsIgnoreCase("value5")){
-                    my_card6.startAnimation(animations);
-                    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) my_card6.getLayoutParams();
-                    params.setMargins(-60, 0, 0, 50);
-                    params.addRule(RelativeLayout.CENTER_IN_PARENT);
-                    params.addRule(RelativeLayout.RIGHT_OF, R.id.rl_myplayer);
-                    my_card6.setLayoutParams(params);
-                    my_card6.setRotation(10.0f);
+                    my_card6.startAnimation(animate_my_player_card);
+                    View view1 = findViewById(R.id.my_card1);
+                    PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
+                    PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
+                    info1.bottomMarginPercent=0.25f;
+                    info1.widthPercent = 0.10f;
+                    info1.heightPercent=0.10f;
+                    info1.leftMarginPercent=0.56f;
+                    params1.addRule(RelativeLayout.ALIGN_TOP,R.id.table);
+                    params1.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                    view1.setRotation(10.0f);
+                    view1.bringToFront();
+                    view1.requestLayout();
                 }
                             gobtn.setVisibility(View.GONE);
                     }
