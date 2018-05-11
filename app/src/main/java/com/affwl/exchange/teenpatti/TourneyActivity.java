@@ -36,13 +36,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 @SuppressWarnings( "deprecation" )
-public class TourneyActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
+public class TourneyActivity extends AppCompatActivity implements View.OnClickListener{
     ImageView handle_right, backbtn,infobtn,infoclosebtn,profile,chatclosebtn,chatclosebtn2,closebtn_tourney_leadboard,leaderboard_tourneybtn,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn;
     TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,backtolobby,nametext,code;
     PopupWindow popupWindow,infopopupWindow,chatpopupWindow,ustatuspopupWindow,dealerpopupWindow,oustatuspopupWindow,sendmsgpopupWindow,chngdpopupWindow,tourney_leadboardpopupWindow;
     Button msgbtn,blockbtn;
-    RelativeLayout relativeLayout,relativeLayout2,relativeLayout3;
-    DrawerLayout tourneytble;
+    RelativeLayout relativeLayout,relativeLayout2,relativeLayout3,tourneytble;
     Session session;
     int minteger = 0;
     NavigationView navigationView;
@@ -65,17 +64,6 @@ public class TourneyActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tourney);
 
-        handle_right = findViewById(R.id.handle_right);
-        handle_right.setOnClickListener(this);
-
-//        Toggle drawer
-        tourneytble = (DrawerLayout) findViewById(R.id.tourneytble);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, tourneytble, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        tourneytble.addDrawerListener(toggle);
-        toggle.syncState();
-
-        navigationView = (NavigationView) findViewById(R.id.teen_nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
         relativeLayout= (RelativeLayout) findViewById(R.id.tourneyrecycler);
 
@@ -485,7 +473,7 @@ public class TourneyActivity extends AppCompatActivity implements View.OnClickLi
         //////////////// Popup for Backbutton ///////////////////
 
         backbtn=(ImageView) findViewById(R.id.back);
-        tourneytble = (DrawerLayout) findViewById(R.id.tourneytble);
+        tourneytble = (RelativeLayout) findViewById(R.id.tourneytble);
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -525,7 +513,7 @@ public class TourneyActivity extends AppCompatActivity implements View.OnClickLi
         //////////////// Popup for InfoButton ///////////////////
 
         infobtn=(ImageView) findViewById(R.id.info);
-        tourneytble = (DrawerLayout) findViewById(R.id.tourneytble);
+        tourneytble = (RelativeLayout) findViewById(R.id.tourneytble);
 
         infobtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -680,7 +668,7 @@ public class TourneyActivity extends AppCompatActivity implements View.OnClickLi
         //////////////// Popup for Dealer ///////////////////
 
         dealerbtn=(ImageView) findViewById(R.id.dealer);
-        tourneytble = (DrawerLayout) findViewById(R.id.tourneytble);
+        tourneytble = (RelativeLayout) findViewById(R.id.tourneytble);
 
         dealerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -819,13 +807,13 @@ public class TourneyActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     /////////// Slider /////////////
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.handle_right:
-                tourneytble.openDrawer(navigationView);
-                break;
-        }
-    }
+//    public void onClick(View v) {
+//        switch (v.getId()){
+//            case R.id.handle_right:
+//                tourneytble.openDrawer(navigationView);
+//                break;
+//        }
+//    }
 
 
     @Override
@@ -876,11 +864,8 @@ public class TourneyActivity extends AppCompatActivity implements View.OnClickLi
 
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+    public void onClick(View v) {
     }
-
-
 }
 
 

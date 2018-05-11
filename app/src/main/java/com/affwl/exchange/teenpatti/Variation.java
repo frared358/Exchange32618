@@ -36,13 +36,12 @@ import android.widget.Toast;
 import com.affwl.exchange.R;
 
 @SuppressWarnings( "deprecation" )
-public class Variation extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
+public class Variation extends AppCompatActivity implements View.OnClickListener{
     ImageView handle_right, backbtn,infobtn,infoclosebtn,profile,chatclosebtn,chatclosebtn2,themebtn,themeclosebtn,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn,pdealerbtn;
     TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,nametext,backtolobby,code;
     PopupWindow popupWindow,infopopupWindow,chatpopupWindow,themepopupWindow,ustatuspopupWindow,dealerpopupWindow,oustatuspopupWindow,sendmsgpopupWindow,chngdpopupWindow,selectvariationpopupWindow;
     Button msgbtn,blockbtn;
-    RelativeLayout relativeLayout2,relativeLayout3;
-    DrawerLayout variationtble;
+    RelativeLayout relativeLayout2,relativeLayout3,variationtble;
     NavigationView navigationView;
     public int counter=15;
     public int counter4=15;
@@ -73,17 +72,6 @@ public class Variation extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_variation);
 
-        handle_right = findViewById(R.id.handle_right);
-        handle_right.setOnClickListener(this);
-
-
-        variationtble = (DrawerLayout) findViewById(R.id.variationtble);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, variationtble, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        variationtble.addDrawerListener(toggle);
-        toggle.syncState();
-
-        navigationView = (NavigationView) findViewById(R.id.teen_nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
         relativeLayout= (PercentRelativeLayout) findViewById(R.id.variationrecycler);
         loadingPopup();
 
@@ -495,7 +483,7 @@ public class Variation extends AppCompatActivity implements View.OnClickListener
 
 
         backbtn=(ImageView) findViewById(R.id.back);
-        variationtble = (DrawerLayout) findViewById(R.id.variationtble);
+        variationtble = (RelativeLayout) findViewById(R.id.variationtble);
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -536,7 +524,7 @@ public class Variation extends AppCompatActivity implements View.OnClickListener
         //////////////// Popup for InfoButton ///////////////////
 
         infobtn=(ImageView) findViewById(R.id.info);
-        variationtble = (DrawerLayout) findViewById(R.id.variationtble);
+        variationtble = (RelativeLayout) findViewById(R.id.variationtble);
 
         infobtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -637,7 +625,7 @@ public class Variation extends AppCompatActivity implements View.OnClickListener
         // Onclick on playerdealer button
 
         pdealerbtn=(ImageView)findViewById(R.id.playerdealervar);
-        variationtble = (DrawerLayout) findViewById(R.id.variationtble);
+        variationtble = (RelativeLayout) findViewById(R.id.variationtble);
         pdealerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -763,7 +751,7 @@ public class Variation extends AppCompatActivity implements View.OnClickListener
         //////////////// Popup for Dealer ///////////////////
 
         dealerbtn=(ImageView) findViewById(R.id.dealer);
-        variationtble = (DrawerLayout) findViewById(R.id.variationtble);
+        variationtble = (RelativeLayout) findViewById(R.id.variationtble);
         dealerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -869,15 +857,6 @@ public class Variation extends AppCompatActivity implements View.OnClickListener
         });
     }
 
-    /////////// Slider /////////////
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.handle_right:
-                variationtble.openDrawer(navigationView);
-                break;
-        }
-    }
-
 
     @Override
     public void onBackPressed() {
@@ -911,16 +890,6 @@ public class Variation extends AppCompatActivity implements View.OnClickListener
             }
         });
     }
-
-
-
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
-    }
-
-
 
 //    Implementing startup popup selecting variation
 
@@ -1007,5 +976,9 @@ public class Variation extends AppCompatActivity implements View.OnClickListener
 //        vrelative.setVisibility(View.VISIBLE);
 //        vrelative.startAnimation(animZoomOut);
 //        windows.dismiss();
+    }
+
+    @Override
+    public void onClick(View v) {
     }
 }

@@ -37,13 +37,12 @@ import org.w3c.dom.DOMImplementation;
 @SuppressWarnings( "deprecation" )
 @SuppressLint("WrongViewCast")
 
-public class PrivateActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
+public class PrivateActivity extends AppCompatActivity implements View.OnClickListener{
     ImageView handle_right, backbtn,infobtn,infoclosebtn,profile,plus_btn,minus_btn,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn;;
     TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,backtolobby,nametext,code,blind_btn;
     PopupWindow popupWindow,infopopupWindow,chatpopupWindow,ustatuspopupWindow,dealerpopupWindow,oustatuspopupWindow,sendmsgpopupWindow,chngdpopupWindow;
     Button msgbtn,blockbtn;
-    RelativeLayout relativeLayout,relativeLayout2,relativeLayout3;
-    DrawerLayout privatetble;
+    RelativeLayout relativeLayout,relativeLayout2,relativeLayout3,privatetble;
     Session session;
     NavigationView navigationView;
 
@@ -64,17 +63,17 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_private);
 
-        handle_right = findViewById(R.id.handle_right);
-        handle_right.setOnClickListener(this);
-
-
-        privatetble = (DrawerLayout) findViewById(R.id.privatetble);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, privatetble, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        privatetble.addDrawerListener(toggle);
-        toggle.syncState();
-
-        navigationView = (NavigationView) findViewById(R.id.teen_nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+//        handle_right = findViewById(R.id.handle_right);
+//        handle_right.setOnClickListener(this);
+//
+//
+//        privatetble = (DrawerLayout) findViewById(R.id.privatetble);
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, privatetble, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        privatetble.addDrawerListener(toggle);
+//        toggle.syncState();
+//
+//        navigationView = (NavigationView) findViewById(R.id.teen_nav_view);
+//        navigationView.setNavigationItemSelectedListener(this);
 
         display_myplayer_bind=findViewById(R.id.display_myplayer_bind);
 
@@ -485,7 +484,7 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
         //////////////// Popup for Backbutton ///////////////////
 
         backbtn=(ImageView) findViewById(R.id.back);
-        privatetble = (DrawerLayout) findViewById(R.id.privatetble);
+        privatetble = (RelativeLayout) findViewById(R.id.privatetble);
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -525,7 +524,7 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
         //////////////// Popup for InfoButton ///////////////////
 
         infobtn=(ImageView) findViewById(R.id.info);
-        privatetble = (DrawerLayout) findViewById(R.id.privatetble);
+        privatetble = (RelativeLayout) findViewById(R.id.privatetble);
 
         infobtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -679,7 +678,7 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
         //////////////// Popup for Dealer ///////////////////
 
         dealerbtn=(ImageView) findViewById(R.id.dealer);
-        privatetble = (DrawerLayout) findViewById(R.id.privatetble);
+        privatetble = (RelativeLayout) findViewById(R.id.privatetble);
 
         dealerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -787,13 +786,13 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     /////////// Slider /////////////
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.handle_right:
-                privatetble.openDrawer(navigationView);
-                break;
-        }
-    }
+//    public void onClick(View v) {
+//        switch (v.getId()){
+//            case R.id.handle_right:
+//                privatetble.openDrawer(navigationView);
+//                break;
+//        }
+//    }
 
 
     @Override
@@ -841,8 +840,7 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
 
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+    public void onClick(View v) {
+        return;
     }
-
 }
