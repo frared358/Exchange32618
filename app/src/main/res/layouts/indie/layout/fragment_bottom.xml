@@ -5,6 +5,7 @@
     android:background="@color/colorPrimary"
     android:gravity="center"
     android:padding="2dp"
+
     tools:context=".indie.BottomFragment">
 
     <TextView

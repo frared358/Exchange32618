@@ -93,10 +93,10 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
 
         holder.txtVDateTime.setText(matchData.dateTime.replaceFirst(" ","\n"));
         if(matchData.type.equalsIgnoreCase("lay")){
-            holder.llMatchList.setBackgroundColor(ContextCompat.getColor(contextMatch, R.color.colorRedBet));
+            holder.llMatchList.setBackgroundColor(ContextCompat.getColor(contextMatch, R.color.colorRedBet1));
         }
         else {
-            holder.llMatchList.setBackgroundColor(ContextCompat.getColor(contextMatch, R.color.colorBlueBet));
+            holder.llMatchList.setBackgroundColor(ContextCompat.getColor(contextMatch, R.color.colorBlueBet1));
         }
 
         if(matchData.bol){

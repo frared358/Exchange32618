@@ -127,7 +127,7 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
                 String score = fancy.yesScore+"/"+fancy.yesRate;
                 fancyRate = fancy.yesRate;
                 fancyScore = fancy.yesScore;
-                dialogBetPlace(fancy.RunnerName,R.color.colorBlueBet,score,"yes");
+                dialogBetPlace(fancy.RunnerName,R.color.colorBlueBet1,score,"yes");
             }
         });
 
@@ -137,7 +137,7 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
                 String score = fancy.noScore+"/"+fancy.noRate;
                 fancyRate = fancy.noRate;
                 fancyScore = fancy.noScore;
-                dialogBetPlace(fancy.RunnerName,R.color.colorRedBet,score,"no");
+                dialogBetPlace(fancy.RunnerName,R.color.colorRedBet1,score,"no");
             }
         });
 
@@ -189,11 +189,11 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
                 tvScore.setText(KeyFancyBook.get(i));
                 tvAmt.setText(ValueFancyBook.get(i));
                 if(Integer.parseInt(ValueFancyBook.get(i))<0){
-                    tvScore.setBackgroundColor(ContextCompat.getColor(contextFancy,R.color.colorRedBet));
-                    tvAmt.setBackgroundColor(ContextCompat.getColor(contextFancy,R.color.colorRedBet));
+                    tvScore.setBackgroundColor(ContextCompat.getColor(contextFancy,R.color.colorRedBet1));
+                    tvAmt.setBackgroundColor(ContextCompat.getColor(contextFancy,R.color.colorRedBet1));
                 }else {
-                    tvScore.setBackgroundColor(ContextCompat.getColor(contextFancy,R.color.colorBlueBet));
-                    tvAmt.setBackgroundColor(ContextCompat.getColor(contextFancy,R.color.colorBlueBet));
+                    tvScore.setBackgroundColor(ContextCompat.getColor(contextFancy,R.color.colorBlueBet1));
+                    tvAmt.setBackgroundColor(ContextCompat.getColor(contextFancy,R.color.colorBlueBet1));
                 }
 
                 llFAncyBookKey.addView(tvScore);

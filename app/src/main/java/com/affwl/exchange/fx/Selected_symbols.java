@@ -45,6 +45,7 @@ public class Selected_symbols extends AppCompatActivity {
 
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -80,13 +81,7 @@ public class Selected_symbols extends AppCompatActivity {
                 return false;
             }
         });
-        mylistview.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent event) {
-                Toast.makeText(Selected_symbols.this, "Dragging", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        });
+
 
 
     }
@@ -102,13 +97,7 @@ public class Selected_symbols extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
 
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.quotes_menu1, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -137,6 +126,8 @@ public class Selected_symbols extends AppCompatActivity {
         DeleteNow adapter = new DeleteNow(getApplicationContext(), rowItems5);
         mylistview.setAdapter(adapter);
         }
+
+
         //checkbox
         return super.onOptionsItemSelected(item);
     }

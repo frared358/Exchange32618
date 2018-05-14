@@ -22,7 +22,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class TeenPattiAlertFragment extends Fragment implements View.OnClickListener {
 
-    TextView teenpatti_sounds,ringtone_teenpatti;
+    TextView teenpatti_sounds,ringtone_teenpatti,teen_patti_messages;
     private int TONE_PICKER=907;
     Ringtone currentRingtone;
     Uri currentTone;
@@ -35,7 +35,10 @@ public class TeenPattiAlertFragment extends Fragment implements View.OnClickList
 
         teenpatti_sounds=view.findViewById(R.id.teenpatti_sounds);
         ringtone_teenpatti=view.findViewById(R.id.ringtone_teenpatti);
+        teen_patti_messages=view.findViewById(R.id.teen_patti_messages);
+
         teenpatti_sounds.setOnClickListener(this);
+        teen_patti_messages.setOnClickListener(this);
         return view;
     }
 
@@ -53,7 +56,12 @@ public class TeenPattiAlertFragment extends Fragment implements View.OnClickList
                 intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
                 startActivityForResult(intent, TONE_PICKER);
                 break;
+
+            case R.id.teen_patti_messages:
+                startActivity(new Intent(v.getContext(),MessageMainActivity.class));
+                break;
         }
+
     }
 
     @Override

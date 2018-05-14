@@ -24,7 +24,7 @@ import static android.app.Activity.RESULT_OK;
 
 
 public class CryptoAlertFragment extends Fragment implements View.OnClickListener {
-    TextView crypto_sounds,ringtone_crypto;
+    TextView crypto_sounds,ringtone_crypto,crypto_messages;
     private int TONE_PICKER=901;
     Ringtone currentRingtone;
     Uri currentTone;
@@ -36,7 +36,11 @@ public class CryptoAlertFragment extends Fragment implements View.OnClickListene
 
         crypto_sounds=view.findViewById(R.id.crypto_sounds);
         ringtone_crypto=view.findViewById(R.id.ringtone_crypto);
+        crypto_messages=view.findViewById(R.id.crypto_messages);
+
+        crypto_messages.setOnClickListener(this);
         crypto_sounds.setOnClickListener(this);
+
         return view;
     }
 
@@ -53,6 +57,10 @@ public class CryptoAlertFragment extends Fragment implements View.OnClickListene
                 intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false);
                 intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
                 startActivityForResult(intent, TONE_PICKER);
+                break;
+
+            case R.id.crypto_messages:
+                startActivity(new Intent(v.getContext(),MessageMainActivity.class));
                 break;
         }
     }

@@ -32,16 +32,16 @@ import com.affwl.exchange.R;
 //Add a java class and inherit Adapter
 public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdapter.ProgramingViewHolder> {  //alt+enter (inside Generic)
 
-    //Create Constructor after implementing method
-    private String[] data;
-    View viewdialog;
-    Context ctx;
-    BottomClickSession bcs;
     /**
      * for recyclerview click handler
      */
 
     private static final String TAG = "MainFragment";
+    View viewdialog;
+    Context ctx;
+    BottomClickSession bcs;
+    //Create Constructor after implementing method
+    private String[] data;
 
     public Fx_ProgramingAdapter(String[] data, Context ctx) {
         this.data = data;
@@ -65,6 +65,20 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
         String rate2 = data[position];
         holder.textView1.setText(title);
 
+        /**Subscript and superscript start*/
+        Log.i("Check Now",holder.tvCurrencyLow.getText ().toString ());
+        SpannableStringBuilder cs = new SpannableStringBuilder( "1.40785");      //"X3 + X2"
+        cs.setSpan(new RelativeSizeSpan (0.65f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        cs.setSpan(new SuperscriptSpan (), 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        cs.setSpan(new RelativeSizeSpan(0.45f), 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        holder.tvAdvCurrencyLow.setText(cs);
+
+        SpannableStringBuilder cs1 = new SpannableStringBuilder("1.40785");      //"X3 + X2"
+        cs1.setSpan(new RelativeSizeSpan (0.65f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        cs1.setSpan(new SuperscriptSpan (), 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        cs1.setSpan(new RelativeSizeSpan(0.45f), 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        holder.tvAdvCurrencyHigh.setText(cs1);
+        /**Subscript and superscript end*/
 
 
     }
@@ -80,7 +94,7 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
     /**
      * set click on recyclerView item
      */
-    public class ProgramingViewHolder extends RecyclerView.ViewHolder {   //ALT+Enter
+    public class ProgramingViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {   //ALT+Enter
         TextView textView1, tvCurrencyLow,tvCurrencyHigh,tvAdvCurrencyLow,tvAdvCurrencyHigh;
         CardView demo_card;
         //ImageView imageView;
@@ -138,9 +152,8 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                     });
 
                     llChart.setOnClickListener(new View.OnClickListener() {
-                        private Fx_Chart_Fragment currentFragment;
                         FrameLayout layout = (FrameLayout) ((FxActivity) viewdialog.getContext()).findViewById(R.id.xzz);
-
+                        private Fx_Chart_Fragment currentFragment;
 
                         @Override
                         public void onClick(View v) {
@@ -190,53 +203,60 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
                     });
 
 
+
                     llAVW.setOnClickListener(new View.OnClickListener() {
                         LinearLayout time_spread_layout = ((FxActivity) viewdialog.getContext()).findViewById(R.id.time_spread_layout);
                         LinearLayout low_layout = ((FxActivity) viewdialog.getContext()).findViewById(R.id.low_layout);
                         LinearLayout high_layout = ((FxActivity) viewdialog.getContext()).findViewById(R.id.high_layout);
+                        TextView tvCurrencyLow=((FxActivity) viewdialog.getContext()).findViewById(R.id.tvCurrencyLow);
+                        TextView tvCurrencyHigh=((FxActivity) viewdialog.getContext()).findViewById(R.id.tvCurrencyHigh);
 
                         @Override
                         public void onClick(View v) {
 
-                            if (time_spread_layout.getVisibility() == View.GONE) {
+                            if (time_spread_layout.getVisibility() == View.GONE ) {
 
-                                time_spread_layout.setVisibility(View.VISIBLE);
-                                low_layout.setVisibility(View.VISIBLE);
-                                high_layout.setVisibility(View.VISIBLE);
 
-                                /**Subscript and superscript start*/
-                                Log.i("Check Now",tvCurrencyLow.getText ().toString ());
-                                SpannableStringBuilder cs = new SpannableStringBuilder( "1.40785");      //"X3 + X2"
-                                cs.setSpan(new RelativeSizeSpan (0.65f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                                cs.setSpan(new SuperscriptSpan (), 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                                cs.setSpan(new RelativeSizeSpan(0.45f), 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                                tvAdvCurrencyLow.setText(cs);
+                                //tvCurrencyHigh.setVisibility (View.GONE);
+                                //tvCurrencyLow.setVisibility (View.GONE);
 
-                                SpannableStringBuilder cs1 = new SpannableStringBuilder("1.40785");      //"X3 + X2"
-                                cs1.setSpan(new RelativeSizeSpan (0.65f), 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                                cs1.setSpan(new SuperscriptSpan (), 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                                cs1.setSpan(new RelativeSizeSpan(0.45f), 6, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-                                tvAdvCurrencyHigh.setText(cs1);
+                                time_spread_layout.setVisibility (View.VISIBLE);
+                                low_layout.setVisibility (View.VISIBLE);
+                                high_layout.setVisibility (View.VISIBLE);
+                                tvCurrencyLow.setVisibility (View.GONE);
+                                tvCurrencyHigh.setVisibility (View.GONE);
 
-                                /**Subscript and superscript end*/
-
-                                if (textView1.getText ()=="INR"){
+                             /*   if (tvCurrencyLow.getVisibility ()==View.GONE || tvCurrencyHigh.getVisibility ()==View.GONE ){
                                     tvCurrencyHigh.setVisibility (View.GONE);
                                     tvCurrencyLow.setVisibility (View.GONE);
-                                    //tvAdvCurrencyLow.setVisibility (View.VISIBLE);
-                                    //tvAdvCurrencyHigh.setVisibility (View.VISIBLE);
+                                    tvAdvCurrencyLow.setVisibility (View.VISIBLE);
+                                    tvAdvCurrencyHigh.setVisibility (View.VISIBLE);
+
                                 }
 
-                            } else {
+                            } else if (tvAdvCurrencyLow.getVisibility ()==View.GONE || tvAdvCurrencyHigh.getVisibility ()==View.GONE ){
                                 time_spread_layout.setVisibility(View.GONE);
                                 low_layout.setVisibility(View.GONE);
                                 high_layout.setVisibility(View.GONE);
-                            }
+                                tvCurrencyLow.setVisibility (View.VISIBLE);
+                                tvCurrencyHigh.setVisibility (View.VISIBLE);
+                                //Toast.makeText (viewdialog.getContext (), "Simple view mode", Toast.LENGTH_SHORT).show ();
+                            }*/
 
+
+                            }
+                            else {
+                                time_spread_layout.setVisibility (View.GONE);
+                                low_layout.setVisibility (View.GONE);
+                                high_layout.setVisibility (View.GONE);
+                                tvCurrencyLow.setVisibility (View.VISIBLE);
+                                tvCurrencyHigh.setVisibility (View.VISIBLE);
+
+                            }
                             dialog.dismiss();
 //                            viewdialog.getContext ().startActivity (new Intent (viewdialog.getContext (),FxActivity.class));
 
-//                            Toast.makeText (viewdialog.getContext (), "Advanced view mode", Toast.LENGTH_SHORT).show ();
+                           //Toast.makeText (viewdialog.getContext (), "Advanced view mode", Toast.LENGTH_SHORT).show ();
                         }
                     });
 
@@ -248,6 +268,10 @@ public class Fx_ProgramingAdapter extends RecyclerView.Adapter<Fx_ProgramingAdap
         }
 
 
+        @Override
+        public void onClick(View v) {
+            Toast.makeText (viewdialog.getContext (), "clicked", Toast.LENGTH_SHORT).show ();
+        }
     }
 
 

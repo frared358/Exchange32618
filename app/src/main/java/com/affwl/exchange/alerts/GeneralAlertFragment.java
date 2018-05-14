@@ -25,7 +25,7 @@ import static android.app.Activity.RESULT_OK;
 public class GeneralAlertFragment extends Fragment implements View.OnClickListener {
 
     private boolean loaded;
-    TextView general_sounds,ringtone_general;
+    TextView general_sounds,ringtone_general,general_messages;
     private int TONE_PICKER=903;
     Ringtone currentRingtone;
     Uri currentTone;
@@ -37,6 +37,9 @@ public class GeneralAlertFragment extends Fragment implements View.OnClickListen
 
         general_sounds=view.findViewById(R.id.general_sounds);
         ringtone_general=view.findViewById(R.id.ringtone_general);
+        general_messages=view.findViewById(R.id.general_messages);
+
+        general_messages.setOnClickListener(this);
         general_sounds.setOnClickListener(this);
         return view;
     }
@@ -54,6 +57,10 @@ public class GeneralAlertFragment extends Fragment implements View.OnClickListen
                 intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false);
                 intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
                 startActivityForResult(intent, TONE_PICKER);
+                break;
+
+            case R.id.general_messages:
+                startActivity(new Intent(v.getContext(),MessageMainActivity.class));
                 break;
         }
     }

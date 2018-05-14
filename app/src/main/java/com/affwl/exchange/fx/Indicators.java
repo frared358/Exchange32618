@@ -11,16 +11,23 @@ import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.affwl.exchange.R;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+import static com.affwl.exchange.fx.Fx_Chart_Fragment.rlchartb;
+
 public class Indicators extends AppCompatActivity {
-    ImageButton imageButton_fadd1;
-    CheckBox checkBox;
-    CheckBox checkBox2;
+    ImageView fadd;
+    CheckBox cbindi;
+
+    LinearLayout llmainchart, llindichart;
+    int select=0;
 
 
     @Override
@@ -35,8 +42,13 @@ public class Indicators extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        imageButton_fadd1 = (ImageButton) findViewById(R.id.imageButton_fadd1);
-        imageButton_fadd1.setOnClickListener(new View.OnClickListener() {
+        llmainchart=findViewById(R.id.llmainchart);
+        llindichart=findViewById(R.id.llindichart);
+
+        cbindi=findViewById(R.id.cbindi);
+
+        fadd = (ImageView) findViewById(R.id.fadd);
+        fadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 Intent i = new Intent(v.getContext(), FX_indicator_f_add_Activity.class);
@@ -45,8 +57,9 @@ public class Indicators extends AppCompatActivity {
         });
 
     }
+
     @Override
-    public boolean onSupportNavigateUp() {
+    public boolean onSupportNavigateUp(){
         onBackPressed();
         return true;
     }
@@ -64,18 +77,47 @@ public class Indicators extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        switch (item.getItemId()) {
+//            case R.id.indi_del:
+//                Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
+//                if (checkBox.getVisibility() == View.GONE || checkBox2.getVisibility()==View.GONE) {
+//                    checkBox.setVisibility(View.VISIBLE);
+//                    checkBox2.setVisibility(View.VISIBLE);
+//                    select=1;
+//                }
+//                    if (checkBox.isChecked()) {
+//                        textView17.setVisibility(View.INVISIBLE);
+//                    }
+//                    else if (checkBox2.isChecked()) {
+//                        textView19.setVisibility(View.INVISIBLE);
+//                    }
+//                    else {
+//                        textView17.setVisibility(View.VISIBLE);
+//                        textView19.setVisibility(View.VISIBLE);
+//
+//                    }
+//
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//
+////       else if(checkBox.isChecked())
+////        {
+////            textView17.setVisibility(View.GONE);
+////
+////        }
+////        if(checkBox2.isChecked())
+////        {
+////            textView19.setVisibility(View.GONE);
+////        }
+////
+//        }
+//    }
+}
 
-        if (item.getItemId() == R.id.indi_del) {
-            checkBox = (CheckBox) findViewById(R.id.checkBox);
-            checkBox.setVisibility(View.VISIBLE);
-            checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
-            checkBox2.setVisibility(View.VISIBLE);
 
-        }
-            return super.onOptionsItemSelected(item);
-        }
-    }
 
 

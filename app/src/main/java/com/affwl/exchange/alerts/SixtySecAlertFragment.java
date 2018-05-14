@@ -22,7 +22,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class SixtySecAlertFragment extends Fragment implements View.OnClickListener {
 
-    TextView sixtysec_sounds,ringtone_sixtysec;
+    TextView sixtysec_sounds,ringtone_sixtysec,sixty_sec_messages;
     private int TONE_PICKER=905;
     Ringtone currentRingtone;
     Uri currentTone;
@@ -34,6 +34,9 @@ public class SixtySecAlertFragment extends Fragment implements View.OnClickListe
 
         sixtysec_sounds=view.findViewById(R.id.sixtysec_sounds);
         ringtone_sixtysec=view.findViewById(R.id.ringtone_sixtysec);
+        sixty_sec_messages=view.findViewById(R.id.sixty_sec_messages);
+
+        sixty_sec_messages.setOnClickListener(this);
         sixtysec_sounds.setOnClickListener(this);
         return view;
     }
@@ -51,6 +54,10 @@ public class SixtySecAlertFragment extends Fragment implements View.OnClickListe
                 intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_SILENT, false);
                 intent.putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true);
                 startActivityForResult(intent, TONE_PICKER);
+                break;
+
+            case R.id.sixty_sec_messages:
+                startActivity(new Intent(v.getContext(),MessageMainActivity.class));
                 break;
         }
     }

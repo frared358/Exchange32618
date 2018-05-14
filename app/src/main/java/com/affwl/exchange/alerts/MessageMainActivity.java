@@ -89,10 +89,9 @@ public class MessageMainActivity extends AppCompatActivity {
         tv1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MessageMainActivity.this, "inshallah", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MessageMainActivity.this, MessagePage.class));
+                finish();
             }
         });
-
     }
 }

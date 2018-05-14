@@ -1,18 +1,30 @@
 package com.affwl.exchange.news;
 
+import java.util.Date;
+
 /**
  * Created by user on 3/28/2018.
  */
 
-public class NewsItemDetails {
+public class NewsItemDetails implements Comparable<NewsItemDetails>  {
     String RssHeadlines;
-    String RssDateTime;
+    Date RssDateTime;
     String RssArticle;
+    String RssLinks;
 
-    public NewsItemDetails(String rssHeadlines, String rssDateTime, String rssArticle) {
+
+    public NewsItemDetails(String rssHeadlines, Date rssDateTime, String rssLinks, String rssArticle) {
         RssHeadlines = rssHeadlines;
         RssDateTime = rssDateTime;
         RssArticle = rssArticle;
+        RssLinks = rssLinks;
+    }
+
+    public NewsItemDetails() {
+        RssLinks=null;
+        RssHeadlines=null;
+        RssArticle=null;
+        RssDateTime=null;
     }
 
     public String getRssHeadlines() {
@@ -23,11 +35,11 @@ public class NewsItemDetails {
         RssHeadlines = rssHeadlines;
     }
 
-    public String getRssDateTime() {
+    public Date getRssDateTime() {
         return RssDateTime;
     }
 
-    public void setRssDateTime(String rssDateTime) {
+    public void setRssDateTime(Date rssDateTime) {
         RssDateTime = rssDateTime;
     }
 
@@ -37,5 +49,19 @@ public class NewsItemDetails {
 
     public void setRssArticle(String rssArticle) {
         RssArticle = rssArticle;
+    }
+
+
+    public String getRssLinks() {
+        return RssLinks;
+    }
+
+    public void setRssLinks(String rssLinks) {
+        RssLinks = rssLinks;
+    }
+
+    @Override
+    public int compareTo(NewsItemDetails o) {
+        return getRssDateTime().compareTo(o.getRssDateTime());
     }
 }

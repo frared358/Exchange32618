@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#E0E0E0"
     tools:context="com.affwl.exchange.indie.MarketCurrencyActivity">
 
     <android.support.v7.widget.Toolbar
@@ -21,12 +22,14 @@
         android:id="@+id/drawerLayoutMarketCurrency"
         android:layout_below="@+id/toolbar"
         android:layout_marginBottom="40dp"
+        android:background="#E0E0E0"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#E0E0E0"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -58,6 +61,7 @@
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/txtVInCash"
+                        android:background="#E0E0E0"
                         android:layout_below="@+id/txtVValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -146,6 +150,7 @@
         <android.support.design.widget.NavigationView
             android:id="@+id/navViewMarketCurrency"
             android:layout_width="150dp"
+            android:background="@color/colorGreay"
             android:layout_height="match_parent"
             android:layout_marginRight="100dp"
             android:layout_gravity="start"
@@ -159,5 +164,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="#E0E0E0"
         android:name="com.affwl.exchange.indie.BottomFragment"/>
 </RelativeLayout>

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="3dp"
+    android:background="#E0E0E0"
     tools:context=".indie.FragmentScripSearchFutures">
 
     <LinearLayout

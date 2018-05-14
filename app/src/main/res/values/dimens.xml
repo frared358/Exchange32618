@@ -17,4 +17,11 @@
     <dimen name="sp10">10sp</dimen>
     <dimen name="sp12">12sp</dimen>
     <dimen name="sp15">15sp</dimen>
+
+    <dimen name="card_height">50dp</dimen>
+    <dimen name="card_width">40dp</dimen>
+
+    <dimen name="my_card_height">70dp</dimen>
+    <dimen name="my_card_width">60dp</dimen>
+
 </resources>

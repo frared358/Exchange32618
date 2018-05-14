@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@color/colorBlueBet"
+            android:background="@color/colorBlueBet1"
             android:layout_marginRight="5dp"
             android:layout_weight="1">
 
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@color/colorRedBet"
+            android:background="@color/colorRedBet1"
             android:layout_weight="1">
 
             <TextView

@@ -12,59 +12,61 @@
 
 
     <item
+        android:id="@+id/dolllar1"
         android:icon="@drawable/dol"
         android:title="dollar"
-        app:showAsAction="always">
-
-
-    <menu>
-
-        <item
-            android:id="@+id/it5"
-            android:title="EURUSD"
-            app:showAsAction="always"
-            />
-
-        <item
-            android:id="@+id/it1"
-            android:title="GBPUSD"
-            app:showAsAction="always"
-
-            />
-        <item
-            android:id="@+id/it2"
-            android:title="USDCHF"
-            app:showAsAction="always" />
-
-        <item
-            android:id="@+id/it3"
-            android:title="USDJPY"
-            app:showAsAction="always"
-
-            />
-        <item
-            android:id="@+id/it4"
-            android:title="USDCNH"
-            app:showAsAction="always"
-
-            />
-        <item
-            android:id="@+id/it8"
-            android:title="USDRUB"
-            app:showAsAction="always"
-            />
-        <item
-            android:id="@+id/it6"
-            android:title="AUDUSD"
-            app:showAsAction="always"
-            />
-        <item
-        android:id="@+id/it7"
-        android:title="NZDUSSD"
         app:showAsAction="always"
-            />
+        app:actionViewClass="android.widget.ImageView">
 
 
-    </menu>
+    <!--<menu>-->
+
+        <!--<item-->
+            <!--android:id="@+id/it5"-->
+            <!--android:title="EURUSD"-->
+            <!--app:showAsAction="always"-->
+            <!--/>-->
+
+        <!--<item-->
+            <!--android:id="@+id/it1"-->
+            <!--android:title="GBPUSD"-->
+            <!--app:showAsAction="always"-->
+
+            <!--/>-->
+        <!--<item-->
+            <!--android:id="@+id/it2"-->
+            <!--android:title="USDCHF"-->
+            <!--app:showAsAction="always" />-->
+
+        <!--<item-->
+            <!--android:id="@+id/it3"-->
+            <!--android:title="USDJPY"-->
+            <!--app:showAsAction="always"-->
+
+            <!--/>-->
+        <!--<item-->
+            <!--android:id="@+id/it4"-->
+            <!--android:title="USDCNH"-->
+            <!--app:showAsAction="always"-->
+
+            <!--/>-->
+        <!--<item-->
+            <!--android:id="@+id/it8"-->
+            <!--android:title="USDRUB"-->
+            <!--app:showAsAction="always"-->
+            <!--/>-->
+        <!--<item-->
+            <!--android:id="@+id/it6"-->
+            <!--android:title="AUDUSD"-->
+            <!--app:showAsAction="always"-->
+            <!--/>-->
+        <!--<item-->
+        <!--android:id="@+id/it7"-->
+        <!--android:title="NZDUSSD"-->
+        <!--app:showAsAction="always"-->
+            <!--/>-->
+
+
+    <!--</menu>-->
     </item>
 </menu>

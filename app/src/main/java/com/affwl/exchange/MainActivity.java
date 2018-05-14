@@ -3,8 +3,12 @@ package com.affwl.exchange;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,18 +16,20 @@ import android.widget.TextView;
 import com.affwl.exchange.alerts.AlertsActivity;
 import com.affwl.exchange.binary.Sec60Activity;
 import com.affwl.exchange.fx.FxActivity;
+import com.affwl.exchange.fx.Fx_Fragment_Quotes;
 import com.affwl.exchange.indie.IndieActivity;
 import com.affwl.exchange.news.NewsActivity;
 import com.affwl.exchange.reports.ReportsActivity;
 import com.affwl.exchange.settings.SettingsMainActivity;
 import com.affwl.exchange.sport.SportActivity;
+import com.affwl.exchange.teenpatti.SplashActivity;
 import com.affwl.exchange.trades.TradesActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView txtVIndie,txtV60Sec,txtVsports,fx;
     ImageView imgVIndie,imgV60Sec,imgVsports,imgVsportsCup,imgfx;
-    LinearLayout news_layout,settings_layout,alerts_layout,trade_layout,reports_layout;
+    LinearLayout news_layout,settings_layout,alerts_layout,trade_layout,reports_layout,teenpatti_layout;
 
 
     @Override
@@ -44,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fx=(TextView)findViewById(R.id.fx);
         imgfx=(ImageView)findViewById(R.id.imgfx);
 
+        teenpatti_layout=findViewById(R.id.teenpatti_layout);
         news_layout=findViewById(R.id.news_layout);
         trade_layout=findViewById(R.id.trade_layout);
         reports_layout=findViewById(R.id.reports_layout);
@@ -64,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         reports_layout.setOnClickListener(this);
         settings_layout.setOnClickListener(this);
         alerts_layout.setOnClickListener(this);
+        teenpatti_layout.setOnClickListener(this);
 
     }
 
@@ -80,11 +88,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this,SportActivity.class));
                 break;
             case R.id.fx:case R.id.imgfx:
-                startActivity(new Intent(this,FxActivity.class));
+               startActivity(new Intent(this,FxActivity.class));
                 break;
+//                Fragment currentFragment = new Fragment ();
+//                FragmentManager fragmentManager = getSupportFragmentManager();
+//                FragmentTransaction ft = fragmentManager.beginTransaction();
+//                ft.replace(R.id.xzz, currentFragment);    //content_fx
+              //  ft.commit();
 
             case R.id.news_layout:
                 startActivity(new Intent(this,NewsActivity.class));
+                break;
+
+            case R.id.teenpatti_layout:
+                startActivity(new Intent(this, SplashActivity.class));
                 break;
 
             case R.id.trade_layout:
@@ -113,7 +130,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     void dialogLogout(){
         final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCanceledOnTouchOutside(false);
         dialog.setContentView(R.layout.dialog_logout);
+
 
         TextView txtVOK =  dialog.findViewById(R.id.txtVOK);
         TextView txtVCancel =  dialog.findViewById(R.id.txtVCancel);

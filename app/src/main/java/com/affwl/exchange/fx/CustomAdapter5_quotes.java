@@ -20,7 +20,7 @@ public class CustomAdapter5_quotes extends BaseAdapter {
 	Context context;
 	List<RowItem5_quotes> rowItems5;
 
-	CustomAdapter5_quotes(Context context, List<RowItem5_quotes> rowItems5) {
+	public CustomAdapter5_quotes(Context context, List<RowItem5_quotes> rowItems5) {
 		this.context = context;
 		this.rowItems5 = rowItems5;
 	}

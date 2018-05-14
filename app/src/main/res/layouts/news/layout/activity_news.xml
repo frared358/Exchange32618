@@ -22,8 +22,17 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorRedLight"
+            android:background="@color/colorRedLight1"
             android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/list_rss"
+                android:background="@color/colorRedLight1"
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_height="wrap_content">
+
+            </ListView>
 
             <ImageView
                 android:id="@+id/loading_news"
@@ -32,17 +41,6 @@
                 android:src="@drawable/loading"
                 android:layout_gravity="center"
                 android:layout_centerInParent="true"/>
-
-            <ListView
-                android:id="@+id/list_rss"
-                android:background="@color/colorRedLight"
-                android:layout_width="match_parent"
-                android:padding="5dp"
-                android:layout_height="wrap_content">
-
-
-
-            </ListView>
 
         </RelativeLayout>
 

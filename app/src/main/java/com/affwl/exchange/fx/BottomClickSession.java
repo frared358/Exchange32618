@@ -31,4 +31,5 @@ public class BottomClickSession {
         String val=sharedPreferences.getString("val","");
         return val;
     }
+
 }

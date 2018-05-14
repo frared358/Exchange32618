@@ -20,7 +20,7 @@ TextView textView39;
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder().setDefaultFontPath("fonts/RobotoCondensed-Regular.ttf")
                 .setFontAttrId(R.attr.fontPath).build());
-        setContentView(R.layout.activity_fx_indicator_f_add_);
+        setContentView(R.layout.activity_fx_indicator_f_add);
         android.support.v7.widget.Toolbar toolbar=findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -35,6 +35,11 @@ TextView textView39;
             }
         });
 
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     @Override

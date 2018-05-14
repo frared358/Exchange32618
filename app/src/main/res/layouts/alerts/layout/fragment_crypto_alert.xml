@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:text="text"
         android:id="@+id/ringtone_crypto"
+        android:layout_marginBottom="5dp"
         android:visibility="gone"
         android:textColor="@color/colorWhite"
         android:textSize="15sp"/>
@@ -35,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Messages"
+        android:id="@+id/crypto_messages"
         android:padding="10dp"
         android:textSize="20sp"
        android:textColor="@color/colorWhite"/>

@@ -23,7 +23,7 @@ public class DeleteNow extends BaseAdapter {
     List<RowItem5_quotes> rowItems5;
     ViewHolder holder;
 
-    DeleteNow(Context context, List<RowItem5_quotes> rowItems5) {
+    public DeleteNow(Context context, List<RowItem5_quotes> rowItems5) {
         this.context = context;
         this.rowItems5 = rowItems5;
     }
@@ -92,7 +92,6 @@ public class DeleteNow extends BaseAdapter {
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if(isChecked)
                     {
-
                         row_pos.setIntCheck(1);
                     }
                     else

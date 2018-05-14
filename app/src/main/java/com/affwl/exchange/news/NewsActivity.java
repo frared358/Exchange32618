@@ -7,7 +7,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -32,29 +31,33 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class NewsActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private DrawerLayout drawerLayoutIndieNews;
 
-    String title;
-    String link;
-
     private DatabaseHelper mDBHelper;
     private SQLiteDatabase mDb;
 
     int timeNow;
-    List headlines,newsDateTimes;
     List<NewsItemDetails> newsItemDetailsList;
     List links;
     ProgressDialog progressDialog;
     ImageView loading_news;
+    Animation startRotation;
 
     ListView list_rss;
     ArrayList<String> myList=new ArrayList<>();
+
+    String strHeadlines;
+    String strLinks;
+    Date strDateTime;
 
 
     @Override
@@ -65,7 +68,9 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       initiateComponent();
+        startRotation= AnimationUtils.loadAnimation(this,R.anim.animate_progressbar);
+
+        initiateComponent();
 
     }
 
@@ -135,6 +140,7 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
             case R.id.news_reload:
                 new MyAsyncTask().execute();
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -143,7 +149,8 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
         Bundle bundle = new Bundle();
-        bundle.putString("urLink", links.get(position).toString());
+//        bundle.putString("urLink", links.get(position).toString());
+        bundle.putString("urLink",newsItemDetailsList.get(position).RssLinks);
         Intent i = new Intent(NewsActivity.this, WebActivity.class);
         i.putExtras(bundle);
         startActivity(i);
@@ -155,24 +162,24 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
         protected void onPreExecute() {
             super.onPreExecute();
 
-         /*   progressDialog=new ProgressDialog(NewsActivity.this);
+         /* progressDialog=new ProgressDialog(NewsActivity.this);
             progressDialog.setTitle("Fetching the RSS");
             progressDialog.setMessage("Please Wait ... ");
             progressDialog.setCancelable(false);
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();*/
 
-            Animation startRotation= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.animate_progressbar);
+            loading_news.setVisibility(View.VISIBLE);
             loading_news.startAnimation(startRotation);
         }
 
         @Override
         protected NewsAdapter doInBackground(Object[] params) {
-            headlines = new ArrayList();
-            newsDateTimes=new ArrayList();
             newsItemDetailsList=new ArrayList<>();
             myList.clear();
+            newsItemDetailsList.clear();
 
+//            SimpleDateFormat formatter5=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
             links = new ArrayList();
             try {
                 try {
@@ -203,47 +210,66 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
                         XmlPullParser xpp = factory.newPullParser();
 
                         // We will get the XML from an input stream
-                        xpp.setInput(getInputStream(url), "UTF_8");
-                        boolean insideItem = false;
+                        if(getInputStream(url)!=null) {
+                            xpp.setInput(getInputStream(url), "UTF_8");
+                            boolean insideItem = false;
 
-                        // Returns the type of current event: START_TAG, END_TAG, etc..
-                        int eventType = xpp.getEventType();
+                            // Returns the type of current event: START_TAG, END_TAG, etc..
+                            int eventType = xpp.getEventType();
 //                        Log.i("Checking event"," "+eventType);
 
 
-                        while (eventType != XmlPullParser.END_DOCUMENT) {
-                            if (eventType == XmlPullParser.START_TAG) {
-                                if (xpp.getName().equalsIgnoreCase("item")) {
-                                    insideItem = true;
-                                } else if (xpp.getName().equalsIgnoreCase("title")) {
-                                    if (insideItem)
-                                        headlines.add(xpp.nextText());
-                                    //extract the headline
-                                } else if (xpp.getName().equalsIgnoreCase("pubDate")) {
-                                    if (insideItem)
-                                        newsDateTimes.add(xpp.nextText()); //extract the link of article
-                                } else if (xpp.getName().equalsIgnoreCase("link")) {
-                                    if (insideItem)
-                                        links.add(xpp.nextText()); //extract the link of article
+                            while (eventType != XmlPullParser.END_DOCUMENT) {
+                                if (eventType == XmlPullParser.START_TAG) {
+                                    if (xpp.getName().equalsIgnoreCase("item")) {
+                                        insideItem = true;
+                                    } else if (xpp.getName().equalsIgnoreCase("title")) {
+                                        if (insideItem)
+                                        {
+                                            strHeadlines=xpp.nextText();
+                                        }
+                                        //extract the headline
+                                    } else if (xpp.getName().equalsIgnoreCase("pubDate")) {
+                                        if (insideItem) {
+                                            strDateTime=parseDate(xpp.nextText().trim());
+                                        }
+                                    } else if (xpp.getName().equalsIgnoreCase("link")) {
+                                        if (insideItem) {
+                                            strLinks=xpp.nextText();
+
+                                        }
+                                    }
+                                } else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")) {
+                                    NewsItemDetails newsItem = new NewsItemDetails(strHeadlines,strDateTime,strLinks,"Articles");
+                                    newsItemDetailsList.add(newsItem);
+                                    insideItem = false;
                                 }
-                            } else if (eventType == XmlPullParser.END_TAG && xpp.getName().equalsIgnoreCase("item")) {
-                                insideItem = false;
+                                eventType = xpp.next(); //move to next element
                             }
-                            eventType = xpp.next(); //move to next element
+                        }
+                        else {
+                            Toast.makeText(NewsActivity.this, "No url", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
 
-                    for(int i=0;i<headlines.size();i++) {
-                        NewsItemDetails newsItem = new NewsItemDetails(headlines.get(i).toString(), newsDateTimes.get(i).toString(), "aritcle");
-                        newsItemDetailsList.add(newsItem);
-                    }
+
+                Collections.sort(newsItemDetailsList,Collections.reverseOrder());
+
+                Log.i("Size",""+newsItemDetailsList.size());
+                for(int j=0;j<newsItemDetailsList.size();j++){
+                    Log.i("Tagging",newsItemDetailsList.get(j).RssHeadlines+"====>"+newsItemDetailsList.get(j).RssDateTime);
+                }
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (XmlPullParserException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return null;
@@ -259,8 +285,52 @@ public class NewsActivity extends AppCompatActivity implements AdapterView.OnIte
             }*/
            if(loading_news.getVisibility()==View.VISIBLE)
            {
+               loading_news.clearAnimation();
                loading_news.setVisibility(View.GONE);
            }
+        }
+
+        public Date parseDate(String strDate) throws Exception
+        {
+            if (strDate != null && !strDate.isEmpty())
+            {
+                SimpleDateFormat[] formats =
+                        new SimpleDateFormat[] {
+                                new SimpleDateFormat("yyyy-MM-dd"),
+                                new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss Z"),
+                                new SimpleDateFormat("MM/dd/yyyy"),
+                                new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ"),
+                                new SimpleDateFormat("dd-MM-yy"),
+                                new SimpleDateFormat("dd-MM-yyyy"),
+                                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"),
+                                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS"),
+                                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSZ"),
+                                new SimpleDateFormat("EEEEE MMMMM yyyy HH:mm:ss.SSSZ"),
+                                new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z"),
+                                new SimpleDateFormat("EEE, MMM d, ''yy"),
+                                new SimpleDateFormat("yyyyy.MMMMM.dd GGG hh:mm aaa"),
+                                new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z"),
+                                new SimpleDateFormat("yyMMddHHmmssZ"),
+                                new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ"),
+                                new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"),
+                                new SimpleDateFormat("MM-dd-yyyy")};
+
+                Date parsedDate = null;
+
+                for (int i = 0; i < formats.length; i++)
+                {
+                    try
+                    {
+                        parsedDate = formats[i].parse(strDate);
+                        return parsedDate;
+                    }
+                    catch (ParseException e)
+                    {
+                        continue;
+                    }
+                }
+            }
+            throw new Exception("Unknown date format: '" + strDate + "'");
         }
     }
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E0E0E0"
     tools:context="com.affwl.exchange.fx.Indicators">
-
 
     <android.support.v7.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -22,149 +22,95 @@
         tools:ignore="MissingPrefix"
         fontPath="fonts/RobotoCondensed-Regular.ttf"
         android:id="@+id/toolbar2" />
-    <RelativeLayout
+
+    <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="36dp"
-        android:layout_marginTop="60dp"
-        android:id="@+id/relativeLayout2">
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="43dp"
-            android:layout_marginStart="43dp"
-            android:layout_marginTop="12dp"
-            android:text="MAIN CHART"
-            android:textStyle="bold"
-            android:textColor="#0091EA"/>
-
-        <ImageButton
-            android:id="@+id/imageButton_fadd1"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@+id/textView16"
-            android:layout_marginEnd="53dp"
-            android:layout_marginRight="53dp"
-            android:src="@drawable/ic_add_indicator"
-             />
-        <View
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:minHeight="?attr/actionBarSize"
+        app:navigationContentDescription="@string/app_name"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:id="@+id/message_page_delete_toolbar"
+        android:visibility="gone">
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:padding="2dp"
-            android:layout_marginTop="10dp"
-            android:background="#B0BEC5"
-            android:layout_below="@+id/textView16"
-            android:layout_marginLeft="15dp"
-            android:id="@+id/view3" />
+            android:layout_height="match_parent">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/save_delete"
+                android:src="@drawable/save_delete"
+                android:layout_alignParentLeft="true"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/llmainchart"
+   android:layout_below="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/textView17"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView19"
-            android:layout_alignStart="@+id/textView19"
-            android:layout_below="@+id/view3"
-            android:layout_marginTop="14dp"
-            android:text="Moving Average" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:padding="2dp"
-            android:layout_marginTop="10dp"
-            android:background="#B0BEC5"
-            android:layout_below="@+id/textView17"
-            android:id="@+id/view9" />
-
-        <TextView
-            android:id="@+id/textView18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/textView16"
-            android:layout_alignStart="@+id/textView16"
-            android:layout_below="@+id/view3"
-            android:layout_marginTop="58dp"
             android:textColor="#0091EA"
-            android:textStyle="bold"
-            android:text="INDICATOR WINDOW 1" />
+            android:text="MAIN CHART"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:padding="2dp"
-            android:layout_marginTop="10dp"
-            android:background="#B0BEC5"
-            android:layout_below="@+id/textView16"
-            android:layout_marginLeft="15dp"
-            android:id="@+id/view6" />
-
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_alignLeft="@+id/imageButton_fadd1"
-            android:layout_alignStart="@+id/imageButton_fadd1"
-            android:layout_alignTop="@+id/textView18"
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton_fadd"
             android:src="@drawable/ic_add_indicator" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:padding="2dp"
-            android:layout_marginTop="98dp"
-            android:background="#B0BEC5"
-            android:layout_below="@+id/textView16"
-            android:layout_marginLeft="15dp"
-            android:id="@+id/view7" />
-
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/llindichart"
+        android:layout_margin="5dp"
+        android:layout_below="@+id/llmainchart"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/textView19"
+            android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/textView18"
-            android:layout_alignRight="@+id/textView18"
-            android:layout_below="@+id/imageButton2"
-            android:layout_marginTop="22dp"
-            android:text="Relative Streght Index" />
+            android:textColor="#0091EA"
+            android:text="INDICATOR WINDOW1"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:padding="2dp"
-            android:layout_marginTop="60dp"
-            android:background="#B0BEC5"
-            android:layout_below="@+id/textView18"
-            android:id="@+id/view8" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton_fadd1"
+            android:src="@drawable/ic_add_indicator" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/llindichart"
+        android:id="@+id/llkuchb"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Average Directional Movement Index"/>
 
         <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/view9"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="20dp"
+            android:id="@+id/cbindi"
             android:visibility="gone"
-            android:layout_marginRight="20dp" />
-
-        <CheckBox
-            android:id="@+id/checkBox2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_alignBottom="@+id/textView19"
-            android:layout_alignLeft="@+id/checkBox"
-            android:layout_alignStart="@+id/checkBox" />
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 
-    </RelativeLayout>
+</RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+

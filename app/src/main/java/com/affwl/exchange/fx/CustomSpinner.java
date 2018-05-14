@@ -5,16 +5,20 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,38 +46,44 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class CustomSpinner extends AppCompatActivity implements  OnChartValueSelectedListener,View.OnClickListener {
 
     
-    private LineChart mChart;
+    public ArrayList<SpinnerModel> CustomListViewValuesArr = new ArrayList<SpinnerModel>();
     protected Typeface mTfLight;
 
-    //int mInteger=0;
+    int DeviationValue=0;
     int redvar1;
-    int greenvar1;
-    EditText displayInteger;
-    EditText displayInteger1;
-    ImageView imgVIncrementRed;
-    ImageView decGreen;
-    ImageView incGreen;
-    EditText redValue;
-    EditText greenValue;
+    int greenvar1,devhigh1,devlow1;
 
+    EditText displayInteger,displayDeviation,displayInteger1;
+    ImageView imgVIncrementRed,decGreen,incGreen,ivDevInc;
 
+    EditText redValue,greenValue;
 
+    TextView tvLowValue,tvHighValue;
+    TextView output = null;
+    CustomAdapter4_customspinner adapter;
+    CustomSpinner activity = null;
+    private LineChart mChart;
+    ImageView locButton10;
+    private PopupWindow mDropdown = null;
+    LayoutInflater mInflater;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.spinner_menu, menu);
+        locButton10 = (ImageView) menu.findItem(R.id.dolllar1).getActionView();
+        locButton10.setImageDrawable(getResources().getDrawable(R.drawable.ic_symbol));
+        locButton10.setPadding(2,2,0,2);
+     locButton10.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v){
+             initiatePopupWindow();
+         }
+     });
 
         return true;
 
     }
-
-
-
-    public ArrayList<SpinnerModel> CustomListViewValuesArr = new ArrayList<SpinnerModel>();
-    TextView output = null;
-    CustomAdapter4_customspinner adapter;
-    CustomSpinner activity = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,18 +95,19 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView (R.layout.activity_custom_spinner);
-        
-        
-        
 
+
+        /** for  toolbar  */
         android.support.v7.widget.Toolbar toolbar = findViewById (R.id.toolbar2);
         setSupportActionBar (toolbar);
+        /** for  toolbar backpress */
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         activity = this;
         
         redValue=(EditText)findViewById (R.id.redValue);
-       String var= redValue.getText ().toString ();
+        String var= redValue.getText ().toString ();
         redvar1=Integer.parseInt (var);
 
         greenValue=(EditText)findViewById (R.id.greenValue);
@@ -105,12 +116,37 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
 
 
 
+        tvHighValue=(TextView)findViewById (R.id.tvHighValue);
+        String devhigh=tvHighValue.getText ().toString ();
+        devhigh1=Integer.parseInt (devhigh);
+
+        tvLowValue=(TextView)findViewById (R.id.tvLowValue);
+        String devlow=tvLowValue.getText ().toString ();
+        devlow1=Integer.parseInt (devlow);
+
+
+
+
+
         Spinner SpinnerExample = (Spinner) findViewById (R.id.spinner);
         //output = (TextView) findViewById(R.id.output);
+
+
+        ivDevInc=findViewById (R.id.ivDevInc);
+        ivDevInc.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v){
+
+            incrementDeviation();
+
+        }
+    });
+
 
         decGreen=findViewById (R.id.decGreen);
         incGreen=findViewById (R.id.incGreen);
         displayInteger1 =  findViewById (R.id.greenValue);
+
 
         incGreen.setOnClickListener (new View.OnClickListener () {
             @Override
@@ -121,7 +157,7 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
 
 
         displayInteger =  findViewById (R.id.redValue);
-
+        displayDeviation = findViewById(R.id.etDevValue);
 
         imgVIncrementRed = findViewById (R.id.imgVIncrementRed);
         imgVIncrementRed.setOnClickListener (new View.OnClickListener (){
@@ -211,13 +247,13 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
         xAxis.setDrawGridLines(false);
         xAxis.setDrawAxisLine(false);
 
-        YAxis leftAxis = mChart.getAxisLeft();
-        leftAxis.setTypeface(mTfLight);
-        leftAxis.setTextColor(ColorTemplate.getHoloBlue());
-        leftAxis.setAxisMaximum(200f);
-        leftAxis.setAxisMinimum(0f);
-        leftAxis.setDrawGridLines(true);
-        leftAxis.setGranularityEnabled(true);
+//        YAxis leftAxis = mChart.getAxisLeft();
+//        leftAxis.setTypeface(mTfLight);
+//        leftAxis.setTextColor(ColorTemplate.getHoloBlue());
+//        leftAxis.setAxisMaximum(200f);
+//        leftAxis.setAxisMinimum(0f);
+//        leftAxis.setDrawGridLines(true);
+//        leftAxis.setGranularityEnabled(true);
 
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setTypeface(mTfLight);
@@ -229,6 +265,38 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
         rightAxis.setGranularityEnabled(false);
 
         /** Line chart End  */
+    }
+    private PopupWindow initiatePopupWindow() {
+
+        try {
+            mInflater = (LayoutInflater) getApplicationContext()
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View layout = mInflater.inflate(R.layout.activity_chart_dollar_activity, null);
+
+            //If you want to add any listeners to your textviews, these are two //textviews.
+            final TextView itemA = (TextView) layout.findViewById(R.id.ItemA);
+
+            final TextView itemB = (TextView) layout.findViewById(R.id.ItemB);
+
+            layout.measure(View.MeasureSpec.UNSPECIFIED,
+                    View.MeasureSpec.UNSPECIFIED);
+            mDropdown = new PopupWindow(layout, FrameLayout.LayoutParams.WRAP_CONTENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT,true);
+            Drawable background = getResources().getDrawable(android.R.drawable.alert_light_frame);
+            mDropdown.setBackgroundDrawable(background);
+            mDropdown.showAsDropDown(locButton10 , -10, -115);
+//            mDropdown.showAtLocation(view, Gravity.LEFT, 100, 100);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mDropdown;
+    }
+
+    /** for  toolbar backpress */
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     @Override
@@ -411,7 +479,7 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
 
     }
 
-
+//Increment/Decrement  for green value *
     public  void incrementRed1()
     {
         greenvar1 = greenvar1 + 1;
@@ -426,6 +494,23 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
 
         display1 (greenvar1);
     }
+
+    /** Increment/Decrement  for Deviation */
+    public  void incrementDeviation()
+    {
+        DeviationValue = DeviationValue + 1;
+        displayDiviation(DeviationValue);
+
+    }
+    public  void decrementDeviation(View view)
+    {
+        DeviationValue = DeviationValue - 1;
+        displayDiviation(DeviationValue);
+
+    }
+
+
+
 
     private void  display(int number)
     {
@@ -450,6 +535,16 @@ public class CustomSpinner extends AppCompatActivity implements  OnChartValueSel
         }
     }
 
+    private void  displayDiviation(int number)
+    {
+        Log.i ("TAGf",""+number);
+        try {
+            displayDeviation.setText(String.valueOf (number));
+        } catch (Exception e) {
+            e.printStackTrace ();
+            Log.i("TAGf",""+e);
+        }
+    }
 
     @Override
     public void onClick(View v) {
