@@ -247,6 +247,9 @@ public class DataHolder {
         }
     }
 
+    public static ArrayList<String> ArrayListCustomeName = new ArrayList<String>();
+    public static List<Boolean> ListDeleted = new ArrayList<Boolean>();
+
     public static final String ACTION_SEND_ACTIVE = "com.affwl.exchange.sport.RESPONSE";
     public static final String ACTION_SEND_FANCY_BOOKMAKING = "com.affwl.exchange.sport.FANCY_BOOKMAKING";
     public static final String keySIGNALR = "SIGNALR";

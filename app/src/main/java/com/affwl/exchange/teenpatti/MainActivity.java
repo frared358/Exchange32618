@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final Animation Animchipsright = AnimationUtils.loadAnimation(MainActivity.this, R.anim.translate_chips_right);
 
         mainychips=findViewById(R.id.mainychips);
-        mainychips.setOnClickListener(this);
-        mainychips.startAnimation(Animchipsright);
+//        mainychips.setOnClickListener(this);
+//        mainychips.startAnimation(Animchipsright);
 
         mainlimegchips=findViewById(R.id.mainlimegchips);
         mainlimegchips.setOnClickListener(this);
@@ -104,7 +104,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         yellowchiplayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                yellowchiplayout.startAnimation(Animchipsright);
+                yellowchiplayout.bringToFront();
+                yellowchiplayout.startAnimation(animatechips1);
             }
         });
         orangechipslayout = findViewById(R.id.orangechipslayout);
@@ -1188,11 +1189,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.mainychips:
+        /*    case R.id.mainychips:
                 startActivity(new Intent(MainActivity.this, LoadingScreen_teenpatti.class));
                 finish();
                 break;
-
+*/
             case R.id.mainlimegchips:
                 startActivity(new Intent(MainActivity.this, Variation.class));
                 finish();
