@@ -70,7 +70,7 @@
         android:gravity="center"
         android:layout_marginTop="5dp">
         <SeekBar
-            android:id="@+id/seekBar2"
+            android:id="@+id/seekBar_private"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             />

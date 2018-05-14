@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.percent.PercentLayoutHelper;
@@ -26,6 +27,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -38,7 +40,7 @@ import com.affwl.exchange.R;
 @SuppressWarnings( "deprecation" )
 public class Variation extends AppCompatActivity implements View.OnClickListener{
     ImageView handle_right, backbtn,infobtn,infoclosebtn,profile,chatclosebtn,chatclosebtn2,themebtn,themeclosebtn,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn,pdealerbtn;
-    TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,nametext,backtolobby,code;
+    TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,nametext,backtolobby,code,show_btn;
     PopupWindow popupWindow,infopopupWindow,chatpopupWindow,themepopupWindow,ustatuspopupWindow,dealerpopupWindow,oustatuspopupWindow,sendmsgpopupWindow,chngdpopupWindow,selectvariationpopupWindow;
     Button msgbtn,blockbtn;
     RelativeLayout relativeLayout2,relativeLayout3,variationtble;
@@ -47,7 +49,7 @@ public class Variation extends AppCompatActivity implements View.OnClickListener
     public int counter4=15;
     public int counter5=15;
     Session session;
-
+    LinearLayout below_layout;
     PercentRelativeLayout relativeLayout;
     TextView display_myplayer_bind;
     Animation animations;
@@ -62,7 +64,7 @@ public class Variation extends AppCompatActivity implements View.OnClickListener
             animatecard9, animatecard10, animatecard11, animatecard12, animatecard13, animatecard14, animatecard15;
 
     TextView btn_see_cards;
-
+    PercentRelativeLayout rl_bottom_caption;
     int minteger = 0;
     RadioGroup radioGroup;
     RadioButton radiojokerbtn,radioakbtn,radioxbootbtn,radiohukumbtn;
@@ -77,14 +79,16 @@ public class Variation extends AppCompatActivity implements View.OnClickListener
 
 
         display_myplayer_bind=findViewById(R.id.display_myplayer_bind);
+        rl_bottom_caption=findViewById(R.id.rl_bottom_caption);
+        below_layout=findViewById(R.id.below_layout);
         blind_btn=findViewById(R.id.blind);
 //        Animation on blindshow_layout
 //        LinearLayout blindshow_layout=findViewById(R.id.blindshow_layout);
-        TranslateAnimation animationsb = new TranslateAnimation(0.0f, 0.0f,
-                0.0f, -10.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
-        animationsb.setDuration(1000);  // animation duration
-        animationsb.setFillAfter(true);
-        blind_btn.startAnimation(animationsb);
+//        TranslateAnimation animationsb = new TranslateAnimation(0.0f, 0.0f,
+//                0.0f, -10.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
+//        animationsb.setDuration(1000);  // animation duration
+//        animationsb.setFillAfter(true);
+//        blind_btn.startAnimation(animationsb);
 
 //        Implementation of increament amount
         final TextView displayAmount = findViewById(R.id.start_amount);
@@ -122,8 +126,33 @@ public class Variation extends AppCompatActivity implements View.OnClickListener
                 display_myplayer_bind.startAnimation(animations);
                 display_myplayer_bind.setVisibility(View.GONE);
 
+                final Handler handler = new Handler();
+                final Handler handler1 = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        below_layout.setVisibility(View.VISIBLE);
+                        Animation animation = AnimationUtils.loadAnimation(Variation.this, R.anim.translate_up_below_layout);
+//                                animation.setDuration(1000);
+                        animation.setFillAfter(true);
+                        below_layout.startAnimation(animation);
+                    }
+                }, 3000);
+
+                handler1.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Animation animation1 =  AnimationUtils.loadAnimation(Variation.this, R.anim.translate_bottom_blind_chaal);
+//                               animation1.setDuration(1000);
+                        animation1.setFillAfter(true);
+                        rl_bottom_caption.startAnimation(animation1);
+                        rl_bottom_caption.setVisibility(View.GONE);
+                        blind_btn.setEnabled(false);
+                    }
+                }, 1000);
             }
         });
+
 
         //shuffling card animation
         animatecard1 = AnimationUtils.loadAnimation(this, R.anim.translate_top_left);
@@ -460,6 +489,9 @@ public class Variation extends AppCompatActivity implements View.OnClickListener
 
                 btn_see_cards.bringToFront();
                 btn_see_cards.setVisibility(View.VISIBLE);
+
+                rl_bottom_caption.setVisibility(View.VISIBLE);
+                below_layout.setVisibility(View.GONE);
             }
         });
 
