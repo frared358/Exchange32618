@@ -3,6 +3,7 @@ package com.affwl.exchange.sport;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -50,6 +51,8 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
     ArrayList<String> arrayExposerName = new ArrayList<String>();
     ArrayList<String> arrayExposerValue = new ArrayList<String>();
 
+    Handler handler = new Handler();
+
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView txtVRunnerName,txtVBackData,txtVBackChips,txtVLayData,txtVLayChips,txtVExposerData,txtVActiveResult;
         LinearLayout llBack,llLay,llMarketData;
@@ -77,49 +80,56 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
 
     String mRunnerName;
     int bookId,runnerId;
+    double mBack,mChipsBack,mLay,mChipsLay;
 //    String bmBallStatus,bmBook,bmName;
 //    int bmId,bmBackPrice,bmBackSize,bmLayPrice,bmLaySize;
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
         final MarketData book = dataList.get(position);
-        final double mBack,mChipsBack,mLay,mChipsLay;
-        mRunnerName=book.bmName;
-        mBack=book.bmBackPrice;
-        mChipsBack=book.bmBackSize;
-        mLay=book.bmLayPrice;
-        mChipsLay=book.bmLaySize;
-        bookId = book.bmId;
-        runnerId = book.bmRunnerId;
 
-        holder.txtVRunnerName.setText(mRunnerName);
-        holder.txtVBackData.setText(String.valueOf(mBack));
-        holder.txtVBackChips.setText(String.valueOf(mChipsBack));
-        holder.txtVLayData.setText(String.valueOf(mLay));
-        holder.txtVLayChips.setText(String.valueOf(mChipsLay));
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                mRunnerName=book.bmName;
+                mBack=book.bmBackPrice;
+                mChipsBack=book.bmBackSize;
+                mLay=book.bmLayPrice;
+                mChipsLay=book.bmLaySize;
+                bookId = book.bmId;
+                runnerId = book.bmRunnerId;
 
-        //Log.i("ROHITlk",mLay+" "+mChipsLay);
-        if(book.bmBook != null){
-            try {
-                int bookVal = Integer.parseInt(book.bmBook);
-                if(bookVal <0 ){
-                    holder.txtVExposerData.setText(String.valueOf(bookVal));
-                    holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook,R.color.colorRed));
+                holder.txtVRunnerName.setText(mRunnerName);
+                holder.txtVBackData.setText(String.valueOf(mBack));
+                holder.txtVBackChips.setText(String.valueOf(mChipsBack));
+                holder.txtVLayData.setText(String.valueOf(mLay));
+                holder.txtVLayChips.setText(String.valueOf(mChipsLay));
+
+                //Log.i("ROHITlk",mLay+" "+mChipsLay);
+                if(book.bmBook != null){
+                    try {
+                        int bookVal = Integer.parseInt(book.bmBook);
+                        if(bookVal <0 ){
+                            holder.txtVExposerData.setText(String.valueOf(bookVal));
+                            holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook,R.color.colorRed));
+                        }
+                        else if (bookVal>0){
+                            holder.txtVExposerData.setText(String.valueOf(bookVal));
+                            holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook,R.color.colorGreen));
+                        }
+
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                    }catch (NullPointerException n){
+                        n.printStackTrace();
+                    }
                 }
-                else if (bookVal>0){
-                    holder.txtVExposerData.setText(String.valueOf(bookVal));
-                    holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook,R.color.colorGreen));
-                }
 
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
+                new getExposerAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/ExposureBook?mktid="+bookId);
             }
-        }
+        });
 
-        if(!book.bmBallStatus.equalsIgnoreCase("")){
-            holder.txtVActiveResult.setVisibility(View.VISIBLE);
-            holder.llMarketData.setVisibility(View.GONE);
-            holder.txtVActiveResult.setText(book.bmBallStatus);
-        }
+
+
 
         holder.llLay.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -130,7 +140,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
                     }else {
 
                     }*/
-                    dialogBetPlace(mRunnerName,R.color.colorRedBetTrasparent,mLay,"Lay");
+                    dialogBetPlace(mRunnerName,R.color.colorRedBetTrasparent,Double.valueOf(book.bmLayPrice),"Lay");
                     //Log.i("TAG12356","Touchll");
                 }
                 return false;
@@ -146,17 +156,15 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
                 }else {
 
                 }*/
-                    dialogBetPlace(mRunnerName, R.color.colorBlueBetTrasparent, mBack, "Back");
+                    dialogBetPlace(mRunnerName, R.color.colorBlueBetTrasparent, Double.valueOf(book.bmBackPrice), "Back");
                     //Log.i("TAG12356", "Touchll");
                 }
                 return false;
             }
         });
 
-        new getExposerAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/ExposureBook?mktid="+bookId);
+
     }
-
-
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -170,7 +178,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
         return dataList.size();
     }
 
-    TextView txtVRunnerTitle,txtVProfitValue,txtVOddIncrement,txtVOddDecrement,txtVStackDecrement,txtVStackIncrement;
+    TextView txtVProfitValue,txtVOddIncrement,txtVOddDecrement,txtVStackDecrement,txtVStackIncrement;
     EditText editTxtStackValue,editTxtVOddValue;
     Button btnBetPlace;
     LinearLayout llDialogBetPlace;

@@ -65,8 +65,6 @@ public class TournamentActivity extends AppCompatActivity implements View.OnClic
         new TournamentAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Navigation/TournamentList?id="+sportId);
     }
 
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -75,7 +73,7 @@ public class TournamentActivity extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
-
+//
     private class TournamentAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override

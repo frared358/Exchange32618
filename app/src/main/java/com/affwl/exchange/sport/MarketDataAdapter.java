@@ -60,14 +60,15 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
     Context contextMarket;
     private List<MarketData> dataList;
     Handler handlerExposer = new Handler();
+    Handler handler = new Handler();
     ArrayList<String> arrayExposerName = new ArrayList<String>();
     ArrayList<String> arrayExposerValue = new ArrayList<String>();
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtVRunnerName,txtVBackData,txtVBackChips,txtVLayData,txtVLayChips,txtVExposerData;
-        LinearLayout llBack,llLay;
+        TextView txtVRunnerName,txtVBackData,txtVBackChips,txtVLayData,txtVLayChips,txtVExposerData,txtVActiveResult;
+        LinearLayout llBack,llLay,llMarketData;
         public MyViewHolder(View view) {
             super(view);
             txtVRunnerName = view.findViewById(R.id.txtVRunnerName);
@@ -76,8 +77,10 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
             txtVLayData = view.findViewById(R.id.txtVLayData);
             txtVLayChips = view.findViewById(R.id.txtVLayChips);
             txtVExposerData = view.findViewById(R.id.txtVExposerData);
+            txtVActiveResult = view.findViewById(R.id.txtVActiveResult);
             llBack = view.findViewById(R.id.llBack);
             llLay = view.findViewById(R.id.llLay);
+            llMarketData = view.findViewById(R.id.llMarketData);
         }
     }
 
@@ -94,22 +97,36 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
         final MarketData market = dataList.get(position);
         //if (ONCES) {
 
-        mRunnerName=market.RunnerName;
-        mBack=market.Back;
-        mChipsBack=market.ChipsBack;
-        mLay=market.Lay;
-        mChipsLay=market.ChipsLay;
-        mMatchId = market.MatchId;
-        mMarketId = market.MarketId;
-
-        holder.txtVRunnerName.setText(market.RunnerName);
-        holder.txtVBackData.setText(market.Back);
-        holder.txtVBackChips.setText(market.ChipsBack);
-        holder.txtVLayData.setText(market.Lay);
-        holder.txtVLayChips.setText(market.ChipsLay);
 
 
-        new getExposerAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/ExposureBook?mktid"+mMarketId);
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                mRunnerName=market.RunnerName;
+                mBack=market.Back;
+                mChipsBack=market.ChipsBack;
+                mLay=market.Lay;
+                mChipsLay=market.ChipsLay;
+                mMatchId = market.MatchId;
+                mMarketId = market.MarketId;
+
+                holder.txtVRunnerName.setText(market.RunnerName);
+                holder.txtVBackData.setText(market.Back);
+                holder.txtVBackChips.setText(market.ChipsBack);
+                holder.txtVLayData.setText(market.Lay);
+                holder.txtVLayChips.setText(market.ChipsLay);
+
+                new getExposerAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/ExposureBook?mktid"+mMarketId);
+
+                if((market.Back == null || market.Back.equals("")) && (market.Lay==null || market.Lay.equals(""))){
+                    holder.txtVActiveResult.setVisibility(View.VISIBLE);
+                    holder.txtVActiveResult.setText("Suspend");
+                    holder.llMarketData.setVisibility(View.GONE);
+                }
+            }
+        });
+
+
         for(int i =0; i< arrayExposerName.size();i++){
             if(arrayExposerName.get(i).equalsIgnoreCase(market.RunnerName)){
                 holder.txtVExposerData.setText(arrayExposerValue.get(i));
@@ -476,86 +493,8 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
         return (odd-1)*stack;
     }*/
 
-    HubConnection _connection;
-    HubProxy _hub;
-    SignalRFuture<Void> awaitConnection;
-    Handler handler = new Handler();
-    MarketData marketData;
-    String back1,lay1,runner;
-
-    public void displaySignalRData(final String bfid,final TextView backData,final TextView layData,MarketData market){
-        marketData = market;
-
-        Platform.loadPlatformComponent( new AndroidPlatformComponent() );
-        _connection=new HubConnection("http://178.238.236.221:10800");
-        _hub=_connection.createHubProxy("BetAngelHub");
-
-        try {
-            awaitConnection = _connection.start();
-            awaitConnection.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        _hub.invoke("SubscribeMarket",bfid);
-
-        try{
-            _connection.received(new MessageReceivedHandler() {
-                @Override
-                public void onMessageReceived(JsonElement json) {
-
-                    //Log.i("Signalr",""+json);
-                    //Toast.makeText(BetActivity.this, ""+json, Toast.LENGTH_SHORT).show();
-
-//                    handler.postDelayed(new Runnable() {
-//                        @Override
-//                        public void run() {
-//
-//                        }
-//                    },1000);
-
-                    try {
 
 
-                        JSONObject jsonMain = new JSONObject(json.toString());
-                        String jsonData = jsonMain.getString("A");
-                        JSONArray jsonArray = new JSONArray(jsonData);
-                        final JSONObject key = jsonArray.getJSONObject(0);
-                        //Log.i("TAG",key.getString("runner"));
-                        back1 = key.getString("back1");
-                        lay1 = key.getString("lay1");
-                        runner = key.getString("runner");
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    //Toast.makeText(BetActivity.this, ""+json, Toast.LENGTH_SHORT).show();
-                    for(int i=0;i<BetActivity.MarketDataArray.size();i++) {
-                        marketData = dataList.get(i);
-                        if (BetActivity.MarketDataArray.get(i).equalsIgnoreCase(runner)) {
-                            marketData = dataList.get(i);
-                            //Log.i("TAG1234", BetActivity.MarketDataArray.get(i) + " " + runner +" "+marketData.RunnerName);
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    backData.setText(marketData.Back);
-                                    layData.setText(marketData.Lay);
-                                }
-                            },1000);
-                        }
-                    }
-
-                }
-            });
-
-        }catch (Exception e){
-            e.printStackTrace();
-            Log.i("ERROR ",e.toString());
-        }
-    }
 
     public String  BetPlaceApi(String backlay,String marketId,String matchId,String odds,String stake,String profit,String runnerName){
         InputStream inputStream = null;
@@ -715,3 +654,85 @@ public class MarketDataAdapter extends RecyclerView.Adapter<MarketDataAdapter.My
         }
     }
 }
+
+/*
+HubConnection _connection;
+    HubProxy _hub;
+    SignalRFuture<Void> awaitConnection;
+
+    MarketData marketData;
+    String back1,lay1,runner;
+public void displaySignalRData(final String bfid,final TextView backData,final TextView layData,MarketData market){
+        marketData = market;
+
+        Platform.loadPlatformComponent( new AndroidPlatformComponent() );
+        _connection=new HubConnection("http://178.238.236.221:10800");
+        _hub=_connection.createHubProxy("BetAngelHub");
+
+        try {
+            awaitConnection = _connection.start();
+            awaitConnection.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        _hub.invoke("SubscribeMarket",bfid);
+
+        try{
+            _connection.received(new MessageReceivedHandler() {
+                @Override
+                public void onMessageReceived(JsonElement json) {
+
+                    //Log.i("Signalr",""+json);
+                    //Toast.makeText(BetActivity.this, ""+json, Toast.LENGTH_SHORT).show();
+
+//                    handler.postDelayed(new Runnable() {
+//                        @Override
+//                        public void run() {
+//
+//                        }
+//                    },1000);
+
+                    try {
+
+
+                        JSONObject jsonMain = new JSONObject(json.toString());
+                        String jsonData = jsonMain.getString("A");
+                        JSONArray jsonArray = new JSONArray(jsonData);
+                        final JSONObject key = jsonArray.getJSONObject(0);
+                        //Log.i("TAG",key.getString("runner"));
+                        back1 = key.getString("back1");
+                        lay1 = key.getString("lay1");
+                        runner = key.getString("runner");
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    //Toast.makeText(BetActivity.this, ""+json, Toast.LENGTH_SHORT).show();
+                    for(int i=0;i<BetActivity.MarketDataArray.size();i++) {
+                        marketData = dataList.get(i);
+                        if (BetActivity.MarketDataArray.get(i).equalsIgnoreCase(runner)) {
+                            marketData = dataList.get(i);
+                            //Log.i("TAG1234", BetActivity.MarketDataArray.get(i) + " " + runner +" "+marketData.RunnerName);
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    backData.setText(marketData.Back);
+                                    layData.setText(marketData.Lay);
+                                }
+                            },1000);
+                        }
+                    }
+
+                }
+            });
+
+        }catch (Exception e){
+            e.printStackTrace();
+            Log.i("ERROR ",e.toString());
+        }
+    }
+*/

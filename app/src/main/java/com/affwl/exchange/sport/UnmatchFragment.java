@@ -108,7 +108,7 @@ public class UnmatchFragment extends Fragment {
 
             } catch (JSONException e) {
                 e.printStackTrace();
-                DataHolder.unAuthorized(getActivity(),result);
+                //DataHolder.unAuthorized(getActivity(),result);
             }
         }
     }
@@ -122,8 +122,8 @@ public class UnmatchFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String result) {
-            Log.i("Check",""+result);
-            Toast.makeText(UnmatchFragment.this.getContext(), ""+result, Toast.LENGTH_SHORT).show();
+            //Log.i("Check",""+result);
+            //Toast.makeText(UnmatchFragment.this.getContext(), ""+result, Toast.LENGTH_SHORT).show();
             try {
 
                 JSONArray arrayData = new JSONArray(result);
@@ -154,7 +154,7 @@ public class UnmatchFragment extends Fragment {
 
             } catch (JSONException e) {
                 e.printStackTrace();
-                DataHolder.unAuthorized(getActivity(),result);
+                //-DataHolder.unAuthorized(getActivity(),result);
             }
         }
     }

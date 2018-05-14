@@ -70,17 +70,16 @@ import microsoft.aspnet.signalr.client.transport.ServerSentEventsTransport;
 import static com.affwl.exchange.DataHolder._connection;
 import static com.affwl.exchange.DataHolder._hub;
 //Bet
-public class BetActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener/*, ResultReceiverSignalR.Receiver*/ {
+public class BetActivity extends AppCompatActivity implements View.OnClickListener/*, ResultReceiverSignalR.Receiver*/ {
 
     String matchName,matchDate,bfId;
     int marketId,matchId;
     ImageView imgVCheck,imgRightDrawer;
     //DrawerLayout drawerBet;
-    NavigationView navigationView1,navigationView2;
     TextView txtVChipsStake,txtVTitleMatchName,txtLiveSymbol,txtMarketTime;
     ImageView imgVFav;
-    Handler handler;
-    Runnable runnable;
+    Handler handler,handlerLoad;
+
     boolean REFRESH_FANCY = false,REFRESH_BOOKMAKING = false,REFRESH_MARKET=false;
     LinearLayout llBookMaking,llFancyBet,llMatchOddData;
     public static ScrollView scrollBetActivity;
@@ -94,7 +93,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
     FancyAdapter fancyAdapter;
 
     Handler handlerMarketData,handlerBookMaking,handlerFancy;
-    private BroadcastReceiverSignalr broadcastReceiverSignalr;
+    private BroadcastReceiverSignalr broadcastReceiverSignalr,broadcastReceiverBFM;
 
     SignalRFuture<Void> awaitConnection;
 
@@ -149,21 +148,19 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         //DataHolder.setLayout();
         scrollBetActivity = findViewById(R.id.scrollBetActivity);
 
-
-
-
         marketId = getIntent().getIntExtra("marketId",0);
         matchName = getIntent().getStringExtra("matchName");
         matchDate = DataHolder.MATCH_DATE;
         matchId = getIntent().getIntExtra("matchId",0);
         bfId = getIntent().getStringExtra("bfId");
 
+
         String[] date = matchDate.split(" ");
         txtMarketTime.setText(date[1].substring(0,5));
         /*DataHolder.setData(this,"keyMarketId",String.valueOf(marketId));*/
         DataHolder.setData(this,"Match_Id",String.valueOf(matchId));
 
-        //Log.i("TAG4561",matchName+" "+marketId+" "+matchId);
+        Log.i("TAG4561",matchName+" "+marketId+" "+matchId+" "+bfId);
         txtVTitleMatchName = findViewById(R.id.txtVTitleMatchName);
         txtVTitleMatchName.setText(matchName);
 
@@ -171,17 +168,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         llFancyBet = findViewById(R.id.llFancyBet);
         llMatchOddData = findViewById(R.id.llMatchOddData);
 
-
-
-        //Start IntentService
-        Intent intentService = new Intent(this, SignalRService.class);
-        intentService.putExtra("BfId", bfId);
-        if(intentService != null){
-            startService(intentService);
-        }
-
-
-//        Intent intentFBMService = new Intent(this, FancyBookMakingService.class);
+//        Intent intentFBMService = new Intent(this, .class);
 //        intentFBMService.putExtra("matchId", String.valueOf(matchId));
 //        if(intentFBMService != null){
 //
@@ -214,12 +201,19 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         handler = new Handler();
         DataHolder.SIGNALR = true;
         //DataHolder.showProgress(getApplicationContext());
-        new getStackAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Settings/GetBetStakeSetting");
-        new getBookMakingAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/FancyData?mtid="+matchId);
-        new getMartketDataAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/MktData?mtid="+matchId+"&mktid="+marketId);
+        handlerLoad = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                new getHubAddressAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/HubAddress?id="+marketId);
+                new getStackAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Settings/GetBetStakeSetting");
+                new getBookMakingAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/FancyData?mtid="+matchId);
+                new getMartketDataAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/MktData?mtid="+matchId+"&mktid="+marketId);
+            }
+        });
 
         handlerFancy = new Handler();
-
+        handlerFBM = new Handler();
     }
 
     Thread t;
@@ -234,37 +228,13 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
 
         }
 
-        t=new Thread(){
-
-            @Override
-            public void run(){
-                while(!isInterrupted()){
-                    try {
-                        Thread.sleep(2000);  //1000ms = 1 sec
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                new getBookMakingRefreshAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/FancyData?mtid="+matchId);
-                            }
-                        });
-
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-
-        try {
-            if (REFRESH_BOOKMAKING || REFRESH_FANCY) {
-                t.start();
-            }else {
-                t.interrupt();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        handlerBookMaking.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                handlerBookMaking.postDelayed(this,2000);
+//            }
+//        },2000);
     }
 
     @Override
@@ -281,17 +251,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (broadcastReceiverSignalr != null) {
-            unregisterReceiver(broadcastReceiverSignalr);
-        }
-        MarketDataArray.clear();
-        BookMakingArray.clear();
-        FancyArray.clear();
-
-        if (_connection != null){
-            _connection.stop();
-            //Toast.makeText(this, "Connection Closed", Toast.LENGTH_SHORT).show();
-        }
+        closeData();
     }
 
     @Override
@@ -306,13 +266,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.imgVFav:
 
-                MarketDataArray.clear();
-                BookMakingArray.clear();
-                FancyArray.clear();
-
-                if (_connection != null){
-                    _connection.stop();
-                }
+                closeData();
 
                 Intent intent = new Intent(this,SportActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -333,11 +287,6 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
 
     public void stackInput(TextView stackTextView){
         editStackValue.setText(stackTextView.getText().toString().replace("CHIPS ",""));
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
     }
 
     TextView txtVOK,txtVStackValue1,txtVStackValue2,txtVStackValue3;
@@ -425,41 +374,6 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
     String back1,lay1,runner,backSize1,laySize1;
     int index;
 
-    public void dispSignalRData(final String json){
-
-        try {
-
-            JSONObject jsonMain = new JSONObject(json);
-            String jsonData = jsonMain.getString("A");
-            JSONArray jsonArray = new JSONArray(jsonData);
-            final JSONObject key = jsonArray.getJSONObject(0);
-            //Log.i("TAG",json.toString());
-            back1 = key.getString("back1");
-            lay1 = key.getString("lay1");
-            backSize1 = key.getString("backSize1");
-            laySize1 = key.getString("laySize1");
-            runner = key.getString("runner");
-
-            for(index=0;index<MarketDataArray.size();index++) {
-                if (MarketDataArray.get(index).equalsIgnoreCase(runner)) {
-                    if(index<MarketDataArray.size()){
-                        //Log.i("TAG1234", MarketDataArray.get(index) + " " + runner +" "+runner+ " " +back1+ " " +lay1+ " " +backSize1+ " " +laySize1+ " " +bfId);
-                        MarketDataList.remove(index);
-                        MarketDataList.add(index,new MarketData(runner,back1,lay1,backSize1,laySize1));
-                        marketDataAdapter.notifyDataSetChanged();
-                    }
-                    else {
-                        index = 0;
-                        break;
-                    }
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-    }
     private class setSignalRDataAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -475,7 +389,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                 String jsonData = jsonMain.getString("A");
                 JSONArray jsonArray = new JSONArray(jsonData);
                 final JSONObject key = jsonArray.getJSONObject(0);
-                //Log.i("TAG",json.toString());
+                Log.i("TAG10",json.toString());
                 back1 = key.getString("back1");
                 lay1 = key.getString("lay1");
                 backSize1 = key.getString("backSize1");
@@ -502,8 +416,38 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         }
     }
 
-    String StackValue1,StackValue2,StackValue3;
+    Intent intentService,intentFBM;
+    private class getHubAddressAsyncTask extends AsyncTask<String, Void, String> {
 
+        @Override
+        protected String doInBackground(String... urls) {
+            return DataHolder.getApi(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            //Log.i("Check",""+result);
+            try {
+                JSONObject jsonObjMain = new JSONObject(result.toString());
+                String hubAddress = jsonObjMain.getString("hubAddress");
+                //Start IntentService
+                if (hubAddress != null) {
+                    intentService = new Intent(BetActivity.this, SignalRService.class);
+                    intentService.putExtra("BfId", bfId);
+                    intentService.putExtra("HubAddress", hubAddress);
+                    if(intentService != null){
+                        startService(intentService);
+                    }
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                //DataHolder.unAuthorized(BetActivity.this,result);
+            }
+        }
+    }
+
+    String StackValue1,StackValue2,StackValue3;
     private class getStackAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -543,8 +487,6 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
 
         @Override
         protected String doInBackground(final String... urls) {
-
-
             return DataHolder.getApi(urls[0]);
         }
 
@@ -577,6 +519,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                     String laySize1 = key.getString("laySize1");
                     String runnerName = key.getString("runnerName");
 
+                    //Toast.makeText(BetActivity.this, lay1+" "+back1, Toast.LENGTH_SHORT).show();
                     //String matchStatus = key.getString("matchStatus");
                     MarketDataArray.add(key.getString("runnerName"));
                     MarketDataList.add(new MarketData(runnerName,back1,lay1,backSize1,laySize1,bfId,matchId,marketId));
@@ -623,7 +566,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
 
         @Override
         protected void onPostExecute(String result) {
-            //Log.i("Check",""+result);
+            //Log.i("CheckBook",""+result);
 
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
@@ -648,7 +591,6 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                         String book = key.getString("book");
                         int runnerId = key.getInt("id");
                         BookMakingArray.add(runnerName);
-
 
                         BookMakingDataList.add(new MarketData(BookId,runnerId,back,lay,backSize,laySize,runnerName,ballStatus,book));
                         bookMakingAdapter.notifyDataSetChanged();
@@ -698,7 +640,23 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                 }
 
                 if (REFRESH_BOOKMAKING || REFRESH_FANCY) {
-                    t.start();
+                    //t.start();
+                    intentFBM = new Intent(BetActivity.this, ServiceFancyBookMakingRefresh.class);
+                    Toast.makeText(BetActivity.this, ""+matchId, Toast.LENGTH_SHORT).show();
+                    intentFBM.putExtra("matchId", matchId);
+                    if(intentFBM != null){
+                        startService(intentFBM);
+                    }
+
+                    try {
+                        broadcastReceiverBFM = new BroadcastReceiverSignalr();
+                        IntentFilter intentFilter = new IntentFilter(DataHolder.ACTION_SEND_FANCY_BOOKMAKING);
+                        intentFilter.addCategory(Intent.CATEGORY_DEFAULT);
+                        registerReceiver(broadcastReceiverBFM, intentFilter);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }else {
                     t.interrupt();
                 }
@@ -713,7 +671,428 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
     }
 
 
-    private class getBookMakingRefreshAsyncTask extends AsyncTask<String, Void, String> {
+    private void setFBMReFresh(String data){
+        Log.i("TAGFBM",data);
+        try {
+            JSONObject jsonObjMain = new JSONObject(data);
+            String bookmakingData = jsonObjMain.getString("bookmakingData");
+            JSONObject jsonBook = new JSONObject(bookmakingData);
+            int BookId = jsonBook.getInt("id");
+            String runnerData = jsonBook.getString("runnerData");
+            JSONArray arrayData = new JSONArray(runnerData);
+            int lengthBook = arrayData.length();
+
+            if(lengthBook>0){
+
+                llBookMaking.setVisibility(View.VISIBLE);
+
+                for(int i =0 ; i<lengthBook;i++){
+                    JSONObject key = arrayData.getJSONObject(i);
+                    int back = key.getInt("backPrice");
+                    int lay = key.getInt("layPrice");
+                    int backSize = key.getInt("backSize");
+                    int laySize = key.getInt("laySize");
+                    String runnerName = key.getString("name");
+                    String ballStatus = key.getString("ballStatus");
+                    String book = key.getString("book");
+                    int runnerId = key.getInt("id");
+
+                    for(int indexBookMaking=0;indexBookMaking<BookMakingArray.size();indexBookMaking++) {
+
+                        if (BookMakingArray.get(indexBookMaking).equalsIgnoreCase(runnerName)) {
+                            //Log.i("CheckRefreshindex",BookMakingArray.get(indexBookMaking)+" "+indexBookMaking+" "+BookMakingArray.size());
+                            if(indexBookMaking<BookMakingArray.size()){
+                                BookMakingDataList.remove(indexBookMaking);
+
+                                BookMakingDataList.add(indexBookMaking,new MarketData(BookId,runnerId,back,lay,backSize,laySize,runnerName,ballStatus,book));
+                                bookMakingAdapter.notifyDataSetChanged();
+                            }
+                            else {
+                                indexBookMaking = 0;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            String fancyData = jsonObjMain.getString("data");
+            JSONArray fancyArrayData = new JSONArray(fancyData);
+            int lengthFancy = fancyArrayData.length();
+            //Log.i("TAG456",fancyData);
+
+            if(lengthFancy>0){
+
+                llFancyBet.setVisibility(View.VISIBLE);
+
+                for(int i =0 ; i<lengthFancy; i++){
+                    JSONObject key = fancyArrayData.getJSONObject(i);
+                    String yesRate = key.getString("yesRate");
+                    String yesScore = key.getString("yesScore");
+                    String noRate = key.getString("noRate");
+                    String noScore = key.getString("noScore");
+                    String runnerName = key.getString("name");
+                    String ballStatus = key.getString("ballStatus");
+                    String book = key.getString("book");
+                    int fancyId = key.getInt("id");
+
+
+                    for(int indexFancy=0;indexFancy<FancyArray.size();indexFancy++) {
+                        //Log.i("CheckRefreshindexf",FancyArray.size()+" "+indexFancy+" ");
+
+                        if (FancyArray.get(indexFancy).equalsIgnoreCase(runnerName)) {
+                            //Log.i("CheckRefreshindexf",FancyArray.get(indexFancy)+" "+indexFancy+" "+FancyArray.size());
+                            if(indexFancy<FancyArray.size()){
+                                FancyDataList.remove(indexFancy);
+                                FancyDataList.add(indexFancy,new MarketData(yesRate,yesScore,noRate,noScore,runnerName,ballStatus,book,fancyId,matchId));
+                                fancyAdapter.notifyDataSetChanged();
+                            }
+                            else {
+                                indexFancy = 0;
+                                break;
+                            }
+                        }
+                    }
+
+                }
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            //unAuthorized(BetActivity.this,result);
+        }
+    }
+
+    public void unAuthorized(Context context,String result){
+        try {
+            JSONObject jsonObjMain = new JSONObject(result.toString());
+            JSONObject jsonDes = new JSONObject(jsonObjMain.getString("description"));
+            String UnAuthorized = jsonDes.getString("result");
+
+            if(UnAuthorized.equalsIgnoreCase("UnAuthorized access found")){
+                Toast.makeText(context, "Token Expire", Toast.LENGTH_SHORT).show();
+                closeData();
+                context.startActivity(new Intent(context, LoginActivity.class));
+            }
+        } catch (JSONException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    private void closeData(){
+        if (broadcastReceiverSignalr != null) {
+            try {
+                unregisterReceiver(broadcastReceiverSignalr);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (broadcastReceiverBFM != null) {
+            try {
+                unregisterReceiver(broadcastReceiverBFM);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        stopService(intentService);
+        stopService(intentFBM);
+
+        MarketDataArray.clear();
+        BookMakingArray.clear();
+        FancyArray.clear();
+
+        if (_connection != null){
+            _connection.stop();
+        }
+    }
+
+    Handler handlerFBM;
+    public class BroadcastReceiverSignalr extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context,final Intent intent) {
+            String action = intent.getAction();
+            //Toast.makeText(context, ""+action, Toast.LENGTH_SHORT).show();
+            if (action.equalsIgnoreCase(DataHolder.ACTION_SEND_ACTIVE)) {
+                String result = intent.getStringExtra(DataHolder.keySIGNALR);
+                new setSignalRDataAsyncTask().execute(result);
+                //Log.i("TAGG",result);
+                //dispSignalRData(result);
+
+            }else if (action.equalsIgnoreCase(DataHolder.ACTION_SEND_FANCY_BOOKMAKING)){
+                handlerFBM.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        String data = intent.getStringExtra(DataHolder.keyFANCY_BOOKMAKING);
+                        setFBMReFresh(data);
+                    }
+                });
+
+            }
+        }
+    }
+}
+
+
+/*public void displaySignalRData(final String bfid){
+
+        Platform.loadPlatformComponent( new AndroidPlatformComponent() );
+        _connection=new HubConnection("http://178.238.236.221:10800");
+        _hub=_connection.createHubProxy("BetAngelHub");
+
+        try {
+            awaitConnection = _connection.start(new ServerSentEventsTransport(_connection.getLogger()));
+            awaitConnection.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        _hub.invoke("SubscribeMarket",bfid);
+
+        // Subscribe to the received event
+        _connection.received(new MessageReceivedHandler() {
+            @Override
+            public void onMessageReceived(final JsonElement json) {
+                handler.postDelayed(runnable = new Runnable() {
+                    @Override
+                    public void run() {
+                        // if(DataHolder.SIGNALR){
+                        //Log.i("TAAG","fvbkdfb");
+                        try {
+
+                            JSONObject jsonMain = new JSONObject(json.toString());
+                            String jsonData = jsonMain.getString("A");
+                            JSONArray jsonArray = new JSONArray(jsonData);
+                            final JSONObject key = jsonArray.getJSONObject(0);
+                            //Log.i("TAG",json.toString());
+                            back1 = key.getString("back1");
+                            lay1 = key.getString("lay1");
+                            backSize1 = key.getString("backSize1");
+                            laySize1 = key.getString("laySize1");
+                            runner = key.getString("runner");
+
+                            for(index=0;index<MarketDataArray.size();index++) {
+                                if (MarketDataArray.get(index).equalsIgnoreCase(runner)) {
+                                    if(index<MarketDataArray.size()){
+                                        //Log.i("TAG1234", MarketDataArray.get(index) + " " + runner +" "+runner+ " " +back1+ " " +lay1+ " " +backSize1+ " " +laySize1+ " " +bfId);
+                                        MarketDataList.remove(index);
+//                                        recycleViewMarketData.removeViewAt(index);
+//                                        marketDataAdapter.notifyItemRemoved(index);
+//                                        marketDataAdapter.notifyItemRemoved(index);
+                                        MarketDataList.add(index,new MarketData(runner,back1,lay1,backSize1,laySize1));
+                                        marketDataAdapter.notifyDataSetChanged();
+//                                        recycleViewMarketData.setAdapter(marketDataAdapter);
+                                    }
+                                    else {
+                                        index = 0;
+                                        break;
+                                    }
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        //}
+
+                    }
+                },2000);
+            }
+        });
+
+        // Subscribe to the closed event
+        _connection.closed(new Runnable() {
+
+            @Override
+            public void run() {
+                System.out.println("DISCONNECTED");
+            }
+        });
+
+
+================================================
+
+ public void dispSignalRData(final String json){
+
+        try {
+
+            JSONObject jsonMain = new JSONObject(json);
+            String jsonData = jsonMain.getString("A");
+            JSONArray jsonArray = new JSONArray(jsonData);
+            final JSONObject key = jsonArray.getJSONObject(0);
+            //Log.i("TAG",json.toString());
+            back1 = key.getString("back1");
+            lay1 = key.getString("lay1");
+            backSize1 = key.getString("backSize1");
+            laySize1 = key.getString("laySize1");
+            runner = key.getString("runner");
+
+            for(index=0;index<MarketDataArray.size();index++) {
+                if (MarketDataArray.get(index).equalsIgnoreCase(runner)) {
+                    if(index<MarketDataArray.size()){
+                        //Log.i("TAG1234", MarketDataArray.get(index) + " " + runner +" "+runner+ " " +back1+ " " +lay1+ " " +backSize1+ " " +laySize1+ " " +bfId);
+                        MarketDataList.remove(index);
+                        MarketDataList.add(index,new MarketData(runner,back1,lay1,backSize1,laySize1));
+                        marketDataAdapter.notifyDataSetChanged();
+                    }
+                    else {
+                        index = 0;
+                        break;
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    boolean threadStart=true;
+    public void displaySignalRData(final String bfid){
+
+        Platform.loadPlatformComponent( new AndroidPlatformComponent() );
+        _connection=new HubConnection("http://178.238.236.221:10800");
+        _hub=_connection.createHubProxy("BetAngelHub");
+
+        try {
+            awaitConnection = _connection.start(new ServerSentEventsTransport(_connection.getLogger()));
+            awaitConnection.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        _hub.invoke("SubscribeMarket","1.143388455");
+
+        // Subscribe to the received event
+        _connection.received(new MessageReceivedHandler() {
+            @Override
+            public void onMessageReceived(final JsonElement json) {
+
+                Thread threadSignalr = new Thread(){
+
+                    @Override
+                    public void run(){
+                        while(!isInterrupted()){
+                            try {
+                                Thread.sleep(1000);  //1000ms = 1 sec
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // if(DataHolder.SIGNALR){
+                                        Log.i("TAAG","fvbkdfb "+json);
+                                        try {
+
+                                            JSONObject jsonMain = new JSONObject(json.toString());
+                                            String jsonData = jsonMain.getString("A");
+                                            JSONArray jsonArray = new JSONArray(jsonData);
+                                            final JSONObject key = jsonArray.getJSONObject(0);
+                                            //Log.i("TAG",json.toString());
+                                            back1 = key.getString("back1");
+                                            lay1 = key.getString("lay1");
+                                            backSize1 = key.getString("backSize1");
+                                            laySize1 = key.getString("laySize1");
+                                            runner = key.getString("runner");
+
+                                            for(index=0;index<MarketDataArray.size();index++) {
+                                                if (MarketDataArray.get(index).equalsIgnoreCase(runner)) {
+                                                    if(index<MarketDataArray.size()){
+                                                        //Log.i("TAG1234", MarketDataArray.get(index) + " " + runner +" "+runner+ " " +back1+ " " +lay1+ " " +backSize1+ " " +laySize1+ " " +bfId);
+                                                        MarketDataList.remove(index);
+
+                                                        MarketDataList.add(index,new MarketData(runner,back1,lay1,backSize1,laySize1));
+                                                        marketDataAdapter.notifyDataSetChanged();
+
+                                                    }
+                                                    else {
+                                                        index = 0;
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                        //}
+
+                                    }
+                                });
+
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                };
+//                handler.postDelayed(runnable = new Runnable() {
+//                    @Override
+//                    public void run() {
+//
+//                    }
+//                },2000);
+
+
+                    threadSignalr.start();
+
+
+            }
+        });
+
+        // Subscribe to the closed event
+        _connection.closed(new Runnable() {
+
+            @Override
+            public void run() {
+                System.out.println("DISCONNECTED");
+            }
+        });
+    }
+
+    }*/
+
+
+
+/*
+t=new Thread(){
+
+            @Override
+            public void run(){
+                while(!isInterrupted()){
+                    try {
+                        Thread.sleep(2000);  //1000ms = 1 sec
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                new getBookMakingRefreshAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/FancyData?mtid="+matchId);
+                            }
+                        });
+
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+
+        try {
+            if (REFRESH_BOOKMAKING || REFRESH_FANCY) {
+                t.start();
+            }else {
+                t.interrupt();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+===================
+
+private class getBookMakingRefreshAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
@@ -811,135 +1190,9 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                unAuthorized(BetActivity.this,result);
+                //unAuthorized(BetActivity.this,result);
             }
         }
     }
 
-    public void unAuthorized(Context context,String result){
-        try {
-            JSONObject jsonObjMain = new JSONObject(result.toString());
-            JSONObject jsonDes = new JSONObject(jsonObjMain.getString("description"));
-            String UnAuthorized = jsonDes.getString("result");
-
-            if(UnAuthorized.equalsIgnoreCase("UnAuthorized access found")){
-                Toast.makeText(context, "Token Expire", Toast.LENGTH_SHORT).show();
-                if (broadcastReceiverSignalr != null) {
-                    try {
-                        unregisterReceiver(broadcastReceiverSignalr);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-                MarketDataArray.clear();
-                BookMakingArray.clear();
-                FancyArray.clear();
-
-                if (_connection != null){
-                    _connection.stop();
-                }
-                context.startActivity(new Intent(context, LoginActivity.class));
-            }
-        } catch (JSONException e1) {
-            e1.printStackTrace();
-        }
-    }
-
-    public class BroadcastReceiverSignalr extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            //Log.i("TAGkl",""+action);
-            if (action.equalsIgnoreCase(DataHolder.ACTION_SEND_ACTIVE)) {
-                String result = intent.getStringExtra(DataHolder.keySIGNALR);
-                //Log.i("TAGG",result);
-                //dispSignalRData(result);
-                new setSignalRDataAsyncTask().execute(result);
-            }/*else if (action.equalsIgnoreCase(DataHolder.ACTION_SEND_FANCY_BOOKMAKING)){
-                String data = intent.getStringExtra(DataHolder.keyFANCY_BOOKMAKING);
-                Log.i("TAGG",data);
-            }*/
-        }
-    }
-}
-
-
-/*public void displaySignalRData(final String bfid){
-
-        Platform.loadPlatformComponent( new AndroidPlatformComponent() );
-        _connection=new HubConnection("http://178.238.236.221:10800");
-        _hub=_connection.createHubProxy("BetAngelHub");
-
-        try {
-            awaitConnection = _connection.start(new ServerSentEventsTransport(_connection.getLogger()));
-            awaitConnection.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        _hub.invoke("SubscribeMarket",bfid);
-
-        // Subscribe to the received event
-        _connection.received(new MessageReceivedHandler() {
-            @Override
-            public void onMessageReceived(final JsonElement json) {
-                handler.postDelayed(runnable = new Runnable() {
-                    @Override
-                    public void run() {
-                        // if(DataHolder.SIGNALR){
-                        //Log.i("TAAG","fvbkdfb");
-                        try {
-
-                            JSONObject jsonMain = new JSONObject(json.toString());
-                            String jsonData = jsonMain.getString("A");
-                            JSONArray jsonArray = new JSONArray(jsonData);
-                            final JSONObject key = jsonArray.getJSONObject(0);
-                            //Log.i("TAG",json.toString());
-                            back1 = key.getString("back1");
-                            lay1 = key.getString("lay1");
-                            backSize1 = key.getString("backSize1");
-                            laySize1 = key.getString("laySize1");
-                            runner = key.getString("runner");
-
-                            for(index=0;index<MarketDataArray.size();index++) {
-                                if (MarketDataArray.get(index).equalsIgnoreCase(runner)) {
-                                    if(index<MarketDataArray.size()){
-                                        //Log.i("TAG1234", MarketDataArray.get(index) + " " + runner +" "+runner+ " " +back1+ " " +lay1+ " " +backSize1+ " " +laySize1+ " " +bfId);
-                                        MarketDataList.remove(index);
-//                                        recycleViewMarketData.removeViewAt(index);
-//                                        marketDataAdapter.notifyItemRemoved(index);
-//                                        marketDataAdapter.notifyItemRemoved(index);
-                                        MarketDataList.add(index,new MarketData(runner,back1,lay1,backSize1,laySize1));
-                                        marketDataAdapter.notifyDataSetChanged();
-//                                        recycleViewMarketData.setAdapter(marketDataAdapter);
-                                    }
-                                    else {
-                                        index = 0;
-                                        break;
-                                    }
-                                }
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        //}
-
-                    }
-                },2000);
-            }
-        });
-
-        // Subscribe to the closed event
-        _connection.closed(new Runnable() {
-
-            @Override
-            public void run() {
-                System.out.println("DISCONNECTED");
-            }
-        });
-
-
-
-    }*/
+* */
