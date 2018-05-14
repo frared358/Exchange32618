@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import microsoft.aspnet.signalr.client.SignalRFuture;
 import microsoft.aspnet.signalr.client.hubs.HubConnection;
@@ -245,6 +246,9 @@ public class DataHolder {
             e1.printStackTrace();
         }
     }
+
+    public static ArrayList<String> ArrayListCustomeName = new ArrayList<String>();
+    public static List<Boolean> ListDeleted = new ArrayList<Boolean>();
 
     public static final String ACTION_SEND_ACTIVE = "com.affwl.exchange.sport.RESPONSE";
     public static final String ACTION_SEND_FANCY_BOOKMAKING = "com.affwl.exchange.sport.FANCY_BOOKMAKING";

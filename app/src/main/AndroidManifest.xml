@@ -109,27 +109,8 @@
         <activity android:name=".fx.new_Acc_open_a_real_acc_Activity"
             android:screenOrientation="portrait"/>
         <!-- <activity android:name=".fx.New_acc_start_without_regi"/> -->
-        <activity android:name=".binary.AssetListActivity" />
-        <activity android:name=".binary.TradeActivity" />
-        <activity android:name=".binary.BinaryPotfolioActivity" />
-        <activity android:name=".fx.FxActivity" />
-        <activity android:name=".fx.CustomSpinner" />
-        <activity android:name=".fx.Problem_Description" />
-        <activity android:name=".fx.Certificates" />
-        <activity android:name=".fx.New_Account" />
-        <activity android:name=".fx.Indicators" />
-        <activity android:name=".fx.Mailbox1" />
-        <activity android:name=".fx.Selected_symbols" />
-        <activity android:name=".fx.Add_symbol" />
-        <activity android:name=".fx.Add_symbol_Forex" />
-        <activity android:name=".fx.FX_indicator_f_add_Activity" />
-        <activity android:name=".fx.FX_indicator_f1_add_Activity" />
-        <activity android:name=".fx.new_Acc_open_a_real_acc_Activity" />
         <!-- <activity android:name=".fx.New_acc_start_without_regi"/> -->
 
-        <activity android:name=".fx.New_acc_Open_a_real_acc_pI" />
-        <activity android:name=".fx.M_delete" />
-        <activity android:name=".fx.OneClickTrading" />
         <activity android:name=".fx.New_acc_Open_a_real_acc_pI"
             android:screenOrientation="portrait" />
         <activity android:name=".fx.M_delete"
@@ -139,7 +120,6 @@
         <activity
             android:name=".sport.SportActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"/>
         <activity
@@ -149,27 +129,10 @@
         <activity
             android:name=".sport.UnmatchMatchTabActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".sport.StackActivity" />
-        <activity android:name=".fx.Fx_Currency_Activity" />
-        <activity android:name=".fx.Fx_AVW_Activity" />
-        <activity android:name=".fx.Fx_DOM_Activity" />
-        <activity android:name=".fx.Fx_MarketStatistics_Activity" />
-        <activity android:name=".fx.Fx_Properties_Activity" />
-        <activity android:name=".news.RssFeedUrlActivity" />
-        <activity android:name=".news.WebActivity" />
-        <activity android:name=".news.RssFeedListActivity" />
-        <activity android:name=".news.NewsActivity" />
-        <activity android:name=".news.RssFeedDeleteActivity" />
-        <activity android:name=".settings.SettingsMainActivity" />
-        <activity android:name=".alerts.AlertsActivity" />
-        <activity android:name=".alerts.IndieReminderActivity" />
         <activity android:name=".sport.TournamentActivity" />
         <activity android:name=".sport.MatchListActivity" />
         <activity android:name=".sport.MatchOddsActivity" />
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".sport.SettingsActivity"
-            android:screenOrientation="portrait"/>
+
 
         <activity android:name=".sport.StackActivity"
             android:screenOrientation="portrait"/>
@@ -244,7 +207,7 @@
         <activity android:name=".fx.Fx_Chart_AddObject_Activity"
             android:screenOrientation="portrait"/>
 
-<!--teenpatti-->
+<!-teenpatti-->
 
 
         <activity
@@ -324,12 +287,7 @@
         <activity android:name=".teenpatti.LoadingScreen_new_variation"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
-            </intent-filter>
-        </receiver>
 
-        <activity android:name=".trades.TradesActivity" />
-        <activity android:name=".alerts.MessageMainActivity" />
-        <activity android:name=".alerts.MessagePage" />
         <activity android:name=".reports.ReportsActivity" />
         <activity
             android:name=".reports.OrderReportActivity"
