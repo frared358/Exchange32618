@@ -110,6 +110,7 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
         profile=findViewById(R.id.inner_player_img);
         nametext=findViewById(R.id.nametext);
 
+        cards321shifterbtn = findViewById(R.id.cards321shifterbtn);
         default321layout = findViewById(R.id.default321layout);
 
         code=findViewById(R.id.code);
@@ -603,20 +604,21 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
         });
 
         //Button hides the buttn slides the three_two_one_leaderboard
-        cards321shifterbtn = findViewById(R.id.cards321shifterbtn);
         cards321shifterbtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 linearcardholder321 = findViewById(R.id.linearcardholder321);
                 linearcardholder321.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT));
                 linearcardholder321.setGravity(Gravity.CENTER);
-                card321_1.setEnabled(false);
-                card321_2.setEnabled(false);
-                card321_3.setEnabled(false);
-                card321_4.setEnabled(false);
-                card321_5.setEnabled(false);
-                card321_6.setEnabled(false);
 
-                cards321shifterbtn.setVisibility(View.GONE);
+                if(cards321shifterbtn.getVisibility()!=View.GONE) {
+                    cards321shifterbtn.setVisibility(View.GONE);
+                    card321_1.setEnabled(false);
+                    card321_2.setEnabled(false);
+                    card321_3.setEnabled(false);
+                    card321_4.setEnabled(false);
+                    card321_5.setEnabled(false);
+                    card321_6.setEnabled(false);
+                }
 
             }
         });
@@ -851,8 +853,13 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
 
                 if(default321layout!=null) {
                     if (default321layout.getChildCount() == 0) {
-                        cards321shifterbtn.setVisibility(View.VISIBLE);
-                    }
+                            cards321shifterbtn.post(new Runnable(){
+                                @Override
+                                public void run() {
+                                    cards321shifterbtn.setVisibility(View.VISIBLE);
+                                }
+                            });
+                        }
                 }
 
                 // Does a getResult(), and displays what happened.
