@@ -27,42 +27,55 @@
         <activity
             android:name=".indie.PivotActivity"
             android:label="@string/pivot"
-            android:parentActivityName=".indie.IndieActivity" />
+            android:parentActivityName=".indie.IndieActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".indie.LiveTipsActivity"
             android:label="@string/live_tips"
-            android:parentActivityName=".indie.IndieActivity" />
+            android:parentActivityName=".indie.IndieActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".indie.NewHiloActivity"
-            android:label="New High Low" />
+            android:label="New High Low"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".indie.MarketMoversEquityActivity"
-            android:label="Market Movers" />
+            android:label="Market Movers"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".indie.MarketWatchActivity"
-            android:label="Market Watch" />
+            android:label="Market Watch"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".indie.MarketIndicesActivity"
-            android:label="Market" />
+            android:label="Market"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".indie.MarketDerivativesActivity"
-            android:label="Market" />
+            android:label="Market"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".indie.MarketCurrencyActivity"
-            android:label="Market" />
+            android:label="Market"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".indie.ScripSearchActivity"
-            android:label="Scrip Search" />
+            android:label="Scrip Search"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".indie.NewsActivity"
-            android:label="News" />
+            android:label="News"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".binary.Sec60Activity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".binary.AssetNameActivity"
-            android:parentActivityName=".binary.Sec60Activity" />
-        <activity android:name=".LoginActivity">
+            android:parentActivityName=".binary.Sec60Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -125,13 +138,18 @@
         <activity
             android:name=".sport.BetActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".sport.UnmatchMatchTabActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".sport.TournamentActivity" />
-        <activity android:name=".sport.MatchListActivity" />
-        <activity android:name=".sport.MatchOddsActivity" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".sport.TournamentActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".sport.MatchListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".sport.MatchOddsActivity"
+            android:screenOrientation="portrait"/>
 
 
         <activity android:name=".sport.StackActivity"
@@ -288,19 +306,24 @@
             android:screenOrientation="landscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
 
-        <activity android:name=".reports.ReportsActivity" />
+        <activity android:name=".reports.ReportsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".reports.OrderReportActivity"
-            android:parentActivityName=".reports.ReportsActivity" />
+            android:parentActivityName=".reports.ReportsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".reports.MarginPositionActivity"
-            android:parentActivityName=".reports.ReportsActivity" />
+            android:parentActivityName=".reports.ReportsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".reports.NetPositionActivity"
-            android:parentActivityName=".reports.ReportsActivity" />
+            android:parentActivityName=".reports.ReportsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".reports.TradeReportActivity"
-            android:parentActivityName=".reports.ReportsActivity" />
+            android:parentActivityName=".reports.ReportsActivity"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name=".sport.ServiceFancyBookMakingRefresh"
