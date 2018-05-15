@@ -255,6 +255,5 @@ public class DataHolder {
     public static final String keySIGNALR = "SIGNALR";
     public static final String keyFANCY_BOOKMAKING = "FANCY_BOOKMAKING";
 
-    public static ArrayList<String> ArrayListCustomeName = new ArrayList<String>();
-    public static List<Boolean> ListDeleted = new ArrayList<Boolean>();
+
 }
