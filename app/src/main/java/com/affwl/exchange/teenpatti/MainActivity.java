@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -21,8 +22,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Dialog;
-
 import com.affwl.exchange.R;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -66,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mainychips=findViewById(R.id.mainychips);
         mainychips.setOnClickListener(this);
-        mainychips.startAnimation(Animchipsright);
 
         mainlimegchips=findViewById(R.id.mainlimegchips);
         mainlimegchips.setOnClickListener(this);
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String encodedimage=session.getImage();
         if (!encodedimage.equalsIgnoreCase(""))
         {
-            byte[] b= Base64.decode(encodedimage, Base64.DEFAULT);
+            byte[] b = Base64.decode(encodedimage, Base64.DEFAULT);
             Bitmap bmp= BitmapFactory.decodeByteArray(b,0,b.length);
             profile.setImageBitmap(bmp);
         }
@@ -92,24 +92,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        final Animation Animchipsright = AnimationUtils.loadAnimation(MainActivity.this, R.anim.translate_chips_right);
         final Animation Animchipsleft = AnimationUtils.loadAnimation(MainActivity.this, R.anim.translate_chips_left);
 
-        animatechips1 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_right);
-        animatechips2 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_right);
-        animatechips3 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_right);
-        //animatechips4 = AnimationUtils.loadAnimation(this, R.anim.translate_center);
-        animatechips5 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_left);
-        animatechips6 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_left);
-        animatechips7 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_left);
+//        animatechips1 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_right);
+//        animatechips2 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_right);
+//        animatechips3 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_right);
+//        //animatechips4 = AnimationUtils.loadAnimation(this, R.anim.translate_center);
+//        animatechips5 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_left);
+//        animatechips6 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_left);
+//        animatechips7 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_left);
 
-        yellowchiplayout = findViewById(R.id.yellowchiplayout);
-        yellowchiplayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                yellowchiplayout.startAnimation(Animchipsright);
-            }
-        });
+//        yellowchiplayout = findViewById(R.id.yellowchiplayout);
+//        yellowchiplayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                yellowchiplayout.startAnimation(Animchipsright);
+//            }
+//        });
         orangechipslayout = findViewById(R.id.orangechipslayout);
         orangechipslayout.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+                orangechipslayout.clearAnimation();
                 orangechipslayout.startAnimation(Animchipsright);
             }
         });
@@ -149,12 +150,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            }
 //        });
 
-
-
-
-
-
-                // Popup for Help
+        // Popup for Help
         showPopupBtn = findViewById(R.id.help_btn_loader);
         RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
 
@@ -187,10 +183,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         //////////////// Popup for 321 tournament ////////////////
+
         orangechipsbtn = findViewById(R.id.mainorgchips);
         RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
         relativelayout321 = findViewById(R.id.relativelayout321);
 
+
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                final Intent intent = new Intent(MainActivity.this, ThreetwooneTournament.class);
+//                startActivity(intent);
+//            }
+//        }, 5000);
 
         orangechipsbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -313,7 +318,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                                shortinfo_tourney_popupwindow.dismiss();
 //                            }
 //                        });
-////                        sixpattipopup.dismiss();
+//                        sixpattipopup.dismiss();
 //                    }
 //                });
 //

@@ -881,7 +881,6 @@ public class ThreetwooneTournament extends AppCompatActivity implements View.OnD
 //        return;
 //    }
 
-
 //        Animation animZoomIn = AnimationUtils.loadAnimation(getApplicationContext(),
 //                R.anim.zoom_in);
 //        RelativeLayout vrelative=three_two_one_leaderboard.findViewById(R.id.variation);
