@@ -136,20 +136,20 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
                     @Override
                     public void run() {
                         below_layout.setVisibility(View.VISIBLE);
-                        Animation animation = AnimationUtils.loadAnimation(TeenpattiActivity.this, R.anim.translate_up_below_layout);
-//                                animation.setDuration(1000);
-                        animation.setFillAfter(true);
-                        below_layout.startAnimation(animation);
+//                        Animation animation = AnimationUtils.loadAnimation(TeenpattiActivity.this, R.anim.translate_up_below_layout);
+////                                animation.setDuration(1000);
+//                        animation.setFillAfter(true);
+//                        below_layout.startAnimation(animation);
                     }
-                }, 3000);
+                }, 2000);
 
                 handler1.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Animation animation1 =  AnimationUtils.loadAnimation(TeenpattiActivity.this, R.anim.translate_bottom_blind_chaal);
-//                               animation1.setDuration(1000);
-                        animation1.setFillAfter(true);
-                        rl_bottom_caption.startAnimation(animation1);
+//                        Animation animation1 =  AnimationUtils.loadAnimation(TeenpattiActivity.this, R.anim.translate_bottom_blind_chaal);
+////                               animation1.setDuration(1000);
+//                        animation1.setFillAfter(true);
+//                        rl_bottom_caption.startAnimation(animation1);
                         rl_bottom_caption.setVisibility(View.GONE);
                         blind_btn.setEnabled(false);
                     }
@@ -210,6 +210,7 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
                 card13.setImageResource(R.drawable.club_ace);
                 btn_see_cards.setVisibility(View.GONE);
                 show_btn.setVisibility(View.VISIBLE);
+                blind_btn.setText("CHAAL");
             }
         });
 

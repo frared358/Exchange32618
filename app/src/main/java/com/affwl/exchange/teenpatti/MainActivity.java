@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Dialog;
@@ -29,8 +30,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ImageView showPopupBtn, closeRateus, closeHelpBtn, closeTrophyBtn,profile,orangechipsbtn,close312help,closesixpattihelp,short321info,tourney_shortinfo_closebtn,shortsixpattiinfo,bluechipsbtn,cyanchipsbtn,shortinfo_tourney,tourney_join_closebtn,ygreenchipsbtn,closebtn_create_table,mainlimegchipsbtn,variation_closebtn,facebook,whatsapp,general;
     PopupWindow RateuspopupWindow, HelpUspopupWindow, TrophypopupWindow, tounpopupWindow,howto321popup,sixpattipopup,howtosixpattipopup,join_tourney_popupWindow,shortinfo_tourney_popupwindow,create_table_private_popupwindow,join_table_popupwindow;
     RelativeLayout RelativeLayoutloader,relativelayout321,relativeLayoutsixpatti,relativeLayout_tourney,yellowchiplayout,orangechipslayout,limechipslayout,darkbluechiplayout,blackchipslayout,cyanchipslayout,ygreenchipslayout;
-    TextView loaderbuychips,joinnowbtn,howtoplay321btn,howtoplaysixpattibtn,joinnowsixpattibtn,join_tourneybtn,create_table_btn,join_variation_btn,nametext,code;
+    TextView tv_private_boot,tv_private_max_bet_value,tv_private_pot_limit,create_table_btn,join_variation_btn,nametext,code;
     Session session;
+    SeekBar seekBar_private;
     LinearLayout jokerlayout_btn,jokerinfo_layout,ak47_layout_btn,ak47info_layout,xboot_layout_btn,xboot_info_layout,
             hukum_layout_btn, hukum_info_layout, muflis_layout_btn, muflis_info_layout, faceoff_layout_btn, faceoff_info_layout,
             ljoker_layout_btn, ljoker_info_layout, nnnine_layout_btn, nnnine_info_layout;
@@ -361,49 +363,92 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+
         //////////////// Popup for Private ////////////////
         ygreenchipsbtn = findViewById(R.id.ygreenchips);
         RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
+
 
         ygreenchipsbtn.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("WrongViewCast")
             @Override
             public void onClick(View v) {
+                //instantiate the popup.xml layout file
+                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View customView = layoutInflater.inflate(R.layout.private_table_entry,null);
+                closebtn_create_table =customView.findViewById(R.id.close_create_table);
+                tv_private_boot=customView.findViewById(R.id.tv_private_boot);
+                tv_private_max_bet_value=customView.findViewById(R.id.tv_private_max_bet_value);
+                tv_private_pot_limit=customView.findViewById(R.id.tv_private_pot_limit);
+                seekBar_private=customView.findViewById(R.id.seekBar_private);
 
+                //working of private seekbar
 
-                Intent intent = new Intent(MainActivity.this, LoadingScreen_private.class);
-                startActivity(intent);
+                seekBar_private.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        if(progress>=0 && progress<=20){
+                            tv_private_boot.setText("₹800");
+                            tv_private_pot_limit.setText("₹8,19,200");
+                            tv_private_max_bet_value.setText("₹1,02,400");
+                        }
+                        else if(progress>=21 && progress<=40){
+                            tv_private_boot.setText("₹1,500");
+                            tv_private_pot_limit.setText("₹15,36,000");
+                            tv_private_max_bet_value.setText("₹1,92,000");
+                        }
+                        else if(progress>=41 && progress<=60){
+                            tv_private_boot.setText("₹15,000");
+                            tv_private_pot_limit.setText("₹1,53,60,000");
+                            tv_private_max_bet_value.setText("₹19,20,000");
+                        }
+                        else if(progress>=61 && progress<=80){
+                            tv_private_boot.setText("₹50,000");
+                            tv_private_pot_limit.setText("₹5,12,00,000");
+                            tv_private_max_bet_value.setText("₹64,00,000");
+                        }
+                        else if(progress>=81 && progress<=100){
+                            tv_private_boot.setText("₹5,00,000");
+                            tv_private_pot_limit.setText("₹51,20,00,000");
+                            tv_private_max_bet_value.setText("₹6,40,00,000");
+                        }
 
+                    }
 
-//                //instantiate the popup.xml layout file
-//                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                View customView = layoutInflater.inflate(R.layout.private_create_table_popup,null);
-//                closebtn_create_table =customView.findViewById(R.id.close_create_table);
-//                //instantiate popup window
-//                create_table_private_popupwindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-//
-//                //display the popup window
-//                create_table_private_popupwindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
-//
-//                //join now the popup window on button click
-//                create_table_btn = customView.findViewById(R.id.create_table);
-//
-//                closebtn_create_table.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        create_table_private_popupwindow.dismiss();
-//                    }
-//                });
-//                create_table_btn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent intent = new Intent(MainActivity.this, LoadingScreen_private.class);
-//                        startActivity(intent);
-//                    }
-//                });
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+                //instantiate popup window
+                create_table_private_popupwindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+
+                //display the popup window
+                create_table_private_popupwindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
+
+                //join now the popup window on button click
+                create_table_btn = customView.findViewById(R.id.create_table);
+
+                closebtn_create_table.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        create_table_private_popupwindow.dismiss();
+                    }
+                });
+                create_table_btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MainActivity.this, LoadingScreen_private.class);
+                        startActivity(intent);
+                    }
+                });
             }
         });
-
 
 
 

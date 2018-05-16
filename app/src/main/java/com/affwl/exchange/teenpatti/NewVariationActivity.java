@@ -33,7 +33,7 @@ import com.affwl.exchange.R;
 
 public class NewVariationActivity extends AppCompatActivity implements View.OnClickListener{
     ImageView handle_right, backbtn,infobtn,infoclosebtn,chatbtn,chatclosebtn,chatclosebtn2,themebtn,themeclosebtn,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn,pdealerbtn;
-    TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,txtTimerSecond,backtolobby;
+    TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,txtTimerSecond,backtolobby,show_btn;
     PopupWindow popupWindow,infopopupWindow,chatpopupWindow,themepopupWindow,ustatuspopupWindow,dealerpopupWindow,oustatuspopupWindow,sendmsgpopupWindow,chngdpopupWindow,selectvariationpopupWindow;
     Button msgbtn,blockbtn;
     RelativeLayout relativeLayout,relativeLayout2,relativeLayout3,newvariationtble;
@@ -122,20 +122,20 @@ public class NewVariationActivity extends AppCompatActivity implements View.OnCl
                     @Override
                     public void run() {
                         below_layout.setVisibility(View.VISIBLE);
-                        Animation animation = AnimationUtils.loadAnimation(NewVariationActivity.this, R.anim.translate_up_below_layout);
-//                                animation.setDuration(1000);
-                        animation.setFillAfter(true);
-                        below_layout.startAnimation(animation);
+//                        Animation animation = AnimationUtils.loadAnimation(NewVariationActivity.this, R.anim.translate_up_below_layout);
+////                                animation.setDuration(1000);
+//                        animation.setFillAfter(true);
+//                        below_layout.startAnimation(animation);
                     }
-                }, 3000);
+                }, 2000);
 
                 handler1.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Animation animation1 =  AnimationUtils.loadAnimation(NewVariationActivity.this, R.anim.translate_bottom_blind_chaal);
-//                               animation1.setDuration(1000);
-                        animation1.setFillAfter(true);
-                        rl_bottom_caption.startAnimation(animation1);
+//                        Animation animation1 =  AnimationUtils.loadAnimation(NewVariationActivity.this, R.anim.translate_bottom_blind_chaal);
+////                               animation1.setDuration(1000);
+//                        animation1.setFillAfter(true);
+//                        rl_bottom_caption.startAnimation(animation1);
                         rl_bottom_caption.setVisibility(View.GONE);
                         blind_btn.setEnabled(false);
                     }
@@ -184,7 +184,7 @@ public class NewVariationActivity extends AppCompatActivity implements View.OnCl
 
         //see myplayer card
         btn_see_cards=findViewById(R.id.btn_see_cards);
-
+        show_btn=findViewById(R.id.show);
         btn_see_cards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,6 +192,8 @@ public class NewVariationActivity extends AppCompatActivity implements View.OnCl
                 card8.setImageResource(R.drawable.club_6);
                 card13.setImageResource(R.drawable.club_ace);
                 btn_see_cards.setVisibility(View.GONE);
+                show_btn.setVisibility(View.VISIBLE);
+                blind_btn.setText("CHAAL");
             }
         });
 
