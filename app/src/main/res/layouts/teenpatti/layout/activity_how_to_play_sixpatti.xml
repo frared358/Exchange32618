@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="6-PATTI TOURNAMENT"
+            android:text="6 PATTI TOURNAMENT"
             android:textColor="@color/colorWhite"
             android:textSize="20sp"/>
         <TextView
