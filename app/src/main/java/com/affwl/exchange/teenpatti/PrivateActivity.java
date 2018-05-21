@@ -35,21 +35,21 @@ import com.affwl.exchange.R;
 
 import org.w3c.dom.DOMImplementation;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 @SuppressWarnings( "deprecation" )
 @SuppressLint("WrongViewCast")
 
 public class PrivateActivity extends AppCompatActivity implements View.OnClickListener{
     ImageView handle_right, backbtn,infobtn,infoclosebtn,profile,profile1,plus_btn,minus_btn,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn;;
-    TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,backtolobby,nametext,code,blind_btn,show_btn;
+    TextView table_change_request,closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,backtolobby,nametext,code,blind_btn,show_btn,pack_btn,request_sent;
     PopupWindow popupWindow,infopopupWindow,chatpopupWindow,ustatuspopupWindow,dealerpopupWindow,oustatuspopupWindow,sendmsgpopupWindow,chngdpopupWindow;
-    Button msgbtn,blockbtn;
     RelativeLayout relativeLayout,relativeLayout2,relativeLayout3,privatetble;
     Session session;
-    NavigationView navigationView;
     LinearLayout below_layout;
     TextView display_myplayer_bind;
     Animation animations;
-
+    CircleImageView inner_player_img;
     ImageView card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15;
 
     Animation animatecard1, animatecard2, animatecard3, animatecard4, animatecard5, animatecard6, animatecard7, animatecard8,
@@ -119,6 +119,7 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
                 displayAmount.setText("₹" + minteger);
                 plus_btn.setEnabled(false);
                 plus_btn.setImageResource(R.drawable.disabled);
+                minus_btn.setImageResource(R.drawable.minus_btn);
             }
 
         });
@@ -130,9 +131,11 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
             public void onClick(View v) {
                 plus_btn.setImageResource(R.drawable.plus_btn);
                 plus_btn.setEnabled(true);
+                minus_btn.setEnabled(false);
                 String sub= displayAmount.getText().toString().substring(1);
                 minteger =Integer.parseInt(sub)/2;
                 displayAmount.setText("₹" + minteger);
+                minus_btn.setImageResource(R.drawable.minus_disabled);
             }
         });
 
@@ -153,27 +156,45 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
                 @Override
                 public void run() {
                                 below_layout.setVisibility(View.VISIBLE);
-                                Animation animation = AnimationUtils.loadAnimation(PrivateActivity.this, R.anim.translate_up_below_layout);
-//                                animation.setDuration(1000);
-                                animation.setFillAfter(true);
-                                below_layout.startAnimation(animation);
+//                                Animation animation = AnimationUtils.loadAnimation(PrivateActivity.this, R.anim.translate_up_below_layout);
+////                                animation.setDuration(1000);
+//                                animation.setFillAfter(true);
+//                                below_layout.startAnimation(animation);
                                 }
-            }, 3000);
+            }, 2000);
 
         handler1.postDelayed(new Runnable() {
         @Override
          public void run() {
-                               Animation animation1 =  AnimationUtils.loadAnimation(PrivateActivity.this, R.anim.translate_bottom_blind_chaal);
-//                               animation1.setDuration(1000);
-                               animation1.setFillAfter(true);
-                               rl_bottom_caption.startAnimation(animation1);
+//                               Animation animation1 =  AnimationUtils.loadAnimation(PrivateActivity.this, R.anim.translate_bottom_blind_chaal);
+////                               animation1.setDuration(1000);
+//                               animation1.setFillAfter(true);
+//                               rl_bottom_caption.startAnimation(animation1);
                                rl_bottom_caption.setVisibility(View.GONE);
                                blind_btn.setEnabled(false);
+
         }
 }, 1000);
             }
         });
 
+
+
+//        Implementation of Pack Button
+        inner_player_img=findViewById(R.id.inner_player_img);
+        pack_btn=findViewById(R.id.pack);
+        pack_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rl_bottom_caption.setVisibility(View.GONE);
+                btn_see_cards.setVisibility(View.GONE);
+                below_layout.setVisibility(View.VISIBLE);
+                card3.setVisibility(View.GONE);
+                card8.setVisibility(View.GONE);
+                card13.setVisibility(View.GONE);
+                inner_player_img.setImageResource(R.drawable.fade_inner_img);
+            }
+        });
         //shuffling card animation
         animatecard1 = AnimationUtils.loadAnimation(this, R.anim.translate_top_left);
         animatecard2 = AnimationUtils.loadAnimation(this, R.anim.translate_top_right);
@@ -223,6 +244,13 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
                 card13.setImageResource(R.drawable.club_ace);
                 btn_see_cards.setVisibility(View.GONE);
                 show_btn.setVisibility(View.VISIBLE);
+                blind_btn.setText("CHAAL");
+
+                String sub1= displayAmount.getText().toString().substring(1);
+                minteger = Integer.parseInt(sub1)*2;
+                displayAmount.setText("₹" + minteger);
+
+
             }
         });
 
@@ -566,6 +594,17 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
                 //instantiate the popup.xml layout file
                 LayoutInflater layoutInflater = (LayoutInflater) PrivateActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View customView = layoutInflater.inflate(R.layout.private_gameinfo_popup, null);
+
+                request_sent=customView.findViewById(R.id.request_sent);
+                table_change_request=customView.findViewById(R.id.table_change_request);
+
+                table_change_request.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        table_change_request.setVisibility(View.GONE);
+                        request_sent.setVisibility(View.VISIBLE);
+                    }
+                });
 
                 infoclosebtn = (ImageView) customView.findViewById(R.id.infoclose);
 
