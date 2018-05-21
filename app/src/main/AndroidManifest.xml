@@ -83,12 +83,14 @@
             </intent-filter>
 
         </activity>
+
         <activity android:name=".binary.AssetListActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".binary.TradeActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".binary.BinaryPotfolioActivity"
             android:screenOrientation="portrait"/>
+
 
         <activity android:name=".fx.FxActivity"
             android:screenOrientation="portrait"/>
