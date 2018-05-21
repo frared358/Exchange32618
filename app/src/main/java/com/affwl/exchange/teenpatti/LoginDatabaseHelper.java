@@ -4,9 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-/**
- * Created by user on 4/4/2018.
- */
 
 public class LoginDatabaseHelper {
     private static final int DATABASE_VERSION = 1;
