@@ -541,6 +541,7 @@
                 app:layout_widthPercent="22%" />
 
 
+
             <ImageView
                 android:id="@+id/inc_amount"
                 android:layout_alignParentBottom="true"
