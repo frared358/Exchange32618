@@ -138,7 +138,7 @@ public class FragmentInplay extends Fragment {
 
             } catch (JSONException e) {
                 e.printStackTrace();
-                DataHolder.unAuthorized(getActivity(),result);
+                //DataHolder.unAuthorized(getActivity(),result);
             }
         }
     }

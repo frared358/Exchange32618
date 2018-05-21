@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.percent.PercentLayoutHelper;
@@ -25,6 +26,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -38,14 +40,14 @@ import java.util.Collections;
 @SuppressWarnings( "deprecation" )
 public class TourneyActivity extends AppCompatActivity implements View.OnClickListener{
     ImageView handle_right, backbtn,infobtn,infoclosebtn,profile,chatclosebtn,chatclosebtn2,closebtn_tourney_leadboard,leaderboard_tourneybtn,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn;
-    TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,backtolobby,nametext,code;
+    TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,backtolobby,nametext,code,show_btn;
     PopupWindow popupWindow,infopopupWindow,chatpopupWindow,ustatuspopupWindow,dealerpopupWindow,oustatuspopupWindow,sendmsgpopupWindow,chngdpopupWindow,tourney_leadboardpopupWindow;
     Button msgbtn,blockbtn;
     RelativeLayout relativeLayout,relativeLayout2,relativeLayout3,tourneytble;
     Session session;
     int minteger = 0;
     NavigationView navigationView;
-
+    LinearLayout below_layout;
     TextView display_myplayer_bind;
     Animation animations;
     ImageView plus_btn,minus_btn;
@@ -57,7 +59,7 @@ public class TourneyActivity extends AppCompatActivity implements View.OnClickLi
             animatecard9, animatecard10, animatecard11, animatecard12, animatecard13, animatecard14, animatecard15;
 
     TextView btn_see_cards;
-
+    PercentRelativeLayout rl_bottom_caption;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -84,14 +86,16 @@ public class TourneyActivity extends AppCompatActivity implements View.OnClickLi
         nametext.setText(name);
 
         display_myplayer_bind=findViewById(R.id.display_myplayer_bind);
+        rl_bottom_caption=findViewById(R.id.rl_bottom_caption);
+        below_layout=findViewById(R.id.below_layout);
         blind_btn=findViewById(R.id.blind);
 //        Animation on blindshow_layout
 //        LinearLayout blindshow_layout=findViewById(R.id.blindshow_layout);
-        TranslateAnimation animationsb = new TranslateAnimation(0.0f, 0.0f,
-                0.0f, -10.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
-        animationsb.setDuration(1000);  // animation duration
-        animationsb.setFillAfter(true);
-        blind_btn.startAnimation(animationsb);
+//        TranslateAnimation animationsb = new TranslateAnimation(0.0f, 0.0f,
+//                0.0f, -10.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
+//        animationsb.setDuration(1000);  // animation duration
+//        animationsb.setFillAfter(true);
+//        blind_btn.startAnimation(animationsb);
 
 //        Implementation of increament amount
         final TextView displayAmount = findViewById(R.id.start_amount);
@@ -128,6 +132,31 @@ public class TourneyActivity extends AppCompatActivity implements View.OnClickLi
                 animations = AnimationUtils.loadAnimation(TourneyActivity.this, R.anim.translate_text_up);
                 display_myplayer_bind.startAnimation(animations);
                 display_myplayer_bind.setVisibility(View.GONE);
+
+                final Handler handler = new Handler();
+                final Handler handler1 = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        below_layout.setVisibility(View.VISIBLE);
+//                        Animation animation = AnimationUtils.loadAnimation(TourneyActivity.this, R.anim.translate_up_below_layout);
+////                                animation.setDuration(1000);
+//                        animation.setFillAfter(true);
+//                        below_layout.startAnimation(animation);
+                    }
+                }, 2000);
+
+                handler1.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+//                        Animation animation1 =  AnimationUtils.loadAnimation(TourneyActivity.this, R.anim.translate_bottom_blind_chaal);
+////                               animation1.setDuration(1000);
+//                        animation1.setFillAfter(true);
+//                        rl_bottom_caption.startAnimation(animation1);
+                        rl_bottom_caption.setVisibility(View.GONE);
+                        blind_btn.setEnabled(false);
+                    }
+                }, 1000);
 
             }
         });
@@ -172,7 +201,7 @@ public class TourneyActivity extends AppCompatActivity implements View.OnClickLi
 
         //see myplayer card
         btn_see_cards=findViewById(R.id.btn_see_cards);
-
+        show_btn=findViewById(R.id.show);
         btn_see_cards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,6 +209,7 @@ public class TourneyActivity extends AppCompatActivity implements View.OnClickLi
                 card8.setImageResource(R.drawable.club_6);
                 card13.setImageResource(R.drawable.club_ace);
                 btn_see_cards.setVisibility(View.GONE);
+                blind_btn.setText("CHAAL");
             }
         });
 
@@ -467,6 +497,8 @@ public class TourneyActivity extends AppCompatActivity implements View.OnClickLi
 
                 btn_see_cards.bringToFront();
                 btn_see_cards.setVisibility(View.VISIBLE);
+                rl_bottom_caption.setVisibility(View.VISIBLE);
+                below_layout.setVisibility(View.GONE);
             }
         });
 

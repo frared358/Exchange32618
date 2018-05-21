@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
     android:background="@drawable/popup_border_bg"
@@ -18,50 +18,50 @@
 
     <!--Boot value layout-->
     <RelativeLayout
+        android:id="@+id/bootvaluelayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bootvaluelayout"
-        >
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <TextView
             android:id="@+id/bootvalue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
             android:text="BOOT VALUE"
             android:textColor="@color/colorYellowDark"
-            android:textSize="20sp"
-            android:layout_weight="1"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            />
+            android:textSize="20sp" />
 
         <ImageView
             android:id="@+id/bootvalueimg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/playerinfosinglechip"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true"
+            android:src="@drawable/playerinfosinglechip" />
 
         <TextView
             android:id="@+id/bootvaluetxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="₹2"
-            android:textColor="@color/colorYellowDark"
-            android:textSize="20sp"
-            android:layout_weight="1"
-            android:layout_marginTop="20dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            />
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:text="₹2"
+            android:textColor="@color/colorYellowDark"
+            android:textSize="20sp" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorYellowDark"
-            android:layout_marginTop="20dp"
             android:layout_below="@id/bootvaluetxt"
-            />
+            android:layout_marginTop="20dp"
+            android:background="@color/colorYellowDark" />
 
     </RelativeLayout>
 
@@ -104,7 +104,7 @@
             android:layout_marginTop="20dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="30dp"
             />
         <View
             android:layout_width="match_parent"
@@ -155,7 +155,7 @@
             android:layout_marginTop="20dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="30dp"
             />
         <View
             android:layout_width="match_parent"
@@ -206,7 +206,7 @@
             android:layout_marginTop="20dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="30dp"
             />
         <View
             android:layout_width="match_parent"
@@ -218,7 +218,7 @@
     </RelativeLayout>
 
     <!--Footer layout-->
-    <RelativeLayout
+   <!-- <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/potlimit"
@@ -231,13 +231,45 @@
             android:text="PRIVATE TABLE"
             android:textColor="@color/colorYellowDark"
             android:layout_centerHorizontal="true"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#fcfbae"
             android:text="INVITE FRIENDS AND ENJOY TEEN PATTI."
             android:layout_below="@id/publictbl"
-            android:layout_centerHorizontal="true"
-            />
-    </RelativeLayout>
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>-->
+
+    <TextView
+        android:id="@+id/table_change_request"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:background="@drawable/button"
+        android:padding="10dp"
+        android:layout_marginBottom="20dp"
+        android:text="Table Change Request"
+        android:textAlignment="center"
+        android:textColor="@color/darkbrown"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/request_sent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:background="@drawable/button"
+        android:padding="10dp"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone"
+        android:text="Request Sent"
+        android:textAlignment="center"
+        android:textColor="@color/darkbrown"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
 </RelativeLayout>

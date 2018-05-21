@@ -51,7 +51,7 @@ WebView webView;
         webView = (WebView)view.findViewById(R.id.webView);
         webView.setWebViewClient(new MyBrowser());
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("http://boudhi.com/tv");
+        webView.loadUrl("http://boudhi.com/tv/index.html");
 
     }
 

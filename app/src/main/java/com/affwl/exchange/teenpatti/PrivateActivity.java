@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.percent.PercentLayoutHelper;
@@ -34,28 +35,28 @@ import com.affwl.exchange.R;
 
 import org.w3c.dom.DOMImplementation;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 @SuppressWarnings( "deprecation" )
 @SuppressLint("WrongViewCast")
 
 public class PrivateActivity extends AppCompatActivity implements View.OnClickListener{
-    ImageView handle_right, backbtn,infobtn,infoclosebtn,profile,plus_btn,minus_btn,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn;;
-    TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,backtolobby,nametext,code,blind_btn;
+    ImageView handle_right, backbtn,infobtn,infoclosebtn,profile,profile1,plus_btn,minus_btn,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn;;
+    TextView table_change_request,closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,backtolobby,nametext,code,blind_btn,show_btn,pack_btn,request_sent;
     PopupWindow popupWindow,infopopupWindow,chatpopupWindow,ustatuspopupWindow,dealerpopupWindow,oustatuspopupWindow,sendmsgpopupWindow,chngdpopupWindow;
-    Button msgbtn,blockbtn;
     RelativeLayout relativeLayout,relativeLayout2,relativeLayout3,privatetble;
     Session session;
-    NavigationView navigationView;
-
+    LinearLayout below_layout;
     TextView display_myplayer_bind;
     Animation animations;
-
+    CircleImageView inner_player_img;
     ImageView card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15;
 
     Animation animatecard1, animatecard2, animatecard3, animatecard4, animatecard5, animatecard6, animatecard7, animatecard8,
             animatecard9, animatecard10, animatecard11, animatecard12, animatecard13, animatecard14, animatecard15;
 
     TextView btn_see_cards;
-
+    PercentRelativeLayout rl_bottom_caption;
     int minteger = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -76,11 +77,13 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
 //        navigationView.setNavigationItemSelectedListener(this);
 
         display_myplayer_bind=findViewById(R.id.display_myplayer_bind);
-
+        rl_bottom_caption=findViewById(R.id.rl_bottom_caption);
+        below_layout=findViewById(R.id.below_layout);
         relativeLayout= (RelativeLayout) findViewById(R.id.privaterecycler);
 
         //        implemention of user profile pic
         profile=findViewById(R.id.inner_player_img);
+        profile1=findViewById(R.id.inner_player_img1);
         nametext=findViewById(R.id.nametext);
 
         code=findViewById(R.id.code);
@@ -91,6 +94,7 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
             byte[] b= Base64.decode(encodedimage, Base64.DEFAULT);
             Bitmap bmp= BitmapFactory.decodeByteArray(b,0,b.length);
             profile.setImageBitmap(bmp);
+            profile1.setImageBitmap(bmp);
         }
         String name=session.getName();
         nametext.setText(name);
@@ -98,11 +102,11 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
         blind_btn=findViewById(R.id.blind);
 //        Animation on blindshow_layout
 //        LinearLayout blindshow_layout=findViewById(R.id.blindshow_layout);
-        TranslateAnimation animationsb = new TranslateAnimation(0.0f, 0.0f,
-                0.0f, -10.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
-        animationsb.setDuration(1000);  // animation duration
-        animationsb.setFillAfter(true);
-        blind_btn.startAnimation(animationsb);
+//        TranslateAnimation animationsb = new TranslateAnimation(0.0f, 0.0f,
+//                0.0f, 0.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
+//        animationsb.setDuration(1000);  // animation duration
+//        animationsb.setFillAfter(true);
+//        blind_btn.startAnimation(animationsb);
 
 //        Implementation of increament amount
         final TextView displayAmount = findViewById(R.id.start_amount);
@@ -113,7 +117,9 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
                 String sub= displayAmount.getText().toString().substring(1);
                 minteger = Integer.parseInt(sub)*2;
                 displayAmount.setText("₹" + minteger);
-
+                plus_btn.setEnabled(false);
+                plus_btn.setImageResource(R.drawable.disabled);
+                minus_btn.setImageResource(R.drawable.minus_btn);
             }
 
         });
@@ -123,9 +129,13 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
         minus_btn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
+                plus_btn.setImageResource(R.drawable.plus_btn);
+                plus_btn.setEnabled(true);
+                minus_btn.setEnabled(false);
                 String sub= displayAmount.getText().toString().substring(1);
                 minteger =Integer.parseInt(sub)/2;
                 displayAmount.setText("₹" + minteger);
+                minus_btn.setImageResource(R.drawable.minus_disabled);
             }
         });
 
@@ -140,9 +150,51 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
                 display_myplayer_bind.startAnimation(animations);
                 display_myplayer_bind.setVisibility(View.GONE);
 
+                final Handler handler = new Handler();
+                final Handler handler1 = new Handler();
+                handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                                below_layout.setVisibility(View.VISIBLE);
+//                                Animation animation = AnimationUtils.loadAnimation(PrivateActivity.this, R.anim.translate_up_below_layout);
+////                                animation.setDuration(1000);
+//                                animation.setFillAfter(true);
+//                                below_layout.startAnimation(animation);
+                                }
+            }, 2000);
+
+        handler1.postDelayed(new Runnable() {
+        @Override
+         public void run() {
+//                               Animation animation1 =  AnimationUtils.loadAnimation(PrivateActivity.this, R.anim.translate_bottom_blind_chaal);
+////                               animation1.setDuration(1000);
+//                               animation1.setFillAfter(true);
+//                               rl_bottom_caption.startAnimation(animation1);
+                               rl_bottom_caption.setVisibility(View.GONE);
+                               blind_btn.setEnabled(false);
+
+        }
+}, 1000);
             }
         });
 
+
+
+//        Implementation of Pack Button
+        inner_player_img=findViewById(R.id.inner_player_img);
+        pack_btn=findViewById(R.id.pack);
+        pack_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rl_bottom_caption.setVisibility(View.GONE);
+                btn_see_cards.setVisibility(View.GONE);
+                below_layout.setVisibility(View.VISIBLE);
+                card3.setVisibility(View.GONE);
+                card8.setVisibility(View.GONE);
+                card13.setVisibility(View.GONE);
+                inner_player_img.setImageResource(R.drawable.fade_inner_img);
+            }
+        });
         //shuffling card animation
         animatecard1 = AnimationUtils.loadAnimation(this, R.anim.translate_top_left);
         animatecard2 = AnimationUtils.loadAnimation(this, R.anim.translate_top_right);
@@ -183,7 +235,7 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
 
         //see myplayer card
         btn_see_cards=findViewById(R.id.btn_see_cards);
-
+        show_btn=findViewById(R.id.show);
         btn_see_cards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -191,6 +243,14 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
                 card8.setImageResource(R.drawable.club_6);
                 card13.setImageResource(R.drawable.club_ace);
                 btn_see_cards.setVisibility(View.GONE);
+                show_btn.setVisibility(View.VISIBLE);
+                blind_btn.setText("CHAAL");
+
+                String sub1= displayAmount.getText().toString().substring(1);
+                minteger = Integer.parseInt(sub1)*2;
+                displayAmount.setText("₹" + minteger);
+
+
             }
         });
 
@@ -478,6 +538,8 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
 
                 btn_see_cards.bringToFront();
                 btn_see_cards.setVisibility(View.VISIBLE);
+                rl_bottom_caption.setVisibility(View.VISIBLE);
+                below_layout.setVisibility(View.GONE);
             }
         });
 
@@ -532,6 +594,17 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
                 //instantiate the popup.xml layout file
                 LayoutInflater layoutInflater = (LayoutInflater) PrivateActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View customView = layoutInflater.inflate(R.layout.private_gameinfo_popup, null);
+
+                request_sent=customView.findViewById(R.id.request_sent);
+                table_change_request=customView.findViewById(R.id.table_change_request);
+
+                table_change_request.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        table_change_request.setVisibility(View.GONE);
+                        request_sent.setVisibility(View.VISIBLE);
+                    }
+                });
 
                 infoclosebtn = (ImageView) customView.findViewById(R.id.infoclose);
 

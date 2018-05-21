@@ -774,7 +774,7 @@ public class SixPatti extends AppCompatActivity implements View.OnClickListener{
                 }
                 if(selectedCardArray.get(2).equalsIgnoreCase("value5")){
                     my_card6.startAnimation(animate_my_player_card);
-                    View view1 = findViewById(R.id.my_card1);
+                    View view1 = findViewById(R.id.my_card6);
                     PercentRelativeLayout.LayoutParams params1 = (PercentRelativeLayout.LayoutParams) view1.getLayoutParams();
                     PercentLayoutHelper.PercentLayoutInfo info1 = params1.getPercentLayoutInfo();
                     info1.bottomMarginPercent=0.25f;

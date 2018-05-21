@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.percent.PercentLayoutHelper;
@@ -34,20 +35,20 @@ import com.affwl.exchange.R;
 @SuppressWarnings( "deprecation" )
 public class TeenpattiActivity extends AppCompatActivity implements View.OnClickListener{
     ImageView handle_right, backbtn,infobtn,infoclosebtn,chatbtn,chatclosebtn,chatclosebtn2,profile,themeclosebtn,myplayerbtn,ustatusclosebtn,dealerbtn,dealerclsbtn,oplayerbtn,oustatusclosebtn,msgclosebtn,chngdealerclosebtn;;
-    TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,backtolobby,nametext, code;
+    TextView closebtn,tipsbtn,chngdbtn,canceltipbtn,plusbtn,minusbtn,backtolobby,nametext, code,show_btn;
     PopupWindow popupWindow,infopopupWindow,chatpopupWindow,themepopupWindow,ustatuspopupWindow,dealerpopupWindow,oustatuspopupWindow,sendmsgpopupWindow,chngdpopupWindow;
     Button msgbtn,blockbtn;
     RelativeLayout relativeLayout,relativeLayout2,relativeLayout3,teenpattitble;
     NavigationView navigationView;
 
     Session session;
-    TextView btn_see_cards;
 
     ImageView plus_btn, minus_btn;
     TextView blind_btn;
 
     TextView display_myplayer_bind;
 
+    LinearLayout below_layout;
     Animation animations;
 
     ImageView card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15;
@@ -55,6 +56,8 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
     Animation animatecard1, animatecard2, animatecard3, animatecard4, animatecard5, animatecard6, animatecard7, animatecard8,
             animatecard9, animatecard10, animatecard11, animatecard12, animatecard13, animatecard14, animatecard15;
 
+    PercentRelativeLayout rl_bottom_caption;
+    TextView btn_see_cards;
     int minteger = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -69,6 +72,9 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
 //        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, teenpattitble, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 //        teenpattitble.addDrawerListener(toggle);
 //        toggle.syncState();
+
+        rl_bottom_caption=findViewById(R.id.rl_bottom_caption);
+        below_layout=findViewById(R.id.below_layout);
           relativeLayout= (RelativeLayout) findViewById(R.id.teenpattitble);
 //
 //        navigationView = (NavigationView) findViewById(R.id.teen_nav_view);
@@ -80,10 +86,10 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
 
         //        Animation on blindshow_layout
 //        LinearLayout blindshow_layout=findViewById(R.id.blindshow_layout);
-        TranslateAnimation animationsb = new TranslateAnimation(0.0f, 0.0f,0.0f, -10.0f);
-        animationsb.setDuration(100);  // animation duration
-        animationsb.setFillAfter(true);
-        blind_btn.startAnimation(animationsb);
+//        TranslateAnimation animationsb = new TranslateAnimation(0.0f, 0.0f,0.0f, -10.0f);
+//        animationsb.setDuration(100);  // animation duration
+//        animationsb.setFillAfter(true);
+//        blind_btn.startAnimation(animationsb);
 
 //        Implementation of increament amount
         final TextView displayAmount = findViewById(R.id.start_amount);
@@ -124,6 +130,30 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
                 display_myplayer_bind.startAnimation(animations);
                 display_myplayer_bind.setVisibility(View.GONE);
 
+                final Handler handler = new Handler();
+                final Handler handler1 = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        below_layout.setVisibility(View.VISIBLE);
+//                        Animation animation = AnimationUtils.loadAnimation(TeenpattiActivity.this, R.anim.translate_up_below_layout);
+////                                animation.setDuration(1000);
+//                        animation.setFillAfter(true);
+//                        below_layout.startAnimation(animation);
+                    }
+                }, 2000);
+
+                handler1.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+//                        Animation animation1 =  AnimationUtils.loadAnimation(TeenpattiActivity.this, R.anim.translate_bottom_blind_chaal);
+////                               animation1.setDuration(1000);
+//                        animation1.setFillAfter(true);
+//                        rl_bottom_caption.startAnimation(animation1);
+                        rl_bottom_caption.setVisibility(View.GONE);
+                        blind_btn.setEnabled(false);
+                    }
+                }, 1000);
             }
         });
 
@@ -171,7 +201,7 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
 
         //see myplayer card
         btn_see_cards=findViewById(R.id.btn_see_cards);
-
+        show_btn=findViewById(R.id.show);
         btn_see_cards.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,6 +209,8 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
                 card8.setImageResource(R.drawable.club_6);
                 card13.setImageResource(R.drawable.club_ace);
                 btn_see_cards.setVisibility(View.GONE);
+                show_btn.setVisibility(View.VISIBLE);
+                blind_btn.setText("CHAAL");
             }
         });
 
@@ -463,6 +495,8 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
 
                 btn_see_cards.bringToFront();
                 btn_see_cards.setVisibility(View.VISIBLE);
+                rl_bottom_caption.setVisibility(View.VISIBLE);
+                below_layout.setVisibility(View.GONE);
             }
         });
 
