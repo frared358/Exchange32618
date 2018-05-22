@@ -92,6 +92,7 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
 //        blind_btn.startAnimation(animationsb);
 
 //        Implementation of increament amount
+
         final TextView displayAmount = findViewById(R.id.start_amount);
         plus_btn=findViewById(R.id.inc_amount);
         plus_btn.setOnClickListener(new View.OnClickListener() {
