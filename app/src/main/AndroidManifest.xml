@@ -327,7 +327,7 @@
 
         <service
             android:name=".sport.ServiceFancyBookMakingRefresh"
-            android:exported="false"></service>
+            android:exported="false"/>
     </application>
 
 </manifest>

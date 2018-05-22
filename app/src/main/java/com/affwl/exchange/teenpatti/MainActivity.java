@@ -64,15 +64,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nametext=findViewById(R.id.nametext);
 
         final Animation Animchipsright = AnimationUtils.loadAnimation(MainActivity.this, R.anim.translate_chips_right);
+        final Animation Animchipsleft = AnimationUtils.loadAnimation(MainActivity.this, R.anim.translate_chips_left);
 
         mainychips=findViewById(R.id.mainychips);
-//        mainychips.setOnClickListener(this);
 
         mainlimegchips=findViewById(R.id.mainlimegchips);
         mainlimegchips.setOnClickListener(this);
 
         blackchips=findViewById(R.id.blackchips);
-//        blackchips.setOnClickListener(this);
         RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
 
         code=findViewById(R.id.code);
@@ -88,65 +87,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nametext.setText(name);
 
 
-        //Animations for chips click
-//        final Animation Animchipsright = AnimationUtils.loadAnimation(MainActivity.this, R.anim.translate_chips_right);
-        final Animation Animchipsleft = AnimationUtils.loadAnimation(MainActivity.this, R.anim.translate_chips_left);
-
-//        animatechips1 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_right);
-//        animatechips2 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_right);
-//        animatechips3 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_right);
-//        //animatechips4 = AnimationUtils.loadAnimation(this, R.anim.translate_center);
-//        animatechips5 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_left);
-//        animatechips6 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_left);
-//        animatechips7 = AnimationUtils.loadAnimation(this, R.anim.translate_chips_left);
 
         yellowchiplayout = findViewById(R.id.yellowchiplayout);
-        yellowchiplayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                yellowchiplayout.startAnimation(Animchipsright);
-                startActivity(new Intent(MainActivity.this, LoadingScreen_teenpatti.class));
-                finish();
-            }
-        });
         orangechipslayout = findViewById(R.id.orangechipslayout);
-        orangechipslayout.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                orangechipslayout.clearAnimation();
-                orangechipslayout.startAnimation(Animchipsright);
-            }
-        });
-
+        limechipslayout = findViewById(R.id.limechipslayout);
         blackchipslayout = findViewById(R.id.blackchipslayout);
-        blackchipslayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                blackchipslayout.startAnimation(Animchipsright);
-                startActivity(new Intent(MainActivity.this, NewVariationActivity.class));
-                finish();
-            }
-        });
         cyanchipslayout = findViewById(R.id.cyanchipslayout);
-        cyanchipslayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cyanchipslayout.startAnimation(Animchipsright);
-            }
-        });
         darkbluechiplayout = findViewById(R.id.darkbluechiplayout);
-        darkbluechiplayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                darkbluechiplayout.startAnimation(Animchipsright);
-            }
-        });
         ygreenchipslayout = findViewById(R.id.ygreenchipslayout);
-        ygreenchipslayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ygreenchipslayout.startAnimation(Animchipsright);
-            }
-        });
+
+
 
         // Popup for Help
         showPopupBtn = findViewById(R.id.help_btn_loader);
@@ -174,7 +124,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         HelpUspopupWindow.dismiss();
                     }
                 });
+            }
+        });
 
+        //////////////// teen patti ////////////////
+
+        RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
+        yellowchiplayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable(){
+
+                    @Override
+                    public void run() {
+                        Intent i = new Intent(MainActivity.this,LoadingScreen_teenpatti.class);
+                        startActivity(i);
+                        yellowchiplayout.clearAnimation();
+                        orangechipslayout.startAnimation(Animchipsleft);
+                        yellowchiplayout.startAnimation(Animchipsleft);
+                        limechipslayout.startAnimation(Animchipsleft);
+                    }
+                },500);
             }
         });
 
@@ -185,6 +156,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         orangechipsbtn = findViewById(R.id.mainorgchips);
         RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
         relativelayout321 = findViewById(R.id.relativelayout321);
+        orangechipslayout = findViewById(R.id.orangechipslayout);
 
         orangechipslayout.setOnClickListener(new View.OnClickListener() {
 
@@ -197,19 +169,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void run() {
                         Intent i = new Intent(MainActivity.this, ThreetwooneTournament.class);
                         startActivity(i);
+                        orangechipslayout.clearAnimation();
+                        orangechipslayout.startAnimation(Animchipsleft);
+                        limechipslayout.startAnimation(Animchipsleft);
                     }
-                }, 1000);
+                }, 500);
 
             }
         });
-
-//        orangechipsbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, ThreetwooneTournament.class);
-//                startActivity(intent);
-//            }
-//        });
 
         //////////////// Popup for six patti ////////////////
         bluechipsbtn = findViewById(R.id.darkbluechips);
@@ -229,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         startActivity(i);
                         finish();
                     }
-                }, 1000);
+                }, 3000);
 
             }
         });
@@ -263,7 +230,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         startActivity(i);
                         finish();
                     }
-                }, 1000);
+                }, 3000);
 
             }
         });
