@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBinanceBG"
+    tools:context="com.affwl.exchange.crypto.MarketActivityBinance">
+
+    <LinearLayout
+        android:id="@+id/llTabData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorGreyDark">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgVFavoriteList"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/favourite_list_white_256"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Market"
+                android:layout_centerInParent="true"
+                android:textSize="18sp"
+                android:textColor="@color/colorWhite"/>
+
+
+            <ImageView
+                android:id="@+id/imgVMarketSearch"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentRight="true"
+                android:padding="5dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/search_white_128"/>
+
+        </RelativeLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabLayoutMarket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+            style="@style/MyTabLayout"
+            app:tabSelectedTextColor="@color/colorYellowDark"
+            app:tabIndicatorColor="@color/colorYellowDark"
+            app:tabMode="scrollable">
+
+        </android.support.design.widget.TabLayout>
+    </LinearLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPagerMarket"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/llTabData"
+         android:layout_above="@+id/llBottomMarket"/>
+
+    <!--<fragment-->
+        <!--android:id="@+id/fragmentBottomMarket"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_margin="2dp"-->
+        <!--tools:layout="@layout/fragment_bottom"-->
+        <!--class="exchange.affwl.com.binance.FragmentBottom"/>-->
+
+    <LinearLayout
+        android:id="@+id/llBottomMarket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        tools:context="exchange.affwl.com.binance.FragmentBottom">
+
+        <LinearLayout
+            android:id="@+id/llHomeMarket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginRight="2dp"
+            android:layout_marginLeft="2dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imgVHomeMarket"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/home_grey_128" />
+
+            <TextView
+                android:id="@+id/txtVHomeMarket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:textColor="@color/colorBinanceTextColor"
+                android:text="Home"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llMarketMarket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginRight="2dp"
+            android:layout_marginLeft="2dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imgVMarketMarket"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/chart_yellow_128"/>
+
+            <TextView
+                android:id="@+id/txtVMarketMarket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:textColor="@color/colorYellowDark"
+                android:text="Market"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llTradeMarket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginRight="2dp"
+            android:layout_marginLeft="2dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imgVTradeMarket"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/trade_grey_128"/>
+
+            <TextView
+                android:id="@+id/txtVTradeMarket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:textColor="@color/colorBinanceTextColor"
+                android:text="Trade"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llFundMarket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginRight="2dp"
+            android:layout_marginLeft="2dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imgVFundMarket"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/wallet_grey_128"/>
+
+            <TextView
+                android:id="@+id/txtVFundMarket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:textColor="@color/colorBinanceTextColor"
+                android:text="Fund"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llAccountMarket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginRight="2dp"
+            android:layout_marginLeft="2dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imgVAccountMarket"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/account_grey_128"/>
+
+            <TextView
+                android:id="@+id/txtVAccountMarket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:textColor="@color/colorBinanceTextColor"
+                android:text="Account"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--<RelativeLayout-->
+            <!--android:id="@+id/llBootomFragmentHolderMarket"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_margin="2dp">-->
+    <!--</RelativeLayout>-->
+
+</RelativeLayout>

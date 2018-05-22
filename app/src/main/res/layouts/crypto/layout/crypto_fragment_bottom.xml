@@ -1,0 +1,136 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:background="@color/colorPrimary"
+    tools:context="com.affwl.exchange.crypto.FragmentBottom">
+
+    <LinearLayout
+        android:id="@+id/llHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginRight="2dp"
+        android:layout_marginLeft="2dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imgVHome"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/home_grey_128" />
+
+        <TextView
+            android:id="@+id/txtVHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:textColor="@color/colorBinanceTextColor"
+            android:text="Home"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llMarket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginRight="2dp"
+        android:layout_marginLeft="2dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imgVMarket"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/chart_grey_128"/>
+
+        <TextView
+            android:id="@+id/txtVMarket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:textColor="@color/colorBinanceTextColor"
+            android:text="Market"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llTrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginRight="2dp"
+        android:layout_marginLeft="2dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imgVTrade"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/trade_grey_128"/>
+
+        <TextView
+            android:id="@+id/txtVTrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:textColor="@color/colorBinanceTextColor"
+            android:text="Trade"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llFund"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginRight="2dp"
+        android:layout_marginLeft="2dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imgVFund"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/wallet_grey_128"/>
+
+        <TextView
+            android:id="@+id/txtVFund"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:textColor="@color/colorBinanceTextColor"
+            android:text="Fund"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginRight="2dp"
+        android:layout_marginLeft="2dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imgVAccount"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/account_grey_128"/>
+
+        <TextView
+            android:id="@+id/txtVAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:textColor="@color/colorBinanceTextColor"
+            android:text="Account"/>
+    </LinearLayout>
+
+</LinearLayout>
