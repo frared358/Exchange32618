@@ -132,6 +132,7 @@ public class MatchOddsActivity extends AppCompatActivity implements View.OnClick
         return false;
     }
 
+    TextView txtVMatchOddNoData;
     private class MatchOddsAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -149,6 +150,11 @@ public class MatchOddsActivity extends AppCompatActivity implements View.OnClick
 
                 JSONArray arrayData = new JSONArray(strData);
                 int length = arrayData.length();
+
+                if (length <=0){
+                    txtVMatchOddNoData = findViewById(R.id.txtVMatchOddNoData);
+                    txtVMatchOddNoData.setVisibility(View.VISIBLE);
+                }
 
                 for(int i =0 ; i<length;i++){
                     JSONObject key = arrayData.getJSONObject(i);

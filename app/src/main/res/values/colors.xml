@@ -53,21 +53,26 @@
     <color name="colorLogoOrange">#F15F23</color>
     <color name="colorLogoOrangeDark">#c23900</color>
 
-    <color name="colorBlueBet1">#a0d0f2</color>
-    <color name="colorRedBet1">#f5afbe</color>
+
 
     <color name="colorBlueBetTrasparent">#eba0d0f2</color>
     <color name="colorRedBetTrasparent">#ebfca2b5</color>
 
-<color name="colorOrange">#FF9800</color>
-<color name="colorYellowGolden">#dbcc00</color>
-<color name="coralorange">#FF7F50</color>
-<color name="orangered">#FF4500</color>
+    <color name="colorOrange">#FF9800</color>
+    <color name="colorYellowGolden">#dbcc00</color>
+    <color name="coralorange">#FF7F50</color>
+    <color name="orangered">#FF4500</color>
 
-<color name="colorRedLight">#ff4646</color>
-<color name="colorBlueBet">#72BBEF</color>
-<color name="colorRedBet">#FAA9BA</color>
-<color name="darkbrown">#250400</color>
+    <color name="colorRedLight">#ff4646</color>
+    <color name="colorBlueBet">#72BBEF</color>
+    <color name="colorRedBet">#FAA9BA</color>
+    <color name="colorBlueBet1">#a0d0f2</color>
+    <color name="colorRedBet1">#f5afbe</color>
+    <color name="colorBlueBet2">#96a0d0f2</color>
+    <color name="colorRedBet2">#96f5afbe</color>
+    <color name="colorBlueBet3">#64a0d0f2</color>
+    <color name="colorRedBet3">#64f5afbe</color>
+    <color name="darkbrown">#250400</color>
     <!--3Patti-->
     <color name="colorLanguageBg">#20b9b9b9</color>
 

@@ -56,7 +56,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView txtVRunnerName,txtVBackData,txtVBackChips,txtVLayData,txtVLayChips,txtVExposerData,txtVActiveResult;
         LinearLayout llBack,llLay,llMarketData;
-
+        LinearLayout llMarketDataBack,llMarketDataLay;
         public MyViewHolder(View view) {
             super(view);
             txtVRunnerName = view.findViewById(R.id.txtVRunnerName);
@@ -70,6 +70,12 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
             llLay = view.findViewById(R.id.llLay);
             llMarketData = view.findViewById(R.id.llMarketData);
 
+
+            llMarketDataBack = view.findViewById(R.id.llMarketDataBack);
+            llMarketDataLay = view.findViewById(R.id.llMarketDataLay);
+            llMarketDataBack.setVisibility(View.GONE);
+            llMarketDataLay.setVisibility(View.GONE);
+
         }
     }
 
@@ -80,16 +86,18 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
 
     String mRunnerName;
     int bookId,runnerId;
-    double mBack,mChipsBack,mLay,mChipsLay;
+    String mBack,mChipsBack,mLay,mChipsLay;
 //    String bmBallStatus,bmBook,bmName;
 //    int bmId,bmBackPrice,bmBackSize,bmLayPrice,bmLaySize;
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final MarketData book = dataList.get(position);
-
+        final String mBallStatus = book.bmBallStatus;
         handler.post(new Runnable() {
             @Override
             public void run() {
+                //new getExposerAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/ExposureBook?mktid="+DataHolder.getData(contextBook,"keyMarketId"));
+
                 mRunnerName=book.bmName;
                 mBack=book.bmBackPrice;
                 mChipsBack=book.bmBackSize;
@@ -105,26 +113,55 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
                 holder.txtVLayChips.setText(String.valueOf(mChipsLay));
 
                 //Log.i("ROHITlk",mLay+" "+mChipsLay);
-                if(book.bmBook != null){
-                    try {
-                        int bookVal = Integer.parseInt(book.bmBook);
-                        if(bookVal <0 ){
-                            holder.txtVExposerData.setText(String.valueOf(bookVal));
-                            holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook,R.color.colorRed));
-                        }
-                        else if (bookVal>0){
-                            holder.txtVExposerData.setText(String.valueOf(bookVal));
-                            holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook,R.color.colorGreen));
-                        }
+//                if(book.bmBook != null){
+//                    try {
+//                        int bookVal = Integer.parseInt(book.bmBook);
+//                        if(bookVal <0 ){
+//                            holder.txtVExposerData.setText(String.valueOf(bookVal));
+//                            holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook,R.color.colorRed));
+//                        }
+//                        else if (bookVal>0){
+//                            holder.txtVExposerData.setText(String.valueOf(bookVal));
+//                            holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook,R.color.colorGreen));
+//                        }
+//
+//                    } catch (NumberFormatException e) {
+//                        e.printStackTrace();
+//                    }catch (NullPointerException n){
+//                        n.printStackTrace();
+//                    }
+//                }
 
-                    } catch (NumberFormatException e) {
-                        e.printStackTrace();
-                    }catch (NullPointerException n){
-                        n.printStackTrace();
-                    }
+                if(!mBallStatus.equals("")){
+                    holder.txtVActiveResult.setText(mBallStatus);
+                    holder.txtVActiveResult.setVisibility(View.VISIBLE);
+                    holder.llMarketData.setVisibility(View.GONE);
+                }else if (book.bmBackPrice.equals("-") && book.bmLayPrice.equals("-")){
+                    holder.txtVActiveResult.setText(mBallStatus);
+                    holder.txtVActiveResult.setVisibility(View.VISIBLE);
+                    holder.llMarketData.setVisibility(View.GONE);
+                }else {
+                    holder.txtVActiveResult.setVisibility(View.GONE);
+                    holder.llMarketData.setVisibility(View.VISIBLE);
                 }
 
-                new getExposerAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/ExposureBook?mktid="+bookId);
+
+
+//                Log.i("EXPsore"," "+arrayExposerName.size());
+//                for(int i =0; i< arrayExposerName.size();i++){
+//                    Log.i("EXPsore",book.bmName+" "+arrayExposerName.get(i));
+//                    if(arrayExposerName.get(i).equalsIgnoreCase(book.bmName)){
+//
+//                        holder.txtVExposerData.setText(arrayExposerValue.get(i));
+//
+//                        if(Double.valueOf(arrayExposerValue.get(i))>0){
+//                            holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook, R.color.colorGreen));
+//                        }else {
+//                            holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook, R.color.colorRed));
+//                        }
+//                        break;
+//                    }
+//                }
             }
         });
 
@@ -533,19 +570,18 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
 
         @Override
         protected void onPostExecute(String result) {
-            //Log.i("Check",""+result);
+            Log.i("CheckExp",""+result);
             //Toast.makeText(contextBook, ""+result, Toast.LENGTH_SHORT).show();
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
                 JSONArray jsonArray = new JSONArray(jsonObjMain.getString("data"));
                 int len = jsonArray.length();
-
+                Log.i("CheckExp",""+jsonArray);
                 for(int i=0; i<len; i++){
                     JSONObject key = jsonArray.getJSONObject(i);
                     arrayExposerName.add(key.getString("Key"));
                     arrayExposerValue.add(key.getString("Value"));
                 }
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }

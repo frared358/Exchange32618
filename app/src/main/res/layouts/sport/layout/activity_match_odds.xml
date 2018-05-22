@@ -16,8 +16,8 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/colorPrimary"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="@string/app_name">
@@ -90,5 +90,18 @@
         android:layout_width="match_parent"
         android:layout_margin="5dp"
         android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/txtVMatchOddNoData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NO DATA.."
+        android:textSize="16sp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="@color/colorGreay"
+        android:textColor="@color/colorRed"/>
 
 </LinearLayout>
