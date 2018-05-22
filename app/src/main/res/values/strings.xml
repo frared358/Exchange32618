@@ -399,7 +399,15 @@ to 999 will be 750.\n If you have 9-Ace-9 \nthen you havea 991 and \nyou are pro
 
 
 
+<!--Crypto-->
 
+    <string-array name="limit">
+        <item>Limit Order</item>
+        <item>Market Order</item>
+        <item>Stop Limit</item>
+    </string-array>
+
+    <string name="buy_sell">Buy &amp; Sell</string>
 
 
 

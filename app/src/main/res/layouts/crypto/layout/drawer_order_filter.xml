@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:background="@color/colorGreyDark">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:layout_weight="1">
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:textSize="15sp"
+           android:textColor="@color/colorWhite"
+           android:layout_marginTop="10dp"
+           android:gravity="center"
+           android:text="Order Filter"/>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_margin="5dp">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textSize="15sp"
+               android:layout_margin="5dp"
+               android:textColor="@color/colorWhite"
+               android:text="Date"/>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+
+               <TextView
+                   android:id="@+id/txtVDate1Day"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="15sp"
+                   android:background="@drawable/border_yellow"
+                   android:textColor="@color/colorYellowDark"
+                   android:text="1Day"
+                   android:padding="2dp"
+                   android:gravity="center"
+                   android:layout_margin="5dp"/>
+
+               <TextView
+                   android:id="@+id/txtVDate1Week"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="15sp"
+                   android:background="@drawable/border_grey"
+                   android:textColor="@color/colorWhite"
+                   android:text="1Week"
+                   android:padding="2dp"
+                   android:gravity="center"
+                   android:layout_margin="5dp"/>
+
+               <TextView
+                   android:id="@+id/txtVDate1Month"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="15sp"
+                   android:background="@drawable/border_grey"
+                   android:textColor="@color/colorWhite"
+                   android:text="1Month"
+                   android:padding="2dp"
+                   android:gravity="center"
+                   android:layout_margin="5dp"/>
+
+           </LinearLayout>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+
+               <TextView
+                   android:id="@+id/txtVDate3Month"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="15sp"
+                   android:background="@drawable/border_grey"
+                   android:textColor="@color/colorWhite"
+                   android:text="3Month"
+                   android:padding="2dp"
+                   android:gravity="center"
+                   android:layout_margin="5dp"/>
+
+               <TextView
+                   android:id="@+id/txtVDateAll"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="15sp"
+                   android:background="@drawable/border_grey"
+                   android:textColor="@color/colorWhite"
+                   android:text="All"
+                   android:gravity="center"
+                   android:padding="2dp"
+                   android:layout_margin="5dp"/>
+
+           </LinearLayout>
+
+       </LinearLayout>
+
+       <View
+           android:layout_width="match_parent"
+           android:layout_height="0.5dp"
+           android:layout_margin="5dp"
+           android:background="@color/colorGreay"/>
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_margin="5dp">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textSize="18sp"
+               android:layout_margin="5dp"
+               android:textColor="@color/colorWhite"
+               android:text="Pair"/>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+
+               <EditText
+                   android:id="@+id/editTxtPairCoin"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="15sp"
+                   android:background="@drawable/border_grey"
+                   android:textColor="@color/colorWhite"
+                   android:hint="Coin"
+                   android:padding="2dp"
+                   android:gravity="center"
+                   android:layout_margin="5dp"
+                   android:layout_weight="1"
+                   android:textColorHint="@color/colorWhite"/>
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="15sp"
+                   android:textColor="@color/colorWhite"
+                   android:text="/"
+                   android:padding="2dp"
+                   android:gravity="center"
+                   android:layout_margin="5dp"/>
+
+               <TextView
+                   android:id="@+id/txtVPairAll"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="15sp"
+                   android:background="@drawable/border_grey"
+                   android:textColor="@color/colorWhite"
+                   android:text="All"
+                   android:padding="2dp"
+                   android:gravity="center"
+                   android:layout_weight="1"
+                   android:layout_margin="5dp"/>
+
+           </LinearLayout>
+       </LinearLayout>
+
+       <View
+           android:layout_width="match_parent"
+           android:layout_height="0.5dp"
+           android:layout_margin="5dp"
+           android:background="@color/colorGreay"/>
+
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_margin="5dp">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textSize="18sp"
+               android:layout_margin="5dp"
+               android:textColor="@color/colorWhite"
+               android:text="Type"/>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+
+               <TextView
+                   android:id="@+id/txtVTypeBuySell"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="15sp"
+                   android:background="@drawable/border_yellow"
+                   android:textColor="@color/colorYellowDark"
+                   android:text="@string/buy_sell"
+                   android:padding="2dp"
+                   android:gravity="center"
+                   android:layout_weight="1"
+                   android:layout_margin="5dp"/>
+
+               <TextView
+                   android:id="@+id/txtVTypeBuy"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="15sp"
+                   android:background="@drawable/border_grey"
+                   android:textColor="@color/colorWhite"
+                   android:text="Buy"
+                   android:padding="2dp"
+                   android:gravity="center"
+                   android:layout_weight="1"
+                   android:layout_margin="5dp"/>
+
+               <TextView
+                   android:id="@+id/txtVTypeSell"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:textSize="15sp"
+                   android:background="@drawable/border_grey"
+                   android:textColor="@color/colorWhite"
+                   android:text="Sell"
+                   android:padding="2dp"
+                   android:gravity="center"
+                   android:layout_weight="1"
+                   android:layout_margin="5dp"/>
+
+           </LinearLayout>
+       </LinearLayout>
+
+       <View
+           android:layout_width="match_parent"
+           android:layout_height="0.5dp"
+           android:layout_margin="5dp"
+           android:background="@color/colorGreay"/>
+
+       <Switch
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Hide All Canceled"
+           android:textColor="@color/colorWhite"
+           android:layout_margin="5dp"
+           android:textSize="15sp"/>
+
+   </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="0"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/txtVResetFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:background="@color/colorGreyLiterDark"
+            android:textColor="@color/colorYellowDark"
+            android:text="Reset"
+            android:padding="5dp"
+            android:gravity="center"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/txtVCompleteFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:background="@color/colorYellowDark"
+            android:textColor="@color/colorWhite"
+            android:text="Complete"
+            android:padding="5dp"
+            android:gravity="center"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+</LinearLayout>

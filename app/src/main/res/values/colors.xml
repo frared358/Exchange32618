@@ -71,4 +71,18 @@
     <!--3Patti-->
     <color name="colorLanguageBg">#20b9b9b9</color>
 
+    <!--crypto-->
+    <color name="colorTrasparent">#00a0d0f2</color>
+    <color name="colorGreyDark">#313131</color>
+
+    <color name="colorGreyLiterDark">#535252</color>
+    <color name="colorBinanceBG">#11161a</color>
+    <color name="colorBinanceTextColor">#999c9e</color>
+
+    <color name="colorLow">#e1046d</color>
+    <color name="colorHigh">#78a407</color>
+
+    <color name="text_color_primary">#ffffff</color>
+
+
 </resources>

@@ -92,6 +92,7 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
 //        blind_btn.startAnimation(animationsb);
 
 //        Implementation of increament amount
+
         final TextView displayAmount = findViewById(R.id.start_amount);
         plus_btn=findViewById(R.id.inc_amount);
         plus_btn.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +118,7 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
         });
 
 //        Implementation of Blind
+        animations = AnimationUtils.loadAnimation(TeenpattiActivity.this, R.anim.translate_text_up);
         blind_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,26 +128,25 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
                         0.0f, -80.0f);          //  new TranslateAnimation(xFrom,xTo, yFrom,yTo)
                 animations.setDuration(100);  // animation duration
                 animations.setFillAfter(true);*/
-                animations = AnimationUtils.loadAnimation(TeenpattiActivity.this, R.anim.translate_text_up);
                 display_myplayer_bind.startAnimation(animations);
                 display_myplayer_bind.setVisibility(View.GONE);
 
-                final Handler handler = new Handler();
-                final Handler handler1 = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
+//                final Handler handler = new Handler();
+//                final Handler handler1 = new Handler();
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
                         below_layout.setVisibility(View.VISIBLE);
 //                        Animation animation = AnimationUtils.loadAnimation(TeenpattiActivity.this, R.anim.translate_up_below_layout);
 ////                                animation.setDuration(1000);
 //                        animation.setFillAfter(true);
 //                        below_layout.startAnimation(animation);
-                    }
-                }, 2000);
+//                    }
+//                }, 2000);
 
-                handler1.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
+//                handler1.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
 //                        Animation animation1 =  AnimationUtils.loadAnimation(TeenpattiActivity.this, R.anim.translate_bottom_blind_chaal);
 ////                               animation1.setDuration(1000);
 //                        animation1.setFillAfter(true);
@@ -153,8 +154,8 @@ public class TeenpattiActivity extends AppCompatActivity implements View.OnClick
                         rl_bottom_caption.setVisibility(View.GONE);
                         blind_btn.setEnabled(false);
                     }
-                }, 1000);
-            }
+//                }, 1000);
+//            }
         });
 
         //shuffling card animation

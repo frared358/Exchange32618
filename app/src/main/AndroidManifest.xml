@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-feature android:name="android.hardware.camera" />
 
@@ -83,12 +84,14 @@
             </intent-filter>
 
         </activity>
+
         <activity android:name=".binary.AssetListActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".binary.TradeActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".binary.BinaryPotfolioActivity"
             android:screenOrientation="portrait"/>
+
 
         <activity android:name=".fx.FxActivity"
             android:screenOrientation="portrait"/>
@@ -323,6 +326,42 @@
         <activity
             android:name=".reports.TradeReportActivity"
             android:parentActivityName=".reports.ReportsActivity"
+            android:screenOrientation="portrait"/>
+
+        //Crypto
+
+        <activity android:name=".crypto.BinancesActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.MarketActivityBinance"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.FavoriteActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.FundActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.HistoryDepositeWithdrawActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.DepositeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.WithDrawalActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.CoinSelectionActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.TradeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.TradingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.GraphBinanceActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.OpenOrderActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.OrderHistoryActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.OrderDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.BalanceActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".crypto.MarketSearchActivity"
             android:screenOrientation="portrait"/>
 
         <service

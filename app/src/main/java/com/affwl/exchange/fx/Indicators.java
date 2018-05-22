@@ -23,7 +23,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import static com.affwl.exchange.fx.Fx_Chart_Fragment.rlchartb;
 
 public class Indicators extends AppCompatActivity {
-    ImageView fadd;
+    ImageView imageButton_fadd;
     CheckBox cbindi;
 
     LinearLayout llmainchart, llindichart;
@@ -47,8 +47,9 @@ public class Indicators extends AppCompatActivity {
 
         cbindi=findViewById(R.id.cbindi);
 
-        fadd = (ImageView) findViewById(R.id.fadd);
-        fadd.setOnClickListener(new View.OnClickListener() {
+
+        imageButton_fadd = (ImageView) findViewById(R.id.imageButton_fadd);
+        imageButton_fadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 Intent i = new Intent(v.getContext(), FX_indicator_f_add_Activity.class);
