@@ -59,8 +59,8 @@ public class MatchListActivity extends AppCompatActivity implements View.OnClick
         int sportId = intent.getIntExtra("sportId",0);
         //Toast.makeText(this, tournamentId+" "+sportId, Toast.LENGTH_SHORT).show();
 
-        txtVSportNameM.setText(DataHolder.SPORT_NAME+"> ");
-        txtVTournamentNameM.setText(intent.getStringExtra("tournamentName")+"> ");
+        txtVSportNameM.setText(DataHolder.SPORT_NAME+" 》");
+        txtVTournamentNameM.setText(intent.getStringExtra("tournamentName")+" 》");
         DataHolder.TOURNAMENT_NAME = intent.getStringExtra("tournamentName");
 
         recycleViewMatchList = findViewById(R.id.recycleViewMatchList);

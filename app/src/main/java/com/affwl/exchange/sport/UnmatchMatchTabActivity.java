@@ -9,13 +9,12 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.Toast;
-
 import com.affwl.exchange.DataHolder;
 import com.affwl.exchange.R;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,13 +23,16 @@ public class UnmatchMatchTabActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     String[] txt ={"Match","Unmatch"};
+    CheckBox checkBoxAverage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unmatch_match_tab);
 
-        DataHolder.showProgress(this);
+        checkBoxAverage = findViewById(R.id.checkBoxAverage);
+
+
         tabLayout = (TabLayout)findViewById(R.id.tabLayout);
         viewPager = (ViewPager)findViewById(R.id.viewPager);
 
@@ -39,8 +41,21 @@ public class UnmatchMatchTabActivity extends AppCompatActivity {
         }
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        new Match_UnMatchAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Reports/GetCurrentBets");
 
+        //Toast.makeText(this, ""+DataHolder.getData(this,"Match_Id"), Toast.LENGTH_SHORT).show();
+        //new Match_UnMatchAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Reports/GetCurrentBets");
+        new Match_UnMatchDataAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/GetAllBets?avg=0&mtid="+DataHolder.getData(this,"Match_Id"));
+
+        checkBoxAverage.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
+                if (isChecked){
+                    new Match_UnMatchDataAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/GetAllBets?avg=1&mtid="+DataHolder.getData(UnmatchMatchTabActivity.this,"Match_Id"));
+                }else {
+                    new Match_UnMatchDataAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/GetAllBets?avg=0&mtid="+DataHolder.getData(UnmatchMatchTabActivity.this,"Match_Id"));
+                }
+            }
+        });
     }
 
     public class ViewPagerAdapter extends FragmentStatePagerAdapter {
@@ -107,19 +122,41 @@ public class UnmatchMatchTabActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            Log.i("Check",""+result);
+            Log.i("CheckMU",""+result);
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
                 unMatchedbets = jsonObjMain.getString("unMatchedbets");
                 matchedbets = jsonObjMain.getString("matchedbets");
-
                 gui();
+
             } catch (JSONException e) {
                 e.printStackTrace();
                 DataHolder.unAuthorized(UnmatchMatchTabActivity.this,result);
             }
+        }
+    }
 
-            DataHolder.cancelProgress();
+    private class Match_UnMatchDataAsyncTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            return DataHolder.getApi(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.i("CheckMU",""+result);
+            //Toast.makeText(UnmatchMatchTabActivity.this, ""+result, Toast.LENGTH_SHORT).show();
+            try {
+                JSONObject jsonObjMain = new JSONObject(result.toString());
+                unMatchedbets = jsonObjMain.getString("unMatchedData");
+                matchedbets = jsonObjMain.getString("matchedData");
+                gui();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                DataHolder.unAuthorized(UnmatchMatchTabActivity.this,result);
+            }
         }
     }
 }

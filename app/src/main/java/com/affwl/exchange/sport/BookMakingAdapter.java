@@ -56,7 +56,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
     public class MyViewHolder extends RecyclerView.ViewHolder{
         TextView txtVRunnerName,txtVBackData,txtVBackChips,txtVLayData,txtVLayChips,txtVExposerData,txtVActiveResult;
         LinearLayout llBack,llLay,llMarketData;
-
+        LinearLayout llMarketDataBack,llMarketDataLay;
         public MyViewHolder(View view) {
             super(view);
             txtVRunnerName = view.findViewById(R.id.txtVRunnerName);
@@ -70,6 +70,12 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
             llLay = view.findViewById(R.id.llLay);
             llMarketData = view.findViewById(R.id.llMarketData);
 
+
+            llMarketDataBack = view.findViewById(R.id.llMarketDataBack);
+            llMarketDataLay = view.findViewById(R.id.llMarketDataLay);
+            llMarketDataBack.setVisibility(View.GONE);
+            llMarketDataLay.setVisibility(View.GONE);
+
         }
     }
 
@@ -80,16 +86,18 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
 
     String mRunnerName;
     int bookId,runnerId;
-    double mBack,mChipsBack,mLay,mChipsLay;
+    String mBack,mChipsBack,mLay,mChipsLay;
 //    String bmBallStatus,bmBook,bmName;
 //    int bmId,bmBackPrice,bmBackSize,bmLayPrice,bmLaySize;
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final MarketData book = dataList.get(position);
-
+        final String mBallStatus = book.bmBallStatus;
         handler.post(new Runnable() {
             @Override
             public void run() {
+                //new getExposerAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/ExposureBook?mktid="+DataHolder.getData(contextBook,"keyMarketId"));
+
                 mRunnerName=book.bmName;
                 mBack=book.bmBackPrice;
                 mChipsBack=book.bmBackSize;
@@ -105,26 +113,55 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
                 holder.txtVLayChips.setText(String.valueOf(mChipsLay));
 
                 //Log.i("ROHITlk",mLay+" "+mChipsLay);
-                if(book.bmBook != null){
-                    try {
-                        int bookVal = Integer.parseInt(book.bmBook);
-                        if(bookVal <0 ){
-                            holder.txtVExposerData.setText(String.valueOf(bookVal));
-                            holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook,R.color.colorRed));
-                        }
-                        else if (bookVal>0){
-                            holder.txtVExposerData.setText(String.valueOf(bookVal));
-                            holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook,R.color.colorGreen));
-                        }
+//                if(book.bmBook != null){
+//                    try {
+//                        int bookVal = Integer.parseInt(book.bmBook);
+//                        if(bookVal <0 ){
+//                            holder.txtVExposerData.setText(String.valueOf(bookVal));
+//                            holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook,R.color.colorRed));
+//                        }
+//                        else if (bookVal>0){
+//                            holder.txtVExposerData.setText(String.valueOf(bookVal));
+//                            holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook,R.color.colorGreen));
+//                        }
+//
+//                    } catch (NumberFormatException e) {
+//                        e.printStackTrace();
+//                    }catch (NullPointerException n){
+//                        n.printStackTrace();
+//                    }
+//                }
 
-                    } catch (NumberFormatException e) {
-                        e.printStackTrace();
-                    }catch (NullPointerException n){
-                        n.printStackTrace();
-                    }
+                if(!mBallStatus.equals("")){
+                    holder.txtVActiveResult.setText(mBallStatus);
+                    holder.txtVActiveResult.setVisibility(View.VISIBLE);
+                    holder.llMarketData.setVisibility(View.GONE);
+                }else if (book.bmBackPrice.equals("-") && book.bmLayPrice.equals("-")){
+                    holder.txtVActiveResult.setText(mBallStatus);
+                    holder.txtVActiveResult.setVisibility(View.VISIBLE);
+                    holder.llMarketData.setVisibility(View.GONE);
+                }else {
+                    holder.txtVActiveResult.setVisibility(View.GONE);
+                    holder.llMarketData.setVisibility(View.VISIBLE);
                 }
 
-                new getExposerAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/ExposureBook?mktid="+bookId);
+
+
+//                Log.i("EXPsore"," "+arrayExposerName.size());
+//                for(int i =0; i< arrayExposerName.size();i++){
+//                    Log.i("EXPsore",book.bmName+" "+arrayExposerName.get(i));
+//                    if(arrayExposerName.get(i).equalsIgnoreCase(book.bmName)){
+//
+//                        holder.txtVExposerData.setText(arrayExposerValue.get(i));
+//
+//                        if(Double.valueOf(arrayExposerValue.get(i))>0){
+//                            holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook, R.color.colorGreen));
+//                        }else {
+//                            holder.txtVExposerData.setTextColor(ContextCompat.getColor(contextBook, R.color.colorRed));
+//                        }
+//                        break;
+//                    }
+//                }
             }
         });
 
@@ -182,7 +219,7 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
     EditText editTxtStackValue,editTxtVOddValue;
     Button btnBetPlace;
     LinearLayout llDialogBetPlace;
-    String ODDVALUE,STACKVALUE,PROFITVALUE;
+    String ODDVALUE,STACKVALUE,PROFITVALUE,P_L;
 
     public void dialogBetPlace(final String RunnerTitle,int color,final double oddValue,final String BackLay){
 
@@ -211,48 +248,16 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
         ODDVALUE = String.valueOf(oddValue);
         editTxtVOddValue.setText(ODDVALUE);
 
-        PROFITVALUE = String.format("Profit CHIPS %.2f", DataHolder.profit(oddValue,DataHolder.STACK_VALUE));
-        txtVProfitValue.setText(PROFITVALUE);
 
+        if (BackLay.equals("Back")){
+            P_L = "Profit";
+            txtVProfitValue.setTextColor(ContextCompat.getColor(contextBook,R.color.colorGreen));
+        }else {
+            P_L = "Liability";
+            txtVProfitValue.setTextColor(ContextCompat.getColor(contextBook,R.color.colorRed));
+        }
 
-        txtVOddIncrement.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                double oddVal = 0.0;
-                try {
-                    oddVal = Double.valueOf(ODDVALUE);
-                } catch (NumberFormatException e) {
-                    oddVal = 0.0;
-                    e.printStackTrace();
-                }
-                double inc = DataHolder.increment(oddVal);
-                ODDVALUE = String.format("%.2f",inc);
-                editTxtVOddValue.setText(ODDVALUE);
-
-                PROFITVALUE = String.format("Profit CHIPS %.2f", DataHolder.profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
-                txtVProfitValue.setText(PROFITVALUE);
-            }
-        } );
-
-        txtVOddDecrement.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                double oddVal = 0.0;
-                try {
-                    oddVal = Double.valueOf(ODDVALUE);
-                } catch (NumberFormatException e) {
-                    oddVal = 0.0;
-                    e.printStackTrace();
-                }
-
-                double dec = DataHolder.decrement(oddVal);
-                ODDVALUE = String.format("%.2f",dec);
-                editTxtVOddValue.setText(ODDVALUE);
-
-                PROFITVALUE = String.format("Profit CHIPS %.2f", DataHolder.profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
-                txtVProfitValue.setText(PROFITVALUE);
-            }
-        });
+        ProfitLiability(P_L,ODDVALUE,STACKVALUE);
 
         txtVStackDecrement.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -264,14 +269,11 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
                     stackVal = 0.0;
                     e.printStackTrace();
                 }
-                //Log.i("TAG",stackVal+"");
                 double dec = DataHolder.decrement(stackVal);
-                //Log.i("TAG",dec+"");
                 STACKVALUE = String.format("%.2f",dec);
                 editTxtStackValue.setText(STACKVALUE);
 
-                PROFITVALUE = String.format("Profit CHIPS %.2f", DataHolder.profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
-                txtVProfitValue.setText(PROFITVALUE);
+                ProfitLiability(P_L,ODDVALUE,STACKVALUE);
             }
         });
 
@@ -289,41 +291,27 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
                 STACKVALUE = String.format("%.2f",inc);
                 editTxtStackValue.setText(STACKVALUE);
 
-                PROFITVALUE = String.format("%.2f", DataHolder.profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
-                txtVProfitValue.setText("Profit CHIPS "+PROFITVALUE);
+                ProfitLiability(P_L,ODDVALUE,STACKVALUE);
             }
         });
 
         btnBetPlace.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                DataHolder.showProgress(contextBook);
-                new BetPlaceBookAsyncTask().execute(BackLay,ODDVALUE,STACKVALUE,RunnerTitle);
+
+                 if (editTxtStackValue.getText().toString().equals("")){
+                    Snackbar snackbar = Snackbar.make(BetActivity.scrollBetActivity, "Stake Value is Missing", Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
+                else {
+                    DataHolder.showProgress(contextBook);
+                    new BetPlaceBookAsyncTask().execute(BackLay, ODDVALUE, STACKVALUE, RunnerTitle);
+                }
                 dialog.cancel();
             }
         });
 
-        editTxtVOddValue.addTextChangedListener(new TextWatcher() {
 
-            @Override
-            public void afterTextChanged(Editable s) {}
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start,int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() != 0 && s.length() <=5)  {
-                    ODDVALUE = s.toString();
-                    PROFITVALUE = String.format("Profit CHIPS %.2f", DataHolder.profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
-                    txtVProfitValue.setText(PROFITVALUE);
-                }
-                else {
-                    txtVProfitValue.setText("0.0");
-                    editTxtVOddValue.setText("0.0");
-                }
-            }
-        });
 
         editTxtStackValue.addTextChangedListener(new TextWatcher() {
 
@@ -335,13 +323,16 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() != 0 && Double.valueOf(s.toString().trim()) <=100000 && s.length() < 10)  {
-                    STACKVALUE = s.toString();
-                    PROFITVALUE = String.format("Profit CHIPS %.2f", DataHolder.profit(Double.valueOf(ODDVALUE),Double.valueOf(STACKVALUE)));
-                    txtVProfitValue.setText(PROFITVALUE);
-                }else  {
-                    txtVProfitValue.setText("0.0");
-                    editTxtStackValue.setText("0.0");
+                try {
+                    if(Double.valueOf(s.toString().trim()) <10000000)  {
+                        STACKVALUE = s.toString();
+                        ProfitLiability(P_L,ODDVALUE,STACKVALUE);
+                    }else  {
+                        txtVProfitValue.setText("0.0");
+                        editTxtStackValue.setText("0.0");
+                    }
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -349,52 +340,13 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
         dialog.show();
     }
 
-//    public void dialogOneClickBet(final String RunnerTitle,int color,final double oddValue,final String BackLay){
-//
-//        final Dialog dialog = new Dialog(contextBook,R.style.Dialog);
-//        dialog.setContentView(R.layout.dialog_one_click_bet);
-//        dialog.setTitle("Please Confirm Your Bet");
-//        dialog.getWindow().setBackgroundDrawableResource(color);
-//
-//        //txtVRunnerTitle = dialog.findViewById(R.id.txtVRunnerTitle);
-//        LinearLayout llOneClickBet = dialog.findViewById(R.id.llOneClickBet);
-//        TextView txtVOneClickTitle = dialog.findViewById(R.id.txtVOneClickTitle);
-//        TextView txtVOddOneClickValue = dialog.findViewById(R.id.txtVOddOneClickValue);
-//        TextView txtVStackOneClickValue = dialog.findViewById(R.id.txtVStackOneClickValue);
-//        TextView txtVProfitOneClickValue = dialog.findViewById(R.id.txtVProfitOneClickValue);
-//        Button btnOneClickCancel = dialog.findViewById(R.id.btnOneClickCancel);
-//        Button btnOneClickConfirm = dialog.findViewById(R.id.btnOneClickConfirm);
-//
-//        txtVOneClickTitle.setText(RunnerTitle);
-//
-//        STACKVALUE = String.valueOf(DataHolder.STACK_VALUE);
-//        txtVStackOneClickValue.setText(STACKVALUE);
-//
-//        ODDVALUE = String.valueOf(oddValue);
-//        txtVOddOneClickValue.setText(ODDVALUE);
-//
-//
-//        PROFITVALUE = String.format("%.2f", DataHolder.profit(oddValue,DataHolder.STACK_VALUE));
-//        txtVProfitOneClickValue.setText(PROFITVALUE);
-//
-//
-//        btnOneClickConfirm.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                new BetPlaceBookAsyncTask().execute(BackLay,ODDVALUE,STACKVALUE,RunnerTitle);
-//                dialog.cancel();
-//            }
-//        });
-//
-//        btnOneClickCancel.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                dialog.cancel();
-//            }
-//        });
-//
-//        dialog.show();
-//    }
+    public void ProfitLiability(String P_L,String ODDVALUE,String STACKVALUE){
+
+        PROFITVALUE = String.format(P_L+" CHIPS %.2f", (Double.valueOf(ODDVALUE)/100)*Double.valueOf(STACKVALUE));
+        txtVProfitValue.setText(PROFITVALUE);
+    }
+
+
 
     public String  BetPlaceApi(String backlay,String odds,String stake,String runnerName){
         InputStream inputStream = null;
@@ -528,27 +480,157 @@ public class BookMakingAdapter extends RecyclerView.Adapter<BookMakingAdapter.My
 
         @Override
         protected String doInBackground(String... urls) {
-            return getBookExposerApi(urls[0]);
+            return DataHolder.getApi(urls[0]);
         }
 
         @Override
         protected void onPostExecute(String result) {
-            //Log.i("Check",""+result);
+            Log.i("CheckExp",""+result);
             //Toast.makeText(contextBook, ""+result, Toast.LENGTH_SHORT).show();
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
                 JSONArray jsonArray = new JSONArray(jsonObjMain.getString("data"));
                 int len = jsonArray.length();
-
+                Log.i("CheckExp",""+jsonArray);
                 for(int i=0; i<len; i++){
                     JSONObject key = jsonArray.getJSONObject(i);
                     arrayExposerName.add(key.getString("Key"));
                     arrayExposerValue.add(key.getString("Value"));
                 }
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        txtVOddIncrement.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                double oddVal = 0.0;
+//                try {
+//                    oddVal = Double.valueOf(ODDVALUE);
+//                } catch (NumberFormatException e) {
+//                    oddVal = 0.0;
+//                    e.printStackTrace();
+//                }
+//                double inc = DataHolder.increment(oddVal);
+//                ODDVALUE = String.format("%.2f",inc);
+//                editTxtVOddValue.setText(ODDVALUE);
+//
+//                ProfitLiability(BackLay,ODDVALUE,STACKVALUE);
+//            }
+//        } );
+//
+//        txtVOddDecrement.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                double oddVal = 0.0;
+//                try {
+//                    oddVal = Double.valueOf(ODDVALUE);
+//                } catch (NumberFormatException e) {
+//                    oddVal = 0.0;
+//                    e.printStackTrace();
+//                }
+//
+//                double dec = DataHolder.decrement(oddVal);
+//                ODDVALUE = String.format("%.2f",dec);
+//                editTxtVOddValue.setText(ODDVALUE);
+//
+//                ProfitLiability(BackLay,ODDVALUE,STACKVALUE);
+//            }
+//        });
+
+
+
+//        editTxtVOddValue.addTextChangedListener(new TextWatcher() {
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {}
+//
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start,int count, int after) {}
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                if(Double.valueOf(s.toString().trim()) < 1000)  {
+//                    ODDVALUE = s.toString();
+//                    ProfitLiability(BackLay,ODDVALUE,STACKVALUE);
+//                }
+//                else {
+//                    txtVProfitValue.setText("0.0");
+//                    editTxtVOddValue.setText("0.0");
+//                }
+//            }
+//        });
+
+
+
+
+
+//    public void dialogOneClickBet(final String RunnerTitle,int color,final double oddValue,final String BackLay){
+//
+//        final Dialog dialog = new Dialog(contextBook,R.style.Dialog);
+//        dialog.setContentView(R.layout.dialog_one_click_bet);
+//        dialog.setTitle("Please Confirm Your Bet");
+//        dialog.getWindow().setBackgroundDrawableResource(color);
+//
+//        //txtVRunnerTitle = dialog.findViewById(R.id.txtVRunnerTitle);
+//        LinearLayout llOneClickBet = dialog.findViewById(R.id.llOneClickBet);
+//        TextView txtVOneClickTitle = dialog.findViewById(R.id.txtVOneClickTitle);
+//        TextView txtVOddOneClickValue = dialog.findViewById(R.id.txtVOddOneClickValue);
+//        TextView txtVStackOneClickValue = dialog.findViewById(R.id.txtVStackOneClickValue);
+//        TextView txtVProfitOneClickValue = dialog.findViewById(R.id.txtVProfitOneClickValue);
+//        Button btnOneClickCancel = dialog.findViewById(R.id.btnOneClickCancel);
+//        Button btnOneClickConfirm = dialog.findViewById(R.id.btnOneClickConfirm);
+//
+//        txtVOneClickTitle.setText(RunnerTitle);
+//
+//        STACKVALUE = String.valueOf(DataHolder.STACK_VALUE);
+//        txtVStackOneClickValue.setText(STACKVALUE);
+//
+//        ODDVALUE = String.valueOf(oddValue);
+//        txtVOddOneClickValue.setText(ODDVALUE);
+//
+//
+//        PROFITVALUE = String.format("%.2f", DataHolder.profit(oddValue,DataHolder.STACK_VALUE));
+//        txtVProfitOneClickValue.setText(PROFITVALUE);
+//
+//
+//        btnOneClickConfirm.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                new BetPlaceBookAsyncTask().execute(BackLay,ODDVALUE,STACKVALUE,RunnerTitle);
+//                dialog.cancel();
+//            }
+//        });
+//
+//        btnOneClickCancel.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                dialog.cancel();
+//            }
+//        });
+//
+//        dialog.show();
+//    }

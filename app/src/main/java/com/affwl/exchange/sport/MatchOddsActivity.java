@@ -62,9 +62,9 @@ public class MatchOddsActivity extends AppCompatActivity implements View.OnClick
 //        txtVSportNameO.setOnTouchListener(this);
 //        txtVTournamentNameO.setOnTouchListener(this);
 
-        txtVSportNameO.setText(DataHolder.SPORT_NAME+"> ");
-        txtVTournamentNameO.setText(DataHolder.TOURNAMENT_NAME+"> ");
-        txtVMatchName.setText(DataHolder.MATCH_NAME);
+        txtVSportNameO.setText(DataHolder.SPORT_NAME+" 》");
+        txtVTournamentNameO.setText(DataHolder.TOURNAMENT_NAME+" 》");
+        txtVMatchName.setText(DataHolder.MATCH_NAME+" 》");
         Intent intent = getIntent();
         int matchId = intent.getIntExtra("matchId",0);
 
@@ -132,6 +132,7 @@ public class MatchOddsActivity extends AppCompatActivity implements View.OnClick
         return false;
     }
 
+    TextView txtVMatchOddNoData;
     private class MatchOddsAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
@@ -141,7 +142,7 @@ public class MatchOddsActivity extends AppCompatActivity implements View.OnClick
 
         @Override
         protected void onPostExecute(String result) {
-            Log.i("Check",""+result);
+            Log.i("CheckMtchOdd",""+result);
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
                 String strData = jsonObjMain.getString("data");
@@ -149,6 +150,11 @@ public class MatchOddsActivity extends AppCompatActivity implements View.OnClick
 
                 JSONArray arrayData = new JSONArray(strData);
                 int length = arrayData.length();
+
+                if (length <=0){
+                    txtVMatchOddNoData = findViewById(R.id.txtVMatchOddNoData);
+                    txtVMatchOddNoData.setVisibility(View.VISIBLE);
+                }
 
                 for(int i =0 ; i<length;i++){
                     JSONObject key = arrayData.getJSONObject(i);

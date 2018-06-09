@@ -43,8 +43,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_margin="1dp"
-        android:visibility="gone">
+        android:layout_marginRight="1dp"
+        android:visibility="visible">
 
         <LinearLayout
             android:id="@+id/llBack3"
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@color/colorBlueBet1"
+            android:background="@color/colorBlueBet3"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:layout_marginEnd="1dp">
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@color/colorBlueBet1"
+            android:background="@color/colorBlueBet2"
             android:layout_weight="1">
 
             <TextView
@@ -106,7 +106,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_margin="1dp">
+        android:layout_marginRight="1dp">
 
         <LinearLayout
             android:id="@+id/llBack"
@@ -160,14 +160,14 @@
         </LinearLayout>
 
     </LinearLayout>
-
+    
     <LinearLayout
         android:id="@+id/llMarketDataLay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_margin="1dp"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:id="@+id/llLay2"
@@ -175,7 +175,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@color/colorRedBet1"
+            android:background="@color/colorRedBet2"
             android:layout_marginRight="1dp"
             android:layout_weight="1">
 
@@ -201,7 +201,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@color/colorRedBet1"
+            android:background="@color/colorRedBet3"
             android:layout_weight="1">
 
             <TextView
@@ -223,15 +223,15 @@
     </LinearLayout>
 
     <TextView
-            android:id="@+id/txtVActiveResult"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text=""
-            android:gravity="center"
-            android:visibility="gone"
-            android:textSize="15sp"
-            android:textColor="@color/colorRed"
-            android:background="@color/colorRedBetTrasparent"
-            android:layout_weight="1"/>
+        android:id="@+id/txtVActiveResult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text=""
+        android:gravity="center"
+        android:visibility="gone"
+        android:textSize="15sp"
+        android:textColor="@color/colorRed"
+        android:background="@color/colorRedBetTrasparent"
+        android:layout_weight="1"/>
 
 </LinearLayout>

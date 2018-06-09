@@ -154,6 +154,10 @@
         <activity android:name=".sport.MatchOddsActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".sport.HighlightsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".sport.SportAccountActivity"
+            android:screenOrientation="portrait"/>
 
         <activity android:name=".sport.StackActivity"
             android:screenOrientation="portrait"/>

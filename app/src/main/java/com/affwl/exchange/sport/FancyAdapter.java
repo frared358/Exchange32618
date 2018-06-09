@@ -117,6 +117,9 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
                     holder.txtVFancyActiveResult.setVisibility(View.VISIBLE);
                     holder.llFancyMarketData.setVisibility(View.GONE);
                     holder.txtVFancyActiveResult.setText(fancy.ballStatus);
+                }else {
+                    holder.txtVFancyActiveResult.setVisibility(View.GONE);
+                    holder.llFancyMarketData.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -198,8 +201,6 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
 
                 llFAncyBookKey.addView(tvScore);
                 llFAncyBookValue.addView(tvAmt);
-
-
             }
         }
         catch(Exception e){
@@ -216,57 +217,6 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
         dialog.show();
 
     }
-
-//    public void dialogOneClickBet(final String RunnerTitle,int color, String scoreValue,final String YesNo){
-//
-//        final Dialog dialog = new Dialog(contextFancy,R.style.Dialog);
-//        dialog.setContentView(R.layout.dialog_one_click_bet);
-//        dialog.setTitle("Please Confirm Your Bet");
-//        dialog.getWindow().setBackgroundDrawableResource(color);
-//
-//        //txtVRunnerTitle = dialog.findViewById(R.id.txtVRunnerTitle);
-//        LinearLayout llOneClickBet = dialog.findViewById(R.id.llOneClickBet);
-//        TextView txtVOneClickTitle = dialog.findViewById(R.id.txtVOneClickTitle);
-//        TextView txtVOddOneClickValue = dialog.findViewById(R.id.txtVOddOneClickValue);
-//        TextView txtVStackOneClickValue = dialog.findViewById(R.id.txtVStackOneClickValue);
-//        TextView txtVProfitOneClickValue = dialog.findViewById(R.id.txtVProfitOneClickValue);
-//        TextView txtVOneClickOddScore = dialog.findViewById(R.id.txtVOneClickOddScore);
-//        TextView txtVOneClickProfitLiability = dialog.findViewById(R.id.txtVOneClickProfitLiability);
-//
-//        Button btnOneClickCancel = dialog.findViewById(R.id.btnOneClickCancel);
-//        Button btnOneClickConfirm = dialog.findViewById(R.id.btnOneClickConfirm);
-//        txtVOneClickOddScore.setText("Score");
-//        txtVOneClickTitle.setText(RunnerTitle);
-//
-//        if (YesNo.equalsIgnoreCase("yes")){
-//            txtVOneClickProfitLiability.setText("Profit");
-//        }else {
-//            txtVOneClickProfitLiability.setText("Liability");
-//        }
-//        STACKVALUE = String.valueOf(DataHolder.STACK_VALUE);
-//        txtVStackOneClickValue.setText(STACKVALUE);
-//
-//        PROFITVALUE = String.format("%.2f", DataHolder.STACK_VALUE);
-//        txtVProfitOneClickValue.setText(PROFITVALUE);
-//
-//        btnOneClickConfirm.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//
-//                new BetPlaceFancyAsyncTask().execute(YesNo,STACKVALUE,RunnerTitle);
-//                dialog.cancel();
-//            }
-//        });
-//
-//        btnOneClickCancel.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                dialog.cancel();
-//            }
-//        });
-//
-//        dialog.show();
-//    }
 
     TextView txtVProfitValue,txtVOddIncrement,txtVOddDecrement,txtVStackDecrement,txtVStackIncrement,txtVOddScore;
     EditText editTxtStackValue,editTxtVOddValue;
@@ -356,8 +306,15 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
         btnBetPlace.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                DataHolder.showProgress(contextFancy);
-                new BetPlaceFancyAsyncTask().execute(YesNo,STACKVALUE,RunnerTitle);
+
+                if (editTxtStackValue.getText().toString().equals("")){
+                    Snackbar snackbar = Snackbar.make(BetActivity.scrollBetActivity, "Stake Value is Missing", Snackbar.LENGTH_LONG);
+                    snackbar.show();
+                }
+                else {
+                    DataHolder.showProgress(contextFancy);
+                    new BetPlaceFancyAsyncTask().execute(YesNo, STACKVALUE, RunnerTitle);
+                }
                 dialog.cancel();
             }
         });
@@ -373,13 +330,17 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.length() != 0 && Double.valueOf(s.toString().trim()) <=100000 && s.length() < 10)  {
-                    STACKVALUE = s.toString();
-                    PROFITVALUE = String.format(YES_NO+" %.2f", Double.valueOf(STACKVALUE));
-                    txtVProfitValue.setText(PROFITVALUE);
-                }else  {
-                    txtVProfitValue.setText("0.0");
-                    editTxtStackValue.setText("0.0");
+                try {
+                    if(Double.valueOf(s.toString().trim()) <10000000)  {
+                        STACKVALUE = s.toString();
+                        PROFITVALUE = String.format(YES_NO+" %.2f", Double.valueOf(STACKVALUE));
+                        txtVProfitValue.setText(PROFITVALUE);
+                    }else  {
+                        txtVProfitValue.setText("0.0");
+                        editTxtStackValue.setText("0.0");
+                    }
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -425,7 +386,7 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
 
             if(inputStream != null){
                 try {
-                    result = convertInputStreamToString(inputStream);
+                    result = DataHolder.convertInputStreamToString(inputStream);
                 }
                 catch (Exception e){
                     Log.e("ERROR ",""+e);
@@ -472,17 +433,6 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
         }
     }
 
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
-        while((line = bufferedReader.readLine()) != null){
-            result += line;
-        }
-
-        inputStream.close();
-        return result;
-    }
 
     ArrayList<String> KeyFancyBook = new ArrayList<>();
     ArrayList<String> ValueFancyBook = new ArrayList<>();
@@ -518,6 +468,24 @@ public class FancyAdapter extends RecyclerView.Adapter<FancyAdapter.MyViewHolder
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*
@@ -633,3 +601,53 @@ int COUNTBOOK=0;
     }
 
 * */
+//    public void dialogOneClickBet(final String RunnerTitle,int color, String scoreValue,final String YesNo){
+//
+//        final Dialog dialog = new Dialog(contextFancy,R.style.Dialog);
+//        dialog.setContentView(R.layout.dialog_one_click_bet);
+//        dialog.setTitle("Please Confirm Your Bet");
+//        dialog.getWindow().setBackgroundDrawableResource(color);
+//
+//        //txtVRunnerTitle = dialog.findViewById(R.id.txtVRunnerTitle);
+//        LinearLayout llOneClickBet = dialog.findViewById(R.id.llOneClickBet);
+//        TextView txtVOneClickTitle = dialog.findViewById(R.id.txtVOneClickTitle);
+//        TextView txtVOddOneClickValue = dialog.findViewById(R.id.txtVOddOneClickValue);
+//        TextView txtVStackOneClickValue = dialog.findViewById(R.id.txtVStackOneClickValue);
+//        TextView txtVProfitOneClickValue = dialog.findViewById(R.id.txtVProfitOneClickValue);
+//        TextView txtVOneClickOddScore = dialog.findViewById(R.id.txtVOneClickOddScore);
+//        TextView txtVOneClickProfitLiability = dialog.findViewById(R.id.txtVOneClickProfitLiability);
+//
+//        Button btnOneClickCancel = dialog.findViewById(R.id.btnOneClickCancel);
+//        Button btnOneClickConfirm = dialog.findViewById(R.id.btnOneClickConfirm);
+//        txtVOneClickOddScore.setText("Score");
+//        txtVOneClickTitle.setText(RunnerTitle);
+//
+//        if (YesNo.equalsIgnoreCase("yes")){
+//            txtVOneClickProfitLiability.setText("Profit");
+//        }else {
+//            txtVOneClickProfitLiability.setText("Liability");
+//        }
+//        STACKVALUE = String.valueOf(DataHolder.STACK_VALUE);
+//        txtVStackOneClickValue.setText(STACKVALUE);
+//
+//        PROFITVALUE = String.format("%.2f", DataHolder.STACK_VALUE);
+//        txtVProfitOneClickValue.setText(PROFITVALUE);
+//
+//        btnOneClickConfirm.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//
+//                new BetPlaceFancyAsyncTask().execute(YesNo,STACKVALUE,RunnerTitle);
+//                dialog.cancel();
+//            }
+//        });
+//
+//        btnOneClickCancel.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                dialog.cancel();
+//            }
+//        });
+//
+//        dialog.show();
+//    }

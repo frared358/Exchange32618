@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".sport.HighlightsActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/appbar_padding_top"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:title="Highligths">
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/llHighlightsCricket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGreay"
+                android:visibility="gone"
+                android:layout_margin="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cricket"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorBlack"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@color/colorGreayDark"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycleViewHighlightsCricket"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llHighlightsTennis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGreay"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tennis"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorBlack"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@color/colorGreayDark"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycleViewHighlightsTennis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llHighlightsFootball"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorGreay"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Football"
+                    android:textStyle="bold"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textSize="18sp"
+                    android:textColor="@color/colorBlack"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@color/colorGreayDark"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycleViewHighlightsFootball"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtHighlightsNoData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="NO DATA.."
+                android:textSize="16sp"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:background="@color/colorGreay"
+                android:textColor="@color/Red"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary">
+
+        <LinearLayout
+            android:id="@+id/llHighlightHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/imgVHighlightHome"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/home_grey_128" />
+
+            <TextView
+                android:id="@+id/txtVHighlightHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textSize="10sp"
+                android:textColor="@color/colorBinanceTextColor"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llHighlight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/imgVHighlight"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/highlight_yellow_128" />
+
+            <TextView
+                android:id="@+id/txtVHighlight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Highlights"
+                android:textSize="10sp"
+                android:textColor="@color/colorYellowDark"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llHighlightAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/imgVHighlightAccount"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/account_grey_128" />
+
+            <TextView
+                android:id="@+id/txtVHighlightAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account"
+                android:textSize="10sp"
+                android:textColor="@color/colorBinanceTextColor"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

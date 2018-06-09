@@ -76,7 +76,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
         Log.i("CHECK "+position,matchData.runner+""+matchData.odd+""+matchData.stack+""+matchData.type+""+matchData.dateTime);
 
         holder.txtVStack.setText(matchData.stack);
-        if (matchData.marketName.equalsIgnoreCase("BookMaking") || matchData.marketName.equalsIgnoreCase("Match Odds")) {
+
+        /*if (matchData.marketName.equalsIgnoreCase("BookMaking") || matchData.marketName.equalsIgnoreCase("Match Odds")) {
             Double stackValue = Double.parseDouble(matchData.stack.trim());
             Double oddValue = Double.parseDouble(matchData.odd.trim());
             val = (oddValue-1.00)*stackValue;
@@ -88,11 +89,25 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
             holder.txtVOdds.setText(split[0]);
             holder.txtVProfitLiability.setText(split[1]);
             holder.txtVRunner.setText(matchData.runner.replaceFirst(" ","\n"));
+        }*/
+
+        if (matchData.isFancy!=1) {
+            Double stackValue = Double.parseDouble(matchData.stack.trim());
+            Double oddValue = Double.parseDouble(matchData.odd.trim());
+            val = (oddValue-1.00)*stackValue;
+            holder.txtVOdds.setText(matchData.odd);
+            holder.txtVProfitLiability.setText(String.format("%.2f", val));
+            holder.txtVRunner.setText(matchData.runner);
+        }else {
+
+            holder.txtVOdds.setText(matchData.score+"/"+matchData.odd);
+            holder.txtVProfitLiability.setText(matchData.stack.trim());
+            holder.txtVRunner.setText(matchData.runner.replaceFirst(" ","\n"));
         }
 
 
         holder.txtVDateTime.setText(matchData.dateTime.replaceFirst(" ","\n"));
-        if(matchData.type.equalsIgnoreCase("lay")){
+        if(matchData.type.equalsIgnoreCase("lay") || matchData.type.equalsIgnoreCase("no")){
             holder.llMatchList.setBackgroundColor(ContextCompat.getColor(contextMatch, R.color.colorRedBet1));
         }
         else {

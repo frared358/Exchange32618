@@ -33,7 +33,7 @@ public class InplayAdapter extends RecyclerView.Adapter<InplayAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView txtVMatchName,txtVAnchor;
+        public TextView txtVMatchName,txtVAnchor,tvDateTime;
         LinearLayout llMatchData;
         ImageView imgVFavourit;
         int Multi;
@@ -44,6 +44,8 @@ public class InplayAdapter extends RecyclerView.Adapter<InplayAdapter.MyViewHold
             llMatchData = itemView.findViewById(R.id.llTournamentData);
             imgVFavourit = itemView.findViewById(R.id.imgVFavourit);
             txtVAnchor = itemView.findViewById(R.id.txtVAnchor);
+            tvDateTime = itemView.findViewById(R.id.tvDateTime);
+            tvDateTime.setVisibility(View.VISIBLE);
             imgVFavourit.setVisibility(View.VISIBLE);
             txtVAnchor.setVisibility(View.GONE);
             txtVMatchName.setTextSize(15);
@@ -65,8 +67,9 @@ public class InplayAdapter extends RecyclerView.Adapter<InplayAdapter.MyViewHold
         }else {
             holder.imgVFavourit.setImageDrawable(contextInplay.getResources().getDrawable(R.drawable.star_small_white));
         }
-        Log.i("INPLAYName",""+data.inMatchName);
+
         holder.txtVMatchName.setText(data.inMatchName);
+        holder.tvDateTime.setText(data.inMatchDate);
 
         holder.llMatchData.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -108,7 +111,6 @@ public class InplayAdapter extends RecyclerView.Adapter<InplayAdapter.MyViewHold
 
     @Override
     public int getItemCount() {
-        Log.i("INPLAYSIZE",""+dataList.size());
         return dataList.size();
     }
 

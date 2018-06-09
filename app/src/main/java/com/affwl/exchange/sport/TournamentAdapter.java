@@ -46,12 +46,10 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.My
         public TextView txtVTournamentName;
         LinearLayout llTournamentData;
 
-
         public MyViewHolder(View view) {
             super(view);
             txtVTournamentName = view.findViewById(R.id.txtVTournamentName);
             llTournamentData = view.findViewById(R.id.llTournamentData);
-
         }
     }
 

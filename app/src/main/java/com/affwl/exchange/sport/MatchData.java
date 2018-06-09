@@ -7,9 +7,10 @@ package com.affwl.exchange.sport;
 public class MatchData {
 
     String runner,odd,stack,type,dateTime,marketName,betId;
+    int isFancy,score;
     boolean bol;
     //Match Data
-    MatchData(String runner,String odd,String stack,String type,String dateTime,String marketName,boolean bol){
+    MatchData(String runner,String odd,String stack,String type,String dateTime,String marketName,boolean bol,int isFancy,int score){
         this.runner = runner;
         this.odd = odd;
         this.stack = stack;
@@ -17,10 +18,12 @@ public class MatchData {
         this.dateTime = dateTime;
         this.marketName = marketName;
         this.bol = bol;
+        this.isFancy = isFancy;
+        this.score = score;
     }
 
     //unMatch data
-    MatchData(String runner,String odd,String stack,String type,String dateTime,String marketName,String betId,boolean bol){
+    MatchData(String runner,String odd,String stack,String type,String dateTime,String marketName,String betId,boolean bol,int isFancy,int score){
         this.runner = runner;
         this.odd = odd;
         this.stack = stack;
@@ -29,5 +32,7 @@ public class MatchData {
         this.marketName = marketName;
         this.betId = betId;
         this.bol = bol;
+        this.isFancy = isFancy;
+        this.score = score;
     }
 }

@@ -57,15 +57,64 @@ public class UnmatchFragment extends Fragment {
         unMatchAdapter = new MatchAdapter(UnmatchFragment.this.getActivity(),UnMatchList);
 
         String s = getArguments().getString("unMatchedbets");
-        new UnMatchDataAsyncTask().execute(s);
 
+        new UnMatchDataAsyncTask().execute(s);
         //new UnMatchAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Reports/GetCurrentBets");
 
         return view;
     }
 
 
-    private class UnMatchAsyncTask extends AsyncTask<String, Void, String> {
+
+    private class UnMatchDataAsyncTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            return urls[0];
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            //Log.i("Check123",""+result);
+            //Toast.makeText(MatchFragment.this.getContext(), ""+result, Toast.LENGTH_SHORT).show();
+            try {
+                JSONArray arrayData = new JSONArray(result);
+                int length = arrayData.length();
+
+                if(length == 0){
+                    txtUnmatchNoData.setVisibility(View.VISIBLE);
+                }
+
+                for(int i =0 ; i<length;i++){
+                    JSONObject key = arrayData.getJSONObject(i);
+                    String selection = key.getString("runnerName");
+                    String matchedStake = key.getString("stake");
+                    String odds = key.getString("odds");
+                    String type = key.getString("backLay");
+                    String placedDate = key.getString("date");
+                    String marketName = key.getString("marketName");
+                    int isFancy = key.getInt("isFancy");
+                    int score = key.getInt("score");
+                    String  betId = key.getString("bfId");
+                    boolean CHECKCANCEL = true;
+
+                    UnMatchList.add(new MatchData(selection,odds,matchedStake,type,placedDate,marketName,betId,CHECKCANCEL,isFancy,score));
+
+                    unMatchAdapter.notifyDataSetChanged();
+
+                }
+                recycleViewUnMatchData.setAdapter(unMatchAdapter);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                //DataHolder.unAuthorized(getActivity(),result);
+            }
+        }
+    }
+
+}
+
+/*private class UnMatchAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
@@ -111,9 +160,10 @@ public class UnmatchFragment extends Fragment {
                 //DataHolder.unAuthorized(getActivity(),result);
             }
         }
-    }
+    }*/
 
-    private class UnMatchDataAsyncTask extends AsyncTask<String, Void, String> {
+
+ /*private class UnMatchDataAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
@@ -157,6 +207,4 @@ public class UnmatchFragment extends Fragment {
                 //-DataHolder.unAuthorized(getActivity(),result);
             }
         }
-    }
-}
-
+    }*/

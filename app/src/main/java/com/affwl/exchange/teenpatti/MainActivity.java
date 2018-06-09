@@ -66,12 +66,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final Animation Animchipsright = AnimationUtils.loadAnimation(MainActivity.this, R.anim.translate_chips_right);
         final Animation Animchipsleft = AnimationUtils.loadAnimation(MainActivity.this, R.anim.translate_chips_left);
 
-        mainychips=findViewById(R.id.mainychips);
+//        mainychips=findViewById(R.id.mainychips);
 
-        mainlimegchips=findViewById(R.id.mainlimegchips);
-        mainlimegchips.setOnClickListener(this);
-
-        blackchips=findViewById(R.id.blackchips);
+//        mainlimegchips=findViewById(R.id.mainlimegchips);
+//        mainlimegchips.setOnClickListener(this);
+//
+//        blackchips=findViewById(R.id.blackchips);
         RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
 
         code=findViewById(R.id.code);
@@ -87,13 +87,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nametext.setText(name);
 
 
-
-        yellowchiplayout = findViewById(R.id.yellowchiplayout);
-        orangechipslayout = findViewById(R.id.orangechipslayout);
-        limechipslayout = findViewById(R.id.limechipslayout);
-        blackchipslayout = findViewById(R.id.blackchipslayout);
+//
+//        yellowchiplayout = findViewById(R.id.yellowchiplayout);
+//        orangechipslayout = findViewById(R.id.orangechipslayout);
+//       limechipslayout = findViewById(R.id.limechipslayout);
+//        blackchipslayout = findViewById(R.id.blackchipslayout);
         cyanchipslayout = findViewById(R.id.cyanchipslayout);
-        darkbluechiplayout = findViewById(R.id.darkbluechiplayout);
+//        darkbluechiplayout = findViewById(R.id.darkbluechiplayout);
         ygreenchipslayout = findViewById(R.id.ygreenchipslayout);
 
 
@@ -130,76 +130,76 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //////////////// teen patti ////////////////
 
         RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
-        yellowchiplayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable(){
-
-                    @Override
-                    public void run() {
-                        Intent i = new Intent(MainActivity.this,LoadingScreen_teenpatti.class);
-                        startActivity(i);
-                        yellowchiplayout.clearAnimation();
-                        orangechipslayout.startAnimation(Animchipsleft);
-                        yellowchiplayout.startAnimation(Animchipsleft);
-                        limechipslayout.startAnimation(Animchipsleft);
-                    }
-                },500);
-            }
-        });
+//        yellowchiplayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Handler handler = new Handler();
+//                handler.postDelayed(new Runnable(){
+//
+//                    @Override
+//                    public void run() {
+//                        Intent i = new Intent(MainActivity.this,LoadingScreen_teenpatti.class);
+//                        startActivity(i);
+//                        yellowchiplayout.clearAnimation();
+//                        orangechipslayout.startAnimation(Animchipsleft);
+//                        yellowchiplayout.startAnimation(Animchipsleft);
+//                        limechipslayout.startAnimation(Animchipsleft);
+//                    }
+//                },500);
+//            }
+//        });
 
 
 
         //////////////// Popup for 321 tournament ////////////////
 
-        orangechipsbtn = findViewById(R.id.mainorgchips);
+//        orangechipsbtn = findViewById(R.id.mainorgchips);
         RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
         relativelayout321 = findViewById(R.id.relativelayout321);
-        orangechipslayout = findViewById(R.id.orangechipslayout);
+//        orangechipslayout = findViewById(R.id.orangechipslayout);
 
-        orangechipslayout.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-
-                //Delays the click event by 5 seconds
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent i = new Intent(MainActivity.this, ThreetwooneTournament.class);
-                        startActivity(i);
-                        orangechipslayout.clearAnimation();
-                        orangechipslayout.startAnimation(Animchipsleft);
-                        limechipslayout.startAnimation(Animchipsleft);
-                    }
-                }, 500);
-
-            }
-        });
+//        orangechipslayout.setOnClickListener(new View.OnClickListener() {
+//
+//            public void onClick(View v) {
+//
+//                //Delays the click event by 5 seconds
+//                Handler handler = new Handler();
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Intent i = new Intent(MainActivity.this, ThreetwooneTournament.class);
+//                        startActivity(i);
+//                        orangechipslayout.clearAnimation();
+//                        orangechipslayout.startAnimation(Animchipsleft);
+//                        limechipslayout.startAnimation(Animchipsleft);
+//                    }
+//                }, 500);
+//
+//            }
+//        });
 
         //////////////// Popup for six patti ////////////////
-        bluechipsbtn = findViewById(R.id.darkbluechips);
+//        bluechipsbtn = findViewById(R.id.darkbluechips);
         RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
         relativeLayoutsixpatti = findViewById(R.id.relativelayoutsixpatti);
 
-        darkbluechiplayout.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-
-                //Delays the click event by 5 seconds
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent i = new Intent(MainActivity.this, LoadingScreen_tourney.class);
-                        startActivity(i);
-                        finish();
-                    }
-                }, 3000);
-
-            }
-        });
+//        darkbluechiplayout.setOnClickListener(new View.OnClickListener() {
+//
+//            public void onClick(View v) {
+//
+//                //Delays the click event by 5 seconds
+//                Handler handler = new Handler();
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Intent i = new Intent(MainActivity.this, LoadingScreen_tourney.class);
+//                        startActivity(i);
+//                        finish();
+//                    }
+//                }, 3000);
+//
+//            }
+//        });
 
 
 //        bluechipsbtn.setOnClickListener(new View.OnClickListener() {
@@ -212,28 +212,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        });
 
         //////////////// Popup for Tourney ////////////////
-        cyanchipsbtn = findViewById(R.id.cyanchips);
+//        cyanchipsbtn = findViewById(R.id.cyanchips);
         RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
         relativeLayout_tourney = findViewById(R.id.relativelayout_tourney);
 
 
-        cyanchipslayout.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-
-                //Delays the click event by  milliseconds
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent i = new Intent(MainActivity.this, LoadingScreen_tourney.class);
-                        startActivity(i);
-                        finish();
-                    }
-                }, 3000);
-
-            }
-        });
+//        cyanchipslayout.setOnClickListener(new View.OnClickListener() {
+//
+//            public void onClick(View v) {
+//
+//                //Delays the click event by  milliseconds
+//                Handler handler = new Handler();
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Intent i = new Intent(MainActivity.this, LoadingScreen_tourney.class);
+//                        startActivity(i);
+//                        finish();
+//                    }
+//                }, 3000);
+//
+//            }
+//        });
 
 
 //        cyanchipsbtn.setOnClickListener(new View.OnClickListener() {
@@ -310,616 +310,616 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         //////////////// Popup for Variation ////////////////
-        mainlimegchipsbtn = findViewById(R.id.mainlimegchips);
+//        mainlimegchipsbtn = findViewById(R.id.mainlimegchips);
         RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
 
-        mainlimegchipsbtn.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("WrongViewCast")
-            @Override
-            public void onClick(View v) {
-                //instantiate the popup.xml layout file
-                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.variation_join_table,null);
-
-                variation_closebtn =customView.findViewById(R.id.close_var_popup);
-
-                jokerlayout_btn=customView.findViewById(R.id.joker_layout);
-                jokerinfo_layout=customView.findViewById(R.id.jokerinfo);
-                joker_img=customView.findViewById(R.id.joker_img);
-
-                ak47_layout_btn=customView.findViewById(R.id.ak47_layout);
-                ak47info_layout=customView.findViewById(R.id.ak47info);
-                ak_img=customView.findViewById(R.id.ak_img);
-
-                xboot_layout_btn=customView.findViewById(R.id.xboot_layout);
-                xboot_info_layout=customView.findViewById(R.id.xboot_info);
-                xboot_img=customView.findViewById(R.id.xboot_img);
-
-                hukum_layout_btn=customView.findViewById(R.id.hukum_layout);
-                hukum_info_layout=customView.findViewById(R.id.hukum_info);
-                hukum_img=customView.findViewById(R.id.hukum_img);
-
-                muflis_layout_btn=customView.findViewById(R.id.muflis_layout);
-                muflis_info_layout=customView.findViewById(R.id.muflis_info);
-                muflis_img=customView.findViewById(R.id.muflis_img);
-
-                faceoff_layout_btn=customView.findViewById(R.id.faceoff_layout);
-                faceoff_info_layout=customView.findViewById(R.id.faceoff_info);
-                faceoff_img=customView.findViewById(R.id.faceoff_img);
-
-                ljoker_layout_btn=customView.findViewById(R.id.ljoker_layout);
-                ljoker_info_layout=customView.findViewById(R.id.ljoker_info);
-                ljoker_img=customView.findViewById(R.id.ljoker_img);
-
-                nnnine_layout_btn=customView.findViewById(R.id.nnnine_layout);
-                nnnine_info_layout=customView.findViewById(R.id.nnnine_info);
-                nnnine_img=customView.findViewById(R.id.nnnine_img);
-
-
-                final Animation Animleft = AnimationUtils.loadAnimation(MainActivity.this, R.anim.left_translate);
-                final Animation Animright = AnimationUtils.loadAnimation(MainActivity.this, R.anim.right_translate);
-
-
-                //instantiate popup window
-                join_table_popupwindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-
-                //display the popup window
-                join_table_popupwindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
-
-                variation_closebtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        join_table_popupwindow.dismiss();
-                    }
-                });
-
-
-                // joker variation on click
-
-                jokerlayout_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(value==0) {
-                            ak47info_layout.clearAnimation();
-                            hukum_info_layout.clearAnimation();
-                            xboot_info_layout.clearAnimation();
-
-                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-
-//                           ak_img.setVisibility(View.VISIBLE);
-                            jokerinfo_layout.setVisibility(View.VISIBLE);
-                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
-                            Toast.makeText(MainActivity.this, "joker out", Toast.LENGTH_SHORT).show();
-                            jokerinfo_layout.startAnimation(Animleft);
-                            Animleft.setFillAfter(true);
-                            value=1;
-                            value1=0;
-                            value2=0;
-                            value3=0;
-                            value4=0;
-                            value5=0;
-                            value6=0;
-                            value7=0;
-
-                            return;
-                        }
-                       else if(value==1){
-                            ak47info_layout.clearAnimation();
-                            jokerinfo_layout.clearAnimation();
-                            xboot_info_layout.clearAnimation();
-                            hukum_info_layout.clearAnimation();
-
-                            jokerinfo_layout.setVisibility(View.INVISIBLE);
-                            ak47info_layout.setVisibility(View.INVISIBLE);
-                            hukum_info_layout.setVisibility(View.INVISIBLE);
-                            xboot_info_layout.setVisibility(View.INVISIBLE);
-
-                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            Toast.makeText(MainActivity.this, "joker in", Toast.LENGTH_SHORT).show();
-
-                            jokerinfo_layout.startAnimation(Animright);
-                            Animright.setFillAfter(true);
-                            value=0;
-                            return;
-                        }
-                    }
-                });
-
-            // AK47 variation on click
-
-                ak47_layout_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (value1==0) {
-
-                            jokerinfo_layout.clearAnimation();
-                            ak47info_layout.clearAnimation();
-                            xboot_info_layout.clearAnimation();
-                            hukum_info_layout.clearAnimation();
-
-                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-
+//        mainlimegchipsbtn.setOnClickListener(new View.OnClickListener() {
+//            @SuppressLint("WrongViewCast")
+//            @Override
+//           public void onClick(View v) {
+//                //instantiate the popup.xml layout file
+//                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//                View customView = layoutInflater.inflate(R.layout.variation_join_table,null);
+//
+//                variation_closebtn =customView.findViewById(R.id.close_var_popup);
+//
+//                jokerlayout_btn=customView.findViewById(R.id.joker_layout);
+//                jokerinfo_layout=customView.findViewById(R.id.jokerinfo);
+//                joker_img=customView.findViewById(R.id.joker_img);
+//
+//                ak47_layout_btn=customView.findViewById(R.id.ak47_layout);
+//                ak47info_layout=customView.findViewById(R.id.ak47info);
+//                ak_img=customView.findViewById(R.id.ak_img);
+//
+//                xboot_layout_btn=customView.findViewById(R.id.xboot_layout);
+//                xboot_info_layout=customView.findViewById(R.id.xboot_info);
+//                xboot_img=customView.findViewById(R.id.xboot_img);
+//
+//                hukum_layout_btn=customView.findViewById(R.id.hukum_layout);
+//                hukum_info_layout=customView.findViewById(R.id.hukum_info);
+//                hukum_img=customView.findViewById(R.id.hukum_img);
+//
+//                muflis_layout_btn=customView.findViewById(R.id.muflis_layout);
+//                muflis_info_layout=customView.findViewById(R.id.muflis_info);
+//                muflis_img=customView.findViewById(R.id.muflis_img);
+//
+//                faceoff_layout_btn=customView.findViewById(R.id.faceoff_layout);
+//                faceoff_info_layout=customView.findViewById(R.id.faceoff_info);
+//                faceoff_img=customView.findViewById(R.id.faceoff_img);
+//
+//                ljoker_layout_btn=customView.findViewById(R.id.ljoker_layout);
+//                ljoker_info_layout=customView.findViewById(R.id.ljoker_info);
+//                ljoker_img=customView.findViewById(R.id.ljoker_img);
+//
+//                nnnine_layout_btn=customView.findViewById(R.id.nnnine_layout);
+//                nnnine_info_layout=customView.findViewById(R.id.nnnine_info);
+//                nnnine_img=customView.findViewById(R.id.nnnine_img);
+//
+//
+//                final Animation Animleft = AnimationUtils.loadAnimation(MainActivity.this, R.anim.left_translate);
+//                final Animation Animright = AnimationUtils.loadAnimation(MainActivity.this, R.anim.right_translate);
+//
+//
+//                //instantiate popup window
+//                join_table_popupwindow = new PopupWindow(customView, RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+//
+//                //display the popup window
+//                join_table_popupwindow.showAtLocation(RelativeLayoutloader, Gravity.CENTER, 0, 0);
+//
+//                variation_closebtn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        join_table_popupwindow.dismiss();
+//                    }
+//                });
+//
+//
+//                // joker variation on click
+//
+//                jokerlayout_btn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if(value==0) {
+//                            ak47info_layout.clearAnimation();
+//                            hukum_info_layout.clearAnimation();
 //                            xboot_info_layout.clearAnimation();
+//
+//                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
 //                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-
-                            ak47info_layout.setVisibility(View.VISIBLE);
-                            jokerinfo_layout.setVisibility(View.INVISIBLE);
-                            xboot_info_layout.setVisibility(View.INVISIBLE);
-                            hukum_info_layout.setVisibility(View.INVISIBLE);
-
-                            Toast.makeText(MainActivity.this, "ak out", Toast.LENGTH_SHORT).show();
-
-                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
-                            ak47info_layout.startAnimation(Animleft);
-                            Animleft.setFillAfter(true);
-                            value1=1;
-                            value2=0;
-                            value3=0;
-                            value=0;
-                            value4=0;
-                            value5=0;
-                            value6=0;
-                            value7=0;
-
-                            return;
-                        }
-                        else if(value1==1){
-                            jokerinfo_layout.clearAnimation();
-                            ak47info_layout.clearAnimation();
-                            xboot_info_layout.clearAnimation();
-                            hukum_info_layout.clearAnimation();
-
-                            ak47info_layout.setVisibility(View.INVISIBLE);
-                            jokerinfo_layout.setVisibility(View.INVISIBLE);
-                            xboot_info_layout.setVisibility(View.INVISIBLE);
-                            hukum_info_layout.setVisibility(View.INVISIBLE);
-
-                            Toast.makeText(MainActivity.this, "ak in", Toast.LENGTH_SHORT).show();
-
-                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-
-                            ak47info_layout.startAnimation(Animright);
-                            Animright.setFillAfter(true);
-                            value1=0;
-                            return;
-                        }
-                    }
-                });
-
-
-                // 4X boot variation on click
-
-                xboot_layout_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (value2==0) {
-
-                            jokerinfo_layout.clearAnimation();
-                            ak47info_layout.clearAnimation();
-                            hukum_info_layout.clearAnimation();
-
-                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-
-                            xboot_info_layout.setVisibility(View.VISIBLE);
-                            ak47info_layout.setVisibility(View.INVISIBLE);
-                            jokerinfo_layout.setVisibility(View.INVISIBLE);
-                            hukum_info_layout.setVisibility(View.INVISIBLE);
-
-                            Toast.makeText(MainActivity.this, "xboot out", Toast.LENGTH_SHORT).show();
-
-                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
-
-                            xboot_info_layout.startAnimation(Animleft);
-                            Animleft.setFillAfter(true);
-                            value2=1;
-                            value1=0;
-                            value=0;
-                            value3=0;
-                            value4=0;
-                            value5=0;
-                            value6=0;
-                            value7=0;
-
-                            return;
-                        }
-                        if (value2==1){
-                            jokerinfo_layout.clearAnimation();
-                            ak47info_layout.clearAnimation();
-                            xboot_info_layout.clearAnimation();
-                            hukum_info_layout.clearAnimation();
-
-                            xboot_info_layout.setVisibility(View.INVISIBLE);
-                            ak47info_layout.setVisibility(View.INVISIBLE);
-                            jokerinfo_layout.setVisibility(View.INVISIBLE);
-                            hukum_info_layout.setVisibility(View.INVISIBLE);
-
-                            Toast.makeText(MainActivity.this, "xboot in", Toast.LENGTH_SHORT).show();
-
-                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-
-                            xboot_info_layout.startAnimation(Animright);
-                            value2 = 0;
-                            Animright.setFillAfter(true);
-                            return;
-                        }
-                    }
-                });
-
-                // hukum variation on click
-
-                hukum_layout_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (value3==0) {
-
-                            jokerinfo_layout.clearAnimation();
-                            ak47info_layout.clearAnimation();
-                            xboot_info_layout.clearAnimation();
-
-                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-
-                            xboot_info_layout.setVisibility(View.INVISIBLE);
-                            ak47info_layout.setVisibility(View.INVISIBLE);
-                            jokerinfo_layout.setVisibility(View.INVISIBLE);
-                            hukum_info_layout.setVisibility(View.VISIBLE);
-
-                            Toast.makeText(MainActivity.this, "hukum out", Toast.LENGTH_SHORT).show();
-
-                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
-
-                            hukum_info_layout.startAnimation(Animleft);
-                            Animleft.setFillAfter(true);
-                            value3=1;
-                            value1=0;
-                            value=0;
-                            value2=0;
-                            value4=0;
-                            value5=0;
-                            value6=0;
-                            value7=0;
-
-                            return;
-                        }
-                        if (value3==1){
-                            jokerinfo_layout.clearAnimation();
-                            ak47info_layout.clearAnimation();
-                            xboot_info_layout.clearAnimation();
-                            hukum_info_layout.clearAnimation();
-
-                            xboot_info_layout.setVisibility(View.INVISIBLE);
-                            hukum_info_layout.setVisibility(View.INVISIBLE);
-                            ak47info_layout.setVisibility(View.INVISIBLE);
-                            jokerinfo_layout.setVisibility(View.INVISIBLE);
-
-                            Toast.makeText(MainActivity.this, "hukum in", Toast.LENGTH_SHORT).show();
-
-                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-
-                            hukum_info_layout.startAnimation(Animright);
-                            value3 = 0;
-                            Animright.setFillAfter(true);
-                            return;
-                        }
-                    }
-                });
-
-
-                // muflis variation on click
-
-                muflis_layout_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (value4==0) {
-
-                            jokerinfo_layout.clearAnimation();
-                            ak47info_layout.clearAnimation();
-                            xboot_info_layout.clearAnimation();
-                            hukum_info_layout.clearAnimation();
-
-                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-
-                            xboot_info_layout.setVisibility(View.INVISIBLE);
-                            ak47info_layout.setVisibility(View.INVISIBLE);
-                            jokerinfo_layout.setVisibility(View.INVISIBLE);
-                            hukum_info_layout.setVisibility(View.INVISIBLE);
-                            muflis_info_layout.setVisibility(View.VISIBLE);
-
-                            Toast.makeText(MainActivity.this, "muflis out", Toast.LENGTH_SHORT).show();
-
-                            muflis_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
-
-                            muflis_info_layout.startAnimation(Animleft);
-                            Animleft.setFillAfter(true);
-                            value4=1;
-                            value1=0;
-                            value=0;
-                            value2=0;
-                            value3=0;
-                            value5=0;
-                            value6=0;
-                            value7=0;
-
-                            return;
-                        }
-                        if (value4==1){
-                            jokerinfo_layout.clearAnimation();
-                            ak47info_layout.clearAnimation();
-                            xboot_info_layout.clearAnimation();
-                            hukum_info_layout.clearAnimation();
-                            muflis_info_layout.clearAnimation();
-
-                            xboot_info_layout.setVisibility(View.INVISIBLE);
-                            hukum_info_layout.setVisibility(View.INVISIBLE);
-                            ak47info_layout.setVisibility(View.INVISIBLE);
-                            jokerinfo_layout.setVisibility(View.INVISIBLE);
-                            muflis_info_layout.setVisibility(View.INVISIBLE);
-
-                            Toast.makeText(MainActivity.this, "muflis in", Toast.LENGTH_SHORT).show();
-
-                            muflis_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-
-                            muflis_info_layout.startAnimation(Animright);
-                            value4 = 0;
-                            Animright.setFillAfter(true);
-                            return;
-                        }
-                    }
-                });
-
-
-                //  faceoff variation on click
-
-                faceoff_layout_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (value5==0) {
-
-                            jokerinfo_layout.clearAnimation();
-                            ak47info_layout.clearAnimation();
-                            xboot_info_layout.clearAnimation();
-                            hukum_info_layout.clearAnimation();
-                            muflis_info_layout.clearAnimation();
-
-                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            muflis_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-
-                            xboot_info_layout.setVisibility(View.INVISIBLE);
-                            ak47info_layout.setVisibility(View.INVISIBLE);
-                            jokerinfo_layout.setVisibility(View.INVISIBLE);
-                            hukum_info_layout.setVisibility(View.INVISIBLE);
-                            muflis_info_layout.setVisibility(View.INVISIBLE);
-                            faceoff_info_layout.setVisibility(View.VISIBLE);
-
-                            Toast.makeText(MainActivity.this, "faceoff out", Toast.LENGTH_SHORT).show();
-
-                            faceoff_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
-
-                            faceoff_info_layout.startAnimation(Animleft);
-                            Animleft.setFillAfter(true);
-                            value5=1;
-                            value1=0;
-                            value=0;
-                            value2=0;
-                            value3=0;
-                            value4=0;
-                            value6=0;
-                            value7=0;
-
-                            return;
-                        }
-                        if (value5==1){
-                            jokerinfo_layout.clearAnimation();
-                            ak47info_layout.clearAnimation();
-                            xboot_info_layout.clearAnimation();
-                            hukum_info_layout.clearAnimation();
-                            muflis_info_layout.clearAnimation();
-                            faceoff_info_layout.clearAnimation();
-
-                            xboot_info_layout.setVisibility(View.INVISIBLE);
-                            hukum_info_layout.setVisibility(View.INVISIBLE);
-                            ak47info_layout.setVisibility(View.INVISIBLE);
-                            jokerinfo_layout.setVisibility(View.INVISIBLE);
-                            muflis_info_layout.setVisibility(View.INVISIBLE);
-                            faceoff_info_layout.setVisibility(View.INVISIBLE);
-
-                            Toast.makeText(MainActivity.this, "faceoff in", Toast.LENGTH_SHORT).show();
-
-                            faceoff_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-
-                            faceoff_info_layout.startAnimation(Animright);
-                            value5 = 0;
-                            Animright.setFillAfter(true);
-                            return;
-                        }
-                    }
-                });
-
-
-                //  ljoker variation on click
-
-                ljoker_layout_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (value6==0) {
-
-                            jokerinfo_layout.clearAnimation();
-                            ak47info_layout.clearAnimation();
-                            xboot_info_layout.clearAnimation();
-                            hukum_info_layout.clearAnimation();
-                            muflis_info_layout.clearAnimation();
-                            faceoff_info_layout.clearAnimation();
-
-
-                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            muflis_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            faceoff_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            nnnine_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-
-                            xboot_info_layout.setVisibility(View.INVISIBLE);
-                            ak47info_layout.setVisibility(View.INVISIBLE);
-                            jokerinfo_layout.setVisibility(View.INVISIBLE);
-                            hukum_info_layout.setVisibility(View.INVISIBLE);
-                            muflis_info_layout.setVisibility(View.INVISIBLE);
-                            faceoff_info_layout.setVisibility(View.INVISIBLE);
-                            ljoker_info_layout.setVisibility(View.VISIBLE);
-
-                            Toast.makeText(MainActivity.this, "ljoker out", Toast.LENGTH_SHORT).show();
-
-                            ljoker_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
-
-                            ljoker_info_layout.startAnimation(Animleft);
-                            Animleft.setFillAfter(true);
-                            value6=1;
-                            value1=0;
-                            value=0;
-                            value2=0;
-                            value3=0;
-                            value4=0;
-                            value5=0;
-                            value7=0;
-
-                            return;
-                        }
-                        if (value6==1){
-                            jokerinfo_layout.clearAnimation();
-                            ak47info_layout.clearAnimation();
-                            xboot_info_layout.clearAnimation();
-                            hukum_info_layout.clearAnimation();
-                            muflis_info_layout.clearAnimation();
-                            faceoff_info_layout.clearAnimation();
-                            ljoker_info_layout.clearAnimation();
-
-                            xboot_info_layout.setVisibility(View.INVISIBLE);
-                            hukum_info_layout.setVisibility(View.INVISIBLE);
-                            ak47info_layout.setVisibility(View.INVISIBLE);
-                            jokerinfo_layout.setVisibility(View.INVISIBLE);
-                            muflis_info_layout.setVisibility(View.INVISIBLE);
-                            faceoff_info_layout.setVisibility(View.INVISIBLE);
-                            ljoker_info_layout.setVisibility(View.INVISIBLE);
-
-                            Toast.makeText(MainActivity.this, "ljoker in", Toast.LENGTH_SHORT).show();
-
-                            ljoker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-
-                            ljoker_info_layout.startAnimation(Animright);
-                            value6 = 0;
-                            Animright.setFillAfter(true);
-                            return;
-                        }
-                    }
-                });
-
-
-                //  nnnine variation on click
-
-                nnnine_layout_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (value7==0) {
-
-                            jokerinfo_layout.clearAnimation();
-                            ak47info_layout.clearAnimation();
-                            xboot_info_layout.clearAnimation();
-                            hukum_info_layout.clearAnimation();
-                            muflis_info_layout.clearAnimation();
-                            faceoff_info_layout.clearAnimation();
-                            ljoker_info_layout.clearAnimation();
-
-                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            muflis_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            faceoff_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-                            ljoker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-
-                            xboot_info_layout.setVisibility(View.INVISIBLE);
-                            ak47info_layout.setVisibility(View.INVISIBLE);
-                            jokerinfo_layout.setVisibility(View.INVISIBLE);
-                            hukum_info_layout.setVisibility(View.INVISIBLE);
-                            muflis_info_layout.setVisibility(View.INVISIBLE);
-                            faceoff_info_layout.setVisibility(View.INVISIBLE);
-                            ljoker_info_layout.setVisibility(View.INVISIBLE);
-                            nnnine_info_layout.setVisibility(View.VISIBLE);
-
-
-                            Toast.makeText(MainActivity.this, "nnnine out", Toast.LENGTH_SHORT).show();
-
-                            nnnine_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
-
-                            nnnine_info_layout.startAnimation(Animleft);
-                            Animleft.setFillAfter(true);
-                            value7=1;
-                            value1=0;
-                            value=0;
-                            value2=0;
-                            value3=0;
-                            value4=0;
-                            value5=0;
-                            value6=0;
-
-                            return;
-                        }
-                        if (value7==1){
-                            jokerinfo_layout.clearAnimation();
-                            ak47info_layout.clearAnimation();
-                            xboot_info_layout.clearAnimation();
-                            hukum_info_layout.clearAnimation();
-                            muflis_info_layout.clearAnimation();
-                            faceoff_info_layout.clearAnimation();
-                            ljoker_info_layout.clearAnimation();
-                            nnnine_info_layout.clearAnimation();
-
-                            xboot_info_layout.setVisibility(View.INVISIBLE);
-                            hukum_info_layout.setVisibility(View.INVISIBLE);
-                            ak47info_layout.setVisibility(View.INVISIBLE);
-                            jokerinfo_layout.setVisibility(View.INVISIBLE);
-                            muflis_info_layout.setVisibility(View.INVISIBLE);
-                            faceoff_info_layout.setVisibility(View.INVISIBLE);
-                            ljoker_info_layout.setVisibility(View.INVISIBLE);
-                            nnnine_info_layout.setVisibility(View.INVISIBLE);
-
-                            Toast.makeText(MainActivity.this, "nnnine in", Toast.LENGTH_SHORT).show();
-
-                            nnnine_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
-
-                            nnnine_info_layout.startAnimation(Animright);
-                            value7 = 0;
-                            Animright.setFillAfter(true);
-                            return;
-                        }
-                    }
-                });
-
-                //join now the popup window on button click
-                join_variation_btn = customView.findViewById(R.id.variation_jointble);
-
-                join_variation_btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(MainActivity.this, LoadingScreen_variation.class);
-                        startActivity(intent);
-                    }
-                });
-            }
-        });
+//
+////                           ak_img.setVisibility(View.VISIBLE);
+//                            jokerinfo_layout.setVisibility(View.VISIBLE);
+//                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
+//                            Toast.makeText(MainActivity.this, "joker out", Toast.LENGTH_SHORT).show();
+//                            jokerinfo_layout.startAnimation(Animleft);
+//                            Animleft.setFillAfter(true);
+//                            value=1;
+//                            value1=0;
+//                            value2=0;
+//                            value3=0;
+//                            value4=0;
+//                            value5=0;
+//                            value6=0;
+//                            value7=0;
+//
+//                            return;
+//                        }
+//                       else if(value==1){
+//                            ak47info_layout.clearAnimation();
+//                            jokerinfo_layout.clearAnimation();
+//                            xboot_info_layout.clearAnimation();
+//                            hukum_info_layout.clearAnimation();
+//
+//                            jokerinfo_layout.setVisibility(View.INVISIBLE);
+//                            ak47info_layout.setVisibility(View.INVISIBLE);
+//                            hukum_info_layout.setVisibility(View.INVISIBLE);
+//                            xboot_info_layout.setVisibility(View.INVISIBLE);
+//
+//                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            Toast.makeText(MainActivity.this, "joker in", Toast.LENGTH_SHORT).show();
+//
+//                            jokerinfo_layout.startAnimation(Animright);
+//                            Animright.setFillAfter(true);
+//                            value=0;
+//                            return;
+//                        }
+//                    }
+//                });
+//
+//            // AK47 variation on click
+//
+//                ak47_layout_btn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if (value1==0) {
+//
+//                            jokerinfo_layout.clearAnimation();
+//                            ak47info_layout.clearAnimation();
+//                            xboot_info_layout.clearAnimation();
+//                            hukum_info_layout.clearAnimation();
+//
+//                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//
+////                            xboot_info_layout.clearAnimation();
+////                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//
+//                            ak47info_layout.setVisibility(View.VISIBLE);
+//                            jokerinfo_layout.setVisibility(View.INVISIBLE);
+//                            xboot_info_layout.setVisibility(View.INVISIBLE);
+//                            hukum_info_layout.setVisibility(View.INVISIBLE);
+//
+//                            Toast.makeText(MainActivity.this, "ak out", Toast.LENGTH_SHORT).show();
+//
+//                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
+//                            ak47info_layout.startAnimation(Animleft);
+//                            Animleft.setFillAfter(true);
+//                            value1=1;
+//                            value2=0;
+//                            value3=0;
+//                            value=0;
+//                            value4=0;
+//                            value5=0;
+//                            value6=0;
+//                            value7=0;
+//
+//                            return;
+//                        }
+//                        else if(value1==1){
+//                            jokerinfo_layout.clearAnimation();
+//                            ak47info_layout.clearAnimation();
+//                            xboot_info_layout.clearAnimation();
+//                            hukum_info_layout.clearAnimation();
+//
+//                            ak47info_layout.setVisibility(View.INVISIBLE);
+//                            jokerinfo_layout.setVisibility(View.INVISIBLE);
+//                            xboot_info_layout.setVisibility(View.INVISIBLE);
+//                            hukum_info_layout.setVisibility(View.INVISIBLE);
+//
+//                            Toast.makeText(MainActivity.this, "ak in", Toast.LENGTH_SHORT).show();
+//
+//                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//
+//                            ak47info_layout.startAnimation(Animright);
+//                            Animright.setFillAfter(true);
+//                            value1=0;
+//                            return;
+//                        }
+//                    }
+//                });
+//
+//
+//                // 4X boot variation on click
+//
+//                xboot_layout_btn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if (value2==0) {
+//
+//                            jokerinfo_layout.clearAnimation();
+//                            ak47info_layout.clearAnimation();
+//                            hukum_info_layout.clearAnimation();
+//
+//                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//
+//                            xboot_info_layout.setVisibility(View.VISIBLE);
+//                            ak47info_layout.setVisibility(View.INVISIBLE);
+//                            jokerinfo_layout.setVisibility(View.INVISIBLE);
+//                            hukum_info_layout.setVisibility(View.INVISIBLE);
+//
+//                            Toast.makeText(MainActivity.this, "xboot out", Toast.LENGTH_SHORT).show();
+//
+//                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
+//
+//                            xboot_info_layout.startAnimation(Animleft);
+//                            Animleft.setFillAfter(true);
+//                            value2=1;
+//                            value1=0;
+//                            value=0;
+//                            value3=0;
+//                            value4=0;
+//                            value5=0;
+//                            value6=0;
+//                            value7=0;
+//
+//                            return;
+//                        }
+//                        if (value2==1){
+//                            jokerinfo_layout.clearAnimation();
+//                            ak47info_layout.clearAnimation();
+//                            xboot_info_layout.clearAnimation();
+//                            hukum_info_layout.clearAnimation();
+//
+//                            xboot_info_layout.setVisibility(View.INVISIBLE);
+//                            ak47info_layout.setVisibility(View.INVISIBLE);
+//                            jokerinfo_layout.setVisibility(View.INVISIBLE);
+//                            hukum_info_layout.setVisibility(View.INVISIBLE);
+//
+//                            Toast.makeText(MainActivity.this, "xboot in", Toast.LENGTH_SHORT).show();
+//
+//                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//
+//                            xboot_info_layout.startAnimation(Animright);
+//                            value2 = 0;
+//                            Animright.setFillAfter(true);
+//                            return;
+//                        }
+//                    }
+//                });
+//
+//                // hukum variation on click
+//
+//                hukum_layout_btn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if (value3==0) {
+//
+//                            jokerinfo_layout.clearAnimation();
+//                            ak47info_layout.clearAnimation();
+//                            xboot_info_layout.clearAnimation();
+//
+//                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//
+//                            xboot_info_layout.setVisibility(View.INVISIBLE);
+//                            ak47info_layout.setVisibility(View.INVISIBLE);
+//                            jokerinfo_layout.setVisibility(View.INVISIBLE);
+//                            hukum_info_layout.setVisibility(View.VISIBLE);
+//
+//                            Toast.makeText(MainActivity.this, "hukum out", Toast.LENGTH_SHORT).show();
+//
+//                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
+//
+//                            hukum_info_layout.startAnimation(Animleft);
+//                            Animleft.setFillAfter(true);
+//                            value3=1;
+//                            value1=0;
+//                            value=0;
+//                            value2=0;
+//                            value4=0;
+//                            value5=0;
+//                            value6=0;
+//                            value7=0;
+//
+//                            return;
+//                        }
+//                        if (value3==1){
+//                            jokerinfo_layout.clearAnimation();
+//                            ak47info_layout.clearAnimation();
+//                            xboot_info_layout.clearAnimation();
+//                            hukum_info_layout.clearAnimation();
+//
+//                            xboot_info_layout.setVisibility(View.INVISIBLE);
+//                            hukum_info_layout.setVisibility(View.INVISIBLE);
+//                            ak47info_layout.setVisibility(View.INVISIBLE);
+//                            jokerinfo_layout.setVisibility(View.INVISIBLE);
+//
+//                            Toast.makeText(MainActivity.this, "hukum in", Toast.LENGTH_SHORT).show();
+//
+//                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//
+//                            hukum_info_layout.startAnimation(Animright);
+//                            value3 = 0;
+//                            Animright.setFillAfter(true);
+//                            return;
+//                        }
+//                    }
+//                });
+//
+//
+//                // muflis variation on click
+//
+//                muflis_layout_btn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if (value4==0) {
+//
+//                            jokerinfo_layout.clearAnimation();
+//                            ak47info_layout.clearAnimation();
+//                            xboot_info_layout.clearAnimation();
+//                            hukum_info_layout.clearAnimation();
+//
+//                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//
+//                            xboot_info_layout.setVisibility(View.INVISIBLE);
+//                            ak47info_layout.setVisibility(View.INVISIBLE);
+//                            jokerinfo_layout.setVisibility(View.INVISIBLE);
+//                            hukum_info_layout.setVisibility(View.INVISIBLE);
+//                            muflis_info_layout.setVisibility(View.VISIBLE);
+//
+//                            Toast.makeText(MainActivity.this, "muflis out", Toast.LENGTH_SHORT).show();
+//
+//                            muflis_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
+//
+//                            muflis_info_layout.startAnimation(Animleft);
+//                            Animleft.setFillAfter(true);
+//                            value4=1;
+//                            value1=0;
+//                            value=0;
+//                            value2=0;
+//                            value3=0;
+//                            value5=0;
+//                            value6=0;
+//                            value7=0;
+//
+//                            return;
+//                        }
+//                        if (value4==1){
+//                            jokerinfo_layout.clearAnimation();
+//                            ak47info_layout.clearAnimation();
+//                            xboot_info_layout.clearAnimation();
+//                            hukum_info_layout.clearAnimation();
+//                            muflis_info_layout.clearAnimation();
+//
+//                            xboot_info_layout.setVisibility(View.INVISIBLE);
+//                            hukum_info_layout.setVisibility(View.INVISIBLE);
+//                            ak47info_layout.setVisibility(View.INVISIBLE);
+//                            jokerinfo_layout.setVisibility(View.INVISIBLE);
+//                            muflis_info_layout.setVisibility(View.INVISIBLE);
+//
+//                            Toast.makeText(MainActivity.this, "muflis in", Toast.LENGTH_SHORT).show();
+//
+//                            muflis_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//
+//                            muflis_info_layout.startAnimation(Animright);
+//                            value4 = 0;
+//                            Animright.setFillAfter(true);
+//                            return;
+//                        }
+//                    }
+//                });
+//
+//
+//                //  faceoff variation on click
+//
+//                faceoff_layout_btn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if (value5==0) {
+//
+//                            jokerinfo_layout.clearAnimation();
+//                            ak47info_layout.clearAnimation();
+//                            xboot_info_layout.clearAnimation();
+//                            hukum_info_layout.clearAnimation();
+//                            muflis_info_layout.clearAnimation();
+//
+//                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            muflis_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//
+//                            xboot_info_layout.setVisibility(View.INVISIBLE);
+//                            ak47info_layout.setVisibility(View.INVISIBLE);
+//                            jokerinfo_layout.setVisibility(View.INVISIBLE);
+//                            hukum_info_layout.setVisibility(View.INVISIBLE);
+//                            muflis_info_layout.setVisibility(View.INVISIBLE);
+//                            faceoff_info_layout.setVisibility(View.VISIBLE);
+//
+//                            Toast.makeText(MainActivity.this, "faceoff out", Toast.LENGTH_SHORT).show();
+//
+//                            faceoff_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
+//
+//                            faceoff_info_layout.startAnimation(Animleft);
+//                            Animleft.setFillAfter(true);
+//                            value5=1;
+//                            value1=0;
+//                            value=0;
+//                            value2=0;
+//                            value3=0;
+//                            value4=0;
+//                            value6=0;
+//                            value7=0;
+//
+//                            return;
+//                        }
+//                        if (value5==1){
+//                            jokerinfo_layout.clearAnimation();
+//                            ak47info_layout.clearAnimation();
+//                            xboot_info_layout.clearAnimation();
+//                            hukum_info_layout.clearAnimation();
+//                            muflis_info_layout.clearAnimation();
+//                            faceoff_info_layout.clearAnimation();
+//
+//                            xboot_info_layout.setVisibility(View.INVISIBLE);
+//                            hukum_info_layout.setVisibility(View.INVISIBLE);
+//                            ak47info_layout.setVisibility(View.INVISIBLE);
+//                            jokerinfo_layout.setVisibility(View.INVISIBLE);
+//                            muflis_info_layout.setVisibility(View.INVISIBLE);
+//                            faceoff_info_layout.setVisibility(View.INVISIBLE);
+//
+//                            Toast.makeText(MainActivity.this, "faceoff in", Toast.LENGTH_SHORT).show();
+//
+//                            faceoff_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//
+//                            faceoff_info_layout.startAnimation(Animright);
+//                            value5 = 0;
+//                            Animright.setFillAfter(true);
+//                            return;
+//                        }
+//                    }
+//                });
+//
+//
+//                //  ljoker variation on click
+//
+//                ljoker_layout_btn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if (value6==0) {
+//
+//                            jokerinfo_layout.clearAnimation();
+//                            ak47info_layout.clearAnimation();
+//                            xboot_info_layout.clearAnimation();
+//                            hukum_info_layout.clearAnimation();
+//                            muflis_info_layout.clearAnimation();
+//                            faceoff_info_layout.clearAnimation();
+//
+//
+//                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            muflis_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            faceoff_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            nnnine_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//
+//                            xboot_info_layout.setVisibility(View.INVISIBLE);
+//                            ak47info_layout.setVisibility(View.INVISIBLE);
+//                            jokerinfo_layout.setVisibility(View.INVISIBLE);
+//                            hukum_info_layout.setVisibility(View.INVISIBLE);
+//                            muflis_info_layout.setVisibility(View.INVISIBLE);
+//                            faceoff_info_layout.setVisibility(View.INVISIBLE);
+//                            ljoker_info_layout.setVisibility(View.VISIBLE);
+//
+//                            Toast.makeText(MainActivity.this, "ljoker out", Toast.LENGTH_SHORT).show();
+//
+//                            ljoker_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
+//
+//                            ljoker_info_layout.startAnimation(Animleft);
+//                            Animleft.setFillAfter(true);
+//                            value6=1;
+//                            value1=0;
+//                            value=0;
+//                            value2=0;
+//                            value3=0;
+//                            value4=0;
+//                            value5=0;
+//                            value7=0;
+//
+//                            return;
+//                        }
+//                        if (value6==1){
+//                            jokerinfo_layout.clearAnimation();
+//                            ak47info_layout.clearAnimation();
+//                            xboot_info_layout.clearAnimation();
+//                            hukum_info_layout.clearAnimation();
+//                            muflis_info_layout.clearAnimation();
+//                            faceoff_info_layout.clearAnimation();
+//                            ljoker_info_layout.clearAnimation();
+//
+//                            xboot_info_layout.setVisibility(View.INVISIBLE);
+//                            hukum_info_layout.setVisibility(View.INVISIBLE);
+//                            ak47info_layout.setVisibility(View.INVISIBLE);
+//                            jokerinfo_layout.setVisibility(View.INVISIBLE);
+//                            muflis_info_layout.setVisibility(View.INVISIBLE);
+//                            faceoff_info_layout.setVisibility(View.INVISIBLE);
+//                            ljoker_info_layout.setVisibility(View.INVISIBLE);
+//
+//                            Toast.makeText(MainActivity.this, "ljoker in", Toast.LENGTH_SHORT).show();
+//
+//                            ljoker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//
+//                            ljoker_info_layout.startAnimation(Animright);
+//                            value6 = 0;
+//                            Animright.setFillAfter(true);
+//                            return;
+//                        }
+//                    }
+//                });
+//
+//
+//                //  nnnine variation on click
+//
+//                nnnine_layout_btn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if (value7==0) {
+//
+//                            jokerinfo_layout.clearAnimation();
+//                            ak47info_layout.clearAnimation();
+//                            xboot_info_layout.clearAnimation();
+//                            hukum_info_layout.clearAnimation();
+//                            muflis_info_layout.clearAnimation();
+//                            faceoff_info_layout.clearAnimation();
+//                            ljoker_info_layout.clearAnimation();
+//
+//                            joker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            xboot_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            hukum_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            muflis_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            faceoff_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//                            ljoker_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//
+//                            xboot_info_layout.setVisibility(View.INVISIBLE);
+//                            ak47info_layout.setVisibility(View.INVISIBLE);
+//                            jokerinfo_layout.setVisibility(View.INVISIBLE);
+//                            hukum_info_layout.setVisibility(View.INVISIBLE);
+//                            muflis_info_layout.setVisibility(View.INVISIBLE);
+//                            faceoff_info_layout.setVisibility(View.INVISIBLE);
+//                            ljoker_info_layout.setVisibility(View.INVISIBLE);
+//                            nnnine_info_layout.setVisibility(View.VISIBLE);
+//
+//
+//                            Toast.makeText(MainActivity.this, "nnnine out", Toast.LENGTH_SHORT).show();
+//
+//                            nnnine_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
+//
+//                            nnnine_info_layout.startAnimation(Animleft);
+//                            Animleft.setFillAfter(true);
+//                            value7=1;
+//                            value1=0;
+//                            value=0;
+//                            value2=0;
+//                            value3=0;
+//                            value4=0;
+//                            value5=0;
+//                            value6=0;
+//
+//                            return;
+//                        }
+//                        if (value7==1){
+//                            jokerinfo_layout.clearAnimation();
+//                            ak47info_layout.clearAnimation();
+//                            xboot_info_layout.clearAnimation();
+//                            hukum_info_layout.clearAnimation();
+//                            muflis_info_layout.clearAnimation();
+//                            faceoff_info_layout.clearAnimation();
+//                            ljoker_info_layout.clearAnimation();
+//                            nnnine_info_layout.clearAnimation();
+//
+//                            xboot_info_layout.setVisibility(View.INVISIBLE);
+//                            hukum_info_layout.setVisibility(View.INVISIBLE);
+//                            ak47info_layout.setVisibility(View.INVISIBLE);
+//                            jokerinfo_layout.setVisibility(View.INVISIBLE);
+//                            muflis_info_layout.setVisibility(View.INVISIBLE);
+//                            faceoff_info_layout.setVisibility(View.INVISIBLE);
+//                            ljoker_info_layout.setVisibility(View.INVISIBLE);
+//                            nnnine_info_layout.setVisibility(View.INVISIBLE);
+//
+//                            Toast.makeText(MainActivity.this, "nnnine in", Toast.LENGTH_SHORT).show();
+//
+//                            nnnine_img.setImageDrawable(getResources().getDrawable(R.drawable.q));
+//
+//                            nnnine_info_layout.startAnimation(Animright);
+//                            value7 = 0;
+//                            Animright.setFillAfter(true);
+//                            return;
+//                        }
+//                    }
+//                });
+//
+//                //join now the popup window on button click
+//                join_variation_btn = customView.findViewById(R.id.variation_jointble);
+//
+//                join_variation_btn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Intent intent = new Intent(MainActivity.this, LoadingScreen_variation.class);
+//                        startActivity(intent);
+//                    }
+//                });
+//            }
+//        });
 
 
 
@@ -988,12 +988,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Animation of chips on main page
 
         Animation animation = AnimationUtils.loadAnimation(this, R.anim.mainactivity_chips_rotate);
-        findViewById(R.id.mainychips).startAnimation(animation);
-        findViewById(R.id.mainlimegchips).startAnimation(animation);
-        findViewById(R.id.mainorgchips).startAnimation(animation);
-        findViewById(R.id.darkbluechips).startAnimation(animation);
-        findViewById(R.id.cyanchips).startAnimation(animation);
-        findViewById(R.id.blackchips).startAnimation(animation);
+//        findViewById(R.id.mainychips).startAnimation(animation);
+//        findViewById(R.id.mainlimegchips).startAnimation(animation);
+//        findViewById(R.id.mainorgchips).startAnimation(animation);
+//        findViewById(R.id.darkbluechips).startAnimation(animation);
+//        findViewById(R.id.cyanchips).startAnimation(animation);
+//        findViewById(R.id.blackchips).startAnimation(animation);
         findViewById(R.id.ygreenchips).startAnimation(animation);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -1013,7 +1013,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         Animation antianimation = AnimationUtils.loadAnimation(this, R.anim.mainactivity_chips_rotate_anticlockwise);
-        findViewById(R.id.innerlime).startAnimation(antianimation);
+//        findViewById(R.id.innerlime).startAnimation(antianimation);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {

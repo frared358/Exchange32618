@@ -27,4 +27,14 @@ public class Data {
         this.isMulti = isMulti;
         this.inMatchDate = inMatchDate;
     }
+
+    //Bet History
+    String betSelection,betOdd,betStake,betType,betPL;
+    public Data(String betSelection, String betType, String betOdd,String betStake,String betPL){
+        this.betSelection = betSelection;
+        this.betType = betType;
+        this.betOdd = betOdd;
+        this.betStake = betStake;
+        this.betPL = betPL;
+    }
 }

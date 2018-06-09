@@ -63,7 +63,56 @@ public class MatchFragment extends Fragment {
     }
 
 
-    private class MatchAsyncTask extends AsyncTask<String, Void, String> {
+
+    private class MatchDataAsyncTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            return urls[0];
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            //Log.i("Check123",""+result);
+            //Toast.makeText(MatchFragment.this.getContext(), ""+result, Toast.LENGTH_SHORT).show();
+            try {
+                JSONArray arrayData = new JSONArray(result);
+                int length = arrayData.length();
+
+                if(length == 0){
+                    txtMatchNoData.setVisibility(View.VISIBLE);
+                }
+
+                for(int i =0 ; i<length;i++){
+                    JSONObject key = arrayData.getJSONObject(i);
+                    String selection = key.getString("runnerName");
+                    String matchedStake = key.getString("stake");
+                    String odds = key.getString("odds");
+                    String type = key.getString("backLay");
+                    String placedDate = key.getString("date");
+                    String marketName = key.getString("marketName");
+                    int isFancy = key.getInt("isFancy");
+                    int score = key.getInt("score");
+                    boolean CHECKCANCEL = false;
+
+                    MatchList.add(new MatchData(selection,odds,matchedStake,type,placedDate,marketName,CHECKCANCEL,isFancy,score));
+
+                    matchAdapter.notifyDataSetChanged();
+
+                }
+                recycleViewMatchData.setAdapter(matchAdapter);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                //DataHolder.unAuthorized(getActivity(),result);
+            }
+        }
+    }
+
+}
+
+
+/*private class MatchAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
@@ -107,9 +156,17 @@ public class MatchFragment extends Fragment {
                 //DataHolder.unAuthorized(getActivity(),result);
             }
         }
-    }
+    }*/
 
-    private class MatchDataAsyncTask extends AsyncTask<String, Void, String> {
+
+
+
+
+
+
+
+
+    /*private class MatchDataAsyncTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
@@ -150,7 +207,4 @@ public class MatchFragment extends Fragment {
                 //DataHolder.unAuthorized(getActivity(),result);
             }
         }
-    }
-
-
-}
+    }*/

@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -23,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,7 +49,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class SportActivity extends AppCompatActivity /*implements NavigationView.OnNavigationItemSelectedListener*/ {
+public class SportActivity extends AppCompatActivity implements View.OnClickListener/*implements NavigationView.OnNavigationItemSelectedListener*/ {
 
     TabLayout tabLayoutSport;
     ViewPager viewPagerSport;
@@ -54,6 +57,11 @@ public class SportActivity extends AppCompatActivity /*implements NavigationView
     int[] icon = {R.drawable.stop_watch_greay,R.drawable.trophy_greay,R.drawable.fav_contact_greay};
     int[] iconWhite = {R.drawable.stop_watch_white,R.drawable.trophy_white,R.drawable.fav_contact_white};
     Toolbar toolbar;
+
+    LinearLayout llSportHighlight,llSportAccount;
+    ImageView imgVSportHighlight,imgVSportAccount;
+    TextView txtVSportHighlight,txtVSportAccount;
+
     //TextView userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +80,22 @@ public class SportActivity extends AppCompatActivity /*implements NavigationView
         navigationView.setNavigationItemSelectedListener(this);
         View header=navigationView.getHeaderView(0);
         userName = header.findViewById(R.id.tvUserName);*/
+
+
+        llSportHighlight = findViewById(R.id.llSportHighlight);
+        llSportAccount = findViewById(R.id.llSportAccount);
+        imgVSportHighlight = findViewById(R.id.imgVSportHighlight);
+        imgVSportAccount = findViewById(R.id.imgVSportAccount);
+        txtVSportHighlight = findViewById(R.id.txtVSportHighlight);
+        txtVSportAccount = findViewById(R.id.txtVSportAccount);
+
+
+        llSportHighlight.setOnClickListener(this);
+        llSportAccount.setOnClickListener(this);
+        txtVSportHighlight.setOnClickListener(this);
+        txtVSportAccount.setOnClickListener(this);
+        imgVSportHighlight.setOnClickListener(this);
+        imgVSportAccount.setOnClickListener(this);
 
         tabLayoutSport = (TabLayout)findViewById(R.id.tabLayoutSport);
         viewPagerSport = (ViewPager)findViewById(R.id.viewPagerSport);
@@ -137,13 +161,29 @@ public class SportActivity extends AppCompatActivity /*implements NavigationView
             tabLayoutSport.getTabAt(0).setIcon(iconWhite[0]);
         }
 
-        DataHolder.showProgress(this);
+        //DataHolder.showProgress(this);
+        //new ProgressAsyncTask().execute();
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                DataHolder.showProgress(SportActivity.this);
+            }
+        });
+        Log.i("bbbv","Progress bar");
         //new HighlightsAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/UserDescription");
-        new getFundAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/Fund");
-        new getMyMarketAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Bets/MyMarket");
+
+
     }
 
-//    @Override
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String apiMyMarket = "http://173.212.248.188/pclient/Prince.svc/Bets/MyMarket";
+        new getMyMarketAsyncTask().execute(apiMyMarket);
+        new getFundAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/Fund");
+    }
+
+    //    @Override
 //    public void onBackPressed() {
 //
 //        /*if (drawerSport.isDrawerOpen(GravityCompat.START)) {
@@ -169,7 +209,23 @@ public class SportActivity extends AppCompatActivity /*implements NavigationView
             dialogMyMarket();
             return true;
         }
+// else if (id == R.id.menuSportHighLightsSport) {
+//            startActivity(new Intent(this,HighlightsActivity.class));
+//            return true;
+//        }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.llSportHighlight: case R.id.imgVSportHighlight: case R.id.txtVSportHighlight:
+                startActivity(new Intent(this,HighlightsActivity.class));
+                break;
+            case R.id.llSportAccount: case R.id.imgVSportAccount: case R.id.txtVSportAccount:
+                startActivity(new Intent(this,SportAccountActivity.class));
+                break;
+        }
     }
 
     /*@SuppressWarnings("StatementWithEmptyBody")
@@ -184,8 +240,6 @@ public class SportActivity extends AppCompatActivity /*implements NavigationView
         } else if (id == R.id.nav_logout) {
             dialogLogout();
         }
-
-
         drawerSport.closeDrawer(GravityCompat.START);
         return true;
     }*/
@@ -216,6 +270,7 @@ public class SportActivity extends AppCompatActivity /*implements NavigationView
 
     @Override
     public void onBackPressed() {
+
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
@@ -278,7 +333,8 @@ public class SportActivity extends AppCompatActivity /*implements NavigationView
 
         @Override
         protected String doInBackground(String... urls) {
-            return DataHolder.getApi(urls[0]);
+            Log.i("Check",""+urls[0]);
+            return getApi(urls[0]);
         }
 
         @Override
@@ -301,6 +357,18 @@ public class SportActivity extends AppCompatActivity /*implements NavigationView
                 //DataHolder.unAuthorized(SportActivity.this,result);
             }
         }
+    }
+
+    private class ProgressAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... urls) {
+
+            DataHolder.showProgress(SportActivity.this);
+
+            return null;
+        }
+
     }
 
     ArrayList<String> arrayMatchName = new ArrayList<>();
@@ -358,8 +426,8 @@ public class SportActivity extends AppCompatActivity /*implements NavigationView
             ll.addView(tvExposer);
 
             llMatchName.addView(ll);
-            Log.i("ValueFancyBook.get(i)",arrayMatchName.get(i));
-            Log.i("KeyFancyBook.get(i)",arrayExposer.get(i));
+            //Log.i("ValueFancyBook.get(i)",arrayMatchName.get(i));
+            //Log.i("KeyFancyBook.get(i)",arrayExposer.get(i));
         }
 
         btnCancelDialog.setOnClickListener(new View.OnClickListener(){
@@ -369,5 +437,52 @@ public class SportActivity extends AppCompatActivity /*implements NavigationView
             }
         });
         dialog.show();
+    }
+
+    public static String convertInputStreamToString(InputStream inputStream) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+        while((line = bufferedReader.readLine()) != null){
+            result += line;
+            //Log.e("Line",result);
+        }
+
+        inputStream.close();
+        return result;
+    }
+
+    public static String  getApi(String url){
+        InputStream inputStream = null;
+        String result = "";
+        try {
+
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpGet Httpget = new HttpGet(url);
+
+            Httpget.setHeader("Accept", "application/json");
+            Httpget.setHeader("Content-type", "application/json");
+            Httpget.setHeader("Token", DataHolder.LOGIN_TOKEN);
+
+            HttpResponse httpResponse = httpclient.execute(Httpget);
+            inputStream = httpResponse.getEntity().getContent();
+            Log.i("Checkrt inputStream",""+inputStream);
+            if(inputStream != null){
+                try {
+                    result = convertInputStreamToString(inputStream);
+                    Log.i("Checkrt result",""+result);
+                }
+                catch (Exception e){
+                    Log.e("ERROR ",""+e);
+                }
+            }
+            else
+                result = "Did not work!";
+
+
+        } catch (Exception e) {
+            Log.d("ERROR ", ""+e);
+        }
+        return result;
     }
 }

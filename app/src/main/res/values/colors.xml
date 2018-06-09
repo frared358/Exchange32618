@@ -84,5 +84,10 @@
 
     <color name="text_color_primary">#ffffff</color>
 
+    <color name="colorBlueBet3">#96a0d0f2</color>
+    <color name="colorBlueBet2">#a0d0f2</color>
+    <color name="colorRedBet2">#f5afbe</color>
+    <color name="colorRedBet3">#96f5afbe</color>
+
 
 </resources>

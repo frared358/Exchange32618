@@ -39,7 +39,7 @@ public class MatchOddAdapter extends RecyclerView.Adapter<MatchOddAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView txtVMatchOddName;
+        public TextView txtVMatchOddName,tvDateTime;
         LinearLayout llMatchOddData;
         ImageView imgVFavourit;
         int Multi;
@@ -49,7 +49,9 @@ public class MatchOddAdapter extends RecyclerView.Adapter<MatchOddAdapter.MyView
             txtVMatchOddName = itemView.findViewById(R.id.txtVTournamentName);
             llMatchOddData = itemView.findViewById(R.id.llTournamentData);
             imgVFavourit = itemView.findViewById(R.id.imgVFavourit);
+            tvDateTime = itemView.findViewById(R.id.tvDateTime);
             imgVFavourit.setVisibility(View.VISIBLE);
+            tvDateTime.setVisibility(View.GONE);
 
         }
     }
@@ -72,13 +74,16 @@ public class MatchOddAdapter extends RecyclerView.Adapter<MatchOddAdapter.MyView
         holder.txtVMatchOddName.setText(odd.matchOddName);
         holder.Multi= odd.isMulti;
 
+
         if(holder.Multi == 1){
             holder.imgVFavourit.setImageDrawable(contextO.getResources().getDrawable(R.drawable.star_small_gold));
         }else {
             holder.imgVFavourit.setImageDrawable(contextO.getResources().getDrawable(R.drawable.star_small_white));
         }
 
-        holder.txtVMatchOddName.setOnClickListener(new View.OnClickListener(){
+        holder.tvDateTime.setText(odd.matchDate);
+
+        holder.llMatchOddData.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(contextO,BetActivity.class);

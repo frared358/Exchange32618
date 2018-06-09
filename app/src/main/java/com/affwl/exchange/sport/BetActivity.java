@@ -6,25 +6,20 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
+
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.os.ResultReceiver;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
+
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
+
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -38,47 +33,28 @@ import android.widget.Toast;
 import com.affwl.exchange.DataHolder;
 import com.affwl.exchange.LoginActivity;
 import com.affwl.exchange.R;
-import com.google.gson.JsonElement;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
-import microsoft.aspnet.signalr.client.Action;
-import microsoft.aspnet.signalr.client.ConnectionState;
-import microsoft.aspnet.signalr.client.MessageReceivedHandler;
-import microsoft.aspnet.signalr.client.Platform;
-import microsoft.aspnet.signalr.client.SignalRFuture;
-import microsoft.aspnet.signalr.client.StateChangedCallback;
-import microsoft.aspnet.signalr.client.http.android.AndroidPlatformComponent;
-import microsoft.aspnet.signalr.client.hubs.HubConnection;
-import microsoft.aspnet.signalr.client.hubs.HubProxy;
-import microsoft.aspnet.signalr.client.transport.ServerSentEventsTransport;
 
 import static com.affwl.exchange.DataHolder._connection;
-import static com.affwl.exchange.DataHolder._hub;
+
 //Bet
-public class BetActivity extends AppCompatActivity implements View.OnClickListener/*, ResultReceiverSignalR.Receiver*/ {
+public class BetActivity extends AppCompatActivity implements View.OnClickListener {
 
     String matchName,matchDate,bfId;
     int marketId,matchId;
-    ImageView imgVCheck,imgRightDrawer;
-    //DrawerLayout drawerBet;
+    ImageView imgVCheck;
     TextView txtVChipsStake,txtVTitleMatchName,txtLiveSymbol,txtMarketTime;
     ImageView imgVFav;
     Handler handler,handlerLoad;
+
+    TextView txtVMinStake,txtVMaxStake,txtVMaxProfit,txtVBetDelay,txtVTotalMatch;
 
     boolean REFRESH_FANCY = false,REFRESH_BOOKMAKING = false,REFRESH_MARKET=false;
     LinearLayout llBookMaking,llFancyBet,llMatchOddData;
@@ -92,16 +68,13 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
     BookMakingAdapter  bookMakingAdapter;
     FancyAdapter fancyAdapter;
 
-    Handler handlerMarketData,handlerBookMaking,handlerFancy;
+    Handler handlerFancy;
     private BroadcastReceiverSignalr broadcastReceiverSignalr,broadcastReceiverBFM;
-
-    SignalRFuture<Void> awaitConnection;
 
     public static ArrayList<String> MarketDataArray = new ArrayList<String>();
     public static ArrayList<String> BookMakingArray = new ArrayList<String>();
     public static ArrayList<String> FancyArray = new ArrayList<String>();
 
-    public ResultReceiverSignalR mReceiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,16 +83,11 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       /* mReceiver = new ResultReceiverSignalR(new Handler());
-        mReceiver.setReceiver(this);*/
-
-
         txtMarketTime = findViewById(R.id.txtMarketTime);
         txtLiveSymbol = findViewById(R.id.txtLiveSymbol);
         imgVCheck = findViewById(R.id.imgVCheck);
         imgVCheck.setOnClickListener(this);
-        imgRightDrawer = findViewById(R.id.imgRightDrawer);
-        imgRightDrawer.setOnClickListener(this);
+
 
         recycleViewMarketData = findViewById(R.id.recycleViewMarketData);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -156,11 +124,12 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
 
 
         String[] date = matchDate.split(" ");
-        txtMarketTime.setText(date[1].substring(0,5));
-        /*DataHolder.setData(this,"keyMarketId",String.valueOf(marketId));*/
+        //txtMarketTime.setText(date[1].substring(0,5));
+        txtMarketTime.setText( matchDate.replace(" ","\n"));
+        DataHolder.setData(this,"keyMarketId",String.valueOf(marketId));
         DataHolder.setData(this,"Match_Id",String.valueOf(matchId));
 
-        Log.i("TAG4561",matchName+" "+marketId+" "+matchId+" "+bfId);
+        //Log.i("TAG4561",matchName+" "+marketId+" "+matchId+" "+bfId);
         txtVTitleMatchName = findViewById(R.id.txtVTitleMatchName);
         txtVTitleMatchName.setText(matchName);
 
@@ -168,47 +137,24 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         llFancyBet = findViewById(R.id.llFancyBet);
         llMatchOddData = findViewById(R.id.llMatchOddData);
 
-//        Intent intentFBMService = new Intent(this, .class);
-//        intentFBMService.putExtra("matchId", String.valueOf(matchId));
-//        if(intentFBMService != null){
-//
-//            startService(intentFBMService);
-//        }
-
-
-//        broadcastReceiverSignalr = new BroadcastReceiver() {
-//            @Override
-//            public void onReceive(Context context, Intent intent) {
-//                String action = intent.getAction();
-//                Toast.makeText(context, "BroadcastReceiverSignalr "+action, Toast.LENGTH_SHORT).show();
-//                String result = intent.getStringExtra(DataHolder.keySIGNALR);
-//                Log.i("TAGG",result);
-//            }
-//        };
-
-
-
-//        handler = new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                IntentFilter intentFilter = new IntentFilter();
-//                intentFilter.addCategory(Intent.CATEGORY_DEFAULT);
-//                registerReceiver(broadcastReceiverSignalr, intentFilter);
-//            }
-//        },50);
-
         handler = new Handler();
         DataHolder.SIGNALR = true;
         //DataHolder.showProgress(getApplicationContext());
+
+        txtVMinStake = findViewById(R.id.txtVMinStake);
+        txtVMaxStake = findViewById(R.id.txtVMaxStake);
+        txtVMaxProfit = findViewById(R.id.txtVMaxProfit);
+        txtVBetDelay = findViewById(R.id.txtVBetDelay);
+        txtVTotalMatch = findViewById(R.id.txtVTotalMatch);
+
         handlerLoad = new Handler();
         handler.post(new Runnable() {
             @Override
             public void run() {
                 new getHubAddressAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/HubAddress?id="+marketId);
                 new getStackAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Settings/GetBetStakeSetting");
-                new getBookMakingAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/FancyData?mtid="+matchId);
                 new getMartketDataAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/MktData?mtid="+matchId+"&mktid="+marketId);
+                new getBookMakingAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Data/FancyData?mtid="+matchId);
             }
         });
 
@@ -216,34 +162,14 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         handlerFBM = new Handler();
     }
 
-    Thread t;
+
     @Override
     protected void onResume() {
         super.onResume();
-
-        txtVChipsStake.setText("CHIPS "+DataHolder.getSTACK(this,"ChipsValue"));
         try{
+            txtVChipsStake.setText("CHIPS "+DataHolder.getSTACK(this,"ChipsValue"));
             DataHolder.STACK_VALUE = Double.valueOf(DataHolder.getSTACK(this,"ChipsValue"));
         }catch(NumberFormatException e){
-
-        }
-
-//        handlerBookMaking.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                handlerBookMaking.postDelayed(this,2000);
-//            }
-//        },2000);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        try {
-            t.interrupt();
-
-        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -264,21 +190,23 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
             case R.id.txtVChipsStake:
                 dialogStack();
                 break;
+
             case R.id.imgVFav:
-
                 closeData();
-
                 Intent intent = new Intent(this,SportActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("KEY_SELECT","true");
                 startActivity(intent);
                 break;
+
             case R.id.txtVStackValue1:
                 stackInput(txtVStackValue1);
                 break;
+
             case R.id.txtVStackValue2:
                 stackInput(txtVStackValue2);
                 break;
+
             case R.id.txtVStackValue3:
                 stackInput(txtVStackValue3);
                 break;
@@ -332,15 +260,12 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                     DataHolder.setSTACK(BetActivity.this,"ChipsValue",editStackValue.getText().toString());
                     DataHolder.STACK_VALUE = Double.valueOf(editStackValue.getText().toString());
 
-
                     dialog.dismiss();
                 }else {
                     editStackValue.setError("Enter Chips Here");
                 }
             }
         });
-
-
 
         switchOneClickBet.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -371,11 +296,10 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
     }
 
 
-    String back1,lay1,runner,backSize1,laySize1;
-    int index;
 
     private class setSignalRDataAsyncTask extends AsyncTask<String, Void, String> {
-
+        String back1,lay1,runner,backSize1,laySize1;
+        int index;
         @Override
         protected String doInBackground(String... urls) {
             return urls[0];
@@ -396,12 +320,22 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                 laySize1 = key.getString("laySize1");
                 runner = key.getString("runner");
 
+                String back2 = key.getString("back2");
+                String lay2 = key.getString("lay2");
+                String back3 = key.getString("back3");
+                String lay3 = key.getString("lay3");
+                String backSize2 = key.getString("backSize2");
+                String laySize2 = key.getString("laySize2");
+                String backSize3 = key.getString("backSize3");
+                String laySize3 = key.getString("laySize3");
+
+                txtVTotalMatch.setText("Matched\n"+key.getString("totalMatched"));
+
                 for(index=0;index<MarketDataArray.size();index++) {
                     if (MarketDataArray.get(index).equalsIgnoreCase(runner)) {
                         if(index<MarketDataArray.size()){
-                            //Log.i("TAG1234", MarketDataArray.get(index) + " " + runner +" "+runner+ " " +back1+ " " +lay1+ " " +backSize1+ " " +laySize1+ " " +bfId);
                             MarketDataList.remove(index);
-                            MarketDataList.add(index,new MarketData(runner,back1,lay1,backSize1,laySize1));
+                            MarketDataList.add(index,new MarketData(runner,back1,lay1,backSize1,laySize1,back2,lay2,back3,lay3,backSize2,laySize2,backSize3,laySize3));
                             marketDataAdapter.notifyDataSetChanged();
                         }
                         else {
@@ -492,11 +426,19 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
 
         @Override
         protected void onPostExecute(String result) {
-            //Log.i("Check1",""+result);
+            //Log.i("Check145",""+result);
 
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
+
+                JSONObject jsonObjLimit = new JSONObject(jsonObjMain.getString("limits"));
+                txtVMinStake.setText(jsonObjLimit.getString("minStake"));
+                txtVMaxStake.setText(jsonObjLimit.getString("maxStake"));
+                txtVMaxProfit.setText(jsonObjLimit.getString("maxProfit"));
+                txtVBetDelay.setText(jsonObjLimit.getString("betDelay"));
+
                 JSONObject jsonObjData = new JSONObject(jsonObjMain.getString("data"));
+
                 String isInplay = jsonObjData.getString("isInplay");
                 String runnerData = jsonObjData.getString("runnerData");
                 //Log.i("TAG",""+runnerData);
@@ -515,14 +457,23 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                     JSONObject key = arrayData.getJSONObject(i);
                     String back1 = key.getString("back1");
                     String lay1 = key.getString("lay1");
+                    String back2 = key.getString("back2");
+                    String lay2 = key.getString("lay2");
+                    String back3 = key.getString("back3");
+                    String lay3 = key.getString("lay3");
                     String backSize1 = key.getString("backSize1");
                     String laySize1 = key.getString("laySize1");
+                    String backSize2 = key.getString("backSize2");
+                    String laySize2 = key.getString("laySize2");
+                    String backSize3 = key.getString("backSize3");
+                    String laySize3 = key.getString("laySize3");
                     String runnerName = key.getString("runnerName");
 
                     //Toast.makeText(BetActivity.this, lay1+" "+back1, Toast.LENGTH_SHORT).show();
                     //String matchStatus = key.getString("matchStatus");
                     MarketDataArray.add(key.getString("runnerName"));
-                    MarketDataList.add(new MarketData(runnerName,back1,lay1,backSize1,laySize1,bfId,matchId,marketId));
+                    //MarketDataList.add(new MarketData(runnerName,back1,lay1,backSize1,laySize1,bfId,Integer.parseInt(DataHolder.getData(BetActivity.this,"Match_Id")),Integer.parseInt(DataHolder.getData(BetActivity.this,"keyMarketId"))));
+                    MarketDataList.add(new MarketData(runnerName,back1,lay1,backSize1,laySize1,bfId,back2,lay2,back3,lay3,backSize2,laySize2,backSize3,laySize3));
                     marketDataAdapter.notifyDataSetChanged();
 
                     if(isInplay.equalsIgnoreCase("true") || isInplay.equalsIgnoreCase("1")){
@@ -548,6 +499,8 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                     e.printStackTrace();
                 }
 
+
+
                 //displaySignalRData(bfId);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -566,7 +519,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
 
         @Override
         protected void onPostExecute(String result) {
-            //Log.i("CheckBook",""+result);
+            Log.i("CheckBook",""+result);
 
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
@@ -582,10 +535,10 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                     llBookMaking.setVisibility(View.VISIBLE);
                     for(int i =0 ; i<lengthBook;i++){
                         JSONObject key = arrayData.getJSONObject(i);
-                        int back = key.getInt("backPrice");
-                        int lay = key.getInt("layPrice");
-                        int backSize = key.getInt("backSize");
-                        int laySize = key.getInt("laySize");
+                        String back = key.getString("backPrice");
+                        String lay = key.getString("layPrice");
+                        String backSize = key.getString("backSize");
+                        String laySize = key.getString("laySize");
                         String runnerName = key.getString("name");
                         String ballStatus = key.getString("ballStatus");
                         String book = key.getString("book");
@@ -640,7 +593,7 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                 }
 
                 if (REFRESH_BOOKMAKING || REFRESH_FANCY) {
-                    //t.start();
+
                     intentFBM = new Intent(BetActivity.this, ServiceFancyBookMakingRefresh.class);
                     Toast.makeText(BetActivity.this, ""+matchId, Toast.LENGTH_SHORT).show();
                     intentFBM.putExtra("matchId", matchId);
@@ -657,8 +610,6 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }else {
-                    t.interrupt();
                 }
 
 
@@ -669,7 +620,6 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
             }
         }
     }
-
 
     private void setFBMReFresh(String data){
         Log.i("TAGFBM",data);
@@ -688,10 +638,10 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
 
                 for(int i =0 ; i<lengthBook;i++){
                     JSONObject key = arrayData.getJSONObject(i);
-                    int back = key.getInt("backPrice");
-                    int lay = key.getInt("layPrice");
-                    int backSize = key.getInt("backSize");
-                    int laySize = key.getInt("laySize");
+                    String back = key.getString("backPrice");
+                    String lay = key.getString("layPrice");
+                    String backSize = key.getString("backSize");
+                    String laySize = key.getString("laySize");
                     String runnerName = key.getString("name");
                     String ballStatus = key.getString("ballStatus");
                     String book = key.getString("book");
@@ -796,15 +746,32 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                 e.printStackTrace();
             }
         }
-        stopService(intentService);
-        stopService(intentFBM);
+        try {
+            if (intentService !=null) {
+                stopService(intentService);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            if (intentFBM != null) {
+                stopService(intentFBM);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         MarketDataArray.clear();
         BookMakingArray.clear();
         FancyArray.clear();
 
         if (_connection != null){
-            _connection.stop();
+            try {
+                _connection.stop();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -813,12 +780,10 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
         @Override
         public void onReceive(Context context,final Intent intent) {
             String action = intent.getAction();
-            //Toast.makeText(context, ""+action, Toast.LENGTH_SHORT).show();
+
             if (action.equalsIgnoreCase(DataHolder.ACTION_SEND_ACTIVE)) {
                 String result = intent.getStringExtra(DataHolder.keySIGNALR);
                 new setSignalRDataAsyncTask().execute(result);
-                //Log.i("TAGG",result);
-                //dispSignalRData(result);
 
             }else if (action.equalsIgnoreCase(DataHolder.ACTION_SEND_FANCY_BOOKMAKING)){
                 handlerFBM.post(new Runnable() {
@@ -830,6 +795,18 @@ public class BetActivity extends AppCompatActivity implements View.OnClickListen
                 });
 
             }
+        }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Toast.makeText(this, "dddddddddddddd", Toast.LENGTH_SHORT).show();
+        // Checks the orientation of the screen
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Toast.makeText(this, "landscape", Toast.LENGTH_SHORT).show();
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Toast.makeText(this, "portrait", Toast.LENGTH_SHORT).show();
         }
     }
 }
@@ -1196,3 +1173,35 @@ private class getBookMakingRefreshAsyncTask extends AsyncTask<String, Void, Stri
     }
 
 * */
+
+/*
+//        Intent intentFBMService = new Intent(this, .class);
+//        intentFBMService.putExtra("matchId", String.valueOf(matchId));
+//        if(intentFBMService != null){
+//
+//            startService(intentFBMService);
+//        }
+
+
+//        broadcastReceiverSignalr = new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//                String action = intent.getAction();
+//                Toast.makeText(context, "BroadcastReceiverSignalr "+action, Toast.LENGTH_SHORT).show();
+//                String result = intent.getStringExtra(DataHolder.keySIGNALR);
+//                Log.i("TAGG",result);
+//            }
+//        };
+
+
+
+//        handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                IntentFilter intentFilter = new IntentFilter();
+//                intentFilter.addCategory(Intent.CATEGORY_DEFAULT);
+//                registerReceiver(broadcastReceiverSignalr, intentFilter);
+//            }
+//        },50);
+ */
