@@ -36,41 +36,41 @@
             android:layout_below="@+id/close"
             android:textStyle="bold" />
         <!--<TextView-->
-            <!--android:id="@+id/standup"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@drawable/button"-->
-            <!--android:text="@string/standup"-->
-            <!--android:textColor="@color/darkbrown"-->
-            <!--android:textSize="20sp"-->
-            <!--android:textAlignment="center"-->
-            <!--android:paddingTop="10dp"-->
-            <!--android:layout_below="@+id/backtolobby"-->
-            <!--android:textStyle="bold" />-->
+        <!--android:id="@+id/standup"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/button"-->
+        <!--android:text="@string/standup"-->
+        <!--android:textColor="@color/darkbrown"-->
+        <!--android:textSize="20sp"-->
+        <!--android:textAlignment="center"-->
+        <!--android:paddingTop="10dp"-->
+        <!--android:layout_below="@+id/backtolobby"-->
+        <!--android:textStyle="bold" />-->
         <!--<TextView-->
-            <!--android:id="@+id/nxtround"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@drawable/button"-->
-            <!--android:text="@string/nxtround"-->
-            <!--android:textColor="@color/darkbrown"-->
-            <!--android:textSize="20sp"-->
-            <!--android:textAlignment="center"-->
-            <!--android:paddingTop="15dp"-->
-            <!--android:layout_below="@+id/standup"-->
-            <!--android:textStyle="bold"-->
-            <!--/>-->
+        <!--android:id="@+id/nxtround"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/button"-->
+        <!--android:text="@string/nxtround"-->
+        <!--android:textColor="@color/darkbrown"-->
+        <!--android:textSize="20sp"-->
+        <!--android:textAlignment="center"-->
+        <!--android:paddingTop="15dp"-->
+        <!--android:layout_below="@+id/standup"-->
+        <!--android:textStyle="bold"-->
+        <!--/>-->
         <!--<TextView-->
-            <!--android:id="@+id/switchtble"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@drawable/button"-->
-            <!--android:text="@string/switchtble"-->
-            <!--android:textColor="@color/darkbrown"-->
-            <!--android:textSize="20sp"-->
-            <!--android:textAlignment="center"-->
-            <!--android:paddingTop="10dp"-->
-            <!--android:layout_below="@+id/nxtround"-->
-            <!--android:textStyle="bold" />-->
+        <!--android:id="@+id/switchtble"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/button"-->
+        <!--android:text="@string/switchtble"-->
+        <!--android:textColor="@color/darkbrown"-->
+        <!--android:textSize="20sp"-->
+        <!--android:textAlignment="center"-->
+        <!--android:paddingTop="10dp"-->
+        <!--android:layout_below="@+id/nxtround"-->
+        <!--android:textStyle="bold" />-->
     </RelativeLayout>
 </RelativeLayout>

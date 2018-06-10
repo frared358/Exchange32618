@@ -5,10 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,33 +24,52 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.Dialog;
+
+import com.affwl.exchange.DataHolder;
 import com.affwl.exchange.R;
+import com.affwl.exchange.sport.StackActivity;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ImageView showPopupBtn, closeRateus, closeHelpBtn, closeTrophyBtn,profile,orangechipsbtn,close312help,closesixpattihelp,short321info,tourney_shortinfo_closebtn,shortsixpattiinfo,bluechipsbtn,cyanchipsbtn,shortinfo_tourney,tourney_join_closebtn,ygreenchipsbtn,closebtn_create_table,mainlimegchipsbtn,variation_closebtn,facebook,whatsapp,general;
-    PopupWindow RateuspopupWindow, HelpUspopupWindow, TrophypopupWindow, tounpopupWindow,howto321popup,sixpattipopup,howtosixpattipopup,join_tourney_popupWindow,shortinfo_tourney_popupwindow,create_table_private_popupwindow,join_table_popupwindow;
-    RelativeLayout RelativeLayoutloader,relativelayout321,relativeLayoutsixpatti,relativeLayout_tourney,yellowchiplayout,orangechipslayout,limechipslayout,darkbluechiplayout,blackchipslayout,cyanchipslayout,ygreenchipslayout;
-    TextView loaderbuychips,joinnowbtn,howtoplay321btn,howtoplaysixpattibtn,joinnowsixpattibtn,join_tourneybtn,create_table_btn,join_variation_btn,nametext,code;
+    ImageView showPopupBtn, closeRateus, closeHelpBtn, closeTrophyBtn, profile, orangechipsbtn, close312help, closesixpattihelp, short321info, tourney_shortinfo_closebtn, shortsixpattiinfo, bluechipsbtn, cyanchipsbtn, shortinfo_tourney, tourney_join_closebtn, ygreenchipsbtn, closebtn_create_table, mainlimegchipsbtn, variation_closebtn, facebook, whatsapp, general;
+    PopupWindow RateuspopupWindow, HelpUspopupWindow, TrophypopupWindow, tounpopupWindow, howto321popup, sixpattipopup, howtosixpattipopup, join_tourney_popupWindow, shortinfo_tourney_popupwindow, create_table_private_popupwindow, join_table_popupwindow;
+    RelativeLayout RelativeLayoutloader, relativelayout321, relativeLayoutsixpatti, relativeLayout_tourney, yellowchiplayout, orangechipslayout, limechipslayout, darkbluechiplayout, blackchipslayout, cyanchipslayout, ygreenchipslayout;
+    TextView loaderbuychips, joinnowbtn, howtoplay321btn, howtoplaysixpattibtn, joinnowsixpattibtn, join_tourneybtn, create_table_btn, join_variation_btn, main_nametext, code;
     Session session;
-    LinearLayout jokerlayout_btn,jokerinfo_layout,ak47_layout_btn,ak47info_layout,xboot_layout_btn,xboot_info_layout,
+    LinearLayout jokerlayout_btn, jokerinfo_layout, ak47_layout_btn, ak47info_layout, xboot_layout_btn, xboot_info_layout,
             hukum_layout_btn, hukum_info_layout, muflis_layout_btn, muflis_info_layout, faceoff_layout_btn, faceoff_info_layout,
             ljoker_layout_btn, ljoker_info_layout, nnnine_layout_btn, nnnine_info_layout;
 
-    ImageView joker_img,ak_img,xboot_img, hukum_img, muflis_img, faceoff_img, ljoker_img, nnnine_img;
-    ImageView mainychips,mainlimegchips,blackchips;
-    Animation animatechips1,animatechips2,animatechips3,animatechips4,animatechips5,animatechips6,animatechips7;
+    ImageView joker_img, ak_img, xboot_img, hukum_img, muflis_img, faceoff_img, ljoker_img, nnnine_img;
+    ImageView mainychips, mainlimegchips, blackchips;
+    Animation animatechips1, animatechips2, animatechips3, animatechips4, animatechips5, animatechips6, animatechips7;
+    Handler handler, handlerLoad;
 
 
-    int value=0;
-    int value1=0;
-    int value2=0;
-    int value3=0;
-    int value4=0;
-    int value5=0;
-    int value6=0;
-    int value7=0;
+    int value = 0;
+    int value1 = 0;
+    int value2 = 0;
+    int value3 = 0;
+    int value4 = 0;
+    int value5 = 0;
+    int value6 = 0;
+    int value7 = 0;
 
 
     @Override
@@ -60,42 +81,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        ListView listView = (ListView) findViewById(R.id.ll);
 //        listView.setAdapter(adapter);
 
-        profile=findViewById(R.id.profile);
-        nametext=findViewById(R.id.nametext);
+        profile = findViewById(R.id.profile);
+        main_nametext = findViewById(R.id.main_nametext);
 
         final Animation Animchipsright = AnimationUtils.loadAnimation(MainActivity.this, R.anim.translate_chips_right);
         final Animation Animchipsleft = AnimationUtils.loadAnimation(MainActivity.this, R.anim.translate_chips_left);
+//        final Animation Animttoleft = AnimationUtils.loadAnimation(MainActivity.this, R.anim.translate_tto_left);
 
-//        mainychips=findViewById(R.id.mainychips);
+//        mainychips = findViewById(R.id.mainychips);
 
-//        mainlimegchips=findViewById(R.id.mainlimegchips);
+//        mainlimegchips = findViewById(R.id.mainlimegchips);
 //        mainlimegchips.setOnClickListener(this);
-//
-//        blackchips=findViewById(R.id.blackchips);
+
+//        blackchips = findViewById(R.id.blackchips);
         RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
 
-        code=findViewById(R.id.code);
-        session=new Session(this);
-        String encodedimage=session.getImage();
-        if (!encodedimage.equalsIgnoreCase(""))
-        {
+        code = findViewById(R.id.code);
+        session = new Session(this);
+        String encodedimage = session.getImage();
+        if (!encodedimage.equalsIgnoreCase("")) {
             byte[] b = Base64.decode(encodedimage, Base64.DEFAULT);
-            Bitmap bmp= BitmapFactory.decodeByteArray(b,0,b.length);
+            Bitmap bmp = BitmapFactory.decodeByteArray(b, 0, b.length);
             profile.setImageBitmap(bmp);
         }
-        String name=session.getName();
-        nametext.setText(name);
+        String name = session.getName();
+        main_nametext.setText(name);
 
 
-//
 //        yellowchiplayout = findViewById(R.id.yellowchiplayout);
 //        orangechipslayout = findViewById(R.id.orangechipslayout);
-//       limechipslayout = findViewById(R.id.limechipslayout);
+//        limechipslayout = findViewById(R.id.limechipslayout);
 //        blackchipslayout = findViewById(R.id.blackchipslayout);
-        cyanchipslayout = findViewById(R.id.cyanchipslayout);
+//        cyanchipslayout = findViewById(R.id.cyanchipslayout);
 //        darkbluechiplayout = findViewById(R.id.darkbluechiplayout);
         ygreenchipslayout = findViewById(R.id.ygreenchipslayout);
-
 
 
         // Popup for Help
@@ -107,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 //instantiate the popup.xml three_two_one_leaderboard file
                 LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.help_popup,null);
+                View customView = layoutInflater.inflate(R.layout.help_popup, null);
 
                 closeHelpBtn = customView.findViewById(R.id.close_helpus);
 
@@ -134,21 +153,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            @Override
 //            public void onClick(View v) {
 //                Handler handler = new Handler();
-//                handler.postDelayed(new Runnable(){
+//                handler.postDelayed(new Runnable() {
 //
 //                    @Override
 //                    public void run() {
-//                        Intent i = new Intent(MainActivity.this,LoadingScreen_teenpatti.class);
+//                        Intent i = new Intent(MainActivity.this, LoadingScreen_teenpatti.class);
 //                        startActivity(i);
 //                        yellowchiplayout.clearAnimation();
-//                        orangechipslayout.startAnimation(Animchipsleft);
-//                        yellowchiplayout.startAnimation(Animchipsleft);
-//                        limechipslayout.startAnimation(Animchipsleft);
+//                        //yellowchiplayout.startAnimation(Animchipsleft);
+//                        orangechipslayout.startAnimation(Animchipsright);
+//                        limechipslayout.startAnimation(Animchipsright);
+//                        darkbluechiplayout.startAnimation(Animchipsright);
+//                        ygreenchipslayout.startAnimation(Animchipsright);
+//                        blackchipslayout.startAnimation(Animchipsright);
+//                        ygreenchipslayout.startAnimation(Animchipsright);
 //                    }
-//                },500);
+//                }, 500);
 //            }
 //        });
-
 
 
         //////////////// Popup for 321 tournament ////////////////
@@ -248,8 +270,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        });
 
 
-
-
         //////////////// Popup for Tourney2 ////////////////
 //        cyanchipsbtn = findViewById(R.id.cyanchips);
 //        RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
@@ -267,8 +287,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //            }
 //        });
-
-
 
 
         //////////////// Popup for Private ////////////////
@@ -294,7 +312,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
 
-
 //        ygreenchipsbtn.setOnClickListener(new View.OnClickListener() {
 //            @SuppressLint("WrongViewCast")
 //            @Override
@@ -307,8 +324,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        });
 
 
-
-
         //////////////// Popup for Variation ////////////////
 //        mainlimegchipsbtn = findViewById(R.id.mainlimegchips);
         RelativeLayoutloader = findViewById(R.id.linearLayoutloader);
@@ -316,44 +331,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        mainlimegchipsbtn.setOnClickListener(new View.OnClickListener() {
 //            @SuppressLint("WrongViewCast")
 //            @Override
-//           public void onClick(View v) {
+//            public void onClick(View v) {
 //                //instantiate the popup.xml layout file
 //                LayoutInflater layoutInflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                View customView = layoutInflater.inflate(R.layout.variation_join_table,null);
+//                View customView = layoutInflater.inflate(R.layout.variation_join_table, null);
 //
-//                variation_closebtn =customView.findViewById(R.id.close_var_popup);
+//                variation_closebtn = customView.findViewById(R.id.close_var_popup);
 //
-//                jokerlayout_btn=customView.findViewById(R.id.joker_layout);
-//                jokerinfo_layout=customView.findViewById(R.id.jokerinfo);
-//                joker_img=customView.findViewById(R.id.joker_img);
+//                jokerlayout_btn = customView.findViewById(R.id.joker_layout);
+//                jokerinfo_layout = customView.findViewById(R.id.jokerinfo);
+//                joker_img = customView.findViewById(R.id.joker_img);
 //
-//                ak47_layout_btn=customView.findViewById(R.id.ak47_layout);
-//                ak47info_layout=customView.findViewById(R.id.ak47info);
-//                ak_img=customView.findViewById(R.id.ak_img);
+//                ak47_layout_btn = customView.findViewById(R.id.ak47_layout);
+//                ak47info_layout = customView.findViewById(R.id.ak47info);
+//                ak_img = customView.findViewById(R.id.ak_img);
 //
-//                xboot_layout_btn=customView.findViewById(R.id.xboot_layout);
-//                xboot_info_layout=customView.findViewById(R.id.xboot_info);
-//                xboot_img=customView.findViewById(R.id.xboot_img);
+//                xboot_layout_btn = customView.findViewById(R.id.xboot_layout);
+//                xboot_info_layout = customView.findViewById(R.id.xboot_info);
+//                xboot_img = customView.findViewById(R.id.xboot_img);
 //
-//                hukum_layout_btn=customView.findViewById(R.id.hukum_layout);
-//                hukum_info_layout=customView.findViewById(R.id.hukum_info);
-//                hukum_img=customView.findViewById(R.id.hukum_img);
+//                hukum_layout_btn = customView.findViewById(R.id.hukum_layout);
+//                hukum_info_layout = customView.findViewById(R.id.hukum_info);
+//                hukum_img = customView.findViewById(R.id.hukum_img);
 //
-//                muflis_layout_btn=customView.findViewById(R.id.muflis_layout);
-//                muflis_info_layout=customView.findViewById(R.id.muflis_info);
-//                muflis_img=customView.findViewById(R.id.muflis_img);
+//                muflis_layout_btn = customView.findViewById(R.id.muflis_layout);
+//                muflis_info_layout = customView.findViewById(R.id.muflis_info);
+//                muflis_img = customView.findViewById(R.id.muflis_img);
 //
-//                faceoff_layout_btn=customView.findViewById(R.id.faceoff_layout);
-//                faceoff_info_layout=customView.findViewById(R.id.faceoff_info);
-//                faceoff_img=customView.findViewById(R.id.faceoff_img);
+//                faceoff_layout_btn = customView.findViewById(R.id.faceoff_layout);
+//                faceoff_info_layout = customView.findViewById(R.id.faceoff_info);
+//                faceoff_img = customView.findViewById(R.id.faceoff_img);
 //
-//                ljoker_layout_btn=customView.findViewById(R.id.ljoker_layout);
-//                ljoker_info_layout=customView.findViewById(R.id.ljoker_info);
-//                ljoker_img=customView.findViewById(R.id.ljoker_img);
+//                ljoker_layout_btn = customView.findViewById(R.id.ljoker_layout);
+//                ljoker_info_layout = customView.findViewById(R.id.ljoker_info);
+//                ljoker_img = customView.findViewById(R.id.ljoker_img);
 //
-//                nnnine_layout_btn=customView.findViewById(R.id.nnnine_layout);
-//                nnnine_info_layout=customView.findViewById(R.id.nnnine_info);
-//                nnnine_img=customView.findViewById(R.id.nnnine_img);
+//                nnnine_layout_btn = customView.findViewById(R.id.nnnine_layout);
+//                nnnine_info_layout = customView.findViewById(R.id.nnnine_info);
+//                nnnine_img = customView.findViewById(R.id.nnnine_img);
 //
 //
 //                final Animation Animleft = AnimationUtils.loadAnimation(MainActivity.this, R.anim.left_translate);
@@ -379,7 +394,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                jokerlayout_btn.setOnClickListener(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
-//                        if(value==0) {
+//                        if (value == 0) {
 //                            ak47info_layout.clearAnimation();
 //                            hukum_info_layout.clearAnimation();
 //                            xboot_info_layout.clearAnimation();
@@ -394,18 +409,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                            Toast.makeText(MainActivity.this, "joker out", Toast.LENGTH_SHORT).show();
 //                            jokerinfo_layout.startAnimation(Animleft);
 //                            Animleft.setFillAfter(true);
-//                            value=1;
-//                            value1=0;
-//                            value2=0;
-//                            value3=0;
-//                            value4=0;
-//                            value5=0;
-//                            value6=0;
-//                            value7=0;
+//                            value = 1;
+//                            value1 = 0;
+//                            value2 = 0;
+//                            value3 = 0;
+//                            value4 = 0;
+//                            value5 = 0;
+//                            value6 = 0;
+//                            value7 = 0;
 //
 //                            return;
-//                        }
-//                       else if(value==1){
+//                        } else if (value == 1) {
 //                            ak47info_layout.clearAnimation();
 //                            jokerinfo_layout.clearAnimation();
 //                            xboot_info_layout.clearAnimation();
@@ -421,18 +435,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //                            jokerinfo_layout.startAnimation(Animright);
 //                            Animright.setFillAfter(true);
-//                            value=0;
+//                            value = 0;
 //                            return;
 //                        }
 //                    }
 //                });
 //
-//            // AK47 variation on click
+//                // AK47 variation on click
 //
 //                ak47_layout_btn.setOnClickListener(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
-//                        if (value1==0) {
+//                        if (value1 == 0) {
 //
 //                            jokerinfo_layout.clearAnimation();
 //                            ak47info_layout.clearAnimation();
@@ -456,18 +470,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                            ak_img.setImageDrawable(getResources().getDrawable(R.drawable.circle_arrow));
 //                            ak47info_layout.startAnimation(Animleft);
 //                            Animleft.setFillAfter(true);
-//                            value1=1;
-//                            value2=0;
-//                            value3=0;
-//                            value=0;
-//                            value4=0;
-//                            value5=0;
-//                            value6=0;
-//                            value7=0;
+//                            value1 = 1;
+//                            value2 = 0;
+//                            value3 = 0;
+//                            value = 0;
+//                            value4 = 0;
+//                            value5 = 0;
+//                            value6 = 0;
+//                            value7 = 0;
 //
 //                            return;
-//                        }
-//                        else if(value1==1){
+//                        } else if (value1 == 1) {
 //                            jokerinfo_layout.clearAnimation();
 //                            ak47info_layout.clearAnimation();
 //                            xboot_info_layout.clearAnimation();
@@ -484,7 +497,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //                            ak47info_layout.startAnimation(Animright);
 //                            Animright.setFillAfter(true);
-//                            value1=0;
+//                            value1 = 0;
 //                            return;
 //                        }
 //                    }
@@ -496,7 +509,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                xboot_layout_btn.setOnClickListener(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
-//                        if (value2==0) {
+//                        if (value2 == 0) {
 //
 //                            jokerinfo_layout.clearAnimation();
 //                            ak47info_layout.clearAnimation();
@@ -517,18 +530,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //                            xboot_info_layout.startAnimation(Animleft);
 //                            Animleft.setFillAfter(true);
-//                            value2=1;
-//                            value1=0;
-//                            value=0;
-//                            value3=0;
-//                            value4=0;
-//                            value5=0;
-//                            value6=0;
-//                            value7=0;
+//                            value2 = 1;
+//                            value1 = 0;
+//                            value = 0;
+//                            value3 = 0;
+//                            value4 = 0;
+//                            value5 = 0;
+//                            value6 = 0;
+//                            value7 = 0;
 //
 //                            return;
 //                        }
-//                        if (value2==1){
+//                        if (value2 == 1) {
 //                            jokerinfo_layout.clearAnimation();
 //                            ak47info_layout.clearAnimation();
 //                            xboot_info_layout.clearAnimation();
@@ -556,7 +569,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                hukum_layout_btn.setOnClickListener(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
-//                        if (value3==0) {
+//                        if (value3 == 0) {
 //
 //                            jokerinfo_layout.clearAnimation();
 //                            ak47info_layout.clearAnimation();
@@ -577,18 +590,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //                            hukum_info_layout.startAnimation(Animleft);
 //                            Animleft.setFillAfter(true);
-//                            value3=1;
-//                            value1=0;
-//                            value=0;
-//                            value2=0;
-//                            value4=0;
-//                            value5=0;
-//                            value6=0;
-//                            value7=0;
+//                            value3 = 1;
+//                            value1 = 0;
+//                            value = 0;
+//                            value2 = 0;
+//                            value4 = 0;
+//                            value5 = 0;
+//                            value6 = 0;
+//                            value7 = 0;
 //
 //                            return;
 //                        }
-//                        if (value3==1){
+//                        if (value3 == 1) {
 //                            jokerinfo_layout.clearAnimation();
 //                            ak47info_layout.clearAnimation();
 //                            xboot_info_layout.clearAnimation();
@@ -617,7 +630,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                muflis_layout_btn.setOnClickListener(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
-//                        if (value4==0) {
+//                        if (value4 == 0) {
 //
 //                            jokerinfo_layout.clearAnimation();
 //                            ak47info_layout.clearAnimation();
@@ -641,18 +654,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //                            muflis_info_layout.startAnimation(Animleft);
 //                            Animleft.setFillAfter(true);
-//                            value4=1;
-//                            value1=0;
-//                            value=0;
-//                            value2=0;
-//                            value3=0;
-//                            value5=0;
-//                            value6=0;
-//                            value7=0;
+//                            value4 = 1;
+//                            value1 = 0;
+//                            value = 0;
+//                            value2 = 0;
+//                            value3 = 0;
+//                            value5 = 0;
+//                            value6 = 0;
+//                            value7 = 0;
 //
 //                            return;
 //                        }
-//                        if (value4==1){
+//                        if (value4 == 1) {
 //                            jokerinfo_layout.clearAnimation();
 //                            ak47info_layout.clearAnimation();
 //                            xboot_info_layout.clearAnimation();
@@ -683,7 +696,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                faceoff_layout_btn.setOnClickListener(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
-//                        if (value5==0) {
+//                        if (value5 == 0) {
 //
 //                            jokerinfo_layout.clearAnimation();
 //                            ak47info_layout.clearAnimation();
@@ -710,18 +723,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //                            faceoff_info_layout.startAnimation(Animleft);
 //                            Animleft.setFillAfter(true);
-//                            value5=1;
-//                            value1=0;
-//                            value=0;
-//                            value2=0;
-//                            value3=0;
-//                            value4=0;
-//                            value6=0;
-//                            value7=0;
+//                            value5 = 1;
+//                            value1 = 0;
+//                            value = 0;
+//                            value2 = 0;
+//                            value3 = 0;
+//                            value4 = 0;
+//                            value6 = 0;
+//                            value7 = 0;
 //
 //                            return;
 //                        }
-//                        if (value5==1){
+//                        if (value5 == 1) {
 //                            jokerinfo_layout.clearAnimation();
 //                            ak47info_layout.clearAnimation();
 //                            xboot_info_layout.clearAnimation();
@@ -754,7 +767,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                ljoker_layout_btn.setOnClickListener(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
-//                        if (value6==0) {
+//                        if (value6 == 0) {
 //
 //                            jokerinfo_layout.clearAnimation();
 //                            ak47info_layout.clearAnimation();
@@ -786,18 +799,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //                            ljoker_info_layout.startAnimation(Animleft);
 //                            Animleft.setFillAfter(true);
-//                            value6=1;
-//                            value1=0;
-//                            value=0;
-//                            value2=0;
-//                            value3=0;
-//                            value4=0;
-//                            value5=0;
-//                            value7=0;
+//                            value6 = 1;
+//                            value1 = 0;
+//                            value = 0;
+//                            value2 = 0;
+//                            value3 = 0;
+//                            value4 = 0;
+//                            value5 = 0;
+//                            value7 = 0;
 //
 //                            return;
 //                        }
-//                        if (value6==1){
+//                        if (value6 == 1) {
 //                            jokerinfo_layout.clearAnimation();
 //                            ak47info_layout.clearAnimation();
 //                            xboot_info_layout.clearAnimation();
@@ -832,7 +845,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                nnnine_layout_btn.setOnClickListener(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
-//                        if (value7==0) {
+//                        if (value7 == 0) {
 //
 //                            jokerinfo_layout.clearAnimation();
 //                            ak47info_layout.clearAnimation();
@@ -866,18 +879,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //
 //                            nnnine_info_layout.startAnimation(Animleft);
 //                            Animleft.setFillAfter(true);
-//                            value7=1;
-//                            value1=0;
-//                            value=0;
-//                            value2=0;
-//                            value3=0;
-//                            value4=0;
-//                            value5=0;
-//                            value6=0;
+//                            value7 = 1;
+//                            value1 = 0;
+//                            value = 0;
+//                            value2 = 0;
+//                            value3 = 0;
+//                            value4 = 0;
+//                            value5 = 0;
+//                            value6 = 0;
 //
 //                            return;
 //                        }
-//                        if (value7==1){
+//                        if (value7 == 1) {
 //                            jokerinfo_layout.clearAnimation();
 //                            ak47info_layout.clearAnimation();
 //                            xboot_info_layout.clearAnimation();
@@ -920,69 +933,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                });
 //            }
 //        });
-
-
-
-//        Implementation of share
-
-//        share_loader.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                AlertDialog.Builder builder=new AlertDialog.Builder(v.getContext());
-//                LayoutInflater inflater=getLayoutInflater();
-//                View view= inflater.inflate(R.layout.share_dialog,null);
-//                builder.setView(view);
-//                facebook=view.findViewById(R.id.facebook);
-//                whatsapp=view.findViewById(R.id.whatsapp);
-//                general=view.findViewById(R.id.general);
-//                facebook.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-//                        sharingIntent.setType("text/plain");
-//                        sharingIntent.putExtra(Intent.EXTRA_TEXT, "http://www.facebook.com");
-//                        startActivity(Intent.createChooser(sharingIntent, "Share via"));
-//                    }
-//                });
-//                whatsapp.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent whatsappIntent = new Intent(Intent.ACTION_SEND);
-//                        whatsappIntent.setType("text/plain");
-//                        whatsappIntent.setPackage("com.whatsapp");
-//                        whatsappIntent.putExtra(Intent.EXTRA_TEXT, "The text you wanted to share");
-//                        try {
-//                            startActivity(whatsappIntent);
-//                        } catch (android.content.ActivityNotFoundException ex) {
-//                            Toast.makeText(MainActivity.this, "whatsapp not installed", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
-//
-//                // general click
-//                general.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        //Uri pictureUri = Uri.parse("https://lifeclearance.com/androidImages/0.png");
-//                        Intent shareIntent = new Intent();
-//                        shareIntent.setAction(Intent.ACTION_SEND);
-//                        shareIntent.putExtra(Intent.EXTRA_STREAM, "hi");
-//                        shareIntent.setType("text/plain");
-//                        //shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                        startActivity(Intent.createChooser(shareIntent, "Share images..."));
-//                    }
-//                });
-//                AlertDialog alert= builder.create();
-//                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-//                lp.copyFrom(alert.getWindow().getAttributes());
-//                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-//                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-//                alert.show();
-//                alert.getWindow().setAttributes(lp);
-//
-//            }
-//        });
-
 
 
         // Animation of chips on main page
@@ -1030,80 +980,235 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+
+        handler = new Handler();
+        //DataHolder.showProgress(getApplicationContext());
+        handlerLoad = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                new getUserDataAsyncTask().execute("http://213.136.81.137:8080/api/adminData");
+            }
+        });
+        main_nametext.setText(DataHolder.getSTACK(MainActivity.this, "username"));
     }
 
+    public String setUserApi(String url) {
+        InputStream inputStream = null;
+        String result = "";
+        try {
+
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost Httppost = new HttpPost(url);
+
+            String json = "";
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.accumulate("username", main_nametext);
+
+            json = jsonObject.toString();
+            StringEntity se = new StringEntity(json);
+            se.setContentType("application/json");
+
+            Httppost.setEntity(new StringEntity(json));
+            Httppost.setHeader("Accept", "application/json");
+            Httppost.setHeader("Content-type", "application/json");
+
+            HttpResponse httpResponse = httpclient.execute(Httppost);
+            inputStream = httpResponse.getEntity().getContent();
+
+            if (inputStream != null) {
+                try {
+                    result = convertInputStreamToString(inputStream);
+                } catch (Exception e) {
+                    Log.e("Check", "" + e);
+                }
+            } else
+                result = "Does Not Work";
+            Log.e("Check", "HOW" + result);
+        } catch (Exception e) {
+            Log.d("InputStream", "" + e);
+        }
+        Log.d("Check", result + "");
+        return result;
+    }
+
+    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+        while ((line = bufferedReader.readLine()) != null) {
+            result += line;
+            Log.e("Line", result);
+        }
+        inputStream.close();
+        return result;
+    }
+
+    private class setUserDataAsyncTask extends AsyncTask<String, Void , String> {
+
+
+        @Override
+        protected String doInBackground(String... urls) {
+            return setUserApi(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Log.i("Check", "" + result);
+            try{
+                JSONObject jsonObjMain = new JSONObject(result.toString());
+                String message = jsonObjMain.getString("message");
+                if (message.equalsIgnoreCase("successfully authenticated")) {
+                    DataHolder.setSTACK(MainActivity.this, "username", main_nametext.getText().toString());
+                }
+                Toast.makeText(getApplicationContext(), ""+message, Toast.LENGTH_SHORT).show();
+                Log.i("result", "Status" + message);
+            }catch (JSONException e){
+                e.printStackTrace();
+                DataHolder.unAuthorized(MainActivity.this, result);
+            }
+            DataHolder.cancelProgress();
+        }
+    }
+
+    public String getUserApi(String url){
+        InputStream inputStream = null;
+        String result = "";
+        try {
+
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpGet Httpget = new HttpGet(url);
+
+            Httpget.setHeader("Accept", "application/json");
+            Httpget.setHeader("Content-type", "application/json");
+
+            HttpResponse httpResponse = httpclient.execute(Httpget);
+            inputStream = httpResponse.getEntity().getContent();
+
+            if (inputStream != null) {
+                try {
+                    result = convertInputStreamToString(inputStream);
+                } catch (Exception e) {
+                    Log.e("Check", "" + e);
+                }
+            } else
+                result = "Did not work!";
+            Log.e("Check", "how " + result);
+
+        } catch (Exception e) {
+            Log.d("InputStream", "" + e);
+        }
+        return result;
+    }
+
+    private class getUserDataAsyncTask extends AsyncTask<String, Void, String>{
+
+        @Override
+        protected String doInBackground(String... urls) {
+            return getUserApi(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Toast.makeText(MainActivity.this, "" + result, Toast.LENGTH_SHORT).show();
+            Log.i("Check", "" + result);
+            try {
+                JSONObject jsonObjMain = new JSONObject(result.toString());
+                String message = jsonObjMain.getString("message");
+                Log.i("TAG", "" + message);
+
+                JSONArray arr = new JSONArray(jsonObjMain.getString("data"));
+
+                int len = arr.length();
+
+                for (int i = 0; i < len; i++) {
+
+                    JSONObject key = arr.getJSONObject(i);
+
+                    if (i == 0) {
+//                        nametext1.setText(key.getString("username"));
+                    } else if (i == 1) {
+//                        nametext2.setText(key.getString("username"));
+                    } else if (i == 2) {
+                        main_nametext.setText(key.getString("username"));
+                    } else if (i == 3) {
+//                        nametext3.setText(key.getString("username"));
+                    } else if (i == 4) {
+//                        nametext4.setText(key.getString("username"));
+                    }
+                }
+//                JSONObject jsonObjMain = new JSONObject(result.toString());
+//                String message = jsonObjMain.getString("message");
+//                Log.i("TAG", "" + message);
+//
+//
+//                JSONObject jsonObj = new JSONObject(jsonObjMain.getString("data"));
+//
+//                main_nametext.setText(jsonObj.getString("username"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
+
+
     //////////// Onclick method for teenpatti table /////////////
-
-
-
-
     @Override
     public void onBackPressed() {
-            displayExitAlert("Alert","Do you want to Exit?");
-        }
+        displayExitAlert("Alert","Do you want to Exit?");
+    }
 
     private void displayExitAlert(String title, String message) {
 
-            TextView tv_alert_ok,tv_alert_title,tv_alert_message,tv_alert_cancel;
-            ImageView alert_box_close;
+        TextView tv_alert_ok,tv_alert_title,tv_alert_message,tv_alert_cancel;
+        ImageView alert_box_close;
 
-            final Dialog myAlertDialog = new Dialog(this);
-            myAlertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            myAlertDialog.setCanceledOnTouchOutside(false);
-            myAlertDialog.setContentView(R.layout.alert_box);
+        final Dialog myAlertDialog = new Dialog(this);
+        myAlertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        myAlertDialog.setCanceledOnTouchOutside(false);
+        myAlertDialog.setContentView(R.layout.alert_box);
 
-            tv_alert_ok = myAlertDialog.findViewById(R.id.tv_alert_ok);
-            tv_alert_cancel=myAlertDialog.findViewById(R.id.tv_alert_cancel);
-            alert_box_close=myAlertDialog.findViewById(R.id.alert_box_close);
-            tv_alert_title=myAlertDialog.findViewById(R.id.tv_alert_title);
-            tv_alert_message=myAlertDialog.findViewById(R.id.tv_alert_message);
+        tv_alert_ok = myAlertDialog.findViewById(R.id.tv_alert_ok);
+        tv_alert_cancel=myAlertDialog.findViewById(R.id.tv_alert_cancel);
+        alert_box_close=myAlertDialog.findViewById(R.id.alert_box_close);
+        tv_alert_title=myAlertDialog.findViewById(R.id.tv_alert_title);
+        tv_alert_message=myAlertDialog.findViewById(R.id.tv_alert_message);
 
-            tv_alert_title.setText(title);
-            tv_alert_message.setText(message);
-            tv_alert_ok.setText("Yes");
-            tv_alert_cancel.setText("No");
+        tv_alert_title.setText(title);
+        tv_alert_message.setText(message);
+        tv_alert_ok.setText("Yes");
+        tv_alert_cancel.setText("No");
 
-            alert_box_close.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    myAlertDialog.dismiss();
-                }
-            });
+        alert_box_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myAlertDialog.dismiss();
+            }
+        });
 
-            tv_alert_ok.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    System.exit(0);
-                }
-            });
+        tv_alert_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.exit(0);
+            }
+        });
 
-            tv_alert_cancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    myAlertDialog.dismiss();
-                }
-            });
-            myAlertDialog.show();
+        tv_alert_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myAlertDialog.dismiss();
+            }
+        });
+        myAlertDialog.show();
 
-        }
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-//            case R.id.mainychips:
-//                startActivity(new Intent(MainActivity.this, LoadingScreen_teenpatti.class));
-//                finish();
-//                break;
-
-//            case R.id.mainlimegchips:
-//                startActivity(new Intent(MainActivity.this, Variation.class));
-//                finish();
-//                break;
-
-//            case R.id.blackchips:
-//                startActivity(new Intent(MainActivity.this, NewVariationActivity.class));
-//                finish();
-//                break;
         }
     }
 }

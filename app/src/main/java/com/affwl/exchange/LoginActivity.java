@@ -6,18 +6,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.affwl.exchange.MainActivity;
-import com.affwl.exchange.R;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -25,15 +19,16 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class LoginActivity extends Activity implements View.OnClickListener{
+    public final static String EXTRA_MESSAGE = "com.affwl.exchange.MESSAGE";
 
-    private EditText editUserEmail,editPassDTS;
+    EditText editUserEmail,editPassDTS;
     Button loginNow;
     CheckBox rememberCheckBox;
     SharedPreferences sharedPreferences;
@@ -46,24 +41,34 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        editUserEmail = findViewById(R.id.editUserEmail);
+        editPassDTS = findViewById(R.id.editPassDTS);
+        loginNow = findViewById(R.id.loginNow);
+
         initComponent();
+    }
+
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, com.affwl.exchange.teenpatti.LoginActivity.class);
+        editUserEmail = findViewById(R.id.editUserEmail);
+        String message = editUserEmail.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
     }
 
     private void initComponent() {
 
-        editUserEmail=findViewById(R.id.editUserEmail);
-        editPassDTS=findViewById(R.id.editPassDTS);
-        loginNow=findViewById(R.id.loginNow);
-        rememberCheckBox=findViewById(R.id.rememberCheckBox);
+
+        rememberCheckBox = findViewById(R.id.rememberCheckBox);
 
         loginNow.setOnClickListener(this);
 
         sharedPreferences = getSharedPreferences("LoginDetails", Context.MODE_PRIVATE);
-        if (sharedPreferences.contains("Email")) {
-            editUserEmail.setText(sharedPreferences.getString("Email", ""));
+        if (sharedPreferences.contains("username")) {
+            editUserEmail.setText(sharedPreferences.getString("username", ""));
         }
-        if (sharedPreferences.contains("Password")) {
-            editPassDTS.setText(sharedPreferences.getString("Password", ""));
+        if (sharedPreferences.contains("password")) {
+            editPassDTS.setText(sharedPreferences.getString("password", ""));
             rememberCheckBox.setChecked(true);
 
         }
@@ -74,12 +79,12 @@ public class LoginActivity extends Activity implements View.OnClickListener{
         switch (v.getId())
         {
             case R.id.loginNow:
-                editUser=editUserEmail.getText().toString();
-                editPass=editPassDTS.getText().toString();
-                if(editUser.equalsIgnoreCase("")||editUser==null){
+                editUser = editUserEmail.getText().toString();
+                editPass = editPassDTS.getText().toString();
+                if(editUser.equalsIgnoreCase("")||editUser == null){
                     editUserEmail.setError("Enter User Name");
                 }
-                else if(editPass.equalsIgnoreCase("")||editPass==null){
+                else if(editPass.equalsIgnoreCase("")||editPass == null){
                     editPassDTS.setError("Enter Password");
                 }
                 else if(editUser.equalsIgnoreCase("admin")&& editPass.equals("admin"))
@@ -89,25 +94,23 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                         //Toast.makeText(this, ""+editUser+" "+editPass, Toast.LENGTH_SHORT).show();
                         saveLoginDetails(editUser,editPass);
                     }
-
                     startActivity(new Intent(this, MainActivity.class));
                     finish();
                 }
                 else {
-                    new HttpAsyncTask().execute("http://173.212.248.188/pclient/Prince.svc/Login");
+                    new HttpAsyncTask().execute("http://213.136.81.137:8080/api/authenticate");
                     //Toast.makeText(this, "Please check User name & Password", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
-
     }
 
     public void saveLoginDetails(String email, String password) {
         sharedPreferences = getSharedPreferences("LoginDetails", Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-        editor.putString("Email", email);
-        editor.putString("Password", password);
-        editor.commit();
+        editor.putString("username", email);
+        editor.putString("password", password);
+        editor.apply();
     }
 
     public String  loginApi(String url){
@@ -120,9 +123,9 @@ public class LoginActivity extends Activity implements View.OnClickListener{
 
             String json = "";
             JSONObject jsonObject = new JSONObject();
-            jsonObject.accumulate("context","mobile");
-            jsonObject.accumulate("pwd",editPass);
             jsonObject.accumulate("username",editUser);
+            jsonObject.accumulate("password",editPass);
+            //jsonObject.accumulate("balance",balance);
 
             json = jsonObject.toString();
             StringEntity se = new StringEntity(json);
@@ -177,21 +180,16 @@ public class LoginActivity extends Activity implements View.OnClickListener{
 
         @Override
         protected void onPostExecute(String result) {
-
+            Toast.makeText(LoginActivity.this, ""+result, Toast.LENGTH_SHORT).show();
             Log.i("Check",""+result);
             try {
                 JSONObject jsonObjMain = new JSONObject(result.toString());
 
-                String description = jsonObjMain.getString("description");
-                String response = jsonObjMain.getString("response");
+                String message = jsonObjMain.getString("message");
 
-                JSONObject jsonObjRes = new JSONObject(response.toString());
-                JSONObject jsonObjDes = new JSONObject(description.toString());
-                DataHolder.LOGIN_TOKEN = jsonObjRes.getString("AuthToken");
-                String status = jsonObjDes.getString("result");
 
-                if(status.equals("Login Successful")){
-                    Toast.makeText(getApplicationContext(), ""+status, Toast.LENGTH_SHORT).show();
+                if(message.equalsIgnoreCase("successfully authenticated")){
+                    Toast.makeText(getApplicationContext(), ""+message, Toast.LENGTH_SHORT).show();
                     if(rememberCheckBox.isChecked())
                     {
                         saveLoginDetails(editUser,editPass);
@@ -200,27 +198,11 @@ public class LoginActivity extends Activity implements View.OnClickListener{
                     finish();
                 }
 
-                Log.i("result","result "+DataHolder.LOGIN_TOKEN+" Status "+status);
+                Log.i("result"," Status "+message);
 
             } catch (JSONException e) {
                 e.printStackTrace();
-                JSONObject jsonObjMain = null;
-                try {
-                    jsonObjMain = new JSONObject(result.toString());
-                    JSONObject des  = new JSONObject(jsonObjMain.getString("description"));
-                    String res = des.getString("result");
-                    if (res.equals("Invalid username")){
-                        Toast.makeText(LoginActivity.this,"Invalid Username",Toast.LENGTH_SHORT).show();
-
-                    }else if (res.equals("Invalid password")){
-                        Toast.makeText(LoginActivity.this,"Invalid Password",Toast.LENGTH_SHORT).show();
-                    }
-
-                } catch (JSONException e1) {
-                    e1.printStackTrace();
-                }
             }
         }
     }
-
 }

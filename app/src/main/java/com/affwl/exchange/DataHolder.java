@@ -28,9 +28,6 @@ import microsoft.aspnet.signalr.client.SignalRFuture;
 import microsoft.aspnet.signalr.client.hubs.HubConnection;
 import microsoft.aspnet.signalr.client.hubs.HubProxy;
 
-/**
- * Created by Admin on 10/24/2017.
- */
 
 public class DataHolder {
     public static int navigationForTab=0;
@@ -63,7 +60,7 @@ public class DataHolder {
 
 
 
-//  Stack Share Prefrences
+    //  Stack Share Prefrences
     private static SharedPreferences getPrefSTACK(Context context) {
         return context.getSharedPreferences("PREF_STACK", Context.MODE_PRIVATE);
     }

@@ -238,7 +238,9 @@
         <activity
             android:name=".teenpatti.MainActivity"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+
+        </activity>
         <activity
             android:name=".teenpatti.SplashActivity"
             android:screenOrientation="landscape"

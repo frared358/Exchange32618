@@ -32,10 +32,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     ImageView selectimage,avatarimage,avatar1,avatar2,avatar3,avatar4,avatar5,avatar6,avatar7,avatar8,camera,choosepic;
     Session session;
-    TextView login,playasguest;
-    EditText nametext;
+    TextView login,playasguest,balancetext;
     LoginDatabaseHelper loginDatabaseHelper;
     DBHandler dbHandler;
+    EditText nametext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,20 +46,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //        playasguest.setOnClickListener(this);
 //        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        selectimage=findViewById(R.id.selectimage);
-        avatarimage=findViewById(R.id.avatarimage);
-        avatar1=findViewById(R.id.avatar1);
-        avatar2=findViewById(R.id.avatar2);
-        avatar3=findViewById(R.id.avatar3);
-        avatar4=findViewById(R.id.avatar4);
-        avatar5=findViewById(R.id.avatar5);
-        avatar6=findViewById(R.id.avatar6);
-        avatar7=findViewById(R.id.avatar7);
+        selectimage = findViewById(R.id.selectimage);
+        avatarimage = findViewById(R.id.avatarimage);
+        avatar1 = findViewById(R.id.avatar1);
+        avatar2 = findViewById(R.id.avatar2);
+        avatar3 = findViewById(R.id.avatar3);
+        avatar4 = findViewById(R.id.avatar4);
+        avatar5 = findViewById(R.id.avatar5);
+        avatar6 = findViewById(R.id.avatar6);
+        avatar7 = findViewById(R.id.avatar7);
 //        avatar8=findViewById(R.id.avatar8);
-        camera=findViewById(R.id.camera);
-        choosepic=findViewById(R.id.choosepic);
-        nametext=findViewById(R.id.nametext);
-        login=findViewById(R.id.login);
+        camera = findViewById(R.id.camera);
+        choosepic = findViewById(R.id.choosepic);
+        nametext = findViewById(R.id.nametext);
+        login = findViewById(R.id.login);
 
         avatar1.setOnClickListener(this);
         avatar2.setOnClickListener(this);
@@ -84,20 +84,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(this, "not", Toast.LENGTH_SHORT).show();
             requestPermission();
         }
+
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(com.affwl.exchange.LoginActivity.EXTRA_MESSAGE);
+        nametext.setText(message);
     }
 
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()){
-//            case R.id.playasguest:
-//                startActivity(new Intent(LoginActivity.this, PlayasguestActivity.class));
-//                finish();
-//                break;
-//        }
-//    }
 
 
-    //    Implementation of selecting avatar
+
+    //Implementation of selecting avatar
     @Override
     public void onClick(View v) {
         ImageView image;
@@ -158,7 +154,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
         if (id==R.id.choosepic)
         {
-            Intent intent=new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            Intent intent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(intent,6);
         }
         if (id==R.id.login) {
@@ -173,20 +169,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] b = baos.toByteArray();
                 String encodeimage = Base64.encodeToString(b, Base64.DEFAULT);
-                String setNameHere=nametext.getText().toString().trim();
+                String setNameHere = nametext.getText().toString().trim();
 
-                if (setNameHere.equalsIgnoreCase("") || setNameHere.equalsIgnoreCase(null)) {
-                    displayAlertMessage("Teenpatti","Name can't be empty");
-                } else {
-                    session.put(encodeimage, setNameHere);
-                    long result = loginDatabaseHelper.add(encodeimage, setNameHere);
-                    Toast.makeText(this, String.valueOf(result), Toast.LENGTH_SHORT).show();
-                    //intent.putExtra("img",bmp);
-                    //db.execSQL("insert into User id,image,name values " + "(" + 1 +"," + "" + ","  + String.valueOf(nametext.getText()) + ")");
-                    startActivity(intent);
-                    finish();
-                    Toast.makeText(this, String.valueOf(bmp), Toast.LENGTH_SHORT).show();
-                }
+//                if (setNameHere.equalsIgnoreCase("") || setNameHere.equalsIgnoreCase(null)) {
+//                    displayAlertMessage("Teenpatti","Name can't be empty");
+//                } else {
+                session.put(encodeimage, setNameHere);
+                long result = loginDatabaseHelper.add(encodeimage, setNameHere);
+                Toast.makeText(this, String.valueOf(result), Toast.LENGTH_SHORT).show();
+                //intent.putExtra("img",bmp);
+                //db.execSQL("insert into User id,image,name values " + "(" + 1 +"," + "" + ","  + String.valueOf(nametext.getText()) + ")");
+                startActivity(intent);
+                finish();
+//                    Toast.makeText(this, String.valueOf(bmp), Toast.LENGTH_SHORT).show();
+                //}
             }
         }
     }
