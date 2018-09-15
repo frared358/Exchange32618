@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rl1"
+    android:background="#E0E0E0"
+    tools:context="com.affwl.exchange.fx.Add_symbol">
+
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:navigationContentDescription="@string/abc_action_bar_up_description"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="Add symbol"
+        tools:ignore="MissingPrefix"
+        fontPath="fonts/RobotoCondensed-Regular.ttf"
+        android:gravity="center"
+        android:id="@+id/toolbar2" />
+
+
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/autotv"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar2"
+        android:layout_marginLeft="65dp"
+        android:layout_marginStart="65dp"
+        android:textColorHighlight="@color/colorBlueGrey"
+        android:hint="Find symbols" />
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_below="@+id/autotv"
+        android:background="@color/colorGreay"
+        android:visibility="visible" />
+
+
+
+    <LinearLayout
+       android:layout_marginTop="100dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<LinearLayout
+    android:id="@+id/ll_add_symbol"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/toolbar2">
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_folder"/>
+
+    <TextView
+        android:id="@+id/tvforex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/colorAccent"
+        android:text="Forex"
+
+        android:textSize="16dp"/>
+
+</LinearLayout>
+    <View
+        android:id="@+id/viewf"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_below="@+id/ll_add_symbol"
+        android:background="@color/colorGreay"
+        android:visibility="visible" />
+    <LinearLayout
+
+        android:layout_marginTop="10dp"
+        android:id="@+id/ll_add_symbol1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_add_symbol">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_folder"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorAccent"
+            android:text="CFD"
+            android:textSize="16dp"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_below="@+id/ll_add_symbol1"
+        android:background="@color/colorGreay"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/ll_add_symbol2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_add_symbol1">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_folder"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorAccent"
+            android:text="Metals"
+            android:textSize="16dp"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_below="@+id/ll_add_symbol2"
+        android:background="@color/colorGreay"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/ll_add_symbol3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_add_symbol2">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_folder"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorAccent"
+            android:text="MOEX\\FORTS"
+            android:textSize="16dp"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_below="@+id/ll_add_symbol3"
+        android:background="@color/colorGreay"
+        android:visibility="visible" />
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/ll_add_symbol4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_add_symbol3">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_folder"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorAccent"
+            android:text="MOEX\\FX"
+            android:textSize="16dp"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+
+        android:layout_below="@+id/ll_add_symbol4"
+        android:background="@color/colorGreay"
+        android:visibility="visible" />
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/ll_add_symbol5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_add_symbol4">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_folder"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorAccent"
+            android:text="MOEX\\EQuity  Bond..t\\T+Shares and DRs"
+            android:textSize="16dp"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_below="@+id/ll_add_symbol5"
+        android:background="@color/colorGreay"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/ll_forex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_add_symbol5">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_folder"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/ll_add_symbol6"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorAccent"
+            android:text="Crypto"
+            android:textSize="16dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_below="@+id/ll_forex"
+        android:background="@color/colorGreay"
+        android:visibility="visible" />
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar2"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="11dp"
+        app:srcCompat="?android:attr/actionModeWebSearchDrawable"
+        tools:ignore="NewApi" />
+
+</RelativeLayout>

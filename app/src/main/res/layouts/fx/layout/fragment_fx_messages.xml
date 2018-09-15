@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.affwl.exchange.fx.Fx_Messages_Fragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="320dp"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="383dp"
+       android:layout_marginBottom="80dp"
+        android:background="#FAFAFA"
+        android:paddingBottom="5dp">
+
+        <LinearLayout
+            android:layout_width="228dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_regi"
+                android:layout_width="115dp"
+                android:layout_height="40dp"
+                android:background="#FFC107"
+                android:textColor="#3E2723"
+                android:text="REGISTER" />
+
+            <Button
+                android:id="@+id/btn_si"
+                android:layout_width="115dp"
+                android:layout_height="40dp"
+                android:text="SIGN IN"
+                android:background="#FAFAFA"
+                android:textColor="#0000ff" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</RelativeLayout>

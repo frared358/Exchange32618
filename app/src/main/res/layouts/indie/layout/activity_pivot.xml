@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#E0E0E0"
+    tools:context="com.affwl.exchange.indie.PivotActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="@android:color/white" />
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawerLayoutIndiePivot"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginBottom="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/exchange"
+                    android:layout_weight="1"/>
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/asset"
+                    android:layout_weight="1"/>
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/pivot"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sysmbol"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="R3"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="R2"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="R1"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="PP"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="S1"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="S2"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="S3"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:textStyle="bold"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="LTP"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:padding="3dp"
+                            android:textStyle="bold"/>
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Adani.."
+                            android:textSize="12sp"
+                            android:padding="3dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2020.89"
+                            android:textSize="12sp"
+                            android:padding="3dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2020.89"
+                            android:textSize="12sp"
+                            android:padding="3dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="200.89"
+                            android:textSize="12sp"
+                            android:padding="3dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2020.89"
+                            android:textSize="12sp"
+                            android:padding="3dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2020.89"
+                            android:textSize="12sp"
+                            android:padding="3dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2020.89"
+                            android:textSize="12sp"
+                            android:padding="3dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2020.89"
+                            android:textSize="12sp"
+                            android:padding="3dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2020.89"
+                            android:textSize="12sp"
+                            android:padding="3dp"
+                            />
+                    </TableRow>
+                </TableLayout>
+
+            </HorizontalScrollView>
+
+        </LinearLayout>
+
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/navViewIndiePivot"
+            android:layout_width="150dp"
+            android:background="@color/colorGreay"
+            android:layout_height="match_parent"
+            android:layout_marginRight="100dp"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:menu="@menu/indie_drawer_menu" />
+
+    </android.support.v4.widget.DrawerLayout>
+
+    <fragment
+        android:id="@+id/fragmentBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:name="com.affwl.exchange.indie.BottomFragment"/>
+
+</RelativeLayout>

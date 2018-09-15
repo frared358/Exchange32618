@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E0E0E0"
+    tools:context="com.affwl.exchange.fx.Fx_msg_chat_Regi_activity">
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:navigationContentDescription="@string/abc_action_bar_up_description"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="Chat"
+        android:gravity="center"
+        android:id="@+id/toolbar2" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="91dp"
+        android:text="Account registration"
+        android:textColor="#000"
+        android:textSize="22dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView36"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
+        android:layout_marginTop="24dp"
+        android:focusable="true"
+        />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/editText"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="27dp"
+        android:layout_marginTop="24dp"
+        android:focusable="true"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:hint="User@email.com:" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="33dp"
+        android:text="GET ACCOUNT"
+        android:background="#FFC107"
+        android:textStyle="bold"
+        android:textColor="#3E2723"/>
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText1"
+        android:layout_alignStart="@+id/editText1"
+        android:layout_below="@+id/editText1"
+        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="21dp"
+        android:text="Password will be  emailed to you" />
+
+    <TextView
+        android:id="@+id/textView35"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/editText1"
+        android:layout_alignRight="@+id/editText1"
+        android:layout_below="@+id/textView34"
+        android:layout_marginTop="25dp"
+        android:text="Visit DTS.com  to access all community services" />
+
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView33"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:text="Login" />
+
+    <TextView
+        android:id="@+id/textView37"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView36"
+        android:layout_alignStart="@+id/textView36"
+        android:layout_below="@+id/editText"
+        android:text="E-Mail:" />
+
+
+</RelativeLayout>

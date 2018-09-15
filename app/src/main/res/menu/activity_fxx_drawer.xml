@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#E0E0E0"
+    xmlns:include="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_quotes"
+            android:icon="@drawable/ic_background_quotes"
+            android:title="Quotes" />
+        <item
+            android:id="@+id/nav_charts"
+            android:icon="@drawable/ic_background_charts"
+            android:title="Charts" />
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_settings_gray"
+            android:title="Settings" />
+    </group>
+</menu>

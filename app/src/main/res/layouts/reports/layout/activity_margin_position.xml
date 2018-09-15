@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    tools:context="com.affwl.exchange.reports.MarginPositionActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/margin_position_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:title="Margin Position"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="@android:color/white" />
+
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:layout_margin="10dp">
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorWhite"
+        android:id="@+id/cash_margin"
+        android:textSize="20sp"
+        android:text="Cash Margin"/>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textColor="@color/colorWhite"
+               android:layout_below="@+id/cash_margin"
+               android:id="@+id/turnover"
+               android:textSize="20sp"
+               android:text="Turnover"/>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/turnover"
+               android:textColor="@color/colorWhite"
+               android:id="@+id/loss_limit"
+               android:textSize="20sp"
+               android:text="MTM Loss Limit"/>
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Margin Type"
+               android:id="@+id/margin_type"
+               android:textColor="@color/colorWhite"
+               android:textSize="20sp"
+               android:layout_below="@+id/loss_limit"/>
+
+
+       </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_weight="1">
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text=":572734.9"
+               android:id="@+id/num_cash_margin"
+               android:layout_toRightOf="@+id/cash_margin"
+               android:layout_alignParentEnd="true"
+               android:textAlignment="textEnd"
+               android:textSize="20sp"
+               android:textColor="@color/colorWhite"
+               android:layout_alignParentRight="true"
+               android:gravity="end" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":171820470"
+            android:id="@+id/num_turnover"
+            android:layout_toRightOf="@+id/turnover"
+            android:layout_below="@+id/num_cash_margin"
+            android:textSize="20sp"
+            android:gravity="end"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/colorWhite"
+            android:layout_alignParentRight="true" />
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/num_turnover"
+               android:textColor="@color/colorWhite"
+               android:layout_toRightOf="@+id/loss_limit"
+               android:id="@+id/num_loss_limit"
+               android:textSize="20sp"
+               android:layout_alignParentEnd="true"
+               android:gravity="end"
+               android:text=":567007.55"
+               android:layout_alignParentRight="true" />
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textColor="@color/colorWhite"
+               android:textSize="20sp"
+               android:text=":Turnover"
+               android:layout_alignParentEnd="true"
+               android:gravity="end"
+               android:layout_toRightOf="@+id/margin_type"
+               android:layout_below="@+id/num_loss_limit"
+               android:layout_alignParentRight="true" />
+
+
+       </LinearLayout>
+
+   </LinearLayout>
+</LinearLayout>

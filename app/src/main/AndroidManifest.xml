@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.affwl.exchange">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".indie.IndieActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".indie.PivotActivity"
+            android:label="@string/pivot"
+            android:parentActivityName=".indie.IndieActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".indie.LiveTipsActivity"
+            android:label="@string/live_tips"
+            android:parentActivityName=".indie.IndieActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".indie.NewHiloActivity"
+            android:label="New High Low"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".indie.MarketMoversEquityActivity"
+            android:label="Market Movers"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".indie.MarketWatchActivity"
+            android:label="Market Watch"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".indie.MarketIndicesActivity"
+            android:label="Market"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".indie.MarketDerivativesActivity"
+            android:label="Market"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".indie.MarketCurrencyActivity"
+            android:label="Market"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".indie.ScripSearchActivity"
+            android:label="Scrip Search"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".indie.NewsActivity"
+            android:label="News"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".binary.Sec60Activity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".binary.AssetNameActivity"
+            android:parentActivityName=".binary.Sec60Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <activity android:name=".binary.AssetListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".binary.TradeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".binary.BinaryPotfolioActivity"
+            android:screenOrientation="portrait"/>
+
+
+        <activity android:name=".fx.FxActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.CustomSpinner"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.Problem_Description"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.Certificates"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.New_Account"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.Indicators"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.Mailbox1"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.Selected_symbols"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.select_symbol.SelectSymbolActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.Add_symbol"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.Add_symbol_Forex"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.fx_chart.RecycleChartActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.FX_indicator_f_add_Activity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".fx.FX_indicator_f1_add_Activity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".fx.new_Acc_open_a_real_acc_Activity"
+            android:screenOrientation="portrait"/>
+        <!-- <activity android:name=".fx.New_acc_start_without_regi"/> -->
+        <!-- <activity android:name=".fx.New_acc_start_without_regi"/> -->
+
+        <activity android:name=".fx.New_acc_Open_a_real_acc_pI"
+            android:screenOrientation="portrait" />
+        <activity android:name=".fx.M_delete"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.OneClickTrading"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".sport.SportActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".sport.BetActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".sport.UnmatchMatchTabActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".sport.TournamentActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".sport.MatchListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".sport.MatchOddsActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".sport.HighlightsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".sport.SportAccountActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".sport.StackActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.Fx_Currency_Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.Fx_AVW_Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.Fx_DOM_Activity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".fx.Fx_MarketStatistics_Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.Fx_Properties_Activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".news.RssFeedUrlActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".news.WebActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".news.RssFeedListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".news.NewsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".news.RssFeedDeleteActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".settings.SettingsMainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".trades.TradesActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".alerts.AlertsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".alerts.IndieReminderActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".alerts.MessageMainActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".alerts.MessagePage"
+            android:screenOrientation="portrait"/>
+
+       <!--Reports-->
+
+        <service android:name=".sport.SignalRService"
+            android:exported="false"/>
+
+        <!--
+        <receiver android:name=".sport.BroadcastReceiverSignalr" >
+            <intent-filter>
+                <action android:name="com.affwl.exchange.sport.RESPONSE" />
+        <activity android:name=".reports.ReportsActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".reports.OrderReportActivity"
+            android:parentActivityName=".reports.ReportsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".reports.NetPositionActivity"
+            android:parentActivityName=".reports.ReportsActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".reports.TradeReportActivity"
+            android:parentActivityName=".reports.ReportsActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".reports.MarginPositionActivity"
+            android:parentActivityName=".reports.ReportsActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".fx.chart_new_popupwindow_activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.chart_quickmenu_windowpopup_activity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.Chart_ObjectsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".fx.Fx_Chart_AddObject_Activity"
+            android:screenOrientation="portrait"/>
+
+<!-teenpatti-->
+
+
+        <activity
+            android:name=".teenpatti.MainActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+
+        </activity>
+        <activity
+            android:name=".teenpatti.SplashActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".teenpatti.Splash2Activity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".teenpatti.LoginActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".teenpatti.PlayasguestActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".teenpatti.TeenpattiActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".teenpatti.LoadingScreen_teenpatti"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".teenpatti.Variation"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".teenpatti.ThreetwooneTournament"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".teenpatti.SixPatti"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".teenpatti.LoadingScreen_sixpatti"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".teenpatti.LoadingScreen_variation"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".teenpatti.NewVariationActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".teenpatti.LoadingScreen_three_two_one_tournament"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".teenpatti.TourneyActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".teenpatti.LoadingScreen_tourney"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".teenpatti.PrivateActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+
+        <activity
+            android:name=".teenpatti.LoadingScreen_private"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+
+        <activity android:name=".teenpatti.LoadingScreen_new_variation"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+
+        <activity android:name=".reports.ReportsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".reports.OrderReportActivity"
+            android:parentActivityName=".reports.ReportsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".reports.MarginPositionActivity"
+            android:parentActivityName=".reports.ReportsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".reports.NetPositionActivity"
+            android:parentActivityName=".reports.ReportsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".reports.TradeReportActivity"
+            android:parentActivityName=".reports.ReportsActivity"
+            android:screenOrientation="portrait"/>
+
+        //Crypto
+
+        <activity android:name=".crypto.BinancesActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.MarketActivityBinance"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.FavoriteActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.FundActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.HistoryDepositeWithdrawActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.DepositeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.WithDrawalActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.CoinSelectionActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.TradeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.TradingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.GraphBinanceActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.OpenOrderActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.OrderHistoryActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.OrderDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".crypto.BalanceActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".crypto.MarketSearchActivity"
+            android:screenOrientation="portrait"/>
+
+        <service
+            android:name=".sport.ServiceFancyBookMakingRefresh"
+            android:exported="false"/>
+    </application>
+
+</manifest>

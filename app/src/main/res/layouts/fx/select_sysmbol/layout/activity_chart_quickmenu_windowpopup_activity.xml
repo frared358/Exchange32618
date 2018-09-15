@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#E0E0E0"
+    android:orientation="vertical">
+
+    <TextView
+        android:padding="3dp"
+        android:id="@+id/ItemA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="3dp"
+        android:text="M1"
+        android:textStyle="bold"
+        android:textColor="@color/Black"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:padding="3dp"
+        android:id="@+id/ItemB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:text="M5"
+        android:textStyle="bold"
+        android:textColor="@color/Black"
+        tools:ignore="HardcodedText" />
+    <TextView
+        android:id="@+id/ItemC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:text="M15"
+        android:padding="3dp"
+        android:textStyle="bold"
+        android:textColor="@color/Black"
+        tools:ignore="HardcodedText" />
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="15dp"
+        android:textColor="@color/Black"
+        android:layout_marginTop="10dp"
+        android:text="M30"
+        android:padding="3dp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="15dp"
+        android:textColor="@color/Black"
+        android:layout_marginTop="10dp"
+        android:padding="3dp"
+        android:textStyle="bold"
+        android:text="H1"
+        tools:ignore="HardcodedText" />
+    <TextView
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="18dp"
+    android:layout_marginRight="15dp"
+    android:textColor="@color/Black"
+    android:layout_marginTop="10dp"
+    android:text="H4"
+        android:textStyle="bold"
+        android:padding="3dp"
+    tools:ignore="HardcodedText" />
+    <TextView
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="18dp"
+    android:layout_marginRight="15dp"
+    android:textColor="@color/Black"
+    android:layout_marginTop="10dp"
+    android:text="D1"
+        android:textStyle="bold"
+        android:padding="3dp"
+    tools:ignore="HardcodedText" />
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="15dp"
+        android:textColor="@color/Black"
+        android:layout_marginTop="10dp"
+        android:text="W1"
+        android:textStyle="bold"
+        android:padding="3dp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="15dp"
+        android:textColor="@color/Black"
+        android:layout_marginTop="10dp"
+        android:text="MN"
+        android:padding="3dp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

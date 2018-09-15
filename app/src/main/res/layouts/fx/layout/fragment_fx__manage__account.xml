@@ -1,0 +1,147 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#E0E0E0"
+    android:gravity="center_horizontal"
+    tools:context="com.affwl.exchange.fx.Fx_Manage_Account">
+
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/border_shadow"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@color/colorRedLight1"
+            android:layout_margin="5dp"
+            android:src="@drawable/dts_logo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv1"
+                    android:layout_column="1"
+                    android:text="DTS 5 Demo Account"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_margin="5dp"
+                    android:textColor="#000000"
+                    android:padding="3dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv2"
+                    android:layout_column="1"
+                    android:text="8870819 - DTSQutoes-Demo"
+                    android:textSize="13sp"
+                    android:padding="3dip" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv3"
+                    android:layout_column="1"
+                    android:text="9 99 967.54 USD"
+                    android:textSize="20sp"
+                    android:textColor="#000000"
+                    android:padding="3dip" />
+
+        <ImageView
+            android:layout_gravity="end"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            android:id="@+id/btnShowPopupAccount"
+            android:src="@drawable/ic_account_info"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_marginTop="20dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/border_shadow"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView21"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="#81D4FA"
+            android:layout_margin="5dp"
+            android:src="@drawable/dts_logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv11"
+            android:layout_column="1"
+            android:text="DTS 5 Demo Account"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:textColor="#000000"
+            android:padding="3dip" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv21"
+            android:layout_column="1"
+            android:text="8870819 - DTSQutoes-Demo"
+            android:textSize="13sp"
+            android:padding="3dip" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv31"
+            android:layout_column="1"
+            android:text="9 99 967.54 USD"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:padding="3dip" />
+
+        <ImageView
+            android:layout_gravity="end"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            android:id="@+id/btnShowPopupAccount1"
+            android:src="@drawable/ic_account_info"/>
+
+    </LinearLayout>
+
+
+    <!--<android.support.v7.widget.CardView-->
+        <!--android:id="@+id/card_view"-->
+        <!--android:layout_width="200dp"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--app:cardCornerRadius="4dp">-->
+        <!--<TextView-->
+            <!--android:id="@+id/info_text"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="hello" />-->
+
+    <!--</android.support.v7.widget.CardView>-->
+
+
+</LinearLayout>

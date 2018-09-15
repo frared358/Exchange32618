@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:id="@+id/llDispFancyData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/txtVFancyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="South Africa"
+            android:textSize="14sp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/txtVBookData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="10sp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtVFancyBook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:textSize="12sp"
+        android:text="Book"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:visibility="gone"
+        android:background="@drawable/button_book_press"/>
+
+    <LinearLayout
+        android:id="@+id/llFancyMarketData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/llNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginRight="1dp"
+            android:background="@color/colorRedBet1"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txtVNoScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="2.56"/>
+
+            <TextView
+                android:id="@+id/txtVNoRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHIPS 454"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llYes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@color/colorBlueBet1"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txtVYesScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="2.56"/>
+
+            <TextView
+                android:id="@+id/txtVYesRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHIPS 454"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtVFancyActiveResult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:visibility="gone"
+        android:textColor="@color/colorRed"
+        android:background="@color/colorRedBetTrasparent"
+        android:layout_weight="1"/>
+
+</LinearLayout>

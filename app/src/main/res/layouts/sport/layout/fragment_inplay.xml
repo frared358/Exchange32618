@@ -1,0 +1,131 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.affwl.exchange.sport.FragmentInplay">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/llInplayCricket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorGreay"
+            android:visibility="gone"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cricket"
+                android:textStyle="bold"
+                android:paddingLeft="10dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:textSize="18sp"
+                android:textColor="@color/colorBlack"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@color/colorGreayDark"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycleViewInplayCricket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llInplayTennis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorGreay"
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tennis"
+                android:textStyle="bold"
+                android:paddingLeft="10dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:textSize="18sp"
+                android:textColor="@color/colorBlack"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@color/colorGreayDark"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycleViewInplayTennis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llInplayFootball"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorGreay"
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:layout_margin="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Football"
+                android:textStyle="bold"
+                android:paddingLeft="10dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:textSize="18sp"
+                android:textColor="@color/colorBlack"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@color/colorGreayDark"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycleViewInplayFootball"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtInplayNoData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NO DATA.."
+            android:textSize="16sp"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:background="@color/colorGreay"
+            android:textColor="@color/Red"/>
+
+    </LinearLayout>
+
+
+
+</ScrollView>

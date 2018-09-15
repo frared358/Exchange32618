@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.tradings.www.fxdrawerlayout.FxActivity">
+
+    <!--<item-->
+        <!--android:id="@+id/action_settings"-->
+         <!--android:icon="@drawable/ic_launcher_foreground"-->
+        <!--android:title="@string/action_settings"-->
+        <!--app:showAsAction="ifRoo   m" />-->
+
+
+    <item
+        android:icon="@drawable/plus"
+        android:title="Arrow"
+        android:id="@+id/add"
+        app:showAsAction="always">
+
+    </item>
+    <item
+        android:id="@+id/edit"
+        android:title="Calender"
+        android:icon="@drawable/ic_action_pen"
+        app:showAsAction="always" >
+
+
+
+    </item>
+</menu>

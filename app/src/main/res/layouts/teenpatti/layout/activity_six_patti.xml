@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sixpattitble"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/sixpattirecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg3">
+
+
+        <ImageView
+            android:id="@+id/handle_right"
+            app:layout_widthPercent="5%"
+            app:layout_heightPercent="10%"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:src="@drawable/btn_handle_right" />
+
+
+        <android.support.percent.PercentRelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+            <!--Left side ithree_two_one_leaderboardyout-->
+            <android.support.percent.PercentRelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/back"
+                    app:layout_widthPercent="25%"
+                    app:layout_heightPercent="10%"
+                    app:layout_marginLeftPercent="1%"
+                    app:layout_marginTopPercent="1%"
+                    android:src="@drawable/back" />
+
+                <!--<ImageView-->
+                <!--android:id="@+id/info"-->
+                <!--android:layout_width="40dp"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:layout_marginLeft="50dp"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:src="@drawable/infogame" />-->
+
+            </android.support.percent.PercentRelativeLayout>
+
+            <!--Right side ithree_two_one_leaderboardyout-->
+            <android.support.percent.PercentRelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true">
+
+                <!--<ImageView-->
+                <!--android:id="@+id/chat"-->
+                <!--android:layout_width="40dp"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:clickable="true"-->
+                <!--android:src="@drawable/chatgame"-->
+                <!--android:focusable="true" />-->
+
+                <ImageView
+                    android:id="@+id/info"
+                    app:layout_widthPercent="8%"
+                    app:layout_heightPercent="10%"
+                    app:layout_marginLeftPercent="1%"
+                    app:layout_marginTopPercent="1%"
+                    android:src="@drawable/infogame"
+                    android:layout_alignParentRight="true"/>
+
+            </android.support.percent.PercentRelativeLayout>
+        </android.support.percent.PercentRelativeLayout>
+
+
+        <!--Tathree_two_one_leaderboardyout-->
+        <android.support.percent.PercentRelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+
+            <ImageView
+                android:id="@+id/table"
+                android:layout_width="410dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:src="@drawable/teenpattitableimage"
+                app:layout_widthPercent="70%" />
+
+
+            <!--<RelativeLayout-->
+            <!--android:id="@+id/playerbg1relativeLayout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <android.support.percent.PercentRelativeLayout
+                app:layout_widthPercent="20%"
+                app:layout_heightPercent="30%"
+                android:layout_alignTop="@+id/table"
+                app:layout_marginTopPercent="12%"
+                android:id="@+id/rl_playerbg1">
+
+                <ImageView
+                    android:id="@+id/playerbg1"
+                    app:layout_widthPercent="100%"
+                    app:layout_heightPercent="100%"
+                    android:src="@drawable/myplayerbackground1"
+                    tools:ignore="NotSibling" />
+
+                <ImageView
+                    app:layout_widthPercent="35%"
+                    app:layout_heightPercent="35%"
+                    android:layout_alignTop="@+id/playerbg1"
+                    app:layout_marginTopPercent="20%"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/playerinviteavatar" />
+            </android.support.percent.PercentRelativeLayout>
+
+            <android.support.percent.PercentRelativeLayout
+                app:layout_widthPercent="20%"
+                app:layout_heightPercent="30%"
+                app:layout_marginTopPercent="12%"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/table"
+                android:id="@+id/rl_playerbg3">
+
+                <ImageView
+                    android:id="@+id/playerbg3"
+                    app:layout_widthPercent="100%"
+                    app:layout_heightPercent="100%"
+                    android:src="@drawable/myplayerbackground1"
+                    tools:ignore="NotSibling" />
+
+                <ImageView
+                    app:layout_widthPercent="35%"
+                    app:layout_heightPercent="35%"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignTop="@+id/playerbg3"
+                    app:layout_marginTopPercent="20%"
+                    android:src="@drawable/playerinviteavatar" />
+            </android.support.percent.PercentRelativeLayout>
+
+            <android.support.percent.PercentRelativeLayout
+                app:layout_widthPercent="20%"
+                app:layout_heightPercent="30%"
+                android:layout_below="@+id/rl_playerbg1"
+                android:id="@+id/rl_playerbg2"
+                app:layout_marginTopPercent="18%"
+                android:layout_alignParentLeft="true"
+                tools:ignore="NotSibling">
+
+                <ImageView
+                    android:id="@+id/playerbg2"
+                    app:layout_widthPercent="100%"
+                    app:layout_heightPercent="100%"
+                    android:src="@drawable/myplayerbackground1"
+                    tools:ignore="NotSibling,UnknownId" />
+
+                <ImageView
+                    app:layout_widthPercent="35%"
+                    app:layout_heightPercent="35%"
+                    android:layout_alignTop="@+id/playerbg2"
+                    android:layout_centerHorizontal="true"
+                    app:layout_marginTopPercent="20%"
+                    android:src="@drawable/playerinviteavatar" />
+            </android.support.percent.PercentRelativeLayout>
+
+            <android.support.percent.PercentRelativeLayout
+                app:layout_widthPercent="20%"
+                app:layout_heightPercent="30%"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/rl_playerbg4"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/rl_playerbg3"
+                app:layout_marginTopPercent="18%"
+                tools:ignore="NotSibling">
+
+                <ImageView
+                    android:id="@+id/playerbg4"
+                    app:layout_widthPercent="100%"
+                    app:layout_heightPercent="100%"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/myplayerbackground1"
+                    tools:ignore="NotSibling" />
+
+                <ImageView
+                    app:layout_widthPercent="35%"
+                    app:layout_heightPercent="35%"
+                    app:layout_marginTopPercent="20%"
+                    android:layout_alignTop="@+id/playerbg4"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/playerinviteavatar" />
+
+            </android.support.percent.PercentRelativeLayout>
+
+            <ImageView
+                android:id="@+id/card1"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card2"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card3"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card4"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card5"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card6"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card7"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card8"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card9"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card10"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card11"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card12"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card13"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card14"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card15"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card16"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card17"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card18"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+
+            <ImageView
+                android:id="@+id/card19"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card20"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card21"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card22"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card23"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card24"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card25"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card26"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card27"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card28"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card29"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <ImageView
+                android:id="@+id/card30"
+                app:layout_widthPercent="10%"
+                app:layout_heightPercent="10%"
+                app:layout_marginTopPercent="25%"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/card_back"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SEE"
+                android:textSize="20sp"
+                android:visibility="gone"
+                android:padding="5dp"
+                android:textColor="@color/white"
+                android:id="@+id/btn_see_cards"
+                android:layout_toRightOf="@+id/rl_myplayer"
+                android:layout_alignTop="@+id/rl_myplayer"
+                app:layout_marginTopPercent="10%"
+                android:background="@drawable/see_btn" />
+
+            <TextView
+                android:id="@+id/display_myplayer_bind"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                app:layout_heightPercent="10%"
+                app:layout_widthPercent="15%"
+                android:text="Now"
+                app:layout_marginTopPercent="70%"
+                app:layout_marginLeftPercent="42%"
+                android:layout_alignParentLeft="true"
+                tools:ignore="NotSibling" />
+
+            <android.support.percent.PercentRelativeLayout
+                android:id="@+id/rl_myplayer"
+                android:layout_centerHorizontal="true"
+                app:layout_heightPercent="30%"
+                android:layout_alignTop="@+id/table"
+                app:layout_marginTopPercent="60%"
+                app:layout_widthPercent="20%"
+                tools:ignore="NotSibling">
+
+                <ImageView
+                    android:id="@+id/myplayer"
+                    android:src="@drawable/yellow_circle"
+                    app:layout_heightPercent="100%"
+                    app:layout_widthPercent="100%" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/inner_player_img"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/inner_img_profile"
+                    app:layout_heightPercent="88%"
+                    app:layout_widthPercent="88%" />
+
+                <TextView
+                    android:id="@+id/nametext"
+                    android:layout_alignTop="@id/inner_player_img"
+                    android:background="@color/colorYellowGolden"
+                    android:textAlignment="center"
+                    android:textColor="@color/Black"
+                    app:layout_heightPercent="20%"
+                    app:layout_widthPercent="50%" />
+            </android.support.percent.PercentRelativeLayout>            <!--</RelativeLayout>-->
+
+            <!--      <RelativeLayout
+                      android:id="@+id/playerbg2relativeLayout"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@+id/playerbg1relativeLayout">
+
+
+
+                  </RelativeLayout>
+      -->
+
+            <android.support.percent.PercentRelativeLayout
+                app:layout_widthPercent="25%"
+                app:layout_heightPercent="30%"
+                android:layout_centerHorizontal="true">
+
+                <ImageView
+                    android:id="@+id/dealer"
+                    app:layout_widthPercent="100%"
+                    app:layout_heightPercent="100%"
+                    android:layout_alignTop="@+id/table"
+                    app:layout_marginTopPercent="10%"
+                    android:src="@drawable/dealer"
+                    tools:ignore="NotSibling" />
+
+            </android.support.percent.PercentRelativeLayout>
+
+
+
+
+        <!--Bottom ithree_two_one_leaderboardyout-->
+        <!--      <android.support.percent.PercentRelativeLayout
+                  app:layout_widthPercent="100%"
+                  app:layout_heightPercent="12%"
+                  android:layout_alignParentBottom="true"
+                  android:background="#250400"
+                  android:gravity="center"
+                  android:id="@+id/rl_bottom_caption"
+                  android:orientation="horizontal">-->
+
+        <!--Sort Button-->
+        <TextView
+            android:id="@+id/sort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/yellow_buttons"
+            android:text="SORT"
+            android:textAlignment="center"
+            android:padding="10dp"
+            android:textColor="@color/darkbrown"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="1dp"/>
+
+
+        <!--Layouts for cards-->
+        <!--         <RelativeLayout
+                     android:id="@+id/cardlayout"
+                     android:layout_width="wrap_content"
+                     android:layout_height="80dp"
+                     android:gravity="bottom"
+                     android:layout_alignParentBottom="true"
+                     android:layout_centerHorizontal="true">-->
+        <ImageView
+            android:id="@+id/my_card1"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:layout_toRightOf="@+id/sort"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="150dp"
+            android:src="@drawable/club_ace"/>
+        <ImageView
+            android:id="@+id/my_card2"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:layout_toRightOf="@+id/sort"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="170dp"
+            android:src="@drawable/diamond_king"/>
+        <ImageView
+            android:id="@+id/my_card3"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:layout_toRightOf="@+id/sort"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="190dp"
+            android:src="@drawable/spade_queen"/>
+        <ImageView
+            android:id="@+id/my_card4"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:layout_toRightOf="@+id/sort"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="210dp"
+            android:src="@drawable/diamond_9"/>
+        <ImageView
+            android:id="@+id/my_card5"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@+id/sort"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="230dp"
+            android:src="@drawable/club_6"/>
+        <ImageView
+            android:id="@+id/my_card6"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@+id/sort"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="250dp"
+            android:src="@drawable/heart_jack"/>
+        <!--</RelativeLayout>-->
+
+        <!--Sixpatti Go buttons-->
+        <TextView
+            android:id="@+id/sixpatti_go"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/yellow_buttons"
+            android:text="GO"
+            android:textAlignment="center"
+            android:padding="10dp"
+            android:textColor="@color/darkbrown"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="1dp"
+            android:layout_alignParentRight="true" />
+        <!--   </android.support.percent.PercentRelativeLayout>-->
+
+        </android.support.percent.PercentRelativeLayout>
+    </android.support.percent.PercentRelativeLayout>
+
+</RelativeLayout>

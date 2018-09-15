@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/popup_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+    <TextView
+        android:id="@+id/text_view_option"
+        android:text="More Options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/colorWhite"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:id="@+id/close_news_option"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:src="@drawable/ic_close_white_24dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/colorGreay" />
+
+    <LinearLayout
+        android:id="@+id/news_option_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:gravity="center"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set Minutes"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/colorWhite"
+        android:id="@+id/setMinutes"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/colorGreay" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Paste XML URL"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/colorWhite"
+        android:id="@+id/pasteUrl"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="@color/colorGreay" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete URL"
+        android:padding="10dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorWhite"
+        android:id="@+id/deleteUrl"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/minutes_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Refreshing Time"
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/img_plus_minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/add_circular_button"/>
+
+        <TextView
+            android:id="@+id/text_minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="24dp"
+            android:layout_weight="1"
+            android:text="5"/>
+
+        <ImageView
+            android:id="@+id/img_minus_minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/minus_circular_button"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/edit_url_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorWhite"
+            android:id="@+id/txtMessage"/>
+
+        <EditText
+            android:id="@+id/edit_url_entered"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textCursorDrawable="@null"
+            android:textColorHint="@color/colorWhite"
+            android:textColor="@color/colorWhite"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorWhite"
+            android:textSize="20sp"
+            android:layout_margin="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_delete_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorBlackTransperDialog"
+            android:textColor="@color/colorWhite"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:text="Delete" />
+
+            <Button
+                android:id="@+id/btn_edit_url"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/colorWhite"
+                android:background="@color/colorBlackTransperDialog"
+                android:layout_weight="1"
+                android:text="Apply" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

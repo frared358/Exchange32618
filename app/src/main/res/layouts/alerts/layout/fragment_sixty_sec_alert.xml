@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.affwl.exchange.alerts.SixtySecAlertFragment"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sounds"
+        android:id="@+id/sixtysec_sounds"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorWhite" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="text"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/ringtone_sixtysec"
+        android:visibility="gone"
+        android:textColor="@color/colorWhite"
+        android:textSize="15sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGreay"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Messages"
+        android:id="@+id/sixty_sec_messages"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:textColor="@color/colorWhite"/>
+
+
+</LinearLayout>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBinanceBG"
+    android:orientation="vertical"
+    tools:context="com.affwl.exchange.crypto.OpenOrderActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorGreyDark">
+
+        <TextView
+            android:id="@+id/txtVBackOpenOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp"
+            android:text="❮"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Open Order"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
+            android:layout_margin="5dp"
+            android:textColor="@color/colorWhite"/>
+
+        <TextView
+            android:id="@+id/txtVOrderHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order History"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textSize="13sp"
+            android:padding="7dp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/colorWhite"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/colorGreyLiterDark"
+        android:padding="5dp">
+
+        <Switch
+            android:id="@+id/switchHideOtherPair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingRight="2dp"
+            android:paddingLeft="5dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/switchHideOtherPair"
+            android:text="Hide Other Pair"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorWhite"
+            android:layout_marginLeft="2px"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel All"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textSize="15sp"
+            android:padding="5dp"
+            android:background="@drawable/border_yellow"
+            android:textColor="@color/colorYellowDark"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

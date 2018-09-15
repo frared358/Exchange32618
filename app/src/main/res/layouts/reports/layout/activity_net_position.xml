@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    tools:context="com.affwl.exchange.reports.NetPositionActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/net_position_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:title="Net Position"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="@android:color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Net Positions"
+            android:layout_weight="1"
+            android:id="@+id/txt_net"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:textColor="@color/colorWhite"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_sq_off_all"
+            android:padding="10dp"
+            android:gravity="end"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorBlackTransperDialog"
+            android:text="Square Off All"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/colorReddishGreay">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Realised P/L"
+            android:padding="2dp"
+            android:textColor="@color/colorWhite"
+            android:id="@+id/txt_realised"
+            android:textSize="15sp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:padding="2dp"
+            android:layout_marginLeft="50dp"
+            android:layout_toRightOf="@+id/txt_realised"
+            android:textColor="@color/colorWhite"
+            android:id="@+id/txt_real"
+            android:textSize="15sp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UnRealised P/L"
+            android:id="@+id/txt_unrealised"
+            android:layout_below="@+id/txt_realised"
+            android:padding="2dp"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:padding="2dp"
+            android:layout_marginLeft="30dp"
+            android:layout_below="@+id/txt_real"
+            android:layout_toRightOf="@+id/txt_unrealised"
+            android:textColor="@color/colorWhite"
+            android:id="@+id/txt_unreal"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Net MTM"
+            android:padding="2dp"
+            android:id="@+id/txt_net_mtm"
+            android:layout_below="@+id/txt_unrealised"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:padding="2dp"
+            android:layout_marginLeft="70dp"
+            android:layout_below="@+id/txt_unreal"
+            android:layout_toRightOf="@+id/txt_net_mtm"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Symbol"
+            android:id="@+id/symbol"
+            android:textColor="@color/colorWhite"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Qty"
+            android:layout_toRightOf="@id/symbol"
+            android:layout_marginLeft="120dp"
+            android:id="@+id/qty"
+            android:textColor="@color/colorWhite"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Action"
+           android:layout_alignParentEnd="true"
+            android:textColor="@color/colorWhite"
+            android:padding="10dp"
+            android:layout_alignParentRight="true" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

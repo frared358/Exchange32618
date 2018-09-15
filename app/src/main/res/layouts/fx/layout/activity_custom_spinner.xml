@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#E0E0E0"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <android.support.v7.widget.Toolbar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:navigationContentDescription="@string/abc_action_bar_up_description"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="EURUSD"
+        app:subtitle="US Dollar vs Swiss Franc"
+        app:titleTextColor="@color/colorWhite"
+        app:subtitleTextColor="@color/colorWhite"
+        android:gravity="center"
+        android:id="@+id/toolbar2" />
+    <!--<TextView-->
+        <!--android:paddingTop="20dip"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="wrap_content" />-->
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center"
+        android:layout_margin="10dp"
+        android:drawSelectorOnTop="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+
+        android:orientation="horizontal">
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="center"
+        android:textColor="@color/colorBlue"
+        android:text="-0.1"/>
+
+        <TextView
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlue"
+            android:text="-0.01"/>
+        <EditText
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:layout_width="wrap_content"
+            android:background="@color/transparent"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:text="1.22"/>
+        <TextView
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlue"
+            android:text="+0.01"/>
+        <TextView
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlue"
+            android:text="+0.1"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dip"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="#FF909090" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvLowValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:paddingRight="10dp"
+            android:layout_weight="1"
+            android:text="72769"/>
+
+        <TextView
+            android:id="@+id/tvHighValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:paddingLeft="10dp"
+            android:text="72779"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/decRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="4dp"
+                    android:paddingLeft="20dp"
+                    android:onClick="decrementRed"
+                    android:src="@drawable/ic_blue_minus" />
+
+                <EditText
+                    android:id="@+id/redValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/transparent"
+                    android:gravity="center"
+                    android:hint="SL"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:text="72769"
+                    android:textColor="@color/colorBlack" />
+
+                <ImageView
+                    android:id="@+id/imgVIncrementRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="4dp"
+                    android:paddingRight="10dp"
+                    android:src="@drawable/ic_blue_plus"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="20dp"
+                android:background="@color/colorRed" />
+
+        </LinearLayout>
+
+
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+   >
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/decGreen"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:paddingLeft="20dp"
+                android:onClick="decrementRed1"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/ic_blue_minus"/>
+            <EditText
+                android:id="@+id/greenValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/colorBlack"
+                android:layout_weight="1"
+                android:hint="TP"
+                android:text="72779"/>
+            <ImageView
+                android:id="@+id/incGreen"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:paddingRight="30dp"
+                android:layout_marginTop="4dp"
+
+                android:src="@drawable/ic_blue_plus"/>
+        </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@color/colorGreen" />
+</LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:paddingBottom="10dp" >
+
+
+        <ImageView
+            android:id="@+id/devDec"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:paddingLeft="20dp"
+
+            android:onClick="decrementDeviation"
+            android:src="@drawable/ic_blue_minus"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textColor="@color/colorBlack"
+            android:layout_weight="1"
+            android:hint="Deviation"/>
+
+        <EditText
+            android:id="@+id/etDevValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:paddingLeft="10dp"
+            android:textColor="@color/colorBlack"
+            android:layout_weight="1"
+            android:textColorHint="@color/colorBlack"
+            android:hint="0"
+            android:background="@color/transparent"
+            />
+        <ImageView
+            android:id="@+id/ivDevInc"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginRight="30dp"
+            android:paddingLeft="20dp"
+            android:src="@drawable/ic_blue_plus"/>
+    </LinearLayout>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dip"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="#FF909090" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chartNewOrder"
+            android:layout_width="match_parent"
+            android:layout_height="245sp"
+            android:padding="10dp"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:padding="5dp">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_marginRight="1dp"
+                android:layout_width="150dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/Grey"
+                android:layout_alignParentBottom="true"
+                android:text="SELL"
+                android:textColor="#F44336" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_weight="1"
+                android:layout_marginLeft="1dp"
+                android:layout_width="150dp"
+                android:backgroundTint="@color/Grey"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="BUY"
+                android:textColor="#2196F3" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+

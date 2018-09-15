@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.affwl.exchange.fx.Tab2_order">
+
+    <TableRow>
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_column="1"
+            android:text="Filled:"
+            android:textSize="16sp"
+            android:padding="3dip"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            />
+        <TextView
+            android:text="1"
+            android:textSize="18sp"
+            android:gravity="right"
+            android:padding="3dip"
+            android:textStyle="bold"
+            android:textColor="#3D5AFE"/>
+    </TableRow>
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="160dp"
+            android:layout_column="1"
+            android:padding="3dip"
+            android:text="Canceled:"
+
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="174dp"
+            android:gravity="right"
+            android:padding="3dip"
+            android:text="0"
+            android:textColor="#3D5AFE"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:layout_column="1"
+            android:text="Total:"
+            android:textSize="18sp"
+            android:padding="3dip"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+        <TextView
+            android:text="1"
+            android:textSize="16sp"
+            android:gravity="right"
+            android:padding="3dip"
+            android:textStyle="bold"
+            android:textColor="#3D5AFE"/>
+    </TableRow>
+
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
+
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090" />
+    <TableRow>
+
+
+    </TableRow>
+</TableLayout>

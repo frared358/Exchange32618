@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:title="@string/home_page" />
+
+    <item
+        android:id="@+id/tabMarket"
+        android:title="@string/market" />
+
+    <item
+        android:id="@+id/tabMarketWatch"
+        android:title="@string/market_watch" />
+
+    <item
+        android:id="@+id/tabMarketMovers"
+        android:title="@string/market_mover" />
+
+    <item
+        android:id="@+id/tabPortfolio"
+        android:title="@string/portfolio" />
+
+
+    <item
+        android:id="@+id/pivot"
+        android:title="@string/pivot"/>
+
+    <item
+        android:id="@+id/liveTips"
+        android:title="@string/live_tips"/>
+
+    <item
+        android:id="@+id/charts"
+        android:title="Charts" />
+    <item
+        android:id="@+id/newHilo"
+        android:title="@string/new_high_low"/>
+
+    <item
+        android:id="@+id/scanner"
+        android:title="Scanner"/>
+
+    <item
+        android:id="@+id/dataQuery"
+        android:title="Data Query"/>
+
+</menu>

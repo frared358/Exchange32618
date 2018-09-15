@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingRight="5dp"
+    android:paddingLeft="5dp"
+    android:paddingTop="2dp"
+    android:paddingBottom="2dp">
+
+    <LinearLayout
+        android:id="@+id/llDispMarketData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:layout_weight="1"
+        android:paddingStart="10dp">
+
+        <TextView
+            android:id="@+id/txtVRunnerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="South Africa"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/txtVExposerData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="10sp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llMarketDataBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginRight="1dp"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/llBack3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@color/colorBlueBet3"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="1dp">
+
+            <TextView
+                android:id="@+id/txtVBackData3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="2.56"/>
+
+            <TextView
+                android:id="@+id/txtVBackChips3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHIPS 454"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llBack2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@color/colorBlueBet2"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txtVBackData2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="2.56"/>
+
+            <TextView
+                android:id="@+id/txtVBackChips2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHIPS 454"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llMarketData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginRight="1dp">
+
+        <LinearLayout
+            android:id="@+id/llBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@color/colorBlueBet1"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txtVBackData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="2.56"/>
+
+            <TextView
+                android:id="@+id/txtVBackChips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHIPS 454"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@color/colorRedBet1"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txtVLayData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="2.56"/>
+
+            <TextView
+                android:id="@+id/txtVLayChips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHIPS 454"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/llMarketDataLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_margin="1dp"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/llLay2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@color/colorRedBet2"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txtVLayData2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="2.56"/>
+
+            <TextView
+                android:id="@+id/txtVLayChips2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHIPS 454"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llLay3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@color/colorRedBet3"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/txtVLayData3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="2.56"/>
+
+            <TextView
+                android:id="@+id/txtVLayChips3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CHIPS 454"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtVActiveResult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text=""
+        android:gravity="center"
+        android:visibility="gone"
+        android:textSize="15sp"
+        android:textColor="@color/colorRed"
+        android:background="@color/colorRedBetTrasparent"
+        android:layout_weight="1"/>
+
+</LinearLayout>

@@ -1,0 +1,440 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    tools:context="com.affwl.exchange.settings.GeneralSettingFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/dropdown_language">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Choose Language"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"
+                    android:layout_weight="2"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/drop_down_general"
+                    android:layout_weight="1"
+                    android:paddingRight="10dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/dropdown_language_arrow"
+                   />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/layout_language_options">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Arabic"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Bengali"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"/>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="English"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"/>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Gujrati"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"/>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hindi"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"/>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kannada"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Malayalam"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nepali"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Punjabi"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Telugu"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tamil"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGreayDark" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/dropdown_push_notification"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Push Notification"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp"
+                    android:layout_weight="2"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/drop_down_general"
+                    android:layout_weight="1"
+                    android:paddingRight="10dp"
+                    android:id="@+id/dropdown_push_notification_arrow"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:id="@+id/layout_push_notification_options">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <Switch
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Crypto"
+                    android:textSize="20sp"
+                    android:thumbTint="@color/colorGreay"
+                    android:trackTint="@color/colorWhite"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:id="@+id/crypto_push_notify"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <Switch
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="FX"
+                    android:textSize="20sp"
+                    android:thumbTint="@color/colorGreay"
+                    android:trackTint="@color/colorWhite"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:id="@+id/fx_push_notify"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <Switch
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Indie"
+                    android:thumbTint="@color/colorGreay"
+                    android:trackTint="@color/colorWhite"
+                    android:textSize="20sp"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:id="@+id/indie_push_notify"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <Switch
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:thumbTint="@color/colorGreay"
+                    android:trackTint="@color/colorWhite"
+                    android:text="60 Sec"
+                    android:textSize="20sp"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:id="@+id/sixtysec_push_notify"/>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <Switch
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sports"
+                    android:thumbTint="@color/colorGreay"
+                    android:trackTint="@color/colorWhite"
+                    android:textSize="20sp"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:id="@+id/sports_push_notify"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGreay"/>
+
+                <Switch
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:thumbTint="@color/colorGreay"
+                    android:trackTint="@color/colorWhite"
+                    android:text="Teen Patti"
+                    android:textSize="20sp"
+                    android:padding="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:id="@+id/teen_patti_push_notify"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGreay"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Privacy &amp; Legal"
+                android:padding="10dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGreay"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Disclaimer"
+                android:padding="10dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGreay"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Help &amp; Support"
+                android:padding="10dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGreay"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="About us"
+                android:padding="10dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGreay"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tutorial"
+                android:padding="10dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGreayDark" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Account"
+                android:id="@+id/txtAccount"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Logout"
+                    android:id="@+id/tv_logout"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

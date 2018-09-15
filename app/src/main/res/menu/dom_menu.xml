@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Properties" />
+    <item android:title="Amount" />
+    <item android:title="Lots" />
+    <item
+        android:icon="@drawable/ic_action_pen"
+        android:title="search"
+        app:showAsAction="ifRoom" />
+
+</menu>

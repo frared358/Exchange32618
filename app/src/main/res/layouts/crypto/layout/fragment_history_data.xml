@@ -1,0 +1,141 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBinanceBG"
+    android:orientation="vertical"
+    tools:context="com.affwl.exchange.crypto.FragmentHistoryData">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/txtVDepositeCoinName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:text="BTC"/>
+
+
+        <TextView
+            android:id="@+id/txtVDepositeCoinValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/txtVDepositeCoinName"
+            android:text="0.025663"/>
+
+        <TextView
+            android:id="@+id/txtVDepositeDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorGreay"
+            android:layout_below="@+id/txtVDepositeCoinName"
+            android:text="2018-01-08 14:54:08"/>
+
+        <TextView
+            android:id="@+id/txtVDepositeStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/colorGreay"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="Completed"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/txtVDepositeCoinName1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:text="BTC"/>
+
+
+        <TextView
+            android:id="@+id/txtVDepositeCoinValue1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/txtVDepositeCoinName1"
+            android:text="0.005663"/>
+
+        <TextView
+            android:id="@+id/txtVDepositeDate1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorGreay"
+            android:layout_below="@+id/txtVDepositeCoinName1"
+            android:text="2018-03-08 11:23:00"/>
+
+        <TextView
+            android:id="@+id/txtVDepositeStatus1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/colorGreay"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="Completed"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/txtVDepositeCoinName2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:text="BTC"/>
+
+
+        <TextView
+            android:id="@+id/txtVDepositeCoinValue2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorWhite"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/txtVDepositeCoinName2"
+            android:text="0.15663"/>
+
+        <TextView
+            android:id="@+id/txtVDepositeDate2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/colorGreay"
+            android:layout_below="@+id/txtVDepositeCoinName2"
+            android:text="2018-02-17 21:04:48"/>
+
+        <TextView
+            android:id="@+id/txtVDepositeStatus2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/colorGreay"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="Completed"/>
+    </RelativeLayout>
+
+</LinearLayout>

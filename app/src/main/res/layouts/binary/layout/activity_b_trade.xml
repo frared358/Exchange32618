@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.affwl.exchange.binary.TradeActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:title="@string/trade"
+        app:titleTextColor="@android:color/white" />
+
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawerLayoutBinaryTrade"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/llGraphTop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtVInvestment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginLeft="2dp"
+                        android:text="Investment"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="10sp" />
+
+                    <LinearLayout
+                        android:layout_width="120dp"
+                        android:layout_height="32dp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@drawable/material_better"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+
+                        <ImageButton
+                            android:id="@+id/imgIncrement"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_weight="0"
+                            android:src="@drawable/plus_button" />
+
+                        <TextView
+                            android:id="@+id/txtVInvestmentAmt"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal|center_vertical"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
+                            android:textSize="14sp"
+                            android:text="$0"
+                            android:textColor="@color/colorBlack"
+                            android:textStyle="bold" />
+
+
+                        <ImageButton
+                            android:id="@+id/imgDecrement"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_weight="0"
+                            android:src="@drawable/minus_button" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/payout_icon" />
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:padding="2dp"
+                            android:text="Payout"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:padding="1dp"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:text="$"/>
+
+                        <TextView
+                            android:id="@+id/txtVPayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:padding="1dp"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtvExpiryTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:text="Expiry Time"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="10sp" />
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <Spinner
+                            android:id="@+id/SecondsBetterSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp"
+                            android:background="@drawable/material_better_spinner"
+                            android:hint="Seconds"
+                            android:theme="@style/spinnerTheme"
+                            style="@style/mySpinnerItemStyle"
+                            android:layout_marginTop="1dp"
+                            android:layout_marginBottom="1dp"
+                            android:entries="@array/asset"
+                            android:paddingLeft="10dp" />
+                    </RelativeLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="2dp"
+                        android:gravity="bottom|center_vertical">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/protected_amount_icon" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="Protected Amt"
+                            android:padding="2dp"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="$0"
+                            android:textStyle="bold"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <!--</LinearLayout>-->
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/llGraphName"
+                android:layout_below="@+id/llGraphTop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary">
+
+                <ImageView
+                    android:id="@+id/imgVTradeIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="2dp" />
+
+                <TextView
+                    android:id="@+id/txtVTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="2dp"
+                    android:layout_toRightOf="@+id/imgVTradeIcon"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp"
+                    android:lines="2"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Potential Payout"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/txtVPayoutPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/linearLayoutGraph"
+                android:layout_below="@+id/llGraphName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginBottom="80dp">
+
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/chartReal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="end"
+                    android:layout_alignParentRight="true"
+                    android:gravity="end"
+                    android:background="@color/colorBlackTransper"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="5dp">
+
+                    <TextView
+                        android:id="@+id/Ask"
+                        android:gravity="center"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:lines="1"
+                        android:layout_marginRight="2dp"/>
+
+                    <TextView
+                        android:id="@+id/Bid"
+                        android:gravity="center"
+                        android:textSize="12sp"
+                        android:layout_width="100dp"
+                        android:lines="1"
+                        android:layout_height="wrap_content"/>
+
+                    <ImageView
+                        android:id="@+id/imgInfo"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/info"
+                        android:background="@color/colorWhite"
+                        android:padding="3dp"/>
+                </LinearLayout>
+
+                <android.support.design.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginLeft="40dp"
+                    android:id="@+id/snackBarTimer"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true">
+                </android.support.design.widget.CoordinatorLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayoutInfoDialog"
+                    android:background="@drawable/info_dialog"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone"
+                    android:layout_alignParentRight="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bid/Ask rates : "
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="10dp"
+                        android:layout_marginTop="48dp" />
+
+                    <TextView
+                        android:layout_width="180dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rate_info"
+                        android:layout_marginLeft="18dp"
+                        android:textSize="10dp"
+                        android:layout_marginTop="62dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Expiry Formula : "
+                        android:layout_marginLeft="18dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="10dp"
+                        android:layout_marginTop="115dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="([BID]+[ASK])/2"
+                        android:layout_marginLeft="18dp"
+                        android:textSize="10dp"
+                        android:layout_marginTop="130dp"
+                        android:layout_alignParentLeft="true" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlGraphBottom"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp">
+
+                <LinearLayout
+                    android:id="@+id/llBottomTrade"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:id="@+id/frameLayoutPut"
+                        android:layout_width="155dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_shape_put"
+                        android:clickable="true">
+
+                        <ImageButton
+                            android:id="@+id/btnPut"
+                            android:layout_width="55dp"
+                            android:layout_height="45dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="7dp"
+                            android:background="@null"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/put_icon" />
+
+                        <TextView
+                            android:id="@+id/txtVbtnPut"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:layout_marginRight="20dp"
+                            android:clickable="true"
+                            android:text="Put"
+                            android:textAlignment="center"
+                            android:textAllCaps="false"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/frameLayoutCall"
+                        android:layout_width="155dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_shape_call"
+                        android:clickable="true">
+
+                        <ImageButton
+                            android:id="@+id/btnCall"
+                            android:layout_width="55dp"
+                            android:layout_height="45dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="7dp"
+                            android:background="@null"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/call_icon" />
+
+                        <TextView
+                            android:id="@+id/txtVbtnCall"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:layout_marginLeft="20dp"
+                            android:clickable="true"
+                            android:text="Call"
+                            android:textAlignment="center"
+                            android:textAllCaps="false"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+                    </FrameLayout>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/rate"
+                    android:layout_width="120dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/textview_backround_color"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/navViewBinaryTrade"
+            android:layout_width="70dp"
+            android:background="@color/colorGreay"
+            android:layout_height="match_parent"
+            android:layout_marginRight="100dp"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:menu="@menu/binary_drawer_menu" android:layout_marginEnd="100dp" />
+
+    </android.support.v4.widget.DrawerLayout>
+
+    <!--<fragment
+        android:id="@+id/fragmentBBottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:name="com.affwl.exchange.binary.BinaryBottomFragment"
+        android:layout_alignParentBottom="true"/>
+-->
+
+</RelativeLayout>

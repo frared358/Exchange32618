@@ -1,0 +1,50 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.affwl.exchange.fx.FxActivity">
+    <item
+        android:id="@+id/object"
+        android:title="time"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.ImageView"
+        android:icon="@drawable/ic_objects_normal"/>
+    <item
+        android:id="@+id/time"
+        android:title="time"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.ImageView"
+        android:icon="@drawable/time"/>
+    <item
+        android:id="@+id/idHighLight"
+        android:title="cd"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.ImageView"
+        android:icon="@drawable/ic_chart_cross"/>
+    <item
+        android:title="cd"
+        android:id="@+id/fadd"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.ImageView"
+        android:icon="@drawable/f"/>
+
+    <item
+        android:id="@+id/dolllar"
+        android:icon="@drawable/dol"
+        android:title="dollar"
+        app:actionViewClass="android.widget.ImageView"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/new_window"
+        android:icon="@drawable/copy"
+        android:title="Charts"
+        app:actionViewClass="android.widget.ImageView"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/itemp1"
+        android:title="Calender"
+        android:icon="@drawable/addicon"
+        app:actionViewClass="android.widget.ImageView"
+        app:showAsAction="always" >
+    </item>
+</menu>

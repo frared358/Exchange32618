@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.affwl.exchange.news.NewsActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:title="News"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="@android:color/white" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorRedLight1"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/list_rss"
+                android:background="@color/colorRedLight1"
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:layout_height="wrap_content">
+
+            </ListView>
+
+            <ImageView
+                android:id="@+id/loading_news"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/loading"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+</LinearLayout>

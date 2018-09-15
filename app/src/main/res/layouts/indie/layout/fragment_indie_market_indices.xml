@@ -1,0 +1,82 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E0E0E0"
+    tools:context=".indie.IndieMarketIndicesFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/indie_market_indices_layout"
+        android:layout_margin="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/ImgVIndicesIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/india_flag"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/ImgVIndicesIcon"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtVTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NIFTY"
+                    android:layout_margin="5dp"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    />
+
+                <TextView
+                    android:id="@+id/txtVTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="23-Oct-2017 15:31:01"
+                    android:layout_margin="5dp"
+                    android:textSize="10sp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="end"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/txtVValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10184.85"
+                    android:layout_margin="5dp"
+                    android:textSize="10sp"
+                    />
+
+                <TextView
+                    android:id="@+id/txtVPercentage"
+                    android:layout_below="@+id/txtVValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+116.76(+0.36%)"
+                    android:layout_margin="5dp"
+                    android:textSize="10sp"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#E0E0E0"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp">
+        <LinearLayout
+            android:id="@+id/ll1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="5dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="QUOTES"
+                android:layout_marginTop="10dp"
+                android:textSize="16dp"
+                android:textColor="@color/Black"
+                android:textStyle="bold"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:padding="3dp"
+                android:background="#B0BEC5"/>
+
+            <TableLayout
+                tools:ignore="MissingPrefix"
+                fontPath="fonts/Roboto-Bold.ttf"
+                android:layout_width="match_parent"
+                android:layout_height="234dp"
+                android:layout_margin="2dp"
+                android:padding="3dp">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv7"
+                        android:layout_height="match_parent"
+                        android:padding="3dip"
+                        android:text="Advanced mode"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="106dp">
+
+                    <TextView
+                        android:id="@+id/tv8"
+                        android:layout_width="307dp"
+                        android:layout_height="60dp"
+                        android:padding="3dip"
+                        android:text="In the advanced mode,the quotes windows
+constains spreads,time data,as well as High and
+ Low prices."
+                        android:textSize="14sp" />
+
+                    <CheckBox />
+                </TableRow>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#B0BEC5"
+                    android:padding="3dp" />
+
+            </TableLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

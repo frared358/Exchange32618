@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp" >
+
+    <ImageView
+        android:id="@+id/profile_pic1"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:contentDescription="desc"
+        android:paddingLeft="10dp"
+        android:src="@drawable/main"
+        android:paddingRight="10dp" />
+
+
+    <TextView
+        android:id="@+id/member_name1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/profile_pic1"
+        android:paddingBottom="10dp"
+        android:text="txt"
+        android:textStyle="bold"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/status1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/member_name1"
+        android:layout_toRightOf="@+id/profile_pic1"
+        android:text="txt"
+        android:textSize="12sp" />
+
+
+    <TextView
+        android:id="@+id/contact_type1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/member_name1"
+        android:text="txt"
+        android:textSize="10sp" />
+</RelativeLayout>

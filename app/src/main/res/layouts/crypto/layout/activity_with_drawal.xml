@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBinanceBG"
+    tools:context="com.affwl.exchange.crypto.WithDrawalActivity">
+
+    <RelativeLayout
+        android:id="@+id/rlWithdrawHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="2dp"
+        android:background="@color/colorGreyDark">
+
+        <TextView
+            android:id="@+id/txtVBackWithdrawFund"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:paddingBottom="5dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:text="❮"
+            android:textColor="@color/colorWhite"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Withdrawal"
+            android:layout_centerInParent="true"
+            android:textSize="18sp"
+            android:textColor="@color/colorWhite"/>
+
+
+        <TextView
+            android:id="@+id/txtVWithdrawHistoryClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="5dp"
+            android:textSize="13sp"
+            android:textColor="@color/colorWhite"
+            android:layout_centerVertical="true"
+            android:text="History"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rlWithdrawCoinSelection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:layout_below="@+id/rlWithdrawHeader"
+        android:background="@color/colorGreyLiterDark">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Coin"
+            android:textSize="16sp"
+            android:layout_margin="5dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorWhite"/>
+
+        <TextView
+            android:id="@+id/txtVWithdrawCoinSelection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="》"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/colorWhite"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:text="Withdrawal"
+        android:textAllCaps="false"
+        android:background="@color/colorGreyDark"
+        android:textColor="@color/colorWhite"/>
+
+</RelativeLayout>

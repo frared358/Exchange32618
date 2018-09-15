@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/group1">  <!-- devide in group -->
+        <item
+            android:id="@+id/nav_home"
+            android:title="home"></item>
+        <item
+            android:id="@+id/nav_home1"
+            android:title="home1"></item>
+        <item
+            android:id="@+id/nav_home2"
+            android:title="home2"></item>
+        <item
+            android:id="@+id/nav_home3"
+            android:title="home3"></item>
+    </group>
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/group2">
+        <item
+            android:id="@+id/nav_settings"
+            android:title="settings"></item>
+        <item
+            android:id="@+id/nav_settings1"
+            android:title="settings1"></item>
+    </group>
+
+</menu>

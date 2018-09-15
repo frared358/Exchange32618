@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.affwl.exchange.news.RssFeedUrlActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/edit_layout"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/enter_url_layout"
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/edit_add_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textCursorDrawable="@null"
+            android:hint="Enter RSS Feed Url"
+            android:singleLine="true"
+            android:textColorHint="@color/colorWhite"
+            android:textColor="@color/colorWhite"
+            android:layout_weight="1"
+            android:layout_margin="10sp"
+            android:backgroundTint="@color/colorWhite"
+            android:textSize="20sp"/>
+
+
+        <ImageView
+            android:id="@+id/img_add_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/add_circular_button"
+            android:layout_weight="0"
+            android:layout_margin="10dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="15sp"
+        android:textColor="@color/colorWhite"
+        android:textStyle="italic"
+        android:layout_weight="1"
+        android:text="(Maximum 5 URL allowed)"/>
+
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/display_url_list"
+        android:layout_width="match_parent"
+        android:background="@color/colorRedLight1"
+        android:layout_height="350dp">
+
+    </ListView>
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_layout"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/submit_urlList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorBlackTransperDialog"
+            android:layout_weight="1"
+            android:text="Submit" />
+
+        <Button
+            android:id="@+id/cancel_urlList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/colorWhite"
+            android:background="@color/colorBlackTransperDialog"
+            android:layout_weight="1"
+            android:text="Cancel" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,72 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.user.afinal.MainActivity">
+
+    <!--<item-->
+        <!--android:id="@+id/action_settings"-->
+         <!--android:icon="@drawable/ic_launcher_foreground"-->
+        <!--android:title="@string/action_settings"-->
+        <!--app:showAsAction="ifRoo   m" />-->
+
+
+
+    <item
+        android:id="@+id/dolllar1"
+        android:icon="@drawable/dol"
+        android:title="dollar"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.ImageView">
+
+
+    <!--<menu>-->
+
+        <!--<item-->
+            <!--android:id="@+id/it5"-->
+            <!--android:title="EURUSD"-->
+            <!--app:showAsAction="always"-->
+            <!--/>-->
+
+        <!--<item-->
+            <!--android:id="@+id/it1"-->
+            <!--android:title="GBPUSD"-->
+            <!--app:showAsAction="always"-->
+
+            <!--/>-->
+        <!--<item-->
+            <!--android:id="@+id/it2"-->
+            <!--android:title="USDCHF"-->
+            <!--app:showAsAction="always" />-->
+
+        <!--<item-->
+            <!--android:id="@+id/it3"-->
+            <!--android:title="USDJPY"-->
+            <!--app:showAsAction="always"-->
+
+            <!--/>-->
+        <!--<item-->
+            <!--android:id="@+id/it4"-->
+            <!--android:title="USDCNH"-->
+            <!--app:showAsAction="always"-->
+
+            <!--/>-->
+        <!--<item-->
+            <!--android:id="@+id/it8"-->
+            <!--android:title="USDRUB"-->
+            <!--app:showAsAction="always"-->
+            <!--/>-->
+        <!--<item-->
+            <!--android:id="@+id/it6"-->
+            <!--android:title="AUDUSD"-->
+            <!--app:showAsAction="always"-->
+            <!--/>-->
+        <!--<item-->
+        <!--android:id="@+id/it7"-->
+        <!--android:title="NZDUSSD"-->
+        <!--app:showAsAction="always"-->
+            <!--/>-->
+
+
+    <!--</menu>-->
+    </item>
+</menu>

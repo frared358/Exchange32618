@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:paddingBottom="2dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="2dp"
+    android:paddingTop="2dp">
+
+    <ImageView
+        android:id="@+id/imgVCoin"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/trade_yellow_128"
+        android:layout_marginRight="2dp" />
+
+    <TextView
+        android:id="@+id/txtVCoinSymbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/imgVCoin"
+        android:fontFamily="sans-serif-medium"
+        android:layout_centerVertical="true"
+        android:textColor="@color/colorWhite"
+        android:text="LTC"
+        android:padding="5dp"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/txtVCoinFullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/txtVCoinSymbol"
+        android:layout_centerVertical="true"
+        android:textColor="@color/colorGreyLiterDark"
+        android:text="(Lite Coin)"
+        android:padding="5dp"
+        android:textSize="14sp" />
+
+</RelativeLayout>
