@@ -298,7 +298,7 @@ public class PrivateActivity extends AppCompatActivity implements View.OnClickLi
         card8.bringToFront();
         card13.bringToFront();
 
-        //animate shuffle cards
+        //animate shuffle cards now here
         card1.startAnimation(animatecard1);
         animatecard2.setStartOffset(200);
         card2.startAnimation(animatecard2);
